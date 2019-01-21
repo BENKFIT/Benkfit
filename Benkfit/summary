@@ -1,0 +1,64 @@
+=====================================================================================================================
+
+	jsp페이지 작성
+	
+	- 가장 상단 : <%@ include file="setting.jsp" %>
+	
+	- 메뉴 : <%@ include file ="../Template/top.jsp" %>
+	- 하단 : <%@ include file ="../Template/footer.jsp" %>
+
+=====================================================================================================================
+
+	jsp파일 생성 위치
+	대메뉴>중메뉴>소메뉴
+	ex)
+	mypage일 경우
+	user -> mypage -> mypage.jsp
+	search일 경우
+	common -> search -> search.jsp
+
+=====================================================================================================================
+
+	Controller, Service, DAO, mappers
+	작성시 _자기이름이니셜 붙이기
+	ex)
+	Controller_syk
+	Service_syk
+	DAO_syk
+	mapper_syk
+
+=====================================================================================================================
+	
+	-servlet-context 
+	<beans:property name="jndiName" value="java:comp/env/jdbc/Oracle11g" />
+	현재는 Oracle11g로 되어있으나, 바뀔 예정
+	
+=====================================================================================================================
+
+  ※ 사이트 접속해서 다운로드해서  필요부분만 추출해서 사용하시면 됩니다.
+
+1.버튼양식. 
+https://demos.creative-tim.com/bs3/paper-kit/index.html?_ga=2.165001087.1716487838.1547776127-1640429976.1546995289#
+  
+2.모달양식(Modals)
+https://demos.creative-tim.com/argon-design-system/index.html?_ga=2.70103888.1716487838.1547776127-1640429976.1546995289
+
+3. Datetimepicker(달력)
+https://demos.creative-tim.com/argon-design-system/index.html?_ga=2.70103888.1716487838.1547776127-1640429976.1546995289
+
+4. Inputs
+https://demos.creative-tim.com/vue-material-kit-pro/?_ga=2.70170192.1716487838.1547776127-1640429976.1546995289#/
+
+5. 웹페이지 전체 기본컬러
+#FFD662  --Aspen Gold
+-> 상단바 hover시 밑줄컬러 #ff0000;
+
+6. 테이블 색상
+ red -> #C64545;
+ green -> #1AA85C; 
+ blue -> #2D5772;
+ 
+7. 각각 파일을 필요한 페이지에 해서 사용하시면 됩니다.
+<%@ include file="./footer.jsp"%>
+ 	
+  
