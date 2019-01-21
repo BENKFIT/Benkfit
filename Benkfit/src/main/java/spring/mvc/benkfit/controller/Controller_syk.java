@@ -16,51 +16,22 @@ public class Controller_syk {
 	 * }
 	 */
 	
-	
-	@RequestMapping("index")
-	public String index() {
-		return "Template/index";
+	@RequestMapping("home/homeMain")
+	public String homeMain() {
+		System.out.println("homeMain()");
+		return "home/homeMain";
 	}
 	
-	/* ==================1차발표================== */
-	@RequestMapping("mypage")
-	public String mypage() {
-		return "common/mypage";
+	@RequestMapping("user/memberMain")
+	public String memberMain() {
+		System.out.println("memberMain()");
+		return "user/memberMain";
 	}
 	
-	@RequestMapping("chat")
-	public String chat() {
-		return "common/chat";
+	@RequestMapping("admin/adminMain")
+	public String adminMain() {
+		System.out.println("adminMain()");
+		return "admin/adminMain";
 	}
 	
-	@RequestMapping("check")
-	public String check() {
-		return "common/check";
-	}
-	
-	@RequestMapping("event")
-	public String event() {
-		return "common/event";
-	}
-	
-	@RequestMapping("loan")
-	public String loan() {
-		return "common/loan";
-	}
-	
-	@RequestMapping("info")
-	public String info() {
-		return "common/info";
-	}
-	
-	@RequestMapping("login")
-	public String login() {
-		return "common/login";
-	}
-	
-	@RequestMapping("signIn")
-	public String signIn() {
-		return "common/signIn";
-	}
-	/* ==================1차발표================== */
 }

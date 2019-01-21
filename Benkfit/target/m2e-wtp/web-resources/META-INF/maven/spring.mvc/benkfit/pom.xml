@@ -109,6 +109,32 @@
 			<version>1.2</version>
 		</dependency>
 		
+		<!-- security 설정 시작 -->	
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+		<!-- security 설정 종료 -->	
+		
 		<!-- Mybatis 설정 시작  -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
@@ -136,6 +162,14 @@
 		</dependency>
 	    <!-- Mybatis 설정 종료  -->
 		
+		<!-- 커넥션풀 시작 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.1</version>
+		</dependency>
+		<!-- 커넥션풀 종료 -->
+	
 		<!-- SQL문 보이기(log4j 시작) -->
 		<dependency>
 		    <groupId>org.lazyluke</groupId>
