@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="spring.mvc.benkfit.persistence.DAO_sws">
+	
+	<!-- 이벤트 목록 갯수 -->
+	<select id="getEventCnt" resultType="int">
+		SELECT COUNT(*) FROM event_tbl
+	</select>
+	
+	<!-- 이벤트 목록 -->
+	<select id="getBookList" resultType="spring.mvc.benkfit.vo.EventVo" parameterType="java.util.Map">
+		<![CDATA[
+		 	SELECT * 
+			FROM (SELECT eve_num, eve_title, eve_content, eve_start, eve_end, eve_regDate, eve_img, rownum rNum
+				  FROM (
+						SELECT * FROM event_tbl
+						ORDER BY eve_num DESC
+					   )
+				 )
+			WHERE rNum >= #{start} AND rNum <= #{end}
+		 ]]> 
+	</select>
+	
+	<!-- 이벤트 상세 페이지 -->
+	<select id="getEvent" resultType="spring.mvc.benkfit.vo.EventVo" >
+		select * from event_tbl where eve_num=#{eve_num}
+	</select>
+	
+	<!-- 이벤트 등록 처리 -->
+	<insert id="insertEvent" parameterType="spring.mvc.benkfit.vo.EventVo">
+		insert into event_tbl(eve_num, eve_title, eve_content, eve_start, eve_end, eve_img)
+		values(event_seq.nextval, #{eve_title}, #{eve_content}, #{eve_start}, #{eve_end}, #{eve_img})
+	</insert>
+	
+	<!-- 이벤트 수정 처리 -->
+	<update id="updateEvent" parameterType="spring.mvc.benkfit.vo.EventVo">
+		UPDATE event_tbl SET eve_title=#{eve_title}, eve_content=#{eve_content}, eve_start=#{eve_start}, eve_end=#{eve_end}, eve_img=#{eve_img} WHERE eve_num=#{eve_num}
+	</update>
+</mapper>

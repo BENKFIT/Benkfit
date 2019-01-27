@@ -16,11 +16,21 @@
 <link rel="stylesheet" href="${path}/css/table2.css" />
 <link rel="stylesheet" href="${path}/css/top.css" />
 <link rel="stylesheet" href="${path}/css/TOP2.css" />
+<link rel="stylesheet" href="${path}/css/mypage_kay.css" />
 
 <!-- JS -->
 <script type="text/javascript" src="${path}/js/classie.js"></script>
 <script type="text/javascript" src="${path}/js/main.js"></script>
 <script type="text/javascript" src="${path}/js/modernizr-custom.js"></script>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
+<script type="text/javascript" src="${path}/js/qrcode.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="${path}/js/script_kay.js"></script>
 
-<!--  -->
+
+<!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- JQuery -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

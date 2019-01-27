@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+#mypage{
+	margin-top:100px;
+}
+#mypage_thead{
+	background-color: #FFD662;
+}
+.info th{
+	background-color: #FFD662;	
+}
+.btn2{
+	border-radius: 20px;
+	border-width: 2px;
+    background-color: transparent;
+}
+.btn2-success{
+	border-color: #7AC29A;
+    color: #7AC29A;
+}
+.btn2-Info{
+	border-color: #68B3C8;
+    color: #68B3C8;
+}
+.btn2-danger{
+	border-color: #EB5E28;
+    color: #EB5E28;
+}
+/* #qrcode */
+#qrcode {
+  width:160px;
+  height:160px;
+  margin: 15px 15px 15px 40px;
+}
+
+/* mypage tab메뉴 */
+/* #tab-menu{
+	margin: 6% auto 10% auto;
+    padding: 40px;
+    max-width: 800px;
+} */
+/*TAB CSS*/
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 32px; /*--Set height of tabs--*/
+	border-bottom: 1px solid #999;
+	border-left: 1px solid #999;
+	width: 100%;
+}
+
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 31px;
+	/*--Subtract 1px from the height of the unordered list--*/
+	line-height: 31px; /*--Vertically aligns the text within the tab--*/
+	border: 1px solid #999;
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #e0e0e0;
+}
+
+ul.tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	/*--Gives the bevel look with a 1px white border inside the list item--*/
+	border: 1px solid #fff;
+	outline: none;
+}
+
+ul.tabs li a:hover {
+	background: #ccc;
+}
+ul.tabs li.active, html ul.tabs li.active a:hover {
+	/*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #fff;
+	/*--Makes the active tab look like it's connected with its content--*/
+	border-bottom: 1px solid #fff;
+}
+/*Tab Conent CSS*/
+.tab_container {
+	border: 1px solid #999;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left;
+	width: 100%;
+	background: #fff;
+	margin-bottom: 20%;
+}
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
+#qr_create{
+	text-align:center;
+}
+#pwCheck{
+    margin: auto;
+}
+.PW{
+	/* background-color: rgba(255,214,98,0.1); */
+	border:3px solid #FFD662;
+	text-align:center;
+	width:50%;
+	margin: auto;
+}
+.updateInfo{
+	margin:15px;
+}
+.updateInfo th,td{
+	border-bottom:1px solid #ccc;
+	padding:15px;
+}
+.updateInfo td{
+	padding:5px;
+	text-align:center;
+}
+.updateInfo th{
+	background-color:#FFD662;
+}
+.upinfo th,td{
+	border:1px solid #ccc;
+	padding:15px;
+	margin:15px;
+}
+

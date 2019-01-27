@@ -16,22 +16,5 @@ public class Controller_syk {
 	 * }
 	 */
 	
-	@RequestMapping("home/homeMain")
-	public String homeMain() {
-		System.out.println("homeMain()");
-		return "home/homeMain";
-	}
-	
-	@RequestMapping("user/memberMain")
-	public String memberMain() {
-		System.out.println("memberMain()");
-		return "user/memberMain";
-	}
-	
-	@RequestMapping("admin/adminMain")
-	public String adminMain() {
-		System.out.println("adminMain()");
-		return "admin/adminMain";
-	}
 	
 }

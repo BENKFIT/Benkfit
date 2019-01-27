@@ -31,7 +31,7 @@
 	
 	<!-- Mybatis 설정 시작 -->	   
 	<beans:bean name="dataSourceSpied" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<beans:property name="jndiName" value="java:comp/env/jdbc/Oracle11g_security" /> <!-- context.xml의 컨넥션풀 lookup -->
+		<beans:property name="jndiName" value="java:comp/env/jdbc/Oracle11g_benkfit" /> <!-- context.xml의 컨넥션풀 lookup -->
 		<beans:property name="resourceRef" value="true" />
 	</beans:bean>
     

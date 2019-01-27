@@ -35,7 +35,7 @@ html {
 #sidebar-wrapper {
 	padding-left: 0px;
     padding-right: 0px;
-    z-index: 1;
+    z-index: 10;
     left: 220px;
     width: 0;
     top: 83px;
