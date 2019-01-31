@@ -9,11 +9,13 @@ public interface DAO_sws {
 
 	public int getEventCnt(String strId);
 	
-	public List<EventVo> getBookList(Map<String, Object> map);
+	public List<EventVo> getEventList(Map<String, Object> map);
 	
 	public EventVo getEvent(String eve_num);
 	
 	public int insertEvent(EventVo vo);
 	
 	public int updateEvent(EventVo vo);
+	
+	public int deleteEvent(String eve_num);
 }

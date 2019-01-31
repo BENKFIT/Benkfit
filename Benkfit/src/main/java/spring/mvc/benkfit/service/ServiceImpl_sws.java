@@ -1,13 +1,9 @@
 package spring.mvc.benkfit.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.security.Timestamp;
+import java.io.*;
+import java.net.*;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
-
-import com.sun.org.apache.xalan.internal.xsltc.cmdline.Transform;
+import org.springframework.web.multipart.*;
 
 import spring.mvc.benkfit.persistence.DAO_sws;
-import spring.mvc.benkfit.vo.EventVo;
+import spring.mvc.benkfit.vo.*;
 
 @Service
 public class ServiceImpl_sws implements Service_sws {
@@ -94,7 +87,7 @@ public class ServiceImpl_sws implements Service_sws {
 			map.put("start", start);
 			map.put("end", end);
 
-			List<EventVo> dtos = dao.getBookList(map);
+			List<EventVo> dtos = dao.getEventList(map);
 
 			req.setAttribute("dtos", dtos);		// 큰 바구니 : 게시글 목록   cf) 작은바구니 : 게시글 1건
 		}
@@ -151,7 +144,7 @@ public class ServiceImpl_sws implements Service_sws {
 		MultipartFile file = ((MultipartRequest) req).getFile("eve_img");
 
 		String saveDir = req.getRealPath("resources/img/event/");
-		String realDir = "C:\\DEV43\\git2\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
+		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
 		System.out.println("saveDir : " + saveDir);
 		System.out.println("realDir : " + realDir);
 
@@ -219,7 +212,7 @@ public class ServiceImpl_sws implements Service_sws {
 		MultipartFile file = ((MultipartRequest) req).getFile("eve_img");
 
 		String saveDir = req.getRealPath("resources/img/event/");
-		String realDir = "C:\\DEV43\\git2\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
+		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
 		System.out.println("saveDir : " + saveDir);
 		System.out.println("realDir : " + realDir);
 
@@ -267,4 +260,21 @@ public class ServiceImpl_sws implements Service_sws {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void event_deletePro_sws(HttpServletRequest req, Model model) {
+		
+		String pageNum = req.getParameter("pageNum");
+		String eve_num = req.getParameter("eve_num");
+		
+		int deleteCnt = dao.deleteEvent(eve_num);
+		
+		req.setAttribute("deleteCnt", deleteCnt);
+		req.setAttribute("pageNum", pageNum);
+	}
+
+	@Override
+	public void naver_search_sws(HttpServletRequest req, Model model) {
+		
+    }
 }

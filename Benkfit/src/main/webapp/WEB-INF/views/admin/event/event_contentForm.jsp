@@ -46,16 +46,16 @@
 						</tr>
 
 						<tr>
-							<td>시작일 : <fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_start}" /></td>
-							<td style="text-align: right;">종료일 : <fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_end}" /></td>
+							<td style="border: none;">시작일 : <fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_start}" /></td>
+							<td style="text-align: right; border: none;">종료일 : <fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_end}" /></td>
 						</tr>
 
 						<tr>
-							<td align="right" colspan="2"><input class="inputButton" type="submit"
-								value="수정"> <input class="inputButton" type="button"
-								value="삭제" onclick="window.location='event_deletePro_sws'">
-								<input class="inputButton" type="button" value="목록"
-								onclick="window.location='event_list_sws'"></td>
+							<td align="right" colspan="2">
+								<input class="inputButton" type="submit" value="수정"> 
+								<input class="inputButton" type="button" value="삭제" onclick="window.location='event_deletePro_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}'">
+								<input class="inputButton" type="button" value="목록" onclick="window.location='event_list_sws'">
+							</td>
 						</tr>
 					</tbody>
 				</table>

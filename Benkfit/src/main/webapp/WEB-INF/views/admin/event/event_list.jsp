@@ -19,7 +19,7 @@
 
 	<div
 		style="margin-top: 200px; height: 18%; width: 100%; text-align: center;">
-		<div style="display: inline-block; width: 60%; margin-top: 20px;">
+		<div style="display: inline-block; width: 60%;">
 			<h2>이벤트</h2>
 			<br>
 			<table class="table table-hover" style="width: 100%;">
@@ -49,7 +49,6 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
 
 	<!-- 페이지 컨트롤 -->
 	<table style="width:1148px;" align="center">
@@ -84,11 +83,13 @@
 			
 		</tr>
 		<tr>
-			<td align="center" style="padding-top: 10px;">
+			<td align="center" style="padding-top: 10px; border: none;">
 				<input class="inputButton" type="button" value="추가" onclick="window.location='event_addForm_sws'">
 			</td>
 		</tr>		
 	</table>
+</div>
+	
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>

@@ -139,7 +139,7 @@ public class Controller_sws {
 	public String event_deletePro_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_deletePro_sws");
 		
-		//service.event_deletePro_sws(req, model);
+		service.event_deletePro_sws(req, model);
 		
 		return "admin/event/event_deletePro";
 	}

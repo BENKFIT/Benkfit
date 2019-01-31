@@ -226,7 +226,7 @@
 					<td>5,000원 (건당)</td>
 				</tr>
 				<tr>
-					<td rowspan="3">WU빠른해외송금</td>
+					<td rowspan="3" style="padding-top: 47px">WU빠른해외송금</td>
 					<td rowspan="2" style="padding-top: 28px">타발송금</td>
 					<td rowspan="2" style="padding-top: 28px">전세계 200여개국</td>
 					<td>송금액 미화 3,000불 이하</td>

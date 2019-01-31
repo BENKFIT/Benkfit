@@ -71,7 +71,7 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-4" href="#">상담</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-5" href="#">이벤트</a></li>
+							data-submenu="submenu-5" href="map_sws">ATM</a></li>
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<ul data-menu="submenu-0" class="menu__level">
@@ -87,7 +87,7 @@
 					</ul>
 					<!-- Submenu 0-1 조회 -->
 					<ul data-menu="submenu-0-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">계좌관리</a></li>
+						<li class="menu__item"><a class="menu__link" href="mypage">계좌관리</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-1-2" href="#">대출관리</a></li>
 					</ul>
@@ -215,17 +215,13 @@
 					</ul>
 					<!-- Submenu 3  안내 -->
 					<ul data-menu="submenu-3" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">첫방문
+						<li class="menu__item"><a class="menu__link" href="firstVisit_sws">첫방문
 								고객 안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">FAQ</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이용시간
+						<li class="menu__item"><a class="menu__link" href="faq_sws">FAQ</a></li>
+						<li class="menu__item"><a class="menu__link" href="hoursOfUse_sws">이용시간
 								안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이용
+						<li class="menu__item"><a class="menu__link" href="useFee_sws">이용
 								수수료 안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이용혜택
-								안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이용
-								약관 안내</a></li>
 					</ul>
 					<!-- Submenu 4 -->
 					<ul data-menu="submenu-4" class="menu__level">
@@ -264,8 +260,8 @@
 												<li><a href="#">자산관리 3</a></li>
 											</ul></li>
 										<li><a href="chat">상담</a></li>
-										<li><a href="info">안내</a></li>
-										<li><a href="event">이벤트</a></li>
+										<li><a href="firstVisit_sws">안내</a></li>
+										<li><a href="eventList_sws">이벤트</a></li>
 										<li><a href="login">로그인</a><br></li>
 										<li><a href="signIn">회원가입</a><br></li>
 										<li>
@@ -304,14 +300,18 @@
 	<!-- /view -->
 	<script>
 		(function() {
+			
+			$('a').click(function(){
+				var location = $(this).prop("href");
+				if(location != "#"){
+					window.location.href = location;
+				}
+			})
+			
 			var menuEl = document.getElementById('ml-menu'), mlmenu = new MLMenu(
 					menuEl, {
-						// breadcrumbsCtrl : true, // show breadcrumbs
-						// initialBreadcrumb : 'all', // initial breadcrumb text
 						backCtrl : false, // show back button
-						// itemsDelayInterval : 60, // delay between each menu item sliding animation
 						onItemClick : loadDummyData
-					// callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
 					});
 
 			// mobile menu toggle
@@ -332,16 +332,26 @@
 			var gridWrapper = document.querySelector('.content');
 
 			function loadDummyData(ev, itemName) {
+				
+				
 				ev.preventDefault();
 
 				closeMenu();
-				gridWrapper.innerHTML = '';
-				classie.add(gridWrapper, 'content--loading');
-				setTimeout(function() {
-					classie.remove(gridWrapper, 'content--loading');
-					gridWrapper.innerHTML = '<ul class="products">'
-							+ dummyData[itemName] + '<ul>';
-				}, 700);
+				
+				if(gridWrapper != null){
+					gridWrapper.innerHTML = '';
+					classie.add(gridWrapper, 'content--loading');
+					setTimeout(function() {
+						classie.remove(gridWrapper, 'content--loading');
+						gridWrapper.innerHTML = '<ul class="products">'
+								+ dummyData[itemName] + '<ul>';
+					}, 700);
+				}else{
+					if(location != "#")	{
+						window.location = location;
+						return false;
+					}	
+				}
 			}
 		})();
 	</script>

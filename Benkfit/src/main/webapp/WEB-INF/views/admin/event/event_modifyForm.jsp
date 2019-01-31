@@ -71,7 +71,7 @@ function readURL(input) {
 					<tr>
 						<td rowspan="2">
 							<div style="text-align: center;">
-								<img style="max-width: 400px; max-height: 380px; display: inline-block;" id="imgView" src="/benkfit/resources/img/${dto.eve_img}" />
+								<img style="max-width: 400px; max-height: 380px; display: inline-block;" id="imgView" src="/benkfit/resources/img/event/${dto.eve_img}" />
 							</div>
 						</td>
 						<th>내용</th>

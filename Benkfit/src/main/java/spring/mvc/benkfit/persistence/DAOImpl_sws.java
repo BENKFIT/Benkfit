@@ -1,6 +1,7 @@
 package spring.mvc.benkfit.persistence;
 
 import java.util.*;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ public class DAOImpl_sws implements DAO_sws {
 
 	// 이벤트 목록
 	@Override
-	public List<EventVo> getBookList(Map<String, Object> map) {
+	public List<EventVo> getEventList(Map<String, Object> map) {
 		
-		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_sws.getBookList", map);
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_sws.getEventList", map);
 	}
 
 	// 이벤트 상세 페이지
@@ -46,5 +47,11 @@ public class DAOImpl_sws implements DAO_sws {
 	public int updateEvent(EventVo vo) {
 		
 		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_sws.updateEvent", vo);
+	}
+
+	@Override
+	public int deleteEvent(String eve_num) {
+		
+		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_sws.deleteEvent", eve_num);
 	}
 }

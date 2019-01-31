@@ -45,7 +45,6 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
 
 	<!-- 페이지 컨트롤 -->
 	<table style="width:1000px" align="center">
@@ -79,6 +78,7 @@
 			</th>
 		</tr>	
 	</table>
+</div>
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>

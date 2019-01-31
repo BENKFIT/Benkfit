@@ -20,4 +20,10 @@ public interface Service_sws {
 	
 	// 이벤트 수정 처리
 	public void event_modifyPro_sws(HttpServletRequest req, Model model);
+	
+	// 이벤트 삭제 처리
+	public void event_deletePro_sws(HttpServletRequest req, Model model);
+	
+	// 네이버 검색 api
+	public void naver_search_sws(HttpServletRequest req, Model model);
 }

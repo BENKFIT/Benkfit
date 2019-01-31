@@ -12,7 +12,7 @@
 	</select>
 	
 	<!-- 이벤트 목록 -->
-	<select id="getBookList" resultType="spring.mvc.benkfit.vo.EventVo" parameterType="java.util.Map">
+	<select id="getEventList" resultType="spring.mvc.benkfit.vo.EventVo" parameterType="java.util.Map">
 		<![CDATA[
 		 	SELECT * 
 			FROM (SELECT eve_num, eve_title, eve_content, eve_start, eve_end, eve_regDate, eve_img, rownum rNum
@@ -40,4 +40,9 @@
 	<update id="updateEvent" parameterType="spring.mvc.benkfit.vo.EventVo">
 		UPDATE event_tbl SET eve_title=#{eve_title}, eve_content=#{eve_content}, eve_start=#{eve_start}, eve_end=#{eve_end}, eve_img=#{eve_img} WHERE eve_num=#{eve_num}
 	</update>
+	
+	<!-- 이벤트 삭제 처리 -->
+	<delete id="deleteEvent" parameterType="spring.mvc.benkfit.vo.EventVo">
+		DELETE event_tbl WHERE eve_num=#{eve_num}
+	</delete>
 </mapper>

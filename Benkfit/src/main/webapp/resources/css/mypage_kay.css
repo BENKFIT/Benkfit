@@ -117,7 +117,7 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 .updateInfo{
 	margin:15px;
 }
-.updateInfo th,td{
+.updateInfo th, .updateInfo td{
 	border-bottom:1px solid #ccc;
 	padding:15px;
 }
@@ -128,7 +128,7 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 .updateInfo th{
 	background-color:#FFD662;
 }
-.upinfo th,td{
+.upinfo th, .upinfo td{
 	border:1px solid #ccc;
 	padding:15px;
 	margin:15px;
