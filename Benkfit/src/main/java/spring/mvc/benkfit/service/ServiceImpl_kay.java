@@ -10,9 +10,9 @@ import org.springframework.ui.Model;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.MyloanAccount_kay;
+import spring.mvc.benkfit.vo.Users;
 import spring.mvc.benkfit.vo.document_kay;
 import spring.mvc.benkfit.vo.myCheqAccount_kay;
-import spring.mvc.benkfit.vo.users_tbl_kay;
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
@@ -31,23 +31,21 @@ public class ServiceImpl_kay implements Service_kay{
 		model.addAttribute("cheq", cheq);
 		model.addAttribute("loan", loan);
 	}
-	
 	//내서류관리
 	public void docu_list(HttpServletRequest req, Model model) {
 		List<document_kay> docu = dao.docu_list();
 		model.addAttribute("docu", docu);
 	}
-	
 	//qr코드 생성
 	@Override
 	public void qrcode(HttpServletRequest req, Model model) {
-		users_tbl_kay qrcode = dao.qrcode();
+		Users qrcode = dao.qrcode();
 		model.addAttribute("qrcode", qrcode);
 	}
 	//내정보
 	@Override
 	public void info(HttpServletRequest req, Model model) {
-		users_tbl_kay user = dao.info();
+		Users user = dao.info();
 		model.addAttribute("user", user);
 		
 	}

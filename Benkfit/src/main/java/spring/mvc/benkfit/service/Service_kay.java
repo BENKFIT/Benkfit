@@ -16,5 +16,8 @@ public interface Service_kay {
 	
 	//내정보
 	public void info(HttpServletRequest req, Model model);
+	
+	//
+	
 		
 }

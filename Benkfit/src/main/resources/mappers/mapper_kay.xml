@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  	<mapper namespace="spring.mvc.benkfit.persistence.DAO_kay">
  		
@@ -10,12 +10,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<select id="myCheq_list" resultType="spring.mvc.benkfit.vo.myCheqAccount_kay" >
  			select myCheq_account, myCheq_amount,cheq_num,c_id 
  			from myCheqAccount_tbl
+ 			 where  c_id = 'id1234'
  		</select>
  		
  		<!-- 대출관리  -->
  		<select id="myloan_list" resultType="spring.mvc.benkfit.vo.MyloanAccount_kay">
  			select *
  			from MyloanAccount_tbl
+ 			 where  c_id = 'id1234'
  		</select>
  		
  		<!-- 대출상세  -->
@@ -23,23 +25,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			select *
 			from loanProduct_tbl lp, loanRates_tbl lr, MyloanAccount_tbl la
 			where lp.loan_num =la.loan_num and lr.loan_num=la.loan_num
+			AND  where  c_id = 'id1234'
  		</select>
+ 		
  		<!-- 내서류관리 -->
  		<select id ="docu_list" resultType="spring.mvc.benkfit.vo.document_kay">
- 			select * from document_tbl
+ 			select * from document_tbl where  c_id = 'id1234'
  		</select>
  		
  		<!-- qrcode -->
- 		<select id="qrcode" resultType="spring.mvc.benkfit.vo.users_tbl_kay">
- 			select c_id,c_name,c_hp
+ 		<select id="qrcode" resultType="spring.mvc.benkfit.vo.Users">
+ 			select c_id, c_name, c_hp
  			from users_tbl
+ 			where  c_id = 'id1234'
  		</select>
  		
  		<!-- 내정보 -->
- 		<select id="info" resultType="spring.mvc.benkfit.vo.users_tbl_kay">
+ 		<select id="info" resultType="spring.mvc.benkfit.vo.Users">
  			select *
  			from users_tbl
+ 			where  c_id = 'id1234'
  		</select>
- 		
  		
  	</mapper>

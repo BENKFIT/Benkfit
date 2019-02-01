@@ -6,7 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import spring.mvc.benkfit.vo.*;
+import spring.mvc.benkfit.vo.MyloanAccount_kay;
+import spring.mvc.benkfit.vo.Users;
+import spring.mvc.benkfit.vo.document_kay;
+import spring.mvc.benkfit.vo.myCheqAccount_kay;
 
 @Repository
 public class DAOImpl_kay implements DAO_kay{
@@ -28,7 +31,6 @@ public class DAOImpl_kay implements DAO_kay{
 		List<MyloanAccount_kay> loan = dao.myloan_list();
 		return loan;
 	}
-	
 	//서류관리
 	@Override
 	public List<document_kay> docu_list() {
@@ -36,19 +38,18 @@ public class DAOImpl_kay implements DAO_kay{
 		List<document_kay> list1 = dao.docu_list();
 		return list1;
 	}
-	
 	//qr코드 생성
 	@Override
-	public users_tbl_kay qrcode() {
+	public Users qrcode() {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.qrcode();
 	}
-	
 	//내정보
 	@Override
-	public users_tbl_kay info() {
+	public Users info() {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.info();
 	}
+	
 	
 }

@@ -1,6 +1,5 @@
 package spring.mvc.benkfit.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -10,13 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import spring.mvc.benkfit.service.Service_kay;
 
 @Controller
 public class Controller_kay {
-	
 	private static final Logger logger = LoggerFactory.getLogger(Controller_kay.class);
+	
 	@Autowired
 	Service_kay service;
 	
@@ -30,12 +28,13 @@ public class Controller_kay {
 	@RequestMapping("mypage")
 	public String mypage_kay(HttpServletRequest req, Model model) throws Exception{
 		logger.info("mypage_kay");
+		System.out.println("mypage_kay1");
 		service.myCheq_list(req, model);
 		service.docu_list(req, model);
 		service.info(req, model);
 		return "mypage_kay/mypage_kay";
 	}
-	/*예금계좌조회*/
+	/*예금계좌 조회*/
 	@RequestMapping("sel_account")
 	public String sel_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("sel_account");
@@ -45,6 +44,7 @@ public class Controller_kay {
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_account");
+		service.myCheq_list(req, model);
 		return "mypage_kay/loan_account_kay";
 	}
 	/*QRcode 발급*/
@@ -70,6 +70,7 @@ public class Controller_kay {
 	@RequestMapping("myinfoForm")
 	public String myinfoForm(HttpServletRequest req, Model model) throws Exception{
 		logger.info("myinfoForm");
+		service.info(req, model);
 		/*service.*/
 		return "mypage_kay/myinfoForm_kay";
 	}
@@ -83,6 +84,7 @@ public class Controller_kay {
 	@RequestMapping("document")
 	public String document_kay(HttpServletRequest req, Model model) throws Exception{
 		logger.info("document_kay");
+		service.docu_list(req, model);
 		return "mypage_kay/document_kay";
 	}
 	/*회원탈퇴 -pw*/

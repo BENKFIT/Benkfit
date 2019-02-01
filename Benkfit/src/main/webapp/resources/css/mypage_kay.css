@@ -32,7 +32,6 @@
   height:160px;
   margin: 15px 15px 15px 40px;
 }
-
 /* mypage tab메뉴 */
 /* #tab-menu{
 	margin: 6% auto 10% auto;
@@ -116,6 +115,7 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 }
 .updateInfo{
 	margin:15px;
+	padding: 15px;
 }
 .updateInfo th, .updateInfo td{
 	border-bottom:1px solid #ccc;
@@ -129,8 +129,72 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	background-color:#FFD662;
 }
 .upinfo th, .upinfo td{
-	border:1px solid #ccc;
+	border:0px solid #ccc;
 	padding:15px;
 	margin:15px;
+	padding: 15px;
 }
+.upinfo th{
+	background-color:#FFD662;
+}
+.table_kay th{
+	color:#FFD662;
+	margin: 15px;
+}
+.table_kay th, .table_kay td{
+	padding: 15px;
+}
+.inputStyle{
+	border-top: none;
+	border-left:none;
+	border-right:none;
+	border-bottom:2px solid #FF0000;
+	margin:5px;
+}
+input[class=inputStyle]:focus {
+	outline:none;
+	border-bottom:2px solid #FFD662;
+}
+input[class=inputStyle]:disabled {
+background-color:#FFF;
+}
+input[class=inputStyle]:disabled {
+	background-color:#FFF;
+	border-bottom:2px solid #000;
+}
+/* .inputStyle:focus {
+	outline:none;
+	border-bottom:2px solid #000;
+} */
+	
+/* input:focus {outline:2px solid #d50000;} */
+
+/* Removes the spin button */
+input[class="date_kay"]::-webkit-inner-spin-button { 
+    display: none;
+}
+/* Always display the drop down caret */
+input[class="date_kay"]::-webkit-calendar-picker-indicator {
+    color: #FFD662;
+    background-color:#fff;
+}
+/* A few custom styles for date inputs */
+input[class="date_kay"] {
+    appearance: none;
+    -webkit-appearance: none;
+    color: #95a5a6;
+    font-family: "Helvetica", arial, sans-serif;
+    font-size: 18px;
+    border:none;
+    padding:5px;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+input[class="date_kay"], focus {
+    color: #95a5a6;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+/* ------------------ */
 
