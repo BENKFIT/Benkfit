@@ -1,0 +1,29 @@
+2019-02-01
+	1. pom.xml 아래 내용 추가
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+ 		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.5</version>
+		</dependency>
+		
+		<!-- web3j -->
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>core</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		
+	2. 폴더 & 파일 생성
+		1. sol폴더 생성
+			1. slot.java임포트
+		2. 컨트롤러, 서비스, DAO 임포트
+		
+	3. slot.jsp 디자인 완료
+	
+	4. 오라클 접속 안됨
+	Error querying database.  
+	Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: 
+	Failed to obtain JDBC Connection; 
+	nested exception is java.sql.SQLException: 
+	Cannot create PoolableConnectionFactory (Socket read timed out)

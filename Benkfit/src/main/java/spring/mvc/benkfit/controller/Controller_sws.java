@@ -90,9 +90,14 @@ public class Controller_sws {
 	@RequestMapping("event_contentForm_sws")
 	public String event_contentForm_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_contentForm_sws");
+		String eve_num = req.getParameter("eve_num");
 		
+		if (eve_num.equals("1")) {
+			return "common/event/slot";
+		}
 		service.eventContentForm_sws(req, model);
 		
+	
 		return "admin/event/event_contentForm";
 	}
 	
