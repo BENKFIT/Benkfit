@@ -110,14 +110,6 @@ public class Controller_lia {
 		return "common/myPageTest";
 	}
 	
-	// 관리자 메뉴
-	@Secured("ROLE_ADMIN")
-	@RequestMapping("adminMenu")
-	public String adminMenu() throws Exception {
-		logger.info("adminMenu 호출중");
-		return "admin/adminMenu";
-	}
-	
 	// 로그인 실패
 	@RequestMapping("loginFail")
 	public String loginFail(HttpServletRequest req, Model model) throws Exception {
@@ -162,4 +154,22 @@ public class Controller_lia {
 		service.search_pro(req, model);
 		return "common/search";
 	}
+	
+	// 관리자 메뉴
+	/*@Secured("ROLE_ADMIN")
+	@RequestMapping("adminMenu")
+	public String adminMenu() throws Exception {
+		logger.info("adminMenu 호출중");
+		return "admin/adminMenu";
+	}*/
+	
+	// 관리자 메뉴 > 회원 조회
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("selectUsers")
+	public String selectUsers(HttpServletRequest req, Model model) throws Exception {
+		logger.info("selectUsers 호출중");
+		service.selectUsers(req, model);
+		return "admin/users/users";
+	}
+		
 }

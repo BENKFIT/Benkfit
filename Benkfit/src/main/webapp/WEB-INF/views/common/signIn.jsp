@@ -386,14 +386,14 @@
 			alert("주민번호를 입력해주세요")
 		} else {
 			  var url = "nameCheck?name="+document.signIn.name.value+"&jumin="+jumin;
-			  window.open(url, "nameCheck", "menubar=no, width=300, height=200");
+			  window.open(url, "nameCheck", "menubar=no, width=300, height=200, top=300, left=900");
 	 }
 	}
 	
 	//약관 서브창
 	function termsChk() {
 		var url = "terms"
-		window.open(url, "terms", "width=800, height=700")
+		window.open(url, "terms", "width=800, height=700, left=100, top=100")
 	}
 	
 	

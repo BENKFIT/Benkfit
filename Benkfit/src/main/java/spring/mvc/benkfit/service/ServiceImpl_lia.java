@@ -390,4 +390,11 @@ public class ServiceImpl_lia implements Service_lia {
 		model.addAttribute("loanCnt", loanCnt);
 		model.addAttribute("savCnt", savCnt);
 	}
+	
+	// 관리자메뉴 > 회원 조회
+	@Override
+	public void selectUsers(HttpServletRequest req, Model model) {
+		List<UsersVO> users = dao.selectUsers();
+		model.addAttribute("users", users);
+	}
 }

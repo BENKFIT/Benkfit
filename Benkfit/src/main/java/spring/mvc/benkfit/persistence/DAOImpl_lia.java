@@ -110,4 +110,10 @@ public class DAOImpl_lia implements DAO_lia {
 	public List<SavProductVO> search_sav(String keyword) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_sav", keyword);
 	}
+
+	// 관리자메뉴 > 회원 조회
+	@Override
+	public List<UsersVO> selectUsers() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers");
+	}
 }

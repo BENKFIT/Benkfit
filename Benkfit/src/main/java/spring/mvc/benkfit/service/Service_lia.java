@@ -40,4 +40,7 @@ public interface Service_lia {
 	
 	// 검색
 	public void search_pro(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 회원 조회
+	public void selectUsers(HttpServletRequest req, Model model);
 }

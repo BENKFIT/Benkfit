@@ -45,4 +45,8 @@ public interface DAO_lia {
 	public List<CheqProductVO> search_cheq(String keyword);
 	public List<LoanProductVO> search_loan(String keyword);
 	public List<SavProductVO> search_sav(String keyword);
+	
+	// 관리자메뉴 > 회원 조회
+	public List<UsersVO> selectUsers();
+	
 }

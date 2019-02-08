@@ -60,11 +60,16 @@
 				</button>
 				<div class="menu__wrap">
 					<ul data-menu="main" class="menu__level">
+					  <!-- 시큐리티 권한 따라 메뉴 달라짐  -->
 						<sec:authorize access="isAuthenticated()">
               <sec:authorize access="!hasRole('ROLE_ADMIN')">
               <li class="menu__item"><a class="menu__link"
-                data-submenu="submenu-0" href="myPageTest">마이페이지</a></li>
+                data-submenu="submenu-0" href="#">마이페이지</a></li>
             </sec:authorize>
+            </sec:authorize>
+            <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+              <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0" href="#">관리자메뉴</a></li>
             </sec:authorize>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1" href="#">금융상품</a></li>
@@ -78,9 +83,11 @@
 							data-submenu="submenu-5" href="map_sws">ATM</a></li>
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
+					<sec:authorize access="isAuthenticated()">
+          <sec:authorize access="!hasRole('ROLE_ADMIN')">
 					<ul data-menu="submenu-0" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0-1" href="#">조회</a></li>
+							data-submenu="submenu-0-1" href="myPageTest">조회</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-2" href="#">이체</a></li>
 						<li class="menu__item"><a class="menu__link"
@@ -150,12 +157,36 @@
 								카드신청</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">신청조회</a></li>
 					</ul>
-
 					<!-- Submenu 0-4 내서류 -->
 					<ul data-menu="submenu-0-4" class="menu__level">
 						<li class="menu__item"><a class="menu__link" href="#">서류등록</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">서류삭제</a></li>
 					</ul>
+					</sec:authorize>
+          </sec:authorize>
+          
+					<!-- Submenu 0 관리자메뉴 -->
+					<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+          <ul data-menu="submenu-0" class="menu__level">
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-1" href="#">회원관리</a></li>
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-2" href="#">상품관리</a></li>
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-4" href="#">결산</a></li>
+          </ul>
+          <!-- Submenu 0-1 회원관리 -->
+          <ul data-menu="submenu-0-1" class="menu__level">
+            <li class="menu__item"><a class="menu__link" href="selectUsers">회원조회</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">계좌조회</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">대출조회</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">거래내역</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">카드등록현황</a></li>
+          </ul>
+          </sec:authorize>
+          
 					<!-- Submenu 1 금융상품 -->
 					<ul data-menu="submenu-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
@@ -269,9 +300,6 @@
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
                     <sec:authorize access="isAnonymous()">
                       <li><a href="login">로그인</a><br></li>
-                    </sec:authorize>
-                    <sec:authorize access="hasAuthority('ROLE_ADMIN')">
-                      <li><a href="adminMenu">관리자메뉴</a><br></li>
                     </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                       <li><a href="logout">로그아웃</a></li>
