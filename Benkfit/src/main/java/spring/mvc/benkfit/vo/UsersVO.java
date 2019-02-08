@@ -1,11 +1,11 @@
-//2019-01-25 손유정
+/*2019-01-25 손유정*/
 
 package spring.mvc.benkfit.vo;
 
 import java.sql.Date;
 
 // 2019-01-25 
-public class Users {
+public class UsersVO {
 	private String c_id; 	 	/* 고객 아이디 */
 	private String c_pwd;		/* 고객 비밀번호 */
 	private String c_name; 		/* 고객 이름 */

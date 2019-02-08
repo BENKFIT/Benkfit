@@ -17,7 +17,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.*;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
+<<<<<<< HEAD
 import spring.mvc.benkfit.vo.*;
+=======
+import spring.mvc.benkfit.vo.MyloanAccount_kay;
+import spring.mvc.benkfit.vo.UsersVO;
+import spring.mvc.benkfit.vo.document_kay;
+import spring.mvc.benkfit.vo.myCheqAccount_kay;
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
@@ -45,7 +52,7 @@ public class ServiceImpl_kay implements Service_kay{
 	//qr코드 생성
 	@Override
 	public void qrcode(HttpServletRequest req, Model model) {
-		Users qrcode = dao.qrcode();
+		UsersVO qrcode = dao.qrcode();
 		model.addAttribute("qrcode", qrcode);
 	}
 
@@ -68,6 +75,7 @@ public class ServiceImpl_kay implements Service_kay{
 	//내정보
 	@Override
 	public void info(HttpServletRequest req, Model model) {
+<<<<<<< HEAD
 		Users user = dao.info();
 		model.addAttribute("user",user);
 	}
@@ -115,5 +123,10 @@ public class ServiceImpl_kay implements Service_kay{
 	    } catch(IOException e) {
 	        e.printStackTrace();
 	    }
+=======
+		UsersVO user = dao.info();
+		model.addAttribute("user", user);
+		
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 	}
 }

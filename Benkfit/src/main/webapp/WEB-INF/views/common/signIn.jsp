@@ -1,4 +1,4 @@
-<!-- //2019-01-25 손유정 -->
+<!-- 2019-01-25 손유정 -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -29,9 +29,9 @@
 	
 	#juminBtn, #signInBtn {
 		position:relative;
-		background:#FFF; 
-		border-color:#FFD662; 
-		color:#FFD662; 
+		background-color:#FFD662;
+		border:0; 
+		color:#636363; 
 		width:20%;
 		height:34px; 
 		padding:0px 5px;
@@ -52,7 +52,7 @@
 	#agreement {
 		background-color:#fff;
 		border:0;
-		color:#1AA85C;
+		color:#2D5772;
 		font-weight:bold;
 	}
 </style>
@@ -60,11 +60,11 @@
 
 <script type="text/javascript">
 	//파일업로드 버튼 기능
-	function upload() {
+	function selectFile() {
 		document.getElementById("file").click();
 	} 
 
-	//업로드할 파일명 보이기
+	//업로드할 파일명 보이기, 업로드 직후 텍스트 인식 > 이름 & 주민번호 자동입력
 	$(function(){ 
 		$('#file').change(function(){
 			var path = $('#file').val();
@@ -72,6 +72,24 @@
 			var path3 = path2.length;
 			var path4 = path2[path3-1];
 			$('#file_text').val(path4);
+			
+			$.ajax({
+				  type: "POST",
+          data: "file=" + path4,
+          url: "${pageContext.request.contextPath}/getText", //{컨트롤러}/이동페이지
+          success: function(data) {
+          	$("#name").val(data.split("/")[0]);
+          	$("#fileAjax").css("visibility", "visible");
+            $("#fileAjax").css("background-color", "#c4daff");
+          	$("#fileAjax").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1].trim());
+          	$("#jumin1").val(data.split("/")[1].split("-")[0].trim());
+          	$("#jumin2").val(data.split("/")[1].split("-")[1].trim());
+          	$("#jumin2").click();
+          },
+          error: function() {
+              alert("오류");
+          }
+			});
 		})
 	});
 	
@@ -155,6 +173,37 @@
 			}
 		})
 		
+		// 비밀번호 재입력 일치 여부
+		$("#repwd").keyup(function() {
+			var pwd = $("#pwd").val();
+			var repwd = $("#repwd").val();
+			var msg = "비밀번호가 일치하지 않습니다."
+				 
+			if(repwd.length == 0) {
+				$("#pwdChk").html("");
+			} else {
+				if(pwd != repwd) { 
+					$("#register").attr('disabled', true);
+					$("#pwdChk").css("visibility", "visible"); //표시
+					$.ajax({
+						type: "POST",
+						data: "msg=" + msg,
+						url: "${pageContext.request.contextPath}/signIn", //{컨트롤러}/이동페이지
+						success: function(data) { //콜백함수
+							//결과 출력
+							$("#pwdChk").html(msg);
+						},
+						error: function() {
+							alert("오류");
+						}
+					});
+				} else {
+					$("#pwdChk").html("");
+					$("#register").attr("disabled", false);
+				}
+			}
+		})
+		
 		//이름 유효성 체크
 		$("#name").keyup(function() {
 			var valid = /^[가-힣]{2,}$/;
@@ -185,6 +234,15 @@
 					});
 				}
 			}
+		})
+		
+		//주민번호 유효성  체크
+		$("#jumin2").keyup(function() {
+      juminVal();
+		})
+		
+		$("#jumin2").click(function() {
+			juminVal();
 		})
 		
 		//휴대폰 번호 유효성 체크
@@ -250,35 +308,16 @@
 				}
 			}
 		})
-	});
-	
-	//비밀번호 재입력시 일치 여부 체크
-	function checkRepwd() {
-		sendRequest(repwd_callback, "signIn", "post");
-	}
-	
-	function repwd_callback() {
-		var pwd = document.signIn.pwd.value;
-		var repwd = document.signIn.repwd.value;
-		var pwdChk = document.getElementById("pwdChk");
 		
-		if(httpRequest.readyState == 4) { //4 : completed 전체 데이터 취득 완료된 상태
-			if(httpRequest.status == 200) { //200 : 정상종료
-				if(pwd != repwd) {
-					pwdChk.innerHTML = "비밀번호가 일치하지 않습니다";
-					document.getElementById("register").disabled=true; //회원가입 버튼 비활성화
-				}
-				else {
-					pwdChk.innerHTML = "";
-					document.getElementById("register").disabled=false; //회원가입 버튼 활성화
-				}
+		$("#customControlAutosizing").on('change', function(){
+			if(document.signIn.hiddenAgree.value == 0) {
+				alert("이용약관을 확인해주십시오");
+				$("#customControlAutosizing").prop('checked', false);
 			} else {
-				pwdChk.innerHTML = "에러발생";
+				return true;
 			}
-		} else {
-			pwdChk.innerHTML = "상태 : " + httpRequest.readyState
-		}
-	}
+		});
+	});
 	
 	// 주민번호 입력칸 자동 이동
 	function nextJumin1() {
@@ -290,7 +329,7 @@
 	// 주민번호 입력완료되면 유효성 검사 실시
 	function nextJumin2() {
 		if(document.signIn.jumin2.value.length >= 7) {
-			juminVal();
+			//juminVal();
 		}
 	}
 	
@@ -302,49 +341,53 @@
 		var arrNum2 = new Array();  // 주민번호 뒷자리숫자 7개를 담을 배열
 	     
 		// 주민번호 앞자리 배열에 담기
-        for (var i=0; i<jumin1.length; i++) {
-            arrNum1[i] = jumin1.charAt(i);
-        } 
+    for (var i=0; i<jumin1.length; i++) {
+    	  arrNum1[i] = jumin1.charAt(i);
+    } 
 
-     	// 주민번호 뒷자리 배열에 담기
-        for (var i=0; i<jumin2.length; i++) {
-            arrNum2[i] = jumin2.charAt(i);
-        } 
+    // 주민번호 뒷자리 배열에 담기
+    for (var i=0; i<jumin2.length; i++) {
+        arrNum2[i] = jumin2.charAt(i);
+    } 
 
-        var tempSum=0;
-		
-        // 주민번호 앞자리 유효성 검사 방법으로 더하기
-        for (var i=0; i<jumin1.length; i++) {
-            tempSum += arrNum1[i] * (2+i);
-        } 
+    var tempSum=0;
+	
+    // 주민번호 앞자리 유효성 검사 방법으로 더하기
+    for (var i=0; i<jumin1.length; i++) {
+        tempSum += arrNum1[i] * (2+i);
+    } 
 
-        // 주민번호 뒷자리 검사 후 앞자리 검사한 것과 더하기
-        for (var i=0; i<jumin2.length-1; i++) {
-            if(i>=2) {
-                tempSum += arrNum2[i] * i;
-            }
-            else {
-                tempSum += arrNum2[i] * (8+i);
-            }
-        } 
-        
-        //유효한 주민번호이면 실명인증 버튼 활성화
-        if((11-(tempSum%11))%10 != arrNum2[6]) {
-			$("#juminVal").html("주민번호가 올바르지 않습니다");
-			$("#juminBtn").attr('disabled', true);
-            //return false;
-        } else {
-        	$("#juminVal").html("");
-        	$("#juminBtn").attr('disabled', false);
-        	$("#register").attr('disabled', false);
+    // 주민번호 뒷자리 검사 후 앞자리 검사한 것과 더하기
+    for (var i=0; i<jumin2.length-1; i++) {
+        if(i>=2) {
+            tempSum += arrNum2[i] * i;
         }
+        else {
+            tempSum += arrNum2[i] * (8+i);
+        }
+    } 
+       
+    //유효한 주민번호이면 실명인증 버튼 활성화
+    if((11-(tempSum%11))%10 != arrNum2[6]) {
+    	  $("#juminVal").html("주민번호가 올바르지 않습니다");
+    	  $("#juminBtn").attr('disabled', true);
+    } else {
+       	$("#juminVal").html("");
+       	$("#juminBtn").attr('disabled', false);
+       	$("#register").attr('disabled', false);
+    }
 	}
 	
 	//실명인증 버튼 클릭시 서브창
 	function juminSub() {
 		var jumin = document.signIn.jumin1.value+"-"+document.signIn.jumin2.value;
-		var url = "nameCheck?name="+document.signIn.name.value+"&jumin="+jumin;
-		window.open(url, "nameCheck", "menubar=no, width=300, height=200");
+		
+		if(jumin.length != 14) {
+			alert("주민번호를 입력해주세요")
+		} else {
+			  var url = "nameCheck?name="+document.signIn.name.value+"&jumin="+jumin;
+			  window.open(url, "nameCheck", "menubar=no, width=300, height=200");
+	 }
 	}
 	
 	//약관 서브창
@@ -386,19 +429,9 @@
 		}
 		
 	}
-	
-	//이용약관 확인안하고 체크하면 확인하라는 경고창
-	$(document).ready(function(){
-		$("#customControlAutosizing").change(function(){
-			var hiddenAgree = document.signIn.hiddenAgree.value;
-			if(hiddenAgree == 0) {
-				alert="이용약관을 확인해주십시오";
-			} 
-		});
-	});
 </script>
 </head>
-<body>
+<body style="background-color:#ddd">
 
 <%@ include file ="../Template/top.jsp" %>
 
@@ -407,18 +440,20 @@
 		<div class="col-lg-4 col-md-4 mx-auto">
 		<div class="card">
 		  <div class="card-body">
-			<form action="signInPro" method="post" name="signIn" onsubmit="return signInCheck();">
+			<form action="signInPro" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();">
 			
 			<input type="hidden" name="hiddenJumin" value="0">
 			<input type="hidden" name="hiddenAgree" value="0">
+			<input type="hidden" name="shaPwd" value="">
 			
 		 	  <div class="form-group">
 				<label>신분증<span class="text-danger">*</span></label>
 					<div style="display:flex">
-						<button type="button" class="btn btn-success btn-block" id="signInBtn" name="idCardFile" onclick="upload();">파일 선택</button>
+						<button type="button" class="btn btn-success btn-block" id="signInBtn" name="idCardFile" onclick="selectFile();">파일 선택</button>
 						<input type="text" class="form-control" id="file_text" name="idCard_text">
 					</div>
 					<input type="file" class="form-control" id="file" name="idCard" required>
+					<div id="fileAjax"></div>
 			  </div>
 			
 			  <div class="form-group">
@@ -435,22 +470,22 @@
 			  
 			  <div class="form-group">
 				<label for="repwd">비밀번호 확인<span class="text-danger">*</span></label>
-				<input type="password" class="form-control" id="repwd" name="repwd" maxlength=15 placeholder="비밀번호 재입력" onkeyup="checkRepwd();" required>
+				<input type="password" class="form-control" id="repwd" name="repwd" maxlength=15 placeholder="비밀번호 재입력" required>
 				<div id="pwdChk" style="color:#C64545;"></div>
 			  </div>
 			  
 			  <div class="form-group">
 				<label for="name">이름<span class="text-danger">*</span></label>
-				<input type="text" class="form-control" id="name" name="name" placeholder="이름" required>
+				<input type="text" class="form-control" id="name" name="name" placeholder="이름" value="" required>
 				<div id="nameVal" style="color:#C64545;"></div>				
 			  </div>
 			  
 			  <div class="form-group">
-					<label for="jumin1">주민번호<span class="text-danger">*</span></label>
+					<label for="jumin1">주민번호<span class="text-danger">*</span></label> <!-- onkeyup="nextJumin2();" -->
 					<div style="display:flex; vertical-align:middle">
 						<input type="text" class="form-control" id="jumin1" name="jumin1" maxlength=6 onkeyup="nextJumin1();" placeholder="123456" style="width:38%;" required>
 						&nbsp;-&nbsp;
-						<input type="password" class="form-control" name="jumin2" maxlength=7 onkeyup="nextJumin2();" placeholder="1234567" style="width:38%; margin-right:10px" required>
+						<input type="password" class="form-control" id="jumin2" name="jumin2" maxlength=7 placeholder="1234567" style="width:38%; margin-right:10px" required>
 						<button type="button" class="btn btn-success btn-block" id="juminBtn" name="juminBtn" onclick="juminSub();" disabled>실명인증</button>
 		 	 		</div>
 		 	 		<div id="juminVal" style="color:#C64545;"></div>
@@ -471,11 +506,11 @@
 			  <div class="form-group">
 				<label for="addr2">주소<span class="text-danger">*</span></label>
 					<div style="display:flex">
-						<input type="text" class="form-control" name="post" placeholder="우편번호" style="width:40%; margin-right:10px" readonly required>
+						<input type="text" class="form-control" name="post" placeholder="우편번호" style="width:40%; margin-right:10px; cursor:default" readonly required>
 						<button type="button" class="btn btn-success btn-block" id="signInBtn" onclick="searchPost();">주소 찾기</button>
 					</div>
 					&nbsp;
-					<input type="text" class="form-control" id="addr1" name="addr1" placeholder="주소" readonly required>
+					<input type="text" class="form-control" id="addr1" name="addr1" placeholder="주소" style="cursor:default" readonly required>
 					&nbsp;
 					<input type="text" class="form-control" id="addr2" name="addr2" placeholder="상세주소">
 					<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -529,7 +564,7 @@
        			    <button type="button" id="agreement" onclick="termsChk();">이용약관</button>동의
      			</div>
 			</div>
-			  <button type="submit" class="btn btn-success btn-block" id="register" style="background:#FFD662; border-color:#FFD662;">회원가입</button>
+			  <button type="submit" class="btn btn-success btn-block" id="register" style="background:#FFD662; border-color:#FFD662; color:#636363">회원가입</button>
 			</form>
 		  </div>
 		</div>

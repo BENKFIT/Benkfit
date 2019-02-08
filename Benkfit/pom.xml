@@ -134,6 +134,12 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>3.2.5.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+        <groupId>cglib</groupId>
+        <artifactId>cglib</artifactId>
+        <version>3.1</version>
+    </dependency>
 		<!-- security 설정 종료 -->
 
 		<!-- Mybatis 설정 시작 -->
@@ -238,6 +244,26 @@
 			<version>3.3.0</version>
 		</dependency>
 		<!-- qr-Code -->
+		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+ 		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.9.5</version>
+		</dependency>
+		
+		<!-- web3j -->
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>core</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.jslsolucoes</groupId>
+		    <artifactId>ojdbc6</artifactId>
+		    <version>11.2.0.1.0</version>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import spring.mvc.benkfit.vo.MyloanAccount_kay;
-import spring.mvc.benkfit.vo.Users;
+import spring.mvc.benkfit.vo.UsersVO;
 import spring.mvc.benkfit.vo.document_kay;
 import spring.mvc.benkfit.vo.myCheqAccount_kay;
 
@@ -47,13 +47,13 @@ public class DAOImpl_kay implements DAO_kay{
 	}
 	//qr코드 생성
 	@Override
-	public Users qrcode() {
+	public UsersVO qrcode() {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.qrcode();
 	}
 	//내정보
 	@Override
-	public Users info() {
+	public UsersVO info() {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.info();
 	}
