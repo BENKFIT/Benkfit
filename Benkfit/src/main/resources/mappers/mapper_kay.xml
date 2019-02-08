@@ -42,13 +42,8 @@
  		</insert>
  		
  		<!-- qrcode -->
-<<<<<<< HEAD
- 		<select id="qrcode" resultType="spring.mvc.benkfit.vo.Users">
- 			select c_id, c_name, c_hp, c_pwd
-=======
  		<select id="qrcode" resultType="spring.mvc.benkfit.vo.UsersVO">
  			select c_id, c_name, c_hp
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
  			from users_tbl
  			where  c_id = 'id1234'
  		</select>

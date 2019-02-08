@@ -21,16 +21,14 @@ public interface DAO_kay {
 	//서류관리
 	public List<document_kay> docu_list();
 	
-<<<<<<< HEAD
 	//서류등록
 	public int docu_upload(document_kay doc);
 	
 	//내정보
-	public Users info();
-=======
-	//정보수정-목록
 	public UsersVO info();
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
+
+/*	//정보수정-목록
+	public UsersVO info();*/
 	
 	//qr코드 카드 발급
 	public UsersVO qrcode();
