@@ -9,6 +9,7 @@
 </head>
 <body>
 <%@ include file ="../Template/top.jsp" %>
+
 <div style="text-align: center;">
 	<div style="width: 50%; height: 80%; background-color: black; display: inline-block; float: left;">
 		<img alt="마이페이지" src="/benkfit/resources/img/ex/chat.PNG">

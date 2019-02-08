@@ -2,7 +2,7 @@ package spring.mvc.benkfit.persistence;
 import java.util.List;
 
 import spring.mvc.benkfit.vo.MyloanAccount_kay;
-import spring.mvc.benkfit.vo.Users;
+import spring.mvc.benkfit.vo.UsersVO;
 import spring.mvc.benkfit.vo.document_kay;
 import spring.mvc.benkfit.vo.myCheqAccount_kay;
 
@@ -18,10 +18,10 @@ public interface DAO_kay {
 	public List<document_kay> docu_list();
 	
 	//정보수정-목록
-	public Users info();
+	public UsersVO info();
 	
 	//qr코드 카드 발급
-	public Users qrcode();
+	public UsersVO qrcode();
 	
 	//
 	

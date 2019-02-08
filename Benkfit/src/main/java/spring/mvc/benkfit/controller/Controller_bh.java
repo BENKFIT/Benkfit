@@ -15,7 +15,7 @@ import spring.mvc.benkfit.service.Service_bh;
 @Controller
 public class Controller_bh {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Controller_kay.class);
+	private static final Logger logger = LoggerFactory.getLogger(Controller_bh.class);
 	
 	@Autowired
 	Service_bh service;

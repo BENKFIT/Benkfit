@@ -60,8 +60,12 @@
 				</button>
 				<div class="menu__wrap">
 					<ul data-menu="main" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0" href="#">마이페이지</a></li>
+						<sec:authorize access="isAuthenticated()">
+              <sec:authorize access="!hasRole('ROLE_ADMIN')">
+              <li class="menu__item"><a class="menu__link"
+                data-submenu="submenu-0" href="myPageTest">마이페이지</a></li>
+            </sec:authorize>
+            </sec:authorize>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1" href="#">금융상품</a></li>
 						<li class="menu__item"><a class="menu__link"
@@ -262,28 +266,36 @@
 										<li><a href="chat">상담</a></li>
 										<li><a href="firstVisit_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
-										<li><a href="login">로그인</a><br></li>
-										<li><a href="signIn">회원가입</a><br></li>
-										<li>
-											<div id="myOver" class="over" style="display: none;">
-												<span class="closebtn" onclick="closeSearch()"
-													title="Close over">×</span>
-												<div class="over-content">
-													<form action="/action_page.php">
-														<input type="text" placeholder="Search.." name="search"
-															id="searchinput">
-														<button type="submit">
-															<i class="fa fa-search"></i>
-														</button>
-													</form>
-												</div>
-											</div>
-											<button class="openBtn" onclick="openSearch()">
-												<p>
-													<span class="glyphicon glyphicon-search"></span>
-												</p>
-											</button>
-										</li>
+										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
+                    <sec:authorize access="isAnonymous()">
+                      <li><a href="login">로그인</a><br></li>
+                    </sec:authorize>
+                    <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                      <li><a href="adminMenu">관리자메뉴</a><br></li>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                      <li><a href="logout">로그아웃</a></li>
+                    </sec:authorize>
+                    <li>
+                      <div id="myOver" class="over" style="display: none;">
+                        <span class="closebtn" onclick="closeSearch()"
+                          title="Close over">×</span>
+                        <div class="over-content">
+                          <form action="search_pro" method="post" name="searchForm">
+                            <input type="text" id="searchinput" name="search" placeholder="Search.." >
+                              <!-- search.css -> .over input[type=text] height: 10%; -->
+                            <button type="submit">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                      <button class="openBtn" onclick="openSearch()">
+                        <p>
+                          <span class="glyphicon glyphicon-search"></span>
+                        </p>
+                      </button>
+                    </li>
 									</ul>
 								</nav>
 							</div>

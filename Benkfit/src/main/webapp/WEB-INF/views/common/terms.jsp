@@ -28,11 +28,13 @@
 	function agreeChk() {
 		if(document.termsAndConditions.termsAgreement.value=="Agree") {
 			opener.document.signIn.hiddenAgree.value="1";
+			opener.document.signIn.tnc.disabled = false;
 			opener.document.signIn.tnc.checked=true;
 			self.close();
 		}
 		
 		if(document.termsAndConditions.termsAgreement.value=="Disagree") {
+			opener.document.signIn.tnc.disabled = true;
 			self.close();
 		}
 		
@@ -119,8 +121,6 @@
 수수료는 카카오뱅크가 별도로 정하는 바에 따라 감면될 수 있습니다.
 ② 카카오뱅크는 이용자가 확인할 수 있도록 이용자가 접근하기 용이한 전자적 장치를 통하여 수수료(율)를 게시합니다. 카카오뱅크가 수수료(율)를 변경
 하는 경우에는 제 29 조를 준용합니다.
-제 10 조 이체한도
-이용자는 카카오뱅크가 정한 방법에 따라 계좌
 </pre>
 	<form action="" method="post" name="termsAndConditions">
 		<div id="termsRadio">

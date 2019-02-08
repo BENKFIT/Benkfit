@@ -1,5 +1,6 @@
 package spring.mvc.benkfit.persistence;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,4 +27,87 @@ public class DAOImpl_lia implements DAO_lia {
 		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.name_check", map);
 	}
 
+	// 회원가입 처리
+	@Override
+	public int insertMember(UsersVO vo) {
+		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_lia.insertMember", vo);
+	}
+
+	// 회원 로그인
+	@Override
+	public UsersVO user_login(String id, String pwd) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.user_login", id);
+	}
+
+	// 관리자 로그인
+	@Override
+	public AdminVO admin_login(String id, String pwd) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.admin_login", id);
+	}
+
+	// 아이디 찾기
+	@Override
+	public String findMyId(Map<String, String> map) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.findMyId", map);
+	}
+
+	// 비밀번호 찾기(조회)
+	@Override
+	public int findMyPwd(Map<String, String> map) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.findMyPwd", map);
+	}
+
+	// 비밀번호 찾기(임시비밀번호 생성)
+	@Override
+	public int setTempPwd(Map<String, String> map) {
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_lia.setTempPwd", map);
+	}
+
+	// 상품 검색 - 카드(건수)
+	@Override
+	public int search_card_count(String keyword) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.search_card_count", keyword);
+	}
+	
+	// 상품 검색 - 예금(건수)
+	@Override
+	public int search_cheq_count(String keyword) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.search_cheq_count", keyword);
+	}
+	
+	// 상품 검색 - 대출(건수)
+	@Override
+	public int search_loan_count(String keyword) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.search_loan_count", keyword);
+	}
+	
+	// 상품 검색 - 적금(건수)
+	@Override
+	public int search_sav_count(String keyword) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.search_sav_count", keyword);
+	}
+	
+	// 상품 검색 - 카드
+	@Override
+	public List<CardProductVO> search_card(String keyword) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_card", keyword);
+	}
+
+	// 상품 검색 - 예금
+	@Override
+	public List<CheqProductVO> search_cheq(String keyword) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_cheq", keyword);
+	}
+
+	// 상품 검색 - 대출
+	@Override
+	public List<LoanProductVO> search_loan(String keyword) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_loan", keyword);
+	}
+
+	// 상품 검색 - 적금
+	@Override
+	public List<SavProductVO> search_sav(String keyword) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_sav", keyword);
+	}
 }

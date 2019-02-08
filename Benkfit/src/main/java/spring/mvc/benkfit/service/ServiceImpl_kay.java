@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.MyloanAccount_kay;
-import spring.mvc.benkfit.vo.Users;
+import spring.mvc.benkfit.vo.UsersVO;
 import spring.mvc.benkfit.vo.document_kay;
 import spring.mvc.benkfit.vo.myCheqAccount_kay;
 
@@ -39,13 +39,13 @@ public class ServiceImpl_kay implements Service_kay{
 	//qr코드 생성
 	@Override
 	public void qrcode(HttpServletRequest req, Model model) {
-		Users qrcode = dao.qrcode();
+		UsersVO qrcode = dao.qrcode();
 		model.addAttribute("qrcode", qrcode);
 	}
 	//내정보
 	@Override
 	public void info(HttpServletRequest req, Model model) {
-		Users user = dao.info();
+		UsersVO user = dao.info();
 		model.addAttribute("user", user);
 		
 	}
