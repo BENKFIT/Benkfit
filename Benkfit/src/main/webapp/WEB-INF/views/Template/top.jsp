@@ -75,7 +75,7 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-4" href="#">상담</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-5" href="map_sws">ATM</a></li>
+							data-submenu="submenu-5" href="#">ATM</a></li>
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<ul data-menu="submenu-0" class="menu__level">
@@ -233,6 +233,11 @@
 						<li class="menu__item"><a class="menu__link" href="#">대출상담</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">이용안내</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">제출서류안내</a></li>
+					</ul>
+					
+					<!-- Submenu 5 안내 -->
+					<ul data-menu="submenu-5" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="map_sws">ATM</a></li>
 					</ul>
 				</div>
 			</nav>

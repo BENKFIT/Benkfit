@@ -1,3 +1,4 @@
+
 <!-- 송운선 2019-01-22 17:43 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -34,7 +35,7 @@
 					<c:if test="${cnt >= 1}">
 						<c:forEach var="dto" items="${dtos}">
 							<tr class="booklist">
-								<td align="center">${dto.eve_num}</td>
+								<td align="center">${number}<c:set var="number" value="${number-1}"/></td>
 								<td><a href="event_contentForm_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}">${dto.eve_title}</a></td>
 								<td align="center"><fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_regDate}" /></td>
 							</tr>
