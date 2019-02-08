@@ -20,7 +20,7 @@
 					</tr>
 					<tr>
 						<th>
-							<input type="password" required autofocus>
+							<input type="password"  name="pwd" required autofocus>
 							<input type="submit" class="btn2 btn2-success" value="확인">	
 						</th>
 					</tr>

@@ -38,6 +38,13 @@ public class DAOImpl_kay implements DAO_kay{
 		List<document_kay> list1 = dao.docu_list();
 		return list1;
 	}
+	//서류등록
+	@Override
+	public int docu_upload(document_kay doc) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		int result =  dao.docu_upload(doc);
+		return result;
+	}
 	//qr코드 생성
 	@Override
 	public Users qrcode() {
@@ -49,6 +56,18 @@ public class DAOImpl_kay implements DAO_kay{
 	public Users info() {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.info();
+	}
+	//이체한도 조회
+	@Override
+	public myCheqAccount_kay limit_sel() {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.limit_sel();
+	}
+	//이체한도 수정
+	@Override
+	public int limit_up(int acount_lim) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.limit_up(acount_lim);
 	}
 	
 	

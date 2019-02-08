@@ -45,7 +45,6 @@
 			// return just built canvas
 			return canvas;
 		}
-
 		// from Jon-Carlos Rivera (https://github.com/imbcmdth)
 		var createTable	= function(){
 			// create the qrcode itself
@@ -79,8 +78,6 @@
 			// return just built canvas
 			return $table;
 		}
-  
-
 		return this.each(function(){
 			var element	= options.render == "canvas" ? createCanvas() : createTable();
 			jQuery(element).appendTo(this);
