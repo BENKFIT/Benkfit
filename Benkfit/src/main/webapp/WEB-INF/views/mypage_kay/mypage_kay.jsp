@@ -27,7 +27,7 @@
 				<div class="tab_container">
 					<div id="tab0" class="tab_content">
 						<!--Content-->
-						<p>[${user.c_name}&nbsp;&nbsp;(${user.c_id})]님 로그인 되었습니다.</p>
+						<p>[&nbsp;&nbsp;님 로그인 되었습니다.</p>
 					</div>
 					<div id="tab1" class="tab_content">
 						<!--Content-->
@@ -62,7 +62,7 @@
 							</tbody>
 						</table>
 						<hr>
-						<h3>대출관리</h3>
+						<%-- <h3>대출관리</h3>
 						<table class="table table-hover">
 							<thead id="mypage_thead">
 								<tr>
@@ -181,7 +181,7 @@
 								자산관리
 							</tr>
 						</table>
-					</div>
+					</div> --%>
 				</div>
 			</div>
 		</form>

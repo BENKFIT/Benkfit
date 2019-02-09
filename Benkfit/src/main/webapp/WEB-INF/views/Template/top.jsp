@@ -63,7 +63,7 @@
 						<sec:authorize access="isAuthenticated()">
               <sec:authorize access="!hasRole('ROLE_ADMIN')">
               <li class="menu__item"><a class="menu__link"
-                data-submenu="submenu-0" href="myPageTest">마이페이지</a></li>
+                data-submenu="submenu-0" href="#">마이페이지</a></li>
             </sec:authorize>
             </sec:authorize>
 						<li class="menu__item"><a class="menu__link"
@@ -87,11 +87,11 @@
 							data-submenu="submenu-0-3" href="#">설정</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-4" href="#">내서류</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">탈퇴</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">정보수정</a></li>
 					</ul>
 					<!-- Submenu 0-1 조회 -->
 					<ul data-menu="submenu-0-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="mypage">계좌관리</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">계좌관리</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-1-2" href="#">대출관리</a></li>
 					</ul>

@@ -19,12 +19,12 @@ public class DAOImpl_kay implements DAO_kay{
 
 	//예금관리
 	@Override
-	public List<myCheqAccount_kay> myCheq_list() {
+	public List<myCheqAccount_kay> myCheq_list(String strid) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<myCheqAccount_kay> cheq = dao.myCheq_list();
+		List<myCheqAccount_kay> cheq = dao.myCheq_list(strid);
 		return cheq;
 	}
-	//대출관리
+/*	//대출관리
 	@Override
 	public List<MyloanAccount_kay> myloan_list() {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
@@ -69,6 +69,6 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.limit_up(acount_lim);
 	}
-	
+	*/
 	
 }
