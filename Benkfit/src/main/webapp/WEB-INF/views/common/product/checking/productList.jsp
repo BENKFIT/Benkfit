@@ -61,7 +61,7 @@
 						<li><b>예금자보호대상</b></li>
 					</ul>
 					<button type="button" class="btn btn-lg btn-block  btn-custom"
-						onclick="window.location='productInfo?kind=1'">가입하기</button>
+						onclick="window.location='checkingInfo?kind=1'">가입하기</button>
 				</div>
 			</div>
 
@@ -105,7 +105,7 @@
 						<li><b>예금자보호대상</b></li>
 					</ul>
 					<button type="button" class="btn btn-lg btn-block  btn-custom2 "
-						onclick="window.location='productInfo?kind=2'">가입하기</button>
+						onclick="window.location='checkingInfo?kind=2'">가입하기</button>
 				</div>
 			</div>
 
@@ -149,7 +149,7 @@
 						<li><b>예금자보호대상</b></li>
 					</ul>
 					<button type="button" class="btn btn-lg btn-block  btn-custom3"
-						onclick="window.location='productInfo?kind=3'">가입하기</button>
+						onclick="window.location='checkingInfo?kind=3'">가입하기</button>
 				</div>
 			</div>
 		</div>

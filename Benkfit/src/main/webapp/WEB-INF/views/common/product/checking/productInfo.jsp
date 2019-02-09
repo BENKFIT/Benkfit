@@ -12,7 +12,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예/적금상품안내</title>
 <style type="text/css">
 td {
 	color: white;
@@ -24,6 +24,79 @@ summary {
 
 details td {
 	color: black;
+}
+
+.periodBox {
+	color: black;
+	border-radius: 5px;
+	margin: 10px 0px;
+}
+
+#joinBtn1 {
+	color: white;
+	border: 1px solid white;
+	background-color: #C64545;
+	border-radius: 5px;
+	width: 200px;
+	font-size: 20px;
+}
+#joinBtn2 {
+	color: white;
+	border: 1px solid white;
+	background-color: #2D5772;
+	border-radius: 5px;
+	width: 200px;
+	font-size: 20px;
+}
+#joinBtn3 {
+	color: white;
+	border: 1px solid white;
+	background-color: #1AA85C;
+	border-radius: 5px;
+	width: 200px;
+	font-size: 20px;
+}
+
+.infoTbl {
+	display: inline;
+	margin: 0px 20px;
+}
+.div1{
+	height: 500px; 
+	background: rgba(0, 0, 0, 0.1); 
+	text-align: center;
+}
+.div1-1{
+	display: inline-block; 
+	margin: 200px;
+}
+.div2{
+	height: 500px; 
+	text-align: center;
+}
+.div2-1{
+	display: inline-block; 
+	margin: 200px;
+}
+.div3{
+	 height: 500px; 
+	 background: rgba(0, 0, 0, 0.1); 
+	 text-align: center;
+}
+.div3-1{
+	display: inline-block; 
+	margin: 200px;
+}
+.div4{
+	text-align: center;
+	width: 100%;
+}
+.div4-1{
+	display: inline-block; 
+	margin: 100px 0px 200px 0px;
+}
+p{
+	font-size: 30px;
 }
 </style>
 </head>
@@ -46,10 +119,8 @@ details td {
 						<td style="font-size: 50px;">정말 손쉽게</td>
 					</tr>
 				</table>
-				<br />
-				<br />
-				
-				<table>
+				<br /> <br />
+				<table class="infoTbl">
 					<tr>
 						<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
 						<td style="padding: 5px 10px;">1년 기준(세전)</td>
@@ -59,29 +130,44 @@ details td {
 						<td style="padding: 5px 10px;">연 2.50%</td>
 					</tr>
 				</table>
+				<table class="infoTbl">
+					<tr>
+						<td style="text-align: center;"><select name="period" class="periodBox">
+								<option value="6">6개월</option>
+								<option value="12">12개월</option>
+								<option value="18">18개월</option>
+								<option value="24">24개월</option>
+								<option value="36">36개월</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="가입하기" id="joinBtn1">
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 
-		<div style="height: 500px; background: black; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="color: white; font-size: 30px;">누구나 쉽고 스마트하게</p>
+		<div class="div1">
+			<div class="div1-1">
+				<p>누구나 쉽고 스마트하게</p>
 			</div>
 		</div>
 
-		<div style="height: 500px; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="font-size: 30px;">또 하나의 공간 세이프 박스</p>
+		<div class="div2" >
+			<div class="div2-1">
+				<p>또 하나의 공간 세이프 박스</p>
 			</div>
 		</div>
 
-		<div style="height: 500px; background: black; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="color: white; font-size: 30px;">이체는 더욱 간편하게</p>
+		<div class="div3">
+			<div class="div3-1">
+				<p>이체는 더욱 간편하게</p>
 			</div>
 		</div>
 
-		<div style="text-align: center; width: 100%;">
-			<div style="display: inline-block; margin: 100px 0px 200px 0px;">
+		<div class="div4">
+			<div class="div4-1">
 				<details>
 					<summary>상품안내</summary>
 					<table>
@@ -136,7 +222,7 @@ details td {
 		</div>
 	</c:if>
 	<c:if test="${kind == '2'}">
-		<!-- #1AA85C -->
+		<!-- #2D5772 -->
 		<div
 			style="text-align: center; background-color: #2D5772; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
@@ -151,41 +237,56 @@ details td {
 						<td style="font-size: 50px;">26주적금도 자유롭게</td>
 					</tr>
 				</table>
-				<br />
-				<br />
-				<table>
+				<br /> <br />
+				<table class="infoTbl">
 					<tr>
 						<td style="border-right: 1px solid white; padding: 5px 10px;">1년기준</td>
 						<td style="padding: 5px 10px;">연2.50%</td>
 					</tr>
 					<tr>
-						<td style="border-right: 1px solid white; padding: 5px 10px;">자동이체 시</td>
+						<td style="border-right: 1px solid white; padding: 5px 10px;">자동이체
+							시</td>
 						<td style="padding: 5px 10px;">+연 0.20%</td>
+					</tr>
+				</table>
+				<table class="infoTbl">
+					<tr>
+						<td style="text-align: center;"><select name="period" class="periodBox">
+								<option value="6">6개월</option>
+								<option value="12">12개월</option>
+								<option value="18">18개월</option>
+								<option value="24">24개월</option>
+								<option value="36">36개월</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="가입하기" id="joinBtn2">
+						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 
-		<div style="height: 500px; background: black; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="color: white; font-size: 30px;">누구나 쉽고 스마트하게</p>
+		<div class="div1">
+			<div class="div1-1">
+				<p>누구나 쉽고 스마트하게</p>
 			</div>
 		</div>
 
-		<div style="height: 500px; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="font-size: 30px;">또 하나의 공간 세이프 박스</p>
+		<div class="div2">
+			<div class="div2-1">
+				<p>또 하나의 공간 세이프 박스</p>
 			</div>
 		</div>
 
-		<div style="height: 500px; background: black; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="color: white; font-size: 30px;">이체는 더욱 간편하게</p>
+		<div class="div3">
+			<div class="div3-1">
+				<p>이체는 더욱 간편하게</p>
 			</div>
 		</div>
 
-		<div style="text-align: center; width: 100%;">
-			<div style="display: inline-block; margin: 100px 0px 200px 0px;">
+		<div class="div4">
+			<div class="div4-1">
 				<details>
 					<summary>상품안내</summary>
 					<table>
@@ -240,7 +341,7 @@ details td {
 		</div>
 	</c:if>
 	<c:if test="${kind == '3'}">
-		<!-- #2D5772 -->
+		<!-- #1AA85C -->
 		<div
 			style="text-align: center; background-color: #1AA85C; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
@@ -255,9 +356,8 @@ details td {
 						<td style="font-size: 50px;">돈 모으는 재미가 쏠쏠</td>
 					</tr>
 				</table>
-				<br />
-				<br />
-				<table>
+				<br /> <br />
+				<table class="infoTbl">
 					<tr>
 						<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
 						<td style="padding: 5px 10px;">1개월</td>
@@ -267,29 +367,44 @@ details td {
 						<td style="padding: 5px 10px;">연 2.50%</td>
 					</tr>
 				</table>
+				<table class="infoTbl">
+					<tr>
+						<td style="text-align: center;"><select name="period" class="periodBox">
+								<option value="6">6개월</option>
+								<option value="12">12개월</option>
+								<option value="18">18개월</option>
+								<option value="24">24개월</option>
+								<option value="36">36개월</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><input type="button" value="가입하기" id="joinBtn3">
+						</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 
-		<div style="height: 500px; background: black; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="color: white; font-size: 30px;">누구나 쉽고 스마트하게</p>
+		<div class="div1">
+			<div class="div1-1">
+				<p>누구나 쉽고 스마트하게</p>
 			</div>
 		</div>
 
-		<div style="height: 500px; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="font-size: 30px;">또 하나의 공간 세이프 박스</p>
+		<div class="div2">
+			<div class="div2-1">
+				<p>또 하나의 공간 세이프 박스</p>
 			</div>
 		</div>
 
-		<div style="height: 500px; background: black; text-align: center;">
-			<div style="display: inline-block; margin: 200px;">
-				<p style="color: white; font-size: 30px;">이체는 더욱 간편하게</p>
+		<div class="div3">
+			<div class="div3-1">
+				<p>이체는 더욱 간편하게</p>
 			</div>
 		</div>
 
-		<div style="text-align: center; width: 100%;">
-			<div style="display: inline-block; margin: 100px 0px 200px 0px;">
+		<div class="div4">
+			<div class="div4-1">
 				<details>
 					<summary>상품안내</summary>
 					<table>
@@ -343,7 +458,6 @@ details td {
 			</div>
 		</div>
 	</c:if>
-
 
 
 	<!-- FOOTER  -->
