@@ -16,7 +16,7 @@
 			<table class="table_kay">
 				<tr>
 					<th>예금 계좌번호</th>
-					<td><input type="text" class="inputStyle"></td>
+					<td><input type="text" class="inputStyle" value="" disabled></td>
 				</tr>
 				<tr>
 					<th>조회기간</th>
@@ -32,12 +32,12 @@
 				</tr>
 				<tr>
 					<th>조회결과 순거</th>
-					<td><input type="radio" name="조회결과">최근거래순
-					 	<input type="radio" name="조회결과">과거거래순
+					<td> <input type="radio" name="조회결과">최근거래순
+					 	 <input type="radio" name="조회결과">과거거래순
 					</td>
 				</tr>
 				<tr>
-					<th colspan="2">
+					<th colspan="2" class="trBtn">
 					<button class="btn2 btn2-success">조회</button>
 					</th>
 				</tr>
@@ -50,7 +50,7 @@
 					<th>계좌명</th>
 					<td><input type="text" class="inputStyle"></td>
 					<th>가입날짜</th>
-					<td><input type="text" class="inputStyle"></td>
+					<td><input type="text" value="" class="inputStyle"></td>
 				</tr>
 				<tr>
 					<th>고객명</th>
@@ -60,13 +60,13 @@
 				</tr>
 				<tr>
 					<th>계좌잔액</th>
-					<td><input type="text" class="inputStyle"></td>
+					<td><input type="text" value="" class="inputStyle"></td>
 					<th>출금가능금액</th>
 					<td><input type="text" class="inputStyle"></td>
 				</tr>
 			</table><hr><br><br><br>
 			<h2>거래내역</h2>
-			<table class="upinfo">
+			<table class="table_kay">
 				<tr>
 					<th>입금합계</th>
 					<td><input type="text" class="inputStyle"></td>

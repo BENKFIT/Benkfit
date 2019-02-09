@@ -1,0 +1,67 @@
+19/02/01
+##시큐리티 설정
+
+// 1. main/resources > security-dataSource.xml 파일 삭제 -> 오류나서 안지우고 합치니까 작동
+
+2. security-context.xml 내용 수정(<security:http>, <security:authentication-manager> 태그 부분)
+
+3. servlet-context.xml 맨 위에 아래 내용 추가
+      xmlns:security="http://www.springframework.org/schema/security"
+      xsi:schemaLocation="http://www.springframework.org/schema/security/spring-security-3.2.xsd"
+
+   servlet-context.xml 본문 부분에 아래 내용 추가
+      <!-- 시큐리티 어노테이션 -->
+      <security:global-method-security secured-annotations="enabled"/>
+
+4. web.xml <context-param>부분 security-dataSource.xml 여부에 따라 아래 두개 중 하나로 변경
+  
+   //security-dataSource.xml 지웠을 때
+        <context-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>/WEB-INF/spring/root-context.xml
+                /WEB-INF/spring/appServlet/servlet-context.xml
+                classpath:/security-context.xml <!-- 시큐리티 설정 xml --> 
+          </param-value> 
+        </context-param>
+      
+   //security-dataSource.xml 안지웠을 때
+        <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/spring/root-context.xml
+              /WEB-INF/spring/appServlet/servlet-context.xml
+              classpath:/security-context.xml 
+              classpath:/security-datasource.xml 
+        </param-value>
+      </context-param>
+
+5. 컨트롤러에서 권한 따라 @Secured, @PreAuthorize 어노테이션 주기
+      예) // 마이페이지
+      @PreAuthorize("isAuthenticated()") // 회원, 관리자 접근 가능
+      @RequestMapping("myPageTest")
+      public String myPageTest() {
+        logger.info("myPageTest 호출중");
+        return "common/myPageTest";
+      }
+      
+      // 관리자 메뉴
+      @Secured("ROLE_ADMIN") // 관리자만 접근 가능
+      @RequestMapping("adminMenu")
+      public String adminMenu() {
+        logger.info("adminMenu 호출중");
+        return "admin/adminMenu";
+      }
+      
+     어노테이션 작동안하면 pom.xml에서 시큐리티 설정 마지막 부분에 아래 내용 추가
+     <dependency>
+        <groupId>cglib</groupId>
+        <artifactId>cglib</artifactId>
+        <version>3.1</version>
+    </dependency>
+
+6. 공통 헤더 '로그인' '회원가입' '로그아웃' '마이페이지' '관리자 메뉴'에 권한 조건 추가
+    
+. 로그인 후 테스트 때 사용 가능한 계정
+아이디       비밀번호      enabled   권한
+admin   admin       1      ROLE_ADMIN
+admin   admin       1      USER
+guest1  Qwerty1!    1      USER

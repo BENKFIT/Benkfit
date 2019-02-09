@@ -100,9 +100,6 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	padding: 20px;
 	font-size: 1.2em;
 }
-#qr_create{
-	text-align:center;
-}
 #pwCheck{
     margin: auto;
 }
@@ -141,6 +138,10 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	color:#FFD662;
 	margin: 15px;
 }
+.trBtn{
+	text-align: center;
+}
+
 .table_kay th, .table_kay td{
 	padding: 15px;
 }

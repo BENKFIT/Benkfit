@@ -172,10 +172,11 @@ public class ServiceImpl_sws implements Service_sws {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date eve_start = format.parse(start);
 			Date eve_end = format.parse(end);
-
+				
 			eve_content.replace("\r\n", "<br>");
 
 			EventVo vo = new EventVo();
+			
 			vo.setEve_num(eve_num);
 			vo.setEve_title(eve_title);
 			vo.setEve_content(eve_content);
@@ -186,6 +187,7 @@ public class ServiceImpl_sws implements Service_sws {
 			int insertCnt = dao.insertEvent(vo);
 
 			model.addAttribute("insertCnt", insertCnt);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

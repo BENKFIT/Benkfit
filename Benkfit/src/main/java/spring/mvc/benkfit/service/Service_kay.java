@@ -1,7 +1,10 @@
 package spring.mvc.benkfit.service;
 
+import java.text.ParseException;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface Service_kay {
 	
@@ -11,13 +14,20 @@ public interface Service_kay {
 	//내서류 목록
 	public void docu_list(HttpServletRequest req, Model model);
 	
+	//서류 등록
+	public void docu_upload(HttpServletRequest req, Model model) throws Exception;
+	
 	//qr코드생성
 	public void qrcode(HttpServletRequest req, Model model);
 	
 	//내정보
 	public void info(HttpServletRequest req, Model model);
 	
-	//
+	//이체한도 조회
+	public void limit_sel(HttpServletRequest req, Model model);
 	
-		
+	//이체한도 수정
+	public void limit_up(HttpServletRequest req, Model model);	
+
+	
 }

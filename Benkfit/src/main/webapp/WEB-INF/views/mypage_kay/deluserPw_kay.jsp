@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>비밀번호 확인(회원정보수정)</title>
 </head>
-<body>
+<body >
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
 		<form action="#" method="post">

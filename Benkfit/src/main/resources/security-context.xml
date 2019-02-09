@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/security 
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd
-		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:security="http://www.springframework.org/schema/security"
+  xsi:schemaLocation="http://www.springframework.org/schema/security 
+  http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-	<security:http use-expressions="true">
-		<security:intercept-url pattern="/admin/**" 
-			access="hasAuthority('ROLE_ADMIN')" />
-		<security:intercept-url pattern="/user/**"
-			access="isAuthenticated()" />
-		<security:intercept-url pattern="/**"
-			access="permitAll" />
-		<security:form-login/>
-			<security:form-login login-page="/common/login" /> 
-		<security:logout/>	
-	</security:http>
-	
-	<!-- 커넥션풀 정보를 읽어온다 -->
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:jdbc-user-service data-source-ref="dataSource" />
-		</security:authentication-provider>
-	</security:authentication-manager>
-	
+  <security:http use-expressions="true">
+    <!-- <security:intercept-url pattern="/admin**" 
+      access="hasAuthority('ROLE_ADMIN')" /> -->
+    <!-- <security:intercept-url pattern="/my**"
+      access="isAuthenticated()" /> -->
+    <!-- <security:intercept-url pattern="/**"
+      access="permitAll" /> -->
+    <security:form-login 
+      login-page="/login" 
+      login-processing-url="/loginPro"
+      always-use-default-target="true"
+      default-target-url="/index"   
+      authentication-failure-url="/loginFail"
+      username-parameter="username" password-parameter="password" /> 
+    <security:logout 
+      logout-url="/logout" 
+      invalidate-session="true"
+      logout-success-url="/index" />  
+  </security:http >
+<!--  authentication-failure-url : 로그인 실패 시 이동 URL -->
+  
+  <security:authentication-manager>
+    <security:authentication-provider>
+      <security:jdbc-user-service data-source-ref="dataSource" 
+       users-by-username-query="SELECT username, password, enabled FROM authorities WHERE username=?"
+       authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?" />
+    </security:authentication-provider>
+  </security:authentication-manager>
+ 
 </beans>
