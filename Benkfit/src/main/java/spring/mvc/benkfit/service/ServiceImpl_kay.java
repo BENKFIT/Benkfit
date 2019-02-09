@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.*;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
-import spring.mvc.benkfit.vo.*;
 import spring.mvc.benkfit.vo.MyloanAccount_kay;
 import spring.mvc.benkfit.vo.UsersVO;
 import spring.mvc.benkfit.vo.document_kay;
@@ -32,24 +29,28 @@ public class ServiceImpl_kay implements Service_kay{
 	//계좌관리 목록
 	@Override
 	public void myCheq_list(HttpServletRequest req, Model model) {
-		/*	String strid = req.getParameter("c_id");*/
-		List<myCheqAccount_kay> cheq = dao.myCheq_list();
-		List<MyloanAccount_kay> loan = dao.myloan_list();
+		String strid = (String)req.getSession().getAttribute("c_id");
+		List<myCheqAccount_kay> cheq = dao.myCheq_list(strid);
+		/*	List<MyloanAccount_kay> loan = dao.myloan_list();*/
 		
-		/*model.addAttribute("strid", strid);*/
+		model.addAttribute("strid", strid);
 		model.addAttribute("cheq", cheq);
-		model.addAttribute("loan", loan);
+		/*	model.addAttribute("loan", loan);*/
 	}
-	//내서류관리
+	/*//내서류관리
 	public void docu_list(HttpServletRequest req, Model model) {
+		String strid =   (String)req.getSession().getAttribute("c_id");
 		List<document_kay> docu = dao.docu_list();
+		model.addAttribute("strid", strid);
 		model.addAttribute("docu", docu);
 	}
 	
 	//qr코드 생성
 	@Override
 	public void qrcode(HttpServletRequest req, Model model) {
+		String strid =   (String)req.getSession().getAttribute("c_id");
 		UsersVO qrcode = dao.qrcode();
+		model.addAttribute("strid", strid);
 		model.addAttribute("qrcode", qrcode);
 	}
 
@@ -76,7 +77,7 @@ public class ServiceImpl_kay implements Service_kay{
 		model.addAttribute("user",user);
 	}
 	
-	/*서류등록*/
+	서류등록
 	@SuppressWarnings("deprecation")
 	@Override
 	public void docu_upload(HttpServletRequest req, Model model) throws Exception {
@@ -122,5 +123,5 @@ public class ServiceImpl_kay implements Service_kay{
 		UsersVO user = dao.info();
 		model.addAttribute("user", user);
 		
-	}
+	}*/
 }

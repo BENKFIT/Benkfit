@@ -1,17 +1,14 @@
 package spring.mvc.benkfit.service;
 
-import java.text.ParseException;
-
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.ui.Model;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface Service_kay {
 	
 	//계좌관리 목록
 	public void myCheq_list(HttpServletRequest req, Model model);
 	
-	//내서류 목록
+	/*//내서류 목록
 	public void docu_list(HttpServletRequest req, Model model);
 	
 	//서류 등록
@@ -27,7 +24,7 @@ public interface Service_kay {
 	public void limit_sel(HttpServletRequest req, Model model);
 	
 	//이체한도 수정
-	public void limit_up(HttpServletRequest req, Model model);	
+	public void limit_up(HttpServletRequest req, Model model);	*/
 
 	
 }
