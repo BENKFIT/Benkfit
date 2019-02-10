@@ -6,7 +6,7 @@ public class CheqProductVO {
 	private String cheq_num;
 	private String cheq_name;
 	private double cheq_rate;
-	private int cheq_type;
+	private String cheq_type;
 	private String cheq_target;
 	private Date cheq_regDate;
 	private String cheq_limit;
@@ -30,10 +30,10 @@ public class CheqProductVO {
 	public void setCheq_rate(double cheq_rate) {
 		this.cheq_rate = cheq_rate;
 	}
-	public int getCheq_type() {
+	public String getCheq_type() {
 		return cheq_type;
 	}
-	public void setCheq_type(int cheq_type) {
+	public void setCheq_type(String cheq_type) {
 		this.cheq_type = cheq_type;
 	}
 	public String getCheq_target() {

@@ -60,8 +60,9 @@ public class Controller_syk {
 	
 	//상품 등록 페이지
 	@RequestMapping("checkingRegi")
-	public String checkingRegi() {
+	public String checkingRegi(HttpServletRequest req) {
 		logger.info("예금등록페이지이동");
+		service.checkingRegi(req);
 		
 		return "admin/product/checking/cheqRegi";
 	}
@@ -70,6 +71,7 @@ public class Controller_syk {
 	@RequestMapping("cheqRegiPro")
 	public String cheqRegiPro(HttpServletRequest req) {
 		logger.info("상품등록");
+		service.checkingRegi(req);
 		service.cheqRegiPro(req);
 		
 		return "admin/product/checking/cheqRegi";
