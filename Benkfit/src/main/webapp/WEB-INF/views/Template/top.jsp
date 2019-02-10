@@ -192,7 +192,7 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-1-1" href="checkingList">예금 상품</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1-2" href="#">예금 가이드 </a></li><!-- 예금금리안내, 예금관련수수료 -->
+							data-submenu="submenu-1-1-2" href="checkingGuide">예금 가이드 </a></li><!-- 예금금리안내, 예금관련수수료 -->
 					</ul>
 					<!-- Submenu 1-2 대출-->
 					<ul data-menu="submenu-1-2" class="menu__level">

@@ -29,7 +29,7 @@ details td {
 .periodBox {
 	color: black;
 	border-radius: 5px;
-	margin: 10px 0px;
+	margin: 10px 5px;
 }
 
 #joinBtn1 {
@@ -47,6 +47,7 @@ details td {
 	border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
+	margin: 10px 0px;
 }
 #joinBtn3 {
 	color: white;
@@ -98,6 +99,11 @@ details td {
 p{
 	font-size: 30px;
 }
+.limit{
+	width: 120px;
+	border-radius: 5px;
+	margin: 10px 5px;
+}
 </style>
 </head>
 <body>
@@ -120,6 +126,7 @@ p{
 					</tr>
 				</table>
 				<br /> <br />
+				<form action="#" method="get" >
 				<table class="infoTbl">
 					<tr>
 						<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
@@ -130,21 +137,18 @@ p{
 						<td style="padding: 5px 10px;">연 2.50%</td>
 					</tr>
 				</table>
-				<table class="infoTbl">
-					<tr>
-						<td style="text-align: center;"><select name="period" class="periodBox">
-								<option value="6">6개월</option>
-								<option value="12">12개월</option>
-								<option value="18">18개월</option>
-								<option value="24">24개월</option>
-								<option value="36">36개월</option>
-						</select></td>
-					</tr>
-					<tr>
-						<td><input type="button" value="가입하기" id="joinBtn1">
-						</td>
-					</tr>
-				</table>
+				
+					<table class="infoTbl">
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="submit" value="가입하기" id="joinBtn1">
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
 
@@ -238,6 +242,7 @@ p{
 					</tr>
 				</table>
 				<br /> <br />
+				<form action="#" method="get">
 				<table class="infoTbl">
 					<tr>
 						<td style="border-right: 1px solid white; padding: 5px 10px;">1년기준</td>
@@ -249,21 +254,28 @@ p{
 						<td style="padding: 5px 10px;">+연 0.20%</td>
 					</tr>
 				</table>
-				<table class="infoTbl">
+				
+				<table class="infoTbl" style="text-align: center;">
 					<tr>
-						<td style="text-align: center;"><select name="period" class="periodBox">
+						<td style="text-align: center; padding: 0px 5px;"><select name="period" class="periodBox">
 								<option value="6">6개월</option>
 								<option value="12">12개월</option>
 								<option value="18">18개월</option>
 								<option value="24">24개월</option>
 								<option value="36">36개월</option>
-						</select></td>
+								</select>
+						</td>
+						<td>
+							<input type="number" name="limit" class="limit" placeholder="10~1000Eth" min="10"
+							 max="1000" style="padding: 0px 5px;">
+						</td>
 					</tr>
 					<tr>
-						<td><input type="button" value="가입하기" id="joinBtn2">
+						<td colspan="2"><input type="submit" value="가입하기" id="joinBtn2">
 						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 		</div>
 
@@ -357,6 +369,7 @@ p{
 					</tr>
 				</table>
 				<br /> <br />
+				<form action="#" method="get">
 				<table class="infoTbl">
 					<tr>
 						<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
@@ -367,6 +380,7 @@ p{
 						<td style="padding: 5px 10px;">연 2.50%</td>
 					</tr>
 				</table>
+				
 				<table class="infoTbl">
 					<tr>
 						<td style="text-align: center;"><select name="period" class="periodBox">
@@ -378,10 +392,11 @@ p{
 						</select></td>
 					</tr>
 					<tr>
-						<td><input type="button" value="가입하기" id="joinBtn3">
+						<td><input type="submit" value="가입하기" id="joinBtn3">
 						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 		</div>
 
