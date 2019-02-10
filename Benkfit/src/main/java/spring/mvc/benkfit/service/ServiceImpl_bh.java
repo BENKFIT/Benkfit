@@ -2,9 +2,7 @@ package spring.mvc.benkfit.service;
 
 import java.io.IOException;
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,15 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.web3j.crypto.CipherException;
-import org.web3j.crypto.Credentials;
-import org.web3j.crypto.WalletUtils;
+import org.web3j.crypto.*;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.methods.response.EthAccounts;
-import org.web3j.protocol.core.methods.response.EthGetBalance;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.core.methods.response.*;
 import org.web3j.protocol.http.HttpService;
 import spring.mvc.benkfit.sol.Slot;
 
@@ -65,8 +59,12 @@ public class ServiceImpl_bh implements Service_bh {
 		System.out.println("ether :" + ether);
 		
 		try {
-			Credentials credentials = WalletUtils.loadCredentials("password", "/Users/banhun/geth/private_net/keystore/UTC--2019-01-24T03-37-23.877487000Z--ba444a48a264e7fcadd9a60951623e607fee385a");
-			Slot contract = Slot.load("0xfb9531be4ca4295a3b9ff87d75a63c709bda90f8", web3, credentials, gasPrice, gasLimit);
+			//private key위치
+			Credentials credentials = WalletUtils.loadCredentials("password", "C:/ether/geth/private_net/keystore/UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
+			
+			//트랜잭션 주소
+			@SuppressWarnings("deprecation")
+			Slot contract = Slot.load("0xb824ebcb0A3cdDdC8bBFd2FFC636aB1067Ac74b8", web3, credentials, gasPrice, gasLimit);
 			//계정언락
 			if(admin.personalUnlockAccount(address, pass).send().getResult()) {
 				contract.bet(ether);
