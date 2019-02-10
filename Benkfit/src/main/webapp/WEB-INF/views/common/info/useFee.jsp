@@ -18,9 +18,9 @@
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-
-	<div
-		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;">
+<div class="wrapper">
+<!-- 	<div
+		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
 		<div style="display: inline-block; width: 60%; height: 80%;">
 			<h2>이용시간안내</h2>
 			<br>

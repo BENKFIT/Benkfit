@@ -1,9 +1,5 @@
 package spring.mvc.benkfit.service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,13 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import org.springframework.web.multipart.*;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
-import spring.mvc.benkfit.vo.MyloanAccount_kay;
-import spring.mvc.benkfit.vo.UsersVO;
-import spring.mvc.benkfit.vo.document_kay;
-import spring.mvc.benkfit.vo.myCheqAccount_kay;
+import spring.mvc.benkfit.vo.*;
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
@@ -26,16 +18,14 @@ public class ServiceImpl_kay implements Service_kay{
 	@Autowired
 	DAOImpl_kay dao;
 	
-	//계좌관리 목록
+	//예금 계좌
 	@Override
 	public void myCheq_list(HttpServletRequest req, Model model) {
-		String strid = (String)req.getSession().getAttribute("c_id");
-		List<myCheqAccount_kay> cheq = dao.myCheq_list(strid);
-		/*	List<MyloanAccount_kay> loan = dao.myloan_list();*/
+		String strId = (String)req.getSession().getAttribute("id");
+		List<myCheqAccountVO> cheq = dao.myCheq_list(strId);
 		
-		model.addAttribute("strid", strid);
+		model.addAttribute("strId", strId);
 		model.addAttribute("cheq", cheq);
-		/*	model.addAttribute("loan", loan);*/
 	}
 	/*//내서류관리
 	public void docu_list(HttpServletRequest req, Model model) {

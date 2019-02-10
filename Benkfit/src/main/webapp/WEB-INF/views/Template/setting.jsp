@@ -20,16 +20,17 @@
 <link rel="stylesheet" href="${path}/css/mypage_kay.css" />
 
 <!-- JS -->
-<script type="text/javascript" src="${path}/js/classie.js"></script>
-<script type="text/javascript" src="${path}/js/main.js"></script>
-<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script>
-<script src="https://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
-<script type="text/javascript" src="${path}/js/qrcode.js"></script>
+<script type="text/javascript" src="${path}/js/classie.js"></script><!-- 사이드메뉴 -->
+<script type="text/javascript" src="${path}/js/main.js"></script><!-- 사이드메뉴 -->
+<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script><!-- 사이드메뉴 -->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script><!-- qr코드 -->
+<script type="text/javascript" src="${path}/js/qrcode.js"></script><!-- qr코드 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="${path}/js/script_kay.js"></script>
+<script type="text/javascript" src="${path}/js/script_kay.js"></script><!-- kay 스클립트 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- 추가(alert) -->
-<script type="text/javascript" src="${path}/js/download.js"></script>
+<script type="text/javascript" src="${path}/js/download.js"></script><!-- qr다운, -->
+
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
