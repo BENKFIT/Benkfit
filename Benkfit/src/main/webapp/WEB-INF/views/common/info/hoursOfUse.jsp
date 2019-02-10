@@ -10,43 +10,42 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
-	td, tr > th, p{
-		text-align: center;
-	}
+td, tr>th, p {
+	text-align: center;
+}
 </style>
 </head>
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-
 	<div style="margin-top: 200px; height: 40%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-		<h2>이용시간안내</h2>
-		<br>
-		<p style="font-size: 20px;">예금 / 적금</p>
-		<table class="table table-hover" style="width: 100%;">
-			<thead>
-				<tr style="background: #FFD662">
-					<th style="width: 50%">구분</th>
-					<th style="width: 50%">이용시간</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>각종조회</td>
-					<td rowspan="3" style="padding-top: 45px">24시간</td>
-				</tr>
-				<tr>
-					<td>신규</td>
-				</tr>
-				<tr>
-					<td>해지</td>
-				</tr>
-			</tbody>
-		</table>
+			<h2>이용시간안내</h2>
+			<br>
+			<p style="font-size: 20px;">예금 / 적금</p>
+			<table class="table table-hover" style="width: 100%;">
+				<thead>
+					<tr style="background: #FFD662">
+						<th style="width: 50%">구분</th>
+						<th style="width: 50%">이용시간</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>각종조회</td>
+						<td rowspan="3" style="padding-top: 45px">24시간</td>
+					</tr>
+					<tr>
+						<td>신규</td>
+					</tr>
+					<tr>
+						<td>해지</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	
+
 	<div class="container" style="height: 30%; width: 62%;">
 		<br>
 		<p style="font-size: 20px;">이체</p>
@@ -71,7 +70,7 @@
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div class="container" style="height: 30%; width: 62%;">
 		<br>
 		<p style="font-size: 20px;">대출</p>
@@ -97,7 +96,7 @@
 			</tbody>
 		</table>
 	</div>
-	
+
 	<div class="container" style="height: 35%; width: 62%;">
 		<br>
 		<p style="font-size: 20px;">카드</p>
@@ -126,24 +125,24 @@
 			</tbody>
 		</table>
 	</div>
-	<div style="height: 40%; width: 100%; text-align:center;">
+	<div style="height: 40%; width: 100%; text-align: center;">
 		<br>
 		<p style="font-size: 20px;">외환</p>
 		<div style="display: inline-block; width: 61%;">
-		<table class="table table-hover">
-			<thead>
-				<tr style="background: #FFD662">
-					<th style="width: 50%">구분</th>
-					<th style="width: 50%">이용시간</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>해외 송금 (당발 / 타발송금)</td>
-					<td>24시간</td>
-				</tr>
-			</tbody>
-		</table>
+			<table class="table table-hover">
+				<thead>
+					<tr style="background: #FFD662">
+						<th style="width: 50%">구분</th>
+						<th style="width: 50%">이용시간</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>해외 송금 (당발 / 타발송금)</td>
+						<td>24시간</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 

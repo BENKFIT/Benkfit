@@ -15,8 +15,6 @@ public class UsersVO {
 	private String c_jumin1; 	/* 고객 주민번호1 */
 	private String c_jumin2; 	/* 고객 주민번호2 */
 	private String c_email; 	/* 고객 이메일 */
-	private String c_key; 		/* 고객 키 */
-	private int c_auth;		    /* 고객 상태 */
 	private Date c_regDate; 	/* 고객 가입날짜 */
 	private String c_level; 	/* 고객 등급 */
 	private String c_idCard;    /* 신분증 */
@@ -75,18 +73,6 @@ public class UsersVO {
 	public void setC_email(String c_email) {
 		this.c_email = c_email;
 	}
-	public String getC_key() {
-		return c_key;
-	}
-	public void setC_key(String c_key) {
-		this.c_key = c_key;
-	}
-	public int getC_auth() {
-		return c_auth;
-	}
-	public void setC_auth(int c_auth) {
-		this.c_auth = c_auth;
-	}
 	public Date getC_regDate() {
 		return c_regDate;
 	}
@@ -110,7 +96,7 @@ public class UsersVO {
 	public String toString() {
 		return "Users [c_id=" + c_id + ", c_pwd=" + c_pwd + ", c_name=" + c_name + ", c_address=" + c_address
 				+ ", c_post=" + c_post + ", c_hp=" + c_hp + ", c_jumin1=" + c_jumin1 + ", c_jumin2=" + c_jumin2
-				+ ", c_email=" + c_email + ", c_key=" + c_key + ", c_auth=" + c_auth + ", c_regDate=" + c_regDate
+				+ ", c_email=" + c_email + ", c_regDate=" + c_regDate
 				+ ", c_level=" + c_level + ", c_idCard=" + c_idCard + "]";
 	}
 }

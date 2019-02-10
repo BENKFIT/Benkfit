@@ -2,7 +2,7 @@ package spring.mvc.benkfit.vo;
 
 import java.sql.Date;
 
-public class myCheqAccount_kay {
+public class myCheqAccountVO {
 
 	private String myCheq_account; /* 예금 계좌번호 */
 	private int myCheq_amount; /* 금액 */

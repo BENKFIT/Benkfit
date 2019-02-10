@@ -5,12 +5,12 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
-	function slotBalance(){
+	function Balance(){
 		var address = $('#address').val();
 		var alldata = {"address":address};
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/slotBalance",
+			url:"${pageContext.request.contextPath}/Balance",
 			type : "GET",
 			data : alldata,
 			success : function(data){
@@ -128,7 +128,7 @@ p, a {
 					ID: <input type="text" id="address"
 						value="0x565d241fd2f30474bae822254a6ccc03cc45df0e"> Pass:
 					<input type="password" id="pass" value="password"> <input
-						type="button" value="잔고확인" onClick="slotBalance();">
+						type="button" value="잔고확인" onClick="Balance();">
 				</p>
 
 				<div id="machine">

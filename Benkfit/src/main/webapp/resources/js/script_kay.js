@@ -29,24 +29,7 @@ function move(str){
 		document.mypage.action="deluserPw";
 	} 
 }
-/*마이페이지 - tab*/
-$(document).ready(function() {
-	//When page loads...
-	$(".tab_content").hide(); //Hide all content
-	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
-	$(".tab_content:first").show(); //Show first tab content
 
-	//On Click Event
-	$("ul.tabs li").click(function() {
-		$("ul.tabs li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		$(".tab_content").hide(); //Hide all tab content
-
-		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
-		$(activeTab).fadeIn(); //Fade in the active ID content
-		return false;
-	});
-});
 /*QR코드발급*/
 $(document).ready(function() {
 	$('#qrcode').hide();
@@ -86,7 +69,7 @@ $('#saveBtn').click(function() {
 	x.send();
 });
 
-//파일업로드시 ,파일 미리 보기
+/*//파일업로드시 ,파일 미리 보기
 var file = document.querySelector('#doc_img');
 file.onchange = function () { 
     var fileList = file.files ;
@@ -98,9 +81,9 @@ file.onchange = function () {
     	$('#preview').show();
         document.querySelector('#preview').src = reader.result ;
     }; 
-}; 
+}; */
 
-//드래그,마우스오른쪽 금지.
+/*//드래그,마우스오른쪽 금지.
 $(document).ready(function() {
     $(document).bind("contextmenu", function(e){
         swal("마우스 오른쪽 클릭금지!!","Don't","error");
@@ -122,4 +105,5 @@ $(document).ready(function() {
 document.oncontextmenu=function(){return false;} // 우클릭 방지
 document.onselectstart=function(){return false;} // 드래그 방지
 document.ondragstart=function(){return true;} // 선택 방지
-document.onmousedown=function(){return true;}
+document.onmousedown=function(){return true;}*/
+

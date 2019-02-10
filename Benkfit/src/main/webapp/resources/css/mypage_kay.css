@@ -1,36 +1,43 @@
 @charset "UTF-8";
 
-#mypage{
-	margin-top:100px;
+#mypage {
+	margin-top: 100px;
 }
-#mypage_thead{
+
+#mypage_thead {
 	background-color: #FFD662;
 }
-.info th{
-	background-color: #FFD662;	
+
+.info th {
+	background-color: #FFD662;
 }
-.btn2{
+
+.btn2 {
+	background-color: transparent;
+	border: 1px solid transparent;
 	border-radius: 20px;
 	border-width: 2px;
-    background-color: transparent;
 }
-.btn2-success{
+
+.btn2-success {
 	border-color: #7AC29A;
-    color: #7AC29A;
+	color: #7AC29A;
 }
-.btn2-Info{
+
+.btn2-Info {
 	border-color: #68B3C8;
-    color: #68B3C8;
+	color: #68B3C8;
 }
-.btn2-danger{
+
+.btn2-danger {
 	border-color: #EB5E28;
-    color: #EB5E28;
+	color: #EB5E28;
 }
 /* #qrcode */
 #qrcode {
-  width:160px;
-  height:160px;
-  margin: 15px 15px 15px 40px;
+	width: 160px;
+	height: 160px;
+	margin: 15px 15px 15px 40px;
 }
 /* mypage tab메뉴 */
 /* #tab-menu{
@@ -79,6 +86,7 @@ ul.tabs li a {
 ul.tabs li a:hover {
 	background: #ccc;
 }
+
 ul.tabs li.active, html ul.tabs li.active a:hover {
 	/*--Makes sure that the active tab does not listen to the hover properties--*/
 	background: #fff;
@@ -96,106 +104,121 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	background: #fff;
 	margin-bottom: 20%;
 }
+
 .tab_content {
 	padding: 20px;
 	font-size: 1.2em;
 }
-#pwCheck{
-    margin: auto;
-}
-.PW{
-	/* background-color: rgba(255,214,98,0.1); */
-	border:3px solid #FFD662;
-	text-align:center;
-	width:50%;
+
+#pwCheck {
 	margin: auto;
 }
-.updateInfo{
-	margin:15px;
-	padding: 15px;
+
+.PW {
+	/* background-color: rgba(255,214,98,0.1); */
+	border: 3px solid #FFD662;
+	text-align: center;
+	width: 50%;
+	margin: auto;
 }
-.updateInfo th, .updateInfo td{
-	border-bottom:1px solid #ccc;
-	padding:15px;
-}
-.updateInfo td{
-	padding:5px;
-	text-align:center;
-}
-.updateInfo th{
-	background-color:#FFD662;
-}
-.upinfo th, .upinfo td{
-	border:0px solid #ccc;
-	padding:15px;
-	margin:15px;
-	padding: 15px;
-}
-.upinfo th{
-	background-color:#FFD662;
-}
-.table_kay th{
-	color:#FFD662;
+
+.updateInfo {
 	margin: 15px;
+	padding: 15px;
 }
-.trBtn{
+
+.updateInfo th, .updateInfo td {
+	border-bottom: 1px solid #ccc;
+	padding: 15px;
+}
+
+.updateInfo td {
+	padding: 5px;
 	text-align: center;
 }
 
-.table_kay th, .table_kay td{
+.updateInfo th {
+	background-color: #FFD662;
+}
+
+.upinfo th, .upinfo td {
+	border: 0px solid #ccc;
+	padding: 15px;
+	margin: 15px;
 	padding: 15px;
 }
-.inputStyle{
+
+.upinfo th {
+	background-color: #FFD662;
+}
+
+.table_kay th {
+	color: #FFD662;
+	margin: 15px;
+}
+
+.trBtn {
+	text-align: center;
+}
+
+.table_kay th, .table_kay td {
+	padding: 15px;
+}
+
+.inputStyle {
 	border-top: none;
-	border-left:none;
-	border-right:none;
-	border-bottom:2px solid #FF0000;
-	margin:5px;
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid #FF0000;
+	margin: 5px;
 }
+
 input[class=inputStyle]:focus {
-	outline:none;
-	border-bottom:2px solid #FFD662;
+	outline: none;
+	border-bottom: 2px solid #FFD662;
 }
+
 input[class=inputStyle]:disabled {
-background-color:#FFF;
+	background-color: #FFF;
 }
+
 input[class=inputStyle]:disabled {
-	background-color:#FFF;
-	border-bottom:2px solid #000;
+	background-color: #FFF;
+	border-bottom: 2px solid #000;
 }
 /* .inputStyle:focus {
 	outline:none;
 	border-bottom:2px solid #000;
 } */
-	
+
 /* input:focus {outline:2px solid #d50000;} */
 
 /* Removes the spin button */
-input[class="date_kay"]::-webkit-inner-spin-button { 
-    display: none;
+input[class="date_kay"]::-webkit-inner-spin-button {
+	display: none;
 }
 /* Always display the drop down caret */
 input[class="date_kay"]::-webkit-calendar-picker-indicator {
-    color: #FFD662;
-    background-color:#fff;
+	color: #FFD662;
+	background-color: #fff;
 }
 /* A few custom styles for date inputs */
 input[class="date_kay"] {
-    appearance: none;
-    -webkit-appearance: none;
-    color: #95a5a6;
-    font-family: "Helvetica", arial, sans-serif;
-    font-size: 18px;
-    border:none;
-    padding:5px;
-    display: inline-block !important;
-    visibility: visible !important;
+	appearance: none;
+	-webkit-appearance: none;
+	color: #95a5a6;
+	font-family: "Helvetica", arial, sans-serif;
+	font-size: 18px;
+	border: none;
+	padding: 5px;
+	display: inline-block !important;
+	visibility: visible !important;
 }
+
 input[class="date_kay"], focus {
-    color: #95a5a6;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
+	color: #95a5a6;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
 }
 /* ------------------ */
-
