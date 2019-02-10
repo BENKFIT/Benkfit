@@ -61,7 +61,7 @@ function readURL(input) {
 					</tr>
 					<tr>
 						<td><input type="file" name="eve_img" id="img"
-							placeholder="이미지를 넣어주세요." autofocus required></td>
+							placeholder="이미지를 넣어주세요." autofocus></td>
 						<th>제목</th>
 						<td colspan="3"><input type="text" name="eve_title" maxlength="50"
 							placeholder="제목을 입력하세요." autofocus required style="width: 770px;"></td>

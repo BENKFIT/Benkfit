@@ -3,12 +3,14 @@ package spring.mvc.benkfit.vo;
 import java.sql.Date;
 
 public class CheqProductVO {
-	private String cheq_num; 
+	private String cheq_num;
 	private String cheq_name;
 	private double cheq_rate;
 	private int cheq_type;
 	private String cheq_target;
 	private Date cheq_regDate;
+	private String cheq_limit;
+	private String cheq_period;
 	
 	public String getCheq_num() {
 		return cheq_num;
@@ -48,9 +50,22 @@ public class CheqProductVO {
 		this.cheq_regDate = cheq_regDate;
 	}
 	
+	public String getCheq_limit() {
+		return cheq_limit;
+	}
+	public void setCheq_limit(String cheq_limit) {
+		this.cheq_limit = cheq_limit;
+	}
+	public String getCheq_period() {
+		return cheq_period;
+	}
+	public void setCheq_period(String cheq_period) {
+		this.cheq_period = cheq_period;
+	}
 	@Override
 	public String toString() {
 		return "CheqProductVO [cheq_num=" + cheq_num + ", cheq_name=" + cheq_name + ", cheq_rate=" + cheq_rate
-				+ ", cheq_type=" + cheq_type + ", cheq_target=" + cheq_target + ", cheq_regDate=" + cheq_regDate + "]";
+				+ ", cheq_type=" + cheq_type + ", cheq_target=" + cheq_target + ", cheq_regDate=" + cheq_regDate
+				+ ", cheq_limit=" + cheq_limit + ", cheq_period=" + cheq_period + "]";
 	}
 }

@@ -56,6 +56,18 @@ ul li {
 	border-radius: 20px
 }
 
+.btn-custom2 {
+	background: #2D5772;
+	color: #fff;
+	border-radius: 20px
+}
+
+.btn-custom3 {
+	background: #1AA85C;
+	color: #fff;
+	border-radius: 20px
+}
+
 .img-float {
 	width: 50px;
 	position: absolute;

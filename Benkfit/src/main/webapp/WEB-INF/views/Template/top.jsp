@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
@@ -37,7 +37,32 @@
 				$('#wrapper').toggleClass('toggled');
 			});
 	});
+	
+	$(document).ready(function(){
+		$('#loading').hide();
+	})
+	.ajaxStart(function(){
+		$('#loading').show();
+	})
+	.ajaxStop(function(){
+		$('#loading').hide();
+	})
 </script>
+<style>
+#progress_Loading{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	background: rgba(255, 255, 255, 1.0);
+}
+
+#loading{
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+</style>
 </head>
 <body>
 
@@ -94,11 +119,11 @@
 							data-submenu="submenu-0-3" href="#">설정</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-4" href="#">내서류</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">탈퇴</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">정보수정</a></li>
 					</ul>
 					<!-- Submenu 0-1 조회 -->
 					<ul data-menu="submenu-0-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="mypage">계좌관리</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">계좌관리</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-1-2" href="#">대출관리</a></li>
 					</ul>
@@ -120,8 +145,7 @@
 					</ul>
 					<!-- Submenu 0-2-1 자동이체 -->
 					<ul data-menu="submenu-0-2-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">자동이체
-								조회</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">자동이체	조회</a></li>
 					</ul>
 					<!-- Submenu 0-3 설정 -->
 					<ul data-menu="submenu-0-3" class="menu__level">
@@ -197,26 +221,9 @@
 					<!-- Submenu 1-1 예금-->
 					<ul data-menu="submenu-1-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1-1" href="#">예금 상품</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">예금
-								상품 가입</a></li>
+							data-submenu="submenu-1-1-1" href="checkingList">예금 상품</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1-2" href="#">예금 가이드 </a></li>
-					</ul>
-					<!-- Submenu 1-1-1 예금 상품-->
-					<ul data-menu="submenu-1-1-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">개인</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">기업</a></li>
-					</ul>
-					<!-- Submenu 1-1-2 가이드-->
-					<ul data-menu="submenu-1-1-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1-2-1" href="#">개인</a></li>
-					</ul>
-					<!-- submenu-1-1-2-1 가이드-> 개인 -->
-					<ul data-menu="submenu-1-1-2-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">예금금리안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">예금관련수수료</a></li>
+							data-submenu="submenu-1-1-2" href="checkingGuide">예금 가이드 </a></li><!-- 예금금리안내, 예금관련수수료 -->
 					</ul>
 					<!-- Submenu 1-2 대출-->
 					<ul data-menu="submenu-1-2" class="menu__level">
@@ -225,27 +232,11 @@
 						<li class="menu__item"><a class="menu__link" href="#">
 								대출신청 </a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-2-2" href="#">대출가이드</a></li>
-					</ul>
-					<!-- Submenu 1-2 대출상품 -->
-					<ul data-menu="submenu-1-2-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">개인</a></li>
-					</ul>
-					<!-- submenu-1-2-2대출가이드-->
-					<ul data-menu="submenu-1-2-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-2-2-1" href="#">개인</a></li>
-					</ul>
-					<!-- submenu-1-2-2-1 대출가이드-> 개인 -->
-					<ul data-menu="submenu-1-2-2-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">대출관련수수료</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">부가서비스</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">제출자료안내</a></li>
+							data-submenu="submenu-1-2-2" href="#">대출가이드</a></li><!-- 대출관련수수료, 부가서비스, 제출자료안내  -->
 					</ul>
 					<!-- Submenu 2 -->
 					<ul data-menu="submenu-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">자산관리
-								안내</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">자산관리 안내</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">자산관리요약</a></li>
 					</ul>
 					<!-- Submenu 3  안내 -->
@@ -288,17 +279,18 @@
 								</div>
 								<nav id="nav-menu-container">
 									<ul class="nav-menu">
-										<li class="menu-has-children"><a href="check">금융상품</a>
+										<li class="menu-has-children"><a href="checkingList">금융상품</a>
 											<ul>
-												<li><a href="check">예금</a></li>
-												<li><a href="loan">적금</a></li>
+												<li><a href="checkingList">예/적금</a></li>
+												<li><a href="#">대출</a></li>
 											</ul></li>
 										<li class="menu-has-children"><a href="">자산관리</a>
 											<ul>
 												<li><a href="#">자산관리 1</a></li>
 												<li><a href="#">자산관리 2</a></li>
 												<li><a href="#">자산관리 3</a></li>
-											</ul></li>
+											</ul>
+										</li>
 										<li><a href="chat">상담</a></li>
 										<li><a href="firstVisit_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
@@ -341,6 +333,15 @@
 		<!-- /#page-content-wrapper -->
 	</div>
 	<!-- /#wrapper -->
+
+	<!-- LoadingBar -->
+	<div id="loading">
+		<div id="progress_Loading">
+			<img src="/benkfit/resources/img/loading/loading.gif">
+		</div>
+	</div>
+	
+	<!-- LoadingBar -->
 
 	<!-- /view -->
 	<script>

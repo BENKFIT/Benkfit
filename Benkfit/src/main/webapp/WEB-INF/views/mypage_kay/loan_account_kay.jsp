@@ -25,9 +25,13 @@
 				</tr>
 				<tr>
 					<th>대출 금액</th>
-					<td><input type="text" class="inputStyle" value="${lo.myLoan_amount}" disabled></td>
+					<td>
+						<fmt:formatNumber value="${lo.myLoan_amount}" pattern="#,###.##"/>
+						</td>
 					<th>대출 잔액</th>
-					<td><input type="text" class="inputStyle" value="${lo.myLoan_amount}" disabled></td>
+					<td>
+					<fmt:formatNumber value="${lo.myLoan_amount}" pattern="#,###.##"/>
+					</td>
 				</tr>
 				<tr>
 					<th>가입날짜</th>

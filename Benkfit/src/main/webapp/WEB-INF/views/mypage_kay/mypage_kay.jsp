@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Document</title>
 </head>
-<body>
+<body >
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
 		<form method="post" name="mypage">
@@ -21,13 +21,13 @@
 					<li><a href="#tab2">설정</a></li>
 					<li><a href="#tab3">정보수정</a></li>
 					<li><a href="#tab4">내서류</a></li>
-					<li><a href="#tab5">탈퇴</a></li>
+					<li><a href="#tab5">자산관리</a></li>
 				</ul>
 				<!--탭 콘텐츠 영역 -->
 				<div class="tab_container">
 					<div id="tab0" class="tab_content">
 						<!--Content-->
-						<p>[${user.c_name}&nbsp;&nbsp;(${user.c_id})]님 로그인 되었습니다.</p>
+						<p>[&nbsp;&nbsp;님 로그인 되었습니다.</p>
 					</div>
 					<div id="tab1" class="tab_content">
 						<!--Content-->
@@ -50,7 +50,7 @@
 										<c:set var="num" value="${num+1}" />
 										<td>${ch.cheq_num}</td>
 										<td>${ch.myCheq_account}</td>
-										<td>${ch.myCheq_amount}</td>
+										<td><fmt:formatNumber value="${ch.myCheq_amount}" pattern="#,###.##"/></td>
 										<td>
 											<button class="btn2 btn2-success"  onclick="move(1)">조회
 											</button>&nbsp;
@@ -61,9 +61,8 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<hr style="color: black">
-
-						<h3>대출관리</h3>
+						<hr>
+						<%-- <h3>대출관리</h3>
 						<table class="table table-hover">
 							<thead id="mypage_thead">
 								<tr>
@@ -80,7 +79,7 @@
 									<tr>
 										<td>${lo.loan_num}</td>
 										<td>${lo.myLoan_account}</td>
-										<td>${lo.myLoan_amount}</td>
+										<td><fmt:formatNumber value="${lo.myLoan_amount}" pattern="#,###.##"/></td>
 										<td>${lo.myLoan_date}</td>
 										<td>${lo.myLoan_late}</td>
 										<td>
@@ -96,7 +95,7 @@
 					</div>
 					<div id="tab2" class="tab_content">
 						<!--Content-->
-						<h4> 설정 </h4>						 
+						<h3>설정</h3>						 
 						<table class="updateInfo" style="width:300px;">
 							<tbody class="mypage_info">
 								<tr>
@@ -122,10 +121,10 @@
 					</div>
 					<div id="tab3" class="tab_content">
 						<!--Content-->
-						<h4>
-							정보수정 &nbsp;&nbsp;
+						<h3>정보수정 &nbsp;&nbsp;
 							<button class="btn2 btn2-danger" onclick="move(8)">변경</button>
-						</h4>
+							<button class="btn2 btn2-success" onclick="move(12)">회원탈퇴</button>
+						</h3>
 						<table class="updateInfo" style="width:300px;">
 							<tbody class="mypage_info">
 								<tr>
@@ -145,8 +144,7 @@
 					</div>
 					<div id="tab4" class="tab_content">
 						<!--Content-->
-						<h3>
-							서류관리
+						<h3>서류관리
 							<button class="btn2 btn2-success" onclick="move(9)">등록</button>
 							<button class="btn2 btn2-danger" onclick="move(10)">삭제</button>
 						</h3>
@@ -180,12 +178,10 @@
 						<!--Content-->
 						<table>
 							<tr>
-								<th>
-									<button class="btn2 btn2-success" onclick="move(12)">회원탈퇴</button>
-								</th>
+								자산관리
 							</tr>
 						</table>
-					</div>
+					</div> --%>
 				</div>
 			</div>
 		</form>
