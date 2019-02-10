@@ -1,7 +1,11 @@
 package spring.mvc.benkfit.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -10,12 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.web3j.crypto.*;
+import org.web3j.crypto.CipherException;
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.methods.response.*;
+import org.web3j.protocol.core.methods.response.EthAccounts;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
+
 import spring.mvc.benkfit.sol.Slot;
 
 import spring.mvc.benkfit.persistence.DAO_bh;
@@ -29,22 +37,52 @@ public class ServiceImpl_bh implements Service_bh {
 	@Autowired
 	DAO_bh dao;
 	
+	//계정잔액가져오기
 	@Override
-	public void accounts(HttpServletRequest req, Model model) {
-//		List<String> result = dao.getEthAccounts().getResult();
-		BigInteger result2 = dao.getEthBalance();
-//		String result3 = dao.getBlockNymber().getResult();
-//		String result4 = dao.getTransactionCount().getResult();
-//		System.out.println("result : " + result);
-		System.out.println("result2 : " + result2);
-//		System.out.println("result3 : " + result3);
-//		System.out.println("result4 : " + result4);
-//		model.addAttribute("result", result);
-		model.addAttribute("result2", result2);
-//		model.addAttribute("result3", result3);
-//		model.addAttribute("result4", result4);
+	public void Balance(HttpServletRequest req, Model model){
+		BigInteger Balance = null;
+		String address = req.getParameter("address");
+		
+		try {
+			Balance = this.web3.ethGetBalance(address, DefaultBlockParameter.valueOf("latest")).sendAsync().get().getBalance();
+			model.addAttribute("Balance", Balance);	
+			System.out.println("계정의 잔액을 가져오는 함수를 실행합니다.");
+			System.out.println("계정 확인 :" + address);
+			System.out.println("==> 해당 계정의 잔액 : " + Balance);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 	}
-
+	
+	/*
+	 * 계정생성하기
+	 */
+	@Override
+	public void createAccount(HttpServletRequest req, Model model) {
+		String password = req.getParameter("password");
+		boolean success = false;
+		try {
+			String newAccount = WalletUtils.generateNewWalletFile(password, new File("/Users/banhun/geth/private_net/keystore"));
+			if(newAccount != null) {
+				success = true;
+				model.addAttribute("success",success);
+				System.out.println("새로운 계정을 만드는 함수입니다.");
+				System.out.println("새 계정의 입력받은 비밀번호 : " + password);
+				System.out.println("성공여부 : " + success);
+			}
+			System.out.println("newAccount : " + newAccount);
+		} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
+				| CipherException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * 슬롯머신
+	 */
 	@Override
 	public void slot(HttpServletRequest req, Model model) {
 		BigInteger gasPrice = BigInteger.valueOf(200000);
@@ -60,11 +98,17 @@ public class ServiceImpl_bh implements Service_bh {
 		
 		try {
 			//private key위치
-			Credentials credentials = WalletUtils.loadCredentials("password", "C:/ether/geth/private_net/keystore/UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
+			//유경위치
+			//Credentials credentials = WalletUtils.loadCredentials("password", "C:/ether/geth/private_net/keystore/UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
+			//훈위치
+			Credentials credentials = WalletUtils.loadCredentials("password", "/Users/banhun/geth/private_net/keystore/UTC--2019-01-24T03-37-23.877487000Z--ba444a48a264e7fcadd9a60951623e607fee385a");
 			
 			//트랜잭션 주소
 			@SuppressWarnings("deprecation")
-			Slot contract = Slot.load("0xb824ebcb0A3cdDdC8bBFd2FFC636aB1067Ac74b8", web3, credentials, gasPrice, gasLimit);
+			//유경주소
+			//Slot contract = Slot.load("0xb824ebcb0A3cdDdC8bBFd2FFC636aB1067Ac74b8", web3, credentials, gasPrice, gasLimit);
+			//훈주소
+			Slot contract = Slot.load("0x23dAcd3Fef0c4E270b8F9545A762fDfbf1e7d394", web3, credentials, gasPrice, gasLimit);
 			//계정언락
 			if(admin.personalUnlockAccount(address, pass).send().getResult()) {
 				contract.bet(ether);
@@ -102,22 +146,28 @@ public class ServiceImpl_bh implements Service_bh {
 		}
 	}
 
-	//계정잔액가져오기
+	/*
+	 * 대출
+	 */
+	//대출신청
 	@Override
-	public void slotBalance(HttpServletRequest req, Model model) {
-		BigInteger slotBalance = null;
-		String address = req.getParameter("address");
-		
-		try {
-			slotBalance = this.web3.ethGetBalance(address, DefaultBlockParameter.valueOf("latest")).sendAsync().get().getBalance();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
-		System.out.println("slotBalance : " + slotBalance );
-		model.addAttribute("slotBalance", slotBalance);
+	public void loan(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void accounts(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
+
+
+	
+	
+	
+	
+

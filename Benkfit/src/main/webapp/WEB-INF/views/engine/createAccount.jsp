@@ -3,7 +3,7 @@
 <html>
 <body>
 <div>
-	${Balance/1000000000000000000}&nbsp;ETHER
+	${success}
 </div>
 </body>
 </html>
