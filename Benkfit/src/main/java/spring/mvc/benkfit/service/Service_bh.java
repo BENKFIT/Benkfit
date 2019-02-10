@@ -13,18 +13,20 @@ public interface Service_bh {
 	public void createAccount(HttpServletRequest req, Model model);
 	
 	/*
-	 * 슬롯머신 시작
+	 * 슬롯머신
 	 */
-	public void accounts(HttpServletRequest req, Model model);
 	public void slot(HttpServletRequest req, Model model);
-	/*
-	 * 슬롯머신 종료
-	 */
 	
 	/*
 	 * 대출
 	 */
 	//대출 신청
 	public void loan(HttpServletRequest req, Model model);
+	
+	/*
+	 * 송금
+	 */
+	//송금하기
+	public void transferPro(HttpServletRequest req, Model model) throws Exception;
 	
 }

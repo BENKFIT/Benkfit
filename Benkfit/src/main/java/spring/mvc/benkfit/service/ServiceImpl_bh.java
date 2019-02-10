@@ -24,6 +24,7 @@ import org.web3j.protocol.core.methods.response.EthAccounts;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
 
+import spring.mvc.benkfit.sol.Basic;
 import spring.mvc.benkfit.sol.Slot;
 
 import spring.mvc.benkfit.persistence.DAO_bh;
@@ -156,9 +157,40 @@ public class ServiceImpl_bh implements Service_bh {
 		
 	}
 
+	/*
+	 * 송금
+	 */
+	//송금하기
 	@Override
-	public void accounts(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+	public void transferPro(HttpServletRequest req, Model model) throws Exception {
+		//가스값 임의 설정
+		BigInteger gasPrice = BigInteger.valueOf(200000);
+		BigInteger gasLimit = BigInteger.valueOf(200000); 
+		//받은 값
+		String address = req.getParameter("address");
+		String password = req.getParameter("password");
+		String to = req.getParameter("to");
+		double value = Double.parseDouble((req.getParameter("value")));
+		BigInteger ether = BigInteger.valueOf((long) value);
+		
+		System.out.println("이더를 송금하는 함수입니다.");
+		System.out.println("=> 보내는 계정 :" + address);
+		System.out.println("=> 송금계정 비밀번호 : " + password);
+		System.out.println("=> 받는 계정 : " + to);
+		System.out.println("=> 보내는 값(이더) : " + value +"("+ether+")");
+		try {
+			Credentials credentials = WalletUtils.loadCredentials("password", "/Users/banhun/geth/private_net/keystore/UTC--2019-01-24T03-37-23.877487000Z--ba444a48a264e7fcadd9a60951623e607fee385a");
+			@SuppressWarnings("deprecation")
+			Basic contract = Basic.load("0x5AE4f46F2B473FcFa382aA97bCef89A48F515cD1", web3, credentials, gasPrice, gasLimit);
+			if(admin.personalUnlockAccount(address, password).send().getResult()) {
+				contract.addressSet(to, null);
+				contract.valueTransfer(ether);
+			}
+			model.addAttribute("ether", ether);
+		} catch (IOException | CipherException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
