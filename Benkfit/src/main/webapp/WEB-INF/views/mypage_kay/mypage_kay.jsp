@@ -2,189 +2,149 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../Template/setting.jsp"%>
 <!DOCTYPE html>
-<html lang="ko-KR">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>정보수정</title>
 </head>
-<body >
+<body>
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
-		<form method="post" name="mypage">
+		<div class="mypage">
 			<h1>My Page</h1>
 			<hr>
-			<div id="tab-menu">
-				<!--탭 메뉴 영역 -->
-				<ul class="tabs">
-					<li><a href="#tab0">*</a></li>
-					<li><a href="#tab1">조회</a></li>
-					<li><a href="#tab2">설정</a></li>
-					<li><a href="#tab3">정보수정</a></li>
-					<li><a href="#tab4">내서류</a></li>
-					<li><a href="#tab5">자산관리</a></li>
-				</ul>
-				<!--탭 콘텐츠 영역 -->
-				<div class="tab_container">
-					<div id="tab0" class="tab_content">
-						<!--Content-->
-						<p>[&nbsp;&nbsp;님 로그인 되었습니다.</p>
+			<div id="tab0" class="tab_content">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4>User Profile</h4>
 					</div>
-					<div id="tab1" class="tab_content">
-						<!--Content-->
-						<h3>예금관리</h3>
-						<table class="table table-hover">
-							<thead id="mypage_thead">
-								<tr>
-									<th>번호</th>
-									<th>계좌명</th>
-									<th>계좌번호</th>
-									<th>잔액</th>
-									<th>조회/이체</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:set var="num" value="1" />
-								<c:forEach var="ch" items="${cheq}">
-									<tr>
-										<td>${num}</td>
-										<c:set var="num" value="${num+1}" />
-										<td>${ch.cheq_num}</td>
-										<td>${ch.myCheq_account}</td>
-										<td><fmt:formatNumber value="${ch.myCheq_amount}" pattern="#,###.##"/></td>
-										<td>
-											<button class="btn2 btn2-success"  onclick="move(1)">조회
-											</button>&nbsp;
-											<button class="btn2 btn2-danger"  onclick="move(2)">해지
-											</button>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<hr>
-						<%-- <h3>대출관리</h3>
-						<table class="table table-hover">
-							<thead id="mypage_thead">
-								<tr>
-									<th>대출상품번호</th>
-									<th>계좌번호</th>
-									<th>잔액</th>
-									<th>대출일</th>
-									<th>만기일</th>
-									<th>조회/상환</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="lo" items="${loan}">
-									<tr>
-										<td>${lo.loan_num}</td>
-										<td>${lo.myLoan_account}</td>
-										<td><fmt:formatNumber value="${lo.myLoan_amount}" pattern="#,###.##"/></td>
-										<td>${lo.myLoan_date}</td>
-										<td>${lo.myLoan_late}</td>
-										<td>
-											<button class="btn2 btn2-success"  onclick="move(3)">조회
-											</button>&nbsp;
-											<button class="btn2 btn2-danger"  onclick="move(4)">상환
-											</button>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+					<div class="panel-body">
+						<div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
+							<img alt="User Pic"
+								src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+								id="profile-image1" class="img-circle img-responsive">
+						</div>
+						<div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+							<div class="User_Profile">
+								<h2>송운선</h2>
+							</div>
+							<hr>
+							<ul class="User_Profile details">
+								<li><p>
+										<span class="glyphicon glyphicon-user one"
+											style="width: 50px;"></span> i.rudberg
+									</p></li>
+								<li><p>
+										<span class="glyphicon glyphicon-envelope one"
+											style="width: 50px;"></span> thddnstjs7@email.com
+									</p></li>
+								<li><p>
+										<span class="glyphicon glyphicon-ok-circle"
+											style="width: 50px;"></span> Date Of Joining: 15 Jun 201s6
+									</p></li>
+							</ul>
+							<hr>
+							<div class="col-sm-8 col-xs-8 tital ">
+								<input type="button" class="btn2 btn2-success" value="정보수정"
+									onclick="">&nbsp; <input type="button"
+									class="btn2 btn2-success" value="내서류" onclick="">&nbsp;
+								<input type="button" class="btn2 btn2-success" value="알림"
+									onclick="">&nbsp; <input type="button"
+									class="btn2 btn2-success" value="qrcode" onclick="">&nbsp;
+							</div>
+						</div>
 					</div>
-					<div id="tab2" class="tab_content">
-						<!--Content-->
-						<h3>설정</h3>						 
-						<table class="updateInfo" style="width:300px;">
-							<tbody class="mypage_info">
-								<tr>
-									<th>이체한도</th>
-									<td>
-										<button class="btn2 btn2-success" onclick="move(5)">조회</button>
-									</td>
-								</tr>
-								<tr>
-									<th>알림</th>
-									<td>
-										<button class="btn2 btn2-success" onclick="move(6)">설정</button>
-									</td>
-								</tr>
-								<tr>
-									<th>카드신청</th>
-									<td>
-										<button class="btn2 btn2-success" onclick="move(7)">발급</button>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div id="tab3" class="tab_content">
-						<!--Content-->
-						<h3>정보수정 &nbsp;&nbsp;
-							<button class="btn2 btn2-danger" onclick="move(8)">변경</button>
-							<button class="btn2 btn2-success" onclick="move(12)">회원탈퇴</button>
-						</h3>
-						<table class="updateInfo" style="width:300px;">
-							<tbody class="mypage_info">
-								<tr>
-									<th>이메일</th>
-									<td>${user.c_email}</td>
-								</tr>
-								<tr>
-									<th>주소</th>
-									<td>${user.c_address}</td>
-								</tr>
-								<tr>
-									<th>연락처</th>
-									<td>${user.c_hp}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div id="tab4" class="tab_content">
-						<!--Content-->
-						<h3>서류관리
-							<button class="btn2 btn2-success" onclick="move(9)">등록</button>
-							<button class="btn2 btn2-danger" onclick="move(10)">삭제</button>
-						</h3>
-						<table class="table table-hover">
-							<thead id="mypage_thead">
-								<tr>
-									<th><input type="checkbox">선택</th>
-									<th>서류번호</th>
-									<th>서류명</th>
-									<th>내용</th>
-									<th>서류 날짜</th>
-									<td>조회</td>
-								</tr>
-							</thead>
-							<tbody class="mypage_setting">
-								<c:set var="num" value="1" />
-								<c:forEach var="doc" items="${docu}">
-									<tr>
-										<td><input type="checkbox"></td>
-										<td>${doc.doc_num}</td>
-										<td>${doc.doc_name}</td>
-										<td>${doc.doc_content}</td>
-										<td>${doc.doc_date}</td>
-										<td><button class="btn2 btn2-success" onclick="move(11)">조회</button></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-					<div id="tab5" class="tab_content">
-						<!--Content-->
-						<table>
-							<tr>
-								자산관리
-							</tr>
-						</table>
-					</div> --%>
 				</div>
 			</div>
-		</form>
+			<div id="tab1" class="tab_content">
+				<!--Content-->
+				<h3 >예금관리</h3>			
+				<hr>
+				<table class="table table-hover">
+					<thead id="mypage_thead">
+						<tr>
+							<th>번호</th>
+							<th>계좌명</th>
+							<th>계좌번호</th>
+							<th>잔액</th>
+							<th>조회/이체</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>12</td>
+							<td>123</td>
+							<td>123</td>
+							<td>
+								<button class="btn2 btn2-success" onclick="move(1)">조회
+								</button>&nbsp;
+								<button class="btn2 btn2-danger" onclick="move(2)">해지</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>적금관리</h3>
+				<hr>
+				<table class="table table-hover">
+					<thead id="mypage_thead">
+						<tr>
+							<th>번호</th>
+							<th>계좌명</th>
+							<th>계좌번호</th>
+							<th>잔액</th>
+							<th>조회/이체</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>12</td>
+							<td>123</td>
+							<td>123</td>
+							<td>
+								<button class="btn2 btn2-success" onclick="move(1)">조회
+								</button>&nbsp;
+								<button class="btn2 btn2-danger" onclick="move(2)">해지</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>대출관리</h3>
+				<hr>
+				<table class="table table-hover">
+					<thead id="mypage_thead">
+						<tr>
+							<th>대출상품번호</th>
+							<th>계좌번호</th>
+							<th>잔액</th>
+							<th>대출일</th>
+							<th>만기일</th>
+							<th>조회/상환</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>123</td>
+							<td>1244</td>
+							<td>124134</td>
+							<td>124123</td>
+							<td>
+								<button class="btn2 btn2-success" onclick="move(3)">조회
+								</button>&nbsp;
+								<input type="submit" class="btn2 btn2-success" value="확인">	
+								<button class="btn2 btn2-danger" onclick="move(4)">상환</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="tab2" class="tab_content">
+			<h3>자산관리</h3> 
+			<hr> 
+			</div>
+		</div>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
 </body>

@@ -2,7 +2,7 @@ package spring.mvc.benkfit.vo;
 
 import java.util.Date;
 
-public class document_kay {
+public class documentVO {
 	private String doc_num;/* 서류 번호 */
 	private String doc_name; /* 서류 명 */
 	private String doc_content; /* 서류 내용 */
