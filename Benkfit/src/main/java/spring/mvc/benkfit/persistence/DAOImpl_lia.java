@@ -116,4 +116,16 @@ public class DAOImpl_lia implements DAO_lia {
 	public List<UsersVO> selectUsers() {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers");
 	}
+
+	// 관리자메뉴 > 회원 삭제
+	@Override
+	public int deleteUsers(String id) {
+		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_lia.deleteUsers", id);
+	}
+
+	// 관리자메뉴 > 회원 등급 수정
+	@Override
+	public int updateUsers(Map<String, String> map) {
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_lia.updateUsers", map);
+	}
 }

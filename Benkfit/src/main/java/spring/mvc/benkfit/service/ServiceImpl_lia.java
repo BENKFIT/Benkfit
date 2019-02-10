@@ -107,20 +107,18 @@ public class ServiceImpl_lia implements Service_lia {
             //주민번호 추출
             for(String str : list) {
             	if(str.contains("-")) {
-            		//if(str.length()==14) {
+            		if(str.length()==14) {
             			jumin = str;
             			System.out.println("jumin : " + jumin);
-            		//}
+            			model.addAttribute("jumin", jumin);
+            		}
             	}
             }
-            
             scan.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
-
 		model.addAttribute("name", name);
-		model.addAttribute("jumin", jumin);
 	}
 	
 	// id중복확인
@@ -185,7 +183,7 @@ public class ServiceImpl_lia implements Service_lia {
 		MultipartFile file = req.getFile("idCard");
 		
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
-        String realDir = "C:\\DEV43\\workspace_spring\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\"; 
+        String realDir = "C:\\DEV43\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\"; 
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -396,5 +394,27 @@ public class ServiceImpl_lia implements Service_lia {
 	public void selectUsers(HttpServletRequest req, Model model) {
 		List<UsersVO> users = dao.selectUsers();
 		model.addAttribute("users", users);
+	}
+
+	// 관리자메뉴 > 회원 삭제
+	@Override
+	public void deleteUsers(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		int cnt  = dao.deleteUsers(id);
+		model.addAttribute("cnt", cnt);
+	}
+	
+	// 관리자메뉴 > 회원 등급 수정
+	@Override
+	public void updateUsers(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String level = req.getParameter("level");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("level", level);
+		
+		int cnt  = dao.updateUsers(map);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("level", level);
 	}
 }

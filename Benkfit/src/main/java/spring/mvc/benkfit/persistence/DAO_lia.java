@@ -49,4 +49,9 @@ public interface DAO_lia {
 	// 관리자메뉴 > 회원 조회
 	public List<UsersVO> selectUsers();
 	
+	// 관리자메뉴 > 회원 삭제
+	public int deleteUsers(String id);
+	
+	// 관리자메뉴 > 회원 등급 수정
+	public int updateUsers(Map<String, String> map);
 }

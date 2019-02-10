@@ -155,14 +155,6 @@ public class Controller_lia {
 		return "common/search";
 	}
 	
-	// 관리자 메뉴
-	/*@Secured("ROLE_ADMIN")
-	@RequestMapping("adminMenu")
-	public String adminMenu() throws Exception {
-		logger.info("adminMenu 호출중");
-		return "admin/adminMenu";
-	}*/
-	
 	// 관리자 메뉴 > 회원 조회
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("selectUsers")
@@ -171,5 +163,22 @@ public class Controller_lia {
 		service.selectUsers(req, model);
 		return "admin/users/users";
 	}
-		
+	
+	// 관리자 메뉴 > 회원 삭제
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("deleteUsers")
+	public String deleteUsers(HttpServletRequest req, Model model) throws Exception {
+		logger.info("deleteUsers 호출중");
+		service.deleteUsers(req, model);
+		return "admin/users/updateUsers";
+	}
+	
+	// 관리자 메뉴 > 회원 등급 수정
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("updateUsers")
+	public String updateUsers(HttpServletRequest req, Model model) throws Exception {
+		logger.info("updateUsers 호출중");
+		service.updateUsers(req, model);
+		return "admin/users/updateUsers";
+	}
 }

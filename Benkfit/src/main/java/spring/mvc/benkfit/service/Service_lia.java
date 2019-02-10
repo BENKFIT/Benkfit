@@ -43,4 +43,10 @@ public interface Service_lia {
 	
 	// 관리자메뉴 > 회원 조회
 	public void selectUsers(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 회원 삭제
+	public void deleteUsers(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 회원 등급 변경
+	public void updateUsers(HttpServletRequest req, Model model);
 }
