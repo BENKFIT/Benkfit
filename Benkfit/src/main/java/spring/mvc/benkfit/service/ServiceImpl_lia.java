@@ -32,11 +32,11 @@ import spring.mvc.benkfit.vo.CardProductVO;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MySavAccountVO;
-import spring.mvc.benkfit.vo.MyloanAccount_kay;
+import spring.mvc.benkfit.vo.MyloanAccountVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
-import spring.mvc.benkfit.vo.myCheqAccount_kay;
+import spring.mvc.benkfit.vo.myCheqAccountVO;
 
 @Service
 public class ServiceImpl_lia implements Service_lia {
@@ -384,8 +384,61 @@ public class ServiceImpl_lia implements Service_lia {
 	// 관리자메뉴 > 회원 조회
 	@Override
 	public void selectUsers(HttpServletRequest req, Model model) {
-		List<UsersVO> users = dao.selectUsers();
-		model.addAttribute("users", users);
+		// 페이징
+		int pageSize = 10;	 //한 페이지당 출력할 회원 수
+		int pageBlock = 3;   //한 블럭당 페이지 개수
+		
+		int ucnt = 0; 		 //회원수
+		int start = 0;		 //현재 페이지 시작 번호
+		int end = 0;		 //현재 페이지 마지막 번호
+		String pageNum = ""; //페이지 번호
+		int currentPage = 0; //현재 페이지
+		
+		int pageCount = 0;	//페이지 개수
+		int startPage = 0;  //시작 페이지
+		int endPage = 0;  	//마지막 페이지
+		
+		ucnt = dao.howManyUsers();
+		
+		pageNum = req.getParameter("pageNum");
+		if(pageNum == null || pageNum.equals("undefined")) {
+			pageNum = "1";	//첫페이지를 1페이지로 지정
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		
+		pageCount = (ucnt / pageSize) + (ucnt % pageSize > 0 ? 1 : 0);
+		
+		start = (currentPage - 1) * pageSize + 1;
+		
+		end = start + pageSize - 1;
+		
+		if(end > ucnt) {
+			end = ucnt;
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+			
+		endPage = startPage + pageBlock - 1;
+		if(endPage > pageCount) endPage = pageCount;
+		
+		model.addAttribute("ucnt", ucnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);  	  
+		model.addAttribute("pageBlock", pageBlock);   
+		model.addAttribute("pageCount", pageCount);  
+		model.addAttribute("currentPage", currentPage);
+		
+		if(ucnt > 0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			
+			List<UsersVO> users = dao.selectUsers(map);
+			model.addAttribute("users", users);
+		}
 	}
 
 	// 관리자메뉴 > 회원 삭제
@@ -414,9 +467,9 @@ public class ServiceImpl_lia implements Service_lia {
 	@Override
 	public void selAccount(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
-		List<myCheqAccount_kay> cheq = dao.selectCheq(id);
+		List<myCheqAccountVO> cheq = dao.selectCheq(id);
 		List<MySavAccountVO> sav = dao.selectSav(id);
-		List<MyloanAccount_kay> loan = dao.selectLoan(id);
+		List<MyloanAccountVO> loan = dao.selectLoan(id);
 		
 		model.addAttribute("id", id);
 		if(cheq.size() == 0) {
@@ -447,7 +500,7 @@ public class ServiceImpl_lia implements Service_lia {
 		String account = req.getParameter("account");
 		String code = req.getParameter("code");
 		List<TransDetailVO> transaction = new ArrayList<>();
-		
+		 
 		// 페이징
 		int pageSize = 10;	 //한 페이지당 출력할 개수
 		int pageBlock = 3;   //한 블럭당 페이지 개수

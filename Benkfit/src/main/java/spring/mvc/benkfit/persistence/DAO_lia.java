@@ -8,11 +8,11 @@ import spring.mvc.benkfit.vo.CardProductVO;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MySavAccountVO;
-import spring.mvc.benkfit.vo.MyloanAccount_kay;
+import spring.mvc.benkfit.vo.MyloanAccountVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
-import spring.mvc.benkfit.vo.myCheqAccount_kay;
+import spring.mvc.benkfit.vo.myCheqAccountVO;
 
 public interface DAO_lia {
 
@@ -51,7 +51,8 @@ public interface DAO_lia {
 	public List<SavProductVO> search_sav(String keyword);
 	
 	// 관리자메뉴 > 회원 조회
-	public List<UsersVO> selectUsers();
+	public int howManyUsers();
+	public List<UsersVO> selectUsers(Map<String, Object> map);
 	
 	// 관리자메뉴 > 회원 삭제
 	public int deleteUsers(String id);
@@ -60,9 +61,9 @@ public interface DAO_lia {
 	public int updateUsers(Map<String, String> map);
 	
 	// 관리자메뉴 > 계좌조회
-	public List<myCheqAccount_kay> selectCheq(String id);
+	public List<myCheqAccountVO> selectCheq(String id);
 	public List<MySavAccountVO> selectSav(String id);
-	public List<MyloanAccount_kay> selectLoan(String id);
+	public List<MyloanAccountVO> selectLoan(String id);
 	
 	// 관리자메뉴 > 거래내역 조회
 	public int getTransCnt(String account);

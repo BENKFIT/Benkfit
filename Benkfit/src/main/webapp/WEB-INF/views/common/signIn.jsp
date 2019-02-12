@@ -435,7 +435,7 @@
 
 <%@ include file ="../Template/top.jsp" %>
 
-<div class="container2" style="margin-top:150px; margin-bottom:150px;">
+<div class="container2" style="margin-top:150px; margin-bottom:70px;">
 	<div class="row">
 		<div class="col-lg-4 col-md-4 mx-auto">
 		<div class="card">

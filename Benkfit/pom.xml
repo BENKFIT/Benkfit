@@ -265,6 +265,14 @@
 		    <version>11.2.0.1.0</version>
 		</dependency>
 
+    <!-- dialogflow -->
+		<dependency>
+		    <groupId>com.google.cloud</groupId>
+		    <artifactId>google-cloud-dialogflow</artifactId>
+		    <version>0.80.0-alpha</version>
+		</dependency>
+    <!-- dialogflow -->
+    
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

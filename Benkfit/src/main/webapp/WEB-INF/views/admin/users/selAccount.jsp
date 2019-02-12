@@ -49,7 +49,7 @@
   #closeModal {
     margin-top:40px;
   }
-
+  
   .viewTrans {
     color:#53a0d1;
     cursor:pointer;
@@ -60,6 +60,7 @@
   }
   
 </style>
+
 </head>
 <body>
 
@@ -85,13 +86,16 @@
              <th>가입일</th>
          </tr>
          
+         <!-- 예금 가입 상품 없으면 -->
          <c:if test="${cnt == 0}">
          <tr class="rows">
            <th colspan="7" style="color:#626263">가입 상품이 없습니다.</th>
          </tr>
          </c:if>
          
+         <!-- 예금 가입 상품 있으면 -->
          <c:if test="${cnt != 0}">
+         <!-- 예금 -->
          <c:forEach var="vo" items="${cheq}">
          <tr class="rows">
            <td class="cell"><span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
@@ -114,7 +118,7 @@
 			    <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
 			           aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:170%; height:100%;">
 			      <div class="modal-dialog modal-lg" id="myModalT2">
-			        <div class="modal-content" id="modal-contentT" style="height:90%">
+			        <div class="modal-content" id="modal-contentT" style="height:80%">
               
               </div>
 			      </div>
@@ -139,13 +143,16 @@
              <th>가입일</th>
          </tr>
          
+         <!-- 적금 가입 상품 없으면 -->
          <c:if test="${scnt == 0}">
          <tr class="rows">
            <th colspan="7" style="color:#626263">가입 상품이 없습니다.</th>
          </tr>
          </c:if>
          
+         <!-- 적금 가입 상품 있으면 -->
          <c:if test="${scnt != 0}">
+         <!-- 적금 -->
          <c:forEach var="svo" items="${sav}">
          <tr class="rows">
            <td class="cell"><span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
@@ -157,6 +164,15 @@
            <td class="cell">${svo.mySav_method}</td>
            <td class="cell">${svo.mySav_date}</td>
          </tr>
+         <!-- Modal -->
+          <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
+                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:170%; height:100%;">
+            <div class="modal-dialog modal-lg" id="myModalT2">
+              <div class="modal-content" id="modal-contentT" style="height:80%">
+              
+              </div>
+            </div>
+          </div>
          </c:forEach>
          </c:if>
          </table>
@@ -193,13 +209,22 @@
            <td class="cell">${lvo.myLoan_over}</td>
            <td class="cell">${lvo.myLoan_date}</td>
          </tr>
+         <!-- Modal -->
+          <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
+                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:170%; height:100%;">
+            <div class="modal-dialog modal-lg" id="myModalT2">
+              <div class="modal-content" id="modal-contentT" style="height:80%">
+              
+              </div>
+            </div>
+          </div>
          </c:forEach>
          </c:if>
        </table>
        </div>
        
         <div class="wrapper6">
-          <input type="button" id="closeModal" class="btn btn-primary" value="확인" data-dismiss="modal">
+          <input type="button" id="closeModal" class="btn btn-primary" value="닫기" data-dismiss="modal">
         </div>
   </div>
 </div>

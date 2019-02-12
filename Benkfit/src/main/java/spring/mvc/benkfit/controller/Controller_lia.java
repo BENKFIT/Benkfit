@@ -207,4 +207,11 @@ public class Controller_lia {
 		service.selTransaction(req, model);
 		return "admin/users/selTransaction";
 	}
+	
+	// 챗봇
+	@RequestMapping("chatbot")
+	public String chatbot() throws Exception {
+		logger.info("chatbot 호출중");
+		return "common/chatbot";
+	}
 }
