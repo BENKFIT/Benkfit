@@ -101,4 +101,81 @@
   <update id="updateUsers" parameterType="java.util.Map">
     update users_tbl set c_level=#{level} where c_id=#{id}
   </update>
+  
+  <!-- 관리자 > 회원별 예금 조회 -->
+  <select id="selectCheq" parameterType="String" resultType="spring.mvc.benkfit.vo.myCheqAccount_kay">
+    select * from mycheqaccount_tbl where c_id=#{id}
+  </select>
+  
+  <!-- 관리자 > 회원별 적금 조회 -->
+  <select id="selectSav" parameterType="String" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+    select * from mysavaccount_tbl where c_id=#{id}
+  </select> 
+  
+  <!-- 관리자 > 회원별 적금 조회 -->
+  <select id="selectLoan" parameterType="String" resultType="spring.mvc.benkfit.vo.MyloanAccount_kay">
+    select * from myloanaccount_tbl where c_id=#{id}
+  </select> 
+  
+  <!-- 관리자 > 거래내역 건수 -->
+  <select id="getTransCnt" parameterType="String" resultType="int">
+    select count(*) from transdetail_tbl where tran_account=#{account}
+  </select>
+  
+  <!-- 관리자 > 예금 거래내역 조회 -->
+  <resultMap id="cheqTrans" type="spring.mvc.benkfit.vo.TransDetailVO">
+    <result property="tran_afterAmount" column="mycheq_amount" />
+    <result property="tran_code" column="code" />
+  </resultMap>
+  
+  <select id="getCheqTrans" parameterType="java.util.Map" resultMap="cheqTrans">
+    <![CDATA[
+	    select *
+				from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+				      tran_bank, tran_type, tran_code, mycheq_amount, rownum rNum
+				      from (select * from transdetail_tbl t, mycheqaccount_tbl m 
+				                where m.mycheq_account = t.tran_account
+				                 and t.tran_account = #{account} order by t.tran_date desc))
+				where rNum >= #{start} and rNum <= #{end}
+    ]]>   
+  </select>
+  
+  <!-- 관리자 > 적금 거래내역 조회 -->
+  <resultMap id="savTrans" type="spring.mvc.benkfit.vo.TransDetailVO">
+    <result property="tran_afterAmount" column="mysav_amount" />
+    <result property="tran_due" column="mysav_due" />
+    <result property="tran_code" column="code" />
+  </resultMap>
+  
+  <select id="getSavTrans" parameterType="java.util.Map" resultMap="savTrans">
+    <![CDATA[
+      select *
+        from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+              tran_bank, tran_type, tran_code, mysav_amount, mysav_due, rownum rNum
+              from (select * from transdetail_tbl t, mysavaccount_tbl m 
+                        where m.mysav_account = t.tran_account
+                         and t.tran_account = #{account} order by t.tran_date desc))
+        where rNum >= #{start} and rNum <= #{end}
+    ]]>
+  </select>
+  
+  <!-- 관리자 > 대출 거래내역 조회 -->
+  <resultMap id="loanTrans" type="spring.mvc.benkfit.vo.TransDetailVO">
+    <result property="tran_afterAmount" column="myloan_left" />
+    <result property="tran_due" column="myloan_late" />
+    <result property="tran_loanAmount" column="myloan_amount" />
+    <result property="tran_code" column="code" />
+  </resultMap>
+  
+  <select id="getLoanTrans" parameterType="java.util.Map" resultMap="loanTrans">
+    <![CDATA[
+      select *
+        from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+              tran_bank, tran_type, tran_code, myloan_left, myloan_late, myloan_amount, rownum rNum
+              from (select * from transdetail_tbl t, myloanaccount_tbl m 
+                        where m.myloan_account = t.tran_account
+                         and t.tran_account = #{account} order by t.tran_date desc))
+        where rNum >= #{start} and rNum <= #{end}
+    ]]>
+  </select>
 </mapper>
