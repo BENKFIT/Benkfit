@@ -5,7 +5,7 @@ import java.sql.Date;
 public class MyloanAccount_kay {
 	
 	private String myLoan_account; /* 대출 계좌번호 */
-	private int myLoan_amount; /* 금액 */
+	private int myLoan_amount; /* 대출금액 */
 	private Date myLoan_date;/* 가입날짜 */
 	private int myLoan_state;/* 상태코드 */
 	private Date myLoan_late; /* 만기 */
@@ -13,8 +13,9 @@ public class MyloanAccount_kay {
     private Date myLoan_over; /* 연체 기간 */  
 	private String loan_num; /* 대출 상품번호 */
 	private String c_id; /* 고객 아이디 */
-	
-	
+	private double myLoan_rate; /* 연이율 */
+	private int myLoan_left; /*대출 잔금*/
+	private String code; /* 계좌 종류 */
 	
 	public String getMyLoan_account() {
 		return myLoan_account;
@@ -69,5 +70,33 @@ public class MyloanAccount_kay {
 	}
 	public void setC_id(String c_id) {
 		this.c_id = c_id;
+	}
+	public double getMyLoan_rate() {
+		return myLoan_rate;
+	}
+	public void setMyLoan_rate(double myLoan_rate) {
+		this.myLoan_rate = myLoan_rate;
+	}
+	
+	public int getMyLoan_left() {
+		return myLoan_left;
+	}
+	public void setMyLoan_left(int myLoan_left) {
+		this.myLoan_left = myLoan_left;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	@Override
+	public String toString() {
+		return "MyloanAccount_kay [myLoan_account=" + myLoan_account + ", myLoan_amount=" + myLoan_amount
+				+ ", myLoan_date=" + myLoan_date + ", myLoan_state=" + myLoan_state + ", myLoan_late=" + myLoan_late
+				+ ", myLoan_type=" + myLoan_type + ", myLoan_over=" + myLoan_over + ", loan_num=" + loan_num + ", c_id="
+				+ c_id + ", myLoan_rate=" + myLoan_rate + ", myLoan_left=" + myLoan_left + ", code=" + code + "]";
 	}
 }
