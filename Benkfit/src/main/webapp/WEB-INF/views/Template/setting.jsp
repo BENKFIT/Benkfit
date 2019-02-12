@@ -20,6 +20,12 @@
 <link rel="stylesheet" href="${path}/css/mypage_kay.css" />
 
 <!-- JS -->
+<script type="text/javascript" src="${path}/js/classie.js"></script>
+<script type="text/javascript" src="${path}/js/main.js"></script>
+<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script>
+<script src="//code.jquery.com/jquery-latest.min.js"></script> 
+<script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
+<script type="text/javascript" src="${path}/js/qrcode.js"></script>
 <script type="text/javascript" src="${path}/js/classie.js"></script><!-- 사이드메뉴 -->
 <script type="text/javascript" src="${path}/js/main.js"></script><!-- 사이드메뉴 -->
 <script type="text/javascript" src="${path}/js/modernizr-custom.js"></script><!-- 사이드메뉴 -->

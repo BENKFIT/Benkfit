@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -276,7 +277,26 @@ public class ServiceImpl_sws implements Service_sws {
 	}
 
 	@Override
-	public void naver_search_sws(HttpServletRequest req, Model model) {
+	public void chartList(HttpServletRequest req, Model model) {
 		
-    }
+		JSONObject map = (JSONObject)dao.getYearChat();
+		String chart = map.toString();
+		req.setAttribute("YearChat", chart);
+	}
+
+	@Override
+	public void chartList1(HttpServletRequest req, Model model) {
+		
+		JSONObject map = (JSONObject)dao.getMonthChat();
+		String chart = map.toString();
+		req.setAttribute("MonthChat", chart);
+	}
+
+	@Override
+	public void chartList2(HttpServletRequest req, Model model) {
+		
+		JSONObject map = (JSONObject)dao.getDayChat();
+		String chart = map.toString();
+		req.setAttribute("DayChat", chart);
+	}
 }

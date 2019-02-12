@@ -5,8 +5,28 @@
 <html>
 <head>
 <style>
-	.inputButton {
-		background: #FFD662;
+	input[type=button] {
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: #FFD662;
+		color: white;
+	}
+	
+	input[type=submit] {
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: #FFD662;
+		color: white;
+	}
+	
+	input[type=button]:hover {
+		color: black;
+	}
+	
+	input[type=submit]:hover {
+		color: black;
 	}
 </style>
 </head>

@@ -137,16 +137,13 @@
 					<!-- Submenu 0-2 이체 -->
 					<ul data-menu="submenu-0-2" class="menu__level">
 						<li class="menu__item"><a class="menu__link" href="#">계좌이체</a></li>
-<<<<<<< HEAD
 						<li class="menu__item"><a class="menu__link"href="#">자동이체</a></li>
-=======
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-0-2-1" href="#">자동이체</a></li>
 					</ul>
 					<!-- Submenu 0-2-1 자동이체 -->
 					<ul data-menu="submenu-0-2-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link" href="#">자동이체	조회</a></li>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					</ul>
 					<!-- Submenu 0-3 설정 -->
 					<ul data-menu="submenu-0-3" class="menu__level">
@@ -154,9 +151,7 @@
 						<li class="menu__item"><a class="menu__link"  href="#">알림</a></li>
 						<li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
 					</ul>
-<<<<<<< HEAD
 					<!-- Submenu 0-4 정보수정&탈퇴 -->
-=======
 					<!-- Submenu 0-3-1 설정-> 이체한도 -->
 					<ul data-menu="submenu-0-3-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link" href="#">이체한도조회</a></li>
@@ -196,9 +191,9 @@
             <li class="menu__item"><a class="menu__link"
               data-submenu="submenu-0-2" href="#">상품관리</a></li>
             <li class="menu__item"><a class="menu__link"
-              data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
+              data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
             <li class="menu__item"><a class="menu__link"
-              data-submenu="submenu-0-4" href="#">결산</a></li>
+              data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
           </ul>
           </sec:authorize>
           
@@ -283,7 +278,7 @@
 											</ul>
 										</li>
 										<li><a href="chat">상담</a></li>
-										<li><a href="firstVisit_sws">안내</a></li>
+										<li><a href="hoursOfUse_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
                     <sec:authorize access="isAnonymous()">
