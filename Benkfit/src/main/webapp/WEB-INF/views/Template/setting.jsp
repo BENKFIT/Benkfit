@@ -23,7 +23,7 @@
 <script type="text/javascript" src="${path}/js/classie.js"></script>
 <script type="text/javascript" src="${path}/js/main.js"></script>
 <script type="text/javascript" src="${path}/js/modernizr-custom.js"></script>
-<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="//code.jquery.com/jquery-latest.min.js"></script> 
 <script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
 <script type="text/javascript" src="${path}/js/qrcode.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

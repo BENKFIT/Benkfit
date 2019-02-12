@@ -269,7 +269,7 @@
 												<li><a href="#">자산관리 3</a></li>
 											</ul></li>
 										<li><a href="chat">상담</a></li>
-										<li><a href="firstVisit_sws">안내</a></li>
+										<li><a href="hoursOfUse_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
                     <sec:authorize access="isAnonymous()">

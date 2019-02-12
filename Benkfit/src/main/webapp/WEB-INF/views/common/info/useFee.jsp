@@ -22,7 +22,7 @@
 	<div
 		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%; height: 80%;">
-			<h2>이용시간안내</h2>
+			<h2>이용 수수료 안내</h2>
 			<br>
 			<p style="font-size: 20px;">예금 / 적금</p>
 			<table class="table table-hover" style="width: 100%;">
