@@ -111,6 +111,7 @@
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<sec:authorize access="isAuthenticated()">
+<<<<<<< HEAD
 						<sec:authorize access="!hasRole('ROLE_ADMIN')">
 							<ul data-menu="submenu-0" class="menu__level">
 								<li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>
@@ -191,10 +192,85 @@
 									href="deluserPw">탈퇴</a></li>
 							</ul>
 						</sec:authorize>
+=======
+          <sec:authorize access="!hasRole('ROLE_ADMIN')">
+					<ul data-menu="submenu-0" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>
+						<li class="menu__item"><a class="menu__link"
+							data-submenu="submenu-0-1" href="#">조회</a></li>
+						<li class="menu__item"><a class="menu__link"
+							data-submenu="submenu-0-2" href="#">이체</a></li>
+						<li class="menu__item"><a class="menu__link"
+							data-submenu="submenu-0-3" href="#">설정</a></li>
+						<li class="menu__item"><a class="menu__link" href="">자산관리</a></li>	
+						<li class="menu__item"><a class="menu__link"
+							data-submenu="submenu-0-4" href="#">정보수정</a></li>
+					</ul>
+					<!-- Submenu 0-1 조회 -->
+					<ul data-menu="submenu-0-1" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="cheq_account">예금관리</a></li>
+						<li class="menu__item"><a class="menu__link" href="sav_account">적금관리</a></li>
+						<li class="menu__item"><a class="menu__link" 
+							data-submenu="submenu-0-1-1" href="#">대출관리</a></li>
+					</ul>
+					<!-- Submenu 0-1-1 대출관리 -->
+					<ul data-menu="submenu-0-1-1" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="loan_account">대출계좌</a></li>
+						<li class="menu__item"><a class="menu__link"href="document">내서류</a></li>
+					</ul>
+					<!-- Submenu 0-2 이체 -->
+					<ul data-menu="submenu-0-2" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="#">계좌이체</a></li>
+						<li class="menu__item"><a class="menu__link"href="#">자동이체</a></li>
+						<li class="menu__item"><a class="menu__link"
+							data-submenu="submenu-0-2-1" href="#">자동이체</a></li>
+					</ul>
+					<!-- Submenu 0-2-1 자동이체 -->
+					<ul data-menu="submenu-0-2-1" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="#">자동이체	조회</a></li>
+					</ul>
+					<!-- Submenu 0-3 설정 -->
+					<ul data-menu="submenu-0-3" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="limit_sel">이체한도</a></li>
+						<li class="menu__item"><a class="menu__link"  href="#">알림</a></li>
+						<li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
+					</ul>
+					<!-- Submenu 0-4 정보수정&탈퇴 -->
+					<!-- Submenu 0-3-1 설정-> 이체한도 -->
+					<ul data-menu="submenu-0-3-1" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="#">이체한도조회</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">이체한도감액</a></li>
+					</ul>
+					<!-- Submenu 0-3-2 설정-> 자동이체 -->
+					<ul data-menu="submenu-0-3-2" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="#">자동이체조회</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">자동이체등록</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">자동이체삭제</a></li>
+					</ul>
+					<!-- Submenu 0-3-3 설정-> 알림 -->
+					<ul data-menu="submenu-0-3-3" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="#">sms알림</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">핸드폰알림</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">이메일알림</a></li>
+					</ul>
+					<!-- Submenu 0-3-4 설정-> 카드신청 -->
+					<ul data-menu="submenu-0-3-4" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="#">qr코드
+								카드신청</a></li>
+						<li class="menu__item"><a class="menu__link" href="#">신청조회</a></li>
+					</ul>
+					<!-- Submenu 0-4 내서류 -->
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
+					<ul data-menu="submenu-0-4" class="menu__level">
+						<li class="menu__item"><a class="menu__link" href="myinfoPw">정보수정</a></li>
+						<li class="menu__item"><a class="menu__link"href="deluserPw">탈퇴</a></li>
+					</ul>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					</sec:authorize>
 
 					<!-- Submenu 0 관리자메뉴 -->
 					<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+<<<<<<< HEAD
 						<ul data-menu="submenu-0" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-1" href="#">회원관리</a></li>
@@ -223,6 +299,19 @@
 						</ul>
 					</sec:authorize>
 
+=======
+          <ul data-menu="submenu-0" class="menu__level">
+            <li class="menu__item"><a class="menu__link" href="selectUsers">회원관리</a></li>
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-2" href="#">상품관리</a></li>
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
+            <li class="menu__item"><a class="menu__link"
+              data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
+          </ul>
+          </sec:authorize>
+          
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					<!-- Submenu 1 금융상품 -->
 					<ul data-menu="submenu-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
@@ -307,7 +396,7 @@
 												<li><a href="#">자산관리 3</a></li>
 											</ul></li>
 										<li><a href="chat">상담</a></li>
-										<li><a href="firstVisit_sws">안내</a></li>
+										<li><a href="hoursOfUse_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
 										<sec:authorize access="isAnonymous()">

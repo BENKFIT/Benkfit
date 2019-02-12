@@ -1,7 +1,10 @@
 package spring.mvc.benkfit.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
@@ -20,12 +23,14 @@ import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.methods.response.EthAccounts;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.Transfer;
+import org.web3j.utils.Convert;
 
+import spring.mvc.benkfit.sol.Basic;
 import spring.mvc.benkfit.sol.Slot;
-
+import spring.mvc.benkfit.sol.valueTx;
 import spring.mvc.benkfit.persistence.DAO_bh;
 
 @Service
@@ -33,6 +38,7 @@ public class ServiceImpl_bh implements Service_bh {
 	
 	Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
+	final String path = "/Users/banhun/geth/private_net/keystore/";
 	
 	@Autowired
 	DAO_bh dao;
@@ -41,6 +47,8 @@ public class ServiceImpl_bh implements Service_bh {
 	@Override
 	public void Balance(HttpServletRequest req, Model model){
 		BigInteger Balance = null;
+		/*
+		 * 계정주소 직접입력으로 잔액 조회하기
 		String address = req.getParameter("address");
 		
 		try {
@@ -49,6 +57,29 @@ public class ServiceImpl_bh implements Service_bh {
 			System.out.println("계정의 잔액을 가져오는 함수를 실행합니다.");
 			System.out.println("계정 확인 :" + address);
 			System.out.println("==> 해당 계정의 잔액 : " + Balance);
+			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+		*/
+		
+		//키스토어파일로 계정주소 만들기
+		String a1 = req.getParameter("from");
+		//System.out.println(">키스토어 경로 : " + a1);
+		String b1 = a1.substring(a1.length()-45, a1.length()-5);
+		String c1 = "0x";
+		String from = c1.concat(b1);
+		System.out.println(">계정 주소 추출 : " + from);
+		
+		try {
+			Balance = this.web3.ethGetBalance(from, DefaultBlockParameter.valueOf("latest")).sendAsync().get().getBalance();
+			model.addAttribute("Balance", Balance);	
+			System.out.println("== 계정의 잔액을 가져오는 함수 ==");
+			System.out.println(">계정 확인 :" + from);
+			System.out.println(">해당 계정의 잔액 : " + Balance);
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -62,22 +93,39 @@ public class ServiceImpl_bh implements Service_bh {
 	@Override
 	public void createAccount(HttpServletRequest req, Model model) {
 		String password = req.getParameter("password");
+		
+		//키스토어로 계정만들기
 		boolean success = false;
 		try {
-			String newAccount = WalletUtils.generateNewWalletFile(password, new File("/Users/banhun/geth/private_net/keystore"));
-			if(newAccount != null) {
+			String _newAccount = WalletUtils.generateNewWalletFile(password, new File(path));
+			if(_newAccount != null) {
 				success = true;
-				model.addAttribute("success",success);
-				System.out.println("새로운 계정을 만드는 함수입니다.");
-				System.out.println("새 계정의 입력받은 비밀번호 : " + password);
-				System.out.println("성공여부 : " + success);
+				System.out.println("== 새로운 계정을 만드는 함수 ==");
+				System.out.println(">새 계정의 입력받은 비밀번호 : " + password);
+				System.out.println(">성공여부 : " + success);
+				System.out.println("newAccount : " + _newAccount);
+				
+				String a = _newAccount.substring(_newAccount.length()-45, _newAccount.length()-5);
+				String b = "0x";
+				String newAccount = b.concat(a);
+				System.out.println(">새로 만든 계정주소 : " + newAccount);
+				model.addAttribute("newAccount", newAccount);
 			}
-			System.out.println("newAccount : " + newAccount);
+			
 		} catch (InvalidAlgorithmParameterException | NoSuchAlgorithmException | NoSuchProviderException
 				| CipherException | IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			web3.shutdown();
 		}
+//		try {
+//			NewAccountIdentifier newAccount = admin.personalNewAccount(password).send();
+//			String accountId = newAccount.getAccountId();
+//			model.addAttribute("newAccount", accountId);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	/*
@@ -152,17 +200,85 @@ public class ServiceImpl_bh implements Service_bh {
 	//대출신청
 	@Override
 	public void loan(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
 		
 	}
 
+	/*
+	 * 송금
+	 */
 	@Override
-	public void accounts(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
+	public void transferPro(HttpServletRequest req, Model model) throws Exception {
+		
+		String password = req.getParameter("password");
+		
+		//System.out.println("== 키스토어로 경로 만들기 ==");
+		String a = req.getParameter("from");
+		//System.out.println(">키스토어 경로 : " + a);
+		String b = a.substring(12);
+		String fileSource= path.concat(b);
+		//System.out.println(">키스토어 파일 경로 : "+fileSource);
+		
+		System.out.println("== 키스토어파일로 계정주소 만들기 ==");
+		String a1 = req.getParameter("from");
+		//System.out.println(">키스토어 경로 : " + a1);
+		String b1 = a1.substring(a1.length()-45, a1.length()-5);
+		String c1 = "0x";
+		String from = c1.concat(b1);
+		System.out.println(">계정 주소 추출 : " + from);
+		
+		int value = Integer.parseInt(req.getParameter("value"));
+		String to = req.getParameter("to");
+		BigDecimal ether = BigDecimal.valueOf(value);
+		
+		System.out.println("== 이더를 송금하는 함수 ==");
+		System.out.println("> 보내는 계정 :" + from);
+		System.out.println("> 송금계정 비밀번호 : " + password);
+		System.out.println("> 받는 계정 : " + to);
+		System.out.println("> 보내는 값(이더) : " + value +"("+ether+")");
+		
+		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
+		TransactionReceipt transactionReceipt = Transfer.sendFunds(web3, credentials, to, ether, Convert.Unit.ETHER).send();
+		
+		//가스값 임의 설정
+		//BigInteger gasPrice = BigInteger.valueOf(200000);
+		//BigInteger gasLimit = BigInteger.valueOf(200000); 
+//		try {
+//			Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
+//			
+//			System.out.println("== 트랜잭션 생성중 ==");
+//			valueTx contract = valueTx.deploy(web3, credentials, gasLimit,gasPrice, ether).send();
+//			String contractAddress = contract.getContractAddress();
+//			valueTx loadContract = valueTx.load(contractAddress, web3, credentials, gasPrice, gasLimit);
+//			System.out.println(">생성된 컨트랙트 주소 : " + contractAddress);
+//			System.out.println("== 계정 언락 중 ==");
+//			if(admin.personalUnlockAccount(from, password).send().getResult()) {
+//				System.out.println("== transfer 함수 실행중 ==");
+//				loadContract.valueTransfer(to, ether);
+//			}
+//			TransactionReceipt v_Tx = loadContract.valueTransfer(to, ether).send();
+//			BigInteger blockNumber = v_Tx.getBlockNumber();
+//			System.out.println(">블럭넘버 : " + blockNumber);
+//			System.out.println("== 거래 완료 ==");
+//			model.addAttribute("ether", value);
+//		} catch (IOException | CipherException e) {
+//			e.printStackTrace();
+//		}
 		
 	}
 
-	
+	//트랜잭션
+	@Override
+	public void transaction(HttpServletRequest req, Model model) throws Exception {
+//		//nonce
+//		EthGetTransactionCount ethGetTransactionCount = web3.ethGetTransactionCount(address, DefaultBlockParameter).sendAsync().get();
+//		BigInteger nonce = ethGetTransactionCount.getTransactionCount();
+//		//가스값 임의 설정
+//		BigInteger gasPrice = BigInteger.valueOf(200000);
+//		BigInteger gasLimit = BigInteger.valueOf(200000); 
+//		Transaction trancastion = Transaction.createContractTransaction(from, nonce, gasPrice, init);
+//		
+//		transactionRe
+	}	
 }
 
 

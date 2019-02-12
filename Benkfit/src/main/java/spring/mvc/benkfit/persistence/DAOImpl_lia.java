@@ -111,10 +111,16 @@ public class DAOImpl_lia implements DAO_lia {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_sav", keyword);
 	}
 
+	// 관리자메뉴 > 회원 수
+	@Override
+	public int howManyUsers() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.howManyUsers");
+	}
+	
 	// 관리자메뉴 > 회원 조회
 	@Override
-	public List<UsersVO> selectUsers() {
-		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers");
+	public List<UsersVO> selectUsers(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers", map);
 	}
 
 	// 관리자메뉴 > 회원 삭제
@@ -128,4 +134,47 @@ public class DAOImpl_lia implements DAO_lia {
 	public int updateUsers(Map<String, String> map) {
 		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_lia.updateUsers", map);
 	}
+
+	// 관리자메뉴 > 회원별 예금 조회
+	@Override
+	public List<myCheqAccountVO> selectCheq(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCheq", id);
+	}
+	
+	// 관리자메뉴 > 회원별 적금 조회
+	@Override
+	public List<MySavAccountVO> selectSav(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectSav", id);
+	}
+
+	// 관리자메뉴 > 회원별 대출 조회
+	@Override
+	public List<MyloanAccountVO> selectLoan(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectLoan", id);
+	}
+
+	// 관리자메뉴 > 계좌 거래내역 건수
+	@Override
+	public int getTransCnt(String account) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.getTransCnt", account);
+	}
+
+	// 관리자메뉴 > 예금 거래내역 조회
+	@Override
+	public List<TransDetailVO> getCheqTrans(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getCheqTrans", map);
+	}
+
+	// 관리자메뉴 > 적금 거래내역 조회
+	@Override
+	public List<TransDetailVO> getSavTrans(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getSavTrans", map);
+	}
+	
+	// 관리자메뉴 > 대출 거래내역 조회
+	@Override
+	public List<TransDetailVO> getLoanTrans(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getLoanTrans", map);
+	}
+
 }

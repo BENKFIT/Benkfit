@@ -3,7 +3,7 @@
 <html>
 <body>
 <div>
-	${success}
+	${newAccount}
 </div>
 </body>
 </html>

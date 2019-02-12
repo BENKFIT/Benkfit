@@ -16,7 +16,7 @@
 			data : alldata,
 			success : function(data){
 				if(data){
-					$('#accountInfo').html("계정이 생성되었습니다.");
+					$('#accountInfo').html(data);
 				}else{
 					$('#accountInfo').html("다시 시도해주세요.");
 				}
@@ -25,7 +25,6 @@
 				alert("오류")
 			}
 		});
-		
 	}
 </script>
 <body>
@@ -46,7 +45,6 @@
 	</div>
 	
 	<div id="accountInfo">
-	
 	</div>
 	<!-- FOOTER  -->
 	<%@ include file="../Template/footer.jsp"%>

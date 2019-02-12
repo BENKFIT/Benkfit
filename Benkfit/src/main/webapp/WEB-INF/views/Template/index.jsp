@@ -41,7 +41,8 @@ tr>td {
 
 	<!-- TOP&SIDE -->
 	<%@ include file="./top.jsp"%>
-
+  <%@ include file="../common/chatbot.jsp"%>
+  
 	<!-- CONTENT -->
 	<div class="div1">
 		<div style="display: inline-block;">

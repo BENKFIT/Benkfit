@@ -24,6 +24,13 @@ public interface Service_sws {
 	// 이벤트 삭제 처리
 	public void event_deletePro_sws(HttpServletRequest req, Model model);
 	
-	// 네이버 검색 api
-	public void naver_search_sws(HttpServletRequest req, Model model);
+	// 연별 차트 
+	public void chartList(HttpServletRequest req, Model model);
+	
+	// 월별 차트 
+	public void chartList1(HttpServletRequest req, Model model);
+	
+	// 일별 차트 
+	public void chartList2(HttpServletRequest req, Model model);
+	
 }

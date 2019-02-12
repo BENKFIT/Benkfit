@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +48,11 @@ public class Controller_lia {
 	public String loginPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loginPro 호출중");
 		service.loginPro(req, model);
+		/* 세션id 구하기
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal(); 
+		String sessionId = user.getUsername();
+		System.out.println("세션 : " + sessionId); */
 		return "common/loginPro";
 	}
 	
@@ -51,7 +60,6 @@ public class Controller_lia {
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req) throws Exception {
 		logger.info("logout 호출중");
-		System.out.println("로그아웃");
 		req.getSession().invalidate();
 		return "Template/index";
 	}
@@ -180,5 +188,30 @@ public class Controller_lia {
 		logger.info("updateUsers 호출중");
 		service.updateUsers(req, model);
 		return "admin/users/updateUsers";
+	}
+	
+	// 관리자 메뉴 > 회원 계좌 조회
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("selAccount")
+	public String selAccount(HttpServletRequest req, Model model) throws Exception {
+		logger.info("selAccount 호출중");
+		service.selAccount(req, model);
+		return "admin/users/selAccount";
+	}
+	
+	// 관리자 메뉴 > 회원 거래내역 조회
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("selTransaction")
+	public String selTransaction(HttpServletRequest req, Model model) throws Exception {
+		logger.info("selTransaction 호출중");
+		service.selTransaction(req, model);
+		return "admin/users/selTransaction";
+	}
+	
+	// 챗봇
+	@RequestMapping("chatbot")
+	public String chatbot() throws Exception {
+		logger.info("chatbot 호출중");
+		return "common/chatbot";
 	}
 }
