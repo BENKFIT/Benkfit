@@ -6,8 +6,11 @@
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 	function Balance(){
-		var address = $('#address').val();
-		var alldata = {"address":address};
+		/* 계정주소 직접입력으로 잔액 조회하기
+		var address = $('#address').val(); 
+		var alldata = {"address":address};*/
+		var from = $('#from').val(); 
+		var alldata = {"from":from};
 		
 		$.ajax({
 			url:"${pageContext.request.contextPath}/Balance",
@@ -23,11 +26,11 @@
 	}
 	
 	function transfer(){
-		var address = $('#address').val();
-		var to = $('#to').val();
-		var value = $('#value').val()*1000000000000000000;
 		var password = $('#password').val();
-		var alldata = {'address':address,'to':to, 'value':value,'password':password}
+		var from = $('#from').val();
+		var value = $('#value').val();
+		var to = $('#to').val();
+		var alldata = {'password':password,'from':from, 'value':value, 'to':to}
 		
 		$.ajax({
 			url:"${pageContext.request.contextPath}/transferPro",
@@ -40,22 +43,20 @@
 			error : function(){
 				alert("오류")
 			}
-			
 		});
 	}
 </script>
 <body>
 <h3>간편송금하기</h3>
 	<p class="login">
-		ID: <input type="text" id="address"
-			value="0xba444a48a264e7fcadd9a60951623e607fee385a"> <br>
-		PWD:<input type="password" id="password" value="password"> 
-	   	     <input type="button" value="잔고확인" onClick="Balance();"> <br>
+		_from : <input type="file" id="from"><br>
+	   	     	<input type="button" value="잔고확인" onClick="Balance();"> <br>
 	</p>
 	<p id="balance"></p> <br>
 	<p>
 		transfer : <input type="text" id="value" value="value"> ETHER<br>
 		_to : <input type="text" id="to" value="to"> <br>
+		PWD : <input type="password" id="password" value="password"> 
 			  <input type="button" value="보내기" onclick="transfer();">
 	</p>
 	<div id="success">

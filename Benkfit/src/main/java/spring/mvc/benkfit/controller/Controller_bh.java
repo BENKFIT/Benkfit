@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.web3j.protocol.http.HttpService;
 
 import spring.mvc.benkfit.service.Service_bh;
@@ -32,14 +33,14 @@ public class Controller_bh {
 	public String createAccount(HttpServletRequest req, Model model) throws Exception{
 		logger.info("CreateAccount");
 		service.createAccount(req, model);
-		return "engine/create";
+		return "engine/createAccount";
 	}
 	
 	/*
 	 * 계정 잔액 확인하기
 	 */
 	@RequestMapping("Balance")
-	public String slotBalance(HttpServletRequest req, Model model) throws Exception{
+	public String Balance(HttpServletRequest req, Model model) throws Exception{
 		logger.info("Balance");
 		service.Balance(req, model);
 		return "common/event/slotBalance";
