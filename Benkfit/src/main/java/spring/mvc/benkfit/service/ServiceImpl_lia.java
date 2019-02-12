@@ -31,8 +31,12 @@ import spring.mvc.benkfit.vo.AdminVO;
 import spring.mvc.benkfit.vo.CardProductVO;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.LoanProductVO;
+import spring.mvc.benkfit.vo.MySavAccountVO;
+import spring.mvc.benkfit.vo.MyloanAccount_kay;
 import spring.mvc.benkfit.vo.SavProductVO;
+import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
+import spring.mvc.benkfit.vo.myCheqAccount_kay;
 
 @Service
 public class ServiceImpl_lia implements Service_lia {
@@ -107,20 +111,18 @@ public class ServiceImpl_lia implements Service_lia {
             //주민번호 추출
             for(String str : list) {
             	if(str.contains("-")) {
-            		//if(str.length()==14) {
+            		if(str.length()==14) {
             			jumin = str;
             			System.out.println("jumin : " + jumin);
-            		//}
+            			model.addAttribute("jumin", jumin);
+            		}
             	}
             }
-            
             scan.close();
         } catch (Exception e) {
             e.printStackTrace();
         } 
-
 		model.addAttribute("name", name);
-		model.addAttribute("jumin", jumin);
 	}
 	
 	// id중복확인
@@ -185,7 +187,7 @@ public class ServiceImpl_lia implements Service_lia {
 		MultipartFile file = req.getFile("idCard");
 		
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
-        String realDir = "C:\\DEV43\\workspace_spring\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\"; 
+        String realDir = "C:\\DEV43\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\"; 
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -342,7 +344,6 @@ public class ServiceImpl_lia implements Service_lia {
           e.printStackTrace();
       }   
 	}
-
 	// 검색
 	@Override
 	public void search_pro(HttpServletRequest req, Model model) {
@@ -374,20 +375,143 @@ public class ServiceImpl_lia implements Service_lia {
 			model.addAttribute("sav", sav);
 		}
 		
-		/*for(int i=0; i<cheq.size(); i++) {
-			System.out.println(cheq.get(i) + " / ");
-		}
-		
-		for(int i=0; i<loan.size(); i++) {
-			System.out.println(loan.get(i) + " / ");
-		}
-		
-		for(int i=0; i<sav.size(); i++) {
-			System.out.println(sav.get(i) + " / ");
-		}*/
 		model.addAttribute("cardCnt", cardCnt);
 		model.addAttribute("cheqCnt", cheqCnt);
 		model.addAttribute("loanCnt", loanCnt);
 		model.addAttribute("savCnt", savCnt);
+	}
+	
+	// 관리자메뉴 > 회원 조회
+	@Override
+	public void selectUsers(HttpServletRequest req, Model model) {
+		List<UsersVO> users = dao.selectUsers();
+		model.addAttribute("users", users);
+	}
+
+	// 관리자메뉴 > 회원 삭제
+	@Override
+	public void deleteUsers(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		int cnt  = dao.deleteUsers(id);
+		model.addAttribute("cnt", cnt);
+	}
+	
+	// 관리자메뉴 > 회원 등급 수정
+	@Override
+	public void updateUsers(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		String level = req.getParameter("level");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("id", id);
+		map.put("level", level);
+		
+		int cnt  = dao.updateUsers(map);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("level", level);
+	}
+
+	// 관리자메뉴 > 계좌조회
+	@Override
+	public void selAccount(HttpServletRequest req, Model model) {
+		String id = req.getParameter("id");
+		List<myCheqAccount_kay> cheq = dao.selectCheq(id);
+		List<MySavAccountVO> sav = dao.selectSav(id);
+		List<MyloanAccount_kay> loan = dao.selectLoan(id);
+		
+		model.addAttribute("id", id);
+		if(cheq.size() == 0) {
+			model.addAttribute("cnt", 0);
+		} else {
+			model.addAttribute("cnt", 1);
+			model.addAttribute("cheq", cheq);
+		}
+		
+		if(sav.size() == 0) {
+			model.addAttribute("scnt", 0);
+		} else {
+			model.addAttribute("scnt", 1);
+			model.addAttribute("sav", sav);
+		}
+		
+		if(loan.size() == 0) {
+			model.addAttribute("lcnt", 0);
+		} else {
+			model.addAttribute("lcnt", 1);
+			model.addAttribute("loan", loan);
+		}
+	}
+
+	// 관리자 메뉴 > 회원 거래내역 조회
+	@Override
+	public void selTransaction(HttpServletRequest req, Model model) {
+		String account = req.getParameter("account");
+		String code = req.getParameter("code");
+		List<TransDetailVO> transaction = new ArrayList<>();
+		
+		// 페이징
+		int pageSize = 10;	 //한 페이지당 출력할 개수
+		int pageBlock = 3;   //한 블럭당 페이지 개수
+		
+		int tcnt = 0; 		 //내역 건수
+		int start = 0;		 //현재 페이지 시작 거래번호
+		int end = 0;		 //현재 페이지 마지막 거래번호
+		String pageNum = ""; //페이지 번호
+		int currentPage = 0; //현재 페이지
+		
+		int pageCount = 0;	//페이지 개수
+		int startPage = 0;  //시작 페이지
+		int endPage = 0;  	//마지막 페이지
+		
+		tcnt = dao.getTransCnt(account);
+		
+		pageNum = req.getParameter("pageNum");
+		if(pageNum == null || pageNum.equals("undefined")) {
+			pageNum = "1";	//첫페이지를 1페이지로 지정
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		
+		pageCount = (tcnt / pageSize) + (tcnt % pageSize > 0 ? 1 : 0);
+		
+		start = (currentPage - 1) * pageSize + 1;
+		
+		end = start + pageSize - 1;
+		if(end > tcnt) {
+			end = tcnt;
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+			
+		endPage = startPage + pageBlock - 1;
+		if(endPage > pageCount) endPage = pageCount;
+		
+		model.addAttribute("account", account);
+		model.addAttribute("code", code);
+		model.addAttribute("tcnt", tcnt);
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);  	  
+		model.addAttribute("pageBlock", pageBlock);   
+		model.addAttribute("pageCount", pageCount);  
+		model.addAttribute("currentPage", currentPage);
+		
+		if(tcnt > 0) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("start", start);
+			map.put("end", end);
+			map.put("account", account);
+				
+			if(code.equals("A")) {
+				transaction = dao.getCheqTrans(map);
+				model.addAttribute("transaction", transaction);
+			} else if (code.equals("B")) {
+				transaction = dao.getSavTrans(map);
+				model.addAttribute("transaction", transaction);
+			} else {
+				transaction = dao.getLoanTrans(map);
+				model.addAttribute("transaction", transaction);
+			}
+		} 
 	}
 }

@@ -53,7 +53,7 @@ function readURL(input) {
 		enctype="multipart/form-data">
 
 		<input type="hidden" name="pageNum" value="${pageNum}">
-		<div style="margin-top: 200px; height: 18%; width: 100%; text-align: center;">
+		<div style="margin-top: 200px; height: 62%; width: 100%; text-align: center;">
 			<div style="display: inline-block;">
 				<table class="board">
 					<tr style="background: #FFD662">
@@ -61,7 +61,7 @@ function readURL(input) {
 					</tr>
 					<tr>
 						<td><input type="file" name="eve_img" id="img"
-							placeholder="이미지를 넣어주세요." autofocus required></td>
+							placeholder="이미지를 넣어주세요." autofocus></td>
 						<th>제목</th>
 						<td colspan="3"><input type="text" name="eve_title" maxlength="50"
 							placeholder="제목을 입력하세요." autofocus required style="width: 770px;"></td>

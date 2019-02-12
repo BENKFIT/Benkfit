@@ -56,7 +56,6 @@ input[type=button] {
 				alert('server error occured');
 			}
 		});
-		alert("-----1--------");
 		var chartDrowFun1 = {
 				chartDrow : function() {
 					var chartData = '';

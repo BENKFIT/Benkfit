@@ -110,4 +110,67 @@ public class DAOImpl_lia implements DAO_lia {
 	public List<SavProductVO> search_sav(String keyword) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_sav", keyword);
 	}
+
+	// 관리자메뉴 > 회원 조회
+	@Override
+	public List<UsersVO> selectUsers() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers");
+	}
+
+	// 관리자메뉴 > 회원 삭제
+	@Override
+	public int deleteUsers(String id) {
+		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_lia.deleteUsers", id);
+	}
+
+	// 관리자메뉴 > 회원 등급 수정
+	@Override
+	public int updateUsers(Map<String, String> map) {
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_lia.updateUsers", map);
+	}
+
+	// 관리자메뉴 > 회원별 예금 조회
+	@Override
+	public List<myCheqAccount_kay> selectCheq(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCheq", id);
+	}
+	
+	// 관리자메뉴 > 회원별 적금 조회
+	@Override
+	public List<MySavAccountVO> selectSav(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectSav", id);
+	}
+
+	// 관리자메뉴 > 회원별 대출 조회
+	@Override
+	public List<MyloanAccount_kay> selectLoan(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectLoan", id);
+	}
+
+	// 관리자메뉴 > 계좌 거래내역 건수
+	@Override
+	public int getTransCnt(String account) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.getTransCnt", account);
+	}
+
+	// 관리자메뉴 > 예금 거래내역 조회
+	@Override
+	public List<TransDetailVO> getCheqTrans(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getCheqTrans", map);
+	}
+
+	// 관리자메뉴 > 적금 거래내역 조회
+	@Override
+	public List<TransDetailVO> getSavTrans(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getSavTrans", map);
+	}
+	
+	// 관리자메뉴 > 대출 거래내역 조회
+	@Override
+	public List<TransDetailVO> getLoanTrans(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getLoanTrans", map);
+	}
+
+	
+	
 }

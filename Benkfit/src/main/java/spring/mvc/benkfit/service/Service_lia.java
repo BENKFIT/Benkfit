@@ -40,4 +40,19 @@ public interface Service_lia {
 	
 	// 검색
 	public void search_pro(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 회원 조회
+	public void selectUsers(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 회원 삭제
+	public void deleteUsers(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 회원 등급 변경
+	public void updateUsers(HttpServletRequest req, Model model);
+	
+	// 관리자메뉴 > 계좌조회
+	public void selAccount(HttpServletRequest req, Model model);
+	
+	// 관리자 메뉴 > 회원 거래내역 조회
+	public void selTransaction(HttpServletRequest req, Model model);
 }

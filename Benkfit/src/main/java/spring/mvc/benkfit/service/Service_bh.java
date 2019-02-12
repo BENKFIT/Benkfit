@@ -3,11 +3,27 @@ package spring.mvc.benkfit.service;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.web3j.protocol.http.HttpService;
 
 public interface Service_bh {
 	
-	public void accounts(HttpServletRequest req, Model model);
+	//계정 잔액 가져오기
+	public void Balance(HttpServletRequest req, Model model);
+	
+	//계정생성하기
+	public void createAccount(HttpServletRequest req, Model model);
+	
+	//슬롯머신
 	public void slot(HttpServletRequest req, Model model);
-	public void slotBalance(HttpServletRequest req, Model model);
+	
+	//대출 신청
+	public void loan(HttpServletRequest req, Model model);
+
+	//송금하기
+	public void transferPro(HttpServletRequest req, Model model) throws Exception;
+	
+	//트랜잭션
+	public void transaction(HttpServletRequest req, Model model) throws Exception;
+	
 }

@@ -18,10 +18,10 @@
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-
-	<div
-		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;">
-		<div style="display: inline-block; width: 60%; height: 80%;">
+<div style="text-align: center;">
+<!-- 	<div
+		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
+		<div style="display: inline-block; width: 60%; height: 70%; margin-top: 200px;">
 			<h2>이용 수수료 안내</h2>
 			<br>
 			<p style="font-size: 20px;">예금 / 적금</p>

@@ -1,19 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="spring.mvc.benkfit.persistence.DAO_lia">
-	
-	<!-- id 체크 -->
-	<select id="id_check" parameterType="String" resultType="int">
-		select count(*) from users_tbl where c_id=#{strId}
-	</select>
-	
-	<!-- 실명확인 -->
-	<select id="name_check" parameterType="java.util.Map" resultType="int">
-		select count(*) from people_tbl where realName=#{name} and realJumin=#{jumin}
-	</select>
-	
+  
+  <!-- id 체크 -->
+  <select id="id_check" parameterType="String" resultType="int">
+    select count(*) from users_tbl where c_id=#{strId}
+  </select>
+  
+  <!-- 실명확인 -->
+  <select id="name_check" parameterType="java.util.Map" resultType="int">
+    select count(*) from people_tbl where realName=#{name} and realJumin=#{jumin}
+  </select>
+  
+  <!-- 회원가입 -->
+  <insert id="insertMember" parameterType="spring.mvc.benkfit.vo.UsersVO">
+    insert into users_tbl(c_id, c_pwd, c_name, c_address, c_post, c_hp, c_jumin1, c_jumin2, c_email, c_idCard) 
+    values(#{c_id}, #{c_pwd}, #{c_name}, #{c_address}, #{c_post}, #{c_hp}, #{c_jumin1}, #{c_jumin2}, #{c_email}, #{c_idCard})
+  </insert>
+  
+  <!-- 회원 로그인 -->
+  <select id="user_login" parameterType="String" resultType="spring.mvc.benkfit.vo.UsersVO">
+   select * from users_tbl where c_id=#{id}
+  </select>
+  
+  <!-- 관리자 로그인 -->
+  <select id="admin_login" parameterType="String" resultType="spring.mvc.benkfit.vo.AdminVO">
+   select * from admin_tbl where admin_id=#{id}
+  </select>
+  
+  <!-- 아이디 찾기 -->
+  <select id="findMyId" parameterType="java.util.Map" resultType="String">
+    select c_id from users_tbl where c_name=#{name} and c_email=#{email}
+  </select>
+  
+  <!-- 비밀번호 찾기(조회) -->
+  <select id="findMyPwd" parameterType="java.util.Map" resultType="int">
+    select count(*) from users_tbl where c_id=#{id} and c_email=#{email}
+  </select>
+  
+  <!-- 비밀번호 찾기(임시 비밀번호 생성) -->
+  <update id="setTempPwd" parameterType="java.util.Map">
+    update users_tbl set c_pwd=#{pwd} where c_id=#{id}
+  </update>
+  
+  <!-- 상품 검색(카드 건수) -->
+  <select id="search_card_count" parameterType="String" resultType="int">
+    select count(*) from cardproduct_tbl where card_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(예금 건수) -->
+  <select id="search_cheq_count" parameterType="String" resultType="int">
+    select count(*) from cheqproduct_tbl where cheq_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(대출 건수) -->
+  <select id="search_loan_count" parameterType="String" resultType="int">
+    select count(*) from loanproduct_tbl where loan_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(적금 건수) -->
+  <select id="search_sav_count" parameterType="String" resultType="int">
+    select count(*) from savproduct_tbl where sav_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(카드) -->
+  <select id="search_card" parameterType="String" resultType="spring.mvc.benkfit.vo.CardProductVO">
+    select * from cardproduct_tbl where card_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(예금) -->
+  <select id="search_cheq" parameterType="String" resultType="spring.mvc.benkfit.vo.CheqProductVO">
+    select * from cheqproduct_tbl where cheq_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(대출) -->
+  <select id="search_loan" parameterType="String" resultType="spring.mvc.benkfit.vo.LoanProductVO">
+    select * from loanproduct_tbl where loan_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 상품 검색(적금) -->
+  <select id="search_sav" parameterType="String" resultType="spring.mvc.benkfit.vo.SavProductVO">
+    select * from savproduct_tbl where sav_name like '%'||#{keyword}||'%'
+  </select>
+  
+  <!-- 관리자 > 회원조회 -->
+  <select id="selectUsers" resultType="spring.mvc.benkfit.vo.UsersVO">
+    select * from users_tbl order by c_regDate desc
+  </select>
+  
+  <!-- 관리자 > 회원삭제 -->
+  <delete id="deleteUsers" parameterType="String">
+    delete from users_tbl where c_id=#{id}
+  </delete>
+  
+  <!-- 관리자 > 회원 등급 수정 -->
+  <update id="updateUsers" parameterType="java.util.Map">
+    update users_tbl set c_level=#{level} where c_id=#{id}
+  </update>
+  
+  <!-- 관리자 > 회원별 예금 조회 -->
+  <select id="selectCheq" parameterType="String" resultType="spring.mvc.benkfit.vo.myCheqAccount_kay">
+    select * from mycheqaccount_tbl where c_id=#{id}
+  </select>
+  
+  <!-- 관리자 > 회원별 적금 조회 -->
+  <select id="selectSav" parameterType="String" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+    select * from mysavaccount_tbl where c_id=#{id}
+  </select> 
+  
+  <!-- 관리자 > 회원별 적금 조회 -->
+  <select id="selectLoan" parameterType="String" resultType="spring.mvc.benkfit.vo.MyloanAccount_kay">
+    select * from myloanaccount_tbl where c_id=#{id}
+  </select> 
+  
+  <!-- 관리자 > 거래내역 건수 -->
+  <select id="getTransCnt" parameterType="String" resultType="int">
+    select count(*) from transdetail_tbl where tran_account=#{account}
+  </select>
+  
+  <!-- 관리자 > 예금 거래내역 조회 -->
+  <resultMap id="cheqTrans" type="spring.mvc.benkfit.vo.TransDetailVO">
+    <result property="tran_afterAmount" column="mycheq_amount" />
+    <result property="tran_code" column="code" />
+  </resultMap>
+  
+  <select id="getCheqTrans" parameterType="java.util.Map" resultMap="cheqTrans">
+    <![CDATA[
+	    select *
+				from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+				      tran_bank, tran_type, tran_code, mycheq_amount, rownum rNum
+				      from (select * from transdetail_tbl t, mycheqaccount_tbl m 
+				                where m.mycheq_account = t.tran_account
+				                 and t.tran_account = #{account} order by t.tran_date desc))
+				where rNum >= #{start} and rNum <= #{end}
+    ]]>   
+  </select>
+  
+  <!-- 관리자 > 적금 거래내역 조회 -->
+  <resultMap id="savTrans" type="spring.mvc.benkfit.vo.TransDetailVO">
+    <result property="tran_afterAmount" column="mysav_amount" />
+    <result property="tran_due" column="mysav_due" />
+    <result property="tran_code" column="code" />
+  </resultMap>
+  
+  <select id="getSavTrans" parameterType="java.util.Map" resultMap="savTrans">
+    <![CDATA[
+      select *
+        from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+              tran_bank, tran_type, tran_code, mysav_amount, mysav_due, rownum rNum
+              from (select * from transdetail_tbl t, mysavaccount_tbl m 
+                        where m.mysav_account = t.tran_account
+                         and t.tran_account = #{account} order by t.tran_date desc))
+        where rNum >= #{start} and rNum <= #{end}
+    ]]>
+  </select>
+  
+  <!-- 관리자 > 대출 거래내역 조회 -->
+  <resultMap id="loanTrans" type="spring.mvc.benkfit.vo.TransDetailVO">
+    <result property="tran_afterAmount" column="myloan_left" />
+    <result property="tran_due" column="myloan_late" />
+    <result property="tran_loanAmount" column="myloan_amount" />
+    <result property="tran_code" column="code" />
+  </resultMap>
+  
+  <select id="getLoanTrans" parameterType="java.util.Map" resultMap="loanTrans">
+    <![CDATA[
+      select *
+        from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+              tran_bank, tran_type, tran_code, myloan_left, myloan_late, myloan_amount, rownum rNum
+              from (select * from transdetail_tbl t, myloanaccount_tbl m 
+                        where m.myloan_account = t.tran_account
+                         and t.tran_account = #{account} order by t.tran_date desc))
+        where rNum >= #{start} and rNum <= #{end}
+    ]]>
+  </select>
 </mapper>

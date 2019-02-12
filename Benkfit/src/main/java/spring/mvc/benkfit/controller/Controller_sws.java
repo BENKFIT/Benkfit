@@ -71,9 +71,14 @@ public class Controller_sws {
 	@RequestMapping("eventContentForm_sws")
 	public String eventContentForm_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("eventContentForm_sws");
-
+		String eve_num = req.getParameter("eve_num");
+		
 		service.eventContentForm_sws(req, model);
 
+		if (eve_num.equals("23")) {
+			return "common/event/slot";
+		}
+		
 		return "common/event/eventContentForm";
 	}
 
@@ -93,8 +98,8 @@ public class Controller_sws {
 		logger.info("event_contentForm_sws");
 		String eve_num = req.getParameter("eve_num");
 
-		if (eve_num.equals("1")) {
-			return "common/event/slot";
+		if (eve_num.equals("23")) {
+			return "common/event/slotAdmin";
 		}
 		service.eventContentForm_sws(req, model);
 
