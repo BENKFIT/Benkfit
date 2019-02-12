@@ -3,7 +3,7 @@
 <html>
 <body>
 <div>
-	${slotBalance/1000000000000000000}&nbsp;ETHER
+	${Balance/1000000000000000000}&nbsp;ETHER
 </div>
 </body>
 </html>

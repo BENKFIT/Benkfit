@@ -344,7 +344,6 @@ public class ServiceImpl_lia implements Service_lia {
           e.printStackTrace();
       }   
 	}
-
 	// 검색
 	@Override
 	public void search_pro(HttpServletRequest req, Model model) {

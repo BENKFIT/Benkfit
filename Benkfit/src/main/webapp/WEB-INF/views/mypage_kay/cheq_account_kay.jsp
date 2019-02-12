@@ -7,20 +7,20 @@
 <meta charset="UTF-8">
 <title>계좌조회</title>
 </head>
-<body oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+<body>
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
+		<%@ include file="../mypage_kay/date_search_start_end.jsp"%>
 		<h2>예금계좌조회</h2>
 		<hr>
-		<form name="sel_account" method="post">
+		
 			<table class="table_kay">
 				<tr>
 					<th>예금 계좌번호</th>
 					<td><input type="text" class="inputStyle" value="" disabled></td>
 				</tr>
 				<tr>
-					<th>조회기간</th>
-					<td><input type="date" class="date_kay"> ~ <input type="date" class="date_kay"></td>
+					<th>기간조회</th>
 				</tr>
 				<tr>
 					<th>조회조건</th>
@@ -42,7 +42,7 @@
 					</th>
 				</tr>
 			</table>
-			<hr><br><br><br>
+			<hr><br>
 			<h2>계좌정보</h2>
 			<hr>
 			<table class="table_kay">
@@ -64,7 +64,7 @@
 					<th>출금가능금액</th>
 					<td><input type="text" class="inputStyle"></td>
 				</tr>
-			</table><hr><br><br><br>
+			</table><hr><br>
 			<h2>거래내역</h2>
 			<table class="table_kay">
 				<tr>
@@ -74,7 +74,7 @@
 					<td><input type="text" class="inputStyle"></td>
 				</tr>
 			</table>
-			<hr><br><br><br>
+			<hr><br>
 			<table class="table_kay">
 				<tr>
 					<th>거래일자</th>
@@ -97,7 +97,6 @@
 					<td>원신한</td>
 				</tr>
 			</table>
-		</form>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
 </body>

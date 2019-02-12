@@ -10,9 +10,6 @@ import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
 
 public interface DAO_bh {
 	
-//	public EthAccounts getEthAccounts();
-	public BigInteger getEthBalance();
-//	public EthBlockNumber getBlockNymber();
-//	public EthGetTransactionCount getTransactionCount();
-
+	//대출신청
+	public int loan(int value);
 }

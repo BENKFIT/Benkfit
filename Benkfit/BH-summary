@@ -27,3 +27,16 @@
 	Failed to obtain JDBC Connection; 
 	nested exception is java.sql.SQLException: 
 	Cannot create PoolableConnectionFactory (Socket read timed out)
+	
+2019-02-08
+	1. 코인 및 뱅크 솔리디티 자바로 임포트 완료
+	
+2019-02-09
+	1. 깃 오류로 인해 새로 프로젝트 다운.
+	2. 슬롯머신 코인 사용 및 상금 획득이 안됨.
+		1. 일단 두고 나중에 비교.
+		2. 2019-02-01 깃 사용시 백업해놓은 압축파일로 비교분석해야 할듯.
+		
+2019-02-10
+	1. 새로운 계정 생성시 키스토어 파일이 생성될곳을 지정해주어야한다. 현재는 private_net/keystore에 저장됨.
+	2. 계정주소를 가져오는 것이 필요

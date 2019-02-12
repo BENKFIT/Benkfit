@@ -6,4 +6,13 @@
 	
 <mapper namespace="spring.mvc.benkfit.persistence.DAO_syk">
 
+	<select id="checkingRegi" resultType="spring.mvc.benkfit.vo.CheqProductVO">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period FROM cheqproduct_tbl
+	</select>
+
+	<insert id="cheqRegiPro" parameterType="spring.mvc.benkfit.vo.CheqProductVO">
+		INSERT INTO cheqproduct_tbl(cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_limit, cheq_period)
+		VALUES(cheqPro_seq.nextval, #{cheq_name}, #{cheq_rate}, #{cheq_type}, #{cheq_target}, #{cheq_limit}, #{cheq_period})
+	</insert>
+
 </mapper>

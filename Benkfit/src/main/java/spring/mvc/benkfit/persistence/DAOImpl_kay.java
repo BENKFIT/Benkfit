@@ -6,10 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import spring.mvc.benkfit.vo.MyloanAccount_kay;
-import spring.mvc.benkfit.vo.UsersVO;
-import spring.mvc.benkfit.vo.document_kay;
-import spring.mvc.benkfit.vo.myCheqAccount_kay;
+import spring.mvc.benkfit.vo.*;
 
 @Repository
 public class DAOImpl_kay implements DAO_kay{
@@ -19,9 +16,9 @@ public class DAOImpl_kay implements DAO_kay{
 
 	//예금관리
 	@Override
-	public List<myCheqAccount_kay> myCheq_list(String strid) {
+	public List<myCheqAccountVO> myCheq_list(String strId) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<myCheqAccount_kay> cheq = dao.myCheq_list(strid);
+		List<myCheqAccountVO> cheq = dao.myCheq_list(strId);
 		return cheq;
 	}
 /*	//대출관리
