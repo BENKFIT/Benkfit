@@ -26,4 +26,7 @@ public interface Service_syk {
 	
 	//적금계좌생성
 	public void createSav(HttpServletRequest req, Model model);
+	
+	//예금상품수정
+	public void cheqEdit(HttpServletRequest req);
 }

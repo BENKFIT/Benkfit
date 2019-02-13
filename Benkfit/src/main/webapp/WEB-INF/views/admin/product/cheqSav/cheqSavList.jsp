@@ -110,7 +110,7 @@ input, select {
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom"
-								onclick="cheqEdit();">수정/삭제</button>
+								onclick="cheqEdit('${list.cheq_num}');">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -156,7 +156,7 @@ input, select {
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom2"
-								onclick="window.location='#'">수정/삭제</button>
+								id="savEdit">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -206,7 +206,6 @@ input, select {
 						</div>
 					</div>
 				</c:if> --%>
-
 			</div>
 		</div>
 	</div>
@@ -466,6 +465,31 @@ input, select {
 			</div>
 		</div>
 	</div>
+	
+	<!-- 수정삭제div -->
+	<div class="modal fade" id="editForm" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+	</div>
+	
+	<!-- 수정삭제 -->
+	<script type="text/javascript" >
+		function cheqEdit(cheq_num){
+			var num = "cheq_num=" + cheq_num;
+			alert(num);
+			$.ajax({
+				type : 'post',
+				data : num,
+				url : '${pageContext.request.contextPath}/cheqEdit',
+				success: function(data){
+					 $("#editForm").html(data);
+				},
+				error: function(){
+					alert("에러발생");	
+				}
+			});
+		}
+	</script>
 
 	<!-- footer -->
 	<%@ include file="../../../Template/footer.jsp"%>

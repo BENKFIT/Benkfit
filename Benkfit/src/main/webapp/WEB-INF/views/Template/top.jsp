@@ -12,41 +12,40 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
-	$(document).ready(
-		function() {
-			var trigger = $('.hamburger'), overlay = $('.overlay'), isClosed = false;
+	$(document)
+			.ready(
+					function() {
+						var trigger = $('.hamburger'), overlay = $('.overlay'), isClosed = false;
 
-			trigger.click(function() {
-				hamburger_cross();
-			});
+						trigger.click(function() {
+							hamburger_cross();
+						});
 
-			function hamburger_cross() {
+						function hamburger_cross() {
 
-				if (isClosed == true) {
-					overlay.hide();
-					trigger.removeClass('is-open');
-					trigger.addClass('is-closed');
-					isClosed = false;
+							if (isClosed == true) {
+								overlay.hide();
+								trigger.removeClass('is-open');
+								trigger.addClass('is-closed');
+								isClosed = false;
 
-				} else {
-					overlay.show();
-					trigger.removeClass('is-closed');
-					trigger.addClass('is-open');
-					isClosed = true;
-				}
-			}
-			$('[data-toggle="offcanvas"]').click(function() {
-				$('#wrapper').toggleClass('toggled');
-			});
-	});
-	
-	$(document).ready(function(){
+							} else {
+								overlay.show();
+								trigger.removeClass('is-closed');
+								trigger.addClass('is-open');
+								isClosed = true;
+							}
+						}
+						$('[data-toggle="offcanvas"]').click(function() {
+							$('#wrapper').toggleClass('toggled');
+						});
+					});
+
+	$(document).ready(function() {
 		$('#loading').hide();
-	})
-	.ajaxStart(function(){
+	}).ajaxStart(function() {
 		$('#loading').show();
-	})
-	.ajaxStop(function(){
+	}).ajaxStop(function() {
 		$('#loading').hide();
 	})
 </script>
@@ -111,7 +110,6 @@
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<sec:authorize access="isAuthenticated()">
-<<<<<<< HEAD
 						<sec:authorize access="!hasRole('ROLE_ADMIN')">
 							<ul data-menu="submenu-0" class="menu__level">
 								<li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>
@@ -192,126 +190,129 @@
 									href="deluserPw">탈퇴</a></li>
 							</ul>
 						</sec:authorize>
-=======
-          <sec:authorize access="!hasRole('ROLE_ADMIN')">
-					<ul data-menu="submenu-0" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0-1" href="#">조회</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0-2" href="#">이체</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0-3" href="#">설정</a></li>
-						<li class="menu__item"><a class="menu__link" href="">자산관리</a></li>	
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0-4" href="#">정보수정</a></li>
-					</ul>
-					<!-- Submenu 0-1 조회 -->
-					<ul data-menu="submenu-0-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="cheq_account">예금관리</a></li>
-						<li class="menu__item"><a class="menu__link" href="sav_account">적금관리</a></li>
-						<li class="menu__item"><a class="menu__link" 
-							data-submenu="submenu-0-1-1" href="#">대출관리</a></li>
-					</ul>
-					<!-- Submenu 0-1-1 대출관리 -->
-					<ul data-menu="submenu-0-1-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="loan_account">대출계좌</a></li>
-						<li class="menu__item"><a class="menu__link"href="document">내서류</a></li>
-					</ul>
-					<!-- Submenu 0-2 이체 -->
-					<ul data-menu="submenu-0-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">계좌이체</a></li>
-						<li class="menu__item"><a class="menu__link"href="#">자동이체</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-0-2-1" href="#">자동이체</a></li>
-					</ul>
-					<!-- Submenu 0-2-1 자동이체 -->
-					<ul data-menu="submenu-0-2-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">자동이체	조회</a></li>
-					</ul>
-					<!-- Submenu 0-3 설정 -->
-					<ul data-menu="submenu-0-3" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="limit_sel">이체한도</a></li>
-						<li class="menu__item"><a class="menu__link"  href="#">알림</a></li>
-						<li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-					</ul>
-					<!-- Submenu 0-4 정보수정&탈퇴 -->
-					<!-- Submenu 0-3-1 설정-> 이체한도 -->
-					<ul data-menu="submenu-0-3-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">이체한도조회</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이체한도감액</a></li>
-					</ul>
-					<!-- Submenu 0-3-2 설정-> 자동이체 -->
-					<ul data-menu="submenu-0-3-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">자동이체조회</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">자동이체등록</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">자동이체삭제</a></li>
-					</ul>
-					<!-- Submenu 0-3-3 설정-> 알림 -->
-					<ul data-menu="submenu-0-3-3" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">sms알림</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">핸드폰알림</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이메일알림</a></li>
-					</ul>
-					<!-- Submenu 0-3-4 설정-> 카드신청 -->
-					<ul data-menu="submenu-0-3-4" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">qr코드
-								카드신청</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">신청조회</a></li>
-					</ul>
-					<!-- Submenu 0-4 내서류 -->
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
-					<ul data-menu="submenu-0-4" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="myinfoPw">정보수정</a></li>
-						<li class="menu__item"><a class="menu__link"href="deluserPw">탈퇴</a></li>
-					</ul>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
-					</sec:authorize>
+						<sec:authorize access="!hasRole('ROLE_ADMIN')">
+							<ul data-menu="submenu-0" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-1" href="#">조회</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-2" href="#">이체</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-3" href="#">설정</a></li>
+								<li class="menu__item"><a class="menu__link" href="">자산관리</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-4" href="#">정보수정</a></li>
+							</ul>
+							<!-- Submenu 0-1 조회 -->
+							<ul data-menu="submenu-0-1" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									href="cheq_account">예금관리</a></li>
+								<li class="menu__item"><a class="menu__link"
+									href="sav_account">적금관리</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-1-1" href="#">대출관리</a></li>
+							</ul>
+							<!-- Submenu 0-1-1 대출관리 -->
+							<ul data-menu="submenu-0-1-1" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									href="loan_account">대출계좌</a></li>
+								<li class="menu__item"><a class="menu__link"
+									href="document">내서류</a></li>
+							</ul>
+							<!-- Submenu 0-2 이체 -->
+							<ul data-menu="submenu-0-2" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="#">계좌이체</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">자동이체</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-2-1" href="#">자동이체</a></li>
+							</ul>
+							<!-- Submenu 0-2-1 자동이체 -->
+							<ul data-menu="submenu-0-2-1" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="#">자동이체
+										조회</a></li>
+							</ul>
+							<!-- Submenu 0-3 설정 -->
+							<ul data-menu="submenu-0-3" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									href="limit_sel">이체한도</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">알림</a></li>
+								<li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
+							</ul>
+							<!-- Submenu 0-4 정보수정&탈퇴 -->
+							<!-- Submenu 0-3-1 설정-> 이체한도 -->
+							<ul data-menu="submenu-0-3-1" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="#">이체한도조회</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">이체한도감액</a></li>
+							</ul>
+							<!-- Submenu 0-3-2 설정-> 자동이체 -->
+							<ul data-menu="submenu-0-3-2" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="#">자동이체조회</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">자동이체등록</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">자동이체삭제</a></li>
+							</ul>
+							<!-- Submenu 0-3-3 설정-> 알림 -->
+							<ul data-menu="submenu-0-3-3" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="#">sms알림</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">핸드폰알림</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">이메일알림</a></li>
+							</ul>
+							<!-- Submenu 0-3-4 설정-> 카드신청 -->
+							<ul data-menu="submenu-0-3-4" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="#">qr코드
+										카드신청</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">신청조회</a></li>
+							</ul>
+							<!-- Submenu 0-4 내서류 -->
+							<ul data-menu="submenu-0-4" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									href="myinfoPw">정보수정</a></li>
+								<li class="menu__item"><a class="menu__link"
+									href="deluserPw">탈퇴</a></li>
+							</ul>
+						</sec:authorize>
 
-					<!-- Submenu 0 관리자메뉴 -->
-					<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-<<<<<<< HEAD
+						<!-- Submenu 0 관리자메뉴 -->
+						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+							<ul data-menu="submenu-0" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-1" href="#">회원관리</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-2" href="#">상품관리</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
+								<li class="menu__item"><a class="menu__link"
+									data-submenu="submenu-0-4" href="#">결산</a></li>
+							</ul>
+							<!-- Submenu 0-1 회원관리 -->
+							<ul data-menu="submenu-0-1" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									href="selectUsers">회원조회</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">계좌조회</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">대출조회</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">거래내역</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">카드등록현황</a></li>
+							</ul>
+
+							<!-- Submenu 0-2 상품관리 -->
+							<ul data-menu="submenu-0-2" class="menu__level">
+								<li class="menu__item"><a class="menu__link"
+									href="cheqSavRegi">예금</a></li>
+								<li class="menu__item"><a class="menu__link" href="#">대출</a></li>
+							</ul>
+						</sec:authorize>
+
 						<ul data-menu="submenu-0" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-1" href="#">회원관리</a></li>
+								href="selectUsers">회원관리</a></li>
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-2" href="#">상품관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
+								data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-4" href="#">결산</a></li>
-						</ul>
-						<!-- Submenu 0-1 회원관리 -->
-						<ul data-menu="submenu-0-1" class="menu__level">
-							<li class="menu__item">
-								<a class="menu__link" href="selectUsers">회원조회</a></li>
-							<li class="menu__item"><a class="menu__link" href="#">계좌조회</a></li>
-							<li class="menu__item"><a class="menu__link" href="#">대출조회</a></li>
-							<li class="menu__item"><a class="menu__link" href="#">거래내역</a></li>
-							<li class="menu__item"><a class="menu__link" href="#">카드등록현황</a></li>
-						</ul>
-						
-						<!-- Submenu 0-2 상품관리 -->
-						<ul data-menu="submenu-0-2" class="menu__level">
-							<li class="menu__item">
-								<a class="menu__link" href="cheqSavRegi">예금</a></li>
-							<li class="menu__item"><a class="menu__link" href="#">대출</a></li>
+								data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
 						</ul>
 					</sec:authorize>
 
-=======
-          <ul data-menu="submenu-0" class="menu__level">
-            <li class="menu__item"><a class="menu__link" href="selectUsers">회원관리</a></li>
-            <li class="menu__item"><a class="menu__link"
-              data-submenu="submenu-0-2" href="#">상품관리</a></li>
-            <li class="menu__item"><a class="menu__link"
-              data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
-            <li class="menu__item"><a class="menu__link"
-              data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
-          </ul>
-          </sec:authorize>
-          
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					<!-- Submenu 1 금융상품 -->
 					<ul data-menu="submenu-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
@@ -451,14 +452,14 @@
 	<!-- /view -->
 	<script>
 		(function() {
-			
-			$('a').click(function(){
+
+			$('a').click(function() {
 				var location = $(this).prop("href");
-				if(location != "#"){
+				if (location != "#") {
 					window.location.href = location;
 				}
 			})
-			
+
 			var menuEl = document.getElementById('ml-menu'), mlmenu = new MLMenu(
 					menuEl, {
 						backCtrl : false, // show back button
@@ -466,8 +467,8 @@
 					});
 
 			// mobile menu toggle
-			var openMenuCtrl = document.querySelector('.action--open'), 
-				closeMenuCtrl = document.querySelector('.action--close');
+			var openMenuCtrl = document.querySelector('.action--open'), closeMenuCtrl = document
+					.querySelector('.action--close');
 
 			openMenuCtrl.addEventListener('click', openMenu);
 			closeMenuCtrl.addEventListener('click', closeMenu);
@@ -483,13 +484,12 @@
 			var gridWrapper = document.querySelector('.content');
 
 			function loadDummyData(ev, itemName) {
-				
-				
+
 				ev.preventDefault();
 
 				closeMenu();
-				
-				if(gridWrapper != null){
+
+				if (gridWrapper != null) {
 					gridWrapper.innerHTML = '';
 					classie.add(gridWrapper, 'content--loading');
 					setTimeout(function() {
@@ -497,11 +497,11 @@
 						gridWrapper.innerHTML = '<ul class="products">'
 								+ dummyData[itemName] + '<ul>';
 					}, 700);
-				}else{
-					if(location != "#")	{
+				} else {
+					if (location != "#") {
 						window.location = location;
 						return false;
-					}	
+					}
 				}
 			}
 		})();
@@ -509,7 +509,7 @@
 
 	<script>
 		function openSearch() {
-			document.getElementById("myOver").style.display="block";
+			document.getElementById("myOver").style.display = "block";
 		}
 
 		function closeSearch() {

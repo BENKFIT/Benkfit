@@ -214,4 +214,15 @@ public class ServiceImpl_syk implements Service_syk {
 		String password = req.getParameter("pwd");
 		admin.personalNewAccount(password);
 	}
+
+	//예금상품수정
+	@Override
+	public void cheqEdit(HttpServletRequest req) {
+		String num = req.getParameter("cheq_num");
+		
+		System.out.println("num === " + num);
+		
+		CheqProductVO vo = dao.cheqInfo(num);
+		req.setAttribute("vo", vo);
+	}
 }

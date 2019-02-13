@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,5 +105,14 @@ public class Controller_syk {
 		service.createSav(req, model);
 		
 		return "admin/product/cheqSav/result";
+	}
+	
+	//예금상품수정
+	@RequestMapping("cheqEdit")
+	public String cheqEdit(HttpServletRequest req) {
+		logger.info("예금상품수정");
+		service.cheqEdit(req);
+		
+		return "admin/product/cheqSav/cheqEdit";
 	}
 }
