@@ -201,26 +201,26 @@ public class Controller_sws {
 		return "admin/chart/chartDay";
 	}
 
-	//앱 로그인
-	@ResponseBody//웹에서 안드로이드로 값을 전달하기 위한 어노테이션
+	// 앱 로그인
+	@ResponseBody// 웹에서 안드로이드로 값을 전달하기 위한 어노테이션
 	@RequestMapping("androidSignIn")
 	public Map<String, String> androidSignIn(HttpServletRequest req){
 		logger.info("androidSignIn()");
 
-		//안드로이드에서 전달한 값
-		String c_id = req.getParameter("id");
-		String c_pwd = req.getParameter("pwd");
-		System.out.println("id:" + c_id + " pwd:" + c_pwd);
+		// 안드로이드에서 전달한 값
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("pwd");
+		System.out.println("id:" + id + " pwd:" + pwd);
 
 		Map<String, String> in = new HashMap<String, String>();
-		in.put("c_id", c_id);
-		in.put("c_pwd", c_pwd);
+		in.put("c_id", id);
+		in.put("c_pwd", pwd);
 		int cnt = dao.confirmIdPwd(in);
 
-		//웹에서 전달할 값
+		// 웹에서 전달할 값
 		Map<String, String> out = new HashMap<String, String>();
 		if(cnt != 0) {
-			out.put("c_id", c_id);
+			out.put("c_id", id);
 		} else {
 			out.put("c_id", null);
 		}
@@ -228,15 +228,35 @@ public class Controller_sws {
 		return out;
 	}
 
-	//앱 마이페이지
+	// 앱 메인페이지
+	@ResponseBody
+	@RequestMapping("androidMain")
+	public Map<String, Object> androidMain(HttpServletRequest req) {
+		logger.info("androidMain()");
+
+		// 회원 정보
+		String id = req.getParameter("id");
+		UsersVO u = dao.getMemberInfo(id);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data1", u.getC_name());
+		map.put("data2", u.getC_level());
+		map.put("data3", 0);
+		map.put("data4", 0);
+		map.put("users", u);
+
+		return map;
+	}
+	
+/*	// 앱 마이페이지
 	@ResponseBody
 	@RequestMapping("androidMyPageMain")
 	public Map<String, Object> androidMyPageMain(HttpServletRequest req) {
 		logger.info("androidMyPageMain()");
 
-		//회원 정보
-		String c_id = req.getParameter("id");
-		UsersVO u = dao.getMemberInfo(c_id);
+		// 회원 정보
+		String id = req.getParameter("id");
+		UsersVO u = dao.getMemberInfo(id);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data1", u.getC_name());
@@ -246,5 +266,5 @@ public class Controller_sws {
 		map.put("users", u);
 
 		return map;
-	}
+	}*/
 }

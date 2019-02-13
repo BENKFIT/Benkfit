@@ -176,7 +176,6 @@
 						<li class="menu__item"><a class="menu__link" href="#">신청조회</a></li>
 					</ul>
 					<!-- Submenu 0-4 내서류 -->
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					<ul data-menu="submenu-0-4" class="menu__level">
 						<li class="menu__item"><a class="menu__link" href="myinfoPw">정보수정</a></li>
 						<li class="menu__item"><a class="menu__link"href="deluserPw">탈퇴</a></li>
