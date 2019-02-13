@@ -102,8 +102,7 @@
 							data-submenu="submenu-2" href="#">자산관리</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-3" href="#">안내</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-4" href="#">상담</a></li>
+						<li class="menu__item"><a class="menu__link" href="index">상담</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-5" href="#">ATM</a></li>
 					</ul>
@@ -176,7 +175,6 @@
 						<li class="menu__item"><a class="menu__link" href="#">신청조회</a></li>
 					</ul>
 					<!-- Submenu 0-4 내서류 -->
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					<ul data-menu="submenu-0-4" class="menu__level">
 						<li class="menu__item"><a class="menu__link" href="myinfoPw">정보수정</a></li>
 						<li class="menu__item"><a class="menu__link"href="deluserPw">탈퇴</a></li>
@@ -222,7 +220,7 @@
 					</ul>
 					<!-- Submenu 2 -->
 					<ul data-menu="submenu-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">자산관리 안내</a></li>
+						<li class="menu__item"><a class="menu__link" href="financial_info">자산관리 안내</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">자산관리요약</a></li>
 					</ul>
 					<!-- Submenu 3  안내 -->
@@ -234,13 +232,6 @@
 								안내</a></li>
 						<li class="menu__item"><a class="menu__link" href="useFee_sws">이용
 								수수료 안내</a></li>
-					</ul>
-					<!-- Submenu 4 -->
-					<ul data-menu="submenu-4" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="#">예금상담</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">대출상담</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">이용안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="#">제출서류안내</a></li>
 					</ul>
 					
 					<!-- Submenu 5 안내 -->
@@ -270,14 +261,14 @@
 												<li><a href="checkingList">예/적금</a></li>
 												<li><a href="#">대출</a></li>
 											</ul></li>
-										<li class="menu-has-children"><a href="">자산관리</a>
+										<li class="menu-has-children"><a href="financial_info">자산관리</a>
 											<ul>
 												<li><a href="#">자산관리 1</a></li>
 												<li><a href="#">자산관리 2</a></li>
 												<li><a href="#">자산관리 3</a></li>
 											</ul>
 										</li>
-										<li><a href="chat">상담</a></li>
+										<li><a href="index">상담</a></li>
 										<li><a href="hoursOfUse_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
