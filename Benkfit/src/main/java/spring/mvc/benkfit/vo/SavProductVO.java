@@ -13,6 +13,8 @@ public class SavProductVO {
 	private int sav_autoamount;
 	private Date sav_autodate;
 	private Date sav_autoend;
+	private String sav_type;
+	private double sav_rate;
 	
 	public String getSav_num() {
 		return sav_num;
@@ -74,12 +76,24 @@ public class SavProductVO {
 	public void setSav_autoend(Date sav_autoend) {
 		this.sav_autoend = sav_autoend;
 	}
-	
+	public String getSav_type() {
+		return sav_type;
+	}
+	public void setSav_type(String sav_type) {
+		this.sav_type = sav_type;
+	}
+	public double getSav_rate() {
+		return sav_rate;
+	}
+	public void setSav_rate(double sav_rate) {
+		this.sav_rate = sav_rate;
+	}
 	@Override
 	public String toString() {
 		return "SavProductVO [sav_num=" + sav_num + ", sav_name=" + sav_name + ", sav_limit=" + sav_limit
 				+ ", sav_regDate=" + sav_regDate + ", sav_period=" + sav_period + ", sav_target=" + sav_target
 				+ ", sav_autotrans=" + sav_autotrans + ", sav_autoamount=" + sav_autoamount + ", sav_autodate="
-				+ sav_autodate + ", sav_autoend=" + sav_autoend + "]";
+				+ sav_autodate + ", sav_autoend=" + sav_autoend + ", sav_type=" + sav_type + ", sav_rate=" + sav_rate
+				+ "]";
 	}
 }

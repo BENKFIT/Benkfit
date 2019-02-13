@@ -9,7 +9,7 @@ public class CheqProductVO {
 	private String cheq_type;
 	private String cheq_target;
 	private Date cheq_regDate;
-	private String cheq_limit;
+	private int cheq_limit;
 	private String cheq_period;
 	
 	public String getCheq_num() {
@@ -50,10 +50,10 @@ public class CheqProductVO {
 		this.cheq_regDate = cheq_regDate;
 	}
 	
-	public String getCheq_limit() {
+	public int getCheq_limit() {
 		return cheq_limit;
 	}
-	public void setCheq_limit(String cheq_limit) {
+	public void setCheq_limit(int cheq_limit) {
 		this.cheq_limit = cheq_limit;
 	}
 	public String getCheq_period() {

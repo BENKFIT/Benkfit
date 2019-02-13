@@ -20,13 +20,13 @@
         </property>
     </bean>
     
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" /> <!-- 컨넥션풀 -->
-		<!-- <property name="mapperLocations" value="classpath:mappers/**/*.xml" /> --> <!-- Mybatis xml의 경로 -->
+<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" /> 컨넥션풀
+		<property name="mapperLocations" value="classpath:mappers/**/*.xml" /> Mybatis xml의 경로
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
-	</bean>
+	</bean> -->
 <!-- Mybatis 설정 종료 -->
 </beans>
