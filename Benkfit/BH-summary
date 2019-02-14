@@ -46,3 +46,440 @@
 		1. 계정주소 만들기
 		2. 해당파일 절대경로 받아오기(상수로 path 설정함.)
 	2. 해당 잔액을 파일로 조회 가능.(직접입력은 주석처리함.)
+	
+2019-02-12
+	1. 계정간 송금 구현(직접 송금)
+		1. 솔리디티로 구현한 송금은 주석처리함	
+		2. 솔리디티에서 fallback함수등 보완이 필요한 것으로 보임.
+	2. admin 메소드에서 계정생성. 키스토어파일은 생성되나 뒤에 .json확장자가 붙지 않아 문자열자르는 곳에서 문제가 발생한다.
+		1.admin계정생성은 주석처리함.
+	3. geth는 실행중이 아니여도 계정은 생성된다.
+	4. 이더전송시 성공적으로 전송되어도 오류 알림뜸. ajax손봐야함.
+	5. 슬롯컨트랙트는 한번하고 계약을 소멸시켜야하며 연달아서는 할 수 없다. 
+	6. kill()는 계약자체를 무효화하여 컨트랙트를 삭제하고 해당 컨트랙트에 있는 이더를 돌려준다.
+	
+	
+	
+	
+<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxwait="1000" name="jdbc/Oracle11g_benkfit" password="bank"
+		type="javax.sql.DataSource"
+		url="jdbc:oracle:thin:@192.168.0.27:1521:xe" username="bank" />
+	<!-- 	
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxWait="1000" name="jdbc/Oracle11Pjt_ban" password="tiger"
+		type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="jsp_Pjt" />
+
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxWait="1000" name="jdbc/Oracle11g" password="tiger"
+		type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="jsp" />
+
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxWait="1000" name="jdbc/Oracle11g_security" password="tiger"
+		type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="scott" />
+ -->
+ 
+ 2019-02-13
+ 	1. 슬롯
+ 		1.  슬롯 로직
+
+			1. 0으로 deploy
+			2. 50이더로 ownerinput : total에 50이더 
+			    1. ownerInput은 total에 부족한 자금을 채워주는 함수
+			3. Total 에서 잔액확인 - 여기까지 remix-geth 완료함.
+			4. 1로 바꿈
+			5. 1이더로 gameStart
+			    1. 로그로 번호, 당첨여부, 상금 확인가능
+			    2. SendResult로 결과값이 푸쉬됨.
+			6. Withdraw로 당첨금액 수령.(당첨이되면 당첨금액, 아니면 0을 수령한다.)
+			7. Count함수를 눌러서 현재 몇번째 슬롯인지 카운트한다.
+			    1. 현재 count함수의 숫자를 sendResult에 대입하면 현재 게임의 결과를 출력한다.
+			    2. 배열의 숫자를 대입해야 해당 슬롯결과가 나온다.
+			    
+		2. 솔리디티 거의 완료함.
+	
+	2. 예금
+		1. bank.sol로 구현.
+		2. 유저 -> 예금 -> 컨트랙트
+		3. 컨트랙트 -> 인출 -> 유저
+		4. 컨트랙트 -> 잔고확인 -> 유저
+		
+		5.단순 예금 기능만 있다. 추후에 보완 가능?
+ 
+ 
+ 2019-02-14
+
+ 	1. 슬롯완료
+ 		1. 솔리디티 코드 보완	
+ 			1. modifier 추가
+ 			2. kill함수 추가
+ 			3. 배열의 인덱스를 입력시킬 count 함수 추가.
+ 		2. 현재 서비스에서는 모든 함수 구현 가능
+ 			1. 웹에서 연동이 되어야함. css안되어있음
+ 	2. 대출 시작
+ 	
+ 	3. 컨트랙트주소와 언락 등 자주 쓰이는 것들에 대해서 따로 빼는 것이 필요할 것 같다.
+ 	
+ 	4. 작업 완료된 .sol, .bin, .api는 sol/final 폴더에 따로 옮겨놈 
+ 	
+ 	5. 노드 수동추가하기
+ 		1. geth 새로 만들기
+ 		2. 팀장과 연결 완료
+										사설 네트워크 노드 접속하기
+										
+										A노드
+										
+										같은 genesis.json파일을 init 해야한다
+										genesis.json안에는 임의로 설정값을 주어서는 안된다.
+										{
+										  "config": {
+										        "chainId": 314,
+										        "homesteadBlock": 0,
+										        "eip155Block": 0,
+										        "eip158Block": 0
+										    },
+										  "alloc"      : {},
+										  "coinbase"   : "0x0000000000000000000000000000000000000000",
+										  "difficulty" : "0x20000",
+										  "extraData"  : "",
+										  "gasLimit"   : "0x2fefd8",
+										  "nonce"      : "0x0000000000000042",
+										  "mixhash"    : "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  "timestamp"  : "0x00"
+										}
+										
+										—nodiscover : 자동으로 등록하지 않음(수동으로 등록해야함)
+													
+										> web3.eth.getBlock(0) 
+										해쉬값 확인
+										{
+										  difficulty: 131072,
+										  extraData: "0x",
+										  gasLimit: 3141592,
+										  gasUsed: 0,
+										  hash: "0x5e1fc79cb4ffa4739177b5408045cd5d51c6cf766133f23f7cd72ee1f8d790e0",
+										  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+										  miner: "0x0000000000000000000000000000000000000000",
+										  mixHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  nonce: "0x0000000000000042",
+										  number: 0,
+										  parentHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  receiptsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+										  size: 507,
+										  stateRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  timestamp: 0,
+										  totalDifficulty: 131072,
+										  transactions: [],
+										  transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  uncles: []
+										}
+										
+										
+										personal.newAccount(“password”)
+										계정생성 > 코인베이스여야함.
+										
+										miner.start(1)
+										마이닝 시작
+										
+										> admin.nodeInfo.enode
+										“enode값이 나옴”
+										@[::]:30303 에서 [::]에 ip를 입력한다.
+										예)
+										enode://743f4972098a6145b038e31e00c6aeb8c00a55076113faf11f742c961dc59819c03bafc97c38e5c17de261bbb66346fde0a8b504d706f81a2ada339626ec4d8f@192.168.191.166:30303?discport=0
+										
+										이 주소는 다른 노드에서 참조할때 사용된다. 
+										================================================
+										
+										B노드
+										
+										같은 genesis.json//같은 networkid로 실행(그냥 같은 명령어로 실행 경로는 당연히 달라야한다.)
+										
+										> web3.eth.getBlock(0) 
+										해쉬값 확인
+										위의 해쉬값과 같은 값이 나오면 같은 블록체인망으로 인식한다.
+										
+										B노드에 A노드 등록하기
+										위에서 확인한 A노드의enode의 주소를 B노드에 등록한다.
+										> admin.addPeer(“enode://enode주소(아이피포함)”)
+										true
+										예)
+										> admin.addPeer("enode://743f4972098a6145b038e31e00c6aeb8c00a55076113faf11f742c961dc59819c03bafc97c38e5c17de261bbb66346fde0a8b504d706f81a2ada339626ec4d8f@192.168.191.166:30303?discport=0")
+										true
+										
+										A노드에서 연결이 잘 되었는지 확인하기
+										>admin.peers
+										[{
+										    caps: ["eth/63"],
+										    id: "b7015d063f8819df7dc873f17a7c8af135a64179c78abcaa777c06ffe017e1a390ecf04126b0e3714dfe82780cf3898f514d82aa7ab96351486b9099d5031ed0",
+										    name: "Geth/v1.8.6-stable-12683fec/linux-amd64/go1.10",
+										    network: {
+										      inbound: true,
+										      localAddress: "192.168.191.166:30303",
+										      remoteAddress: "192.168.191.158:37250", >>> 제대로 연결되면 여기 등록
+										      static: false,
+										      trusted: false
+										    },
+										    protocols: {
+										      eth: {
+										        difficulty: 400,
+										        head: "0xab944ccf947757af38fadbc7c447e09d45fcccdb458bb6399ff95c8f5055600c",
+										        version: 63
+										      }
+										    }
+										}]
+										
+										제대로 연결되어있는지 확인하기
+										A노드에서 
+										web3.eth.getBlock(‘latest’)
+										해쉬와 넘버를 확인한 후
+										B노드에서 
+										web.eth.getBlock(A노드에서 확인한 넘버).hash
+										“여기 나온 값이 A노드에서 확인한 해쉬”
+										
+										일치하면 연결이 제대로 된 것이다.
+										
+										=================================================
+										주의사항
+										네트워크가 열려있는지 확인한다.
+										sudo nmap 아이피 -p30303 -sTU
+										
+										
+										========================A노드만들기(맥)
+										
+										Banui-MacBook-Pro:~ banhun$ geth --networkid 314 --nodiscover --datadir /Users/banhun/2_net/ --rpc --rpcaddr localhost --rpcport 8545 --rpccorsdomain "*" --rpcapi eth,net,web3,personal,db console 2>>/Users/banhun/2_net/geth_err.log
+										Welcome to the Geth JavaScript console!
+										
+										instance: Geth/v1.8.21-stable/darwin-amd64/go1.11.4
+										 modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+										
+										> web3.getBlock(0)
+										TypeError: 'getBlock' is not a function
+										    at <anonymous>:1:1
+										
+										> web3.eth.getBlock(0)
+										{
+										  difficulty: 131072,
+										  extraData: "0x",
+										  gasLimit: 3141592,
+										  gasUsed: 0,
+										  hash: "0x5e1fc79cb4ffa4739177b5408045cd5d51c6cf766133f23f7cd72ee1f8d790e0",
+										  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+										  miner: "0x0000000000000000000000000000000000000000",
+										  mixHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  nonce: "0x0000000000000042",
+										  number: 0,
+										  parentHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  receiptsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+										  size: 507,
+										  stateRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  timestamp: 0,
+										  totalDifficulty: 131072,
+										  transactions: [],
+										  transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  uncles: []
+										}
+										> personal.newAccount("password")
+										"0x021631ae9d68e64398b5a1854974eba3e84836d7"
+										> eth.coinbase
+										"0x021631ae9d68e64398b5a1854974eba3e84836d7"
+										> miner.start(2)
+										null
+										> eth.getBalance(address[0])
+										ReferenceError: 'address' is not defined
+										    at <anonymous>:1:16
+										
+										> eth.getBalance("0x021631ae9d68e64398b5a1854974eba3e84836d7")
+										495000000000000000000
+										> miner.stop()
+										null
+										> admin.nodeInfo.en
+										admin.nodeInfo.enode admin.nodeInfo.enr 
+										> admin.nodeInfo.enode
+										"enode://ba0a0c97ea57c8606c2468d92d511830d8b549f42d9392b6d17ad16b773770ae3cd009410a87e321ab4d1e85a90d928d3d1e7b39eea6b65a2e46e11e34e931f0@115.91.88.226:30303?discport=0"
+										> admin.peers
+										[]
+										> admin.peers
+										[{
+										    caps: ["eth/63"],
+										    enode: "enode://8a8a78983837843cfa532c5435b5c08919468db96eb6253b277c615b192c02fdef0dea200c548190f0a27a21f637c4589a8419adcda0d642746019692fa3599c@192.168.0.1:52559",
+										    id: "fb51fbf73d5f9ef164013f50352191219be37162e1d1e8fd2949518b0245025a",
+										    name: "Geth/v1.8.21-stable-9dc5d1a9/windows-amd64/go1.11.4",
+										    network: {
+										      inbound: true,
+										      localAddress: "192.168.0.42:30303",
+										      remoteAddress: "192.168.0.1:52559",
+										      static: false,
+										      trusted: false
+										    },
+										    protocols: {
+										      eth: {
+										        difficulty: 131072,
+										        head: "0x5e1fc79cb4ffa4739177b5408045cd5d51c6cf766133f23f7cd72ee1f8d790e0",
+										        version: 63
+										      }
+										    }
+										}]
+										> web3.eth.getBlock('latest')
+										{
+										  difficulty: 137849,
+										  extraData: "0xd983010815846765746888676f312e31312e348664617277696e",
+										  gasLimit: 3480484,
+										  gasUsed: 0,
+										  hash: "0xea9248d9e670298824c1af236516cffd564b79adb7779da3ec29c2b9df2131b0",
+										  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+										  miner: "0x021631ae9d68e64398b5a1854974eba3e84836d7",
+										  mixHash: "0x3730677838ac59f076502f15d5271ff7dc9ac2854f644a009b4a80fc72cd6788",
+										  nonce: "0x18153324b2cd9b38",
+										  number: 105,
+										  parentHash: "0x322cc89f437d63a532d50117df7a2cce595fc1d50d872fe91162d72183daaf77",
+										  receiptsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+										  size: 537,
+										  stateRoot: "0xf3305708fc7619416feb2c3ce819c66a56d7354b01d52c0ae70062af647a8959",
+										  timestamp: 1550125480,
+										  totalDifficulty: 14246565,
+										  transactions: [],
+										  transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  uncles: []
+										}
+										> web3.eth.getBlock(105)
+										{
+										  difficulty: 137849,
+										  extraData: "0xd983010815846765746888676f312e31312e348664617277696e",
+										  gasLimit: 3480484,
+										  gasUsed: 0,
+										  hash: "0xea9248d9e670298824c1af236516cffd564b79adb7779da3ec29c2b9df2131b0",
+										  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+										  miner: "0x021631ae9d68e64398b5a1854974eba3e84836d7",
+										  mixHash: "0x3730677838ac59f076502f15d5271ff7dc9ac2854f644a009b4a80fc72cd6788",
+										  nonce: "0x18153324b2cd9b38",
+										  number: 105,
+										  parentHash: "0x322cc89f437d63a532d50117df7a2cce595fc1d50d872fe91162d72183daaf77",
+										  receiptsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+										  size: 537,
+										  stateRoot: "0xf3305708fc7619416feb2c3ce819c66a56d7354b01d52c0ae70062af647a8959",
+										  timestamp: 1550125480,
+										  totalDifficulty: 14246565,
+										  transactions: [],
+										  transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  uncles: []
+										}
+										
+										
+										========================B노드만들기(윈도우)
+										
+										C:\Users\322sy>mkdir 2_net
+
+										C:\Users\322sy>cd 2_net
+										
+										C:\Users\322sy\2_net>geth --datadir
+										
+										C:\Users\322sy\2_net>geth --datadir C:\Users\322sy\2_net init C:\Users\322sy\2_net\genesis.json
+										INFO [02-14|15:12:23.848] Maximum peer count                       ETH=25 LES=0 total=25
+										INFO [02-14|15:12:24.091] Allocated cache and file handles         database=C:\\Users\\322sy\\2_net\\geth\\chaindata cache=16 handles=16
+										INFO [02-14|15:12:24.144] Writing custom genesis block
+										INFO [02-14|15:12:24.150] Persisted trie from memory database      nodes=0 size=0.00B time=0s gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+										INFO [02-14|15:12:24.166] Successfully wrote genesis state         database=chaindata                                hash=5e1fc7…d790e0
+										INFO [02-14|15:12:24.178] Allocated cache and file handles         database=C:\\Users\\322sy\\2_net\\geth\\lightchaindata cache=16 handles=16
+										INFO [02-14|15:12:24.220] Writing custom genesis block
+										INFO [02-14|15:12:24.225] Persisted trie from memory database      nodes=0 size=0.00B time=0s gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+										INFO [02-14|15:12:24.241] Successfully wrote genesis state         database=lightchaindata                                hash=5e1fc7…d790e0
+										
+										C:\Users\322sy\2_net>geth --networkid 314 --nodiscover --datadir C:\Users\322sy\2_net\ --rpc --rpcaddr localhost --rpcport 8545 --rpccorsdomain "*" --rpcapi eth,net,web3,personal,db console 2>>C:\Users\322sy\2_net\geth_error.log
+										Welcome to the Geth JavaScript console!
+										
+										instance: Geth/v1.8.21-stable-9dc5d1a9/windows-amd64/go1.11.4
+										 modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+										
+										> web3.eth.getBlock(0)
+										{
+										  difficulty: 131072,
+										  extraData: "0x",
+										  gasLimit: 3141592,
+										  gasUsed: 0,
+										  hash: "0x5e1fc79cb4ffa4739177b5408045cd5d51c6cf766133f23f7cd72ee1f8d790e0",
+										  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+										  miner: "0x0000000000000000000000000000000000000000",
+										  mixHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  nonce: "0x0000000000000042",
+										  number: 0,
+										  parentHash: "0x0000000000000000000000000000000000000000000000000000000000000000",
+										  receiptsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+										  size: 507,
+										  stateRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  timestamp: 0,
+										  totalDifficulty: 131072,
+										  transactions: [],
+										  transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  uncles: []
+										}
+										> admin.addPeer("enode://ba0a0c97ea57c8606c2468d92d511830d8b549f42d9392b6d17ad16b773770ae3cd009410a87e321ab4d1e85a90d928d3d1e7b39eea6b65a2e46e11e34e931f0@115.91.88.226:30303?discport=0")
+										true
+										> web.eth.getBlock(105).hash
+										ReferenceError: 'web' is not defined
+										    at <anonymous>:1:1
+										
+										> web3.eth.getBlock(105).hash
+										"0xea9248d9e670298824c1af236516cffd564b79adb7779da3ec29c2b9df2131b0"
+										> eth.accounts
+										[]
+										> personal.newAccount("password")
+										"0xcf4693ef39443def0d22100fc7a5da07255adfb1"
+										> eth.coinbase
+										"0xcf4693ef39443def0d22100fc7a5da07255adfb1"
+										> miner.start(2)
+										null
+										> eth.mining
+										true
+										> miner.stop()
+										null
+										
+										> web3.eth.getBlock('latest')
+										{
+										  difficulty: 137849,
+										  extraData: "0xd983010815846765746888676f312e31312e348664617277696e",
+										  gasLimit: 3480484,
+										  gasUsed: 0,
+										  hash: "0xea9248d9e670298824c1af236516cffd564b79adb7779da3ec29c2b9df2131b0",
+										  logsBloom: "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+										  miner: "0x021631ae9d68e64398b5a1854974eba3e84836d7",
+										  mixHash: "0x3730677838ac59f076502f15d5271ff7dc9ac2854f644a009b4a80fc72cd6788",
+										  nonce: "0x18153324b2cd9b38",
+										  number: 105,
+										  parentHash: "0x322cc89f437d63a532d50117df7a2cce595fc1d50d872fe91162d72183daaf77",
+										  receiptsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  sha3Uncles: "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+										  size: 537,
+										  stateRoot: "0xf3305708fc7619416feb2c3ce819c66a56d7354b01d52c0ae70062af647a8959",
+										  timestamp: 1550125480,
+										  totalDifficulty: 14246565,
+										  transactions: [],
+										  transactionsRoot: "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+										  uncles: []
+										  }
+										  
+		6. css 및 연결 어느 정도 마무리함.
+
+
+
+
+
+
+
+
+
+
+ 		
+	

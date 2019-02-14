@@ -219,7 +219,7 @@
 					<!-- Submenu 1-2 대출-->
 					<ul data-menu="submenu-1-2" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-2-1" href="#">대출상품</a></li>
+							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
 						<li class="menu__item"><a class="menu__link" href="#">
 								대출신청 </a></li>
 						<li class="menu__item"><a class="menu__link"
@@ -273,7 +273,10 @@
 										<li class="menu-has-children"><a href="checkingList">금융상품</a>
 											<ul>
 												<li><a href="checkingList">예/적금</a></li>
-												<li><a href="#">대출</a></li>
+												<li><a href="loanList">대출</a></li>
+												<li><a href="create">지갑만들기</a></li>
+												<li><a href="bank">간편통장</a></li>
+												<li><a href="transfer">간편송금</a></li>
 											</ul></li>
 										<li class="menu-has-children"><a href="">자산관리</a>
 											<ul>

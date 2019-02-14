@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../../Template/setting.jsp"%>
+    pageEncoding="UTF-8"%>
 <html>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -71,39 +70,37 @@ p, a {
 </style>
 
 <body>
-	<%@ include file ="../../Template/top.jsp" %>
+
+<%@ include file ="../Template/top.jsp" %>
 
 	<div style="margin-top: -30px; height: 40%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%; margin: 200px 0px;">
-			<p class="title">간편 송금하기</p>
-			<p>당신의 키스토어와 상대방의 계정 주소로 간단히 이더를 보내세요.</p>
+			<p class="title">간편 은행</p>
+			<p>당신의 지갑으로 예금을 간편히 즐기세요.
+				이더를 간직하고 보관하세요!
+			</p>
 			<div class="wrapper">
 				<p class="login">
 					<input type="file" id="from">
-	   	     		<input type="button" value="잔고확인" onClick="Balance();"> <br>
+		   	     	<input type="button" value="잔고확인" onClick="Balance();"> <br>
 				</p>
 				<p id="balance"></p> <br>
-				<p>
-					보낼 이더 : <input type="text" id="value"> ETHER<br><br>
-					받을 계정 : <input type="text" id="to"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-					password : <input type="password" id="password" value="password"> 
-						  <input type="button" value="보내기" onclick="transfer();">
-				</p>
+				입금액 : <input type="text" id="value"><br>
+				비밀번호 : <input type="password" id="password" value="password"><br><br>
+				<input type="button" value="입금" onclick="deposit();">
+				<input type="button" value="출금" onclick="bankWithdraw();">
+				<input type="button" value="예금조회" onclick="bankBalance();">
+				
+				<div id="state">
+				</div>
 			</div>
 		</div>
 	</div>
-	<div id="success">
-	
-	</div>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<%@ include file="../../Template/footer.jsp"%>
-</body>	
-
-	<script type="text/javascript">
+	<%@ include file="../Template/footer.jsp"%>
+</body>
+<script type="text/javascript">
 	function Balance(){
-		/* 계정주소 직접입력으로 잔액 조회하기
-		var address = $('#address').val(); 
-		var alldata = {"address":address};*/
 		var from = $('#from').val(); 
 		var alldata = {"from":from};
 		$('#balance').html("잔액을 조회중입니다.");
@@ -121,21 +118,58 @@ p, a {
 		});
 	}
 	
-	function transfer(){
-		var password = $('#password').val();
+	function deposit(){
 		var from = $('#from').val();
 		var value = $('#value').val();
-		var to = $('#to').val();
-		var alldata = {'password':password,'from':from, 'value':value, 'to':to}
-		$('#success').html("송금을 요청중입니다.");
+		var password = $('#password').val();
+		var alldata = {'from':from, 'value':value,'password':password};
+		$('#state').html("입금중입니다.");
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/transferPro",
+			url:"${pageContext.request.contextPath}/depositPro",
 			type : "GET",
 			data : alldata,
-			dataType : "JSON",
 			success : function(data){
-				$('#success').html(value+"이더를 전송하였습니다.");
+				$('#state').html("입금완료되었습니다. 잔액을 확인해보세요.");
+			},
+			error : function(){
+				alert("오류")
+			}
+		});
+	}
+	
+	function bankBalance(){
+		var from = $('#from').val();
+		var password = $('#password').val();
+		var alldata = {'from':from, 'password':password};
+		$('#state').html("통장 잔액을 조회중입니다.");
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/bankBalance",
+			type : "GET",
+			data : alldata,
+			success : function(data){
+				$('#state').html("통장의 잔액은 "+data+"ETH 입니다.");
+			},
+			error : function(){
+				alert("오류")
+			}
+		});
+	}
+	
+	function bankWithdraw(){
+		var from = $('#from').val();
+		var value = $('#value').val();
+		var password = $('#password').val();
+		var alldata = {'from':from, 'value':value,'password':password};
+		$('#state').html("출금중입니다.");
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/bankWithdraw",
+			type : "GET",
+			data : alldata,
+			success : function(data){
+				$('#state').html("출금완료되었습니다. 잔액을 확인해보세요.");
 			},
 			error : function(){
 				alert("오류")
@@ -143,5 +177,4 @@ p, a {
 		});
 	}
 </script>
-
 </html>
