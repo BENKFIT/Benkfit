@@ -102,7 +102,6 @@
               data-submenu="submenu-2" href="#">자산관리</a></li>
             <li class="menu__item"><a class="menu__link"
               data-submenu="submenu-3" href="#">안내</a></li>
-            <li class="menu__item"><a class="menu__link" href="index">상담</a></li>
             <li class="menu__item"><a class="menu__link"
               data-submenu="submenu-5" href="#">ATM</a></li>
           </ul>
@@ -205,7 +204,7 @@
           <!-- Submenu 1-1 예금-->
           <ul data-menu="submenu-1-1" class="menu__level">
             <li class="menu__item"><a class="menu__link"
-              data-submenu="submenu-1-1-1" href="checkingList">예금 상품</a></li>
+              data-submenu="submenu-1-1-1" href="cheqSavList">예금 상품</a></li>
             <li class="menu__item"><a class="menu__link"
               data-submenu="submenu-1-1-2" href="checkingGuide">예금 가이드 </a></li><!-- 예금금리안내, 예금관련수수료 -->
           </ul>
@@ -256,9 +255,9 @@
                 </div>
                 <nav id="nav-menu-container">
                   <ul class="nav-menu">
-                    <li class="menu-has-children"><a href="checkingList">금융상품</a>
+                    <li class="menu-has-children"><a href="#">금융상품</a>
                       <ul>
-                        <li><a href="checkingList">예/적금</a></li>
+                        <li><a href="cheqSavList">예/적금</a></li>
                         <li><a href="#">대출</a></li>
                       </ul></li>
                     <li class="menu-has-children"><a href="financial_info">자산관리</a>
@@ -268,7 +267,6 @@
                         <li><a href="#">자산관리 3</a></li>
                       </ul>
                     </li>
-                    <li><a href="index">상담</a></li>
                     <li><a href="hoursOfUse_sws">안내</a></li>
                     <li><a href="eventList_sws">이벤트</a></li>
                     <!-- 시큐리티 권한 따라 메뉴 달라짐  -->

@@ -221,4 +221,13 @@ public class Controller_lia {
 		logger.info("financial_info 호출중");
 		return "common/financial";
 	}
+	
+	// 코인 시세
+	@RequestMapping("marketprice")
+	public String marketprice(Model model) throws Exception {
+		logger.info("marketprice 호출중");
+		service.marketprice(model);
+		return "common/marketprice";
+	}
+	
 }

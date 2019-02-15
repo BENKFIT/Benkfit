@@ -177,4 +177,22 @@ public class DAOImpl_lia implements DAO_lia {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getLoanTrans", map);
 	}
 
+	// 코인 종류 세팅
+	@Override
+	public int insertCoins(Map<String, String> name) {
+		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_lia.insertCoins", name);
+	}
+
+	// 코인 시세 업데이트
+	@Override
+	public int updateCoins(Map<String, Object> vals) {
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_lia.updateCoins", vals);
+	}
+
+	// 코인 정보
+	@Override
+	public List<PriceVO> selectCoins() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCoins");
+	}
+
 }

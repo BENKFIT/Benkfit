@@ -9,6 +9,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body>
+<!-- 챗봇 -->
+<%@ include file="../common/chatbot.jsp"%>
 	<!-- footer  -->
 	<div class="container1">
 		<div class="row">
