@@ -101,7 +101,7 @@
            <td class="cell"><span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
               onclick="getTrans('${vo.myCheq_account}','${vo.code}')">${vo.myCheq_account}</span></td>
            <td class="cell">${vo.myCheq_amount}</td>
-           <td class="cell">${vo.myCheq_rate}</td>
+           <td class="cell">${vo.cheq_rate}</td>
            <td class="cell">${vo.myCheq_limit}</td>
            <td class="cell">${vo.myCheq_taxRate}</td>
            <c:choose>

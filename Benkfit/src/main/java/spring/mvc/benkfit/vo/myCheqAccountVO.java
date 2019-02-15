@@ -12,7 +12,7 @@ public class myCheqAccountVO {
 	private int myCheq_taxRate; /* 예금 세율 */
 	private String cheq_num; /* 예금 상품번호 */
 	private String c_id; /* 고객 아이디 */
-	private double myCheq_rate; /* 연이율 */
+	private double cheq_rate; /* 연이율 */
 	private String code; /* 계좌 종류 */
 	
 	public String getMyCheq_account() {
@@ -63,11 +63,11 @@ public class myCheqAccountVO {
 	public void setC_id(String c_id) {
 		this.c_id = c_id;
 	}
-	public double getMyCheq_rate() {
-		return myCheq_rate;
+	public double getCheq_rate() {
+		return cheq_rate;
 	}
-	public void setMyCheq_rate(double myCheq_rate) {
-		this.myCheq_rate = myCheq_rate;
+	public void setCheq_rate(double cheq_rate) {
+		this.cheq_rate = cheq_rate;
 	}
 	
 	public String getCode() {
@@ -82,6 +82,6 @@ public class myCheqAccountVO {
 		return "myCheqAccount_kay [myCheq_account=" + myCheq_account + ", myCheq_amount=" + myCheq_amount
 				+ ", myCheq_regDate=" + myCheq_regDate + ", myCheq_limit=" + myCheq_limit + ", myCheq_card="
 				+ myCheq_card + ", myCheq_taxRate=" + myCheq_taxRate + ", cheq_num=" + cheq_num + ", c_id=" + c_id
-				+ ", myCheq_rate=" + myCheq_rate + ", code=" + code + "]";
+				+ ", cheq_rate=" + cheq_rate + ", code=" + code + "]";
 	}
 }

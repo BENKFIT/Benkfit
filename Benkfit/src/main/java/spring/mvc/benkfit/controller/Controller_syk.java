@@ -9,6 +9,8 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.api.Http;
+
 import spring.mvc.benkfit.service.ServiceImpl_syk;
 
 @Controller
@@ -114,5 +116,32 @@ public class Controller_syk {
 		service.cheqEdit(req);
 		
 		return "admin/product/cheqSav/cheqEdit";
+	}
+	
+	//적금상품수정
+	@RequestMapping("savEdit")
+	public String savEdit(HttpServletRequest req) {
+		logger.info("적금상품수정");
+		service.savEdit(req);
+		
+		return "admin/product/cheqSav/savEdit";
+	}
+	
+	//예금상품삭제
+	@RequestMapping("cheqDel")
+	public String cheqDel(HttpServletRequest req) {
+		logger.info("예금상품삭제");
+		service.cheqDel(req);
+		
+		return "admin/product/cheqSav/delResult";
+	}
+	
+	//적금상품삭제
+	@RequestMapping("savDel")
+	public String savDel(HttpServletRequest req) {
+		logger.info("적금상품삭제");
+		service.savDel(req);
+		
+		return "admin/product/cheqSav/delResult";
 	}
 }

@@ -6,21 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-  #chatbot {
-    position:fixed;
-    bottom:0;
-    right:0;
-  }
 </style>
+<link href="https://snatchbot.me/sdk/webchat.css" rel="stylesheet" type="text/css">
+<script src="https://snatchbot.me/sdk/webchat.min.js">
+</script><script> Init('?botID=45192&appID=webchat', 500, 600, 'https://dvgpba5hywmpo.cloudfront.net/media/image/JIoNGQ3KwiURbPrBEapHqOymz', 'bubble', '#FFFFFF', 100, 100, 70, '', '1', '#FFFFFF', '#FFFFFF', 1); /* for authentication of its users, you can define your userID (add &userID={login}) */ </script>
+
 </head>
 <body>
-<div id="chatbot">
-	<iframe
-	    allow="microphone;"
-	    width="350"
-	    height="430"
-	    src="https://console.dialogflow.com/api-client/demo/embedded/25a340dd-a7af-450c-bf0f-8244c301710b">
-	</iframe>
-</div>
 </body>
 </html>

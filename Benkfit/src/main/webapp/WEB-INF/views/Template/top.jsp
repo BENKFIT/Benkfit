@@ -275,22 +275,13 @@
 						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
 							<ul data-menu="submenu-0" class="menu__level">
 								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0-1" href="#">회원관리</a></li>
+									href="selectUsers">회원관리</a></li>
 								<li class="menu__item"><a class="menu__link"
 									data-submenu="submenu-0-2" href="#">상품관리</a></li>
 								<li class="menu__item"><a class="menu__link"
 									data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
 								<li class="menu__item"><a class="menu__link"
 									data-submenu="submenu-0-4" href="#">결산</a></li>
-							</ul>
-							<!-- Submenu 0-1 회원관리 -->
-							<ul data-menu="submenu-0-1" class="menu__level">
-								<li class="menu__item"><a class="menu__link"
-									href="selectUsers">회원조회</a></li>
-								<li class="menu__item"><a class="menu__link" href="#">계좌조회</a></li>
-								<li class="menu__item"><a class="menu__link" href="#">대출조회</a></li>
-								<li class="menu__item"><a class="menu__link" href="#">거래내역</a></li>
-								<li class="menu__item"><a class="menu__link" href="#">카드등록현황</a></li>
 							</ul>
 
 							<!-- Submenu 0-2 상품관리 -->

@@ -27,6 +27,12 @@ public interface DAO_syk {
 	//예금계좌생성
 	public int createCheq(Map<String, Object> map);
 	
-	//적금계좌생상
+	//적금계좌생성
 	public int createSav(Map<String, Object> map);
+	
+	//예금상품삭제
+	public int cheqDel(String num);
+	
+	//적금상품 삭제
+	public int savDel(String num);
 }

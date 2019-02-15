@@ -115,7 +115,7 @@
   
   <!-- 관리자 > 회원별 예금 조회 -->
   <select id="selectCheq" parameterType="String" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
-    select * from mycheqaccount_tbl where c_id=#{id}
+    select * from cheqproduct_tbl c, mycheqaccount_tbl m where c.cheq_num = m.cheq_num and c_id=#{id}
   </select>
   
   <!-- 관리자 > 회원별 적금 조회 -->

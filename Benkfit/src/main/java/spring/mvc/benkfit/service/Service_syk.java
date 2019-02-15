@@ -29,4 +29,13 @@ public interface Service_syk {
 	
 	//예금상품수정
 	public void cheqEdit(HttpServletRequest req);
+	
+	//적금상품수정
+	public void savEdit(HttpServletRequest req);
+	
+	//예금상품삭제
+	public void cheqDel(HttpServletRequest req);
+	
+	//적금상품삭제
+	public void savDel(HttpServletRequest req);
 }

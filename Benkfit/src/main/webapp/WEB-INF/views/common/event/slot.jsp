@@ -4,52 +4,6 @@
 <html>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
-	function Balance(){
-		var address = $('#address').val();
-		var alldata = {"address":address};
-		
-		$.ajax({
-			url:"${pageContext.request.contextPath}/Balance",
-			type : "GET",
-			data : alldata,
-			success : function(data){
-				$('#balance').html(data);
-			},
-			error : function(){
-				alert("오류")
-			}
-		});
-	}
-	
-	function spin(){
-		var address = $('#address').val();
-		var pass = $('#pass').val();
-		var bet_amount = $('#bet_amount').val();
-		var alldata = {'address':address,'pass':pass,'bet_amount':bet_amount}
-		$('#messages').html("결과를 출력중입니다.");
-		
-		$.ajax({
-			url:"${pageContext.request.contextPath}/slotResult",
-			type : "GET",
-			data : alldata,
-			dataType : "JSON",
-			success : function(data){
-				$('#first').html(data.n1);
-				$('#second').html(data.n2);
-				$('#third').html(data.n3);
-				if (data.win == "true") {
-					$('#messages').html("축하합니다. "+data.amount+"ETH를 얻으셨습니다.");
-				} else {
-					$('#messages').html("다음기회를 이용해주세요.");
-				}
-			},
-			error : function(){
-				alert("오류")
-			}
-		});
-	}
-</script>
 <style>
 body {
 	text-align: center;
@@ -93,6 +47,14 @@ p, a {
 .inputButton {
 	background: #FFD662;
 }
+#from{
+	padding: 6px 10px;
+	margin: 4px 0;
+	display: inline-block;
+	border: 1px solid #FFD662;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
 </style>
 <body>
 
@@ -125,10 +87,10 @@ p, a {
 
 			<div class="wrapper">
 				<p class="login">
-					ID: <input type="text" id="address"
-						value="0x565d241fd2f30474bae822254a6ccc03cc45df0e"> Pass:
-					<input type="password" id="pass" value="password"> <input
-						type="button" value="잔고확인" onClick="Balance();">
+					ID: <input type="file" id="from"><!-- <input type="text" id="address"> --> 
+					Password: <input type="password" id="password" value="password"> 
+					<input type="button" value="잔고확인" onClick="Balance();">
+					
 				</p>
 
 				<div id="machine">
@@ -159,11 +121,10 @@ p, a {
 
 				<p>
 					<select id="bet_amount">
-						<option value="200000000000000000">0.2</option>
-						<option value="400000000000000000">0.4</option>
-						<option value="600000000000000000">0.6</option>
-						<option value="800000000000000000">0.8</option>
-						<option value="1000000000000000000">1.0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
 					</select> <input type="button" value="Spin" onClick="spin()">
 				</p>
 
@@ -192,10 +153,58 @@ p, a {
 			</table>
 		</div>
 	</div>
-
-
-
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<!-- FOOTER  -->
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
+<script type="text/javascript">
+	function Balance(){
+		/* var address = $('#address').val(); */
+		var from = $('#from').val();
+		var alldata = {"from":from};
+		$('#balance').html("잔액을 조회중입니다.");
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/Balance",
+			type : "GET",
+			data : alldata,
+			success : function(data){
+				$('#balance').html(data);
+			},
+			error : function(){
+				alert("오류")
+			}
+		});
+	}
+	
+	function spin(){
+		/* var address = $('#address').val(); */
+		var from = $('#from').val();
+		var password = $('#password').val();
+		var value = $('#bet_amount').val();
+		var alldata = {'from':from,'password':password,'value':value};
+		$('#messages').html("결과를 출력중입니다.");
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/slotResult",
+			type : "GET",
+			data : alldata,
+			dataType : "JSON",
+			success : function(data){
+				$('#first').html(data.n1);
+				$('#second').html(data.n2);
+				$('#third').html(data.n3);
+				if (data.result == "true") {
+					$('#messages').html("축하합니다. "+data.reword+"ETH를 얻으셨습니다.");
+				} else {
+					$('#messages').html("다음기회를 이용해주세요.");
+				}
+			},
+			error : function(){
+				alert("오류")
+			}
+		});
+	}
+</script>
 </html>

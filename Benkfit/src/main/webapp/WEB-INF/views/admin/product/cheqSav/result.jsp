@@ -6,7 +6,7 @@
 <body>
 	<c:choose>
 		<c:when test="${cnt == 1}">
-			<c:redirect url="checkingRegi"/>
+			<c:redirect url="cheqSavRegi"/>
 		</c:when>
 	</c:choose>
 </body>

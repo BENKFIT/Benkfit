@@ -9,7 +9,6 @@
 <style>
   .wrapper3 {
     width:100%;
-    height:100%;
     vertical-align:middel;
     text-align:center;
   }
@@ -19,10 +18,6 @@
       margin-top:150px;
       width:90%;
       align:center;
-  }
-  
-  .wrapper1 {
-      
   }
   
   .btnarea {

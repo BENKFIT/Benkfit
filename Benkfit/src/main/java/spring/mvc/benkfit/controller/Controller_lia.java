@@ -214,4 +214,11 @@ public class Controller_lia {
 		logger.info("chatbot 호출중");
 		return "common/chatbot";
 	}
+	
+	// 자산관리 안내
+	@RequestMapping("financial_info")
+	public String financial_info() throws Exception {
+		logger.info("financial_info 호출중");
+		return "common/financial";
+	}
 }
