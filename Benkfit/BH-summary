@@ -478,6 +478,31 @@
 
 
 
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxwait="1000" name="jdbc/Oracle11g_benkfit" password="bank"
+		type="javax.sql.DataSource"
+		url="jdbc:oracle:thin:@115.91.88.226:15210:xe" username="bank" />
+		
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxWait="1000" name="jdbc/Oracle11Pjt_ban" password="tiger"
+		type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="jsp_Pjt" />
+
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxWait="1000" name="jdbc/Oracle11g" password="tiger"
+		type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="jsp" />
+
+	<Resource auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
+		maxWait="1000" name="jdbc/Oracle11g_security" password="tiger"
+		type="javax.sql.DataSource" url="jdbc:oracle:thin:@localhost:1521:xe"
+		username="scott" />
+
+	
 
 
 

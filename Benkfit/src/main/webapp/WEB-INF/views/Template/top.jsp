@@ -196,8 +196,6 @@
               data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
           </ul>
           </sec:authorize>
-          
-<<<<<<< HEAD
 					<!-- Submenu 1 금융상품 -->
 					<ul data-menu="submenu-1" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
@@ -270,7 +268,7 @@
 											<ul>
 												<li><a href="checkingList">예/적금</a></li>
 												<li><a href="loanList">대출</a></li>
-												<li><a href="create">지갑만들기</a></li>
+												<li><a href="wallet">지갑만들기</a></li>
 												<li><a href="bank">간편통장</a></li>
 												<li><a href="transfer">간편송금</a></li>
 											</ul></li>
@@ -285,7 +283,6 @@
 										<li><a href="firstVisit_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
-=======
           <!-- Submenu 1 금융상품 -->
           <ul data-menu="submenu-1" class="menu__level">
             <li class="menu__item"><a class="menu__link"
@@ -350,7 +347,10 @@
                     <li class="menu-has-children"><a href="checkingList">금융상품</a>
                       <ul>
                         <li><a href="checkingList">예/적금</a></li>
-                        <li><a href="#">대출</a></li>
+                        <li><a href="loanList">대출</a></li>
+                        <li><a href="wallet">지갑만들기</a></li>
+                        <li><a href="transfer">간편송금</a></li>
+                        <li><a href="bank">간편예금</a></li>
                       </ul></li>
                     <li class="menu-has-children"><a href="financial_info">자산관리</a>
                       <ul>
@@ -363,7 +363,6 @@
                     <li><a href="hoursOfUse_sws">안내</a></li>
                     <li><a href="eventList_sws">이벤트</a></li>
                     <!-- 시큐리티 권한 따라 메뉴 달라짐  -->
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
                     <sec:authorize access="isAnonymous()">
                       <li><a href="login">로그인</a><br></li>
                     </sec:authorize>
@@ -402,7 +401,6 @@
     <!-- /#page-content-wrapper -->
   </div>
   <!-- /#wrapper -->
-=======
 	<div id="wrapper">
 		<button type="button" class="hamburger is-closed"
 			data-toggle="offcanvas">
@@ -606,7 +604,6 @@
 									href="deluserPw">탈퇴</a></li>
 							</ul>
 						</sec:authorize>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 
 						<!-- Submenu 0 관리자메뉴 -->
 						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
@@ -716,7 +713,10 @@
 										<li class="menu-has-children"><a href="cheqSavList">금융상품</a>
 											<ul>
 												<li><a href="cheqSavList">예/적금</a></li>
-												<li><a href="#">대출</a></li>
+												<li><a href="loanList">대출</a></li>
+												<li><a href="wallet">지갑만들기</a></li>
+												<li><a href="bank">간편통장</a></li>
+												<li><a href="transfer">간편송금</a></li>
 											</ul></li>
 										<li class="menu-has-children"><a href="">자산관리</a>
 											<ul>
