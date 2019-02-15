@@ -26,7 +26,6 @@ import org.web3j.protocol.core.Request;
 import org.web3j.protocol.http.HttpService;
 
 import spring.mvc.benkfit.persistence.DAOImpl_syk;
-import spring.mvc.benkfit.sol.Basic;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 
@@ -142,7 +141,7 @@ public class ServiceImpl_syk implements Service_syk {
 			String account = newAccount.getAccountId();
 			System.out.println("newAccount =====> " + newAccount.getAccountId());
 			if(newAccount != null) {
-				success = true;
+				success = true; 
 				model.addAttribute("success",success);
 				System.out.println("새로운 계정을 만드는 함수입니다.");
 				System.out.println("새 계정의 입력받은 비밀번호 : " + password);
@@ -213,5 +212,43 @@ public class ServiceImpl_syk implements Service_syk {
 	public void admin(HttpServletRequest req) {
 		String password = req.getParameter("pwd");
 		admin.personalNewAccount(password);
+	}
+
+	//예금상품수정
+	@Override
+	public void cheqEdit(HttpServletRequest req) {
+		String num = req.getParameter("cheq_num");
+		
+		CheqProductVO vo = dao.cheqInfo(num);
+		req.setAttribute("vo", vo);
+	}
+
+	//적금상품수정
+	@Override
+	public void savEdit(HttpServletRequest req) {
+		String num = req.getParameter("sav_num");
+		
+		SavProductVO vo = dao.savInfo(num);
+		req.setAttribute("vo", vo);
+	}
+	
+	//예금상품삭제
+	@Override
+	public void cheqDel(HttpServletRequest req) {
+		String num = req.getParameter("cheq_num");
+		
+		int result = dao.cheqDel(num);
+		req.setAttribute("num", num);
+		req.setAttribute("result", result);
+	}
+	
+	//적금상품삭제
+	@Override
+	public void savDel(HttpServletRequest req) {
+		String num = req.getParameter("sav_num");
+		
+		int result = dao.savDel(num);
+		req.setAttribute("num", num);
+		req.setAttribute("result", result);
 	}
 }

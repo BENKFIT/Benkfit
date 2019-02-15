@@ -27,13 +27,13 @@ public class Controller_bh {
 	@RequestMapping("create")
 	public String create(HttpServletRequest req, Model model) throws Exception{
 		logger.info("create");
-		return "engine/create";
+		return "engine_bh/create";
 	}
 	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) throws Exception{
 		logger.info("CreateAccount");
 		service.createAccount(req, model);
-		return "engine/createAccount";
+		return "engine_bh/createAccount";
 	}
 	
 	/*
@@ -47,44 +47,57 @@ public class Controller_bh {
 	}
 	
 	/*
-	 * 슬롯머신 시작
+	 * 슬롯머신
 	 */
+	//슬롯머신메인
 	@RequestMapping("slot")
 	public String slot(HttpServletRequest req, Model model) throws Exception{
 		logger.info("slot");
 		return "common/event/slot";
 	}
-	
+	//슬롯머신플레이
 	@RequestMapping("slotResult")
 	public String slotResult(HttpServletRequest req, Model model) throws Exception{
 		logger.info("slotResult");
 		service.slot(req, model);
 		return "common/event/slotResult";
 	}
+
 	/*
-	 * 슬롯머신 종료
+	 * 대출
 	 */
+	//대출 목록
+	@RequestMapping("loanList")
+	public String checkingList() {
+		logger.info("loanList");
+		
+		return "common/product/loan/loanList";
+	}
 	
-	/*
-	 * 대출 시작
-	 */
-	//대출 신청
+	//대출 상품 정보
+	@RequestMapping("loanInfo")
+	public String loanInfo(HttpServletRequest req, Model model) throws Exception{
+		logger.info("loanInfo");
+		
+		return "common/product/loan/loanInfo";
+	}
+	
+	//담보대출신청폼
 	@RequestMapping("loan")
 	public String loan(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan");
-		return "engine/loan";
+		return "common/product/loan/loan";
 	}
 	
 	/*
 	 * 송금시작
 	 */
-	//송금하기
+	//송금메인
 	@RequestMapping("transfer")
 	public String transfer(HttpServletRequest req, Model model) throws Exception{
 		logger.info("transfer");
 		return "common/transfer/transfer";
 	}
-	
 	//송금완료
 	@RequestMapping("transferPro")
 	public String transferPro(HttpServletRequest req, Model model) throws Exception{
@@ -93,10 +106,33 @@ public class Controller_bh {
 		return "common/transfer/transferPro";
 	}
 	
-	
-	
-	
-	
-	
-
+	/*
+	 * 예금
+	 */
+	//예금메인
+	@RequestMapping("bank")
+	public String deposit(HttpServletRequest req, Model model) throws Exception{
+		return "engine_bh/bank";
+	}
+	//예금
+	@RequestMapping("depositPro")
+	public String depositPro(HttpServletRequest req, Model model) throws Exception{
+		logger.info("depositPro");
+		service.deposit(req, model);
+		return "engine_bh/depositPro";
+	}
+	//예금액보기
+	@RequestMapping("bankBalance")
+	public String bankBalance(HttpServletRequest req, Model model) throws Exception{
+		logger.info("bankBalance");
+		service.bankBalance(req, model);
+		return "engine_bh/bankBalance";
+	}
+	//예금 인출하기
+	@RequestMapping("bankWithdraw")
+	public String bankWithdraw(HttpServletRequest req, Model model) throws Exception{
+		logger.info("bankWithdraw");
+		service.bankWithdraw(req, model);
+		return "engine_bh/bankWithdraw";
+	}
 }
