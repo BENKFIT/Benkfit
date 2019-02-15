@@ -4,19 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>정보수정</title>
+
 </head>
 <body>
-	<%@ include file ="../Template/top.jsp" %>
-	
+	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
-		정보수정1 <br>
-		정보수정2 <br>
-		정보수정3 <br>
+		<div class="document">
+			<img src=" " id="preview">
+		</div>
 	</div>
-	
-	<%@ include file ="../Template/footer.jsp" %>
-
+	<%@ include file="../Template/footer.jsp"%>
 </body>
 </html>
+

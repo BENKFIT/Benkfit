@@ -9,6 +9,7 @@ import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MySavAccountVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
+import spring.mvc.benkfit.vo.PriceVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
@@ -70,4 +71,9 @@ public interface DAO_lia {
 	public List<TransDetailVO> getCheqTrans(Map<String, Object> map);
 	public List<TransDetailVO> getSavTrans(Map<String, Object> map);
 	public List<TransDetailVO> getLoanTrans(Map<String, Object> map);
+	
+	// 코인 시세
+	public int insertCoins(Map<String, String> name);
+	public int updateCoins(Map<String, Object> vals);
+	public List<PriceVO> selectCoins();
 }

@@ -5,33 +5,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>정보수정</title>
+<title>서류 조회</title>
 </head>
 <body>
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
-		<table class="table_kay">
+		<table class="upinfo">
+			<tr>
+				<th>서류 번호</th>
+				<th>서류 명</th>
+				<th>서류 내용</th>
+				<th>서류 날짜</th>
+			</tr>
 			<c:forEach var="doc" items="${docu}">
 				<tr>
-					<th>서류 번호</th>
-					<td><input type="text" class="inputStyle" value="${doc.doc_num}" disabled></td>
-				</tr>
-				<tr>
-					<th>서류 명</th>
-					<td><input type="text" class="inputStyle" value="${doc.doc_name}" disabled></td>
-				</tr>
-				<tr>
-					<th>서류 내용</th>
-					<td><input type="text" class="inputStyle" value="${doc.doc_content}" disabled></td>
-				</tr>
-				<tr>
-					<th>서류 날짜</th>
-					<td><input type="text" class="inputStyle" value="${doc.doc_date}" disabled></td>
+					<td><input type="text" class=""value="${doc.doc_num}" disabled></td>
+					<td><input type="text" 	value="${doc.doc_name}" disabled></td>
+					<td><input type="text" value="${doc.doc_content}" disabled></td>
+					<td><input type="text" value="${doc.doc_date}" disabled></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
-
 </body>
 </html>

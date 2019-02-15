@@ -1,4 +1,7 @@
 @charset "UTF-8";
+#body{
+	position:relative;
+}
 
 #mypage {
 	margin-top: 100px;
@@ -118,7 +121,8 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	/* background-color: rgba(255,214,98,0.1); */
 	border: 3px solid #FFD662;
 	text-align: center;
-	width: 50%;
+	width: 80%;
+    height: 30%;
 	margin: auto;
 }
 
@@ -156,7 +160,6 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	color: #FFD662;
 	margin: 15px;
 }
-
 .trBtn {
 	text-align: center;
 }
@@ -222,3 +225,6 @@ input[class="date_kay"], focus {
 	-moz-box-shadow: none;
 }
 /* ------------------ */
+.User_Profile{
+	list-style : none;
+}

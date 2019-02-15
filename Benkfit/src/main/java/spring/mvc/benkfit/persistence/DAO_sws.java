@@ -26,6 +26,8 @@ public interface DAO_sws {
 
 	public UsersVO getMemberInfo(String id);
 	
+/*	public UsersVO getMemberInfo2(String id);*/
+	
 	public JSONObject getYearChat();
 	
 	public JSONObject getMonthChat();

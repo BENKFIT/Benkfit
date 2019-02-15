@@ -24,7 +24,7 @@
   
   <!-- 회원 로그인 -->
   <select id="user_login" parameterType="String" resultType="spring.mvc.benkfit.vo.UsersVO">
-   select * from users_tbl where c_id=#{id}
+  	 select * from users_tbl where c_id=#{id}
   </select>
   
   <!-- 관리자 로그인 -->
@@ -188,5 +188,23 @@
                          and t.tran_account = #{account} order by t.tran_date desc))
         where rNum >= #{start} and rNum <= #{end}
     ]]>
+  </select>
+  
+  <!-- 코인 종류셋 -->
+  <insert id="insertCoins" parameterType="java.util.Map">
+    insert into coins(name) values(#{name})
+  </insert>
+  
+  <!-- 코인 변동값 업데이트  -->
+  <update id="updateCoins" parameterType="java.util.Map">
+    update coins 
+    set marketprice=#{marketprice}, changeNum=#{changeNum}, 
+        changePer=#{changePer}, sort_amount=#{sort_amount}, total=#{total}
+    where name=#{name}
+  </update>
+  
+  <!-- 코인 정보 -->
+  <select id="selectCoins" resultType="spring.mvc.benkfit.vo.PriceVO">
+    select * from coins order by marketprice desc
   </select>
 </mapper>

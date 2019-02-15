@@ -18,80 +18,113 @@ public class UsersVO {
 	private Date c_regDate; 	/* 고객 가입날짜 */
 	private String c_level; 	/* 고객 등급 */
 	private String c_idCard;    /* 신분증 */
+	private int c_qr;			/* qr발급여부 */
 	
+	
+	public int getC_qr() {
+		return c_qr;
+	}
+
+	public void setC_qr(int c_qr) {
+		this.c_qr = c_qr;
+	}
+
 	public String getC_id() {
 		return c_id;
 	}
+
 	public void setC_id(String c_id) {
 		this.c_id = c_id;
 	}
+
 	public String getC_pwd() {
 		return c_pwd;
 	}
+
 	public void setC_pwd(String c_pwd) {
 		this.c_pwd = c_pwd;
 	}
+
 	public String getC_name() {
 		return c_name;
 	}
+
 	public void setC_name(String c_name) {
 		this.c_name = c_name;
 	}
+
 	public String getC_address() {
 		return c_address;
 	}
+
 	public void setC_address(String c_address) {
 		this.c_address = c_address;
 	}
+
 	public String getC_post() {
 		return c_post;
 	}
+
 	public void setC_post(String c_post) {
 		this.c_post = c_post;
 	}
+
 	public String getC_hp() {
 		return c_hp;
 	}
+
 	public void setC_hp(String c_hp) {
 		this.c_hp = c_hp;
 	}
+
 	public String getC_jumin1() {
 		return c_jumin1;
 	}
+
 	public void setC_jumin1(String c_jumin1) {
 		this.c_jumin1 = c_jumin1;
 	}
+
 	public String getC_jumin2() {
 		return c_jumin2;
 	}
+
 	public void setC_jumin2(String c_jumin2) {
 		this.c_jumin2 = c_jumin2;
 	}
+
 	public String getC_email() {
 		return c_email;
 	}
+
 	public void setC_email(String c_email) {
 		this.c_email = c_email;
 	}
+
 	public Date getC_regDate() {
 		return c_regDate;
 	}
+
 	public void setC_regDate(Date c_regDate) {
 		this.c_regDate = c_regDate;
 	}
+
 	public String getC_level() {
 		return c_level;
 	}
+
 	public void setC_level(String c_level) {
 		this.c_level = c_level;
 	}
+
 	public String getC_idCard() {
 		return c_idCard;
 	}
+
 	public void setC_idCard(String c_idCard) {
 		this.c_idCard = c_idCard;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Users [c_id=" + c_id + ", c_pwd=" + c_pwd + ", c_name=" + c_name + ", c_address=" + c_address

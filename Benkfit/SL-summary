@@ -1,3 +1,7 @@
+19/02/13
+  servlet-context & security-datasource 충돌 
+   -> security-datasource에서 sqlsession부분 주석처리
+===============================================================================================
 19/02/12 
 pom.xml에 챗봇 추가
 
