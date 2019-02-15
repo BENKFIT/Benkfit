@@ -207,4 +207,18 @@ public class Controller_lia {
 		service.selTransaction(req, model);
 		return "admin/users/selTransaction";
 	}
+	
+	// 챗봇
+	@RequestMapping("chatbot")
+	public String chatbot() throws Exception {
+		logger.info("chatbot 호출중");
+		return "common/chatbot";
+	}
+	
+	// 자산관리 안내
+	@RequestMapping("financial_info")
+	public String financial_info() throws Exception {
+		logger.info("financial_info 호출중");
+		return "common/financial";
+	}
 }

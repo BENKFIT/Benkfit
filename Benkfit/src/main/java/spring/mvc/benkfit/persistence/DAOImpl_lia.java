@@ -111,10 +111,16 @@ public class DAOImpl_lia implements DAO_lia {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.search_sav", keyword);
 	}
 
+	// 관리자메뉴 > 회원 수
+	@Override
+	public int howManyUsers() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.howManyUsers");
+	}
+	
 	// 관리자메뉴 > 회원 조회
 	@Override
-	public List<UsersVO> selectUsers() {
-		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers");
+	public List<UsersVO> selectUsers(Map<String, Object> map) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectUsers", map);
 	}
 
 	// 관리자메뉴 > 회원 삭제
@@ -131,7 +137,7 @@ public class DAOImpl_lia implements DAO_lia {
 
 	// 관리자메뉴 > 회원별 예금 조회
 	@Override
-	public List<myCheqAccount_kay> selectCheq(String id) {
+	public List<myCheqAccountVO> selectCheq(String id) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCheq", id);
 	}
 	
@@ -143,7 +149,7 @@ public class DAOImpl_lia implements DAO_lia {
 
 	// 관리자메뉴 > 회원별 대출 조회
 	@Override
-	public List<MyloanAccount_kay> selectLoan(String id) {
+	public List<MyloanAccountVO> selectLoan(String id) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectLoan", id);
 	}
 
@@ -171,6 +177,4 @@ public class DAOImpl_lia implements DAO_lia {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.getLoanTrans", map);
 	}
 
-	
-	
 }

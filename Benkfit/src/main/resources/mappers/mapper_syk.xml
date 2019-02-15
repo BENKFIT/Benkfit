@@ -6,13 +6,49 @@
 	
 <mapper namespace="spring.mvc.benkfit.persistence.DAO_syk">
 
-	<select id="checkingRegi" resultType="spring.mvc.benkfit.vo.CheqProductVO">
-		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period FROM cheqproduct_tbl
+	<!-- 예금상품목록 -->
+	<select id="checkingList" resultType="spring.mvc.benkfit.vo.CheqProductVO">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period 
+		FROM cheqproduct_tbl
+		ORDER BY cheq_num DESC
+	</select>
+	
+	<!-- 예금정보 -->
+	<select id="cheqInfo" resultType="spring.mvc.benkfit.vo.CheqProductVO" parameterType="String">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period
+		FROM cheqproduct_tbl
+		WHERE cheq_num = #{num}
+	</select>
+	
+	<!-- 적금정보 -->
+	<select id="savInfo" parameterType="String">
+		SELECT sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate, sav_period
+		FROM savProduct_tbl
+		WHERER sav_num = #{num}
 	</select>
 
-	<insert id="cheqRegiPro" parameterType="spring.mvc.benkfit.vo.CheqProductVO">
+	<!-- 예금상품등록 -->
+	<insert id="RegiCheq" parameterType="spring.mvc.benkfit.vo.CheqProductVO">
 		INSERT INTO cheqproduct_tbl(cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_limit, cheq_period)
 		VALUES(cheqPro_seq.nextval, #{cheq_name}, #{cheq_rate}, #{cheq_type}, #{cheq_target}, #{cheq_limit}, #{cheq_period})
 	</insert>
-
+	
+	<!-- 적금상품등록 -->
+	<insert id="RegiSaving" parameterType="spring.mvc.benkfit.vo.CheqProductVO">
+		INSERT INTO savProduct_tbl(sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate, sav_period, sav_autotrans)
+		VALUES(savPro_seq.nextval, #{sav_name}, #{sav_limit}, #{sav_period}, #{sav_target}, #{sav_rate}, #{sav_period}, #{sav_autotrans})
+	</insert>
+	
+	<!-- 예금계좌생성 -->
+	<insert id="createCheq" parameterType="java.util.Map">
+		INSERT INTO myCheqAccount_tbl(myCheq_account, myCheq_pwd ,cheq_num, c_id)
+		VALUES(#{account}, #{pwd}, #{num}, #{id})
+	</insert>
+	
+	<!-- 적금계좌생성 -->
+	<insert id="createSav" parameterType="java.util.Map">
+		INSERT INTO mySavAccount_tbl(mySav_account, mySav_account, sav_num, c_id)
+		VALUES(#{account}, #{pwd}, #{num}, #{id})
+	</insert>
+	
 </mapper>

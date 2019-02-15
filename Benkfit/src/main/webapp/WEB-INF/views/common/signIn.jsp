@@ -11,7 +11,6 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <link href="http://cdn.materialdesignicons.com/2.1.99/css/materialdesignicons.min.css" rel="stylesheet" />
 <style>
 	#file {
@@ -56,8 +55,6 @@
 		font-weight:bold;
 	}
 </style>
-
-
 <script type="text/javascript">
 	//파일업로드 버튼 기능
 	function selectFile() {
@@ -435,7 +432,7 @@
 
 <%@ include file ="../Template/top.jsp" %>
 
-<div class="container2" style="margin-top:150px; margin-bottom:150px;">
+<div class="container2" style="margin-top:150px; margin-bottom:70px;">
 	<div class="row">
 		<div class="col-lg-4 col-md-4 mx-auto">
 		<div class="card">

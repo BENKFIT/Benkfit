@@ -125,7 +125,7 @@ td, tr>th, p {
 			</tbody>
 		</table>
 	</div>
-	<div style="height: 40%; width: 100%; text-align: center;">
+	<div style="height: 20%; width: 100%; text-align: center;">
 		<br>
 		<p style="font-size: 20px;">외환</p>
 		<div style="display: inline-block; width: 61%;">

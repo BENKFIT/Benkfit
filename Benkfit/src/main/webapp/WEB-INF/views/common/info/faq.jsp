@@ -26,9 +26,9 @@ pre{
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-<div class="wrapper">
+<div style="text-align: center;">
 	<!-- <div style="margin: 250px 0px; text-align: center;"> -->
-	<div style="display: inline-block;">
+	<div style="display: inline-block; margin-top: 200px;">
 		<h2><img src="/benkfit/resources/img/48.png">자주묻는질문</h2>
 		<br>
 		<details>
