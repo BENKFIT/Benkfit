@@ -20,7 +20,6 @@ public class DAOImpl_lia implements DAO_lia {
 	public int id_check(String strId) {
 		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_lia.id_check", strId);
 	}
-
 	// 실명 확인
 	@Override
 	public int name_check(Map<String, Object> map) {

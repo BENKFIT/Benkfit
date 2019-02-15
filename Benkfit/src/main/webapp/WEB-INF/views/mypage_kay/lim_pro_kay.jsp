@@ -3,14 +3,13 @@
     <%@ include file="../Template/setting.jsp"%>
 <html>
 <body>
-	<c:if test="${limit >= 1 }">
+	<c:if test="${limCnt == 1}">
 		<script type="text/javascript">
 				alert("수정성공");
 				window.location="limit_sel";
 		</script>
 	</c:if>
-	
-	<c:if test="${limit == 0 }">
+	<c:if test="${limCnt != 1}">
 		<script type="text/javascript">
 				alert("수정실패");
 		</script>

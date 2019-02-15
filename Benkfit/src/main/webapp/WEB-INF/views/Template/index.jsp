@@ -54,6 +54,16 @@ tr>td {
 </script>
 </head>
 <body>
+<<<<<<< HEAD
+=======
+
+	<!-- TOP&SIDE -->
+	<%@ include file="./top.jsp"%>
+<%-- 	<%@ include file="./NewFile.jsp"%> --%>
+	
+  <%@ include file="../common/chatbot.jsp"%>
+  
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 	<!-- CONTENT -->
 	<div>
 	<div id="wrapper" style="height:4000px;">

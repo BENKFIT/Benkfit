@@ -19,7 +19,7 @@
 	<%@ include file="../../../Template/top.jsp"%>
 
 	<!-- Table -->
-	<div style="margin: 100px 0px;">
+	<div style="margin: 200px 0px;">
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 
@@ -59,7 +59,7 @@
 							<ul class="list-unstyled mb-5 position-relative">
 								<li><b>가입대상(등급)</b> ${list.cheq_target}</li>
 								<li><b>예금종류</b> ${list.cheq_type}</li>
-								<li><b>저축금액 </b> ${list.cheq_limit}</li>
+								<li><b>저축금액 </b> ~${list.cheq_limit}</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom"
@@ -67,14 +67,17 @@
 						</div>
 					</div>
 				</c:forEach>
-
+			</div>
+		</div>
+		<hr>
+		<div class="container-fluid bg-gradient p-5">
+			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				<c:forEach var="list" items="${sav}">
 					<div class="center-block col-4 princing-item blue">
 						<div class="pricing-divider ">
 							<h3 class="text-light">${list.sav_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
-								<span class="h3">Ether</span> ${list.sav_rate}% <span
-									class="h5">/year</span>
+								<span class="h3">Ether</span> ${list.sav_rate}% <span class="h5">/year</span>
 							</h4>
 							<svg class='pricing-divider-img'
 								enable-background='new 0 0 300 100' height='100px' id='Layer_1'
@@ -105,7 +108,7 @@
 							<ul class="list-unstyled mb-5 position-relative">
 								<li><b>가입대상(등급)</b> ${list.sav_target}</li>
 								<li><b>예금종류</b> ${list.sav_type}</li>
-								<li><b>저축금액 </b> ${list.sav_limit}</li>
+								<li><b>저축금액 </b> ~${list.sav_limit}</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom2"

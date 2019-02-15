@@ -5,68 +5,183 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  	<mapper namespace="spring.mvc.benkfit.persistence.DAO_kay">
+ 	
+ 		<!-- 내정보  -->
+ 		<select id="mypage_info" resultType="spring.mvc.benkfit.vo.UsersVO">
+ 			select * 
+ 			from users_tbl
+ 			where c_id = #{id}
+ 		</select>
  		
- 		<!-- 예금관리 -->
+ 		<!-- 예금관리 --><!-- 이체한도 조회 -->
  		<select id="myCheq_list" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
  			select * 
  			from myCheqAccount_tbl
- 			where c_id = #{strId}
+ 			where c_id = #{id}
  		</select>
  		
  		<!-- 대출관리  -->
- 		<!-- <select id="myloan_list" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+ 		<select id="myloan_list" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
  			select *
  			from MyloanAccount_tbl
- 			 where  c_id = #{id}
- 		</select> -->
- 		
- 		<!-- 대출상세  -->
- 	<!-- 	<select id="" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
- 			select *
-			from loanProduct_tbl lp, loanRates_tbl lr, MyloanAccount_tbl la
-			where lp.loan_num =la.loan_num and lr.loan_num=la.loan_num
-			AND  where  c_id = #{id}
- 		</select> -->
- 		
- 		<!-- 내서류관리 -->
- 		<!-- <select id ="docu_list" resultType="spring.mvc.benkfit.vo.documentVO">
- 			select * 
- 			from document_tbl 
- 			where  c_id = #{id}
- 		</select> -->
- 		
- 		<!--  내서류 등록 -->
- 	<!-- 	<insert id="docu_upload" parameterType="spring.mvc.benkfit.vo.documentVO" >
-			INSERT INTO document_tbl(doc_num, doc_name, doc_content, doc_date, c_id, doc_img)
-			VALUES(#{doc_num}, #{doc_name}, #{doc_content}, sysdate, 'id1234', #{doc_img})	 		
- 		</insert>
- 		 -->
- 		<!-- qrcode -->
- 	<!-- 	<select id="qrcode" resultType="spring.mvc.benkfit.vo.UsersVO">
- 			select c_id, c_name, c_hp
- 			from users_tbl
- 			where  c_id = #{id}
+ 			where c_id = #{id}
  		</select>
- 		 -->
- 		<!-- 내정보 -->
- 	<!-- 	<select id="info" resultType="spring.mvc.benkfit.vo.UsersVO">
+ 		
+ 		<!-- 적금관리  -->
+ 		<select id="mysav_list" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+ 			select *
+ 			from mySavAccount_tbl
+ 			where c_id = #{id}
+ 		</select>
+ 		
+ 		<!-- id& pwd check  -->
+	   <select id="idPwdChk" resultType="int">
+			SELECT count(*) 
+			FROM users_tbl 
+			WHERE c_id = #{id} and c_pwd =#{pwd}
+		</select>
+	
+ 		<!-- 내정보- 폼 -->
+ 		<select id="info" resultType="spring.mvc.benkfit.vo.UsersVO">
  			select *
  			from users_tbl
- 			where  c_id = #{id}
- 		</select> -->
+ 			where c_id = #{id} 
+ 		</select>
  		
- 		<!-- 이체한도 조회 -->
- 	<!-- 	<select id="limit_sel" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
-	 		select myCheq_limit 
-	 		from  myCheqAccount_tbl 
-	 		where c_id = #{id} and myCheq_account = '118-1111-1111'
- 		</select> -->
+ 		<!--  내정보- 수정처리 -->
+ 		<update id="up_info" parameterType="spring.mvc.benkfit.vo.UsersVO">
+ 			update users_tbl
+ 			set c_pwd= #{c_pwd}, c_address=  #{c_address}, c_post= #{c_post}, c_hp= #{c_hp}, c_email= #{c_email}
+ 			where c_id = #{c_id}
+ 		</update>
  		
- 		<!-- 이체한도 수정 -->
- 	<!-- 	<update id="limit_up" parameterType="int" >
- 			update myCheqAccount_tbl 
-			set myCheq_limit = #{lim}
+ 		<!-- qr생성후 코드 업데이트 -->
+ 		<update id="qrPro" parameterType="spring.mvc.benkfit.vo.UsersVO">
+ 			update users_tbl
+ 			set c_qr = 1
+ 			where c_id = #{id}
+ 		</update>
+ 		
+ 		<!-- qrcode -->
+ 		<select id="qrcode" resultType="spring.mvc.benkfit.vo.UsersVO">
+			select c_id, c_name, c_hp, c_pwd, c_qr
+			from users_tbl
 			where c_id = #{id}
- 		</update> -->
+ 		</select>
  		
+ 		<!-- 탈퇴전 예금계좌 잔액 확인. -->
+ 		<select id="chk_cheq" resultType="int" parameterType="java.util.Map">
+			select NVL(sum(mycheq_amount), 0)
+			from mycheqaccount_tbl
+			where c_id = #{id} AND mycheq_amount IS NOT NULL
+ 		</select>
+ 		
+ 		<!-- 탈퇴전 대출계좌 잔액 확인. -->
+ 		<select id="chk_loan" resultType="int">
+ 			select NVL(sum(myloan_amount), 0)
+			from myloanaccount_tbl
+			where c_id = #{id}
+ 		</select>
+ 		
+ 		<!-- 탈퇴전 적금계좌 잔액 확인. -->
+ 		<select id="chk_sav" resultType="int">
+			select NVL(sum(mysav_amount), 0)
+			from mysavaccount_tbl
+			where c_id = #{id}
+ 		</select>
+ 		
+ 		<!-- 회원탈퇴  -->
+ 		<delete id="del_mem" parameterType="String">
+ 			delete from users_tbl 
+ 			where c_id = #{id} 
+ 		</delete>
+ 	
+ 		<!-- 이체한도 수정 -->
+ 		<update id="limit_up" parameterType="java.util.Map" >
+ 			update myCheqAccount_tbl 
+			set myCheq_limit = #{myCheq_limit}
+			where c_id = #{c_id} and myCheq_account = #{myCheq_account}
+ 		</update>
+ 		
+ 		<!-- 예금 계좌 조회 -->
+ 		<select id="selCheq" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+ 			select *
+			from myCheqAccount_tbl
+			where c_id = #{id} AND mycheq_account = #{cheq_account}
+ 		</select>
+ 		
+ 		<!-- 입급 금액 합계 -->
+		<select id="cheqIn" resultType="int">
+			select NVL(sum(tran_amount),0)
+			from transdetail_tbl
+			where c_id =  #{id} and tran_account = #{cheq_account} and tran_type = '입금'
+			    <if test ="start_date != null and end_date != null">
+			       and tran_date between #{start_date} and #{end_date}
+				</if>
+		</select>
+		
+		<!-- 출금금액 합계-->
+		<select id="cheqOut" resultType="int">
+			select NVL(sum(tran_amount),0)
+			from transdetail_tbl
+			where c_id =  #{id} and tran_account = #{cheq_account} and tran_type ='출금'
+			   <if test ="start_date != null and end_date != null">
+			  	  and tran_date between #{start_date} and #{end_date}
+				</if>
+		</select>
+		
+		<!-- 거래내역 조회  -->
+		<select id="sel_cheq" resultType="spring.mvc.benkfit.vo.TransDetailVO">
+			select *
+			from transdetail_tbl
+			where c_id = #{id} and tran_account = #{cheq_account}
+				<if test="type == 1">
+					 and tran_type in ('출금', '입금')
+				 </if>
+				<if test="type == 2">
+					 and tran_type ='입금'
+				 </if>
+				 <if test="type == 3">
+					 and tran_type ='출금'
+				 </if>
+				  <if test ="start_date != null and end_date != null">
+			   		 and tran_date between #{start_date} and #{end_date}
+			    </if>
+			  	<if test="order == 4">
+			   	 	order by tran_date desc
+			    </if>
+			    <if test="order == 5">
+			   	 	order by tran_date asc
+			    </if>
+		</select>
+		
+		<!-- 계좌잔액 조회 -->
+	<!-- 	<select id="delChe" resultType="int" parameterType="java.util.Map">
+			select NVL(sum(mycheq_amount), 0)
+			from mycheqaccount_tbl
+			where c_id = #{id} AND mycheq_account = #{cheq_account}
+			AND mycheq_amount IS NOT NULL
+ 		</select> -->
+ 		
+ 		<!-- 계좌pw 체크 -->
+	
+		<!-- 계좌탈퇴 -->
+		
+		<!-- 예금계좌 해지  -->
+		<!-- <delete id="del_cheq" parameterType="java.util.Map">
+			delete  from mycheqaccount_tbl
+			where c_id = #{id} and mycheq_account = #{};
+		</delete> -->
+		<!-- 내서류관리 -->
+		<select id ="docu_list" resultType="spring.mvc.benkfit.vo.documentVO"> 
+			select * from document_tbl where c_id = #{id} 
+		</select>
+
+		<!-- 내서류 등록 -->
+		<insert id="docu_upload" parameterType="spring.mvc.benkfit.vo.documentVO" >
+			 INSERT INTO document_tbl(doc_num, doc_name, doc_content, doc_date ,c_id, doc_img)
+			 VALUES(doc_num_seq.nextval, #{doc_name, jdbcType=VARCHAR}, #{doc_content , jdbcType=VARCHAR}, sysdate ,#{c_id, jdbcType=VARCHAR}, #{doc_img , jdbcType=VARCHAR})
+		 </insert>
+ 		
+ 	
  	</mapper>

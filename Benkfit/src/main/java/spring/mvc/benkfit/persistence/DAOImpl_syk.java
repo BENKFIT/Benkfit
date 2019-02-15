@@ -18,13 +18,13 @@ public class DAOImpl_syk implements DAO_syk{
 	//예금상품리스트조회
 	@Override
 	public List<CheqProductVO> cheqList() {
-		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.checkingList");
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.cheqList");
 	}
 	
 	//적금상품리스트조회
 	@Override
 	public List<SavProductVO> savList(){
-		return null;
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.savList");
 	}
 	
 	//예금상품조회
@@ -35,7 +35,7 @@ public class DAOImpl_syk implements DAO_syk{
 	
 	//적금상품조회
 	public SavProductVO savInfo(String num) {
-		return null;
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.savInfo", num);
 	}
 
 	//예금계좌생성
@@ -60,6 +60,18 @@ public class DAOImpl_syk implements DAO_syk{
 	@Override
 	public int RegiCheq(CheqProductVO vo) {
 		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.RegiCheq", vo);
+	}
+	
+	//예금상품삭제
+	@Override
+	public int cheqDel(String num) {
+		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_syk.cheqDel", num);
+	}
+
+	//적금상품삭제
+	@Override
+	public int savDel(String num) {
+		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_syk.savDel", num);
 	}
 	
 }
