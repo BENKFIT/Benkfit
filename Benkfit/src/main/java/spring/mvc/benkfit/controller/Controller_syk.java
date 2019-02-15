@@ -97,16 +97,16 @@ public class Controller_syk {
 		logger.info("예금계좌생성");
 		service.createCheq(req, model);
 		
-		return "admin/product/cheqSav/result";
+		return "common/product/cheqSav/result";
 	}
 	
-	//예금계좌생성
+	//적금계좌생성
 	@RequestMapping("createSav")
 	public String createSav(HttpServletRequest req, Model model) {
 		logger.info("예금계좌생성");
 		service.createSav(req, model);
 		
-		return "admin/product/cheqSav/result";
+		return "common/product/cheqSav/result";
 	}
 	
 	//예금상품수정

@@ -68,7 +68,8 @@ public class ServiceImpl_bh implements Service_bh {
 //		}else {
 			//키스토어파일로 계정주소 만들기
 		String a1 = req.getParameter("from");
-		String b1 = a1.substring(a1.length()-45, a1.length()-5);
+		//String b1 = a1.substring(a1.length()-45, a1.length()-5);
+		String b1 = a1.substring(49);
 		String c1 = "0x";
 		String from = c1.concat(b1);
 		System.out.println(">계정 주소 추출 : " + from);
@@ -174,8 +175,10 @@ public class ServiceImpl_bh implements Service_bh {
 		System.out.println("\n==========>진입중\n");
 		System.out.println("\n==========>받은값 검사 중\n");
 
+		//String fileSource = path.concat(req.getParameter("from").substring(12));
 		String fileSource = path.concat(req.getParameter("from").substring(12));
-		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		String from = fn.concat(req.getParameter("from").substring(49));
 		
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");

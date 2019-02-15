@@ -161,6 +161,7 @@ public class ServiceImpl_syk implements Service_syk {
 		}
 
 		req.setAttribute("Accountcnt", result);	
+		req.setAttribute("num", num);
 	}
 
 	//적금계좌생성
