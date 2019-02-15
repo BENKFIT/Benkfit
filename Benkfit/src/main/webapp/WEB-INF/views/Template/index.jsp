@@ -41,6 +41,8 @@ tr>td {
 
 	<!-- TOP&SIDE -->
 	<%@ include file="./top.jsp"%>
+<%-- 	<%@ include file="./NewFile.jsp"%> --%>
+	
   <%@ include file="../common/chatbot.jsp"%>
   
 	<!-- CONTENT -->

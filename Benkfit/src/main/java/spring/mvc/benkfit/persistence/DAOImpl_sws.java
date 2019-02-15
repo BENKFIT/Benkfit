@@ -69,6 +69,13 @@ public class DAOImpl_sws implements DAO_sws {
 		return u;
 	}
 	
+/*	@Override
+	public UsersVO getMemberInfo2(String id) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		UsersVO u = mapper.getMemberInfo2(id);
+		return u;
+	}*/
+	
 	// 연별 차트
 	@SuppressWarnings("unchecked")
 	@Override

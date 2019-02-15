@@ -137,7 +137,6 @@ public class ServiceImpl_lia implements Service_lia {
 		System.out.println("selectCnt: " + selectCnt);
 		model.addAttribute("id", strId);
 	}
-
 	// 실명확인
 	@Override
 	public void nameCheck(HttpServletRequest req, Model model) {
@@ -161,7 +160,6 @@ public class ServiceImpl_lia implements Service_lia {
 	@Override
 	public String encryptSHA256(String str) {
 		String pwd = "";
-		
 		try {
 	    	MessageDigest md = MessageDigest.getInstance("SHA-256"); 
 	    	md.update(str.getBytes()); 
@@ -179,7 +177,6 @@ public class ServiceImpl_lia implements Service_lia {
 	      }
 	     return pwd;
 	}
-
 	// 회원가입 처리
 	@Override
 	public void signInPro(MultipartHttpServletRequest req, Model model) {
@@ -323,7 +320,6 @@ public class ServiceImpl_lia implements Service_lia {
 			} 
 		}
 	}
-
 	// 임시 비밀번호 이메일 보내기
 	@Override
 	public void sendEmail(Map<String, String> map) {

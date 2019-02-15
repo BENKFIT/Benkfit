@@ -24,7 +24,7 @@
   
   <!-- 회원 로그인 -->
   <select id="user_login" parameterType="String" resultType="spring.mvc.benkfit.vo.UsersVO">
-   select * from users_tbl where c_id=#{id}
+  	 select * from users_tbl where c_id=#{id}
   </select>
   
   <!-- 관리자 로그인 -->
