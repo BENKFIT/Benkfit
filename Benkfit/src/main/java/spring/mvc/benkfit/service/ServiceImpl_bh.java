@@ -31,7 +31,12 @@ public class ServiceImpl_bh implements Service_bh {
 	Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 	//테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
+<<<<<<< HEAD
 	final String path = "/Users/banhun/2_net/keystore/";
+=======
+	//final String path = "/Users/banhun/2_net/keystore/";
+	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 	int chkNum = 0;
 	
 //	로그인하기위한 경로
@@ -83,7 +88,11 @@ public class ServiceImpl_bh implements Service_bh {
 	 * 계정생성하기
 	 */
 	@Override
+<<<<<<< HEAD
 	public void createAccount(HttpServletRequest req, Model model)throws Exception {
+=======
+	public void createAccount(HttpServletRequest req, Model model) throws Exception {
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		System.out.println("\n==========>진입중\n");
 		System.out.println("\n==========>받은값 검사 중\n");
 		String password = req.getParameter("password");
@@ -187,7 +196,12 @@ public class ServiceImpl_bh implements Service_bh {
 			System.out.println("\n==========>컨트랙트 진입 중\n");
 			@SuppressWarnings("deprecation")
 			//슬롯을 수정해서 새로 배포하면 해당 주소를 바꿔줘야함.
+<<<<<<< HEAD
 			Slot contract = Slot.load("0xc43b4e39633fda5050e8faf18a5e23190cb2bd74", web3, credentials, gasPrice, gasLimit);
+=======
+			//Slot contract = Slot.load("0xc43b4e39633fda5050e8faf18a5e23190cb2bd74", web3, credentials, gasPrice, gasLimit);
+			Slot contract = Slot.load("0xb824ebcb0A3cdDdC8bBFd2FFC636aB1067Ac74b8", web3, credentials, gasPrice, gasLimit);
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 			
 			//몇번째 게임인지 카운트를 누르고 시작
 			TransactionReceipt count = contract.count().send();
@@ -230,8 +244,19 @@ public class ServiceImpl_bh implements Service_bh {
 		System.out.println("\n==========>받은값 검사 중\n");
 
 		String fileSource = path.concat(req.getParameter("from").substring(12));
+<<<<<<< HEAD
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+=======
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		
+<<<<<<< HEAD
+=======
+		//훈이오빠
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//유경
+		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-37));
+		
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		String password = req.getParameter("password");
 		System.out.println("\n==========>지갑 로그인 중\n");
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);

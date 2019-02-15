@@ -58,20 +58,20 @@ input, select {
 		<div style="display: inline-block;">
 			<!-- 등록 -->
 			<div class="listBox" style="position: relative;">
-				<button type="button" class="btn btn-primary"
+				<button class="btn btn-primary"
 					style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); background: rgba(255, 255, 255, 1.0); border: none;"
 					data-toggle="modal" data-target="#exampleModalCenter">&#43;</button>
 			</div>
 		</div>
 	</div>
-
-
+	<hr>
 	<div style="margin: 100px 0px;">
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
-
+				
+				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
 				<c:forEach var="list" items="${cheq}">
-					<div class="center-block col-4 princing-item red">
+					<div class="center-block col-4 princing-item red" style="margin: 30px 0px;">
 						<div class="pricing-divider ">
 							<h3 class="text-light">${list.cheq_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
@@ -109,19 +109,27 @@ input, select {
 								<li><b>저축금액 </b> ${list.cheq_limit}</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
-							<button type="button" class="btn btn-lg btn-block  btn-custom"
-								onclick="cheqEdit();">수정/삭제</button>
+							<button type="button" class="btn btn-lg btn-block  btn-custom" class="btn btn-primary"
+								data-toggle="modal" data-target="#editCheq"
+								onclick="cheqEdit('${list.cheq_num}');">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
-
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div style="margin: 100px 0px;">
+		<div class="container-fluid bg-gradient p-5">
+			<div class="row mx-auto text-center w-75" style="text-align: center;">
+			
+			<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
 				<c:forEach var="list" items="${sav}">
-					<div class="center-block col-4 princing-item blue">
+					<div class="center-block col-4 princing-item blue" style="margin: 30px 0px;">
 						<div class="pricing-divider ">
 							<h3 class="text-light">${list.sav_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
-								<span class="h3">Ether</span> ${list.sav_rate}% <span
-									class="h5">/year</span>
+								<span class="h3">Ether</span> ${list.sav_rate}% <span class="h5">/year</span>
 							</h4>
 							<svg class='pricing-divider-img'
 								enable-background='new 0 0 300 100' height='100px' id='Layer_1'
@@ -156,7 +164,8 @@ input, select {
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom2"
-								onclick="window.location='#'">수정/삭제</button>
+								data-toggle="modal" data-target="#editSav"
+								onclick="savEdit('${list.sav_num}');">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -206,7 +215,6 @@ input, select {
 						</div>
 					</div>
 				</c:if> --%>
-
 			</div>
 		</div>
 	</div>
@@ -433,7 +441,7 @@ input, select {
 								<td>금액제한</td>
 								<td><select name="limit">
 										<option value="5000">~5000Eth</option>
-										<option value="제한없음">제한없음</option>
+										<option value="0">제한없음</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -449,7 +457,7 @@ input, select {
 										<option value="12">12개월</option>
 										<option value="24">24개월</option>
 										<option value="36">36개월</option>
-										<option value="제한없음">제한없음</option>
+										<option value="0">제한없음</option>
 								</select></td>
 							</tr>
 							<tr>
@@ -466,6 +474,47 @@ input, select {
 			</div>
 		</div>
 	</div>
+
+	<!-- 예금수정삭제 -->
+	<div class="modal fade" id="editCheq" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
+
+	<!-- 적금수정삭제 -->
+	<div class="modal fade" id="editSav" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
+
+	<!-- 수정삭제 -->
+	<script type="text/javascript">
+		function cheqEdit(cheq_num) {
+			var num = "cheq_num=" + cheq_num;
+			$.ajax({
+				type : 'post',
+				data : num,
+				url : '${pageContext.request.contextPath}/cheqEdit',
+				success : function(data) {
+					$("#editCheq").html(data);
+				},
+				error : function() {
+					alert("Ajax error");
+				}
+			});
+		}
+		
+		function savEdit(sav_num){
+			var num = "sav_num=" + sav_num;
+			$.ajax({
+				type : 'post',
+				data : num,
+				url : '${pageContext.request.contextPath}/savEdit',
+				success : function(data){
+					$("#editSav").html(data);
+				},
+				error : function(){
+					alert("Ajax error");
+				}
+			});
+		}
+	</script>
 
 	<!-- footer -->
 	<%@ include file="../../../Template/footer.jsp"%>
