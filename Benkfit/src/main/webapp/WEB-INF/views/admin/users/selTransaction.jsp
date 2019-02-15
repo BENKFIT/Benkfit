@@ -41,15 +41,12 @@
     text-align:center;
   }
   
-  /* #closeModal {
-    margin-top:40px;
-  } */
-  
-  .paging {
+  #closeModal2 {
     margin-top:20px;
   }
-
+  
 </style>
+
 </head>
 <body>
 <div class="title">
@@ -152,29 +149,29 @@
 				        <!-- 거래내역 있으면 -->
 				        <c:if test="${tcnt > 0}">
 				          <c:if test="${startPage > pageBlock}">
-				            <span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
+				            <span class="pageno" id="viewCheq" data-toggle="modal" data-target="#myModalT"
                       onclick="getTrans('${account}','${code}')">◁◁</span>
-				            <span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
+				            <span class="pageno" id="viewCheq" data-toggle="modal" data-target="#myModalT"
                       onclick="getTrans('${account}','${code}','${startPage - pageBlock}')">◀</span>
 				          </c:if>
 				          
 				          <!-- 블록내의 페이지 번호 -->
 				          <c:forEach var="i" begin="${startPage}" end="${endPage}">
 				            <c:if test="${i == currentPage}">
-				              <span><b>${i}</b></span>
+				              <span id="currentPage"><b>[${i}]</b></span>
 				            </c:if>
 				            
 				            <c:if test="${i != currentPage}">
-				              <span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
+				              <span class="pageno" id="viewCheq" data-toggle="modal" data-target="#myModalT"
                         onclick="getTrans('${account}','${code}','${i}')">${i}</span>
 				            </c:if>
 				          </c:forEach>
 				          
 				          <!-- 다음블록[▶] / 끝[▶▶] -->
 				          <c:if test="${pageCount > endPage}">
-				           <span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
+				           <span class="pageno" id="viewCheq" data-toggle="modal" data-target="#myModalT"
                       onclick="getTrans('${account}','${code}','${startPage + pageBlock}')">▶</span>
-                   <span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
+                   <span class="pageno" id="viewCheq" data-toggle="modal" data-target="#myModalT"
                       onclick="getTrans('${account}','${code}','${pageCount}')">▷▷</span>
 				          </c:if>
 				        </c:if>
@@ -187,11 +184,12 @@
 				      </th>
 				    </tr>
 				  </table>
-  
+				  <!-- 페이징 -->
          </div>
-         <!-- <div class="wrapper6">
-          <input type="button" id="closeModal" class="btn btn-primary" value="확인" data-dismiss="modal">
-        </div> -->
+         <!-- 모달 닫기 버튼 -->
+         <div class="wrapper6">
+          <input type="button" id="closeModal2" class="btn btn-primary" value="닫기" onclick="closeModal2()">
+        </div>
         </div>
        </div>
 </body>

@@ -87,9 +87,20 @@
     select * from savproduct_tbl where sav_name like '%'||#{keyword}||'%'
   </select>
   
+  <!-- 관리자 > 회원수 -->
+  <select id="howManyUsers" resultType="int">
+    select count(*) from users_tbl 
+  </select>
+  
   <!-- 관리자 > 회원조회 -->
-  <select id="selectUsers" resultType="spring.mvc.benkfit.vo.UsersVO">
-    select * from users_tbl order by c_regDate desc
+  <select id="selectUsers" parameterType="java.util.Map" resultType="spring.mvc.benkfit.vo.UsersVO">
+    <![CDATA[
+	    select * 
+	      from (select c_id, c_pwd, c_name, c_address, c_post, c_hp, c_jumin1, c_jumin2, c_email,
+							        c_idCard, c_regDate, c_level, rownum rNum
+							        from (select * from users_tbl order by c_regDate))
+				where rNum >= #{start} and rNum <= #{end}
+			]]>
   </select>
   
   <!-- 관리자 > 회원삭제 -->
@@ -103,8 +114,8 @@
   </update>
   
   <!-- 관리자 > 회원별 예금 조회 -->
-  <select id="selectCheq" parameterType="String" resultType="spring.mvc.benkfit.vo.myCheqAccount_kay">
-    select * from mycheqaccount_tbl where c_id=#{id}
+  <select id="selectCheq" parameterType="String" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+    select * from cheqproduct_tbl c, mycheqaccount_tbl m where c.cheq_num = m.cheq_num and c_id=#{id}
   </select>
   
   <!-- 관리자 > 회원별 적금 조회 -->
@@ -113,7 +124,7 @@
   </select> 
   
   <!-- 관리자 > 회원별 적금 조회 -->
-  <select id="selectLoan" parameterType="String" resultType="spring.mvc.benkfit.vo.MyloanAccount_kay">
+  <select id="selectLoan" parameterType="String" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
     select * from myloanaccount_tbl where c_id=#{id}
   </select> 
   

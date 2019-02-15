@@ -7,10 +7,8 @@
 <meta charset="UTF-8">
 <title>회원 조회</title>
 <style>
-  .wrapper3{
-    margin-bottom:100px;
+  .wrapper3 {
     width:100%;
-    height:100%;
     vertical-align:middel;
     text-align:center;
   }
@@ -39,6 +37,10 @@
     color:#fff
   }
   
+  .tb_header{
+     display:inline-block;
+  }
+  
   .tb_header tr th {
     color:#fff;
     padding: 10px;
@@ -57,6 +59,26 @@
   #viewspan:hover{
     color:#C64545;
     font-weight:bold;
+  }
+  
+  .paging {
+    margin-top:25px;
+  }
+
+  .pageno {
+    color:#2D5772;
+    cursor:pointer;
+    font-size:18px;
+  }
+  
+  .pageno:hover {
+    color:#53a0d1;
+    
+  }
+  
+  #currentPage {
+    color:#666666;
+    font-size:18px;
   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -100,11 +122,12 @@
           return false;
         }
       })
+      
     });
     
     // 신분증 크게 보기
     function openImg(img) {
-      imgwin = window.open("", "new", "width=600, height=400, left=200, top=100");
+      imgwin = window.open("", "new", "width=600, height=400, left=600, top=200");
       imgwin.document.write("<img src=/benkfit/resources/img/idcard/"+img+" onclick='self.close()' style='height:350; cursor:pointer;'>");
     }
     
@@ -152,6 +175,7 @@
         });
     }
     
+    // 거래내역 조회
     function getTrans(account, code, pageNum) {
     	var params = "account=" + account + "&code=" + code + "&pageNum=" + pageNum;
         $.ajax({
@@ -167,17 +191,26 @@
           }); 
       }
     
+    // 거래내역 모달 닫기
+    function closeModal2() {
+    	 document.getElementById("myModalT").click();
+    }
+    
 </script>
 </head>
 <body>
 <%@ include file ="../../Template/top.jsp" %>
 
-<div class=wrapper3>
+<div class="wrapper3">
   <div class="wrapper2">
-      <div class="btnarea">
-        <input class="btn" type="button" value="삭제" id="delBtn">
-      </div>
        <table class="tb_header">
+	       <tr>
+		        <td colspan=12>
+			        <div class="btnarea">
+			         <input class="btn" type="button" value="삭제" id="delBtn">
+			        </div>
+		        </td>
+	       </tr>
          <tr class="rows header blue">
              <th><input type="checkbox" id="box1" name="box1"></th>
              <th colspan=2>고객등급</th>
@@ -221,13 +254,53 @@
 					<!-- Modal -->
           <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg-centered" id="myModal2" style="margin-top:5%; margin-left:25%">
-              <div class="modal-content" id="modal-content"> <!-- data-dismiss="modal" -->
-              
+              <div class="modal-content" id="modal-content">
               </div>
             </div>
           </div>
          </c:forEach>
        </table>
+       
+       <!-- 페이지 컨트롤 -->
+          <table class="paging" align="center">
+            <tr>
+              <th align="center">
+                <!-- 회원 있으면 -->
+                <c:if test="${ucnt > 0}">
+                  <c:if test="${startPage > pageBlock}">
+                    <span class="pageno" id="viewCheq" onclick="window.location='selectUsers'">◁◁</span>
+                    <span class="pageno" id="viewCheq" 
+                      onclick="window.location='selectUsers?pageNum=${startPage - pageBlock}'">◀</span>
+                  </c:if>
+                  
+                  <!-- 블록내의 페이지 번호 -->
+                  <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                    <c:if test="${i == currentPage}">
+                      <span id="currentPage"><b>[${i}]</b></span>
+                    </c:if>
+                    
+                    <c:if test="${i != currentPage}">
+                      <span class="pageno" id="viewCheq"
+                        onclick="window.location='selectUsers?pageNum=${i}'">${i}</span>
+                    </c:if>
+                  </c:forEach>
+                  
+                  <!-- 다음블록[▶] / 끝[▶▶] -->
+                  <c:if test="${pageCount > endPage}">
+                   <span class="pageno" id="viewCheq"
+                      onclick="window.location='selectUsers?pageNum=${startPage + pageBlock}'">▶</span>
+                   <span class="pageno" id="viewCheq"
+                      onclick="window.location='selectUsers?pageNum=${pageCount}'">▷▷</span>
+                  </c:if>
+                </c:if>
+                
+                <!-- 내역 없으면 -->
+                <c:if test="${ucnt == 0}">
+                
+                </c:if>
+              </th>
+            </tr>
+          </table>
   </div>
 </div>
          

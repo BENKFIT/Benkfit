@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -233,6 +235,7 @@ public class Controller_sws {
 	@RequestMapping("androidMain")
 	public Map<String, Object> androidMain(HttpServletRequest req) {
 		logger.info("androidMain()");
+		String strId = (String) req.getSession().getAttribute("id");
 
 		// 회원 정보
 		String id = req.getParameter("id");
@@ -244,7 +247,7 @@ public class Controller_sws {
 		map.put("data3", 0);
 		map.put("data4", 0);
 		map.put("users", u);
-
+		
 		return map;
 	}
 	
@@ -256,7 +259,7 @@ public class Controller_sws {
 
 		// 회원 정보
 		String id = req.getParameter("id");
-		UsersVO u = dao.getMemberInfo(id);
+		UsersVO u = dao.getMemberInfo2(id);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("data1", u.getC_name());
@@ -268,3 +271,4 @@ public class Controller_sws {
 		return map;
 	}*/
 }
+	

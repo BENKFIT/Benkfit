@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import spring.mvc.benkfit.service.ServiceImpl_syk;
@@ -16,34 +17,36 @@ public class Controller_syk {
 	
 	@Autowired
 	ServiceImpl_syk service;
-	/*
-	 * @RequestMapping("index_syk")
-	 * public String index_syk(){
-	 * 		return "Template/index"; 
-	 * }
-	 */
 	
 	/*
 	 * common
 	 */
 	
 	//예금 목록
-	@RequestMapping("checkingList")
-	public String checkingList() {
+	@RequestMapping("cheqSavList")
+	public String checkingList(HttpServletRequest req) {
 		logger.info("예금상품목록이동");
+		service.cheqSavList(req);
 		
-		return "common/product/checking/productList";
+		return "common/product/cheqSav/productList";
 	}
 	
 	//예금 상품 정보
-	@RequestMapping("checkingInfo")
-	public String checkingInfo(HttpServletRequest req) {
+	@RequestMapping("cheqInfo")
+	public String cheqInfo(HttpServletRequest req) {
 		logger.info("예금상품상세페이지");
+		service.cheqInfo(req);
 		
-		String kind = req.getParameter("kind");
-		req.setAttribute("kind", kind);
+		return "common/product/cheqSav/productInfo";
+	}
+	
+	//적금 상품 정보
+	@RequestMapping("savInfo")
+	public String savInfo(HttpServletRequest req) {
+		logger.info("적금상품상세페이지");
+		service.savInfo(req);
 		
-		return "common/product/checking/productInfo";
+		return "common/product/cheqSav/productInfo";
 	}
 	
 	//예금 가이드
@@ -51,29 +54,55 @@ public class Controller_syk {
 	public String checkingGuide(HttpServletRequest req) {
 		logger.info("예금가이드");
 		
-		return "common/product/checking/guide";
+		return "common/product/cheqSav/guide";
 	}
 	
 	/*
 	 * admin
 	 */
 	
-	//상품 등록 페이지
-	@RequestMapping("checkingRegi")
-	public String checkingRegi(HttpServletRequest req) {
+	//예금 등록 페이지
+	@RequestMapping("cheqSavRegi")
+	public String cheqSavRegi(HttpServletRequest req) {
 		logger.info("예금등록페이지이동");
-		service.checkingRegi(req);
+		service.cheqSavList(req);
 		
-		return "admin/product/checking/cheqRegi";
+		return "admin/product/cheqSav/cheqSavList";
 	}
 	
-	//상품 등록
+	//예금 상품 등록
 	@RequestMapping("cheqRegiPro")
 	public String cheqRegiPro(HttpServletRequest req) {
 		logger.info("상품등록");
-		service.checkingRegi(req);
 		service.cheqRegiPro(req);
 		
-		return "admin/product/checking/cheqRegi";
+		return "admin/product/cheqSav/result";
+	}
+	
+	//적금 상품 등록
+	@RequestMapping("savRegiPro")
+	public String savRegiPro(HttpServletRequest req) {
+		logger.info("상품등록");
+		service.savRegiPro(req);
+		
+		return "admin/product/cheqSav/result";
+	}
+	
+	//예금계좌생성
+	@RequestMapping("createCheq")
+	public String createCheq(HttpServletRequest req, Model model) {
+		logger.info("예금계좌생성");
+		service.createCheq(req, model);
+		
+		return "admin/product/cheqSav/result";
+	}
+	
+	//예금계좌생성
+	@RequestMapping("createSav")
+	public String createSav(HttpServletRequest req, Model model) {
+		logger.info("예금계좌생성");
+		service.createSav(req, model);
+		
+		return "admin/product/cheqSav/result";
 	}
 }

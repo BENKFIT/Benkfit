@@ -131,4 +131,10 @@
 		FROM users_tbl
 		where c_id = #{id}
 	</select>
+	
+<!-- 	<select id="getMemberInfo2" resultType="spring.mvc.benkfit.vo.UsersVO">
+		SELECT *
+		FROM users_tbl
+		where c_id = #{c_id}
+	</select> -->
 </mapper>
