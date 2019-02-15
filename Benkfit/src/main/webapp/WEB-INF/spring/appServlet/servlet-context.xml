@@ -81,6 +81,9 @@
         <beans:property name="maxUploadSize" value="100000000" />
         <beans:property name="maxInMemorySize" value="100000000" />
     </beans:bean> 
-    
+    <!-- 업로드된 파일의 저장 위치 지정 -->
+    <beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="D:\\SpringUploadRepo\\upload"></beans:constructor-arg>
+	</beans:bean>
 	
 </beans:beans>

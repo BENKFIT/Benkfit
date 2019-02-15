@@ -1,5 +1,3 @@
-//2019-01-25 손유정
-
 /**
  * 비동기 통신을 관리하는 XMLHttpRequest 오브젝트 :
  * 브라우저가 했던 서버와의 통신부분이 자바스크립트 조작을 통해 가능하다.
@@ -7,7 +5,6 @@
  * Microsoft.XMLHTTP는 익스플로러 오브젝트이고,
  * 나머지 브라우저에서는 XMLHttpRequest 오브젝트를 얻어온다.
  */
-
 var httpRequest = null;
 function getXMLHttpRequest() {
 	if(window.ActiveXObject) {

@@ -4,7 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
- 	서류 단계
+
+</head>
+<body>
+	<%@ include file="../Template/top.jsp"%>
+	<div class="wrapper">
+		<div class="document">
+		
+		</div>
+	</div>
+	<%@ include file="../Template/footer.jsp"%>
 </body>
 </html>
 

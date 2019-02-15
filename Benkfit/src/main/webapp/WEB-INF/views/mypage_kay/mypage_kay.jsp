@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>정보수정</title>
+<script>
+$("#item").val(); 
+</script>
 </head>
-<body>
+<body class="body">
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
+	<form name="mypage" method="post">
 		<div class="mypage">
 			<h1>My Page</h1>
 			<hr>
@@ -26,31 +30,30 @@
 						</div>
 						<div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
 							<div class="User_Profile">
-								<h2>송운선</h2>
+								<h2>${usVO.c_name} [${usVO.c_id}]</h2>
 							</div>
 							<hr>
 							<ul class="User_Profile details">
 								<li><p>
-										<span class="glyphicon glyphicon-user one"
-											style="width: 50px;"></span> i.rudberg
+										<span class="glyphicon glyphicon-phone one"
+											style="width: 50px;"></span> ${usVO.c_hp}
 									</p></li>
 								<li><p>
 										<span class="glyphicon glyphicon-envelope one"
-											style="width: 50px;"></span> thddnstjs7@email.com
+											style="width: 50px;"></span> ${usVO.c_email}
 									</p></li>
 								<li><p>
 										<span class="glyphicon glyphicon-ok-circle"
-											style="width: 50px;"></span> Date Of Joining: 15 Jun 201s6
+											style="width: 50px;"></span> ${usVO.c_regDate}
 									</p></li>
 							</ul>
 							<hr>
-							<div class="col-sm-8 col-xs-8 tital ">
-								<input type="button" class="btn2 btn2-success" value="정보수정"
-									onclick="">&nbsp; <input type="button"
-									class="btn2 btn2-success" value="내서류" onclick="">&nbsp;
-								<input type="button" class="btn2 btn2-success" value="알림"
-									onclick="">&nbsp; <input type="button"
-									class="btn2 btn2-success" value="qrcode" onclick="">&nbsp;
+							<div class="col-sm-12 col-xs-8 tital ">
+									<button class="btn2 btn2-success" onclick="move(6)">알림</button>&nbsp;
+									<button class="btn2 btn2-success"  onclick="move(7)">qrcode</button>&nbsp;
+									<button class="btn2 btn2-success" onclick="move(8)">정보수정</button>&nbsp; 
+									<button class="btn2 btn2-success"  onclick="move(9)">내서류</button>&nbsp;
+									<button class="btn2 btn2-success"  onclick="move(5)">이체한도</button>&nbsp;
 							</div>
 						</div>
 					</div>
@@ -71,17 +74,20 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:set var="num" value="1"> </c:set>
+					<c:forEach var="cheq" items="${cheq}">
 						<tr>
-							<td>1</td>
-							<td>12</td>
-							<td>123</td>
-							<td>123</td>
-							<td>
-								<button class="btn2 btn2-success" onclick="move(1)">조회
-								</button>&nbsp;
+							<td>${num}</td>
+							<td>${cheq.cheq_num} </td>
+							<td>${cheq.myCheq_account} </td>
+							<td>${cheq.myCheq_amount}</td>
+							<td>	
+								<input type="hidden" name="delCheq" value="${cheq.myCheq_account}">
+								<button class="btn2 btn2-success" onclick="move(1)" <%-- name="delCheq" value="${cheq.myCheq_account}" --%>>조회</button>&nbsp;
 								<button class="btn2 btn2-danger" onclick="move(2)">해지</button>
 							</td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<h3>적금관리</h3>
@@ -97,17 +103,19 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var="sav" items="${sav}">
 						<tr>
-							<td>1</td>
-							<td>12</td>
-							<td>123</td>
-							<td>123</td>
+							<td>${num}</td>
+							<td>${sav.mySav_name} </td>
+							<td>${sav.mySav_account} </td>
+							<td>${sav.mySav_amount}</td>
 							<td>
-								<button class="btn2 btn2-success" onclick="move(1)">조회
+								<button class="btn2 btn2-success" onclick="move(13)">조회
 								</button>&nbsp;
-								<button class="btn2 btn2-danger" onclick="move(2)">해지</button>
+								<button class="btn2 btn2-danger" onclick="move(14)">해지</button>
 							</td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 				<h3>대출관리</h3>
@@ -124,19 +132,20 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:forEach var="loan" items="${loan}">
 						<tr>
-							<td>1</td>
-							<td>123</td>
-							<td>1244</td>
-							<td>124134</td>
-							<td>124123</td>
+							<td>${loan.loan_num} </td>
+							<td>${loan.myLoan_account} </td>
+							<td>${loan.myLoan_amount}</td>
+							<td>${loan.myLoan_date}</td>
+							<td>${loan.myLoan_late}</td>
 							<td>
 								<button class="btn2 btn2-success" onclick="move(3)">조회
 								</button>&nbsp;
-								<input type="submit" class="btn2 btn2-success" value="확인">	
 								<button class="btn2 btn2-danger" onclick="move(4)">상환</button>
 							</td>
 						</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -145,6 +154,7 @@
 			<hr> 
 			</div>
 		</div>
+		</form>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
 </body>

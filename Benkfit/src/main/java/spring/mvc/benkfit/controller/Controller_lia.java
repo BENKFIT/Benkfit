@@ -37,8 +37,6 @@ public class Controller_lia {
 		logger.info("login 호출중");
 		return "common/login";
 	}
-	
-	
 	// 로그인 처리
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) throws Exception {
@@ -46,7 +44,6 @@ public class Controller_lia {
 		service.loginPro(req, model);
 		return "common/loginPro";
 	}
-	
 	// 로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req) throws Exception {
@@ -55,14 +52,12 @@ public class Controller_lia {
 		req.getSession().invalidate();
 		return "Template/index";
 	}
-	
 	// 회원가입 양식
 	@RequestMapping("signIn")
 	public String signIn() throws Exception {
 		logger.info("signIn 호출중");
 		return "common/signIn";
 	}
-	
 	// 신분증 텍스트 인식
 	@RequestMapping("getText") 
 	public String getText(String file, Model model) throws IOException {
@@ -70,7 +65,6 @@ public class Controller_lia {
 		service.getText(file, model);
 		return "common/getText";
 	}
-
 	// id 중복확인
 	@RequestMapping("idCheck") 
 	public String idCheck(HttpServletRequest req, Model model) throws Exception { 

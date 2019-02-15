@@ -18,9 +18,8 @@
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-<div class="wrapper">
-<!-- 	<div
-		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
+	<div
+		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%; height: 80%;">
 			<h2>이용시간안내</h2>
 			<br>
@@ -73,7 +72,6 @@
 			</table>
 		</div>
 	</div>
-
 	<div class="container" style="height: 40%; width: 62%;">
 		<br>
 		<p style="font-size: 20px;">이체</p>
@@ -104,7 +102,6 @@
 			</tbody>
 		</table>
 	</div>
-
 	<div class="container" style="height: 57%; width: 62%;">
 		<br>
 		<p style="font-size: 20px;">대출</p>

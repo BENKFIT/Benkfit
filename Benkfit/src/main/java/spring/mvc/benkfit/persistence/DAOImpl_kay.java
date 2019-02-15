@@ -13,59 +13,144 @@ public class DAOImpl_kay implements DAO_kay{
 	
 	@Autowired
 	SqlSession sqlSession;
-
-	//예금관리
+	
+	//마이페이지
 	@Override
-	public List<myCheqAccountVO> myCheq_list(String strId) {
+	public UsersVO mypage_info(String id) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<myCheqAccountVO> cheq = dao.myCheq_list(strId);
+		return dao.mypage_info(id);
+	}
+	//예금관리//이체한도 조회
+	@Override
+	public List<myCheqAccountVO> myCheq_list(String id) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		List<myCheqAccountVO> cheq = dao.myCheq_list(id);
 		return cheq;
 	}
-/*	//대출관리
+	//대출관리
 	@Override
-	public List<MyloanAccount_kay> myloan_list() {
+	public List<MyloanAccountVO> myloan_list(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<MyloanAccount_kay> loan = dao.myloan_list();
+		List<MyloanAccountVO> loan = dao.myloan_list(map);
 		return loan;
+	}	
+	//적금관리
+	@Override
+	public List<mySavAccountVO> mysav_list(String id) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		List<mySavAccountVO> sav = dao.mysav_list(id);
+		return sav;
 	}
+	//내정보
+	@Override
+	public UsersVO info(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.info(map);
+	}
+	
+	//내정보- 수정처리
+	@Override
+	public int up_info(UsersVO vo) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.up_info(vo);
+	}
+	//id&pwd 체크
+	@Override
+	public int idPwdChk(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.idPwdChk(map);
+	}
+	//qr코드 생성
+	@Override
+	public UsersVO qrcode(String id){
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.qrcode(id);
+	}
+	//qr코드 상태코드변경
+	@Override
+	public int qrPro(String id){
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.qrPro(id);
+	}
+	//1.예금 잔액확인
+	@Override
+	public int chk_cheq(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.chk_cheq(map);
+	}
+	//2. 대출 잔액 확인
+	@Override
+	public int chk_loan(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.chk_loan(map);
+	}
+	//3. 적금 잔액 확인
+	@Override
+	public int chk_sav(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.chk_loan(map);
+	}
+	//4. 탈퇴처리
+	@Override
+	public int del_mem(String id) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.del_mem(id);
+	}
+	//이체한도 수정
+	@Override
+	public int limit_up(myCheqAccountVO vo) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.limit_up(vo);
+	}
+	//예금거래내역조회
+	@Override
+	public myCheqAccountVO selCheq(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.selCheq(map);
+	}
+	//입금합계
+	@Override
+	public int cheqIn(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.cheqIn(map);
+	}
+	//출금합계
+	@Override
+	public int cheqOut(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.cheqOut(map);
+	}
+	//거래내역 조회
+	@Override
+	public List<TransdetailVO> sel_cheq(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.sel_cheq(map);
+	}
+	/*//계좌잔액
+	@Override
+	public int delChe(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.delChe(map);
+	}
+	//계좌pw 체크
+	
+	//계좌탈퇴
+*/	
 	//서류관리
 	@Override
-	public List<document_kay> docu_list() {
+	public List<documentVO> docu_list(String id) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<document_kay> list1 = dao.docu_list();
+		List<documentVO> list1 = dao.docu_list(id);
 		return list1;
 	}
 	//서류등록
 	@Override
-	public int docu_upload(document_kay doc) {
+	public int docu_upload(documentVO doc) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		int result =  dao.docu_upload(doc);
-		return result;
+		return dao.docu_upload(doc);
 	}
-	//qr코드 생성
-	@Override
-	public UsersVO qrcode() {
-		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.qrcode();
-	}
-	//내정보
-	@Override
-	public UsersVO info() {
-		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.info();
-	}
-	//이체한도 조회
-	@Override
-	public myCheqAccount_kay limit_sel() {
-		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.limit_sel();
-	}
-	//이체한도 수정
-	@Override
-	public int limit_up(int acount_lim) {
-		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.limit_up(acount_lim);
-	}
-	*/
+	
+	
+	
 	
 }
