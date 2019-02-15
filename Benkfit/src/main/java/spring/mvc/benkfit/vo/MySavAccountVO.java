@@ -2,19 +2,19 @@ package spring.mvc.benkfit.vo;
 
 import java.sql.Date;
 
-public class mySavAccountVO {
-	private String mySav_account; /* 적금 계좌번호 */
-	private String mySav_name ;/* 적금 명 */
-	private Date mySav_date ;/* 적금 일 */
-	private int mySav_amount; /* 적금 금액 */
-	private int mySav_rate; /* 적금 연이율 */
-	private int mySav_monSaving; /* 월 저축 금액 */
-	private String mySav_method; /* 이자 지급방식 */
-	private String mySav_benefit ; /* 세금 혜택 */
-	private int mySav_taxRate;/* 적금 세율 */
-	private String c_id ; /* 고객 아이디 */
-	private String  sav_num ;/* 적금 상품번호 */
-	
+public class MySavAccountVO {
+	private String mySav_account;
+	private String mySav_name;  
+	private Date mySav_date; 
+	private int mySav_amount; 
+	private double mySav_rate; 
+	private int mySav_monSaving;
+	private String mySav_method; 
+	private String mySav_benefit; 
+	private double mySav_taxRate; 
+	private String c_id; 
+	private String sav_num; 
+	private String code;
 	
 	public String getMySav_account() {
 		return mySav_account;
@@ -40,10 +40,10 @@ public class mySavAccountVO {
 	public void setMySav_amount(int mySav_amount) {
 		this.mySav_amount = mySav_amount;
 	}
-	public int getMySav_rate() {
+	public double getMySav_rate() {
 		return mySav_rate;
 	}
-	public void setMySav_rate(int mySav_rate) {
+	public void setMySav_rate(double mySav_rate) {
 		this.mySav_rate = mySav_rate;
 	}
 	public int getMySav_monSaving() {
@@ -64,10 +64,10 @@ public class mySavAccountVO {
 	public void setMySav_benefit(String mySav_benefit) {
 		this.mySav_benefit = mySav_benefit;
 	}
-	public int getMySav_taxRate() {
+	public double getMySav_taxRate() {
 		return mySav_taxRate;
 	}
-	public void setMySav_taxRate(int mySav_taxRate) {
+	public void setMySav_taxRate(double mySav_taxRate) {
 		this.mySav_taxRate = mySav_taxRate;
 	}
 	public String getC_id() {
@@ -82,5 +82,19 @@ public class mySavAccountVO {
 	public void setSav_num(String sav_num) {
 		this.sav_num = sav_num;
 	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
+	@Override
+	public String toString() {
+		return "MySavAccountVO [mySav_account=" + mySav_account + ", mySav_name=" + mySav_name + ", mySav_date="
+				+ mySav_date + ", mySav_amount=" + mySav_amount + ", mySav_rate=" + mySav_rate + ", mySav_monSaving="
+				+ mySav_monSaving + ", mySav_method=" + mySav_method + ", mySav_benefit=" + mySav_benefit
+				+ ", mySav_taxRate=" + mySav_taxRate + ", c_id=" + c_id + ", sav_num=" + sav_num + ", code=" + code
+				+ "]";
+	}
 }

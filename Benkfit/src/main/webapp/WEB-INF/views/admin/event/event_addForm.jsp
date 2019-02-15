@@ -53,7 +53,7 @@ function readURL(input) {
 		enctype="multipart/form-data">
 
 		<input type="hidden" name="pageNum" value="${pageNum}">
-		<div style="margin-top: 200px; height: 18%; width: 100%; text-align: center;">
+		<div style="margin-top: 200px; height: 62%; width: 100%; text-align: center;">
 			<div style="display: inline-block;">
 				<table class="board">
 					<tr style="background: #FFD662">

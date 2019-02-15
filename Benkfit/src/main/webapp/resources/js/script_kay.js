@@ -181,5 +181,6 @@ document.oncontextmenu=function(){return false;} // 우클릭 방지
 document.onselectstart=function(){return false;} // 드래그 방지
 document.ondragstart=function(){return true;} // 선택 방지
 document.onmousedown=function(){return true;}
-*/
 
+
+*/

@@ -10,8 +10,28 @@
 		color : black;
 	}
 	
-	.inputButton {
-		background: #FFD662;
+	input[type=button] {
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: #FFD662;
+		color: white;
+	}
+	
+	input[type=submit] {
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: #FFD662;
+		color: white;
+	}
+	
+	input[type=button]:hover {
+		color: black;
+	}
+	
+	input[type=submit]:hover {
+		color: black;
 	}
 </style>
 </head>
@@ -19,7 +39,7 @@
 	<%@ include file="../../Template/top.jsp"%>
 
 	<div
-		style="margin-top: 200px; height: 18%; width: 100%; text-align: center;">
+		style="margin-top: 200px; height: 60%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
 			<h2>이벤트</h2>
 			<br>
@@ -90,7 +110,6 @@
 		</tr>		
 	</table>
 </div>
-	
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>

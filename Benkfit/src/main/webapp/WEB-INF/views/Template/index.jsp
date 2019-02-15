@@ -43,6 +43,8 @@ tr>td {
 	<%@ include file="./top.jsp"%>
 <%-- 	<%@ include file="./NewFile.jsp"%> --%>
 	
+  <%@ include file="../common/chatbot.jsp"%>
+  
 	<!-- CONTENT -->
 	<div class="div1">
 		<div style="display: inline-block;">
@@ -59,7 +61,7 @@ tr>td {
 			</table>
 		</div>
 	</div>
-
+	
 	<div class="div2">
 		<div style="display: inline-block;">
 			<table style="display: inline">
@@ -73,14 +75,14 @@ tr>td {
 				</tr>
 			</table>
 			<img src="/benkfit/resources/img/logo/tesseract.png" height="300px"
-				style="margin: 100px;">
+				style="margin: 100px; display: inline;">
 		</div>
 	</div>
 
 	<div class="div3">
 		<div style="display: inline-block;">
 			<img src="/benkfit/resources/img/logo/python.png" height="300px"
-				style="margin: 100px 0px;">
+				style="margin: 100px 0px; display: inline;">
 			<table style="display: inline">
 				<tr>
 					<td>학습용으로 좋은 언어인 동시에 실사용률과 생산성도 높은 강력한 언어</td>

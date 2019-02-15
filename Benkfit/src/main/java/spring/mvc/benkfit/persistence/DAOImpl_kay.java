@@ -36,9 +36,9 @@ public class DAOImpl_kay implements DAO_kay{
 	}	
 	//적금관리
 	@Override
-	public List<mySavAccountVO> mysav_list(String id) {
+	public List<MySavAccountVO> mysav_list(String id) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<mySavAccountVO> sav = dao.mysav_list(id);
+		List<MySavAccountVO> sav = dao.mysav_list(id);
 		return sav;
 	}
 	//내정보
@@ -122,7 +122,7 @@ public class DAOImpl_kay implements DAO_kay{
 	}
 	//거래내역 조회
 	@Override
-	public List<TransdetailVO> sel_cheq(Map<String, Object> map) {
+	public List<TransDetailVO> sel_cheq(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.sel_cheq(map);
 	}

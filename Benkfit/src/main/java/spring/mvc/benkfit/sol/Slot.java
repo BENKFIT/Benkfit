@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import org.web3j.abi.EventEncoder;
 import org.web3j.abi.TypeReference;
-import org.web3j.abi.datatypes.Address;
 import org.web3j.abi.datatypes.Bool;
 import org.web3j.abi.datatypes.Event;
 import org.web3j.abi.datatypes.Function;
@@ -22,7 +21,7 @@ import org.web3j.protocol.core.RemoteCall;
 import org.web3j.protocol.core.methods.request.EthFilter;
 import org.web3j.protocol.core.methods.response.Log;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
-import org.web3j.tuples.generated.Tuple6;
+import org.web3j.tuples.generated.Tuple5;
 import org.web3j.tx.Contract;
 import org.web3j.tx.TransactionManager;
 import org.web3j.tx.gas.ContractGasProvider;
@@ -37,16 +36,32 @@ import org.web3j.tx.gas.ContractGasProvider;
  * <p>Generated with web3j version 4.1.1.
  */
 public class Slot extends Contract {
-    private static final String BINARY = "608060405260008054600160a060020a0319163317905561043a806100256000396000f3fe608060405260043610610050577c0100000000000000000000000000000000000000000000000000000000600035046311610c258114610055578063117a5b901461005f57806341c0e1b5146100d3575b600080fd5b61005d6100e8565b005b34801561006b57600080fd5b506100896004803603602081101561008257600080fd5b5035610374565b6040805173ffffffffffffffffffffffffffffffffffffffff90971687529415156020870152858501939093526060850191909152608084015260a0830152519081900360c00190f35b3480156100df57600080fd5b5061005d6103e7565b6000546040340273ffffffffffffffffffffffffffffffffffffffff90911631101561011357600080fd5b60006103e860001943014006606480820490600a908306819004908306348284141561014157600195506004025b8183141561015157600195506004025b8184141561016157600195506004025b851561019a57604051339082156108fc029083906000818181858888f19350505050158015610194573d6000803e3d6000fd5b5061019e565b5060005b604080513381528715156020820152808201839052606081018690526080810185905260a0810184905290517f755e2e5141a35c052c4551b97ea95e478fa0a8ca14280e4067af9f6d880b78449181900360c00190a16040805160c081018252338152961515602088019081523491880191825260608801968752608088019283524360a0890190815260028054600181018255600091909152985160059099027f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ace8101805493511515740100000000000000000000000000000000000000000274ff00000000000000000000000000000000000000001973ffffffffffffffffffffffffffffffffffffffff9c909c1673ffffffffffffffffffffffffffffffffffffffff19909516949094179a909a169290921790985590517f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5acf82015594517f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ad0860155517f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ad1850155505091517f405787fa12a823e0f2b7631cc41b3ba8828b3321ca811111fa75cd3aa3bb5ad29091015550565b600280548290811061038257fe5b60009182526020909120600590910201805460018201546002830154600384015460049094015473ffffffffffffffffffffffffffffffffffffffff841695507401000000000000000000000000000000000000000090930460ff1693919290919086565b60005473ffffffffffffffffffffffffffffffffffffffff16331461040b57600080fd5b33fffea165627a7a723058201756950c55d087c05d01c57dd62d01e393af5c59a9f889b82bb042213fcdd7bd0029";
+    private static final String BINARY = "608060405260008054600160a060020a031916331790556105d6806100256000396000f3fe60806040526004361061008d576000357c0100000000000000000000000000000000000000000000000000000000900480633218b99d1161006b5780633218b99d146100d85780633ccfd60b146100e057806341c0e1b5146100f5578063db5549d21461010a5761008d565b806306661abd14610092578063066c415b146100a95780632ddbd13a146100b1575b600080fd5b34801561009e57600080fd5b506100a7610161565b005b6100a76101a2565b3480156100bd57600080fd5b506100c6610206565b60408051918252519081900360200190f35b6100a7610222565b3480156100ec57600080fd5b506100c66104d7565b34801561010157600080fd5b506100a7610545565b34801561011657600080fd5b506101346004803603602081101561012d57600080fd5b5035610548565b60408051958652602086019490945284840192909252606084015215156080830152519081900360a00190f35b60068054600181019091556040805182815290517f833764e3c287f1f028efa2c7ab34c307cc6b06cf4e0c8cc3de79c7a32c87b6539181900360200190a150565b600034116101af57600080fd5b600080526007602090815260008051602061058b833981519152805434019081905560408051918252517f6faec04115051da5f1e70354751c2cf4c8591106dde303fb3d6a0e0daa3029c2929181900390910190a1565b60008052600760205260008051602061058b8339815191525490565b6000341161022f57600080fd5b600080526007602090815260008051602061058b833981519152805434019081905560408051918252517f6faec04115051da5f1e70354751c2cf4c8591106dde303fb3d6a0e0daa3029c2929181900390910190a160646103e84360001901400681810460015590600a90820604600255600a810660035560025460015414156102cc57600434810290556005805460ff1916600117905561035a565b60035460015414156102f157600434810290556005805460ff1916600117905561035a565b600354600254141561031657600434810290556005805460ff1916600117905561035a565b60025460015414801561032c5750600354600254145b1561034a57600a34026004556005805460ff1916600117905561035a565b60006004556005805460ff191690555b6005546004546001546002546003546040805160ff9096161515865260208601949094528484019290925260608401526080830152517ff4e20228793c93a9885fef118421c5c7a671269893076350a127d2c5e90a9d249181900360a00190a1506040805160a08101825260018054825260025460208301908152600354938301938452600454606084019081526005805460ff1615156080860190815260088054958601815560005294517ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee3949091029384015590517ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee483015592517ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee582015591517ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee6830155517ff3f7a9fe364faab93b216da50a3214154f22a0a2b415b23a84c8169e8b636ee7909101805460ff1916911515919091179055565b6004546000808052600760205260008051602061058b833981519152805483900390556040519091339181156108fc02919084818181858888f19350505050158015610527573d6000803e3d6000fd5b505060008052600760205260008051602061058b8339815191525490565b33ff5b600880548290811061055657fe5b6000918252602090912060059091020180546001820154600283015460038401546004909401549294509092909160ff168556fe6d5257204ebe7d88fd91ae87941cb2dd9d8062b64ae5a2bd2d28ec40b9fbf6dfa165627a7a723058201af451c2df6d02d65ae24a1f4f0fd1e813176c73673fd171d62ba6105577cf9c0029";
 
-    public static final String FUNC_BET = "bet";
+    public static final String FUNC_COUNT = "count";
 
-    public static final String FUNC_GAMES = "games";
+    public static final String FUNC_OWNERINPUT = "ownerInput";
+
+    public static final String FUNC_TOTAL = "total";
+
+    public static final String FUNC_GAMESTART = "gameStart";
+
+    public static final String FUNC_WITHDRAW = "withdraw";
 
     public static final String FUNC_KILL = "kill";
 
-    public static final Event SENDRESULT_EVENT = new Event("sendResult", 
-            Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}, new TypeReference<Bool>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}));
+    public static final String FUNC_SENDRESULT = "sendResult";
+
+    public static final Event COUNTLOG_EVENT = new Event("countLog", 
+            Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+    ;
+
+    public static final Event TOTALLOG_EVENT = new Event("totalLog", 
+            Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+    ;
+
+    public static final Event RESULTLOG_EVENT = new Event("resultLog", 
+            Arrays.<TypeReference<?>>asList(new TypeReference<Bool>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}));
     ;
 
     @Deprecated
@@ -67,33 +82,43 @@ public class Slot extends Contract {
         super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
     }
 
-    public RemoteCall<TransactionReceipt> bet(BigInteger weiValue) {
+    public RemoteCall<TransactionReceipt> count() {
         final Function function = new Function(
-                FUNC_BET, 
+                FUNC_COUNT, 
+                Arrays.<Type>asList(), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
+    }
+
+    public RemoteCall<TransactionReceipt> ownerInput(BigInteger weiValue) {
+        final Function function = new Function(
+                FUNC_OWNERINPUT, 
                 Arrays.<Type>asList(), 
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function, weiValue);
     }
 
-    public RemoteCall<Tuple6<String, Boolean, BigInteger, BigInteger, BigInteger, BigInteger>> games(BigInteger param0) {
-        final Function function = new Function(FUNC_GAMES, 
-                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(param0)), 
-                Arrays.<TypeReference<?>>asList(new TypeReference<Address>() {}, new TypeReference<Bool>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}));
-        return new RemoteCall<Tuple6<String, Boolean, BigInteger, BigInteger, BigInteger, BigInteger>>(
-                new Callable<Tuple6<String, Boolean, BigInteger, BigInteger, BigInteger, BigInteger>>() {
-                    @Override
-                    public Tuple6<String, Boolean, BigInteger, BigInteger, BigInteger, BigInteger> call() throws Exception {
-                        List<Type> results = executeCallMultipleValueReturn(function);
-                        return new Tuple6<String, Boolean, BigInteger, BigInteger, BigInteger, BigInteger>(
-                                (String) results.get(0).getValue(), 
-                                (Boolean) results.get(1).getValue(), 
-         
-                                (BigInteger) results.get(2).getValue(), 
-                                (BigInteger) results.get(3).getValue(), 
-                                (BigInteger) results.get(4).getValue(), 
-                                (BigInteger) results.get(5).getValue());
-                    }
-                });
+    public RemoteCall<BigInteger> total() {
+        final Function function = new Function(FUNC_TOTAL, 
+                Arrays.<Type>asList(), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}));
+        return executeRemoteCallSingleValueReturn(function, BigInteger.class);
+    }
+
+    public RemoteCall<TransactionReceipt> gameStart(BigInteger weiValue) {
+        final Function function = new Function(
+                FUNC_GAMESTART, 
+                Arrays.<Type>asList(), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function, weiValue);
+    }
+
+    public RemoteCall<TransactionReceipt> withdraw() {
+        final Function function = new Function(
+                FUNC_WITHDRAW, 
+                Arrays.<Type>asList(), 
+                Collections.<TypeReference<?>>emptyList());
+        return executeRemoteCallTransaction(function);
     }
 
     public RemoteCall<TransactionReceipt> kill() {
@@ -104,45 +129,124 @@ public class Slot extends Contract {
         return executeRemoteCallTransaction(function);
     }
 
-    public List<SendResultEventResponse> getSendResultEvents(TransactionReceipt transactionReceipt) {
-        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(SENDRESULT_EVENT, transactionReceipt);
-        ArrayList<SendResultEventResponse> responses = new ArrayList<SendResultEventResponse>(valueList.size());
+    public RemoteCall<Tuple5<BigInteger, BigInteger, BigInteger, BigInteger, Boolean>> sendResult(BigInteger param0) {
+        final Function function = new Function(FUNC_SENDRESULT, 
+                Arrays.<Type>asList(new org.web3j.abi.datatypes.generated.Uint256(param0)), 
+                Arrays.<TypeReference<?>>asList(new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Uint256>() {}, new TypeReference<Bool>() {}));
+        return new RemoteCall<Tuple5<BigInteger, BigInteger, BigInteger, BigInteger, Boolean>>(
+                new Callable<Tuple5<BigInteger, BigInteger, BigInteger, BigInteger, Boolean>>() {
+                    @Override
+                    public Tuple5<BigInteger, BigInteger, BigInteger, BigInteger, Boolean> call() throws Exception {
+                        List<Type> results = executeCallMultipleValueReturn(function);
+                        return new Tuple5<BigInteger, BigInteger, BigInteger, BigInteger, Boolean>(
+                                (BigInteger) results.get(0).getValue(), 
+                                (BigInteger) results.get(1).getValue(), 
+                                (BigInteger) results.get(2).getValue(), 
+                                (BigInteger) results.get(3).getValue(), 
+                                (Boolean) results.get(4).getValue());
+                    }
+                });
+    }
+
+    public List<CountLogEventResponse> getCountLogEvents(TransactionReceipt transactionReceipt) {
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(COUNTLOG_EVENT, transactionReceipt);
+        ArrayList<CountLogEventResponse> responses = new ArrayList<CountLogEventResponse>(valueList.size());
         for (Contract.EventValuesWithLog eventValues : valueList) {
-            SendResultEventResponse typedResponse = new SendResultEventResponse();
+            CountLogEventResponse typedResponse = new CountLogEventResponse();
             typedResponse.log = eventValues.getLog();
-            typedResponse.player = (String) eventValues.getNonIndexedValues().get(0).getValue();
-            typedResponse.win = (Boolean) eventValues.getNonIndexedValues().get(1).getValue();
-            typedResponse.amount = (BigInteger) eventValues.getNonIndexedValues().get(2).getValue();
-            typedResponse.n1 = (BigInteger) eventValues.getNonIndexedValues().get(3).getValue();
-            typedResponse.n2 = (BigInteger) eventValues.getNonIndexedValues().get(4).getValue();
-            typedResponse.n3 = (BigInteger) eventValues.getNonIndexedValues().get(5).getValue();
+            typedResponse.count = (BigInteger) eventValues.getNonIndexedValues().get(0).getValue();
             responses.add(typedResponse);
         }
         return responses;
     }
 
-    public Flowable<SendResultEventResponse> sendResultEventFlowable(EthFilter filter) {
-        return web3j.ethLogFlowable(filter).map(new io.reactivex.functions.Function<Log, SendResultEventResponse>() {
+    public Flowable<CountLogEventResponse> countLogEventFlowable(EthFilter filter) {
+        return web3j.ethLogFlowable(filter).map(new io.reactivex.functions.Function<Log, CountLogEventResponse>() {
             @Override
-            public SendResultEventResponse apply(Log log) {
-                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(SENDRESULT_EVENT, log);
-                SendResultEventResponse typedResponse = new SendResultEventResponse();
+            public CountLogEventResponse apply(Log log) {
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(COUNTLOG_EVENT, log);
+                CountLogEventResponse typedResponse = new CountLogEventResponse();
                 typedResponse.log = log;
-                typedResponse.player = (String) eventValues.getNonIndexedValues().get(0).getValue();
-                typedResponse.win = (Boolean) eventValues.getNonIndexedValues().get(1).getValue();
-                typedResponse.amount = (BigInteger) eventValues.getNonIndexedValues().get(2).getValue();
-                typedResponse.n1 = (BigInteger) eventValues.getNonIndexedValues().get(3).getValue();
-                typedResponse.n2 = (BigInteger) eventValues.getNonIndexedValues().get(4).getValue();
-                typedResponse.n3 = (BigInteger) eventValues.getNonIndexedValues().get(5).getValue();
+                typedResponse.count = (BigInteger) eventValues.getNonIndexedValues().get(0).getValue();
                 return typedResponse;
             }
         });
     }
 
-    public Flowable<SendResultEventResponse> sendResultEventFlowable(DefaultBlockParameter startBlock, DefaultBlockParameter endBlock) {
+    public Flowable<CountLogEventResponse> countLogEventFlowable(DefaultBlockParameter startBlock, DefaultBlockParameter endBlock) {
         EthFilter filter = new EthFilter(startBlock, endBlock, getContractAddress());
-        filter.addSingleTopic(EventEncoder.encode(SENDRESULT_EVENT));
-        return sendResultEventFlowable(filter);
+        filter.addSingleTopic(EventEncoder.encode(COUNTLOG_EVENT));
+        return countLogEventFlowable(filter);
+    }
+
+    public List<TotalLogEventResponse> getTotalLogEvents(TransactionReceipt transactionReceipt) {
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(TOTALLOG_EVENT, transactionReceipt);
+        ArrayList<TotalLogEventResponse> responses = new ArrayList<TotalLogEventResponse>(valueList.size());
+        for (Contract.EventValuesWithLog eventValues : valueList) {
+            TotalLogEventResponse typedResponse = new TotalLogEventResponse();
+            typedResponse.log = eventValues.getLog();
+            typedResponse.totalBalance = (BigInteger) eventValues.getNonIndexedValues().get(0).getValue();
+            responses.add(typedResponse);
+        }
+        return responses;
+    }
+
+    public Flowable<TotalLogEventResponse> totalLogEventFlowable(EthFilter filter) {
+        return web3j.ethLogFlowable(filter).map(new io.reactivex.functions.Function<Log, TotalLogEventResponse>() {
+            @Override
+            public TotalLogEventResponse apply(Log log) {
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(TOTALLOG_EVENT, log);
+                TotalLogEventResponse typedResponse = new TotalLogEventResponse();
+                typedResponse.log = log;
+                typedResponse.totalBalance = (BigInteger) eventValues.getNonIndexedValues().get(0).getValue();
+                return typedResponse;
+            }
+        });
+    }
+
+    public Flowable<TotalLogEventResponse> totalLogEventFlowable(DefaultBlockParameter startBlock, DefaultBlockParameter endBlock) {
+        EthFilter filter = new EthFilter(startBlock, endBlock, getContractAddress());
+        filter.addSingleTopic(EventEncoder.encode(TOTALLOG_EVENT));
+        return totalLogEventFlowable(filter);
+    }
+
+    public List<ResultLogEventResponse> getResultLogEvents(TransactionReceipt transactionReceipt) {
+        List<Contract.EventValuesWithLog> valueList = extractEventParametersWithLog(RESULTLOG_EVENT, transactionReceipt);
+        ArrayList<ResultLogEventResponse> responses = new ArrayList<ResultLogEventResponse>(valueList.size());
+        for (Contract.EventValuesWithLog eventValues : valueList) {
+            ResultLogEventResponse typedResponse = new ResultLogEventResponse();
+            typedResponse.log = eventValues.getLog();
+            typedResponse._result = (Boolean) eventValues.getNonIndexedValues().get(0).getValue();
+            typedResponse._reword = (BigInteger) eventValues.getNonIndexedValues().get(1).getValue();
+            typedResponse.n1 = (BigInteger) eventValues.getNonIndexedValues().get(2).getValue();
+            typedResponse.n2 = (BigInteger) eventValues.getNonIndexedValues().get(3).getValue();
+            typedResponse.n3 = (BigInteger) eventValues.getNonIndexedValues().get(4).getValue();
+            responses.add(typedResponse);
+        }
+        return responses;
+    }
+
+    public Flowable<ResultLogEventResponse> resultLogEventFlowable(EthFilter filter) {
+        return web3j.ethLogFlowable(filter).map(new io.reactivex.functions.Function<Log, ResultLogEventResponse>() {
+            @Override
+            public ResultLogEventResponse apply(Log log) {
+                Contract.EventValuesWithLog eventValues = extractEventParametersWithLog(RESULTLOG_EVENT, log);
+                ResultLogEventResponse typedResponse = new ResultLogEventResponse();
+                typedResponse.log = log;
+                typedResponse._result = (Boolean) eventValues.getNonIndexedValues().get(0).getValue();
+                typedResponse._reword = (BigInteger) eventValues.getNonIndexedValues().get(1).getValue();
+                typedResponse.n1 = (BigInteger) eventValues.getNonIndexedValues().get(2).getValue();
+                typedResponse.n2 = (BigInteger) eventValues.getNonIndexedValues().get(3).getValue();
+                typedResponse.n3 = (BigInteger) eventValues.getNonIndexedValues().get(4).getValue();
+                return typedResponse;
+            }
+        });
+    }
+
+    public Flowable<ResultLogEventResponse> resultLogEventFlowable(DefaultBlockParameter startBlock, DefaultBlockParameter endBlock) {
+        EthFilter filter = new EthFilter(startBlock, endBlock, getContractAddress());
+        filter.addSingleTopic(EventEncoder.encode(RESULTLOG_EVENT));
+        return resultLogEventFlowable(filter);
     }
 
     @Deprecated
@@ -181,14 +285,24 @@ public class Slot extends Contract {
         return deployRemoteCall(Slot.class, web3j, transactionManager, gasPrice, gasLimit, BINARY, "", initialWeiValue);
     }
 
-    public static class SendResultEventResponse {
+    public static class CountLogEventResponse {
         public Log log;
 
-        public String player;
+        public BigInteger count;
+    }
 
-        public Boolean win;
+    public static class TotalLogEventResponse {
+        public Log log;
 
-        public BigInteger amount;
+        public BigInteger totalBalance;
+    }
+
+    public static class ResultLogEventResponse {
+        public Log log;
+
+        public Boolean _result;
+
+        public BigInteger _reword;
 
         public BigInteger n1;
 

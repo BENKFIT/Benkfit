@@ -28,7 +28,7 @@
  		</select>
  		
  		<!-- 적금관리  -->
- 		<select id="mysav_list" resultType="spring.mvc.benkfit.vo.mySavAccountVO">
+ 		<select id="mysav_list" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
  			select *
  			from mySavAccount_tbl
  			where c_id = #{id}
@@ -131,7 +131,7 @@
 		</select>
 		
 		<!-- 거래내역 조회  -->
-		<select id="sel_cheq" resultType="spring.mvc.benkfit.vo.TransdetailVO">
+		<select id="sel_cheq" resultType="spring.mvc.benkfit.vo.TransDetailVO">
 			select *
 			from transdetail_tbl
 			where c_id = #{id} and tran_account = #{cheq_account}

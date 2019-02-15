@@ -17,7 +17,7 @@ public interface DAO_kay {
 	public List<MyloanAccountVO> myloan_list(Map<String, Object> map);
 	
 	//적금계좌관리
-	public List<mySavAccountVO> mysav_list(String id);
+	public List<MySavAccountVO> mysav_list(String id);
 	
 	//id&pwd 체크
 	public int idPwdChk(Map<String, Object> map);
@@ -60,7 +60,7 @@ public interface DAO_kay {
 	public int cheqOut(Map<String, Object> map);
 	
 	//거래내역조회
-	public List<TransdetailVO> sel_cheq(Map<String, Object> map);
+	public List<TransDetailVO> sel_cheq(Map<String, Object> map);
 	
 	/*//계좌잔액
 	public int delChe(Map<String, Object> map);

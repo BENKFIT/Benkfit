@@ -20,12 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartRequest;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
-import spring.mvc.benkfit.vo.MyloanAccountVO;
-import spring.mvc.benkfit.vo.TransdetailVO;
-import spring.mvc.benkfit.vo.UsersVO;
-import spring.mvc.benkfit.vo.documentVO;
-import spring.mvc.benkfit.vo.myCheqAccountVO;
-import spring.mvc.benkfit.vo.mySavAccountVO;
+import spring.mvc.benkfit.vo.*;
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
@@ -83,7 +78,7 @@ public class ServiceImpl_kay implements Service_kay{
 
 	    System.out.println("세션 : " + id);
 	    
-		List<mySavAccountVO> sav = dao.mysav_list(id) ;
+	    List<MySavAccountVO> sav = dao.mysav_list(id) ;
 		
 		model.addAttribute("id", id);
 		model.addAttribute("sav", sav);
@@ -285,7 +280,7 @@ public class ServiceImpl_kay implements Service_kay{
 		myCheqAccountVO cheq = dao.selCheq(map);//계좌정보
 		int CheqIn = dao.cheqIn(map);//입금합계
 		int CheqOut	= dao.cheqOut(map);//출금합계
-		List<TransdetailVO> list_Ts = dao.sel_cheq(map);//거래내역
+		List<TransDetailVO> list_Ts = dao.sel_cheq(map); //거래내역
 		
 		model.addAttribute("list_Ts",list_Ts);
 		model.addAttribute("chch", cheq);
