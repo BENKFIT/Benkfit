@@ -2,12 +2,15 @@ package spring.mvc.benkfit.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,26 +21,45 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.web3j.crypto.CipherException;
+import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
 import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
+import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.Request;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.Transfer;
+import org.web3j.utils.Convert;
+import org.web3j.utils.Convert.Unit;
 
 import spring.mvc.benkfit.persistence.DAOImpl_syk;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.SavProductVO;
+import spring.mvc.benkfit.vo.TransDetailVO;
 
 @Service
 public class ServiceImpl_syk implements Service_syk {
 
 	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
+	
+	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	int chkNum = 0;
+	
+	String fn = "0x";
+	
+	BigInteger gasPrice = BigInteger.valueOf(3000000);
+	BigInteger gasLimit = BigInteger.valueOf(3000000);
 
 	@Autowired
 	DAOImpl_syk dao;
 
+	/*
+	 * 상품
+	 */
+	
 	//예금상품리스트조회
 	@Override
 	public void cheqSavList(HttpServletRequest req) {
@@ -204,17 +226,6 @@ public class ServiceImpl_syk implements Service_syk {
 		req.setAttribute("cnt", result);	
 	}
 
-	//이체
-	public String trasfer(HttpServletRequest req) {
-		return "";
-	}
-
-	//admin
-	public void admin(HttpServletRequest req) {
-		String password = req.getParameter("pwd");
-		admin.personalNewAccount(password);
-	}
-
 	//예금상품수정
 	@Override
 	public void cheqEdit(HttpServletRequest req) {
@@ -251,5 +262,83 @@ public class ServiceImpl_syk implements Service_syk {
 		int result = dao.savDel(num);
 		req.setAttribute("num", num);
 		req.setAttribute("result", result);
+	}
+
+	/*
+	 * 이체
+	 */
+	
+	//이체페이지
+	@Override
+	public void trans(HttpServletRequest req) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) securityContext.getPrincipal();
+		
+        String id = user.getUsername();
+        
+        List<String> accounts = dao.userAccounts(id);
+        req.setAttribute("accounts", accounts);
+	}
+
+	@Override
+	public void transPro(HttpServletRequest req) throws Exception{
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) securityContext.getPrincipal();
+		
+        String id = user.getUsername();
+		
+        System.out.println("\n==========>진입중\n");
+		System.out.println("\n==========>받은값 검사 중\n");
+		String password = req.getParameter("pwd");
+		
+		String fileSource = path.concat(req.getParameter("file"));
+		System.out.println("fileSource = " + fileSource);
+		String from = fn.concat(req.getParameter("file").substring(37));
+		
+		int value = Integer.parseInt(req.getParameter("amount"));
+		String to = req.getParameter("to");
+		BigDecimal ether = BigDecimal.valueOf(value);
+		
+		System.out.println("== 이더를 송금하는 함수 ==");
+		System.out.println("> 보내는 계정 :" + from);
+		System.out.println("> 송금계정 비밀번호 : " + password);
+		System.out.println("> 받는 계정 : " + to);
+		System.out.println("> 보내는 값(이더) : " + value +"("+ether+")");
+		
+		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
+		TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, to, ether, Convert.Unit.ETHER).send();
+		String blockHash = transfer.getBlockHash();
+			
+		if(transfer.getBlockNumber() != null) {
+			TransDetailVO vo = new TransDetailVO();
+			vo.setTran_account(from);
+			vo.setTran_out(from);
+			vo.setTran_in(to);
+			vo.setTran_amount(value);
+			vo.setC_id(id);
+			vo.setTran_type("이체");
+			vo.setTran_code("A");
+			vo.setTran_blockHash(blockHash);
+			
+			chkNum = dao.transPro(vo);
+		}else {
+			chkNum = 0;
+		}
+		req.setAttribute("chkNum", chkNum);
+	}
+	
+	//잔액확인
+	@Override
+	public void getBalance(HttpServletRequest req) {
+		String account = req.getParameter("account");
+		System.out.println("account ===> " + account);
+		BigInteger balance = null;
+		
+		try {
+			balance = this.web3j.ethGetBalance(account, DefaultBlockParameter.valueOf("latest")).sendAsync().get().getBalance();
+		} catch (InterruptedException | ExecutionException e) {
+			e.getMessage();
+		}
+		req.setAttribute("balance", balance);
 	}
 }

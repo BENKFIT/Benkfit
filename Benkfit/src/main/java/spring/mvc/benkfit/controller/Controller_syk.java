@@ -61,7 +61,7 @@ public class Controller_syk {
 	}
 	
 	/*
-	 * admin
+	 * admin - 상품
 	 */
 	
 	//예금 등록 페이지
@@ -143,5 +143,27 @@ public class Controller_syk {
 		service.savDel(req);
 		
 		return "admin/product/cheqSav/delResult";
+	}
+	
+	/*
+	 * 이체 
+	 */
+	
+	//계좌이체
+	@RequestMapping("transPro")
+	public String trans(HttpServletRequest req) throws Exception {
+		logger.info("송금");
+		service.transPro(req);
+		
+		return "mypage_kay/result";
+	}
+	
+	//잔액확인
+	@RequestMapping("getBalance")
+	public String getBalance(HttpServletRequest req) throws Exception{
+		logger.info("잔액확인");
+		service.getBalance(req);
+		
+		return "mypage_kay/getBalance";
 	}
 }

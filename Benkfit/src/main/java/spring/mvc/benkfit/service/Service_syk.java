@@ -4,7 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.google.api.Http;
+
 public interface Service_syk {
+	
+	/*
+	 * 상품
+	 */
 	
 	//예-적금상품리스트조회
 	public void cheqSavList(HttpServletRequest req);
@@ -38,4 +44,19 @@ public interface Service_syk {
 	
 	//적금상품삭제
 	public void savDel(HttpServletRequest req);
+	
+	/*
+	 * 이체
+	 */
+	
+	//계좌이체
+	public void trans(HttpServletRequest req);
+	
+	//계좌이체
+	public void transPro(HttpServletRequest req) throws Exception;
+	
+	/*
+	 * 잔액확인
+	 */
+	public void getBalance(HttpServletRequest req);
 }

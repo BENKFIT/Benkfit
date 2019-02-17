@@ -46,7 +46,7 @@ function ajaxTest(){
 						</c:forEach>
 				</select></td>
 			</tr>
-			<tr class='srch_area'>
+			<tr class="srch_area">
 				<th>조회기간</th>
 				<td>
 					<input type="text" name="start_date" id="start_date" required> ~

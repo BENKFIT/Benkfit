@@ -104,8 +104,6 @@
                   <li class="menu__item"><a class="menu__link"
                      data-submenu="submenu-3" href="#">안내</a></li>
                   <li class="menu__item"><a class="menu__link"
-                     data-submenu="submenu-4" href="#">상담</a></li>
-                  <li class="menu__item"><a class="menu__link"
                      data-submenu="submenu-5" href="#">ATM</a></li>
                </ul>
                <!-- Submenu 0 마이페이지 -->
@@ -257,7 +255,7 @@
                         <li class="menu__item"><a class="menu__link"
                            data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
                         <li class="menu__item"><a class="menu__link"
-                           data-submenu="submenu-0-4" href="#">결산</a></li>
+                           data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
                      </ul>
 
                      <!-- Submenu 0-2 상품관리 -->
@@ -323,8 +321,6 @@
                </ul>
                <!-- Submenu 4 -->
                <ul data-menu="submenu-4" class="menu__level">
-                  <li class="menu__item"><a class="menu__link" href="#">예금상담</a></li>
-                  <li class="menu__item"><a class="menu__link" href="#">대출상담</a></li>
                   <li class="menu__item"><a class="menu__link" href="#">이용안내</a></li>
                   <li class="menu__item"><a class="menu__link" href="#">제출서류안내</a></li>
                </ul>
@@ -363,7 +359,6 @@
                                     <li><a href="#">자산관리 2</a></li>
                                     <li><a href="#">자산관리 3</a></li>
                                  </ul></li>
-                              <li><a href="chat">상담</a></li>
                               <li><a href="hoursOfUse_sws">안내</a></li>
                               <li><a href="eventList_sws">이벤트</a></li>
                               <!-- 시큐리티 권한 따라 메뉴 달라짐  -->

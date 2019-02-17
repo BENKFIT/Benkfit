@@ -35,4 +35,10 @@ public interface DAO_syk {
 	
 	//적금상품 삭제
 	public int savDel(String num);
+	
+	//계좌조회
+	public List<String> userAccounts(String id);
+	
+	//이체
+	public int transPro(TransDetailVO vo);
 }
