@@ -24,7 +24,7 @@ public class Controller_bh {
 	/*
 	 *  계정생성하기
 	 */
-	@RequestMapping("create")
+	@RequestMapping("wallet")
 	public String create(HttpServletRequest req, Model model) throws Exception{
 		logger.info("create");
 		return "engine_bh/create";

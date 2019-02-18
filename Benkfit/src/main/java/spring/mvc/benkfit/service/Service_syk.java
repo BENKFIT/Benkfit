@@ -28,10 +28,10 @@ public interface Service_syk {
 	public void savRegiPro(HttpServletRequest req);
 	
 	//예금계좌생성
-	public void createCheq(HttpServletRequest req, Model model);
+	public void createCheq(HttpServletRequest req, Model model) throws Exception;
 	
 	//적금계좌생성
-	public void createSav(HttpServletRequest req, Model model);
+	public void createSav(HttpServletRequest req, Model model) throws Exception;
 	
 	//예금상품수정
 	public void cheqEdit(HttpServletRequest req);

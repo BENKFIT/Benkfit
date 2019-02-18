@@ -55,4 +55,7 @@ public interface Service_lia {
 	
 	// 관리자 메뉴 > 회원 거래내역 조회
 	public void selTransaction(HttpServletRequest req, Model model);
+	
+	// 코인 시세
+	public void marketprice(Model model) throws IOException;
 }

@@ -3,17 +3,17 @@ package spring.mvc.benkfit.vo;
 import java.sql.Date;
 
 public class LoanProductVO {
-	private String loan_num;
-	private String loan_name;
-	private int loan_amount;
-	private String loan_period;
-	private double loan_overrate;
-	private double loan_rate;
-	private int loan_moderate;
-	private String loan_target;
-	private String loan_remethod;
-	private String loan_paymethod;
-	private Date loan_regDate;
+	private String loan_num;				//대출번호
+	private String loan_name;				//대출이름
+	private int loan_amount;				//대출금액
+	private String loan_period;				//
+	private double loan_overrate;			//
+	private double loan_rate;				//
+	private int loan_moderate;				//
+	private String loan_target;				//
+	private String loan_remethod;			//
+	private String loan_paymethod;			//
+	private Date loan_regDate;				//
 	
 	public String getLoan_num() {
 		return loan_num;

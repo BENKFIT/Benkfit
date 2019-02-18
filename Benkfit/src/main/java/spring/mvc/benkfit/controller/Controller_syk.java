@@ -93,7 +93,7 @@ public class Controller_syk {
 	
 	//예금계좌생성
 	@RequestMapping("createCheq")
-	public String createCheq(HttpServletRequest req, Model model) {
+	public String createCheq(HttpServletRequest req, Model model) throws Exception{
 		logger.info("예금계좌생성");
 		service.createCheq(req, model);
 		
@@ -102,7 +102,7 @@ public class Controller_syk {
 	
 	//적금계좌생성
 	@RequestMapping("createSav")
-	public String createSav(HttpServletRequest req, Model model) {
+	public String createSav(HttpServletRequest req, Model model) throws Exception {
 		logger.info("예금계좌생성");
 		service.createSav(req, model);
 		
