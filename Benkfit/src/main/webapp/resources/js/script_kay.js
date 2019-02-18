@@ -4,9 +4,9 @@
 /*page 이동*/
 function move(str){
 	if(str==1){//계좌관리-예금-조회
-		document.mypage.action="sel_account";
+		document.mypage.action="cheq_account";
 	}else if(str==2){//계좌관리-예금-해지
-		document.mypage.action="delsel_account";
+		document.mypage.action="delcheq";
 	}else if(str==3){//계좌관리-대출-조회
 		document.mypage.action="loan_account";
 	}else if(str==4){//계좌관리-대출-상환
@@ -27,9 +27,21 @@ function move(str){
 		document.mypage.action="document";
 	}else if(str==12){//회원탈퇴
 		document.mypage.action="deluserPw";
-	} 
+	}else if(str==13){//계좌관리-적금-조회
+		document.mypage.action="sav_account";
+	}else if(str==14){//계좌관리-적금-해지
+		document.mypage.action="delsav_account";
+	}else if(str==15){//계좌관리-적금-해지
+		document.mypage.action="mypage";
+	}
 }
-
+/*function passwdCheck(){
+	if(!document.passwdform.pwd.value){
+		alert("");
+		document.passwdform.pwd.focus();
+		return false;
+	}
+}*/
 /*QR코드발급*/
 $(document).ready(function() {
 	$('#qrcode').hide();
@@ -48,29 +60,31 @@ $(document).ready(function() {
 		m_pwd = encodeURIComponent(m_pwd);
 		
 		// 뒤에 코드가 길어지니까 그냥 한번 변수에 주소를 저장
-		googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
+		googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=" ;
 		
 		// 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
 		// 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
 		var qrurl = googleQRUrl + "&ID="+ m_strid +"&PWD="+m_pwd + "&NAME="+ m_name
 		+ "&HP="+ m_phone + '&choe=UTF-8'; 
 		
-		 $('#qrcode').attr('src', qrurl);
-		 $('#qrcode1').attr('href', qrurl);
+		 $('#qrcode').prop('src', qrurl);
 	});
 	}); 
+
 //qr코드 저장.
 $('#saveBtn').click(function() {
-	var x=new XMLHttpRequest();
-	x.open("GET", googleQRUrl + "&ID="+ m_strid + "&NAME="+ m_name
-	    	+ "&HP="+ m_phone + '&choe=UTF-8', true);
+	var x = new XMLHttpRequest();
+	var qrurl = googleQRUrl + "&ID="+ m_strid +"&PWD="+m_pwd + "&NAME="+ m_name
+	+ "&HP="+ m_phone +'&choe=UTF-8'; 
+	swal("qr발급완료","OK","success");
+	x.open("GET", qrurl , true);
 	x.responseType = 'blob';
 	x.onload=function(e){download(x.response, "qrcode.png", "image/png" ); }
 	x.send();
 });
 
 /*//파일업로드시 ,파일 미리 보기
-var file = document.querySelector('#doc_img');
+var file = document.querySelector('#img');
 file.onchange = function () { 
     var fileList = file.files ;
     // 읽기
@@ -82,6 +96,67 @@ file.onchange = function () {
         document.querySelector('#preview').src = reader.result ;
     }; 
 }; */
+/* 날짜 객체 받아서 문자열로 리턴하는 함수 */
+function getDateStr(myDate){
+	return (myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myDate.getDate())
+}
+/* 오늘 날짜를 문자열로 반환 */
+function today() {
+  var d = new Date()
+  return getDateStr(d)
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek() {
+  var d = new Date()
+  var dayOfMonth = d.getDate()
+  d.setDate(dayOfMonth - 7)
+  return getDateStr(d)
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek1() {
+	  var d = new Date()
+	  var dayOfMonth = d.getDate()
+	  d.setDate(dayOfMonth - 14)
+	  return getDateStr(d)
+	}
+/* 오늘로부터 1개월전 날짜 반환 */
+function lastMonth1() {
+  var d = new Date()
+  var monthOfYear = d.getMonth()
+  d.setMonth(monthOfYear - 1)
+  return getDateStr(d)
+}
+/* 오늘로부터 3개월전 날짜 반환 */
+function lastMonth3() {
+	  var d = new Date()
+	  var monthOfYear = d.getMonth()
+	  d.setMonth(monthOfYear - 3)
+	  return getDateStr(d)
+	}
+/* 오늘로부터 6개월전 날짜 반환 */
+function lastMonth6() {
+	  var d = new Date()
+	  var monthOfYear = d.getMonth()
+	  d.setMonth(monthOfYear - 6)
+	  return getDateStr(d)
+}
+$(".srch_area :button").click(function(){
+  var rname = $(this).attr("id")
+  $("#end_date").val(today())
+	if(rname == "r_today"){
+    $("#start_date").val(today())
+  }else if(rname == "r_week") {
+  	$("#start_date").val(lastWeek())
+  }else if(rname == "r_week1") {
+  	$("#start_date").val(lastWeek1())
+  }else if(rname == "r_month1") {
+  	$("#start_date").val(lastMonth1())
+  }else if(rname == "r_month3") {
+  	$("#start_date").val(lastMonth3())
+  }else{
+  	$("#start_date").val(lastMonth6())
+  }
+})
 
 /*//드래그,마우스오른쪽 금지.
 $(document).ready(function() {
@@ -105,5 +180,7 @@ $(document).ready(function() {
 document.oncontextmenu=function(){return false;} // 우클릭 방지
 document.onselectstart=function(){return false;} // 드래그 방지
 document.ondragstart=function(){return true;} // 선택 방지
-document.onmousedown=function(){return true;}*/
+document.onmousedown=function(){return true;}
 
+
+*/

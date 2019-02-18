@@ -6,13 +6,17 @@
 <body>
 	<c:choose>
 		<c:when test="${cnt == 1}">
-			<c:redirect url="cheqSavRegi"/>
+			<script type="text/javascript">
+				window.location="cheqSavRegi";
+			</script>
 		</c:when>
 		<c:when test="${Accountcnt == 1}">
-			<c:redirect url="index"/>
+			<c:redirect url="cheqSavList"/>
 		</c:when>
 		<c:when test="${Accountcnt <= 0 }">
-			<c:redirect url="cheqSavList"/>
+			<script type="text/javascript">
+				window.location="cheqSavList";
+			</script>
 		</c:when>
 	</c:choose>
 </body>

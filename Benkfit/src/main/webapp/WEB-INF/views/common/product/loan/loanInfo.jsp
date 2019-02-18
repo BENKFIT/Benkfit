@@ -12,8 +12,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>예/적금상품안내</title>
-
+<title>대출상품안내</title>
 <style type="text/css">
 td {
 	color: white;
@@ -110,8 +109,6 @@ p{
 <body>
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
-
-	<c:if test="${kind == '1'}">
 		<div
 			style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
@@ -225,7 +222,6 @@ p{
 				</details>
 			</div>
 		</div>
-	</c:if>
 	<c:if test="${kind == '2'}">
 		<!-- #2D5772 -->
 		<div

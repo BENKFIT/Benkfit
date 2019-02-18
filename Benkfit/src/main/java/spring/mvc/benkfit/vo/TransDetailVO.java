@@ -16,6 +16,7 @@ public class TransDetailVO {
 	private int tran_afterAmount;	 // 거래후 잔액, 대출 잔금
 	private int tran_loanAmount;	 // 대출원금
 	private Date tran_due;			 // 적금 만기, 대출 만기
+	private String tran_blockHash;		 // 블록 해시
 	
 	public String getTran_num() {
 		return tran_num;
@@ -95,13 +96,19 @@ public class TransDetailVO {
 	public void setTran_due(Date tran_due) {
 		this.tran_due = tran_due;
 	}
+	public String getTran_blockHash() {
+		return tran_blockHash;
+	}
+	public void setTran_blockHash(String tran_blockHash) {
+		this.tran_blockHash = tran_blockHash;
+	}
 	
 	@Override
 	public String toString() {
-		return "TransDetail [tran_num=" + tran_num + ", tran_account=" + tran_account + ", tran_out=" + tran_out
+		return "TransDetailVO [tran_num=" + tran_num + ", tran_account=" + tran_account + ", tran_out=" + tran_out
 				+ ", tran_in=" + tran_in + ", tran_date=" + tran_date + ", tran_amount=" + tran_amount + ", tran_bank="
 				+ tran_bank + ", c_id=" + c_id + ", tran_type=" + tran_type + ", tran_code=" + tran_code
 				+ ", tran_afterAmount=" + tran_afterAmount + ", tran_loanAmount=" + tran_loanAmount + ", tran_due="
-				+ tran_due + "]";
+				+ tran_due + ", tran_blockHash=" + tran_blockHash + "]";
 	}
 }

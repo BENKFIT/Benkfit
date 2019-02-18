@@ -110,7 +110,6 @@
 		</tr>		
 	</table>
 </div>
-	
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>

@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../Template/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>정보수정</title>
 </head>
 <body>
-mypage<br>
-(연결계정: <sec:authentication property="name" />)
+	
+	<div class="wrapper">
+		안녕하세요. 감사해ㅇ, 잘있어요, 다시만나여.
+	</div>
+	
 </body>
 </html>
