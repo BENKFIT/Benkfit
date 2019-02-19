@@ -13,9 +13,10 @@ function ajaxTest(){
  	var end_date = $('input[name="end_date"]').val(); 
  	var type =  $('input[name="option"]:checked').val();
 	var order =$('input[name="order"]:checked').val();
+	var end = $('input[name="num"]:checked').val();
 	
 	var sel_cheq = "account=" + account+ "&type=" + type + "&order=" +order 
-	 + "&start_date=" +start_date  + "&end_date=" + end_date ;
+	 + "&start_date=" +start_date  + "&end_date=" + end_date +"&end=" + end ;
 								
 	$.ajax({
 			type : "POST",
@@ -23,7 +24,7 @@ function ajaxTest(){
 			data : sel_cheq,
 			success : function(data) {
 				$('#result').html(data);
-			},
+			},	
 			error : function() {
 				alert('통신실패!!');
 			}
@@ -40,17 +41,25 @@ function ajaxTest(){
 			<tr>
 				<th>예금 계좌번호</th>
 				<td><select id="cheq_account" name="cheq_account">
-						<option value="계좌선택">계좌를 선택하세요.</option>
-						<c:forEach var="ch" items="${cheq}">
-							<option value="${ch.myCheq_account}">${ch.myCheq_account}</option>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${account != null}">
+								<option value="${account}">${account}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="계좌를 선택하세요.">계좌를 선택하세요.</option>
+								<c:forEach var="ch" items="${cheq}">
+									<option value="${ch.myCheq_account}">${ch.myCheq_account}</option>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 				</select></td>
 			</tr>
-			<tr class='srch_area'>
+			<tr class="srch_area">
 				<th>조회기간</th>
 				<td>
-					<input type="text" name="start_date" id="start_date" required> ~
- 					<input type="text" name="end_date" id="end_date" required>
+					<input type="date" class="datepicker" name="start_date" id="start_date"> ~
+ 					<input type="date" class="datepicker" name="end_date" id="end_date">
+					
 				</td>
 				<td>
 					<span> <input type="button" class="date" id="r_today" name="date" value="당일"></span>
@@ -74,6 +83,14 @@ function ajaxTest(){
 				<td>
 					<input type="radio"  name="order" id="4" value="4">최근거래순 
 					<input type="radio" name="order"  id="5" value="5">과거거래순
+				</td>
+			</tr>
+			<tr>
+				<th>조회내역건수</th>
+				<td>
+					<input type="radio" name="num" value="10">10건
+					<input type="radio" name="num" value="20">20건
+					<input type="radio" name="num" value="30">30건
 				</td>
 			</tr>
 			<tr>
@@ -105,21 +122,6 @@ function ajaxTest(){
 		    yearSuffix: '년'
 		  });
 		});
-		function load() {
-			sendRequest(load_callback, "cheq_info", "post");
-		}
-		function load_callback() {
-			var result = document.getElementById("result");
-			if (httpRequest.readyState == 4) {
-				if (httpRequest.status == 200) {
-					result.innerHTML = httpRequest.responseText;
-				} else {
-					result.innerHTML = "에러발생";
-				}
-			} else {
-				result.innerHTML = "상태 : " + httpRequest.readyState;
-			}
-		}
-	</script> -->
+	-->
 </body>
 </html>

@@ -35,13 +35,6 @@ function move(str){
 		document.mypage.action="mypage";
 	}
 }
-/*function passwdCheck(){
-	if(!document.passwdform.pwd.value){
-		alert("");
-		document.passwdform.pwd.focus();
-		return false;
-	}
-}*/
 /*QR코드발급*/
 $(document).ready(function() {
 	$('#qrcode').hide();
@@ -82,7 +75,6 @@ $('#saveBtn').click(function() {
 	x.onload=function(e){download(x.response, "qrcode.png", "image/png" ); }
 	x.send();
 });
-
 /*//파일업로드시 ,파일 미리 보기
 var file = document.querySelector('#img');
 file.onchange = function () { 
@@ -98,7 +90,10 @@ file.onchange = function () {
 }; */
 /* 날짜 객체 받아서 문자열로 리턴하는 함수 */
 function getDateStr(myDate){
-	return (myDate.getFullYear() + '-' + (myDate.getMonth() + 1) + '-' + myDate.getDate())
+	var yyyy = myDate.getFullYear();
+	var mm = (myDate.getMonth() + 1);
+	var dd = myDate.getDate();
+	return yyyy + '-' + mm + '-' + dd;
 }
 /* 오늘 날짜를 문자열로 반환 */
 function today() {
@@ -157,7 +152,6 @@ $(".srch_area :button").click(function(){
   	$("#start_date").val(lastMonth6())
   }
 })
-
 /*//드래그,마우스오른쪽 금지.
 $(document).ready(function() {
     $(document).bind("contextmenu", function(e){

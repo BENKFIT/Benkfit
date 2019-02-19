@@ -14,18 +14,23 @@
 			<tr>
 				<th>서류 번호</th>
 				<th>서류 명</th>
-				<th>서류 내용</th>
+				<th>이름</th>
 				<th>서류 날짜</th>
+				<th>조회</th>
 			</tr>
 			<c:forEach var="doc" items="${docu}">
 				<tr>
-					<td><input type="text" class=""value="${doc.doc_num}" disabled></td>
-					<td><input type="text" 	value="${doc.doc_name}" disabled></td>
-					<td><input type="text" value="${doc.doc_content}" disabled></td>
-					<td><input type="text" value="${doc.doc_date}" disabled></td>
+					<td><input type="text" id="doc_num" class="inputStyle" value="${doc.doc_num}" disabled></td>
+					<td><input type="text" id="doc_title" class="inputStyle"value="${doc.doc_title}" disabled></td>
+					<td><input type="text" id="doc_name" class="inputStyle"value="${doc.doc_name}" disabled></td>
+					<td><input type="text" id="doc_date" class="inputStyle"value="${doc.doc_date}" disabled></td>
+					<td><button class="btn2 btn2-info" onclick="window.location='detaildoc?doc_num=${doc.doc_num}'">조회</button></td>
 				</tr>
-			</c:forEach>
+			</c:forEach> 
 		</table>
+		<div>
+			<img src=" " id="preview">
+		</div>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
 </body>

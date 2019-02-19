@@ -15,18 +15,22 @@ $(document).ready(function() {
 <body >
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
-		<form action="deluserPro" method="post">
+		<form action="account" method="post">
 			<div class="PW">
 				<h2>비밀번호 확인</h2>
 				<p>회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 확인합니다.</p>
 				<table id="pwCheck">
 					<tr>
-						<th>[]</th>
-						<th>&nbsp;&nbsp;해지할 계좌의 비밀번호를 입력하세요.</th>
+						<th>해지할  [${account}] 계좌의 비밀번호를 입력하세요.
+						<input type="hidden" name="account" value="${account}">
+						</th>
 					</tr>
 					<tr>
-						<th><indput type="password" class="inputstyle" name="pwd" required autofocus></th>
-						<th><input type="submit" class="btn2 btn2-success" value="확인">
+						<th>
+							<input type="password" class="inputstyle" name="pwd" required autofocus>
+						</th>
+						<th>
+							<input type="submit" class="btn2 btn2-success" value="확인">
 						</th>
 					</tr>
 				</table>

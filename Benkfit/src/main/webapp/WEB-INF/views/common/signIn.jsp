@@ -235,7 +235,7 @@
 		
 		//주민번호 유효성  체크
 		$("#jumin2").keyup(function() {
-      juminVal();
+    		juminVal();
 		})
 		
 		$("#jumin2").click(function() {
@@ -392,7 +392,6 @@
 		var url = "terms"
 		window.open(url, "terms", "width=800, height=700, left=100, top=100")
 	}
-	
 	
 	// 회원가입 버튼 클릭시 실행
 	function signInCheck() {

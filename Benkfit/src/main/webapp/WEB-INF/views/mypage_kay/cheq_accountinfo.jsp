@@ -19,15 +19,15 @@
 		</tr>
 		<tr>
 			<th>계좌번호</th>
-			<td><input type="text" value="${chch.myCheq_account}" class="inputStyle"disabled></td>
+			<td><input type="text" value="${chch.myCheq_account}" class="inputStyle" disabled></td>
 			<th>계좌잔액</th>
-			<td><input type="text" value="${chch.myCheq_amount}" class="inputStyle" value="${cheq_account}"disabled></td>
+			<td><input type="text" value="￦<fmt:formatNumber value="${chch.myCheq_amount}" pattern="#,###.##"/>" class="inputStyle"  onchange="getNumber(this);" value="${cheq_account}"disabled></td>
 		</tr>
 		<tr>
 			<th>예금 세율</th>
 			<td><input type="text" value="${chch.myCheq_taxRate}" class="inputStyle" disabled></td>
 			<th>이체한도 </th>
-			<td><input type="text" value="${chch.myCheq_limit}" class="inputStyle" disabled></td>
+			<td><input type="text" value="￦<fmt:formatNumber value="${chch.myCheq_limit}" pattern="#,###.##"/>" class="inputStyle" onchange=""  disabled></td>
 		</tr>
 	</table>
 	<hr>
@@ -36,9 +36,23 @@
 	<table class="table_kay">
 		<tr>
 			<th>입금합계</th>
-			<td><input type="text" value="${CheqIn}" class="inputStyle" disabled></td>
+			<td><c:if test="${CheqIn == 0}">
+					<input type="text" value="-" class="inputStyle" disabled>
+				</c:if> <c:if test="${CheqIn != 0}">
+					<input type="text"
+						value="￦<fmt:formatNumber value="${CheqIn}" pattern="#,###.##"/>"
+						class="inputStyle" disabled>
+				</c:if></td>
 			<th>출금합계</th>
-			<td><input type="text" value="${CheqOut}"class="inputStyle" disabled></td>
+			<td>
+			<c:if test="${CheqOut == 0}">
+					<input type="text" value="-" class="inputStyle" disabled>
+				</c:if> 
+				<c:if test="${CheqOut != 0}">
+					<input type="text" value="￦<fmt:formatNumber value="${CheqOut}" pattern="#,###.##"/>"
+						class="inputStyle" disabled>
+				</c:if>
+			</td>
 		</tr>
 	</table>
 	<hr>
@@ -53,17 +67,23 @@
 			<th>받는이</th>
 			<th>타입</th>
 		</tr>
-		<c:forEach var="list" items="${list_Ts}">
+		<tr>
+		<c:if test="${empty list_Ts}">
 			<tr>
-				<td>${list.tran_num}</td>
-				<td>${list.tran_date}</td>
-				<td>${list.tran_account}</td>
-				<td>${list.tran_amount}</td>
-				<td>${list.tran_out}</td>
-				<td>${list.tran_in}</td>
-				<td>${list.tran_type}</td>
+				<td colspan="7" style="text-align:center;">거래내역이 존재하지 않습니다.</td>
 			</tr>
-		</c:forEach>
+		</c:if>
+			<c:forEach var="list" items="${list_Ts}">
+				<tr>
+					<td>${list.tran_num}</td>
+					<td>${list.tran_date}</td>
+					<td>${list.tran_account}</td>
+					<td>￦<fmt:formatNumber value="${list.tran_amount}" pattern="#,###.##"/></td>
+					<td>${list.tran_out}</td>
+					<td>${list.tran_in}</td>
+					<td>${list.tran_type}</td>
+				</tr>
+			</c:forEach>
 	</table>
 </body>
 </html>
