@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import spring.mvc.benkfit.service.ServiceImpl_syk;
 import spring.mvc.benkfit.service.Service_kay;
 
 @Controller
@@ -18,6 +19,8 @@ public class Controller_kay {
 	
 	@Autowired
 	Service_kay service;
+	@Autowired 
+	ServiceImpl_syk service_syk;
 	
 	/*마이페이지*/		
 	@RequestMapping("mypage")
@@ -175,6 +178,8 @@ public class Controller_kay {
 	@RequestMapping("trans")
 	public String trans(HttpServletRequest req, Model model) throws Exception{
 		logger.info("trans");
+		service_syk.trans(req);
+		
 		return "mypage_kay/trans_info";
 	}
 	//계좌이체정보확인

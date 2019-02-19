@@ -44,7 +44,6 @@ input[type=button] {
 	var queryObject = "";
 	var queryObjectLen = "";
 
-	$('#btn').click(function() {
 		$.ajax({
 			type : 'POST',
 			url : '${pageContext.request.contextPath}/chartYear_sws',
@@ -203,7 +202,6 @@ input[type=button] {
 				alert('server error occured');
 			}
 		});
-	});
 
 	$('#btn1').click(function() {
 		$.ajax({

@@ -33,6 +33,7 @@ import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MySavAccountVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
+import spring.mvc.benkfit.vo.PriceVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
@@ -60,17 +61,11 @@ public class ServiceImpl_lia implements Service_lia {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		//System.out.println("start");
-		
 		while((line = br.readLine()) != null) {
 			sb.append(line + "\n");
 		}
 		
 		String info = sb.toString();
-		
-		//System.out.println(info);
-		
-		//System.out.println("end");
 		
 		br.close();
 		
@@ -98,8 +93,6 @@ public class ServiceImpl_lia implements Service_lia {
             for(String str : list) {
             	if(str.contains("(")) {
             		if(str.length() <= 8) {
-            			//String[] name = str.split("(");  // 괄호를 구분자로 인식못함..
-            			//System.out.println(name[0]);
             			names.add(str.substring(0, 3));
             		}
             	}
@@ -561,5 +554,57 @@ public class ServiceImpl_lia implements Service_lia {
 				model.addAttribute("transaction", transaction);
 			}
 		} 
+	}
+
+	// 코인 시세
+	@Override
+	public void marketprice(Model model) throws IOException {
+		// Process : 자바에서 외부프로그램을 호출할때 사용
+		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/coin.py");
+		Process p = pb.start();   //프로세스 호출
+		
+		// 프로세서의 실행결과를 스트림으로 리턴
+		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line = "";
+		StringBuilder sb = new StringBuilder();
+		
+		ArrayList<String> list = new ArrayList<>();
+
+		while((line = br.readLine()) != null) {
+			list.add(line.toString());
+		}
+		
+		ArrayList<ArrayList> set = new ArrayList<ArrayList>();
+		
+		for(String str : list) {
+			String[] coin = str.substring(1, str.length()-1).split(",");
+			ArrayList<String> subset = new ArrayList<>();
+			
+			for(int i=0; i<coin.length; i++) {
+				subset.add(coin[i].replace("'", "").trim());
+			}
+			set.add(subset);
+			Map<String, String> name = new HashMap<String, String>();
+			name.put("name", subset.get(0));
+			/*dao.insertCoins(name);*/
+		}
+		
+		// 변동값 업데이트
+		for(int i=0; i<set.size(); i++) {
+			Map<String, Object> vals = new HashMap<String, Object>();
+			vals.put("name", set.get(i).get(0).toString());
+			vals.put("marketprice", set.get(i).get(1));
+			vals.put("changeNum", set.get(i).get(2).toString().trim());
+			vals.put("changePer", set.get(i).get(3).toString().trim());
+			vals.put("sort_amount", set.get(i).get(4));
+			vals.put("total", set.get(i).get(5).toString().replace("JO", "조").replace("UCK", "억"));
+			dao.updateCoins(vals);
+		}
+		List<PriceVO> price = dao.selectCoins();
+		
+		//자원해제
+		br.close();
+		
+		model.addAttribute("price", price);
 	}
 }
