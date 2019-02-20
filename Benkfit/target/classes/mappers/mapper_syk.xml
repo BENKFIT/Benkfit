@@ -70,4 +70,17 @@
 		WHERE sav_num = #{num}
 	</delete>
 	
+	<!-- 계좌조회 -->
+	<select id="userAccounts" parameterType="String" resultType="String">
+		SELECT nvl(myCheq_account, '계좌가 없습니다.')
+		FROM myCheqAccount_tbl
+		WHERE c_id = #{id} 
+	</select>
+	
+	<!-- 이체 -->
+	<insert id="transPro" parameterType="spring.mvc.benkfit.vo.TransDetailVO">
+		INSERT INTO transdetail_tbl(tran_num, tran_account, tran_out, tran_in, tran_amount, c_id, tran_type, tran_code, tran_blockhash)
+		VALUES(TRANSACTION_SEQ.nextval, #{tran_account}, #{tran_out}, #{tran_in}, #{tran_amount}, #{c_id}, #{tran_type}, #{tran_code}, #{tran_blockHash})
+	</insert>
+	
 </mapper>

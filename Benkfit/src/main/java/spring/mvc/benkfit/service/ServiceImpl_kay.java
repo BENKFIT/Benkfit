@@ -1,12 +1,22 @@
 package spring.mvc.benkfit.service;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +27,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
@@ -24,48 +35,50 @@ import spring.mvc.benkfit.vo.*;
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
-	
+
 	@Autowired
 	DAOImpl_kay dao;
-	
+
 	//마이페이지 내 정보
 	@Override
 	public void mypage_info(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal(); 
-	    String id = user.getUsername();
-	    
-	    UsersVO usVO = dao.mypage_info(id) ;
-	    
-	    model.addAttribute("usVO", usVO);
+		User user = (User) securityContext.getPrincipal(); 
+		String id = user.getUsername();
+
+		UsersVO usVO = dao.mypage_info(id) ;
+
+		model.addAttribute("usVO", usVO);
 	}
 	//예금 계좌 //이체한도 조회
 	@Override
 	public void myCheq_list(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal(); 
-	    String id = user.getUsername();
+		User user = (User) securityContext.getPrincipal(); 
+		String id = user.getUsername();
+		String account = req.getParameter("account");
 
 		List<myCheqAccountVO> cheq = dao.myCheq_list(id);
-		
+		System.out.println("ㄱ좌셔ㅓㄴ택 : "+ account);
+		model.addAttribute("account", account);
 		model.addAttribute("cheq", cheq);
 	}
 	//대출계좌
 	@Override
 	public void myloan_list(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal(); 
-	    String id = user.getUsername();
+		User user = (User) securityContext.getPrincipal(); 
+		String id = user.getUsername();
 
-	    System.out.println("세션 : " + id);
-	    String option = req.getParameter("myLoan_account");
-	    
-	    Map<String, Object> map = new HashMap<String, Object>();
-	    map.put("option", option);
-	    map.put("id", id);
-	    
+		System.out.println("세션 : " + id);
+		String option = req.getParameter("myLoan_account");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("option", option);
+		map.put("id", id);
+
 		List<MyloanAccountVO> loan = dao.myloan_list(map);
-		
+
 		model.addAttribute("id", id);
 		model.addAttribute("loan", loan);
 	}
@@ -73,79 +86,78 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void mysav_list(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal(); 
-	    String id = user.getUsername();
+		User user = (User) securityContext.getPrincipal(); 
+		String id = user.getUsername();
 
-	    System.out.println("세션 : " + id);
-	    
-	    List<MySavAccountVO> sav = dao.mysav_list(id) ;
-		
+		System.out.println("세션 : " + id);
+
+		List<MySavAccountVO> sav = dao.mysav_list(id) ;
+
 		model.addAttribute("id", id);
 		model.addAttribute("sav", sav);
 	}
-	
 	//내정보 - 화면
 	@Override
 	public void info(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    
-	    String id = user.getUsername();
-	    
+		User user = (User) securityContext.getPrincipal();
+
+		String id = user.getUsername();
+
 		String pwd = (String) req.getParameter("pwd");
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("pwd", pwd);
-		
+
 		int selCnt = dao.idPwdChk(map);
-		
+
 		System.out.println("selCnt :" + selCnt);
-		
+
 		//5-2단계 있으면 로그인한 id로 정보조회
 		if(selCnt == 1) {
-			 UsersVO vo = dao.info(map);
-			 model.addAttribute("vo", vo);
+			UsersVO vo = dao.info(map);
+			model.addAttribute("vo", vo);
 		} 
 		// 6단계. request나 session에 처리 결과를 저장(jsp에 전달하기 위함)
-			model.addAttribute("selCnt", selCnt);	
+		model.addAttribute("selCnt", selCnt);	
 	}
 	//내정보 - 수정처리
 	@Override
 	public void up_info(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    
-	    String id = user.getUsername();
-		
+		User user = (User) securityContext.getPrincipal();
+
+		String id = user.getUsername();
+
 		UsersVO vo = new UsersVO();
-		
+
 		vo.setC_id(id);
 		vo.setC_pwd(req.getParameter("pwd"));
-		
+
 		vo.setC_address(req.getParameter("address"));
 		vo.setC_post(req.getParameter("post"));
 		vo.setC_hp(req.getParameter("hp"));
 		vo.setC_email(req.getParameter("email"));
-		
+
 		int update = dao.up_info(vo);
-		
+
 		System.out.println("update :" + update);
-		
+
 		model.addAttribute("update", update);
 	}
 	//idpwChk
 	@Override
 	public void idpwChk(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
-	    String pwd = req.getParameter("pwd");
-	    
-	    Map<String, Object> map = new HashMap<String, Object>();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String pwd = req.getParameter("pwd");
+
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("strpwd", pwd);
-		
+
 		int idChk = dao.idPwdChk(map);
 		model.addAttribute("idChk", idChk);
 	}
@@ -163,6 +175,7 @@ public class ServiceImpl_kay implements Service_kay{
 
 		int idChk = dao.idPwdChk(map);
 		System.out.println("idChk"+ idChk);
+
 		int check = 0;
 		if(idChk == 1) {//idpwd 값이 있으면.
 			int cheq = dao.chk_cheq(map);//예금잔액 조회
@@ -202,13 +215,13 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void qrcode(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
-	    
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+
 		System.out.println("==qr코드==");
-		
+
 		UsersVO qrcode = dao.qrcode(id);
-		
+
 		model.addAttribute("id", id);
 		model.addAttribute("qr", qrcode);
 	}
@@ -216,32 +229,32 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void qrPro(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
-	    
-	    int qrCnt = dao.qrPro(id);
-	    
-	    model.addAttribute("qrCnt", qrCnt);
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+
+		int qrCnt = dao.qrPro(id);
+
+		model.addAttribute("qrCnt", qrCnt);
 	}
 	//이체한도 수정
 	@Override
 	public void limit_up(HttpServletRequest req, Model model) {
-	    String tdArr[] = req.getParameterValues("account_limit");
+		String tdArr[] = req.getParameterValues("account_limit");
 		int limCnt= 0;
 		for(String a : tdArr){		
 			Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-		    User user = (User) securityContext.getPrincipal();
-		    String id = user.getUsername();
-	
+			User user = (User) securityContext.getPrincipal();
+			String id = user.getUsername();
+
 			int ass = Integer.parseInt(a.split("/")[0]);
 			String myCheq_account = a.split("/")[1];
-			
+
 			myCheqAccountVO vo = new myCheqAccountVO();
-			
+
 			vo.setMyCheq_account(myCheq_account); //select된값
 			vo.setMyCheq_limit(Integer.parseInt(req.getParameter("acount_lim")));//입력값
 			vo.setC_id(id);
-			
+
 			limCnt = dao.limit_up(vo);
 			System.out.println("limCnt :"+ limCnt);
 			model.addAttribute("vo"+ vo);
@@ -253,22 +266,26 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void sel_cheq(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
 		String cheq_account = req.getParameter("account");
 		String start_date = req.getParameter("start_date");
 		String end_date= req.getParameter("end_date");
 		String type = req.getParameter("type");
 		String order = req.getParameter("order");
-		
+		int start = 1;
+		int end = Integer.parseInt(req.getParameter("end"));
+		String delCheq = req.getParameter("delCheq");
+		System.out.println("계좌선택 : " + delCheq);
 		System.out.println("====cheq_info====");
-		
+
 		if(type.equals("undefined")) {
 			type = "";
 		}
 		if(order.equals("undefined")) {
 			order = "";
 		}
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("cheq_account", cheq_account);
@@ -276,96 +293,270 @@ public class ServiceImpl_kay implements Service_kay{
 		map.put("end_date", end_date);
 		map.put("type", type);
 		map.put("order", order);
-		
+		map.put("start", start);
+		map.put("end", end);
+
 		myCheqAccountVO cheq = dao.selCheq(map);//계좌정보
 		int CheqIn = dao.cheqIn(map);//입금합계
 		int CheqOut	= dao.cheqOut(map);//출금합계
 		List<TransDetailVO> list_Ts = dao.sel_cheq(map); //거래내역
-		
+
 		model.addAttribute("list_Ts",list_Ts);
 		model.addAttribute("chch", cheq);
 		model.addAttribute("CheqIn",CheqIn);
 		model.addAttribute("CheqOut",CheqOut);
-		
+
 	}
 	//대출계좌 상세 조회
 	@Override
 	public void sel_loan(HttpServletRequest req, Model model) {
-		
+
 	}
 	//적금계좌 상세 조회
 	@Override
 	public void sel_sav(HttpServletRequest req, Model model) {
-		
+
 	}
-/*	//계좌해지
+	//해지조회
+	@Override
+	public void sls(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("account", account);
+
+		model.addAttribute("id", id);
+		model.addAttribute("account", account);
+	}
+	//계좌해지
 	@Override
 	public void del_cheq(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
-	    String delCheq = req.getParameter("delCheq");
-	    
-	    Map<String,Object> map = new HashMap<>();
-	    map.put("id", id);
-		map.put("delCheq", delCheq);
-		System.out.println("===해지====");
-		System.out.println("delCheq : "+ delCheq);
-	}*/
-	//내서류관리
-	public void docu_list(HttpServletRequest req, Model model) {
-		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
-	    
-		List<documentVO> docu = dao.docu_list(id);
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+		String pwd =  req.getParameter("pwd");
+
+		System.out.println("====해지====");
+		System.out.println("id : " + id);
+		System.out.println("account : "+ account);
+		System.out.println("pwd : " + pwd);
+
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("account", account);
+		map.put("pwd", pwd);
+
+		int cheqPw = dao.cheq_pw(map); //비밀번호 체크
+		int cheq = 0; //잔액체크
+		int del_cheq = 0; //탈퇴처리
+
+		if(cheqPw != 0) {//비밀번호 체크 
+			cheq = dao.delChe(map); //잔액체크
+			model.addAttribute("cheq",cheq);
+			if(cheq == 0) { //잔액이 0이면 
+				del_cheq = dao.del_cheq(map); //탈퇴처리
+				model.addAttribute("del_cheq",del_cheq);
+			} 
+		}
+		model.addAttribute("cheqPw",cheqPw);
 		model.addAttribute("id", id);
-		model.addAttribute("docu", docu);
+		model.addAttribute("account", account);
 	}
-	//서류등록
+	// 파일 업로드 & 텍스트 인식
 	@Override
-	public void addimg(HttpServletRequest req, Model model){
-		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-	    User user = (User) securityContext.getPrincipal();
-	    String id = user.getUsername();
-	    
-		MultipartFile file = (MultipartFile) ((MultipartRequest) req).getFile("img");
-		String saveDir = req.getRealPath("C:\\Users\\82109\\Desktop\\image\\");
-		String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\";
-		
+	public void getText(String file, Model model) throws IOException {
+
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\py\\benkfit.py", file);
+		Process p = pb.start();
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+		String line = " ";
+
+		StringBuilder sb = new StringBuilder();
+		System.out.println("start");
+
+		while((line = br.readLine()) != null) {
+			sb.append(line + "\n");
+			System.out.println("sdf: "+sb.append(line + "\n"));
+		}
+
+		String info = sb.toString();
+
+		System.out.println(info);
+		System.out.println("end");
+
+		br.close();
+
+		//파일 객체 생성
+		Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");
+		// 캐릭터셋 지정
+		Charset cs = StandardCharsets.UTF_8;
+		//파일 내용담을 리스트
+		List<String> list = new ArrayList<String>();
 		try{
-			 file.transferTo(new File(saveDir+file.getOriginalFilename()));
-			 FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
-		     FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
-		        
-		    int data = 0;
-		    
-		    while((data = fis.read()) != -1) {
-		        fos.write(data);
-		    }
-		    fis.close();
-		    fos.close();
-							
-		    documentVO doc = new documentVO();
-		    
-			doc.setC_id(id);
-			doc.setDoc_content(req.getParameter("doc_content"));
-			doc.setDoc_name(req.getParameter("doc_name"));
-			doc.setDoc_img(file.getOriginalFilename());
-			
-			String imgfile = file.getOriginalFilename();
-			int result = dao.docu_upload(doc);
-			System.out.println("파일명 : "+ imgfile);
-			req.setAttribute("imgfile", imgfile);
-			model.addAttribute("result", result);
-		
-		} catch (Exception e) {
+			list = Files.readAllLines(path,cs);
+			System.out.println("list:"+ list);
+
+			//서류명
+			String title = list.get(0);	
+			model.addAttribute("title",title);
+			System.out.println("title"+title);
+			//이름
+			String a = list.get(16).replaceAll("\\p{Z}", ""); 
+			String name =a.substring(2);
+			model.addAttribute("name",name);
+			System.out.println("name"+name);
+			//주소
+			String b = list.get(19);
+			String perAddress = b.substring(2).trim();
+			model.addAttribute("perAddress", perAddress);
+			System.out.println("perAddress"+ perAddress);
+			//주민
+			String[] c = list.get(17).split("-"); 
+			String jumin1 = c[0].substring(6).replaceAll("\\p{Z}", "");
+			String jumin2 = c[1].replaceAll("\\p{Z}", "");
+			model.addAttribute("jumin1",jumin1);
+			model.addAttribute("jumin2",jumin2);
+			System.out.println("jumin1"+jumin1);
+			System.out.println("jumin2"+jumin2);
+			//회사명
+			String[] h = list.get(42).split(":");
+			String comName = h[1].trim();
+			model.addAttribute("comName",comName);
+			System.out.println("comName"+comName);
+			//부서 
+			String d = list.get(21).replaceAll("\\p{Z}", ""); 
+			String department = d.substring(2);
+			model.addAttribute("department",department);
+			System.out.println("department"+department);
+			//직위 25
+			String e = list.get(23).replaceAll("\\p{Z}", ""); 
+			String position = e.substring(2);
+			model.addAttribute("position",position);
+			System.out.println("position"+position);
+
+			//회사주소39 + 40
+			String[] f = list.get(39).split(":");
+			String comAddress = f[1].trim()+list.get(40);
+			model.addAttribute("comAddress",comAddress);
+			System.out.println("comAddress"+comAddress);
+			// 재직기간
+			String[] t = list.get(25).replaceAll("\\p{Z}", "").split("~");
+			String period_from= t[0].substring(2);//시작일
+			String period_to = t[1];//종료일
+			model.addAttribute("period_from",period_from);
+			model.addAttribute("period_to",period_to);
+
+			System.out.println("period_from"+period_from);
+			System.out.println("period_to" + period_to);
+			System.out.println("=====================");
+
+		}catch(IOException e){
 			e.printStackTrace();
 		}
 	}
-	//서류인식.
+	//서류등록처리
+	@SuppressWarnings("deprecation")
 	@Override
-	public void readDoc(String imgfile, Model model) throws IOException {
+	public void signInPro(MultipartHttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
 
+		// 이미지 파일
+		MultipartFile file = req.getFile("doc_img");
+		String saveDir = req.getRealPath("/resources/img/doc/"); 
+		String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
+
+		try {
+			file.transferTo(new File(saveDir+file.getOriginalFilename()));
+
+			FileInputStream fis = new FileInputStream(saveDir + file.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(realDir + file.getOriginalFilename());
+
+			int data = 0;
+
+			while((data = fis.read()) != -1) {
+				fos.write(data);
+			}
+			fis.close();
+			fos.close();
+
+			// 바구니 생성, 입력받은 값 받아오기
+			documentVO vo = new documentVO();
+
+			vo.setDoc_title(req.getParameter("doc_title"));
+			vo.setDoc_name(req.getParameter("doc_name"));
+			vo.setDoc_jumin1(req.getParameter("doc_jumin1"));
+			vo.setDoc_jumin2(req.getParameter("doc_jumin2"));
+			vo.setDoc_img(file.getOriginalFilename());
+			vo.setDoc_comAddress(req.getParameter("doc_comAddress"));
+			vo.setDoc_perAddress(req.getParameter("doc_perAddress"));
+			vo.setDoc_department(req.getParameter("doc_department"));
+			vo.setDoc_position(req.getParameter("doc_position"));
+			vo.setDoc_period_to(req.getParameter("doc_period_to"));
+			vo.setDoc_period_from(req.getParameter("doc_period_from"));
+			vo.setDoc_comName(req.getParameter("doc_comName"));
+			vo.setC_id(id);
+
+
+			//서류등록처리
+			int result = dao.indocu(vo);
+
+			model.addAttribute("result", result);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//서류조회
+	@Override
+	public void seldocu(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		
+		List<documentVO> docu = dao.seldocu(id);
+		
+		model.addAttribute("docu",docu);
+	}
+	//서류조회 -상세
+	@Override
+	public void detaildocu(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String doc_num = req.getParameter("doc_num");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("doc_num", doc_num);
+		
+		documentVO vo = dao.detaildocu(map);
+		
+		model.addAttribute("vo",vo);
+	}
+	//서류삭제
+	@Override
+	public void deletedocu(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String doc_num = req.getParameter("doc_num");
+		System.out.println("아이디 : "+ id);
+		System.out.println("doc_num : "+ doc_num);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("doc_num", doc_num);
+		
+		int del = dao.deletedocu(map);
+		
+		model.addAttribute("del",del);
 	}
 }

@@ -94,6 +94,7 @@ public class Benkfit extends Contract {
         super(BINARY, contractAddress, web3j, transactionManager, contractGasProvider);
     }
 
+    //토큰이름
     public RemoteCall<String> name() {
         final Function function = new Function(FUNC_NAME, 
                 Arrays.<Type>asList(), 
@@ -101,6 +102,7 @@ public class Benkfit extends Contract {
         return executeRemoteCallSingleValueReturn(function, String.class);
     }
 
+    //권한 부여
     public RemoteCall<TransactionReceipt> approve(String spender, BigInteger value) {
         final Function function = new Function(
                 FUNC_APPROVE, 
@@ -109,7 +111,8 @@ public class Benkfit extends Contract {
                 Collections.<TypeReference<?>>emptyList());
         return executeRemoteCallTransaction(function);
     }
-
+    
+    //토큰 총량
     public RemoteCall<BigInteger> totalSupply() {
         final Function function = new Function(FUNC_TOTALSUPPLY, 
                 Arrays.<Type>asList(), 
@@ -117,6 +120,7 @@ public class Benkfit extends Contract {
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
     }
 
+    //권한 받은 주소가 토큰 전송
     public RemoteCall<TransactionReceipt> transferFrom(String from, String to, BigInteger value) {
         final Function function = new Function(
                 FUNC_TRANSFERFROM, 
@@ -127,6 +131,7 @@ public class Benkfit extends Contract {
         return executeRemoteCallTransaction(function);
     }
 
+    //토큰 자릿수
     public RemoteCall<BigInteger> decimals() {
         final Function function = new Function(FUNC_DECIMALS, 
                 Arrays.<Type>asList(), 
@@ -134,6 +139,7 @@ public class Benkfit extends Contract {
         return executeRemoteCallSingleValueReturn(function, BigInteger.class);
     }
 
+    //사용할 수 있는 금액을 늘려주는 함수
     public RemoteCall<TransactionReceipt> increaseAllowance(String spender, BigInteger addedValue) {
         final Function function = new Function(
                 FUNC_INCREASEALLOWANCE, 

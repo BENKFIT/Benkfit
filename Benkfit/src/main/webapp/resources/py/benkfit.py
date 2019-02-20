@@ -1,16 +1,9 @@
-
-# coding: utf-8
-
-# In[ ]:
-
-
-#-*- coding: utf-8 -*-
+﻿#-*- coding: utf-8 -*-
 #설치
 #tesseract -- 파일 다운로드후 , 환경변수에 path 설정 .
 #leptonica - tesseract설치시 자동설치
 #pytesseract --pip install pytesseract
 # pip instal pillow
-
 import os
 import cv2 
 import sys
@@ -20,16 +13,15 @@ from matplotlib import pyplot as plt
 
 os.chdir("C:/Users/82109/Desktop/image/")
 
-def OCR(imgfile, lang='kor+eng'):
+imgfile = sys.argv[1]
+
+def OCR(imgfile, lang='kor'):
     img = Image.open(imgfile)
     text = image_to_string(img, lang=lang)
     print(text)
-    
-    # 현재 기준 폴더 변경
-    os.chdir("C:/Users/82109/Desktop/image/")
- 
-    file = open(imgfile[:-4] + '.txt', 'w')
+        
+    file = open('C:/DEV43/python/output/get' + '.txt', 'w',encoding='utf8')
     file.write(text)
     file.close()
-OCR( , 'kor+eng')
-
+    
+OCR(imgfile,'kor')

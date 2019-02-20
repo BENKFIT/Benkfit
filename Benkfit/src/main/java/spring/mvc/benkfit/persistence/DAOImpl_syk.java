@@ -73,5 +73,17 @@ public class DAOImpl_syk implements DAO_syk{
 	public int savDel(String num) {
 		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_syk.savDel", num);
 	}
+
+	//계좌조회
+	@Override
+	public List<String> userAccounts(String id) {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.userAccounts", id);
+	}
+	
+	//이체
+	@Override
+	public int transPro(TransDetailVO vo) {
+		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.transPro", vo);
+	}
 	
 }

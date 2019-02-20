@@ -80,7 +80,6 @@ public class Controller_lia {
 		service.id_check(req, model);
 		return "common/idCheck";
 	}
-	
 	// 실명확인
 	@RequestMapping("nameCheck")
 	public String nameCheck(HttpServletRequest req, Model model) throws Exception {
@@ -88,14 +87,12 @@ public class Controller_lia {
 		service.nameCheck(req, model);
 		return "common/nameCheck";
 	}
-	
 	// 이용약관 페이지
 	@RequestMapping("terms")
 	public String terms() throws Exception {
 		logger.info("terms 호출중");
 		return "common/terms";
 	}
-	
 	// 회원가입 처리
 	@RequestMapping("signInPro")
 	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
@@ -103,7 +100,6 @@ public class Controller_lia {
 		service.signInPro(req, model);
 		return "common/signInPro";
 	}
-	
 	// 마이페이지
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("myPageTest")
@@ -111,7 +107,6 @@ public class Controller_lia {
 		logger.info("myPageTest 호출중");
 		return "common/myPageTest";
 	}
-	
 	// 로그인 실패
 	@RequestMapping("loginFail")
 	public String loginFail(HttpServletRequest req, Model model) throws Exception {

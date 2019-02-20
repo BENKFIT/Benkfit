@@ -89,7 +89,6 @@ public class ServiceImpl_lia implements Service_lia {
             /*for(String str : list) {
             	System.out.println(str + "..");
             }*/
-            
             //이름 추출
             for(String str : list) {
             	if(str.contains("(")) {

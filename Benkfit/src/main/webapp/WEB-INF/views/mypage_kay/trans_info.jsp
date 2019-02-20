@@ -5,24 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>정보수정</title>
-<script>
-	function load(){
-		sendRequest(load_callback, "trans_Chk", "post");
-	} 
-	function load_callback(){
-		var result = document.getElementById("result");
-		if(httpRequest.readyState == 4){
-			if(httpRequest.status == 200){
-				result.innerHTML = httpRequest.responseText;
-			}else{
-				result.innerHTML = "에러발생";
-			}
-		} else {
-			result.innerHTML = "상태 : " + httpRequest.readyState;
-		}
-	}
-</script>
+<title>이체</title>
+<style>
+.modal-body td {
+	padding: 10px;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../Template/top.jsp"%>
@@ -30,59 +18,132 @@
 		<h1>계좌이체</h1>
 		<hr>
 		<table class="table_kay">
-		<h3>출금정보</h3>
+			<tr>
+				<td><h3>출금정보</h3></td>
+			</tr>
 			<tr>
 				<th>출금계좌</th>
-				<td><select>
-						<option>계좌선택</option>
-						<option>111-111-11</option>
-				</select></td>
-				<td>
-					<button class="btn2 btn2-success">계좌선택</button>
+				<td><select id="out">
+						<c:forEach var="account" items="${accounts}">
+							<option value="${account}">${account}</option>
+						</c:forEach>
+					</select>
+					
 				</td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="getBalance();" value="잔액확인">	</td>
+				<td colspan="3" id="getBalance"></td>
 			</tr>
 			<tr>
 				<th>계좌비밀번호</th>
 				<td><input type="password" class="inputStyle"
-					placeholder="숫자 4자리" maxlength="4" autofocus required></td>
+					placeholder="숫자 4자리" maxlength="4" autofocus required id="pwd"></td>
 			</tr>
+			
 		</table>
-		<br><br>
-		<hr>	
-		<table class="table_kay">
-		<h3>입금정보</h3>
+		<hr>
+		<table class="table_kay" style="margin: 100px 0px;">
+			<tr>
+				<td><h3>입금정보</h3></td>
+			</tr>
 			<tr>
 				<th>입금계좌번호</th>
-				<td><input type="text" class="inputStyle" placeholder="숫자만입력 "
-					required></td>
+				<td><input type="text" class="inputStyle" placeholder="계정주소입력"
+					required id="in"></td>
 			</tr>
 			<tr>
 				<th>입금금액</th>
-				<td><input type="text" class="inputStyle" placeholder="숫자만입력 "
-					required></td>
-			</tr>
-			<tr>
-				<th>받는통장메모</th>
-				<td><input type="text" class="inputStyle" placeholder="7글자 "
-					maxlength="7" required></td>
-			</tr>
-			<tr>
-				<th>내통장메모</th>
-				<td><input type="text" class="inputStyle" placeholder="7글자 "
-					maxlength="7" required></td>
+				<td><input type="text" class="inputStyle" placeholder="ether"
+					required id="amount"></td>
 			</tr>
 		</table>
 		<hr>
 		<div class="trBtn">
-			<button class="btn2 btn2-success">추가이체</button>
-			<button class="btn2 btn2-success" id="trans" onclick="load();">다음</button>
-		</div>
-		<br><br><br>
-		<div id="result">
-			<!-- 결과 출력 위치 -->
+			<p>이체시, 수수료(gas)가 발생합니다.</p>
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#trans" onclick="confirm();">확인</button>
 		</div>
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="trans" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<form action="transPro" method="post">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">이체 정보를
+							확인하세요.</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						<div style="display: inline-block;">
+
+							<input type="hidden" value="" id="m_pwd" name="pwd">
+							<table>
+								<tr>
+									<td>출금계좌정보</td>
+									<td><input type="text" name="from" id="m_out"></td>
+								</tr>
+								<tr>
+									<td>private key 파일</td>
+									<td><input type="file" name="file"></td>
+								</tr>
+								<tr>
+									<td>출금금액</td>
+									<td><input type="number" name="amount" id="m_amount"></td>
+								</tr>
+								<tr>
+									<td>입금계좌번호</td>
+									<td><input type="text" name="to" id="m_in"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-primary" value="이체" />
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<%@ include file="../Template/footer.jsp"%>
 
+	<script type="text/javascript">
+		function getBalance(){
+			var select = $('#out option:selected').val();
+			var account = "account=" + select;
+			$.ajax({
+				type : 'post',
+				data : account,
+				url : '${pageContext.request.contextPath}/getBalance',
+				success : function(data) {
+					$("#getBalance").html(data);
+				},
+				error : function() {
+					alert("getBalance error");
+				}
+			});
+		}
+	
+		function confirm() {
+			var to = $('#out option:selected').val();
+			var pwd = $('#pwd').val();
+			var out = $('#in').val();
+			var amount = $('#amount').val();
+
+			$('#m_out').val(to);
+			$('#m_amount').val(amount);
+			$('#m_in').val(out);
+			$('#m_pwd').val(pwd);
+		}
+	</script>
 </body>
 </html>
