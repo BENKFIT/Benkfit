@@ -23,7 +23,10 @@ import org.web3j.utils.Convert;
 
 import spring.mvc.benkfit.sol.Bank;
 import spring.mvc.benkfit.sol.Slot;
+import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.persistence.DAO_bh;
+
+import spring.mvc.benkfit.model.Loan;
 
 @Service
 public class ServiceImpl_bh implements Service_bh {
@@ -100,7 +103,15 @@ public class ServiceImpl_bh implements Service_bh {
 			String newAccount = b.concat(a);
 			System.out.println(">새로 만든 계정주소 : " + newAccount);
 			model.addAttribute("newAccount", newAccount);
+			
+			if(success) {
+				BigDecimal ether = BigDecimal.valueOf(10);
+				Credentials credentials = WalletUtils.loadCredentials(password, "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
+				System.out.println("ether : " + ether);
+				TransactionReceipt transfer = Transfer.sendFunds(web3, credentials, newAccount, ether, Convert.Unit.ETHER).send();
+			}
 		}
+		System.out.println("\n==========>완료\n");
 	}
 	
 	/*
@@ -140,7 +151,7 @@ public class ServiceImpl_bh implements Service_bh {
 				model.addAttribute("chkNum", chkNum);
 			}
 		}
-		
+		System.out.println("\n==========>완료\n");
 	}
 	//슬롯머신잔고확인
 	//관리자만가능하다
@@ -166,6 +177,7 @@ public class ServiceImpl_bh implements Service_bh {
 			
 			model.addAttribute("slotStockBalance", slotStockBalance);
 		}
+		System.out.println("\n==========>완료\n");
 		
 	}
 	//슬롯머신플레이(gameStart)
@@ -258,6 +270,7 @@ public class ServiceImpl_bh implements Service_bh {
 				model.addAttribute("chkNum", chkNum);
 			}
 		}
+		System.out.println("\n==========>완료\n");
 	}
 
 	/*
@@ -292,6 +305,7 @@ public class ServiceImpl_bh implements Service_bh {
 			chkNum = 0;
 			model.addAttribute("chkNum", chkNum);
 		}
+		System.out.println("\n==========>완료\n");
 	}
 
 	/*
@@ -419,6 +433,136 @@ public class ServiceImpl_bh implements Service_bh {
 		}
 		System.out.println("\n==========>완료\n");
 	}
+
+	/*
+	 * 대출
+	 */
+	//대출상품목록
+	@Override
+	public void loanList(HttpServletRequest req, Model model) throws Exception {
+		List<LoanProductVO> loan = dao.loanList();
+		model.addAttribute("loan", loan);
+		
+	}
+
+	//대출상품조회
+	@Override
+	public void loanInfo(HttpServletRequest req, Model model) throws Exception {
+		String num = req.getParameter("num");
+
+		LoanProductVO info = dao.loanInfo(num);
+		req.setAttribute("type", "cheq");
+		System.out.println("-----" + req.getAttribute("type"));
+		model.addAttribute("info", info);		
+	}
+
+	//대출상품등록
+	@Override
+	public void loanRegiPro(HttpServletRequest req, Model model) throws Exception {
+		int result = 0;
+
+		String loan_name = req.getParameter("name");
+		int loan_amount = Integer.parseInt(req.getParameter("amount"));
+		String loan_period = req.getParameter("period");
+		//double loan_overrate = Double.parseDouble(req.getParameter("overrate"));
+		double loan_rate = Double.parseDouble(req.getParameter("rate"));
+		String loan_target = req.getParameter("target");
+		int loan_moderate = Integer.parseInt(req.getParameter("moderate"));
+		String loan_remethod = req.getParameter("remethod");
+		//String loan_paymethod = req.getParameter("paymethod");
+		
+		LoanProductVO vo = new LoanProductVO();
+		vo.setLoan_name(loan_name);
+		vo.setLoan_amount(loan_amount);
+		vo.setLoan_period(loan_period);
+		//vo.setLoan_overrate(loan_overrate);
+		vo.setLoan_rate(loan_rate);
+		vo.setLoan_target(loan_target);
+		vo.setLoan_moderate(loan_moderate);
+		vo.setLoan_reMethod(loan_remethod);
+		//vo.setLoan_paymethod(loan_paymethod);
+
+		result = dao.loanPro(vo);
+
+		System.out.println("대출상품등록 : " + result);
+		model.addAttribute("cnt", result);
+		
+	}
+
+	//대출상품수정
+	@Override
+	public void loanEdit(HttpServletRequest req, Model model) throws Exception {
+		String num = req.getParameter("loan_num");
+		
+		LoanProductVO vo = dao.loanInfo(num);
+		model.addAttribute("vo", vo);
+	}
+
+	//대출상품마감
+	@Override
+	public void loanDel(HttpServletRequest req, Model model) throws Exception {
+		String num = req.getParameter("loan_num");
+		
+		int result = dao.loanDel(num);
+		model.addAttribute("num", num);
+		model.addAttribute("result", result);
+		
+	}
+
+//	//대출신청
+//	@Override
+//	public void req_loan(HttpServletRequest req, Model model) throws Exception {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	//대출계산
+//	@Override
+//	public void rtype(HttpServletRequest req, Model model) throws Exception {
+//		String amountStr = req.getParameter("amount"); // 대출원금
+//		String rateStr = req.getParameter("rate"); // 대출이율
+//		String periodStr = req.getParameter("period"); // 대출기간
+//		String typeStr = req.getParameter("type"); // 대출유형
+//
+//		// 전달받은 파라미터를 숫자로 형변환
+//		int amount = Integer.parseInt(amountStr);
+//		double rateDouble = Double.parseDouble(rateStr);
+//		rateDouble /= 100; // 금리를 %로 바꿔주는 작업
+//		rateDouble /= 12; // 금리를 월금리로 바꾸는 작업
+//		int period = Integer.parseInt(periodStr);
+//		int type = Integer.parseInt(typeStr);
+//		int repayMonth;
+//
+//		// 원리금 / 원금 선택에 따른 조건검사
+//		if (type == 2) { // 원리금 균등 상환
+//			repayMonth = (int) (amount * rateDouble * Math.pow((double) (1 + rateDouble), (double) period)
+//					/ (Math.pow((double) (1 + rateDouble), (double) period) - 1));
+//		} else { // 원금 균등 상환
+//			repayMonth = amount / period;
+//		}
+//
+//		ArrayList<Loan> data = new ArrayList<Loan>();
+//		int remainAmount = amount; // 잔액
+//		for (int i = 0; i < period; i++) {
+//			Loan loan = new Loan();
+//			loan.index = i + 1;
+//			loan.interestRepay = (int) (remainAmount * rateDouble);
+//			if (type == 1) {// 원리금 균등
+//
+//				loan.originRepay = repayMonth;
+//				loan.totalRepay = loan.originRepay + loan.interestRepay;
+//			}
+//
+//			else {// 원금균등
+//				loan.totalRepay = repayMonth;
+//				loan.originRepay = loan.totalRepay - loan.interestRepay;
+//			}
+//			remainAmount -= loan.originRepay;
+//			loan.remainAmount = remainAmount;
+//			data.add(loan);
+//		}
+//		model.addAttribute("data", data);
+//	}
 }
 
 

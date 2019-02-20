@@ -1,21 +1,12 @@
 package spring.mvc.benkfit.persistence;
 
-import java.io.IOException;
-import java.math.BigInteger;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.web3j.protocol.Web3j;
-import org.web3j.protocol.core.DefaultBlockParameter;
-import org.web3j.protocol.core.methods.response.EthAccounts;
-import org.web3j.protocol.core.methods.response.EthBlockNumber;
-import org.web3j.protocol.core.methods.response.EthGetBalance;
-import org.web3j.protocol.core.methods.response.EthGetTransactionCount;
-import org.web3j.protocol.core.methods.response.Web3ClientVersion;
-import org.web3j.protocol.http.HttpService;
+
+import spring.mvc.benkfit.vo.LoanProductVO;
 
 @Repository
 public class DAOImpl_bh implements DAO_bh {
@@ -23,11 +14,29 @@ public class DAOImpl_bh implements DAO_bh {
 	@Autowired
 	SqlSession sqlSession;
 
-	//대출신청
+	//대출상품리스트조회
 	@Override
-	public int loan(int value) {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<LoanProductVO> loanList() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_bh.loanList");
 	}
+
+	//대출상품조회
+	@Override
+	public LoanProductVO loanInfo(String num) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_bh.loanInfo", num);
+	}
+
+	//대출상품등록
+	@Override
+	public int loanPro(LoanProductVO vo) {
+		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_bh.loanPro", vo);
+	}
+	
+	//대출상품삭제
+	@Override
+	public int loanDel(String num) {
+		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_bh.loanDel", num);
+	}
+
 	
 }

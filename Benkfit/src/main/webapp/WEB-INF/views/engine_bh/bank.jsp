@@ -85,7 +85,7 @@ p, a {
 		   	     	<input type="button" value="잔고확인" onClick="Balance();"> <br>
 				</p>
 				<p id="balance"></p> <br>
-				금  액 : <input type="text" id="value"><br>
+				금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;액 : <input type="text" id="value"><br>
 				비밀번호 : <input type="password" id="password" value="password"><br><br>
 				<input type="button" value="입금" onclick="deposit();">
 				<input type="button" value="출금" onclick="bankWithdraw();">

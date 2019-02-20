@@ -15,6 +15,24 @@ public interface Service_bh {
 	public void createAccount(HttpServletRequest req, Model model)throws Exception;
 	
 	/*
+	 * 대출
+	 */
+	//대출상품목록
+	public void loanList(HttpServletRequest req, Model model) throws Exception;
+	//대출상품조회
+	public void loanInfo(HttpServletRequest req, Model model) throws Exception;
+	//대출상품등록
+	public void loanRegiPro(HttpServletRequest req, Model model) throws Exception;
+	//대출상품수정
+	public void loanEdit(HttpServletRequest req, Model model) throws Exception;
+	//대출상품마감
+	public void loanDel(HttpServletRequest req, Model model) throws Exception;
+	//대출신청
+//	public void req_loan(HttpServletRequest req, Model model) throws Exception;
+//	//대출계산
+//	public void rtype(HttpServletRequest req, Model model) throws Exception;
+	
+	/*
 	 * 슬롯머신
 	 */
 	//슬롯잔고채우기

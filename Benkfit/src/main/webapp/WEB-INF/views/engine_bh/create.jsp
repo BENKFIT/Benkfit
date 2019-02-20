@@ -78,9 +78,9 @@ p, a {
 		</div>
 	</div>
 	<br><br><br><br><br><br><br>
-	
+	<br><br><br><br><br><br><br>
 	<div id="accountInfo">
-	</div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div><br><br><br><br><br><br>
 	<!-- FOOTER  -->
 	<%@ include file="../Template/footer.jsp"%>
 </body>

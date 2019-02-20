@@ -3,18 +3,17 @@ package spring.mvc.benkfit.vo;
 import java.sql.Date;
 
 public class LoanProductVO {
-	private String loan_num;				//대출번호
+	private String loan_num;				//대출상품번호
 	private String loan_name;				//대출이름
 	private int loan_amount;				//대출금액
-	private String loan_period;				//
-	private double loan_overrate;			//
-	private double loan_rate;				//
-	private int loan_moderate;				//
-	private String loan_target;				//
-	private String loan_remethod;			//
-	private String loan_paymethod;			//
-	private Date loan_regDate;				//
-	
+	private String loan_period;				//대출기간
+	private double loan_overrate;			//대출연체금리
+	private double loan_rate;				//대출금리
+	private int loan_moderate;				//중도상환
+	private String loan_target;				//가입대상
+	private String loan_reMethod;			//상환방법
+	private String loan_payMethod;			//이자납입방법
+	private Date loan_regDate;				//가입날짜
 	public String getLoan_num() {
 		return loan_num;
 	}
@@ -63,31 +62,31 @@ public class LoanProductVO {
 	public void setLoan_target(String loan_target) {
 		this.loan_target = loan_target;
 	}
-	public String getLoan_remethod() {
-		return loan_remethod;
+	public String getLoan_reMethod() {
+		return loan_reMethod;
 	}
-	public void setLoan_remethod(String loan_remethod) {
-		this.loan_remethod = loan_remethod;
+	public void setLoan_reMethod(String loan_reMethod) {
+		this.loan_reMethod = loan_reMethod;
 	}
-	public String getLoan_paymethod() {
-		return loan_paymethod;
+	public String getLoan_payMethod() {
+		return loan_payMethod;
 	}
-	public void setLoan_paymethod(String loan_paymethod) {
-		this.loan_paymethod = loan_paymethod;
+	public void setLoan_payMethod(String loan_payMethod) {
+		this.loan_payMethod = loan_payMethod;
 	}
-	
 	public Date getLoan_regDate() {
 		return loan_regDate;
 	}
 	public void setLoan_regDate(Date loan_regDate) {
 		this.loan_regDate = loan_regDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "LoanProductVO [loan_num=" + loan_num + ", loan_name=" + loan_name + ", loan_amount=" + loan_amount
 				+ ", loan_period=" + loan_period + ", loan_overrate=" + loan_overrate + ", loan_rate=" + loan_rate
-				+ ", loan_moderate=" + loan_moderate + ", loan_target=" + loan_target + ", loan_remethod="
-				+ loan_remethod + ", loan_paymethod=" + loan_paymethod + ", loan_regDate=" + loan_regDate + "]";
+				+ ", loan_moderate=" + loan_moderate + ", loan_target=" + loan_target + ", loan_reMethod="
+				+ loan_reMethod + ", loan_payMethod=" + loan_payMethod + ", loan_regDate=" + loan_regDate + "]";
 	}
+	
+
 }
