@@ -20,20 +20,9 @@
         </property>
     </bean>
     
-<<<<<<< HEAD
-  <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-=======
   	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		<property name="dataSource" ref="dataSource" /> 
-<<<<<<< HEAD
-		<property name="mapperLocations" value="classpath:mappers/**/*.xml" />
-		<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" /> 컨넥션풀
-		<property name="mapperLocations" value="classpath:mappers/**/*.xml" /> Mybatis xml의 경로
-=======
 		<property name="mapperLocations" value="classpath:mappers/**/*.xml" /> 
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
