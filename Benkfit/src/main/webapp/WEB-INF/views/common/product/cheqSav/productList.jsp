@@ -24,7 +24,7 @@
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 
 				<c:forEach var="list" items="${cheq}">
-					<div class="center-block col-4 princing-item red">
+					<div class="center-block col-4 princing-item red" style="margin: 0px 0px 30px 0px;">
 						<div class="pricing-divider ">
 							<h3 class="text-light">${list.cheq_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
@@ -73,7 +73,7 @@
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				<c:forEach var="list" items="${sav}">
-					<div class="center-block col-4 princing-item blue">
+					<div class="center-block col-4 princing-item blue" style="margin: 0px 0px 30px 0px;">
 						<div class="pricing-divider ">
 							<h3 class="text-light">${list.sav_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">

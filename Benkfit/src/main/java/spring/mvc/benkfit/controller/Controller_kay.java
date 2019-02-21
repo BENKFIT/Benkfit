@@ -175,7 +175,7 @@ public class Controller_kay {
 		logger.info("trans_Chk");
 		return "mypage_kay/trans_infoChk";
 	}
-	//자동이체
+	/*//자동이체
 	@RequestMapping("auto_trans")
 	public String auto_trans(HttpServletRequest req, Model model) throws Exception{
 		logger.info("auto_trans");
@@ -186,7 +186,7 @@ public class Controller_kay {
 	public String auto_Chk(HttpServletRequest req, Model model) throws Exception{
 		logger.info("auto_Chk");
 		return "mypage_kay/auto_transChk";
-	}
+	}*/
 	
 	
 	/*//계좌해지 - pwcheq

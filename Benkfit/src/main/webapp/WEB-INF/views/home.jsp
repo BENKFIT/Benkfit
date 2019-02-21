@@ -137,7 +137,7 @@ a:hover {
 		</div>
 		<div class="layer" data-depth="0.3">
 			<div class="some-more-space">
-				<a href="https://codepen.io/dominickolbe" target="_blank">more ?</a>
+				<a href="index">more ?</a>
 			</div>
 		</div>
 	</div>

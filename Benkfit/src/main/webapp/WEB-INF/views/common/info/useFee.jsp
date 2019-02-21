@@ -10,22 +10,19 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
-	td, tr > th, p{
-		text-align: center;
-	}
+td, tr>th, p {
+	text-align: center;
+}
 </style>
 </head>
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-	<div
-		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;">
-		<div style="display: inline-block; width: 60%; height: 80%;">
-			<h2>이용시간안내</h2>
-<div style="text-align: center;">
-<!-- 	<div
+	<div style="text-align: center;">
+		<!-- 	<div
 		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
-		<div style="display: inline-block; width: 60%; height: 70%; margin-top: 200px;">
+		<div
+			style="display: inline-block; width: 60%; height: 70%; margin-top: 200px;">
 			<h2>이용 수수료 안내</h2>
 			<br>
 			<p style="font-size: 20px;">예금 / 적금</p>
@@ -72,7 +69,7 @@
 						<td>명의변경</td>
 						<td></td>
 						<td>5,000원 (고객당) - 단, 개인 고객의 개명에 의한 변경시는 면제</td>
-					</tr>					
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -82,7 +79,7 @@
 		<p style="font-size: 20px;">이체</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662"> 
+				<tr style="background: #FFD662">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
 				</tr>
@@ -204,7 +201,7 @@
 				<tr>
 					<td rowspan="5" style="padding-top: 86px">헤외계좌송금</td>
 					<td rowspan="3" style="padding-top: 47px">당발송금</td>
-					<td rowspan="2">미국, 캐나다, 영국, 호주, 싱가포르,   홍콩, 뉴질랜드, 인도, 유럽 11개국</td>
+					<td rowspan="2">미국, 캐나다, 영국, 호주, 싱가포르, 홍콩, 뉴질랜드, 인도, 유럽 11개국</td>
 					<td>송금액 미화 5,000불 이하</td>
 					<td>5,000원 (건당)</td>
 				</tr>
@@ -219,7 +216,7 @@
 				</tr>
 				<tr>
 					<td rowspan="2" style="padding-top: 28px">타발송금</td>
-					<td rowspan="2" style="padding-top: 28px"> - </td>
+					<td rowspan="2" style="padding-top: 28px">-</td>
 					<td>송금액 미화 100불 미만</td>
 					<td>면제 (2017년 8월 23일부터 시행)</td>
 				</tr>
@@ -243,7 +240,7 @@
 					<td>-</td>
 					<td>송금액 무관</td>
 					<td>해당없음</td>
-				</tr>				
+				</tr>
 			</tbody>
 		</table>
 	</div>

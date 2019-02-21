@@ -115,12 +115,12 @@ public class Controller_bh {
 		return "engine_bh/bank";
 	}
 	//예금
-	@RequestMapping("depositPro")
+	/*@RequestMapping("depositPro")
 	public String depositPro(HttpServletRequest req, Model model) throws Exception{
 		logger.info("depositPro");
 		service.deposit(req, model);
 		return "engine_bh/depositPro";
-	}
+	}*/
 	//예금액보기
 	@RequestMapping("bankBalance")
 	public String bankBalance(HttpServletRequest req, Model model) throws Exception{

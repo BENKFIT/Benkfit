@@ -639,7 +639,11 @@ p {
 								<tr>
 									<td>가입기간</td>
 									<td>
-										<input type="number" name="period" placeholder="${info.sav_period}">
+										<select name="period">
+											<option value="12">12개월</option>
+											<option value="24">24개월</option>
+											<option value="36">36개월</option>
+										</select>
 									</td>
 								</tr>
 								<tr>
