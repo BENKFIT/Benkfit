@@ -21,7 +21,8 @@
 			</div>
 			<div class="modal-body" style="text-align: center;">
 				<div style="display: inline-block;">
-					<form action="cheqEditPro" method="post">
+					<form action="loanEditPro" method="post">
+					<input type="hidden" value="${vo.loan_num}" name="loan_num">
 						<table>
 							<tr>
 								<td>상품번호</td>
@@ -32,14 +33,19 @@
 								<td>상품이름</td>
 								<td><input type="text" value="${vo.loan_name}" name="name"></td>
 							</tr>
-<%-- 							<tr>
-								<td>상품타입</td>
-								<td><input type="text" value="${vo.cheq_type}" name="type"></td>
-							</tr> --%>
+							<tr>
+								<td>대출금액</td>
+								<td><input type="number" value="${vo.loan_amount}" name="amount"></td>
+							</tr>
 							<tr>
 								<td>상품이율</td>
 								<td><input type="number" value="${vo.loan_rate}"
 									name="rate"></td>
+							</tr>
+							<tr>
+								<td>가입기간</td>
+								<td><input type="text" value="${vo.loan_period}"
+									name="period"></td>
 							</tr>
 							<tr>
 								<td>가입대상</td>
@@ -51,15 +57,10 @@
 								<td><input type="text" value="${vo.loan_regDate}"
 									name="regDate" disabled></td>
 							</tr>
-<%-- 							<tr>
-								<td>제한금액</td>
-								<td><input type="number" value="${vo.cheq_limit}"
-									name="number"></td>
-							</tr> --%>
 							<tr>
-								<td>가입기간</td>
-								<td><input type="text" value="${vo.loan_period}"
-									name="period"></td>
+								<td>상환방법</td>
+								<td><input type="text" value="${vo.loan_reMethod}"
+									name="remethod"></td>
 							</tr>
 							<tr>
 								<td colspan="2" style="text-align: center;"><input
@@ -71,21 +72,21 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary" data-toggle="modal" data-target="#Cheq" onclick="cheqDel('${vo.loan_num}');">삭제</button>
+				<button class="btn btn-secondary" data-toggle="modal" data-target="#Cheq" onclick="loanDel('${vo.loan_num}');">삭제</button>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		function cheqDel(loan_num){
+		function loanDel(loan_num){
 			var num = "loan_num=" + loan_num;
 			$.ajax({
 				type : 'post',
 				data : num,
 				url :'${pageContext.request.contextPath}/loanDel',
 				success : function(data){
-					window.location.href = '${pageContext.request.contextPath}/loanAdd';
+					window.location.href = '${pageContext.request.contextPath}/loanRegi';
 				},
 				error : function(){
 					alert("Ajax error");

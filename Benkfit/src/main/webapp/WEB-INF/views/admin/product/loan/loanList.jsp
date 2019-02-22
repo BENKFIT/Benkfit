@@ -75,7 +75,7 @@ input, select {
 						<div class="pricing-divider ">
 							<%-- <h3 class="text-light">${list.loan_type}</h3> --%>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
-								<span class="h3">Ether</span> ${list.loan_rate}% <span
+								<span class="h3">Won</span> ${list.loan_rate}% <span
 									class="h5">/year</span>
 							</h4>
 							<svg class='pricing-divider-img'
@@ -106,7 +106,7 @@ input, select {
 							<ul class="list-unstyled mb-5 position-relative">
 								<li><b>가입대상(등급)</b> ${list.loan_target}</li>
 								<%-- <li><b>예금종류</b> ${list.loan_type}</li> --%>
-								<li><b>대출금액 </b> ${list.loan_amount}</li>
+								<li><b>대출금액 </b> ${list.loan_amount}원</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom" class="btn btn-primary"
@@ -119,85 +119,8 @@ input, select {
 		</div>
 	</div>
 	<hr>
-<!-- 
-	 modal 
-	<div id="myModal" class="modal">
-		<div class="modal-content">
-			<span class="close">&times;</span>
-			<div style="text-align: center;">
-				<div style="display: inline-block;">
-					<form action="loan/savRegi" method="post">
-						<table style="margin: 100px 0px;">
-							<tr>
-								<td>상품종류</td>
-								<td><select name="product_kind">
-										<option value="입출금통장">입출금통장</option>
-										<option value="대출">대출</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>상품명</td>
-								<td><input type="text" name="product_name"></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>가입대상</td>
-								<td><select name="product_target">
-										<option value="1">17세이하</option>
-										<option value="2">17세이상</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>대출금액</td>
-								<td><select name="product_limit">
-										<option value="제한없음">제한없음</option>
-										<option value="제한있음">제한있음</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>계약기간</td>
-								<td><select name="product_period">
-										<option value="12개월">~12개월</option>
-										<option value="24개월">~24개월</option>
-										<option value="36개월">~36개월</option>
-										<option value="60개월">~60개월</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td>기본금리</td>
-								<td><select name="product_rate">
-										<option value="0.1">0.1%</option>
-										<option value="0.2">0.2%</option>
-										<option value="0.3">0.3%</option>
-								</select></td>
-							</tr>
-							<tr>
-								<td colspan="2" style="text-align: center; padding-top: 30px;">
-									<input type="submit" value="등록">
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div> -->
 
-	<!-- Modal1 예금/적금 -->
+	<!-- Modal1 대출 -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
@@ -224,7 +147,7 @@ input, select {
 		</div>
 	</div>
 
-	<!-- Modal2 - 예금등록 -->
+	<!-- Modal2 - 대출등록 -->
 	<div class="modal fade" id="loan" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
