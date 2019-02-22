@@ -6,13 +6,8 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
-<script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-body {
-	text-align: center;
-}
 
 input, select {
 	padding: 6px 10px;
@@ -127,7 +122,7 @@ p, a {
 		$('#state').html("입금중입니다.");
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/depositPro",
+			url:"${pageContext.request.contextPath}/depositPro_Eth",
 			type : "GET",
 			data : alldata,
 			success : function(data){

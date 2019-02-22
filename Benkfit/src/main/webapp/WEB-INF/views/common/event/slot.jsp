@@ -81,7 +81,7 @@ p, a {
 				</tbody>
 			</table>
 
-			<div class="wrapper">
+			<div>
 				<p class="login">
 					ID: <input type="file" id="from"><!-- <input type="text" id="address"> --> 
 					Password: <input type="password" id="password" value="password"> 

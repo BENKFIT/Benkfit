@@ -63,7 +63,7 @@ public class Controller_bh {
 		return "common/blockChain/bank";
 	}
 	//이더예금
-	@RequestMapping("depositPro")
+	@RequestMapping("depositPro_Eth")
 	public String depositPro(HttpServletRequest req, Model model) throws Exception{
 		logger.info("depositPro");
 		service.deposit(req, model);
@@ -246,6 +246,4 @@ public class Controller_bh {
 		service.loanApprovalPro(req, model);
 		return "admin/product/loan/result";
 	}
-	
-
 }

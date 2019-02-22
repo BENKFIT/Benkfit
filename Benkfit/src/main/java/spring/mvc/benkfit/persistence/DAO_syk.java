@@ -36,9 +36,33 @@ public interface DAO_syk {
 	//적금상품 삭제
 	public int savDel(String num);
 	
+	//적금만기
+	public int savExpire(String account);
+	
 	//계좌조회
 	public List<String> userAccounts(String id);
 	
 	//이체
 	public int transPro(TransDetailVO vo);
+	
+	//적금이체
+	public int savTrans(Map<String, Object> map);
+	
+	//입금
+	public int depositPro(Map<String, Object> map);
+	
+	//자동이체 조회
+	public List<AutoTransferVO> autoSearch(String id);
+	
+	//자동이체 등록
+	public int autoAdd(AutoTransferVO vo);
+	
+	//자동이체 삭제
+	public int autoDel(int num);
+	
+	//자동이체 갯수
+	public int autoCnt(int day);
+	
+	//자동이체 목록
+	public List<AutoTransferVO> autoList(int day);
 }

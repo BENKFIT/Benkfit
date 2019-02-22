@@ -4,6 +4,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-	<p><fmt:formatNumber value="${balance / 1000000000000000000}" pattern="##,###"/>Ether</p>
+	<p><fmt:formatNumber value="${balance}" pattern="##,###"/>won</p>
 </body>
 </html>

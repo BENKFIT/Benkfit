@@ -38,7 +38,7 @@
 		<input type="hidden" name="eve_num" value="${dto.eve_num}"> <input
 			type="hidden" name="pageNum" value="${pageNum}">
 		<div
-			style="margin-top: -30px; height: 40%; width: 100%; text-align: center;">
+			style="margin-top: -30px; width: 100%; text-align: center;">
 			<div style="display: inline-block; width: 60%; margin: 200px 0px;">
 				<h2>이벤트</h2>
 				<br>

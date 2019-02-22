@@ -124,4 +124,3 @@ function ajaxTest(){
 		});
 	-->
 </body>
-</html>
