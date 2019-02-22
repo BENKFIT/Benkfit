@@ -1,4 +1,6 @@
 package spring.mvc.benkfit.controller;
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import spring.mvc.benkfit.service.ServiceImpl_syk;
 import spring.mvc.benkfit.service.Service_kay;
@@ -31,7 +32,6 @@ public class Controller_kay {
 		service.mysav_list(req, model);
 		return "mypage_kay/mypage_kay";
 	}
-	
 	//예금계좌 조회
 	@RequestMapping("cheq_account")
 	public String cheq_account(HttpServletRequest req, Model model) throws Exception{
@@ -121,32 +121,45 @@ public class Controller_kay {
 		service.up_info(req, model);
 		return "mypage_kay/myinfoPro_kay";
 	}
-	//내서류 조회
+	//내서류 조회 - 목록
 	@RequestMapping("document")
 	public String document_kay(HttpServletRequest req, Model model) throws Exception{
 		logger.info("document_kay");
-		service.docu_list(req, model);
+		service.seldocu(req, model);
 		return "mypage_kay/document_kay";
 	}
-	//서류 등록
+	//내서류 조회 - 상세
+	@RequestMapping("detaildoc")
+	public String detaildoc(HttpServletRequest req, Model model) throws Exception{
+		logger.info("detaildoc");
+		service.detaildocu(req, model);
+		return "mypage_kay/detaildoc";
+	}
+	// 서류양식
 	@RequestMapping("upload")
-	public String uploadForm_kay(HttpServletRequest  req, Model model) throws Exception{
-		logger.info("upload");
+	public String signIn() throws Exception {
 		return "mypage_kay/uploadForm_kay";
 	}
-	 //서류이미지 등록체크
-	@RequestMapping("uploadResult")
-	public String uploadResult_kay(HttpServletRequest req, Model model) throws Exception{
-		logger.info("uploadResult");	
-		service.addimg(req, model);
+	//문서서류인식
+	@RequestMapping("value") 
+	public String getText(String file, Model model) throws IOException {
+		logger.info("value");
+		service.getText(file, model);
+		return "mypage_kay/value";
+	}
+	//서류등록처리
+	@RequestMapping("upresult")
+	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
+		logger.info("signInPro 호출중");
+		service.signInPro(req, model);
 		return "mypage_kay/uploadResult_kay";
 	}
-	//서류인식
-	@RequestMapping("docu_read")
-	public String docu_read(String file, Model model) throws Exception{
-		logger.info("docu_read");	
-		service.readDoc(file, model);
-		return "mypage_kay/docu_read";
+	//서류삭제
+	@RequestMapping("deletedocu")
+	public String deleterdocu(HttpServletRequest req, Model model) throws Exception {
+		logger.info("deleterdocu 호출중");
+		service.deletedocu(req, model);
+		return "mypage_kay/deletedocu";
 	}
 	//회원탈퇴 -pw
 	@RequestMapping("deluserPw")
@@ -186,17 +199,29 @@ public class Controller_kay {
 	public String auto_Chk(HttpServletRequest req, Model model) throws Exception{
 		logger.info("auto_Chk");
 		return "mypage_kay/auto_transChk";
+<<<<<<< HEAD
 	}*/
 	
 	
 	/*//계좌해지 - pwcheq
+=======
+	}
+	//계좌해지 - pwcheq
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 	@RequestMapping("delcheq")
 	public String delcheq(HttpServletRequest req, Model model) throws Exception{
 		logger.info("delcheq");
-		service.del_cheq(req, model);
+		service.sls(req, model);
 		return "mypage_kay/delcheq";
-	}*/
-	/*//기본setting 페이지
+	}
+	//계좌해지 처리
+	@RequestMapping("account")
+	public String del_cheq(HttpServletRequest req, Model model) throws Exception{
+		logger.info("account");
+		service.del_cheq(req, model);
+		return "mypage_kay/account";
+	}
+/*	//기본setting 페이지
 	@RequestMapping("test")
 	public String test(HttpServletRequest req, Model model) throws Exception{
 		logger.info("test");
@@ -208,5 +233,4 @@ public class Controller_kay {
 		logger.info("sdf");
 		return "mypage_kay/sdf";
 	}*/
-
 }

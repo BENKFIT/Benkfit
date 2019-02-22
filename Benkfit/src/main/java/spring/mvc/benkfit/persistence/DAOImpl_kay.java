@@ -126,31 +126,46 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.sel_cheq(map);
 	}
-	/*//계좌잔액
+	//계좌잔액
 	@Override
 	public int delChe(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.delChe(map);
 	}
 	//계좌pw 체크
-	
+	@Override
+	public int cheq_pw(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.cheq_pw(map);
+	}
 	//계좌탈퇴
-*/	
-	//서류관리
 	@Override
-	public List<documentVO> docu_list(String id) {
+	public int del_cheq(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		List<documentVO> list1 = dao.docu_list(id);
-		return list1;
+		return dao.del_cheq(map);
 	}
-	//서류등록
+	//서류등록처리
 	@Override
-	public int docu_upload(documentVO doc) {
+	public int indocu(documentVO vo) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.docu_upload(doc);
+		return dao.indocu(vo);
 	}
-	
-	
-	
-	
+	//서류조회 - 목록
+	@Override
+	public List<documentVO> seldocu(String id) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.seldocu(id);
+	}
+	//서류조회 - 상세
+	@Override
+	public documentVO detaildocu(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.detaildocu(map);
+	}
+	//서류삭제 
+	@Override
+	public int deletedocu(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.deletedocu(map);
+	}
 }

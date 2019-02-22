@@ -55,7 +55,7 @@ function readURL(input) {
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		<input type="hidden" name="eve_num" value="${dto.eve_num}">
 		
-		<div style="margin-top: 200px; height: 18%; width: 100%; text-align: center;">
+		<div style="margin-top: 200px; width: 100%; text-align: center;">
 			<div style="display: inline-block;">
 				<table class="board">
 					<tr style="background: #FFD662">

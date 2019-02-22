@@ -74,7 +74,7 @@ public class ServiceImpl_syk implements Service_syk {
 			@SuppressWarnings("deprecation")
 			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
 			
-			this.benkfit = benkfit.getContractAddress();
+			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
 			System.out.println("배포된 contract ==> " + this.benkfit);
 		}
 	}*/

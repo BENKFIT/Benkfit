@@ -1,18 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../Template/setting.jsp"%>
 <html>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style type="text/css">
-body {
-	text-align: center;
-}
-
 input, select {
 	padding: 6px 10px;
 	margin: 4px 0;
@@ -85,7 +75,7 @@ p, a {
 		   	     	<input type="button" value="잔고확인" onClick="Balance();"> <br>
 				</p>
 				<p id="balance"></p> <br>
-				금  액 : <input type="text" id="value"><br>
+				금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;액 : <input type="text" id="value"><br>
 				비밀번호 : <input type="password" id="password" value="password"><br><br>
 				<input type="button" value="입금" onclick="deposit();">
 				<input type="button" value="출금" onclick="bankWithdraw();">

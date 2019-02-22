@@ -5,11 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>정보수정</title>
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
+  } );
+  </script>
 </head>
 <body>
 	
 	<div class="wrapper">
-		안녕하세요. 감사해ㅇ, 잘있어요, 다시만나여.
+		<input type="text" id="datepicker">
 	</div>
 	
 </body>

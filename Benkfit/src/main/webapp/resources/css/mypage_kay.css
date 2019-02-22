@@ -146,7 +146,7 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 }
 
 .upinfo th, .upinfo td {
-	border: 0px solid #ccc;
+	/* border: 0px solid #ccc; */
 	padding: 15px;
 	margin: 15px;
 	padding: 15px;
@@ -175,7 +175,6 @@ ul.tabs li.active, html ul.tabs li.active a:hover {
 	border-bottom: 2px solid #FF0000;
 	margin: 5px;
 }
-
 input[class=inputStyle]:focus {
 	outline: none;
 	border-bottom: 2px solid #FFD662;

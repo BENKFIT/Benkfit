@@ -5,9 +5,6 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-body {
-	text-align: center;
-}
 
 input, select {
 	padding: 6px 10px;
@@ -85,7 +82,7 @@ p, a {
 				</tbody>
 			</table>
 
-			<div class="wrapper">
+			<div>
 				<p class="login">
 					ID: <input type="file" id="from"><!-- <input type="text" id="address"> --> 
 					Password: <input type="password" id="password" value="password"> 
