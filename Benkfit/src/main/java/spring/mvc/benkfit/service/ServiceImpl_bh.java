@@ -34,9 +34,9 @@ public class ServiceImpl_bh implements Service_bh {
 	Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 	//테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
-	final String path = "/Users/banhun/2_net/keystore/";
+	//final String path = "/Users/banhun/2_net/keystore/";
 	//유경 path
-	//final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
 	int chkNum = 0;
 	
 //	로그인하기위한 경로
@@ -107,7 +107,8 @@ public class ServiceImpl_bh implements Service_bh {
 			
 			if(success) {
 				BigDecimal ether = BigDecimal.valueOf(10);
-				Credentials credentials = WalletUtils.loadCredentials(password, "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
+				//Credentials credentials = WalletUtils.loadCredentials(password, "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
+				Credentials credentials = WalletUtils.loadCredentials("password", "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
 				System.out.println("ether : " + ether);
 				TransactionReceipt transfer = Transfer.sendFunds(web3, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 			}
