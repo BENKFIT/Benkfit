@@ -73,6 +73,27 @@ public class Controller_kay {
 		logger.info("sav_info");
 		return "mypage_kay/sav_accountinfo";
 	}
+	//자산관리 
+	@RequestMapping("chart")
+	public String chart(HttpServletRequest req, Model model) throws Exception{
+		logger.info("chart");
+		service.AssetChart(req, model);
+		return "mypage_kay/chart";
+	}
+	//자산관리
+	@RequestMapping("asset")
+	public String dsd(HttpServletRequest req, Model model) throws Exception{
+		logger.info("test");
+		service.AssetChart(req, model);
+		return "mypage_kay/test_kay2";
+	}
+	//자산관리
+	@RequestMapping("budget")
+	public String budget(HttpServletRequest req, Model model) throws Exception{
+		logger.info("budget");
+/*		service.AssetChart(req, model);*/
+		return "mypage_kay/budget";
+	}
 	//QRcode 발급
 	@RequestMapping("qrcode")
 	public String qrcode(HttpServletRequest req, Model model) throws Exception{
@@ -214,13 +235,15 @@ public class Controller_kay {
 		service.del_cheq(req, model);
 		return "mypage_kay/account";
 	}
-/*	//기본setting 페이지
-	@RequestMapping("test")
+	/*//기본setting 페이지
+	@RequestMapping("sdf")
 	public String test(HttpServletRequest req, Model model) throws Exception{
 		logger.info("test");
-		return "mypage_kay/test_kay2";
-	}
-	//기본setting 페이지
+		service.AssetChart(req, model);
+		return "mypage_kay/sdf";
+	}*/
+	
+	/*//기본setting 페이지
 	@RequestMapping("sdf")
 	public String sdf(HttpServletRequest req, Model model) throws Exception{
 		logger.info("sdf");

@@ -3,8 +3,13 @@ package spring.mvc.benkfit.persistence;
 import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.kenai.jffi.Array;
 
 import spring.mvc.benkfit.vo.*;
 
@@ -167,5 +172,17 @@ public class DAOImpl_kay implements DAO_kay{
 	public int deletedocu(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.deletedocu(map);
+	}
+	//자산관리 - 자산chart
+	@Override
+	public List<AssetVO>  AssetChart(String id) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.AssetChart(id);
+	}
+	//자산관리 - 예산chart
+	@Override
+	public int budget(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.budget(map);
 	}
 }

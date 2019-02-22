@@ -1,28 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ include file="../Template/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>정보수정</title>
- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%--  <c:set var ="item" value="${chart}"/> --%>
   <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-      changeMonth: true,
-      changeYear: true
-    });
-  } );
-  </script>
+  function test(){
+		var chart = '${vo}';
+		alert(chart);
+	/*   $.each(data[0], function(i, item) {
+			console.log(key, value);
+			alert("data[0]: " );
+	   });  */
+	 }
+	</script>
+	<%-- <c:set var="id" value='${chart}' /> --%>
+<!-- <script>
+	function test(){
+		  var data = '${chart}';
+
+	$.each(data, function (idx, row) {
+		if (data[idx].NAME == "day") {
+			alert("1 : "+ data[idx])
+		return data[idx];
+		}
+		}
+	</script> -->
 </head>
 <body>
-	
 	<div class="wrapper">
-		<input type="text" id="datepicker">
+		<button onclick="test()">test</button>
 	</div>
-	
+	<div id="result"></div>
 </body>
 </html>

@@ -46,7 +46,6 @@
 							</ul>
 							<hr>
 							<div class="col-sm-12 col-xs-8 tital ">
-									<button class="btn2 btn2-success" onclick="move(6)">알림</button>&nbsp;
 									<button class="btn2 btn2-success"  onclick="move(7)">qrcode</button>&nbsp;
 									<button class="btn2 btn2-success" onclick="move(8)">정보수정</button>&nbsp; 
 									<button class="btn2 btn2-success"  onclick="move(9)">내서류</button>&nbsp;

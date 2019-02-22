@@ -57,15 +57,15 @@ tr>td {
 
 	<!-- TOP&SIDE -->
 	<%@ include file="./top.jsp"%>
-<%-- 	<%@ include file="./NewFile.jsp"%> --%>
-	
   <%@ include file="../common/chatbot.jsp"%>
-  
+<%--   	<div class="wrapper" style="display: block;">
+  		<%@ include file="./NewFile.jsp"%>
+  	</div> --%>
 	<!-- CONTENT -->
 	<div>
-	<div id="wrapper" style="height:4000px;">
-	</div>
-  </div>
+		<div style="height:4000px;">
+		</div>
+  	</div>
   
 	<!-- TOP, SIDE, FOOTER  -->
 	<%@ include file="./top.jsp"%>

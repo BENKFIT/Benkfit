@@ -10,18 +10,15 @@
 #mypage_thead {
 	background-color: #FFD662;
 }
-
 .info th {
 	background-color: #FFD662;
 }
-
 .btn2 {
 	background-color: transparent;
 	border: 1px solid transparent;
 	border-radius: 20px;
 	border-width: 2px;
 }
-
 .btn2-success {
 	border-color: #7AC29A;
 	color: #7AC29A;

@@ -14,12 +14,19 @@ import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,6 +36,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kenai.jffi.Array;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.*;
@@ -59,7 +73,8 @@ public class ServiceImpl_kay implements Service_kay{
 		String account = req.getParameter("account");
 
 		List<myCheqAccountVO> cheq = dao.myCheq_list(id);
-		System.out.println("ㄱ좌셔ㅓㄴ택 : "+ account);
+		System.out.println("계좌선택 : "+ account);
+	
 		model.addAttribute("account", account);
 		model.addAttribute("cheq", cheq);
 	}
@@ -505,7 +520,6 @@ public class ServiceImpl_kay implements Service_kay{
 			vo.setDoc_comName(req.getParameter("doc_comName"));
 			vo.setC_id(id);
 
-
 			//서류등록처리
 			int result = dao.indocu(vo);
 
@@ -522,8 +536,8 @@ public class ServiceImpl_kay implements Service_kay{
 		String id = user.getUsername();
 		
 		List<documentVO> docu = dao.seldocu(id);
-		
-		model.addAttribute("docu",docu);
+		System.out.println("docu : "+ docu);
+		model.addAttribute("docu", docu);
 	}
 	//서류조회 -상세
 	@Override
@@ -558,5 +572,42 @@ public class ServiceImpl_kay implements Service_kay{
 		int del = dao.deletedocu(map);
 		
 		model.addAttribute("del",del);
+	}
+	//자산관리- 자주이체계좌
+	@Override
+	public void AssetChart(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		List<AssetVO> lvo = dao.AssetChart(id);
+		List<AssetVO> chartvo = new ArrayList<AssetVO>();
+		for(int i=0; i< lvo.size(); i++) {
+			AssetVO vo = new AssetVO();
+			vo.setTran_account(lvo.get(i).getTran_account());
+			vo.setTran_count(lvo.get(i).getTran_count());
+			System.out.println("vo11 : "+ lvo.get(i).getTran_account());
+			System.out.println("vo21 : "+ lvo.get(i).getTran_count());
+			chartvo.add(vo);
+		}
+		System.out.println("chartvo"+ chartvo);
+		model.addAttribute("chartvo", chartvo);
+	}
+	//자산관리 - 예산chart
+	@Override
+	public void budget(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String start_day = req.getParameter("start_day");
+		String end_day = req.getParameter("end_day");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("start_day",start_day);
+		map.put("end_day",end_day);
+		
+		int budget = dao.budget(map);
+		System.out.println("budget: "+budget);
+		model.addAttribute("budget",budget);
 	}
 }

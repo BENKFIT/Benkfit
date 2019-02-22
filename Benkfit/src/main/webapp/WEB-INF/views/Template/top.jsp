@@ -199,13 +199,6 @@
                      <ul data-menu="submenu-0-2" class="menu__level">
                         <li class="menu__item"><a class="menu__link" href="#">계좌이체</a></li>
                         <li class="menu__item"><a class="menu__link" href="#">자동이체</a></li>
-                        <li class="menu__item"><a class="menu__link"
-                           data-submenu="submenu-0-2-1" href="#">자동이체</a></li>
-                     </ul>
-                     <!-- Submenu 0-2-1 자동이체 -->
-                     <ul data-menu="submenu-0-2-1" class="menu__level">
-                        <li class="menu__item"><a class="menu__link" href="#">자동이체
-                              조회</a></li>
                      </ul>
                      <!-- Submenu 0-3 설정 -->
                      <ul data-menu="submenu-0-3" class="menu__level">
@@ -213,12 +206,6 @@
                            href="limit_sel">이체한도</a></li>
                         <li class="menu__item"><a class="menu__link" href="#">알림</a></li>
                         <li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-                     </ul>
-                     <!-- Submenu 0-4 정보수정&탈퇴 -->
-                     <!-- Submenu 0-3-1 설정-> 이체한도 -->
-                     <ul data-menu="submenu-0-3-1" class="menu__level">
-                        <li class="menu__item"><a class="menu__link" href="#">이체한도조회</a></li>
-                        <li class="menu__item"><a class="menu__link" href="#">이체한도감액</a></li>
                      </ul>
                      <!-- Submenu 0-3-2 설정-> 자동이체 -->
                      <ul data-menu="submenu-0-3-2" class="menu__level">
@@ -267,7 +254,6 @@
                         <li class="menu__item"><a class="menu__link" href="#">대출</a></li>
                      </ul>
                   </sec:authorize>
-
                   <ul data-menu="submenu-0" class="menu__level">
                      <li class="menu__item"><a class="menu__link"
                         href="selectUsers">회원관리</a></li>
@@ -328,7 +314,6 @@
                   <li class="menu__item"><a class="menu__link" href="#">이용안내</a></li>
                   <li class="menu__item"><a class="menu__link" href="#">제출서류안내</a></li>
                </ul>
-
                <!-- Submenu 5 안내 -->
                <ul data-menu="submenu-5" class="menu__level">
                   <li class="menu__item"><a class="menu__link" href="map_sws">ATM</a></li>

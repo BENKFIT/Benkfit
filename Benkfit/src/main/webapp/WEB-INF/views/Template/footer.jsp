@@ -12,6 +12,7 @@
 <!-- 챗봇 -->
 <%@ include file="../common/chatbot.jsp"%>
 	<!-- footer  -->
+	<footer> 
 	<div class="container1">
 		<div class="row">
 			<div class="btn-group btn-group-justified">
@@ -48,7 +49,7 @@
 			</div>
 		</div>
 	</div>
-
+</footer>
 <script>
 	var activeEl = 2;
 	$(function() {

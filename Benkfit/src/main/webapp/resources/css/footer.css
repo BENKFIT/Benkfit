@@ -10,7 +10,7 @@ Inspired by http://dribbble.com/shots/890759-Ui-Kit-Metro/attachments/97174
   box-sizing: border-box;
 }
 .container1 {
-	position: inherit;
+	position: fixed;
     bottom: 10px;
     left: 10%;
     right:10%;

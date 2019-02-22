@@ -1,7 +1,10 @@
 package spring.mvc.benkfit.persistence;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.json.simple.JSONObject;
 
 import spring.mvc.benkfit.vo.*;
 
@@ -82,5 +85,11 @@ public interface DAO_kay {
 	
 	//서류삭제 
 	public int deletedocu(Map<String, Object> map);
+	
+	//자산관리 - 자산chart
+	public List<AssetVO> AssetChart(String id);
+
+	//자산관리 - 예산chart
+	public int budget(Map<String, Object> map);
 	
 }

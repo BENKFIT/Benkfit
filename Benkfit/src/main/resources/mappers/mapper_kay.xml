@@ -227,5 +227,21 @@
 		where c_id = #{id} and doc_num =#{doc_num}
 	</delete>
 	
+	<!-- 자주쓰는계좌 차트 -->
+	<select id="AssetChart" resultType ="spring.mvc.benkfit.vo.AssetVO">
+		SELECT tran_account, count(*) as tran_count 
+		FROM transdetail_tbl 
+		GROUP BY tran_account, c_id
+		HAVING c_id = #{id}
+		order by count(*) desc
+	</select>	
+	
+	<!-- 예산 차트 -->
+	<select id="budget" resultType="int">
+		SELECT sum(tran_amount)
+		FROM transdetail_tbl
+		WHERE c_id = #{id}
+		and tran_date between #{start_day} and #{end_day}
+	</select>
 	
 </mapper>
