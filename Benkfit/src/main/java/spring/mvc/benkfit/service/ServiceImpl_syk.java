@@ -45,7 +45,7 @@ public class ServiceImpl_syk implements Service_syk {
 	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 
-	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	final String path = "C:\\DEV43\\ether\\keystore\\";
 	int chkNum = 0;
 
 	String fn = "0x";
@@ -170,7 +170,7 @@ public class ServiceImpl_syk implements Service_syk {
 			System.out.println("성공여부 : " + success);
 
 			//10이더 전송
-			Credentials credentials = WalletUtils.loadCredentials("password", "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
+			Credentials credentials = WalletUtils.loadCredentials("1234", "C:\\DEV43\\ether\\keystore\\UTC--2019-02-15T06-08-59.949370200Z--4aca841d5384d16bd0ade39037a14b338caf06c9");
 			TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, account, BigDecimal.valueOf(10), Convert.Unit.ETHER).send();
 
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -181,9 +181,11 @@ public class ServiceImpl_syk implements Service_syk {
 
 			result = dao.createCheq(map);
 		}
-		System.out.println("newAccount : " + account);
-		req.setAttribute("Accountcnt", result);	
+		req.setAttribute("Accountcnt", result);
+		req.setAttribute("id", id);
 		req.setAttribute("num", num);
+		req.setAttribute("password", password);
+		req.setAttribute("account", account);
 	}
 
 	//적금계좌생성
@@ -211,7 +213,7 @@ public class ServiceImpl_syk implements Service_syk {
 			System.out.println("성공여부 : " + success);
 
 			//10이더 전송
-			Credentials credentials = WalletUtils.loadCredentials("password", "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
+			Credentials credentials = WalletUtils.loadCredentials("1234", "C:\\DEV43\\ether\\keystore\\UTC--2019-02-15T06-08-59.949370200Z--4aca841d5384d16bd0ade39037a14b338caf06c9");
 			TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, account, BigDecimal.valueOf(10), Convert.Unit.ETHER).send();
 
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -225,7 +227,8 @@ public class ServiceImpl_syk implements Service_syk {
 		}
 		System.out.println("newAccount : " + newAccount);
 
-		req.setAttribute("cnt", result);	
+		req.setAttribute("cnt", result);
+		req.setAttribute("num", num);
 	}
 
 	//예금상품수정

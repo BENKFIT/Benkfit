@@ -65,8 +65,8 @@ p, a {
 	<input type="hidden" name="pageNum" value="${pageNum}">
 
 	<div
-		style="margin-top: -30px; height: 40%; width: 100%; text-align: center;">
-		<div style="display: inline-block; width: 60%; margin: 200px 0px;">
+		style="margin-top: -30px; width: 100%; text-align: center;">
+		<div style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
 			<p class="title">ETH Slots</p>
 			<br>
 			<table class="table table-hover" style="width: 100%;">
@@ -153,8 +153,6 @@ p, a {
 			</table>
 		</div>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<!-- FOOTER  -->
 	<%@ include file="../../Template/footer.jsp"%>
 </body>

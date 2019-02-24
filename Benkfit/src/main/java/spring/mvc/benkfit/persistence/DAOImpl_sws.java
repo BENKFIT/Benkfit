@@ -1,16 +1,31 @@
 package spring.mvc.benkfit.persistence;
 
+import java.math.BigInteger;
 import java.util.*;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
+import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
+import org.web3j.protocol.http.HttpService;
 
 import spring.mvc.benkfit.vo.*;
 
 @Repository
 public class DAOImpl_sws implements DAO_sws {
+	
+	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
+
+	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	int chkNum = 0;
+
+	String fn = "0x";
+
+	BigInteger gasPrice = BigInteger.valueOf(3000000);
+	BigInteger gasLimit = BigInteger.valueOf(3000000);
+
 	
 	@Autowired
 	SqlSession sqlSession;
@@ -43,38 +58,19 @@ public class DAOImpl_sws implements DAO_sws {
 		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_sws.insertEvent", vo);
 	}
 
+	// 이벤트 수정
 	@Override
 	public int updateEvent(EventVo vo) {
 		
 		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_sws.updateEvent", vo);
 	}
 
+	// 이벤트 삭제
 	@Override
 	public int deleteEvent(String eve_num) {
 		
 		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_sws.deleteEvent", eve_num);
 	}
-	
-	@Override
-	public int confirmIdPwd(Map<String, String> map) {
-		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
-		int cnt = mapper.confirmIdPwd(map);
-		return cnt;
-	}
-
-	@Override
-	public UsersVO getMemberInfo(String id) {
-		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
-		UsersVO u = mapper.getMemberInfo(id);
-		return u;
-	}
-	
-/*	@Override
-	public UsersVO getMemberInfo2(String id) {
-		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
-		UsersVO u = mapper.getMemberInfo2(id);
-		return u;
-	}*/
 	
 	// 연별 차트
 	@SuppressWarnings("unchecked")
@@ -231,55 +227,90 @@ public class DAOImpl_sws implements DAO_sws {
 		return responseObj;
 	}
 	
-	/*	@SuppressWarnings("unchecked")
-		// 적금 계좌 차트
-		@Override
-		public JSONObject getSecondChat() {
-			Map<String, Integer> m = new HashMap<String, Integer>();
-			
-			JSONObject responseObj = new JSONObject();
-		    List<JSONObject> barlist = new LinkedList<JSONObject>();
-			
-			List<ChartVO> cvo = sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_sws.getSecondChat");
-			
-			for(ChartVO chart : cvo) {
-				String mySav_date = chart.getMySav_date();
-				String mySav_date2 = mySav_date.split(" ")[0];
-				int value = chart.getValue();
-				
-				JSONObject barObj = new JSONObject();
-				
-				barObj.put("day", mySav_date2);
-				barObj.put("value2", value);
-				barlist.add(barObj);
-			}
-			responseObj.put("barlist", barlist);
-			return responseObj;
-		}
+	// 안드로이드 아이디 비밀번호 체크
+	@Override
+	public int confirmIdPwd(Map<String, String> map) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		int cnt = mapper.confirmIdPwd(map);
+		return cnt;
+	}
+
+	// 안드로이드 로그인 정보 select
+	@Override
+	public UsersVO getMemberInfo(String id) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		UsersVO u = mapper.getMemberInfo(id);
+		return u;
+	}
+	
+	// 예금 상품 리스트 조회
+	@Override
+	public List<CheqProductVO> cheqProduct() {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<CheqProductVO> c = mapper.cheqProduct();
+		return c;
+	}
+	
+	// 적금금 상품 리스트 조회
+	@Override
+	public List<SavProductVO> savProduct() {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<SavProductVO> s = mapper.savProduct();
+		return s;
+	}
+	
+	// 대출 상품 리스트 조회
+	@Override
+	public List<LoanProductVO> loanProduct() {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<LoanProductVO> l = mapper.loanProduct();
+		return l;
+	}
+	
+	// 예금 상품 상세페이지
+	@Override
+	public CheqProductVO cheqProductContent(Map<String, Object> map) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		CheqProductVO c = mapper.cheqProductContent(map);
+		return c;
+	}
+	
+	// 적금 상품 상세페이지
+	@Override
+	public SavProductVO savProductContent(Map<String, Object> map) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		SavProductVO s = mapper.savProductContent(map);
+		return s;
+	}
+	
+	// 대출 상품 상세페이지
+	@Override
+	public LoanProductVO loanProductContent(Map<String, Object> map) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		LoanProductVO l = mapper.loanProductContent(map);
+		return l;
+	}
+	
+	@Override
+	public int insertWallet(myCheqAccountVO vo){
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		int result = mapper.insertWallet(vo);
+		return result;
+	}
+	
+
+	@Override
+	public List<TransDetailVO> TransDetail(String id) {
 		
-		@SuppressWarnings("unchecked")
-		// 대출 계좌 차트
-		@Override
-		public JSONObject getThirdChat() {
-			Map<String, Integer> m = new HashMap<String, Integer>();
-			
-			JSONObject responseObj = new JSONObject();
-		    List<JSONObject> barlist = new LinkedList<JSONObject>();
-			
-			List<ChartVO> cvo = sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_sws.getThirdChat");
-			
-			for(ChartVO chart : cvo) {
-				String myLoan_date = chart.getMyLoan_date();
-				String myLoan_date2 = myLoan_date.split(" ")[0];
-				int value = chart.getValue();
-				
-				JSONObject barObj = new JSONObject();
-				
-				barObj.put("day", myLoan_date2);
-				barObj.put("value3", value);
-				barlist.add(barObj);
-			}
-			responseObj.put("barlist", barlist);
-			return responseObj;
-		}*/
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<TransDetailVO> t = mapper.TransDetail(id);
+		return t;
+	}
+
+/*	@Override
+	public AndroidVO selectWallet(String id) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		AndroidVO a = mapper.selectWallet(id);
+		return a;
+	}*/
 }

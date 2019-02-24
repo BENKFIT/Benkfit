@@ -13,8 +13,7 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 
-	<div
-		style="margin-top: 200px; height: 60%; width: 100%; text-align: center;">
+	<div style="margin-top: 200px; height: 60%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
 			<h2>이벤트</h2>
 			<br>

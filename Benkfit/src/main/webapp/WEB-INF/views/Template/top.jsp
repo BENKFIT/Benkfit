@@ -255,9 +255,9 @@
                         <li class="menu__item"><a class="menu__link"
                            data-submenu="submenu-0-2" href="#">상품관리</a></li>
                         <li class="menu__item"><a class="menu__link"
-                           data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
+                           data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
                         <li class="menu__item"><a class="menu__link"
-                           data-submenu="submenu-0-4" href="#">결산</a></li>
+                           data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
                      </ul>
 
                      <!-- Submenu 0-2 상품관리 -->
@@ -380,7 +380,7 @@
                                     <div class="over-content">
                                        <form action="search_pro" method="post" name="searchForm">
                                           <input type="text" id="searchinput" name="search"
-                                             placeholder="Search..">
+                                             placeholder="Search.." style="height:47px;">
                                           <!-- search.css -> .over input[type=text] height: 10%; -->
                                           <button type="submit">
                                              <i class="fa fa-search"></i>

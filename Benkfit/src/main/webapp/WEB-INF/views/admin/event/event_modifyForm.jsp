@@ -24,6 +24,30 @@
 		margin-top: 20px;
 		border:none;
 	}
+	
+		input[type=button] {
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: #FFD662;
+		color: white;
+	}
+	
+	input[type=submit] {
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		background-color: #FFD662;
+		color: white;
+	}
+	
+	input[type=button]:hover {
+		color: black;
+	}
+	
+	input[type=submit]:hover {
+		color: black;
+	}
 </style>
 <script type="text/javascript">
 
@@ -55,7 +79,7 @@ function readURL(input) {
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		<input type="hidden" name="eve_num" value="${dto.eve_num}">
 		
-		<div style="margin-top: 200px; height: 18%; width: 100%; text-align: center;">
+		<div style="margin-top: 200px; width: 100%; text-align: center;">
 			<div style="display: inline-block;">
 				<table class="board">
 					<tr style="background: #FFD662">

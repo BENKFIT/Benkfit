@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import spring.mvc.benkfit.vo.myCheqAccountVO;
+
 public interface Service_sws {
 	
 	// 이벤트 목록
@@ -32,5 +34,4 @@ public interface Service_sws {
 	
 	// 일별 차트 
 	public void chartList2(HttpServletRequest req, Model model);
-	
 }

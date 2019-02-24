@@ -1,6 +1,9 @@
 package spring.mvc.benkfit.controller;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,19 +16,51 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.WalletUtils;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.http.HttpService;
+import org.web3j.tx.Transfer;
+import org.web3j.utils.Convert;
 
+import spring.mvc.benkfit.persistence.DAO_lia;
 import spring.mvc.benkfit.persistence.DAO_sws;
+import spring.mvc.benkfit.service.ServiceImpl_syk;
 import spring.mvc.benkfit.service.Service_sws;
+import spring.mvc.benkfit.vo.AndroidVO;
+import spring.mvc.benkfit.vo.CheqProductVO;
+import spring.mvc.benkfit.vo.LoanProductVO;
+import spring.mvc.benkfit.vo.SavProductVO;
+import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
+import spring.mvc.benkfit.vo.myCheqAccountVO;
 
 @Controller
 public class Controller_sws {
+	
+	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
+	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
+
+	final String path = "C:\\DEV43\\ether\\keystore\\";
+	int chkNum = 0;
+
+	String fn = "0x";
+
+	BigInteger gasPrice = BigInteger.valueOf(3000000);
+	BigInteger gasLimit = BigInteger.valueOf(3000000);
 
 	@Autowired
 	Service_sws service;
+	@Autowired
+	ServiceImpl_syk service2;
 	
 	@Autowired
 	DAO_sws dao;
+	@Autowired
+	DAO_lia dao2;
 
 	private static final Logger logger = LoggerFactory.getLogger(Controller_sws.class);
 
@@ -204,12 +239,11 @@ public class Controller_sws {
 	}
 
 	// 앱 로그인
-	@ResponseBody// 웹에서 안드로이드로 값을 전달하기 위한 어노테이션
+	@ResponseBody
 	@RequestMapping("androidSignIn")
 	public Map<String, String> androidSignIn(HttpServletRequest req){
 		logger.info("androidSignIn()");
 
-		// 안드로이드에서 전달한 값
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
 		System.out.println("id:" + id + " pwd:" + pwd);
@@ -219,7 +253,6 @@ public class Controller_sws {
 		in.put("c_pwd", pwd);
 		int cnt = dao.confirmIdPwd(in);
 
-		// 웹에서 전달할 값
 		Map<String, String> out = new HashMap<String, String>();
 		if(cnt != 0) {
 			out.put("c_id", id);
@@ -235,9 +268,7 @@ public class Controller_sws {
 	@RequestMapping("androidMain")
 	public Map<String, Object> androidMain(HttpServletRequest req) {
 		logger.info("androidMain()");
-		String strId = (String) req.getSession().getAttribute("id");
 
-		// 회원 정보
 		String id = req.getParameter("id");
 		UsersVO u = dao.getMemberInfo(id);
 
@@ -251,23 +282,135 @@ public class Controller_sws {
 		return map;
 	}
 	
-/*	// 앱 마이페이지
+	// 금융 상품 페이지
 	@ResponseBody
-	@RequestMapping("androidMyPageMain")
-	public Map<String, Object> androidMyPageMain(HttpServletRequest req) {
-		logger.info("androidMyPageMain()");
+	@RequestMapping("androidProduct")
+	public Map<String, Object> androidProduct(HttpServletRequest req) {
+		logger.info("androidProduct()");
 
-		// 회원 정보
 		String id = req.getParameter("id");
-		UsersVO u = dao.getMemberInfo2(id);
+		List<CheqProductVO> c = dao.cheqProduct();
+		List<SavProductVO> s = dao.savProduct();
+		List<LoanProductVO> l = dao.loanProduct();
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data1", u.getC_name());
-		map.put("data2", 0);
-		map.put("data3", 0);
-		map.put("data4", 0);
-		map.put("users", u);
+		map.put("cheqProduct", c);
+		map.put("savProduct", s);
+		map.put("loanProduct", l);
+		
+		return map;
+	}
+	
+	// 금융 상품 상세 페이지
+	@ResponseBody
+	@RequestMapping("androidProductContent")
+	public Map<String, Object> androidProductContent(HttpServletRequest req) {
+		logger.info("androidProductContent()");
+		
+		String num = req.getParameter("item").split("\n")[0].substring(10);
+		String name = req.getParameter("item").split("\n")[1].substring(9);
+		
+		Map<String, Object> in = new HashMap<String, Object>();
+		in.put("num", num);
+		in.put("name", name);
 
+		Map<String, Object> out = new HashMap<String, Object>();
+		if(dao.cheqProductContent(in) != null) {
+			CheqProductVO c = dao.cheqProductContent(in);
+			out.put("cheqProductContent", c);
+		}else if(dao.savProductContent(in) != null) {
+			SavProductVO s = dao.savProductContent(in);
+			out.put("savProductContent", s);
+		}else if(dao.loanProductContent(in) != null) {
+			LoanProductVO l = dao.loanProductContent(in);
+			out.put("loanProductContent", l);
+		}
+		return out;
+	}
+	
+	// 앱 지갑 생성
+	@ResponseBody
+	@RequestMapping("androidCheq")
+	public Map<String, Object> androidCheq(HttpServletRequest req) throws Exception{
+		logger.info("androidCheq()");
+		
+		String id = req.getParameter("id");
+		String pwd = req.getParameter("pwd");
+		String num = req.getParameter("num");
+		System.out.println("id = " + id + "    pwd = " + pwd + "      num = " + num);
+		
+		//새 계정생성
+		NewAccountIdentifier newAccount = admin.personalNewAccount(pwd).send();
+		String account = newAccount.getAccountId();
+
+		myCheqAccountVO vo = new myCheqAccountVO();
+		vo.setC_id(id);
+		vo.setCheq_num(num);
+		vo.setPwd(pwd);
+		vo.setMyCheq_account(account);
+		
+		int result = dao.insertWallet(vo);
+		
+		boolean success = false;
+		if(result == 1) {
+			success = true; 
+			System.out.println("새로운 계정을 만드는 함수입니다.");
+			System.out.println("새 계정의 입력받은 비밀번호 : " + pwd);
+			System.out.println("성공여부 : " + success);
+
+			//10이더 전송
+			Credentials credentials = WalletUtils.loadCredentials("1234", "C:\\DEV43\\ether\\keystore\\UTC--2019-02-15T06-08-59.949370200Z--4aca841d5384d16bd0ade39037a14b338caf06c9");
+			TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, account, BigDecimal.valueOf(10), Convert.Unit.ETHER).send();
+			
+			
+		} else {
+			System.out.println("실패");
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data1", id);
+		map.put("data2", num);
+		map.put("data3", pwd);
+		map.put("data4", account); 
+		
+		return map;
+	}
+	
+	// 안드로이드 거래내역
+	@ResponseBody
+	@RequestMapping("androidTransDetail")
+	public Map<String, Object> androidTransDetail(HttpServletRequest req) {
+		logger.info("androidTransDetail()");
+
+		String id = req.getParameter("id");
+		List<TransDetailVO> t = dao.TransDetail(id);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("TransDetail", t);
+		
+		return map;
+	}
+	
+/*	// 앱 지갑 생성 확인
+	@ResponseBody
+	@RequestMapping("androidCreateCheq")
+	public Map<String, Object> androidCreateCheq(HttpServletRequest req, Model model) throws Exception {
+		logger.info("androidCreateCheq()");
+
+		String id = req.getParameter("id");
+		AndroidVO a = dao.selectWallet(id);
+		
+		String num = (String)req.getAttribute("num");
+		String password = (String)req.getAttribute("password");
+		String account = (String)req.getAttribute("account");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("data1", id);
+		map.put("data2", num);
+		map.put("data3", password);
+		map.put("data4", account);
+		map.put("users", 0);
+		
 		return map;
 	}*/
 }
