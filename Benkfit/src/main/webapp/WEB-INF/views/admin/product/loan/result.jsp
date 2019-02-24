@@ -9,5 +9,10 @@
 			<c:redirect url="loanRegi"/>
 		</c:when>
 	</c:choose>
+	<c:choose>
+		<c:when test="${result == 1}">
+			<c:redirect url="loanApproval"/>
+		</c:when>
+	</c:choose>
 </body>
 </html>

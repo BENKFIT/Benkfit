@@ -3,32 +3,112 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
-<mapper namespace="spring.mvc.benkfit.persistence.DAO_bh">
 
-	<!-- 예금상품목록 -->
-	<select id="loanList" resultType="spring.mvc.benkfit.vo.LoanProductVO">
-		SELECT loan_num, loan_name, loan_amount, loan_period, loan_overrate, loan_rate, loan_moderate, loan_target, loan_reMethod, loan_paymethod, loan_regDate 
+<mapper namespace="spring.mvc.benkfit.persistence.DAO_bh">
+	<!-- common -->
+	<!-- 대출상품목록 -->
+	<select id="loanList"
+		resultType="spring.mvc.benkfit.vo.LoanProductVO">
+		SELECT loan_num, loan_name, loan_amount, loan_period,
+		loan_overrate, loan_rate, loan_moderate, loan_target, loan_reMethod,
+		loan_paymethod, loan_regDate
 		FROM loanproduct_tbl
 		ORDER BY loan_num DESC
 	</select>
-	
-	<!-- 예금정보 -->
-	<select id="loanInfo" resultType="spring.mvc.benkfit.vo.LoanProductVO" parameterType="String">
-		SELECT loan_num, loan_name, loan_amount, loan_period, loan_overrate, loan_rate, loan_moderate, loan_target, loan_reMethod, loan_paymethod, loan_regDate 
+
+	<!-- 대출정보 -->
+	<select id="loanInfo"
+		resultType="spring.mvc.benkfit.vo.LoanProductVO"
+		parameterType="String">
+		SELECT loan_num, loan_name, loan_amount, loan_period,
+		loan_overrate, loan_rate, loan_moderate, loan_target, loan_reMethod,
+		loan_paymethod, loan_regDate
 		FROM loanproduct_tbl
-		WHERE loan_num = #{num}
+		WHERE loan_num =
+		#{num}
 	</select>
 
-	<!-- 예금상품등록 -->
-	<insert id="loanPro" parameterType="spring.mvc.benkfit.vo.LoanProductVO">
-		INSERT INTO loanproduct_tbl(loan_num, loan_name, loan_amount, loan_period, loan_rate, loan_moderate, loan_target, loan_reMethod)
-		VALUES(loanPro_seq.nextval, #{loan_name}, #{loan_amount}, #{loan_period}, #{loan_rate}, #{loan_moderate},#{loan_target},#{loan_reMethod})
+	<!-- 대출잔액가져오기 -->
+	<select id="loanleft" parameterType="String" resultType="int">
+		select
+		myloan_left from myloanaccount_tbl where myloan_account =
+		#{myLoan_account}
+	</select>
+
+	<!-- 대출상품신청 -->
+	<insert id="loanApply"
+		parameterType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		insert into myloanaccount_tbl(myLoan_account, loan_num,
+		myLoan_amount, c_id,myLoan_rate, myLoan_left)
+		values(#{myLoan_account},#{loan_num},#{myLoan_amount},#{c_id},#{myLoan_rate},#{myLoan_left})
 	</insert>
-	
-	<!-- 예금상품삭제 -->
+
+	<!-- 대출상환 -->
+	<update id="loanRepayment"
+		parameterType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		update myloanaccount_tbl set myLoan_left =
+		#{myLoan_left} where myLoan_account = #{myLoan_account}
+	</update>
+
+	<!-- admin -->
+	<!-- 대출상품등록 -->
+	<insert id="loanPro"
+		parameterType="spring.mvc.benkfit.vo.LoanProductVO">
+		INSERT INTO loanproduct_tbl(loan_num, loan_name,
+		loan_amount, loan_period, loan_rate, loan_moderate, loan_target,
+		loan_reMethod)
+		VALUES(loanPro_seq.nextval, #{loan_name},
+		#{loan_amount}, #{loan_period}, #{loan_rate},
+		#{loan_moderate},#{loan_target},#{loan_reMethod})
+	</insert>
+
+	<!-- 대출상품수정 -->
+	<update id="loanEditPro"
+		parameterType="spring.mvc.benkfit.vo.LoanProductVO">
+		update loanproduct_tbl
+		set loan_name = #{loan_name},
+		loan_amount = #{loan_amount}, loan_period = #{loan_period}, loan_rate
+		= #{loan_rate}, loan_target = #{loan_target}, loan_reMethod =
+		#{loan_reMethod}
+		WHERE loan_num = #{loan_num}
+	</update>
+
+	<!-- 대출상품삭제 -->
 	<delete id="loanDel" parameterType="String">
 		DELETE loanproduct_tbl
-		WHERE loan_num = #{num}
+		WHERE
+		loan_num = #{loan_num}
 	</delete>
+
+	<!-- 대출신청리스트 -->
+	<select id="loanApproval"
+		resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		select l.myLoan_account
+		, l.myLoan_amount
+		, l.myLoan_late
+		,
+		l.myLoan_type
+		, l.loan_num
+		, d.c_id
+		, d.doc_num
+		from myloanaccount_tbl l,
+		DOCUMENT_TBL d
+		where l.c_id = d.c_id
+	</select>
+
+	<!-- 계정에맞는대출상품가져오기 -->
+	<select id="loanApprovalPro_info"
+		resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		select * from myloanaccount_tbl where myLoan_account =
+		#{myLoan_account}
+	</select>
+
+	<!-- 대출허가완료 -->
+	<update id="loanApprovalPro" parameterType="String">
+		update
+		myloanaccount_tbl
+		set myLoan_type = 1
+		where myLoan_account =
+		#{myLoan_account}
+	</update>
 </mapper>

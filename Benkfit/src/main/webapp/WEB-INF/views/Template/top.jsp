@@ -137,7 +137,8 @@
 							<!-- Submenu 0-2 이체 -->
 							<ul data-menu="submenu-0-2" class="menu__level">
 								<li class="menu__item"><a class="menu__link" href="trans">계좌이체</a></li>
-								<li class="menu__item"><a class="menu__link" href="auto_trans">자동이체</a></li>
+								<li class="menu__item"><a class="menu__link"
+									href="auto_trans">자동이체</a></li>
 							</ul>
 							<!-- Submenu 0-3 설정 -->
 							<ul data-menu="submenu-0-3" class="menu__level">
@@ -163,9 +164,35 @@
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-2" href="#">상품관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
+								data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
+						</ul>
+						<!-- submenu-0-2 금융상품 -->
+						<ul data-menu="submenu-0-2" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-1" href="#">예금</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-2" href="#">대출</a></li>
+						</ul>
+						<!-- Submenu 0-2-1 예금-->
+						<ul data-menu="submenu-0-2-1" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-1-1" href="cheqSavRegi">예금 상품</a></li>
+						</ul>
+						<!-- Submenu 0-2-2 대출-->
+						<ul data-menu="submenu-0-2-2" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-2-1" href="loanRegi">대출상품</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-2-2" href="loanApproval">대출신청리스트</a></li>
+						</ul>
+						<!-- submenu-0-3 이벤트관리 -->
+						<ul data-menu="submenu-0-3" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-3-1" href="event_list_sws">이벤트관리</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
 						</ul>
 					</sec:authorize>
 
@@ -185,8 +212,6 @@
 					<ul data-menu="submenu-1-2" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
-						<li class="menu__item"><a class="menu__link" href="req_loan">
-								대출신청 </a></li>
 					</ul>
 					<!-- Submenu 3  안내 -->
 					<ul data-menu="submenu-3" class="menu__level">

@@ -16,6 +16,7 @@ public class MyloanAccountVO {
 	private double myLoan_rate; /* 연이율 */
 	private int myLoan_left; /*대출 잔금*/
 	private String code; /* 계좌 종류 */
+	private int doc_num;
 	
 	public String getMyLoan_account() {
 		return myLoan_account;
@@ -91,12 +92,19 @@ public class MyloanAccountVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+	public int getDoc_num() {
+		return doc_num;
+	}
+	public void setDoc_num(int doc_num) {
+		this.doc_num = doc_num;
+	}
 	@Override
 	public String toString() {
-		return "MyloanAccount_kay [myLoan_account=" + myLoan_account + ", myLoan_amount=" + myLoan_amount
+		return "MyloanAccountVO [myLoan_account=" + myLoan_account + ", myLoan_amount=" + myLoan_amount
 				+ ", myLoan_date=" + myLoan_date + ", myLoan_state=" + myLoan_state + ", myLoan_late=" + myLoan_late
 				+ ", myLoan_type=" + myLoan_type + ", myLoan_over=" + myLoan_over + ", loan_num=" + loan_num + ", c_id="
-				+ c_id + ", myLoan_rate=" + myLoan_rate + ", myLoan_left=" + myLoan_left + ", code=" + code + "]";
+				+ c_id + ", myLoan_rate=" + myLoan_rate + ", myLoan_left=" + myLoan_left + ", code=" + code
+				+ ", doc_num=" + doc_num + "]";
 	}
+	
 }

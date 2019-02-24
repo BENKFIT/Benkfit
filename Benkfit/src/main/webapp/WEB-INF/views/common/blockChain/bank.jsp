@@ -122,7 +122,7 @@ p, a {
 		$('#state').html("입금중입니다.");
 		
 		$.ajax({
-			url:"${pageContext.request.contextPath}/depositPro",
+			url:"${pageContext.request.contextPath}/depositPro_Eth",
 			type : "GET",
 			data : alldata,
 			success : function(data){

@@ -132,4 +132,24 @@ public class DAOImpl_syk implements DAO_syk{
 	public List<AutoTransferVO> autoList(int day) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.autoList", day);
 	}
+
+	@Override
+	public int cheqCnt() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.cheqCnt");
+	}
+
+	@Override
+	public List<myCheqAccountVO> cheqInterest() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.cheqInterest");
+	}
+
+	@Override
+	public int savCnt() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.savCnt");
+	}
+
+	@Override
+	public List<MySavAccountVO> savInterest() {
+		return null;
+	}
 }
