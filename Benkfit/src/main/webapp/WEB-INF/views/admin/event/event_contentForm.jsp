@@ -34,10 +34,18 @@
 	<%@ include file="../../Template/top.jsp"%>
 
 	<form action="event_modifyForm_sws?pageNum=${pageNum}&eve_num=${dto.eve_num}" method="post">
+<<<<<<< HEAD
 		<input type="hidden" name="eve_num" value="${dto.eve_num}"> 
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		
 		<div style="margin-top: -30px; width: 100%; text-align: center;">
+=======
+
+		<input type="hidden" name="eve_num" value="${dto.eve_num}"> <input
+			type="hidden" name="pageNum" value="${pageNum}">
+		<div
+			style="margin-top: -30px; width: 100%; text-align: center;">
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 			<div style="display: inline-block; width: 60%; margin: 200px 0px;">
 				<h2>이벤트</h2>
 				<br>

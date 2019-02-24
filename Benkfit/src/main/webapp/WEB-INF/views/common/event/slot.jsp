@@ -5,10 +5,6 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-body {
-	text-align: center;
-}
-
 input, select {
 	padding: 6px 10px;
 	margin: 4px 0;
@@ -85,7 +81,7 @@ p, a {
 				</tbody>
 			</table>
 
-			<div class="wrapper">
+			<div>
 				<p class="login">
 					ID: <input type="file" id="from"><!-- <input type="text" id="address"> --> 
 					Password: <input type="password" id="password" value="password"> 
@@ -130,7 +126,13 @@ p, a {
 
 				<p id="balance"></p>
 
-				<p id="messages"></p>
+				<p id="messages">
+				슬롯 한판당 약 1분의 시간이 소요됩니다.<br>
+				이더는 Benkfit에서 이용하는 모든 거래에 수수료로 사용됩니다.<br>
+				무분별한 슬롯으로 수수료가 없어지지 않게 하세요.<br>
+				이더가 없으면 거래가 성사되지 않습니다.<br>
+				부족한 이더는 유경이한테 문의하세요.<br>
+				본 슬롯 게임은 단순히 기분탓으로 하는 게임입니다.<br></p>
 			</div>
 
 			<table class="table table-hover" style="width: 100%;">
@@ -171,7 +173,7 @@ p, a {
 				$('#balance').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("지갑 파일을 선택해주세요.")
 			}
 		});
 	}
@@ -200,7 +202,7 @@ p, a {
 				}
 			},
 			error : function(){
-				alert("오류")
+				alert("지갑 파일을 선택해주세요.")
 			}
 		});
 	}

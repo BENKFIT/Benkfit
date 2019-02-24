@@ -23,22 +23,29 @@
 			</tr>
 			<tr>
 				<th>출금계좌</th>
-				<td><select id="out">
+				<td><%-- <select id="out">
 						<c:forEach var="account" items="${accounts}">
 							<option value="${account}">${account}</option>
 						</c:forEach>
-					</select>
-					
+					</select> --%>
+					<input type="text" id="out" size="40">
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" onclick="getBalance();" value="잔액확인">	</td>
-				<td colspan="3" id="getBalance"></td>
+				<th>출금계좌 private key</th>
+				<td>
+					<input type="file" name="file" id="keyfile">
+				</td>
 			</tr>
 			<tr>
-				<th>계좌비밀번호</th>
-				<td><input type="password" class="inputStyle"
-					placeholder="숫자 4자리" maxlength="4" autofocus required id="pwd"></td>
+				<th>비밀번호 입력</th>
+				<td>
+					<input type="password" name="password" id="password" class="inputStyle" required>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" onclick="getBalance();" value="잔액확인" class="btn btn-primary"  required>	</td>
+				<td colspan="3" id="getBalance"></td>
 			</tr>
 			
 		</table>
@@ -82,8 +89,7 @@
 					</div>
 					<div class="modal-body" style="text-align: center;">
 						<div style="display: inline-block;">
-
-							<input type="hidden" value="" id="m_pwd" name="pwd">
+							<input type="hidden" id="m_pwd" name="pwd">
 							<table>
 								<tr>
 									<td>출금계좌정보</td>
@@ -118,8 +124,13 @@
 
 	<script type="text/javascript">
 		function getBalance(){
-			var select = $('#out option:selected').val();
-			var account = "account=" + select;
+			//var select = $('#out option:selected').val();
+			var select = $('#out').val();
+			var file = $('#keyfile').val();
+			var password = $('#password').val();
+			var account = "account=" + select + "&file=" + file + '&password=' + password;
+			
+			$("#getBalance").html("잔액을 확인중입니다.");
 			$.ajax({
 				type : 'post',
 				data : account,
@@ -134,12 +145,13 @@
 		}
 	
 		function confirm() {
-			var to = $('#out option:selected').val();
-			var pwd = $('#pwd').val();
+			//var select = $('#out option:selected').val();
+			var select = $('#out').val();
+			var pwd = $('#password').val();
 			var out = $('#in').val();
 			var amount = $('#amount').val();
 
-			$('#m_out').val(to);
+			$('#m_out').val(select);
 			$('#m_amount').val(amount);
 			$('#m_in').val(out);
 			$('#m_pwd').val(pwd);

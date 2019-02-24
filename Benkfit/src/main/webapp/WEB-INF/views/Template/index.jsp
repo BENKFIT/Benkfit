@@ -11,11 +11,11 @@
 <meta charset="UTF-8">
 
 <title>BenkFit</title>
-
 <script type="text/javascript">
 
      window.onload = function() {
 
+     window.onload = function() {
       setInterval(function() {
 
         $.ajax({
@@ -28,6 +28,7 @@
 
                 $("#priceTbl").html(data);
 
+                $("#priceTbl").html(data);
               },
 
               error: function() {
@@ -42,18 +43,20 @@
 
     } 
 
+        })
+    } 
 </script>
 
 </head>
 
 <body>
-
 	<!-- TOP&SIDE -->
 
 	<%@ include file="./top.jsp"%>
 
 <%-- 	<%@ include file="./NewFile.jsp"%> --%>
 
+	<%-- <%@ include file="./NewFile.jsp"%> --%>
 	
 
 	<!-- CONTENT -->
@@ -62,6 +65,7 @@
 
 	<div id="priceTbl" style="height:4000px;">
 
+	<div id="priceTbl" style="height:4000px;">
 	</div>
 
   </div>

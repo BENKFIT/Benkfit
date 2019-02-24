@@ -166,4 +166,68 @@ public class Controller_syk {
 		
 		return "mypage_kay/getBalance";
 	}
+	
+	//입금
+	@RequestMapping("deposit")
+	public String deposit(HttpServletRequest req) throws Exception{
+		logger.info("입금");
+		
+		return "mypage_kay/deposit";
+	}
+	
+	//입금진행
+	@RequestMapping("depositPro")
+	public String depositPro(HttpServletRequest req) throws Exception{
+		logger.info("입금 실행");
+		service.depositPro(req);
+		
+		return "mypage_kay/deposit";
+	}
+	
+	//출금페이지
+	@RequestMapping("withdraw")
+	public String withdraw(HttpServletRequest req) throws Exception{
+		logger.info("출금");
+		
+		return "mypage_kay/withdraw";
+	}
+	
+	//출금진행
+	@RequestMapping("withdrawPro")
+	public String withdrawPro(HttpServletRequest req) throws Exception{
+		logger.info("출금");
+		service.withdraw(req);
+		
+		return "mypage_kay/withdraw";
+	}
+	
+	/*
+	 * 자동이체
+	 */
+	
+	//자동이체 페이지
+	@RequestMapping("auto_trans")
+	public String autoTrans(HttpServletRequest req) throws Exception{
+		logger.info("자동이체 페이지");
+		service.autoTrans(req);
+		
+		return "mypage_kay/auto/auto_trans";
+	}
+	
+	//자동이체 등록
+	@RequestMapping("autoAdd")
+	public String autoAdd(HttpServletRequest req) throws Exception{
+		logger.info("자동이체 등록");
+		service.autoAdd(req);
+		return "mypage_kay/auto/result";
+	}
+	
+	//자동이체 삭제
+	@RequestMapping("autoDel")
+	public String autoDel(HttpServletRequest req) throws Exception{
+		logger.info("자동이체 삭제");
+		service.autoDel(req);
+		
+		return "mypage_kay/auto/autoDel";
+	}
 }

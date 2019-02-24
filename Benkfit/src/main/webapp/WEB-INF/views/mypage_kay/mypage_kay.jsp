@@ -6,9 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>정보수정</title>
-<script>
-$("#item").val(); 
-</script>
 </head>
 <body class="body">
 	<%@ include file="../Template/top.jsp"%>
@@ -74,17 +71,17 @@ $("#item").val();
 						</tr>
 					</thead>
 					<tbody>
-					<c:set var="num" value="1"> </c:set>
 					<c:forEach var="cheq" items="${cheq}">
 						<tr>
-							<td>${num}</td>
-							<td>${cheq.cheq_num} </td>
-							<td>${cheq.myCheq_account} </td>
-							<td>${cheq.myCheq_amount}</td>
+							<td>1</td>
+							<td>${cheq.cheq_num}</td>
+							<td>${cheq.myCheq_account}</td>
+							<td>￦<fmt:formatNumber value="${cheq.myCheq_amount}" pattern="#,###.##"/></td>
 							<td>	
-								<input type="hidden" name="delCheq" value="${cheq.myCheq_account}">
-								<button class="btn2 btn2-success" onclick="move(1)" <%-- name="delCheq" value="${cheq.myCheq_account}" --%>>조회</button>&nbsp;
-								<button class="btn2 btn2-danger" onclick="move(2)">해지</button>
+							<input class="btn2 btn2-success" type="button" value="조회"
+					 			onclick="window.location='cheq_account?account=${cheq.myCheq_account}'">&nbsp;
+							<input class="btn2 btn2-success" type="button" value="해지"
+					 			onclick="window.location='delcheq?account=${cheq.myCheq_account}'">&nbsp;
 							</td>
 						</tr>
 						</c:forEach>
@@ -108,7 +105,7 @@ $("#item").val();
 							<td>${num}</td>
 							<td>${sav.mySav_name} </td>
 							<td>${sav.mySav_account} </td>
-							<td>${sav.mySav_amount}</td>
+							<td>￦<fmt:formatNumber value="${sav.mySav_amount}" pattern="#,###.##"/></td>
 							<td>
 								<button class="btn2 btn2-success" onclick="move(13)">조회
 								</button>&nbsp;
@@ -136,7 +133,7 @@ $("#item").val();
 						<tr>
 							<td>${loan.loan_num} </td>
 							<td>${loan.myLoan_account} </td>
-							<td>${loan.myLoan_amount}</td>
+							<td>￦<fmt:formatNumber value="${loan.myLoan_amount}" pattern="#,###.##"/></td>
 							<td>${loan.myLoan_date}</td>
 							<td>${loan.myLoan_late}</td>
 							<td>

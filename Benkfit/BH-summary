@@ -473,11 +473,6 @@
 		6. css 및 연결 어느 정도 마무리함.
 
 
-
-
-
-
-
 	<Resource auth="Container"
 		driverClassName="oracle.jdbc.driver.OracleDriver" maxActive="50"
 		maxwait="1000" name="jdbc/Oracle11g_benkfit" password="bank"
@@ -503,8 +498,56 @@
 		username="scott" />
 
 	
+2019-02-17
+	1.benkfit 솔리디티 완료.
+		1.ERC20기반으로 한 솔리디티 구축
+		2.input output으로 돈의 흐름을 연결.
+		3.totalSupply는 토큰발행의총량이지만 은행이기 때문에 초기 자본금으로 생각하고 사용할 것.
+		
+	2.지갑생성시 10이더 자동 전송하기.(현재 오류 발생) Value out of range.
+		
+2019-02-18
+	1. 계좌 생성시 10이더 즉시 전송 완료
+		1. Value out of range해결.
 
-
+2019-02-20
+	1. 로컬디비로 연결함
+	2. 대출 상품 등록시 시퀀스 생성
+		create sequence loanPro_seq
+		    start with 1
+		    increment by 1
+		    maxvalue 999;
+	3. 대출 상품들 디비 연결중
+	4. 대출 상품 등록 수정 삭제 구현 완료
+	
+2019-02-21
+	1. 대출 디비 연결 계속
+		1. 탑메뉴에서 링크 만듬
+	2. 대출 승인 여부 만드는 중
+	3. 대출 계정잔액 새로 만드는 중
+	4. MyloanAccountVO 에 int doc_num 추가.
+	5. 대출 현재 완료 사항
+		1. 대출 상품 등록 - 수정 - 삭제 가능
+		2. 고객 대출 신청
+		3. 관리자 신청 수락 
+		4. 한도 조회 가능
+	6. 보완할 점
+		1. 계정에 잔고가 없을시 대출이 되지 않게 해놨는데 alert이 제대로 작동하지 않음
+		2. 이자 계산 안됨
+		3. 상환하는 중
+		4. 상환 완료
+		
+2019-02-22
+	1. 소스 정리. 이더리움간편체험 - 슬롯 - common - admin - 대출 - common - admin 순
+	2. 슬롯 관리자 만들기
+		1. 슬롯 잔액확인
+		2. 슬롯 잔액 채우기
+		
+	
+		
+	
+	
+	
 
  		
 	

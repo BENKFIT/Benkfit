@@ -49,18 +49,25 @@ public interface Service_kay {
 	
 	//적금계좌 상세조회
 	public void sel_sav(HttpServletRequest req, Model model);
-	/*
+	
 	//예금해지
-	public void del_cheq(HttpServletRequest req, Model model);*/
+	public void del_cheq(HttpServletRequest req, Model model);
 	
-	//내서류 목록
-	public void docu_list(HttpServletRequest req, Model model);
+	//해지
+	public void sls(HttpServletRequest req, Model model);
 	
-	//서류 등록
-	public void addimg(HttpServletRequest  req, Model model) throws Exception;
+	// 파일 업로드 & 텍스트 인식
+	public void getText(String file, Model model) throws IOException;
+
+	//서류등록처리
+	public void signInPro(MultipartHttpServletRequest req, Model model);
 	
-	//서류인식
-	public void readDoc(String imgfile, Model model) throws IOException;
-		
+	//서류조회
+	public void seldocu(HttpServletRequest req, Model model);
 	
+	//서류조회 -상세
+	public void detaildocu(HttpServletRequest req, Model model);
+	
+	//서류삭제 
+	public void deletedocu(HttpServletRequest req, Model model);
 }
