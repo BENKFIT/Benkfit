@@ -77,7 +77,6 @@ input[type=button] {
 
 									data.addRow([ day, value1, value2, value3 ]);
 								}
-
 								var chart = new google.visualization.ChartWrapper(
 										{
 											chartType : 'LineChart',

@@ -52,7 +52,6 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.info(map);
 	}
-	
 	//내정보- 수정처리
 	@Override
 	public int up_info(UsersVO vo) {
@@ -107,12 +106,6 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.limit_up(vo);
 	}
-	//예금거래내역조회
-	@Override
-	public myCheqAccountVO selCheq(Map<String, Object> map) {
-		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.selCheq(map);
-	}
 	//입금합계
 	@Override
 	public int cheqIn(Map<String, Object> map) {
@@ -125,11 +118,41 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.cheqOut(map);
 	}
-	//거래내역 조회
+	//예금거래내역조회
+	@Override
+	public myCheqAccountVO selCheq(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.selCheq(map);
+	}
+	//거래내역 조회 - 예금
 	@Override
 	public List<TransDetailVO> sel_cheq(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.sel_cheq(map);
+	}
+	//대출거래내역조회
+	@Override
+	public MyloanAccountVO seloan(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.seloan(map);
+	}
+	//거래내역 조회 - 대출
+	@Override
+	public List<TransDetailVO> sel_loan(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.sel_loan(map);
+	}
+	//적금거래내역조회
+	@Override
+	public MySavAccountVO selSav(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.selSav(map);
+	}
+	//거래내역 조회 - 적금
+	@Override
+	public List<TransDetailVO> sel_sav(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.sel_sav(map);
 	}
 	//계좌잔액
 	@Override
@@ -173,16 +196,36 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.deletedocu(map);
 	}
-	//자산관리 - 자산chart
-	@Override
-	public List<AssetVO>  AssetChart(String id) {
-		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
-		return dao.AssetChart(id);
-	}
 	//자산관리 - 예산chart
 	@Override
 	public int budget(Map<String, Object> map) {
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.budget(map);
 	}
+	//자산관리
+	@Override
+	public DateVO day() {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.day();
+	}
+	//자산관리 - 예산chart -10일까지 구하기
+	@Override
+	public DateVO day1() {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.day1();
+	}
+	//자산관리 - 예산chart -20일까지 구하기
+	@Override
+	public DateVO day2() {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.day2();
+	}
+	//자산관리 - 예산chart -말일까지 구하기
+	@Override
+	public DateVO day3() {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return  dao.day3();
+	}
+	
+	
 }

@@ -50,14 +50,14 @@ public class Controller_kay {
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_account");
-		//service.myloan_list(req, model);
+		service.myloan_list(req, model);
 		return "mypage_kay/loan_account_kay";
 	}
 	//대출계좌조회
 	@RequestMapping("loan_info")
 	public String loan_info(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_info");
-		service.myloan_list(req, model);
+		service.sel_loan(req, model);
 		return "mypage_kay/loan_accountinfo";
 	}
 	//적금계좌조회
@@ -71,27 +71,20 @@ public class Controller_kay {
 	@RequestMapping("sav_info")
 	public String sav_info(HttpServletRequest req, Model model) throws Exception{
 		logger.info("sav_info");
+		service.sel_sav(req, model);
 		return "mypage_kay/sav_accountinfo";
-	}
-	//자산관리 
-	@RequestMapping("chart")
-	public String chart(HttpServletRequest req, Model model) throws Exception{
-		logger.info("chart");
-		service.AssetChart(req, model);
-		return "mypage_kay/chart";
 	}
 	//자산관리
 	@RequestMapping("asset")
 	public String dsd(HttpServletRequest req, Model model) throws Exception{
 		logger.info("test");
-		service.AssetChart(req, model);
-		return "mypage_kay/test_kay2";
+		return "mypage_kay/asset";
 	}
 	//자산관리
 	@RequestMapping("budget")
 	public String budget(HttpServletRequest req, Model model) throws Exception{
 		logger.info("budget");
-/*		service.AssetChart(req, model);*/
+		service.budget(req, model);
 		return "mypage_kay/budget";
 	}
 	//QRcode 발급
@@ -200,7 +193,6 @@ public class Controller_kay {
 	public String trans(HttpServletRequest req, Model model) throws Exception{
 		logger.info("trans");
 		service_syk.trans(req);
-		
 		return "mypage_kay/trans_info";
 	}
 	//계좌이체정보확인
@@ -208,18 +200,6 @@ public class Controller_kay {
 	public String trans_Chk(HttpServletRequest req, Model model) throws Exception{
 		logger.info("trans_Chk");
 		return "mypage_kay/trans_infoChk";
-	}
-	//자동이체
-	@RequestMapping("auto_trans")
-	public String auto_trans(HttpServletRequest req, Model model) throws Exception{
-		logger.info("auto_trans");
-		return "mypage_kay/auto_trans";
-	}
-	//자동이체정보확인
-	@RequestMapping("auto_Chk")
-	public String auto_Chk(HttpServletRequest req, Model model) throws Exception{
-		logger.info("auto_Chk");
-		return "mypage_kay/auto_transChk";
 	}
 	//계좌해지 - pwcheq
 	@RequestMapping("delcheq")
@@ -235,14 +215,14 @@ public class Controller_kay {
 		service.del_cheq(req, model);
 		return "mypage_kay/account";
 	}
-	/*//기본setting 페이지
+	/*
+	//기본setting 페이지
 	@RequestMapping("sdf")
 	public String test(HttpServletRequest req, Model model) throws Exception{
 		logger.info("test");
 		service.AssetChart(req, model);
 		return "mypage_kay/sdf";
 	}*/
-	
 	/*//기본setting 페이지
 	@RequestMapping("sdf")
 	public String sdf(HttpServletRequest req, Model model) throws Exception{

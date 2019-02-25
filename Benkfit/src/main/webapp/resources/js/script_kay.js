@@ -39,7 +39,7 @@ function move(str){
 $(document).ready(function() {
 	$('#qrcode').hide();
 	$('#createBtn').click(function() {
-		$('#qrcode').show();
+		
 		// input에 입력하는 값들을 뽑아서 변수에 저장
 		var m_strid = $('#m_strid').val();
 		var m_name = $('#m_name').val();

@@ -11,22 +11,13 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -35,14 +26,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.kenai.jffi.Array;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.*;
@@ -283,7 +266,7 @@ public class ServiceImpl_kay implements Service_kay{
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		String cheq_account = req.getParameter("account");
+		String account = req.getParameter("account");
 		String start_date = req.getParameter("start_date");
 		String end_date= req.getParameter("end_date");
 		String type = req.getParameter("type");
@@ -300,10 +283,9 @@ public class ServiceImpl_kay implements Service_kay{
 		if(order.equals("undefined")) {
 			order = "";
 		}
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
-		map.put("cheq_account", cheq_account);
+		map.put("account", account);
 		map.put("start_date", start_date);
 		map.put("end_date", end_date);
 		map.put("type", type);
@@ -311,26 +293,99 @@ public class ServiceImpl_kay implements Service_kay{
 		map.put("start", start);
 		map.put("end", end);
 
-		myCheqAccountVO cheq = dao.selCheq(map);//계좌정보
+		myCheqAccountVO cheqinfo = dao.selCheq(map);//계좌정보
 		int CheqIn = dao.cheqIn(map);//입금합계
 		int CheqOut	= dao.cheqOut(map);//출금합계
-		List<TransDetailVO> list_Ts = dao.sel_cheq(map); //거래내역
-
-		model.addAttribute("list_Ts",list_Ts);
-		model.addAttribute("chch", cheq);
-		model.addAttribute("CheqIn",CheqIn);
-		model.addAttribute("CheqOut",CheqOut);
+		List<TransDetailVO> cheq = dao.sel_cheq(map); //거래내역
+		
+		model.addAttribute("cheqinfo", cheqinfo);
+		model.addAttribute("CheqIn", CheqIn);
+		model.addAttribute("CheqOut", CheqOut);
+		model.addAttribute("cheq", cheq);
 
 	}
 	//대출계좌 상세 조회
 	@Override
 	public void sel_loan(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+		String start_date = req.getParameter("start_date");
+		String end_date= req.getParameter("end_date");
+		String type = req.getParameter("type");
+		String order = req.getParameter("order");
+		int start = 1;
+		int end = Integer.parseInt(req.getParameter("end"));
+		String delCheq = req.getParameter("delCheq");
+		
+		System.out.println("계좌선택 : " + delCheq);
+		System.out.println("====cheq_info====");
 
+		if(type.equals("undefined")) {
+			type = "";
+		}if(order.equals("undefined")) {
+			order = "";
+		} if(start_date.equals("undefined")) {
+			start_date = " ";
+		}  if(end_date.equals("undefined")) {
+			end_date = " ";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("account", account);
+		map.put("start_date", start_date);
+		map.put("end_date", end_date);
+		map.put("type", type);
+		map.put("order", order);
+		map.put("start", start);
+		map.put("end", end);
+
+		MyloanAccountVO loaninfo = dao.seloan(map);//계좌정보
+		List<TransDetailVO> loan = dao.sel_loan(map); //거래내역
+		
+		model.addAttribute("loaninfo", loaninfo);//계좌정보
+		model.addAttribute("loan", loan); //거래내역
+	
 	}
 	//적금계좌 상세 조회
 	@Override
 	public void sel_sav(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+		String start_date = req.getParameter("start_date");
+		String end_date= req.getParameter("end_date");
+		String order = req.getParameter("order");
+		int start = 1;
+		int end = Integer.parseInt(req.getParameter("end"));
+		String delCheq = req.getParameter("delCheq");
+		
+		System.out.println("계좌선택 : " + delCheq);
+		System.out.println("====cheq_info====");
 
+		if(order.equals("undefined")) {
+			order = "";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("account", account);
+		map.put("start_date", start_date);
+		map.put("end_date", end_date);
+		map.put("order", order);
+		map.put("start", start);
+		map.put("end", end);
+
+		MySavAccountVO savinfo = dao.selSav(map);//계좌정보
+		int CheqIn = dao.cheqIn(map);//입금합계
+		int CheqOut	= dao.cheqOut(map);//출금합계
+		List<TransDetailVO> sav = dao.sel_sav(map); //거래내역
+		
+		model.addAttribute("savinfo", savinfo);
+		model.addAttribute("CheqIn",CheqIn);
+		model.addAttribute("CheqOut",CheqOut);
+		model.addAttribute("sav",sav); 
 	}
 	//해지조회
 	@Override
@@ -386,7 +441,7 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void getText(String file, Model model) throws IOException {
 
-		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\py\\benkfit.py", file);
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
 		Process p = pb.start();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -573,41 +628,52 @@ public class ServiceImpl_kay implements Service_kay{
 		
 		model.addAttribute("del",del);
 	}
-	//자산관리- 자주이체계좌
-	@Override
-	public void AssetChart(HttpServletRequest req, Model model) {
-		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-		User user = (User) securityContext.getPrincipal();
-		String id = user.getUsername();
-		List<AssetVO> lvo = dao.AssetChart(id);
-		List<AssetVO> chartvo = new ArrayList<AssetVO>();
-		for(int i=0; i< lvo.size(); i++) {
-			AssetVO vo = new AssetVO();
-			vo.setTran_account(lvo.get(i).getTran_account());
-			vo.setTran_count(lvo.get(i).getTran_count());
-			System.out.println("vo11 : "+ lvo.get(i).getTran_account());
-			System.out.println("vo21 : "+ lvo.get(i).getTran_count());
-			chartvo.add(vo);
-		}
-		System.out.println("chartvo"+ chartvo);
-		model.addAttribute("chartvo", chartvo);
-	}
 	//자산관리 - 예산chart
 	@Override
 	public void budget(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		String start_day = req.getParameter("start_day");
-		String end_day = req.getParameter("end_day");
+		String num = req.getParameter("num");
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("id", id);
-		map.put("start_day",start_day);
-		map.put("end_day",end_day);
-		
-		int budget = dao.budget(map);
-		System.out.println("budget: "+budget);
-		model.addAttribute("budget",budget);
+		DateVO vo = dao.day();
+		DateVO vo1 = dao.day1();
+		DateVO vo2 = dao.day2();
+		DateVO vo3 = dao.day3();
+
+		if(vo1 != null ) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo1.getStart_day());
+			map.put("end_day",vo1.getEnd_day());
+			int budget1 = dao.budget(map);
+			model.addAttribute("budget1" ,budget1);
+		}
+		if(vo2 !=null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo2.getStart_day());
+			map.put("end_day",vo2.getEnd_day());
+			int budget2 = dao.budget(map);
+			model.addAttribute("budget2" ,budget2);
+		}	
+		if(vo3 != null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo3.getStart_day());
+			map.put("end_day",vo3.getEnd_day());
+			int budget3 = dao.budget(map);
+			model.addAttribute("budget3" ,budget3);
+		}
+		if(vo != null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo.getStart_day());
+			map.put("end_day",vo.getEnd_day());
+			int budget = dao.budget(map);
+			model.addAttribute("budget" ,budget);
+		}
+		System.out.println("num : "+ num);
+		model.addAttribute("num", num);
 	}
 }

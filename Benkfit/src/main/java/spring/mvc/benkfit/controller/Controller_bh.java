@@ -27,13 +27,13 @@ public class Controller_bh {
 	@RequestMapping("wallet")
 	public String create(HttpServletRequest req, Model model) throws Exception{
 		logger.info("create");
-		return "engine_bh/create";
+		return "common/blockChain/create";
 	}
 	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) throws Exception{
 		logger.info("CreateAccount");
 		service.createAccount(req, model);
-		return "engine_bh/createAccount";
+		return "common/blockChain/createAccount";
 	}
 	
 	/*
@@ -66,11 +66,15 @@ public class Controller_bh {
 	/*
 	 * 대출
 	 */
-	//대출 목록
+	
+	/*
+	 * common
+	 */
+	//대출 상품 목록
 	@RequestMapping("loanList")
-	public String checkingList() {
+	public String loanList(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loanList");
-		
+		service.loanList(req, model);
 		return "common/product/loan/loanList";
 	}
 	
@@ -78,15 +82,61 @@ public class Controller_bh {
 	@RequestMapping("loanInfo")
 	public String loanInfo(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loanInfo");
-		
+		service.loanInfo(req, model);
 		return "common/product/loan/loanInfo";
 	}
 	
-	//담보대출신청폼
-	@RequestMapping("loan")
-	public String loan(HttpServletRequest req, Model model) throws Exception{
-		logger.info("loan");
-		return "common/product/loan/loan";
+	//대출 가이드
+	@RequestMapping("loanGuide")
+	public String loanGuide(HttpServletRequest req, Model model) throws Exception{
+		logger.info("loanGuide");
+		return "common/product/loan/loanGuide";
+	}
+	
+//	//대출신청폼
+//	@RequestMapping("req_loan")
+//	public String loan(HttpServletRequest req, Model model) throws Exception{
+//		logger.info("loan");
+//		return "common/product/loan/loan";
+//	}
+//	//대출계산
+//	@RequestMapping("rtype")
+//	public String rtype(HttpServletRequest req, Model model) throws Exception{
+//		logger.info("rtype");
+//		service.rtype(req, model);
+//		return "common/product/loan/rtype";
+//	}
+	
+	/*
+	 * admin
+	 */
+	//대출 상품 등록 페이지
+	@RequestMapping("loanRegi")
+	public String loanAdd(HttpServletRequest req, Model model) throws Exception{
+		logger.info("loanRegi");
+		service.loanList(req, model);
+		return "admin/product/loan/loanList";
+	}
+	//대출 상품 등록
+	@RequestMapping("loanRegiPro")
+	public String loanAddPro(HttpServletRequest req, Model model) throws Exception{
+		logger.info("loanRegiPro");
+		service.loanRegiPro(req, model);
+		return "admin/product/loan/result";
+	}
+	//대출 상품 수정
+	@RequestMapping("loanEdit")
+	public String loanEdit(HttpServletRequest req, Model model) throws Exception{
+		logger.info("loanEdit");
+		service.loanEdit(req, model);
+		return "admin/product/loan/loanEdit";
+	}
+	//대출 상품 마감
+	@RequestMapping("loanDel")
+	public String loanDel(HttpServletRequest req, Model model) throws Exception{
+		logger.info("loanDel");
+		service.loanDel(req, model);
+		return "admin/product/loan/delResult";
 	}
 	
 	/*
@@ -112,27 +162,27 @@ public class Controller_bh {
 	//예금메인
 	@RequestMapping("bank")
 	public String deposit(HttpServletRequest req, Model model) throws Exception{
-		return "engine_bh/bank";
+		return "common/blockChain/bank";
 	}
 	//예금
-	@RequestMapping("depositPro")
+	/*@RequestMapping("depositPro")
 	public String depositPro(HttpServletRequest req, Model model) throws Exception{
 		logger.info("depositPro");
 		service.deposit(req, model);
 		return "engine_bh/depositPro";
-	}
+	}*/
 	//예금액보기
 	@RequestMapping("bankBalance")
 	public String bankBalance(HttpServletRequest req, Model model) throws Exception{
 		logger.info("bankBalance");
 		service.bankBalance(req, model);
-		return "engine_bh/bankBalance";
+		return "common/blockChain/bankBalance";
 	}
 	//예금 인출하기
 	@RequestMapping("bankWithdraw")
 	public String bankWithdraw(HttpServletRequest req, Model model) throws Exception{
 		logger.info("bankWithdraw");
 		service.bankWithdraw(req, model);
-		return "engine_bh/bankWithdraw";
+		return "common/blockChain/bankWithdraw";
 	}
 }

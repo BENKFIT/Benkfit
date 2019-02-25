@@ -72,9 +72,6 @@ public interface Service_kay {
 	//서류삭제 
 	public void deletedocu(HttpServletRequest req, Model model);
 	
-	//자산관리 - 자주거래 계좌chart
-	public void AssetChart(HttpServletRequest req, Model model);
-	
 	//자산관리 - 예산chart
 	public void budget(HttpServletRequest req, Model model);
 }

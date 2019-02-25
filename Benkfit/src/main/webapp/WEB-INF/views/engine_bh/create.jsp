@@ -5,10 +5,6 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-body {
-	text-align: center;
-}
-
 input, select {
 	padding: 6px 10px;
 	margin: 4px 0;
@@ -78,9 +74,9 @@ p, a {
 		</div>
 	</div>
 	<br><br><br><br><br><br><br>
-	
+	<br><br><br><br><br><br><br>
 	<div id="accountInfo">
-	</div><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div><br><br><br><br><br><br>
 	<!-- FOOTER  -->
 	<%@ include file="../Template/footer.jsp"%>
 </body>

@@ -6,4 +6,29 @@
 	
 <mapper namespace="spring.mvc.benkfit.persistence.DAO_bh">
 
+	<!-- 예금상품목록 -->
+	<select id="loanList" resultType="spring.mvc.benkfit.vo.LoanProductVO">
+		SELECT loan_num, loan_name, loan_amount, loan_period, loan_overrate, loan_rate, loan_moderate, loan_target, loan_reMethod, loan_paymethod, loan_regDate 
+		FROM loanproduct_tbl
+		ORDER BY loan_num DESC
+	</select>
+	
+	<!-- 예금정보 -->
+	<select id="loanInfo" resultType="spring.mvc.benkfit.vo.LoanProductVO" parameterType="String">
+		SELECT loan_num, loan_name, loan_amount, loan_period, loan_overrate, loan_rate, loan_moderate, loan_target, loan_reMethod, loan_paymethod, loan_regDate 
+		FROM loanproduct_tbl
+		WHERE loan_num = #{num}
+	</select>
+
+	<!-- 예금상품등록 -->
+	<insert id="loanPro" parameterType="spring.mvc.benkfit.vo.LoanProductVO">
+		INSERT INTO loanproduct_tbl(loan_num, loan_name, loan_amount, loan_period, loan_rate, loan_moderate, loan_target, loan_reMethod)
+		VALUES(loanPro_seq.nextval, #{loan_name}, #{loan_amount}, #{loan_period}, #{loan_rate}, #{loan_moderate},#{loan_target},#{loan_reMethod})
+	</insert>
+	
+	<!-- 예금상품삭제 -->
+	<delete id="loanDel" parameterType="String">
+		DELETE loanproduct_tbl
+		WHERE loan_num = #{num}
+	</delete>
 </mapper>

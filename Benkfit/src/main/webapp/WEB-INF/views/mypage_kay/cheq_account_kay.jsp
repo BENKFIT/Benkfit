@@ -6,7 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>계좌조회</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+$(function() {
+		 $(".datepicker").datepicker();
+	 });
 function ajaxTest(){
 	var account = $("#cheq_account option:selected").val();
  	var start_date = $('input[name="start_date"]').val();
@@ -17,7 +24,6 @@ function ajaxTest(){
 	
 	var sel_cheq = "account=" + account+ "&type=" + type + "&order=" +order 
 	 + "&start_date=" +start_date  + "&end_date=" + end_date +"&end=" + end ;
-								
 	$.ajax({
 			type : "POST",
 			url : "${pageContext.request.contextPath}/cheq_info",
@@ -57,17 +63,17 @@ function ajaxTest(){
 			<tr class="srch_area">
 				<th>조회기간</th>
 				<td>
-					<input type="date" class="datepicker" name="start_date" id="start_date"> ~
+					<input type="date" class="datepicker" name="start_date" id="start_date" > ~ <br/>
  					<input type="date" class="datepicker" name="end_date" id="end_date">
 					
 				</td>
 				<td>
-					<span> <input type="button" class="date" id="r_today" name="date" value="당일"></span>
-					<span> <input type="button" class="date" id="r_week" name="date" value="1주일"></span>
-					<span> <input type="button" class="date" id="r_week1" name="date" value="2주일"></span>
-					<span> <input type="button" class="date" id="r_month1" name="date" value="1개월"></span>
-					<span> <input type="button" class="date" id="r_month3" name="date" value="3개월"></span>
-					<span> <input type="button" class="date" id="r_month6" name="date" value="6개월"></span>
+					<span><input type="button" class="date" id="r_today" name="date" value="당일"></span>
+					<span><input type="button" class="date" id="r_week" name="date" value="1주일"></span>
+					<span><input type="button" class="date" id="r_week1" name="date" value="2주일"></span>
+					<span><input type="button" class="date" id="r_month1" name="date" value="1개월"></span>
+					<span><input type="button" class="date" id="r_month3" name="date" value="3개월"></span>
+					<span><input type="button" class="date" id="r_month6" name="date" value="6개월"></span>
 				</td>
 			</tr>
 			<tr>
@@ -105,23 +111,5 @@ function ajaxTest(){
 		</div>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
-	<!-- <script>
-	$(function() {
-		  $( "#datepicker1 , #datepicker2" ).datepicker({
-		    dateFormat: 'yy.mm.dd',
-		    prevText: '이전 달',
-		    nextText: '다음 달',
-		    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		    dayNames: ['일','월','화','수','목','금','토'],
-		    dayNamesShort: ['일','월','화','수','목','금','토'],
-		    dayNamesMin: ['일','월','화','수','목','금','토'],
-		    showMonthAfterYear: true,
-		    changeMonth: true,
-		    changeYear: true,
-		    yearSuffix: '년'
-		  });
-		});
-	-->
+
 </body>
-</html>

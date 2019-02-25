@@ -54,8 +54,18 @@
 	
 	<!-- 적금계좌생성 -->
 	<insert id="createSav" parameterType="java.util.Map">
-		INSERT INTO mySavAccount_tbl(mySav_account, mySav_account, sav_num, c_id)
-		VALUES(#{account}, #{pwd}, #{num}, #{id})
+		INSERT INTO mySavAccount_tbl(mysav_account, mysav_pwd, sav_num, c_id, mysav_rate, mysav_due, mysav_amount)
+		<choose>
+			<when test="period == 12">
+				VALUES(#{account}, #{pwd}, #{num}, #{id}, 0.2, ADD_MONTHS(to_date(sysdate,'YY-MM-DD'),12), #{amount})
+			</when>
+			<when test="period == 24">
+				VALUES(#{account}, #{pwd}, #{num}, #{id}, 0.3, ADD_MONTHS(to_date(sysdate,'YY-MM-DD'),24), #{amount})
+			</when>
+			<when test="period == 36">
+				VALUES(#{account}, #{pwd}, #{num}, #{id}, 0.4, ADD_MONTHS(to_date(sysdate,'YY-MM-DD'),36), #{amount})
+			</when>
+		</choose>
 	</insert>
 	
 	<!-- 예금상품삭제 -->
@@ -83,4 +93,49 @@
 		VALUES(TRANSACTION_SEQ.nextval, #{tran_account}, #{tran_out}, #{tran_in}, #{tran_amount}, #{c_id}, #{tran_type}, #{tran_code}, #{tran_blockHash})
 	</insert>
 	
+	<!-- 적금이체 -->
+	<update id="savTrans" parameterType="java.util.Map">
+		UPDATE mySavAccount_tbl
+		SET 
+	</update>
+	
+	<!-- 입금 -->
+	<update id="depositPro" parameterType="java.util.Map">
+		UPDATE myCheqAccount_tbl
+		SET MYCHEQ_AMOUNT = MYCHEQ_AMOUNT + #{value}
+		WHERE MYCHEQ_ACCOUNT = #{account}
+	</update>
+	
+	<!-- 자동이체 조회 -->
+	<select id="autoSearch" parameterType="String" resultType="spring.mvc.benkfit.vo.AutoTransferVO">
+		SELECT auto_from, auto_to, auto_value, c_id, auto_date, auto_num
+		FROM autoTransfer_tbl
+		WHERE c_id = #{id}
+	</select>
+	
+	<!-- 자동이체 등록 -->
+	<insert id="autoAdd" parameterType="spring.mvc.benkfit.vo.AutoTransferVO">
+		INSERT INTO autoTransfer_tbl
+		VALUES(#{auto_from}, #{auto_to}, #{auto_value}, #{c_id}, #{auto_date}, AUTOTRANS_SEQ.nextval, #{auto_file})
+	</insert>
+	
+	<!-- 자동이체 삭제 -->
+	<delete id="autoDel" parameterType="int">
+		DELETE autoTransfer_tbl
+		WHERE auto_num = #{num}
+	</delete>
+	
+	<!-- 자동이체 갯수 -->
+	<select id="autoCnt" resultType="int">
+		SELECT COUNT(auto_from)
+		FROM autoTransfer_tbl
+		WHERE auto_date = #{day}
+	</select>
+	
+	<!-- 자동이체 목록 -->
+	<select id="autoList" resultType="spring.mvc.benkfit.vo.AutoTransferVO">
+		SELECT auto_from, auto_to, auto_value, c_id, auto_date, auto_num, auto_file
+		FROM autoTransfer_tbl
+		WHERE auto_date = #{day}
+	</select>
 </mapper>

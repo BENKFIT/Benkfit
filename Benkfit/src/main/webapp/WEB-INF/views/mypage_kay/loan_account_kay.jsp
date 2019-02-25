@@ -7,20 +7,28 @@
 <meta charset="UTF-8">
 <title>대출계좌조회</title>
 <script>
-	function load(){
-		sendRequest(load_callback, 'loan_info' , "post");
-	} 
-	function load_callback(){
-		var result = document.getElementById("result");
-		if(httpRequest.readyState == 4){
-			if(httpRequest.status == 200){
-				result.innerHTML = httpRequest.responseText;
-			}else{
-				result.innerHTML = "에러발생";
+function ajaxTest(){
+	var account = $("#myLoan_account option:selected").val();
+ 	var start_date = $('input[name="start_date"]').val();
+ 	var end_date = $('input[name="end_date"]').val(); 
+ 	var type =  $('input[name="option"]:checked').val();
+	var order =$('input[name="order"]:checked').val();
+	var end = $('input[name="num"]:checked').val();
+	
+	var sel_loan = "account=" + account+ "&type=" + type + "&order=" +order 
+	 + "&start_date=" +start_date  + "&end_date=" + end_date + "&end=" + end ;
+	
+	$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/loan_info",
+			data : sel_loan,
+			success : function(data) {
+				$('#result').html(data);
+			},	
+			error : function() {
+				alert('통신실패!!');
 			}
-		} else {
-			result.innerHTML = "상태 : " + httpRequest.readyState;
-		}
+		});
 	}
 </script>
 </head>
@@ -32,18 +40,25 @@
 		<table class="table_kay">
 			<tr>
 				<th>대출 계좌번호</th>
-				<td><select name="myLoan_account">
-					<option value="계좌선택">계좌를 선택하세요.</option>
-						<c:forEach var="lo" items="${loan}">
-							<option value="myLoan_account">${lo.myLoan_account}</option>
-						</c:forEach>
+				<td><select id="myLoan_account" name="myLoan_account">
+						<c:choose>
+							<c:when test="${account != null}">
+								<option value="${account}">${account}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="계좌를 선택하세요.">계좌를 선택하세요.</option>
+								<c:forEach var="lo" items="${loan}">
+									<option value="${lo.myloan_account}">${lo.myloan_account}</option>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 				</select></td>
 			</tr>
 			<tr class='srch_area'>
 				<th>조회기간</th>
-				<td><input type="text" id="search_start_date"
-					style="width: 90px;"> ~ <input type="text" 
-					id="search_end_date" style="width: 90px;"></td>
+				<td><input type="date" id="start_date" name="start_date"
+					style="width: 90px;"> ~ <input type="date" 
+					id="end_date"name="end_date" style="width: 90px;"></td>
 				<td>
 					<span> <input type="button" id="r_today" name="date" value="당일"></span>
 					<span> <input type="button" id="r_week" name="date" value="1주일"></span>
@@ -65,8 +80,16 @@
 					type="radio" name="sel_order">과거거래순</td>
 			</tr>
 			<tr>
+				<th>조회내역건수</th>
+				<td>
+					<input type="radio" name="num" value="10">10건
+					<input type="radio" name="num" value="20">20건
+					<input type="radio" name="num" value="30">30건
+				</td>
+			</tr>
+			<tr>
 				<th colspan="2" class="trBtn">
-					<button class="btn2 btn2-success" onclick="load();">조회</button>
+					<button class="btn2 btn2-success" onclick="ajaxTest();">조회</button>
 				</th>
 			</tr>
 		</table>

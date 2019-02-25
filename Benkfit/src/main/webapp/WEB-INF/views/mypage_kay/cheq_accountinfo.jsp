@@ -13,21 +13,21 @@
 	<table class="table_kay">
 		<tr>
 			<th>계좌상품번호</th>
-			<td><input type="text" value="${chch.cheq_num}" class="inputStyle" disabled></td>
+			<td><input type="text" value="${cheqinfo.cheq_num}" class="inputStyle" disabled></td>
 			<th>가입날짜</th>
-			<td><input type="text" value="${chch.myCheq_regDate }" class="inputStyle"disabled></td>
+			<td><input type="text" value="${cheqinfo.myCheq_regDate }" class="inputStyle"disabled></td>
 		</tr>
 		<tr>
 			<th>계좌번호</th>
-			<td><input type="text" value="${chch.myCheq_account}" class="inputStyle" disabled></td>
+			<td><input type="text" value="${cheqinfo.myCheq_account}" class="inputStyle" disabled></td>
 			<th>계좌잔액</th>
 			<td><input type="text" value="￦<fmt:formatNumber value="${chch.myCheq_amount}" pattern="#,###.##"/>" class="inputStyle"  onchange="getNumber(this);" value="${cheq_account}"disabled></td>
 		</tr>
 		<tr>
 			<th>예금 세율</th>
-			<td><input type="text" value="${chch.myCheq_taxRate}" class="inputStyle" disabled></td>
+			<td><input type="text" value="${cheqinfo.myCheq_taxRate}" class="inputStyle" disabled></td>
 			<th>이체한도 </th>
-			<td><input type="text" value="￦<fmt:formatNumber value="${chch.myCheq_limit}" pattern="#,###.##"/>" class="inputStyle" onchange=""  disabled></td>
+			<td><input type="text" value="￦<fmt:formatNumber value="${cheqinfo.myCheq_limit}" pattern="#,###.##"/>" class="inputStyle" onchange=""  disabled></td>
 		</tr>
 	</table>
 	<hr>
@@ -68,12 +68,12 @@
 			<th>타입</th>
 		</tr>
 		<tr>
-		<c:if test="${empty list_Ts}">
+		<c:if test="${empty cheq}">
 			<tr>
 				<td colspan="7" style="text-align:center;">거래내역이 존재하지 않습니다.</td>
 			</tr>
 		</c:if>
-			<c:forEach var="list" items="${list_Ts}">
+			<c:forEach var="list" items="${cheq}">
 				<tr>
 					<td>${list.tran_num}</td>
 					<td>${list.tran_date}</td>
