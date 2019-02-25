@@ -13,30 +13,21 @@
 	<table class="table table-hover">
 		<tr>
 			<th>계좌상품번호</th>
-			<td><input type="text" value="${cheqinfo.cheq_num}"
-				 disabled></td>
+			<td>${cheqinfo.cheq_num}</td>
 			<th>가입날짜</th>
-			<td><input type="text" value="${cheqinfo.myCheq_regDate }"
-				class="inputStyle" disabled></td>
+			<td>${cheqinfo.myCheq_regDate}</td>
 		</tr>
 		<tr>
 			<th>계좌번호</th>
-			<td><input type="text" value="${cheqinfo.myCheq_account}"
-				class="inputStyle" disabled></td>
+			<td>${cheqinfo.myCheq_account}</td>
 			<th>계좌잔액</th>
-			<td><input type="text"
-				value="￦<fmt:formatNumber value="${cheqinfo.myCheq_amount}" pattern="#,###.##"/>"
-				class="inputStyle" onchange="getNumber(this);"
-				value="${cheq_account}" disabled></td>
+			<td>￦<fmt:formatNumber value="${cheqinfo.myCheq_amount}" pattern="#,###.##"/></td>
 		</tr>
 		<tr>
 			<th>예금 세율</th>
-			<td><input type="text" value="${cheqinfo.myCheq_taxRate}"
-				class="inputStyle" disabled></td>
+			<td>${cheqinfo.myCheq_taxRate}</td>
 			<th>이체한도</th>
-			<td><input type="text"
-				value="￦<fmt:formatNumber value="${cheqinfo.myCheq_limit}" pattern="#,###.##"/>"
-				class="inputStyle" onchange="" disabled></td>
+			<td>${cheqinfo.myCheq_limit}</td>
 		</tr>
 	</table>
 	<hr>
@@ -45,21 +36,17 @@
 	<table class="table table-hover">
 		<tr>
 			<th>입금합계</th>
-			<td><c:if test="${CheqIn == 0}">
-					<input type="text" value="-" class="inputStyle" disabled>
+			<c:if test="${CheqIn == 0}">
+				<td>-</td>
 				</c:if> <c:if test="${CheqIn != 0}">
-					<input type="text"
-						value="￦<fmt:formatNumber value="${CheqIn}" pattern="#,###.##"/>"
-						class="inputStyle" disabled>
-				</c:if></td>
+					<td>￦<fmt:formatNumber value="${CheqIn}" pattern="#,###.##"/></td>
+				</c:if>
 			<th>출금합계</th>
-			<td><c:if test="${CheqOut == 0}">
-					<input type="text" value="-" class="inputStyle" disabled>
+			<c:if test="${CheqOut == 0}">
+					<td>-</td>
 				</c:if> <c:if test="${CheqOut != 0}">
-					<input type="text"
-						value="￦<fmt:formatNumber value="${CheqOut}" pattern="#,###.##"/>"
-						class="inputStyle" disabled>
-				</c:if></td>
+					<td>${CheqOut}</td>
+				</c:if>
 		</tr>
 	</table>
 	<hr>
