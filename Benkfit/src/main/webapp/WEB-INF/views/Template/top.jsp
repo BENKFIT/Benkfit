@@ -67,7 +67,6 @@
 </head>
 <body>
 
-<<<<<<< HEAD
    <div id="wrapper">
       <button type="button" class="hamburger is-closed"
          data-toggle="offcanvas">
@@ -145,7 +144,6 @@
                         <li class="menu__item"><a class="menu__link"
                            href="limit_sel">이체한도</a></li>
                         <li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-                        <li class="menu__item"><a class="menu__link" href="asset">자산관리</a></li>
                      </ul>
                      <!-- Submenu 0-4 내서류 -->
                      <ul data-menu="submenu-0-4" class="menu__level">
@@ -156,98 +154,7 @@
                      </ul>
                   </sec:authorize>
                </sec:authorize>
-=======
-	<div id="wrapper">
-		<button type="button" class="hamburger is-closed"
-			data-toggle="offcanvas">
-			<span class="hamb-top"></span> <span class="hamb-middle"></span> <span
-				class="hamb-bottom"></span>
-		</button>
-		<!-- Sidebar -->
-		<nav class="navbar navbar-inverse navbar-fixed-top"
-			id="sidebar-wrapper" role="navigation">
-			<!-- side-menu -->
-			<button class="action action--open" aria-label="Open Menu">
-				<span class="icon icon--menu"></span>
-			</button>
-			<nav id="ml-menu" class="menu">
-				<button class="action action--close" aria-label="Close Menu">
-					<span class="icon icon--cross"></span>
-				</button>
-				<div class="menu__wrap">
-					<ul data-menu="main" class="menu__level">
-						<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
-						<sec:authorize access="isAuthenticated()">
-							<sec:authorize access="!hasRole('ROLE_ADMIN')">
-								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0" href="#">마이페이지</a></li>
-							</sec:authorize>
-						</sec:authorize>
-						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0" href="#">관리자메뉴</a></li>
-						</sec:authorize>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1" href="#">금융상품</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-3" href="#">안내</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-5" href="#">ATM</a></li>
-					</ul>
-					<!-- Submenu 0 마이페이지 -->
-					<sec:authorize access="isAuthenticated()">
-						<sec:authorize access="!hasRole('ROLE_ADMIN')">
-							<ul data-menu="submenu-0" class="menu__level">
-								<li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>
-								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0-1" href="#">조회</a></li>
-								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0-2" href="#">이체</a></li>
-								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0-3" href="#">설정</a></li>
-								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0-4" href="#">정보수정</a></li>
-							</ul>
-							<!-- Submenu 0-1 조회 -->
-							<ul data-menu="submenu-0-1" class="menu__level">
-								<li class="menu__item"><a class="menu__link"
-									href="cheq_account">예금관리</a></li>
-								<li class="menu__item"><a class="menu__link"
-									href="sav_account">적금관리</a></li>
-								<li class="menu__item"><a class="menu__link"
-									data-submenu="submenu-0-1-1" href="#">대출관리</a></li>
-							</ul>
-							<!-- Submenu 0-1-1 대출관리 -->
-							<ul data-menu="submenu-0-1-1" class="menu__level">
-								<li class="menu__item"><a class="menu__link"
-									href="loan_account">대출계좌</a></li>
-								<li class="menu__item"><a class="menu__link"
-									href="document">내서류</a></li>
-							</ul>
-							<!-- Submenu 0-2 이체 -->
-							<ul data-menu="submenu-0-2" class="menu__level">
-								<li class="menu__item"><a class="menu__link" href="trans">계좌이체</a></li>
-								<li class="menu__item"><a class="menu__link"
-									href="auto_trans">자동이체</a></li>
-							</ul>
-							<!-- Submenu 0-3 설정 -->
-							<ul data-menu="submenu-0-3" class="menu__level">
-								<li class="menu__item"><a class="menu__link"
-									href="limit_sel">이체한도</a></li>
-								<li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-							</ul>
-							<!-- Submenu 0-4 내서류 -->
-							<ul data-menu="submenu-0-4" class="menu__level">
-								<li class="menu__item"><a class="menu__link"
-									href="myinfoPw">정보수정</a></li>
-								<li class="menu__item"><a class="menu__link"
-									href="deluserPw">탈퇴</a></li>
-							</ul>
-						</sec:authorize>
-					</sec:authorize>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 
-<<<<<<< HEAD
                <!-- Submenu 0 관리자메뉴 -->
                <sec:authorize access="hasAuthority('ROLE_ADMIN')">
                   <ul data-menu="submenu-0" class="menu__level">
@@ -261,49 +168,7 @@
                         data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
                   </ul>
                </sec:authorize>
-=======
-					<!-- Submenu 0 관리자메뉴 -->
-					<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-						<ul data-menu="submenu-0" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								href="selectUsers">회원관리</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2" href="#">상품관리</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
-						</ul>
-						<!-- submenu-0-2 금융상품 -->
-						<ul data-menu="submenu-0-2" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-1" href="#">예금</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-2" href="#">대출</a></li>
-						</ul>
-						<!-- Submenu 0-2-1 예금-->
-						<ul data-menu="submenu-0-2-1" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-1-1" href="cheqSavRegi">예금 상품</a></li>
-						</ul>
-						<!-- Submenu 0-2-2 대출-->
-						<ul data-menu="submenu-0-2-2" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-2-1" href="loanRegi">대출상품</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-2-2" href="loanApproval">대출신청리스트</a></li>
-						</ul>
-						<!-- submenu-0-3 이벤트관리 -->
-						<ul data-menu="submenu-0-3" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3-1" href="event_list_sws">이벤트관리</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
-						</ul>
-					</sec:authorize>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 
-<<<<<<< HEAD
                <!-- Submenu 1 금융상품 -->
                <ul data-menu="submenu-1" class="menu__level">
                   <li class="menu__item"><a class="menu__link"
@@ -333,35 +198,6 @@
                   <li class="menu__item"><a class="menu__link"
                      href="useFee_sws">이용 수수료 안내</a></li>
                </ul>
-=======
-					<!-- Submenu 1 금융상품 -->
-					<ul data-menu="submenu-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1" href="#">예금</a></li>
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-2" href="#">대출</a></li>
-					</ul>
-					<!-- Submenu 1-1 예금-->
-					<ul data-menu="submenu-1-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1-1" href="cheqSavList">예금 상품</a></li>
-					</ul>
-					<!-- Submenu 1-2 대출-->
-					<ul data-menu="submenu-1-2" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
-					</ul>
-					<!-- Submenu 3  안내 -->
-					<ul data-menu="submenu-3" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							href="firstVisit_sws">첫방문 고객 안내</a></li>
-						<li class="menu__item"><a class="menu__link" href="faq_sws">FAQ</a></li>
-						<li class="menu__item"><a class="menu__link"
-							href="hoursOfUse_sws">이용시간 안내</a></li>
-						<li class="menu__item"><a class="menu__link"
-							href="useFee_sws">이용 수수료 안내</a></li>
-					</ul>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 
                <!-- Submenu 5 안내 -->
                <ul data-menu="submenu-5" class="menu__level">
