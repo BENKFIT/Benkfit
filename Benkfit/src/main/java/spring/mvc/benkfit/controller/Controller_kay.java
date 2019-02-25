@@ -219,5 +219,14 @@ public class Controller_kay {
 		logger.info("forms");
 		return "Template/form";
 	}
-	
+	@RequestMapping("button")
+	public String button(HttpServletRequest req, Model model) throws Exception{
+		logger.info("button");
+		return "Template/button";
+	}
+	@RequestMapping("table")
+	public String table(HttpServletRequest req, Model model) throws Exception{
+		logger.info("table");
+		return "Template/table_new";
+	}
 }
