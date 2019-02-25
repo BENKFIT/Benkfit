@@ -230,4 +230,16 @@ public class Controller_syk {
 		
 		return "mypage_kay/auto/autoDel";
 	}
+	
+	//form
+	@RequestMapping("form")
+	public String form() {
+		return "Template/form";
+	}
+	
+	//button
+	@RequestMapping("button")
+	public String button() {
+		return "Template/button";
+	}
 }

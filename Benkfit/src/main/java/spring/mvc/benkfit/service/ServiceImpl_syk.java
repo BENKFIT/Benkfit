@@ -71,9 +71,9 @@ public class ServiceImpl_syk implements Service_syk {
 	/*
 	 * 배포 : 톰캣서버가 열릴 때 한번만 배포
 	 */
-	private static String benkfit = "0xb824ebcb0a3cdddc8bbfd2ffc636ab1067ac74b8";
-	private static String bank = "0xaef3657b4cd86ea4f443ef5698e8190bfffc5471";
-	private static String slot = "0x84601de63c54038c0c4ffd4822813f3562c83b9a";
+	private static String benkfit = "0xaef3657b4cd86ea4f443ef5698e8190bfffc5471";
+	private static String bank = "0x84601de63c54038c0c4ffd4822813f3562c83b9a";
+	private static String slot = "0x0a8cd8b25579550bb56aa854e9364d61b118da4e";
 	
 	public ServiceImpl_syk() throws Exception{
 		if(benkfit == null) {

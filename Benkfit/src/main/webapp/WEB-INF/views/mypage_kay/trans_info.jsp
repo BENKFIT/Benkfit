@@ -7,70 +7,69 @@
 <meta charset="UTF-8">
 <title>이체</title>
 <style>
-.modal-body td {
-	padding: 10px;
+.material__form-group {
+	margin: 10px;
 }
 </style>
 </head>
 <body>
 	<%@ include file="../Template/top.jsp"%>
-	<div class="wrapper">
-		<h1>계좌이체</h1>
-		<hr>
-		<table class="table_kay">
-			<tr>
-				<td><h3>출금정보</h3></td>
-			</tr>
-			<tr>
-				<th>출금계좌</th>
-				<td><%-- <select id="out">
+	<div style="text-align: center; margin: 200px 0px;">
+		<div style="display: inline-block;">
+		</div>
+	</div>
+
+	<table class="table_kay">
+		<tr>
+			<td><h3>출금정보</h3></td>
+		</tr>
+		<tr>
+			<th>출금계좌</th>
+			<td>
+				<%-- <select id="out">
 						<c:forEach var="account" items="${accounts}">
 							<option value="${account}">${account}</option>
 						</c:forEach>
-					</select> --%>
-					<input type="text" id="out" size="40">
-				</td>
-			</tr>
-			<tr>
-				<th>출금계좌 private key</th>
-				<td>
-					<input type="file" name="file" id="keyfile">
-				</td>
-			</tr>
-			<tr>
-				<th>비밀번호 입력</th>
-				<td>
-					<input type="password" name="password" id="password" class="inputStyle" required>
-				</td>
-			</tr>
-			<tr>
-				<td><input type="button" onclick="getBalance();" value="잔액확인" class="btn btn-primary"  required>	</td>
-				<td colspan="3" id="getBalance"></td>
-			</tr>
-			
-		</table>
-		<hr>
-		<table class="table_kay" style="margin: 100px 0px;">
-			<tr>
-				<td><h3>입금정보</h3></td>
-			</tr>
-			<tr>
-				<th>입금계좌번호</th>
-				<td><input type="text" class="inputStyle" placeholder="계정주소입력"
-					required id="in"></td>
-			</tr>
-			<tr>
-				<th>입금금액</th>
-				<td><input type="text" class="inputStyle" placeholder="ether"
-					required id="amount"></td>
-			</tr>
-		</table>
-		<hr>
-		<div class="trBtn">
-			<p>이체시, 수수료(gas)가 발생합니다.</p>
-			<button type="button" class="btn btn-primary" data-toggle="modal"
-				data-target="#trans" onclick="confirm();">확인</button>
-		</div>
+					</select> --%> <input type="text" id="out" size="40">
+			</td>
+		</tr>
+		<tr>
+			<th>출금계좌 private key</th>
+			<td><input type="file" name="file" id="keyfile"></td>
+		</tr>
+		<tr>
+			<th>비밀번호 입력</th>
+			<td><input type="password" name="password" id="password"
+				class="inputStyle" required></td>
+		</tr>
+		<tr>
+			<td><input type="button" onclick="getBalance();" value="잔액확인"
+				class="btn btn-primary" required></td>
+			<td colspan="3" id="getBalance"></td>
+		</tr>
+
+	</table>
+	<hr>
+	<table class="table_kay" style="margin: 100px 0px;">
+		<tr>
+			<td><h3>입금정보</h3></td>
+		</tr>
+		<tr>
+			<th>입금계좌번호</th>
+			<td><input type="text" class="inputStyle" placeholder="계정주소입력"
+				required id="in"></td>
+		</tr>
+		<tr>
+			<th>입금금액</th>
+			<td><input type="text" class="inputStyle" placeholder="ether"
+				required id="amount"></td>
+		</tr>
+	</table>
+	<hr>
+	<div class="trBtn">
+		<p>이체시, 수수료(gas)가 발생합니다.</p>
+		<button type="button" class="btn btn-primary" data-toggle="modal"
+			data-target="#trans" onclick="confirm();">확인</button>
 	</div>
 
 	<!-- Modal -->
