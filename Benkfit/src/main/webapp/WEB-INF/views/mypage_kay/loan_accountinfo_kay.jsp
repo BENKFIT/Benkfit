@@ -10,7 +10,7 @@
 <body>
 	<h2>대출정보</h2>
 	<hr>
-	<table class="table_kay">
+	<table class="table table-hover">
 		<tr>
 			<th>계좌상품번호</th>
 			<td><input type="text" value="${loaninfo.loan_num}" class="inputStyle" disabled></td>

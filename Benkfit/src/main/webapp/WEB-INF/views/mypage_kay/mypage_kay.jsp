@@ -56,7 +56,7 @@
 				<h3 >예금관리</h3>			
 				<hr>
 				<table class="table table-hover">
-					<thead id="mypage_thead">
+					<thead>
 						<tr>
 							<th>번호</th>
 							<th>계좌명</th>
@@ -86,7 +86,7 @@
 				<h3>적금관리</h3>
 				<hr>
 				<table class="table table-hover">
-					<thead id="mypage_thead">
+					<thead>
 						<tr>
 							<th>번호</th>
 							<th>계좌명</th>
@@ -115,7 +115,7 @@
 				<h3>대출관리</h3>
 				<hr>
 				<table class="table table-hover">
-					<thead id="mypage_thead">
+					<thead>
 						<tr>
 							<th>대출상품번호</th>
 							<th>계좌번호</th>

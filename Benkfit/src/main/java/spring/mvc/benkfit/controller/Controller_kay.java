@@ -214,4 +214,10 @@ public class Controller_kay {
 		service.del_cheq(req, model);
 		return "mypage_kay/account_kay";
 	}
+	@RequestMapping("forms")
+	public String forms(HttpServletRequest req, Model model) throws Exception{
+		logger.info("forms");
+		return "Template/form";
+	}
+	
 }

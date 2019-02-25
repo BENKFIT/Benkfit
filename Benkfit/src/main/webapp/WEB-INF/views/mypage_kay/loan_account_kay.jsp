@@ -93,11 +93,11 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 	<div class="wrapper">
 		<h2>대출계좌</h2>
 		<hr>
-		<table class="table_kay">
+		<table class="table table-hover">
 			<tr>
 				<th>대출 계좌번호</th>
 				<td><input type="file" id="from"></td>
-				<td>비밀번호:<input style="width: 90px;" type="password" id="password" placeholder="지갑파일을 등록하세요."></td>
+				<th>비밀번호 <input style="width: 90px;" type="password" id="password" placeholder="지갑파일을 등록하세요."></th>
 			</tr>
 			<tr class='srch_area'>
 				<th>조회기간</th>

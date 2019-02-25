@@ -10,11 +10,11 @@
 <body>
 	<h2>계좌정보</h2>
 	<hr>
-	<table class="table_kay">
+	<table class="table table-hover">
 		<tr>
 			<th>계좌상품번호</th>
 			<td><input type="text" value="${cheqinfo.cheq_num}"
-				class="inputStyle" disabled></td>
+				 disabled></td>
 			<th>가입날짜</th>
 			<td><input type="text" value="${cheqinfo.myCheq_regDate }"
 				class="inputStyle" disabled></td>
@@ -42,7 +42,7 @@
 	<hr>
 	<br>
 	<h2>거래내역</h2>
-	<table class="table_kay">
+	<table class="table table-hover">
 		<tr>
 			<th>입금합계</th>
 			<td><c:if test="${CheqIn == 0}">
