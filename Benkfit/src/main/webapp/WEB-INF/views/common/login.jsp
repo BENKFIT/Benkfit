@@ -45,7 +45,7 @@
 <body>
 <%@ include file ="../Template/top.jsp" %>
  <div id="login">
-        <h3 class="text-center text-white pt-5"></h3>
+        <h3 class="text-center text-white pt-5">Login</h3>
         <div class="div class wrapper">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column">
