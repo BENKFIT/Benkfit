@@ -132,7 +132,12 @@
                         <li class="menu__item"><a class="menu__link"
                            href="loan_account">대출계좌</a></li>
                         <li class="menu__item"><a class="menu__link"
-                           href="document">내서류</a></li>
+                            data-submenu="submenu-0-1-1-1" href="#">내서류</a></li>
+                     </ul>
+                     <!-- Submenu 0-1-1-1 내서류 -->
+                     <ul data-menu="submenu-0-1-1-1" class="menu__level">
+                        <li class="menu__item"><a class="menu__link" href="document">서류조회</a></li>
+                        <li class="menu__item"><a class="menu__link" href="upload">서류등록</a></li>
                      </ul>
                      <!-- Submenu 0-2 이체 -->
                      <ul data-menu="submenu-0-2" class="menu__level">
@@ -144,6 +149,7 @@
                         <li class="menu__item"><a class="menu__link"
                            href="limit_sel">이체한도</a></li>
                         <li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
+                        <li class="menu__item"><a class="menu__link" href="asset">자산관리</a></li>
                      </ul>
                      <!-- Submenu 0-4 내서류 -->
                      <ul data-menu="submenu-0-4" class="menu__level">

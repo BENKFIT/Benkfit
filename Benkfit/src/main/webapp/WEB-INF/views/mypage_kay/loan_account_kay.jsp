@@ -96,19 +96,6 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 		<table class="table_kay">
 			<tr>
 				<th>대출 계좌번호</th>
-				<td><select id="myLoan_account" name="myLoan_account">
-						<c:choose>
-							<c:when test="${account != null}">
-								<option value="${account}">${account}</option>
-							</c:when>
-							<c:otherwise>
-								<option value="계좌를 선택하세요.">계좌를 선택하세요.</option>
-								<c:forEach var="lo" items="${loan}">
-									<option value="${lo.myloan_account}">${lo.myloan_account}</option>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-				</select></td>
 				<td><input type="file" id="from"></td>
 				<td>비밀번호:<input style="width: 90px;" type="password" id="password" placeholder="지갑파일을 등록하세요."></td>
 			</tr>

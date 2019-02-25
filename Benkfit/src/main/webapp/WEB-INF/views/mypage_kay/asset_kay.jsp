@@ -24,6 +24,9 @@ function setting(){
     	    var budget2 = Number(data.split("/")[3]); 
     	    var budget3 = Number(data.split("/")[4]);
     	    
+    	    if(num < budget3){
+    	    	swal("경고","예산보다 지출이 더 많습니다.","warning");
+    	    }
     	    google.charts.load('current', {'packages':['corechart']});
 			google.charts.setOnLoadCallback(drawChart);
 			
@@ -39,7 +42,7 @@ function setting(){
 			  	legend: 'none',
 			    title: '자산관리',
 			    hAxis: {title: 'DAY',  titleTextStyle: {color: '#333'}},
-			    vAxis: {minValue: 0, maxValue:${budget+budget1+budget2+budget3+500000}},
+			    vAxis: {minValue: 0, maxValue:${budget+budget1+budget2+budget3+1000000}},
 			    series: {
 			      0: { color: '#ccc' },
 			      1: { color: '#FFD662' },       
@@ -54,7 +57,7 @@ function setting(){
 			alert('통신실패!!');
 		}
 	});
-}
+};
 </script>
 </head>
 <body>
@@ -62,14 +65,12 @@ function setting(){
 	<div class="wrapper">
 		<h2>결산</h2>
 			<div style="display: -webkit-box;">
-				예산 : <input name="num" type="text" onchange="getNumber(this);"
-					placeholder="숫자만 입력" onkeyup="getNumber(this);" id="num"
-					style="text-align: right;"> <br>
+				예산 : <input type="text" name="num" id="num" style="text-align: right;"
+				placeholder="숫자만입력" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
+			<br>
 					<button class="btn2 btn2-success" id="bu" onclick="setting();">설정</button>&nbsp;
 			</div>
-			<script type="text/javascript">
-			
-			</script>
+			<div></div>
 			<div id="chart"></div>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>

@@ -43,7 +43,7 @@ function ajaxTest(){
 	<div class="wrapper">
 		<h2>예금계좌조회</h2>
 		<hr>
-		<table class="table_kay">
+		<table class="">
 			<tr>
 				<th>예금 계좌번호</th>
 				<td><select id="cheq_account" name="cheq_account">
