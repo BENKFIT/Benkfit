@@ -148,7 +148,11 @@
 		        		 c_id, tran_code, rownum rNum  
 		        	from ( SELECT * 
 		               		FROM transdetail_tbl
+<<<<<<< HEAD
 		               		where c_id = #{id}  and tran_account = #{account}
+=======
+		               		where c_id = #{id} AND tran_account = #{cheq_account}
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		              		) 
 		        	)
 			where rNum >= #{start} and rNum <= #{end} 
