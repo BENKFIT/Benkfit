@@ -371,7 +371,7 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void getText(String file, Model model) throws IOException {
 
-		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\py\\benkfit.py", file);
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
 		Process p = pb.start();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -472,7 +472,8 @@ public class ServiceImpl_kay implements Service_kay{
 		// 이미지 파일
 		MultipartFile file = req.getFile("doc_img");
 		String saveDir = req.getRealPath("/resources/img/doc/"); 
-		String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
+		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
+		String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
 
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));

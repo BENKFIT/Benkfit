@@ -65,4 +65,17 @@ public interface DAO_syk {
 	
 	//자동이체 목록
 	public List<AutoTransferVO> autoList(int day);
+	
+	//예금이자갯수
+	public int cheqCnt();
+	
+	//예금리스트
+	public List<myCheqAccountVO> cheqInterest();
+	
+	//적금이자갯수
+	public int savCnt();
+	
+	//적금리스트
+	public List<MySavAccountVO> savInterest();
+	
 }

@@ -21,7 +21,9 @@ import org.web3j.protocol.http.HttpService;
 import spring.mvc.benkfit.persistence.DAOImpl_syk;
 import spring.mvc.benkfit.sol.Benkfit;
 import spring.mvc.benkfit.vo.AutoTransferVO;
+import spring.mvc.benkfit.vo.MySavAccountVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
+import spring.mvc.benkfit.vo.myCheqAccountVO;
 
 @Service
 public class ScheduleT {
@@ -30,6 +32,10 @@ public class ScheduleT {
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 
 	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final String owner_pwd = "password";
+	
 	int chkNum = 0;
 
 	String fn = "0x";
@@ -95,6 +101,95 @@ public class ScheduleT {
 					db.setTran_blockHash(blockHash);
 				}
 				
+			}
+		}
+	}
+	
+	//예금이자
+	@Scheduled(cron="0 0 13 * * ?")
+	public void cheqInterest() {
+		System.out.println("========= 예금 이자 계산 =========");
+		
+		int cnt = dao.cheqCnt();
+		if(cnt <= 1) {
+			List<myCheqAccountVO> list = dao.cheqInterest();
+			for(myCheqAccountVO vo : list) {
+				String account = vo.getMyCheq_account();
+				int amount = vo.getMyCheq_amount();
+				double rate = vo.getCheq_rate();
+				String c_id = vo.getC_id();
+				
+				BigInteger interest = BigInteger.valueOf((long) (amount * rate / 12));
+				amount += interest.intValue();
+				try {
+					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
+					
+					String contract = ServiceImpl_syk.getBenkfit();
+					@SuppressWarnings("deprecation")
+					Benkfit cheqInterest = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
+					TransactionReceipt transfer = cheqInterest.output(account, interest).send();
+					
+					String blockHash = transfer.getBlockHash();
+					System.out.println("blockHash == > " + blockHash);
+					
+					TransDetailVO vo2 = new TransDetailVO();
+					vo2.setTran_account(account);
+					vo2.setTran_out(owner);
+					vo2.setTran_in(account);
+					vo2.setTran_amount(amount);
+					vo2.setC_id(c_id);
+					vo2.setTran_type("예금이자");
+					vo2.setTran_code("I");
+					vo2.setTran_blockHash(blockHash);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	//적금이자
+	@Scheduled(cron="0 0 14 * * ?")
+	public void savInterest() {
+		System.out.println("========= 적금 이자 계산 =========");
+		
+		int cnt = dao.savCnt();
+		if(cnt >= 1) {
+			List<MySavAccountVO> vo = dao.savInterest();
+			for(MySavAccountVO list : vo) {
+				String account = list.getMySav_account();
+				int amount = list.getMySav_amount();
+				double rate = list.getMySav_rate();
+				String c_id = list.getC_id();
+				
+				BigInteger interest = BigInteger.valueOf((long) (amount * rate / 12));
+				amount += interest.intValue();
+				
+				try {
+					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
+					
+					String contract = ServiceImpl_syk.getBenkfit();
+					@SuppressWarnings("deprecation")
+					Benkfit cheqInterest = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
+					TransactionReceipt transfer = cheqInterest.output(account, interest).send();
+					
+					String blockHash = transfer.getBlockHash();
+					System.out.println("blockHash == > " + blockHash);
+					
+					TransDetailVO vo2 = new TransDetailVO();
+					vo2.setTran_account(account);
+					vo2.setTran_out(owner);
+					vo2.setTran_in(account);
+					vo2.setTran_amount(amount);
+					vo2.setC_id(c_id);
+					vo2.setTran_type("적금이자");
+					vo2.setTran_code("I");
+					vo2.setTran_blockHash(blockHash);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

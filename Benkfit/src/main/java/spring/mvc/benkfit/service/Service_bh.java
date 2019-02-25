@@ -68,6 +68,7 @@ public interface Service_bh {
 	public void loanTransfer(HttpServletRequest req, Model model)throws Exception;
 	//대출상환하기
 	public void loanRepayment(HttpServletRequest req, Model model)throws Exception;
+	
 	/*
 	 * admin
 	 */
@@ -83,8 +84,4 @@ public interface Service_bh {
 	public void loanApproval(HttpServletRequest req, Model model) throws Exception;
 	//대출신청허가
 	public void loanApprovalPro(HttpServletRequest req, Model model) throws Exception;
-	
-
-
-	
 }

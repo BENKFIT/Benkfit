@@ -38,7 +38,9 @@ import org.web3j.utils.Convert;
 import org.web3j.utils.Convert.Unit;
 
 import spring.mvc.benkfit.persistence.DAOImpl_syk;
+import spring.mvc.benkfit.sol.Bank;
 import spring.mvc.benkfit.sol.Benkfit;
+import spring.mvc.benkfit.sol.Slot;
 import spring.mvc.benkfit.vo.AutoTransferVO;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.SavProductVO;
@@ -51,12 +53,17 @@ public class ServiceImpl_syk implements Service_syk {
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 
 	final String path = "C:\\DEV43\\ether\\keystore\\";
+	final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final String owner_pwd = "password";
+
 	int chkNum = 0;
 
 	String fn = "0x";
 
-	BigInteger gasPrice = BigInteger.valueOf(3000000);
-	BigInteger gasLimit = BigInteger.valueOf(3000000);
+	final BigInteger gasPrice = BigInteger.valueOf(3000000);
+	final BigInteger gasLimit = BigInteger.valueOf(3000000);
+	final BigInteger initialWeiValue = BigInteger.valueOf(0);
 
 	@Autowired
 	DAOImpl_syk dao;
@@ -64,20 +71,31 @@ public class ServiceImpl_syk implements Service_syk {
 	/*
 	 * 배포 : 톰캣서버가 열릴 때 한번만 배포
 	 */
-	private static String benkfit = "0x84601de63c54038c0c4ffd4822813f3562c83b9a";
-	/*public ServiceImpl_syk() throws Exception{
+	private static String benkfit = "0xb824ebcb0a3cdddc8bbfd2ffc636ab1067ac74b8";
+	private static String bank = "0xaef3657b4cd86ea4f443ef5698e8190bfffc5471";
+	private static String slot = "0x84601de63c54038c0c4ffd4822813f3562c83b9a";
+	
+	public ServiceImpl_syk() throws Exception{
 		if(benkfit == null) {
-			System.out.println("==생성자== " + benkfit);
+			System.out.println("===== contract 배포중 =====");
 			//coinbase 계정으로 배포
-			Credentials owner = WalletUtils.loadCredentials("password",
-					"C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e");
+			Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
 			@SuppressWarnings("deprecation")
 			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
+			@SuppressWarnings("deprecation")
+			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			@SuppressWarnings("deprecation")
+			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
 			
 			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
-			System.out.println("배포된 contract ==> " + this.benkfit);
+			ServiceImpl_syk.bank = bank.getContractAddress();
+			ServiceImpl_syk.slot = slot.getContractAddress();
+			
+			System.out.println("Contract benkfit ==> " + this.benkfit);
+			System.out.println("Contract bank ==> " + this.bank);
+			System.out.println("Contract slot ==> " + this.slot);
 		}
-	}*/
+	}
 	
 /*	@PostConstruct
 	public void init() throws Exception{}}*/
@@ -86,6 +104,15 @@ public class ServiceImpl_syk implements Service_syk {
 	public static String getBenkfit() {
 		return benkfit;
 	}
+	
+	public static String getBank() {
+		return bank;
+	}
+	
+	public static String getSlot() {
+		return slot;
+	}
+
 
 	/*
 	 * 상품
@@ -199,8 +226,8 @@ public class ServiceImpl_syk implements Service_syk {
 			System.out.println("새 계정의 입력받은 비밀번호 : " + password);
 			System.out.println("성공여부 : " + success);
 
-			//10이더 전송
-			Credentials credentials = WalletUtils.loadCredentials("1234", "C:\\DEV43\\ether\\keystore\\UTC--2019-02-15T06-08-59.949370200Z--4aca841d5384d16bd0ade39037a14b338caf06c9");
+			// 10이더 전송
+			Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 			
 			String contract = getBenkfit();
 			@SuppressWarnings("deprecation")
@@ -250,8 +277,8 @@ public class ServiceImpl_syk implements Service_syk {
 			System.out.println("새 계정의 입력받은 비밀번호 : " + password);
 			System.out.println("성공여부 : " + success);
 
-			//10이더 전송
-			Credentials credentials = WalletUtils.loadCredentials("1234", "C:\\DEV43\\ether\\keystore\\UTC--2019-02-15T06-08-59.949370200Z--4aca841d5384d16bd0ade39037a14b338caf06c9");
+			// 10이더 전송
+			Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 			
 			String contract = getBenkfit();
 			@SuppressWarnings("deprecation")
@@ -572,6 +599,7 @@ public class ServiceImpl_syk implements Service_syk {
 		int number = Integer.parseInt(req.getParameter("date"));
 		String file = req.getParameter("file");
 		file = path.concat(file);
+		String password = req.getParameter("password");
 		
 		AutoTransferVO vo = new AutoTransferVO();
 		vo.setAuto_from(from);
@@ -580,6 +608,7 @@ public class ServiceImpl_syk implements Service_syk {
 		vo.setAuto_date(number);
 		vo.setC_id(id);
 		vo.setAuto_file(file);
+		vo.setAuto_pwd(password);
 		
 		int result = dao.autoAdd(vo);
 		

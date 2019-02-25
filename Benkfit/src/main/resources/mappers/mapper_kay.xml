@@ -148,13 +148,13 @@
 		        		 c_id, tran_code, rownum rNum  
 		        	from ( SELECT * 
 		               		FROM transdetail_tbl
-		               		where c_id = #{id}
+		               		where c_id = #{id} AND tran_account = #{cheq_account}
 		              		) 
 		        	)
 			where rNum >= #{start} and rNum <= #{end} 
 			]]>
 		<if test="type == 1">
-			and tran_type in ('출금', '입금')
+			and tran_type in ('출금', '입금', '이체')
 		</if>
 		<if test="type == 2">
 			and tran_type ='입금'

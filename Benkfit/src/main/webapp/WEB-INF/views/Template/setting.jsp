@@ -19,6 +19,15 @@
 <link rel="stylesheet" href="${path}/css/top.css" />
 <link rel="stylesheet" href="${path}/css/TOP2.css" />
 <link rel="stylesheet" href="${path}/css/mypage_kay.css" />
+<link rel="stylesheet" href="${path}/css/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${path}/css/css/icons.min.css" />  
+<%-- <link rel="stylesheet" href="${path}/css/css/main.css" /> --%>
+<link rel="stylesheet" href="${path}/css/css/responsive.css" />
+<link rel="stylesheet" href="${path}/css/css/color-schemes/color.css" />
+<link rel="stylesheet" href="${path}/css/css/color-schemes/color1.css" />
+<link rel="stylesheet" href="${path}/css/css/color-schemes/color2.css" />
+<link rel="stylesheet" href="${path}/css/css/color-schemes/color4.css" />
+<link rel="stylesheet" href="${path}/css/css/color-schemes/color5.css" />
 
 <!-- JS -->
 <script type="text/javascript" src="${path}/js/classie.js"></script>
@@ -39,6 +48,30 @@
 <script type="text/javascript" src="${path}/js/download.js"></script><!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request.js"></script><!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request2.js"></script><!-- qr다운, -->
+<script src="${path}/js/js/jquery.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/select2.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/slick.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/isotope.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.counterup.js" type="text/javascript"></script>
+<script src="${path}/js/js/waypoints.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/highcharts.js" type="text/javascript"></script>
+<script src="${path}/js/js/exporting.js" type="text/javascript"></script>
+<script src="${path}/js/js/highcharts-more.js" type="text/javascript"></script>
+<script src="${path}/js/js/moment.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.circliful.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/fullcalendar.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.downCount.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.formtowizard.js" type="text/javascript"></script>
+<script src="${path}/js/js/form-validator.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/form-validator-lang-en.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/cropbox-min.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/ion.rangeSlider.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/jquery.poptrox.min.js" type="text/javascript"></script>
+<script src="${path}/js/js/styleswitcher.js" type="text/javascript"></script>
+<script src="${path}/js/js/main.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

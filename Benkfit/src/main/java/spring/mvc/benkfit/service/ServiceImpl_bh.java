@@ -29,10 +29,7 @@ import spring.mvc.benkfit.sol.Benkfit;
 import spring.mvc.benkfit.sol.Slot;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
-import spring.mvc.benkfit.vo.documentVO;
 import spring.mvc.benkfit.persistence.DAO_bh;
-
-import spring.mvc.benkfit.model.Loan;
 
 @Service
 public class ServiceImpl_bh implements Service_bh {
@@ -40,19 +37,23 @@ public class ServiceImpl_bh implements Service_bh {
 	Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 	//테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
-	final String path = "/Users/banhun/2_net/keystore/";
+	//final String path = "/Users/banhun/2_net/keystore/";
 	//유경 path
-	//final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
 	int chkNum = 0;
 	
 	//훈컨트랙트모음
-	private final String BenkfitAddress = "0xe540e40a2ccaaadf7c142a94c9a05c6858ac4836";
-	private final String BankAddress = "0x62cef7fe54af475d459b2bea520646363b9010d4";
-	private final String SlotAddress = "0x0d554d4586dd91953252fd98a329576658f45def";
+	private final String BenkfitAddress = ServiceImpl_syk.getBenkfit();
+	private final String BankAddress = ServiceImpl_syk.getBank();
+	private final String SlotAddress = ServiceImpl_syk.getSlot();
+	
 	//훈 address[0]
-	private final String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
+	//private final String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
 	//훈 address[0] 키스토어
-	private final String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json";
+	//private final String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json";
+	
+	final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
 
 	private final String fn = "0x";
 	
@@ -84,6 +85,8 @@ public class ServiceImpl_bh implements Service_bh {
 			
 			if(success) {
 				BigDecimal ether = BigDecimal.valueOf(10);
+				//Credentials credentials = WalletUtils.loadCredentials(password, "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
+				System.out.println("ether : " + ether);
 				Credentials credentials = WalletUtils.loadCredentials(password, owner_file);
 				TransactionReceipt transfer = Transfer.sendFunds(web3, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 			}
@@ -93,7 +96,9 @@ public class ServiceImpl_bh implements Service_bh {
 		@Override
 		public void Balance(HttpServletRequest req, Model model)throws Exception{
 			//지갑파일에서 계정주소 가져오기
-			String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+			//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+			String from = fn.concat(req.getParameter("from").substring(49));
+			System.out.println("from = " + from);
 			//해당 계정 이더 잔액
 			BigInteger Balance = this.web3.ethGetBalance(from, DefaultBlockParameter.valueOf("latest")).sendAsync().get().getBalance();
 			//잔액보내기
@@ -128,7 +133,10 @@ public class ServiceImpl_bh implements Service_bh {
 	@Override
 	public void deposit(HttpServletRequest req, Model model) throws Exception {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
-		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		String from = fn.concat(req.getParameter("from").split("--")[2]);
+		
+		System.out.println("fileSource : " + fileSource + "\tfrom : " + from);
 		
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");
@@ -164,7 +172,8 @@ public class ServiceImpl_bh implements Service_bh {
 	@Override
 	public void bankBalance(HttpServletRequest req, Model model) throws Exception {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
-		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		String from = fn.concat(req.getParameter("from").split("--")[2]);
 		
 		String password = req.getParameter("password");
 		
@@ -227,7 +236,11 @@ public class ServiceImpl_bh implements Service_bh {
 	@Override
 	public void slot(HttpServletRequest req, Model model) throws Exception{
 		String fileSource = path.concat(req.getParameter("from").substring(12));
-		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		String from = fn.concat(req.getParameter("from").substring(49));
+		
+		System.out.println("fileSource : " + fileSource);
+		System.out.println("from : " + from);
 		
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");
@@ -384,6 +397,7 @@ public class ServiceImpl_bh implements Service_bh {
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		//언락
 		if(admin.personalUnlockAccount(from, password).send().getResult()){
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			//해당계정의 잔액을 불러서
 			BigInteger balance = contract.balanceOf(from).send();
@@ -432,6 +446,7 @@ public class ServiceImpl_bh implements Service_bh {
 		//계정 언락
 		if(admin.personalUnlockAccount(from, password).send().getResult()){
 			//컨트랙트 불러오기
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			//allowance(대출잔액)가져오기
 			BigInteger allowance = contract.allowance(owner,from).send();
@@ -462,6 +477,7 @@ public class ServiceImpl_bh implements Service_bh {
 		//계정 언락
 		if(admin.personalUnlockAccount(from, password).send().getResult()){
 			//컨트랙트 불러오기
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			TransactionReceipt transferFrom = contract.transferFrom(owner, to, value).send();
 			
@@ -586,6 +602,7 @@ public class ServiceImpl_bh implements Service_bh {
 		//계정 언락
 		if(admin.personalUnlockAccount(owner, "password").send().getResult()){
 			//컨트랙트로드
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			//대출관리계정(address[0])에서 대출금만큼 권한을부여함.
 			TransactionReceipt approve = contract.approve(myLoan_account, value).send();

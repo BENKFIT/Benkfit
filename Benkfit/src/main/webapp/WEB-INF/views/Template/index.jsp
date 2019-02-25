@@ -45,6 +45,18 @@
 
         })
     } 
+    window.onload = function() {
+       $.ajax({
+             type: "POST",
+             url : "${pageContext.request.contextPath}/marketprice",
+             success: function(data) {
+               $("#priceTbl").html(data);
+             },
+             error: function() {
+               alert("error");
+             }
+           });
+    }  
 </script>
 
 </head>

@@ -391,6 +391,12 @@ public class Controller_sws {
 		return map;
 	}
 	
+	@RequestMapping("faq_sws2")
+	public String faq_sws2() throws Exception {
+		logger.info("faq_sws2");
+		return "common/info/faq2";
+	}
+	
 /*	// 앱 지갑 생성 확인
 	@ResponseBody
 	@RequestMapping("androidCreateCheq")
