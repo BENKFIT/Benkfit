@@ -11,12 +11,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +26,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.*;
@@ -59,7 +56,8 @@ public class ServiceImpl_kay implements Service_kay{
 		String account = req.getParameter("account");
 
 		List<myCheqAccountVO> cheq = dao.myCheq_list(id);
-		System.out.println("ㄱ좌셔ㅓㄴ택 : "+ account);
+		System.out.println("계좌선택 : "+ account);
+	
 		model.addAttribute("account", account);
 		model.addAttribute("cheq", cheq);
 	}
@@ -268,7 +266,7 @@ public class ServiceImpl_kay implements Service_kay{
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		String cheq_account = req.getParameter("account");
+		String account = req.getParameter("account");
 		String start_date = req.getParameter("start_date");
 		String end_date= req.getParameter("end_date");
 		String type = req.getParameter("type");
@@ -285,10 +283,9 @@ public class ServiceImpl_kay implements Service_kay{
 		if(order.equals("undefined")) {
 			order = "";
 		}
-
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
-		map.put("cheq_account", cheq_account);
+		map.put("account", account);
 		map.put("start_date", start_date);
 		map.put("end_date", end_date);
 		map.put("type", type);
@@ -296,26 +293,99 @@ public class ServiceImpl_kay implements Service_kay{
 		map.put("start", start);
 		map.put("end", end);
 
-		myCheqAccountVO cheq = dao.selCheq(map);//계좌정보
+		myCheqAccountVO cheqinfo = dao.selCheq(map);//계좌정보
 		int CheqIn = dao.cheqIn(map);//입금합계
 		int CheqOut	= dao.cheqOut(map);//출금합계
-		List<TransDetailVO> list_Ts = dao.sel_cheq(map); //거래내역
-
-		model.addAttribute("list_Ts",list_Ts);
-		model.addAttribute("chch", cheq);
-		model.addAttribute("CheqIn",CheqIn);
-		model.addAttribute("CheqOut",CheqOut);
+		List<TransDetailVO> cheq = dao.sel_cheq(map); //거래내역
+		
+		model.addAttribute("cheqinfo", cheqinfo);
+		model.addAttribute("CheqIn", CheqIn);
+		model.addAttribute("CheqOut", CheqOut);
+		model.addAttribute("cheq", cheq);
 
 	}
 	//대출계좌 상세 조회
 	@Override
 	public void sel_loan(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+		String start_date = req.getParameter("start_date");
+		String end_date= req.getParameter("end_date");
+		String type = req.getParameter("type");
+		String order = req.getParameter("order");
+		int start = 1;
+		int end = Integer.parseInt(req.getParameter("end"));
+		String delCheq = req.getParameter("delCheq");
+		
+		System.out.println("계좌선택 : " + delCheq);
+		System.out.println("====cheq_info====");
 
+		if(type.equals("undefined")) {
+			type = "";
+		}if(order.equals("undefined")) {
+			order = "";
+		} if(start_date.equals("undefined")) {
+			start_date = " ";
+		}  if(end_date.equals("undefined")) {
+			end_date = " ";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("account", account);
+		map.put("start_date", start_date);
+		map.put("end_date", end_date);
+		map.put("type", type);
+		map.put("order", order);
+		map.put("start", start);
+		map.put("end", end);
+
+		MyloanAccountVO loaninfo = dao.seloan(map);//계좌정보
+		List<TransDetailVO> loan = dao.sel_loan(map); //거래내역
+		
+		model.addAttribute("loaninfo", loaninfo);//계좌정보
+		model.addAttribute("loan", loan); //거래내역
+	
 	}
 	//적금계좌 상세 조회
 	@Override
 	public void sel_sav(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+		String start_date = req.getParameter("start_date");
+		String end_date= req.getParameter("end_date");
+		String order = req.getParameter("order");
+		int start = 1;
+		int end = Integer.parseInt(req.getParameter("end"));
+		String delCheq = req.getParameter("delCheq");
+		
+		System.out.println("계좌선택 : " + delCheq);
+		System.out.println("====cheq_info====");
 
+		if(order.equals("undefined")) {
+			order = "";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("account", account);
+		map.put("start_date", start_date);
+		map.put("end_date", end_date);
+		map.put("order", order);
+		map.put("start", start);
+		map.put("end", end);
+
+		MySavAccountVO savinfo = dao.selSav(map);//계좌정보
+		int CheqIn = dao.cheqIn(map);//입금합계
+		int CheqOut	= dao.cheqOut(map);//출금합계
+		List<TransDetailVO> sav = dao.sel_sav(map); //거래내역
+		
+		model.addAttribute("savinfo", savinfo);
+		model.addAttribute("CheqIn",CheqIn);
+		model.addAttribute("CheqOut",CheqOut);
+		model.addAttribute("sav",sav); 
 	}
 	//해지조회
 	@Override
@@ -506,7 +576,6 @@ public class ServiceImpl_kay implements Service_kay{
 			vo.setDoc_comName(req.getParameter("doc_comName"));
 			vo.setC_id(id);
 
-
 			//서류등록처리
 			int result = dao.indocu(vo);
 
@@ -523,8 +592,8 @@ public class ServiceImpl_kay implements Service_kay{
 		String id = user.getUsername();
 		
 		List<documentVO> docu = dao.seldocu(id);
-		
-		model.addAttribute("docu",docu);
+		System.out.println("docu : "+ docu);
+		model.addAttribute("docu", docu);
 	}
 	//서류조회 -상세
 	@Override
@@ -559,5 +628,53 @@ public class ServiceImpl_kay implements Service_kay{
 		int del = dao.deletedocu(map);
 		
 		model.addAttribute("del",del);
+	}
+	//자산관리 - 예산chart
+	@Override
+	public void budget(HttpServletRequest req, Model model) {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String num = req.getParameter("num");
+		
+		DateVO vo = dao.day();
+		DateVO vo1 = dao.day1();
+		DateVO vo2 = dao.day2();
+		DateVO vo3 = dao.day3();
+
+		if(vo1 != null ) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo1.getStart_day());
+			map.put("end_day",vo1.getEnd_day());
+			int budget1 = dao.budget(map);
+			model.addAttribute("budget1" ,budget1);
+		}
+		if(vo2 !=null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo2.getStart_day());
+			map.put("end_day",vo2.getEnd_day());
+			int budget2 = dao.budget(map);
+			model.addAttribute("budget2" ,budget2);
+		}	
+		if(vo3 != null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo3.getStart_day());
+			map.put("end_day",vo3.getEnd_day());
+			int budget3 = dao.budget(map);
+			model.addAttribute("budget3" ,budget3);
+		}
+		if(vo != null) {
+			Map<String, Object> map = new HashMap<>();
+			map.put("id", id);
+			map.put("start_day", vo.getStart_day());
+			map.put("end_day",vo.getEnd_day());
+			int budget = dao.budget(map);
+			model.addAttribute("budget" ,budget);
+		}
+		System.out.println("num : "+ num);
+		model.addAttribute("num", num);
 	}
 }

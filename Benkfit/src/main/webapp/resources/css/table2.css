@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 body {
   font-family: "Helvetica Neue", Helvetica, Arial;
   font-size: 14px;
@@ -10,13 +9,11 @@ body {
   font-smoothing: antialiased;
   /* background: #2b2b2b; */
 }
-
 .wrapper {
-  margin: 6% auto 20% auto;
+  margin: 6% auto 10% auto;
   padding: 40px;
   max-width: 1000px;
 }
-
 .table {
   margin: 0 0 40px 0;
   width: 100%;

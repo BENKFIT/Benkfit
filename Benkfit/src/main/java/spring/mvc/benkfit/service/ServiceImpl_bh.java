@@ -416,10 +416,10 @@ public class ServiceImpl_bh implements Service_bh {
 				MyloanAccountVO vo = new MyloanAccountVO();
 				vo.setC_id(c_id);
 				vo.setLoan_num(loan_num);
-				vo.setMyLoan_amount(myLoan_amount);
-				vo.setMyLoan_account(from);
-				vo.setMyLoan_rate(myLoan_rate);
-				vo.setMyLoan_left(myLoan_left);
+				vo.setmyloan_amount(myLoan_amount);
+				vo.setmyloan_account(from);
+				vo.setmyloan_rate(myLoan_rate);
+				vo.setmyloan_left(myLoan_left);
 				
 				result = dao.loanApply(vo);
 				model.addAttribute("result", result);
@@ -494,11 +494,11 @@ public class ServiceImpl_bh implements Service_bh {
 		String myLoan_account = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
-		int Loan_left = vo.get(0).getMyLoan_left();
+		int Loan_left = vo.get(0).getmyloan_left();
 		int myLoan_left = Loan_left - amount;
 		MyloanAccountVO vo1 = new MyloanAccountVO();
-		vo1.setMyLoan_account(myLoan_account);
-		vo1.setMyLoan_left(myLoan_left);
+		vo1.setmyloan_account(myLoan_account);
+		vo1.setmyloan_left(myLoan_left);
 		int result = dao.loanRepayment(vo1);
 		model.addAttribute("loanRepayment_result",result);
 	}
@@ -596,7 +596,7 @@ public class ServiceImpl_bh implements Service_bh {
 		//주소값으로 해당 대출 계정의 정보 불러오기
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		//위에서 받아온 해당 대출 상품의 대출금가져오기
-		BigInteger value = BigInteger.valueOf(vo.get(0).getMyLoan_amount());
+		BigInteger value = BigInteger.valueOf(vo.get(0).getmyloan_amount());
 		//자격증명
 		Credentials credentials = WalletUtils.loadCredentials("password", owner_file);
 		//계정 언락

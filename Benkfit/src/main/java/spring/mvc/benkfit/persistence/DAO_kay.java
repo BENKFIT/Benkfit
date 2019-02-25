@@ -49,18 +49,29 @@ public interface DAO_kay {
 	//이체한도 수정
 	public int limit_up(myCheqAccountVO vo);
 	
-	//예금계좌 상세 조회
-	public myCheqAccountVO selCheq(Map<String, Object> map);
-	/*public List<TransdetailVO> sel_cheq(Map<String, Object> map);*/
-	
 	//입금합계
 	public int cheqIn(Map<String, Object> map);
 	
 	//출금합계
 	public int cheqOut(Map<String, Object> map);
 	
-	//거래내역조회
+	//예금계좌 상세 조회
+	public myCheqAccountVO selCheq(Map<String, Object> map);
+	
+	//거래내역조회 -예금
 	public List<TransDetailVO> sel_cheq(Map<String, Object> map);
+	
+	//대출계좌 상세 조회
+	public MyloanAccountVO seloan(Map<String, Object> map);
+	
+	//거래내역조회 -대출
+	public List<TransDetailVO> sel_loan(Map<String, Object> map);
+	
+	//적금계좌 상세 조회
+	public MySavAccountVO selSav(Map<String, Object> map);
+	
+	//거래내역조회 -적금
+	public List<TransDetailVO> sel_sav(Map<String, Object> map);
 	
 	//계좌잔액
 	public int delChe(Map<String, Object> map);
@@ -82,5 +93,20 @@ public interface DAO_kay {
 	
 	//서류삭제 
 	public int deletedocu(Map<String, Object> map);
+
+	//자산관리 - 예산chart
+	public int budget(Map<String, Object> map);
+	
+	//자산관리 - 예산chart - 날짜 조회
+	public DateVO day();
+	
+	//자산관리 - 예산chart - 날짜 조회
+	public DateVO day1();
+	
+	//자산관리 - 예산chart - 날짜 조회
+	public DateVO day2();
+	
+	//자산관리 - 예산chart - 날짜 조회
+	public DateVO day3();
 	
 }

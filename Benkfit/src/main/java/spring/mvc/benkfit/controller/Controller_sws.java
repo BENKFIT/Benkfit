@@ -164,15 +164,12 @@ public class Controller_sws {
 
 		return "common/map/atmMap";
 	}
-	
 	// 결산 차트
 	@RequestMapping("productChart_sws")
 	public String productChart_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("productChart_sws");
-
 		return "admin/chart/productChart";
 	}
-	
 	// 년별 차트
 	@RequestMapping("chartYear_sws")
 	public String chartYear_sws(HttpServletRequest req, Model model) throws Exception{

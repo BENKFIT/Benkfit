@@ -1,3 +1,4 @@
+<!-- 김아영 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../Template/setting.jsp"%>
@@ -5,7 +6,7 @@
 <html lang="ko-KR">
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 확인(회원정보수정)</title>
+<title>계좌해지</title>
 <script>
 $(document).ready(function() {
 	swal("계좌에 잔액이 남아있을 시 해지가 불가능합니다.");

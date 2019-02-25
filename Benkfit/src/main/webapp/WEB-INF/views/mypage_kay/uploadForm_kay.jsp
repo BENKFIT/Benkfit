@@ -50,10 +50,10 @@ $(function(){
     	    $("#doc_comAddress").val(data.split("/")[8]);
     	    $("#doc_period_from").val(data.split("/")[9]); 
     	    $("#doc_period_to").val(data.split("/")[10]); 
-    	    alert("성공");
+    	    swal("파일 업로드","OK","success");
       },
       error: function() {
-          alert("오류");
+    	    swal("오류","다시 시도하세요.","error");
       }
 		});
 	})
