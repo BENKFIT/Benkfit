@@ -103,7 +103,7 @@
 	</select>
 	
 	<!-- 일별 차트2 -->
-	<select id="getDaySecondChat" resultType="spring.mvc.benkfit.vo.ChartVO">
+	<select id="getDaySecondChat" resultType="int">
 		SELECT DISTINCT TO_CHAR(ms.mysav_date, 'DD') value, COUNT(ms.mySav_account) mySav_account
 		FROM mySavAccount_tbl ms
 		GROUP BY TO_CHAR(ms.mysav_date, 'DD')

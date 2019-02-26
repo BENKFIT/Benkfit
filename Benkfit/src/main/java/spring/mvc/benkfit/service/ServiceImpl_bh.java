@@ -39,10 +39,7 @@ import spring.mvc.benkfit.sol.Benkfit;
 import spring.mvc.benkfit.sol.Slot;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
-import spring.mvc.benkfit.vo.documentVO;
 import spring.mvc.benkfit.persistence.DAO_bh;
-
-import spring.mvc.benkfit.model.Loan;
 
 @Service
 public class ServiceImpl_bh implements Service_bh {
@@ -54,6 +51,24 @@ public class ServiceImpl_bh implements Service_bh {
 	// 테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
 	// 유경 path
 	// final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	//테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
+	//final String path = "/Users/banhun/2_net/keystore/";
+	//유경 path
+	//final String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	//int chkNum = 0;
+	
+	//훈컨트랙트모음
+	//private final String BenkfitAddress = ServiceImpl_syk.getBenkfit();
+	//private final String BankAddress = ServiceImpl_syk.getBank();
+	//private final String SlotAddress = ServiceImpl_syk.getSlot();
+	
+	//훈 address[0]
+	//private final String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
+	//훈 address[0] 키스토어
+	//private final String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json";
+	
+	//final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
+	//final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
 
 	/*
 	 * 훈 전역 설정
@@ -106,6 +121,8 @@ public class ServiceImpl_bh implements Service_bh {
 				// 10이더 설정
 				BigDecimal ether = BigDecimal.valueOf(10);
 				// 자격증명
+				//Credentials credentials = WalletUtils.loadCredentials(password, "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
+				System.out.println("ether : " + ether);
 				Credentials credentials = WalletUtils.loadCredentials(password, owner_file);
 				// 이더전송
 				TransactionReceipt transfer = Transfer
@@ -127,7 +144,7 @@ public class ServiceImpl_bh implements Service_bh {
 		model.addAttribute("Balance", Balance);
 	}
 
-	// 이더 송금
+	//이더 송금
 	@Override
 	public void transferPro(HttpServletRequest req, Model model) throws Exception {
 		System.out.println("===============================");
@@ -167,6 +184,11 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length() - 45,
 				req.getParameter("from").length() - 5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").split("--")[2]);
+		
+		System.out.println("fileSource : " + fileSource + "\tfrom : " + from);
+		
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");
 		// 형변환
@@ -202,6 +224,9 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length() - 45,
 				req.getParameter("from").length() - 5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").split("--")[2]);
+		
 		String password = req.getParameter("password");
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
@@ -268,6 +293,12 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length() - 45,
 				req.getParameter("from").length() - 5));
+		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
+		//String from = fn.concat(req.getParameter("from").substring(49));
+		
+		System.out.println("fileSource : " + fileSource);
+		System.out.println("from : " + from);
+		
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");
 		// 형변환
@@ -443,6 +474,7 @@ public class ServiceImpl_bh implements Service_bh {
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		// 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// 해당계정의 잔액을 부르고
 			BigInteger balance = contract.balanceOf(from).send();
@@ -466,10 +498,10 @@ public class ServiceImpl_bh implements Service_bh {
 				MyloanAccountVO vo = new MyloanAccountVO();
 				vo.setC_id(c_id);
 				vo.setLoan_num(num);
-				vo.setMyLoan_amount(myLoan_amount);
-				vo.setMyLoan_account(from);
-				vo.setMyLoan_rate(myLoan_rate);
-				vo.setMyLoan_left(myLoan_left);
+				vo.setmyloan_amount(myLoan_amount);
+				vo.setmyloan_account(from);
+				vo.setmyloan_rate(myLoan_rate);
+				vo.setmyloan_left(myLoan_left);
 
 				result = dao.loanApply(vo);
 				model.addAttribute("result", result);
@@ -498,6 +530,7 @@ public class ServiceImpl_bh implements Service_bh {
 		// 계정 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
 			// 컨트랙트 불러오기
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// allowance(대출잔액)가져오기
 			BigInteger allowance = contract.allowance(owner, from).send();
@@ -532,6 +565,7 @@ public class ServiceImpl_bh implements Service_bh {
 		// 계정 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
 			// 컨트랙트 불러오기
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			TransactionReceipt transferFrom = contract.transferFrom(owner, to, value).send();
 			result = 1;
@@ -552,11 +586,11 @@ public class ServiceImpl_bh implements Service_bh {
 		// 해당계정의 대출정보를 가져온다.
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 현재 대출 잔액 = 대출잔액 - 갚은돈.
-		int Loan_left = vo.get(0).getMyLoan_left();
+		int Loan_left = vo.get(0).getmyloan_left();
 		int myLoan_left = Loan_left - amount;
 		MyloanAccountVO vo1 = new MyloanAccountVO();
-		vo1.setMyLoan_account(myLoan_account);
-		vo1.setMyLoan_left(myLoan_left);
+		vo1.setmyloan_account(myLoan_account);
+		vo1.setmyloan_left(myLoan_left);
 		int result = dao.loanRepayment(vo1);
 		model.addAttribute("loanRepayment_result", result);
 	}
@@ -660,12 +694,16 @@ public class ServiceImpl_bh implements Service_bh {
 		// 주소값으로 해당 대출 계정의 정보 불러오기
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 위에서 받아온 해당 대출 상품의 대출금가져오기
-		BigInteger value = BigInteger.valueOf(vo.get(0).getMyLoan_amount());
+		//BigInteger value = BigInteger.valueOf(vo.get(0).getMyLoan_amount());
 		// 자격증명
+		//위에서 받아온 해당 대출 상품의 대출금가져오기
+		BigInteger value = BigInteger.valueOf(vo.get(0).getmyloan_amount());
+		//자격증명
 		Credentials credentials = WalletUtils.loadCredentials("password", owner_file);
 		// 계정 언락
 		if (admin.personalUnlockAccount(owner, "password").send().getResult()) {
 			// 컨트랙트로드
+			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// 대출관리계정(address[0])에서 대출금만큼 권한을부여함.
 			TransactionReceipt approve = contract.approve(myLoan_account, value).send();
@@ -685,9 +723,9 @@ public class ServiceImpl_bh implements Service_bh {
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 신청시 미리 납부한 이자를 돌려주어야 한다.
 		// 신청한 대출금을 가져온다.
-		int amount = vo.get(0).getMyLoan_amount();
+		int amount = vo.get(0).getmyloan_amount();
 		// 신청한 대출의 금리를 가져온다.
-		double rate = vo.get(0).getMyLoan_rate();
+		double rate = vo.get(0).getmyloan_rate();
 		// 위 두개를 계산한다.
 		int val = (int) (amount * (rate / 100));
 		// BigInteger로 형변환

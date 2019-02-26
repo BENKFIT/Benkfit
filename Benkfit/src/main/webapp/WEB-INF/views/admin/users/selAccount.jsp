@@ -1,3 +1,4 @@
+<!-- 손리아 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp" %>    
@@ -33,7 +34,7 @@
   }
   
   .tb_header2 {
-    width:750px;
+    width:900px;
   }
   
   .tb_header2 tr th {
@@ -114,15 +115,15 @@
            </c:choose>
            <td class="cell">${vo.myCheq_regDate}</td>
          </tr>
-			   <!-- Modal -->
-			    <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
-			           aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:170%; height:100%;">
-			      <div class="modal-dialog modal-lg" id="myModalT2">
-			        <div class="modal-content" id="modal-contentT" style="height:80%">
+         <!-- Modal -->
+          <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
+                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
+            <div class="modal-dialog modal-lg" id="myModalT2">
+              <div class="modal-content" id="modal-contentT" style="height:80%">
               
               </div>
-			      </div>
-			    </div>
+            </div>
+          </div>
          </c:forEach>
          </c:if>
          </table>
@@ -166,7 +167,7 @@
          </tr>
          <!-- Modal -->
           <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
-                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:170%; height:100%;">
+                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
             <div class="modal-dialog modal-lg" id="myModalT2">
               <div class="modal-content" id="modal-contentT" style="height:80%">
               
@@ -202,16 +203,16 @@
          <c:forEach var="lvo" items="${loan}">
          <tr class="rows">
            <td class="cell"><span class="viewTrans" id="viewCheq" data-toggle="modal" data-target="#myModalT"
-              onclick="getTrans('${lvo.myLoan_account}','${lvo.code}')">${lvo.myLoan_account}</span></td>
-           <td class="cell">${lvo.myLoan_amount}</td>
-           <td class="cell">${lvo.myLoan_rate}</td>
-           <td class="cell">${lvo.myLoan_late}</td>
-           <td class="cell">${lvo.myLoan_over}</td>
-           <td class="cell">${lvo.myLoan_date}</td>
+              onclick="getTrans('${lvo.myloan_account}','${lvo.code}')">${lvo.myloan_account}</span></td>
+           <td class="cell">${lvo.myloan_amount}</td>
+           <td class="cell">${lvo.myloan_rate}</td>
+           <td class="cell">${lvo.myloan_late}</td>
+           <td class="cell">${lvo.myloan_over}</td>
+           <td class="cell">${lvo.myloan_date}</td>
          </tr>
          <!-- Modal -->
           <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
-                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:170%; height:100%;">
+                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
             <div class="modal-dialog modal-lg" id="myModalT2">
               <div class="modal-content" id="modal-contentT" style="height:80%">
               

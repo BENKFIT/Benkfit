@@ -1,3 +1,4 @@
+<!-- 손리아 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp" %>
@@ -145,7 +146,7 @@
              url: "${pageContext.request.contextPath}/updateUsers",
              success: function(data) {
                if(data.trim().split("/")[0] == 1) {
-            	   $("#level_div"+id).css("color","#C64545");
+                 $("#level_div"+id).css("color","#C64545");
                  $("#level_div"+id).html(data.trim().split("/")[1]);
                } else {
                  alert("회원 등급 수정에 실패하였습니다. 잠시후 다시 시도해주십시오.");
@@ -160,14 +161,14 @@
 
     // 가입 상품 조회
     function showAccount(id) {
-    	$.ajax({
+      $.ajax({
             type: "POST",
             data: "id="+id,
             url: "${pageContext.request.contextPath}/selAccount",
             success: function(data) {
-            	$("#myModal2").css('text-align','center');
-            	$("#modal-content").css('width','170%');
-            	$("#modal-content").html(data);
+              $("#myModal2").css('text-align','center');
+              $("#modal-content").css('width','200%');
+              $("#modal-content").html(data);
             },
             error: function() {
                 alert("가입상품 조회 오류");
@@ -177,7 +178,7 @@
     
     // 거래내역 조회
     function getTrans(account, code, pageNum) {
-    	var params = "account=" + account + "&code=" + code + "&pageNum=" + pageNum;
+      var params = "account=" + account + "&code=" + code + "&pageNum=" + pageNum;
         $.ajax({
               type: "POST",
               data: params,
@@ -193,7 +194,7 @@
     
     // 거래내역 모달 닫기
     function closeModal2() {
-    	 document.getElementById("myModalT").click();
+       document.getElementById("myModalT").click();
     }
     
 </script>
@@ -204,13 +205,13 @@
 <div class="wrapper3">
   <div class="wrapper2">
        <table class="tb_header">
-	       <tr>
-		        <td colspan=12>
-			        <div class="btnarea">
-			         <input class="btn" type="button" value="삭제" id="delBtn">
-			        </div>
-		        </td>
-	       </tr>
+         <tr>
+            <td colspan=12>
+              <div class="btnarea">
+               <input class="btn" type="button" value="삭제" id="delBtn">
+              </div>
+            </td>
+         </tr>
          <tr class="rows header blue">
              <th><input type="checkbox" id="box1" name="box1"></th>
              <th colspan=2>고객등급</th>
@@ -250,11 +251,11 @@
            <button type="button" class="btn btn-primary" id="mdBtn" data-toggle="modal" data-target="#myModal" 
                     onclick="showAccount('${vo.c_id}')">조회</button></td>
          </tr>
-						  
-					<!-- Modal -->
+              
+          <!-- Modal -->
           <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg-centered" id="myModal2" style="margin-top:5%; margin-left:25%">
-              <div class="modal-content" id="modal-content">
+              <div class="modal-content" id="modal-content" style="width:200%;">
               </div>
             </div>
           </div>

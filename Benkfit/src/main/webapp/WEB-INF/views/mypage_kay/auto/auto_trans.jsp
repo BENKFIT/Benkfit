@@ -104,6 +104,12 @@
 									<td><input type="number" name="date" min="1" max="31"
 										placeholder="일을 입력하세요" size="20"></td>
 								</tr>
+								<tr>
+									<td>계정 비밀번호</td>
+									<td>
+										<input type="password" name="password">
+									</td>
+								</tr>
 							</table>
 						</div>
 

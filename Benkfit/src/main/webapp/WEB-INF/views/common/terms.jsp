@@ -7,49 +7,53 @@
 <meta charset="UTF-8">
 <title>Benkfit Terms & Conditions</title>
 <style>
-	#termsRadio {
-		text-align:center;
-	}
-	
-	#termsRadio .btn {
-		margin:20px;
-		background:#FFD662;
-		border:0;
-		text-align:center;
-		color:#000; 
-		font-size:20px;
-		width:70px;
-		height:35px; 
-	}
+  #pre {
+    text-align:left;
+  }
+  
+  #termsRadio {
+    text-align:center;
+  }
+  
+  #termsRadio .btn {
+    margin:20px;
+    background:#FFD662;
+    border:0;
+    text-align:center;
+    color:#000; 
+    font-size:20px;
+    width:70px;
+    height:35px; 
+  }
 </style>
-
-	
+  
 <script type="text/javascript">
-	function agreeChk() {
-		if(document.termsAndConditions.termsAgreement.value=="Agree") {
-			opener.document.signIn.hiddenAgree.value="1";
-			opener.document.signIn.tnc.disabled = false;
-			opener.document.signIn.tnc.checked=true;
-			self.close();
-		}
-		
-		if(document.termsAndConditions.termsAgreement.value=="Disagree") {
-			opener.document.signIn.tnc.disabled = true;
-			self.close();
-		}
-		
-		
-	}
+  function agreeChk() {
+    if(document.termsAndConditions.termsAgreement.value=="Agree") {
+      document.signIn.hiddenAgree.value="1";
+      document.signIn.tnc.disabled = false;
+      document.signIn.tnc.checked = true;
+    }
+    
+    if(document.termsAndConditions.termsAgreement.value=="Disagree") {
+      document.signIn.tnc.checked = false;
+      document.signIn.tnc.disabled = true;
+    }
+    document.getElementById("myModalS").style.visibility="hidden";
+  }
 </script>
 
 </head>
 <body>
-<pre>
-전자금융거래 기본 약관
+<h3>전자금융거래 기본 약관</h3>
+<pre id="pre">
 제 1 조 목적
+
 이 약관은 한국카카오은행 주식회사(이하 "카카오뱅크"라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써, 거래의 신속하고 효
 율적인 처리를 도모하고 거래당사자 상호간의 이해관계를 합리적으로 조정하는 것을 목적으로 합니다.
+
 제 2 조 용어의 정의
+
 ① 이 약관에서 사용하는 용어의 의미는 다음 각 호와 같습니다.
 1. “전자금융거래“ 라 함은 카카오뱅크가 전자적 장치를 통하여 제공하는 금융상품 및 서비스를 이용자가 전자적 장치를 통하여 비대면·자동화된 방식
 으로 직접 이용하는 거래를 말합니다.
@@ -71,7 +75,7 @@
 9. “거래지시”라 함은 이용자가 전자금융거래계약에 의하여 카카오뱅크에 개별적인 전자금융거래의 처리를 지시하는 것을 말합니다.
 10.“오류”라 함은 이용자의 고의 또는 과실 없이 전자금융거래가 약관(개별약관을 포함합니다), 전자금융거래계약 또는 이용자가 거래 지시한 대로 이행
 되지 아니한 경우를 말합니다.
-11.“계좌송금”이라 함은 이용자가 자동 입출금기(ATM)를 통하여 자기 또는 타인의 계좌에 자금을 입금하는 것을 말합니다.
+<!-- 11.“계좌송금”이라 함은 이용자가 자동 입출금기(ATM)를 통하여 자기 또는 타인의 계좌에 자금을 입금하는 것을 말합니다.
 12.“계좌이체”라 함은 지급인의 전자적 장치를 통한 지급지시에 따라 카카오뱅크가 지급인의 출금계좌에서 자금을 출금하여 카카오뱅크 또는 다른 은행
 의 계좌에 입금하는 것을 말합니다.
 13.“예약에 의한 계좌이체”라 함은 계좌이체가 장래의 특정일자에 이루어지도록 이용자가 미리 거래지시하고 카카오뱅크가 이를 해당일자에 처리하는
@@ -86,6 +90,7 @@
 18.“추가적인 보안조치”라 함은 이용자가 모바일앱 외의 전자적 장치로 전자금융거래를 하는 경우 제 6 호의 접근매체 이외의 휴대폰 문자(SMS) 또는 2
 채널(서로 다른 두 가지 이상의 통신경로를 이용) 등의 수단으로 본인임을 확인하는 방법을 말합니다.
 ② 이 약관에서 별도로 정하지 아니한 용어는 「전자금융거래법」 및 관계 법령 등에서 정하는 바에 따릅니다.
+
 제 3 조 적용되는 거래
 이 약관은 카카오뱅크와 이용자 사이에 다음 각 호의 전자적 장치를 이용하여 이루어지는 계좌이체(예약에 의한 계좌이체 및 지연이체를 포함합니다. 이하
 같습니다), 추심이체(예약에 의한 추심이체를 포함합니다. 이하 같습니다), 계좌송금과 관련한 조회, 입금, 출금, 대출과 관련한 신청 및 조회, 해지, 체크카드
@@ -96,6 +101,7 @@
 4. 컴퓨터에 의한 거래
 5. 체크카드단말기에 의한 거래
 6. 기타 전자적 수단에 의한 거래
+
 제 4 조 거래계약의 체결 및 해지
 ① 이용자가 카카오뱅크와 전자금융거래를 하고자 하는 경우에는 이 약관에 의하여 카카오뱅크와 전자금융거래계약을 체결하여야 합니다.
 ② 이용자가 전자금융거래 계약을 해지하고자 할 때에는 이용자 본인이 전자금융거래에 관한 개별약관에 정한 바에 따라 해당 전자적 장치 또는 서면에
@@ -120,17 +126,17 @@
 ① 카카오뱅크는 전자금융수수료를 이용자의 계좌에서 출금하는 등의 방법으로 받을 수 있으며, 구체적인 수납 방법은 개별약관에 따릅니다. 단, 전자금융
 수수료는 카카오뱅크가 별도로 정하는 바에 따라 감면될 수 있습니다.
 ② 카카오뱅크는 이용자가 확인할 수 있도록 이용자가 접근하기 용이한 전자적 장치를 통하여 수수료(율)를 게시합니다. 카카오뱅크가 수수료(율)를 변경
-하는 경우에는 제 29 조를 준용합니다.
+하는 경우에는 제 29 조를 준용합니다. -->
 </pre>
-	<form action="" method="post" name="termsAndConditions">
-		<div id="termsRadio">
-			<input type="radio" id="termsAgreement" name="termsAgreement" value="Agree">동의
-			<input type="radio" id="termsAgreement" name="termsAgreement" value="Disagree">동의안함
-		</div>
-		
-		<div id="termsRadio">
-			<input type="submit" class="btn" name="" value="확인" onclick="agreeChk();">
-		</div>
-	</form>
+  <form action="" method="post" name="termsAndConditions">
+    <div id="termsRadio">
+      <input type="radio" id="termsAgreement" name="termsAgreement" value="Agree">동의
+      <input type="radio" id="termsAgreement" name="termsAgreement" value="Disagree">동의안함
+    </div>
+    
+    <div id="termsRadio">
+      <input type="button" id="closeModal" class="btn btn-primary" value="확인" data-dismiss="modal" onclick="agreeChk();">
+    </div>
+  </form>
 </body>
 </html>

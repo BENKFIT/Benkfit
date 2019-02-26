@@ -3,19 +3,33 @@ package spring.mvc.benkfit.vo;
 import java.sql.Date;
 
 public class MySavAccountVO {
-	private String mySav_account;
-	private String mySav_name;  
-	private Date mySav_date; 
-	private int mySav_amount; 
-	private double mySav_rate; 
-	private int mySav_monSaving;
-	private String mySav_method; 
-	private String mySav_benefit; 
-	private double mySav_taxRate; 
+	private String mySav_account; //계좌번호
+	private String mySav_name;  //상품명
+	private Date mySav_date; //가입일
+	private Date mySav_due; //만기일
+	private Date mySav_regdate; //등록일?
+	private int mySav_amount; //잔액
+	private double mySav_rate; //이율
+	private int mySav_monSaving; //납부금액(이체금액)
+	private String mySav_method; //자동이체
+	private String mySav_benefit;  //
+	private double mySav_taxRate; //세율
 	private String c_id; 
-	private String sav_num; 
+	private String sav_num;  //상품번호
 	private String code;
 	
+	public Date getMySav_due() {
+		return mySav_due;
+	}
+	public void setMySav_due(Date mySav_due) {
+		this.mySav_due = mySav_due;
+	}
+	public Date getMySav_regdate() {
+		return mySav_regdate;
+	}
+	public void setMySav_regdate(Date mySav_regdate) {
+		this.mySav_regdate = mySav_regdate;
+	}
 	public String getMySav_account() {
 		return mySav_account;
 	}
@@ -88,13 +102,14 @@ public class MySavAccountVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
 	@Override
 	public String toString() {
 		return "MySavAccountVO [mySav_account=" + mySav_account + ", mySav_name=" + mySav_name + ", mySav_date="
-				+ mySav_date + ", mySav_amount=" + mySav_amount + ", mySav_rate=" + mySav_rate + ", mySav_monSaving="
-				+ mySav_monSaving + ", mySav_method=" + mySav_method + ", mySav_benefit=" + mySav_benefit
-				+ ", mySav_taxRate=" + mySav_taxRate + ", c_id=" + c_id + ", sav_num=" + sav_num + ", code=" + code
-				+ "]";
+				+ mySav_date + ", mySav_due=" + mySav_due + ", mySav_regdate=" + mySav_regdate + ", mySav_amount="
+				+ mySav_amount + ", mySav_rate=" + mySav_rate + ", mySav_monSaving=" + mySav_monSaving
+				+ ", mySav_method=" + mySav_method + ", mySav_benefit=" + mySav_benefit + ", mySav_taxRate="
+				+ mySav_taxRate + ", c_id=" + c_id + ", sav_num=" + sav_num + ", code=" + code + "]";
 	}
+	
+	
 }

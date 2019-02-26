@@ -1,6 +1,10 @@
 package spring.mvc.benkfit.controller;
-
+/* 손리아 */
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,9 +20,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import spring.mvc.benkfit.persistence.DAO_lia;
 import spring.mvc.benkfit.service.Service_lia;
+import spring.mvc.benkfit.vo.CheqProductVO;
+import spring.mvc.benkfit.vo.LoanProductVO;
+import spring.mvc.benkfit.vo.SavProductVO;
 
 @Controller
 public class Controller_lia {
@@ -27,6 +36,8 @@ public class Controller_lia {
 	
 	@Autowired
 	Service_lia service;
+	@Autowired
+	DAO_lia dao;
 	
 	// 메인
 	@RequestMapping("index")
@@ -41,6 +52,7 @@ public class Controller_lia {
 		logger.info("login 호출중");
 		return "common/login";
 	}
+	
 	// 로그인 처리
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) throws Exception {
@@ -53,6 +65,7 @@ public class Controller_lia {
 		System.out.println("세션 : " + sessionId); */
 		return "common/loginPro";
 	}
+	
 	// 로그아웃
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req) throws Exception {
@@ -60,12 +73,14 @@ public class Controller_lia {
 		req.getSession().invalidate();
 		return "Template/index";
 	}
+	
 	// 회원가입 양식
 	@RequestMapping("signIn")
 	public String signIn() throws Exception {
 		logger.info("signIn 호출중");
 		return "common/signIn";
 	}
+	
 	// 신분증 텍스트 인식
 	@RequestMapping("getText") 
 	public String getText(String file, Model model) throws IOException {
@@ -73,6 +88,7 @@ public class Controller_lia {
 		service.getText(file, model);
 		return "common/getText";
 	}
+	
 	// id 중복확인
 	@RequestMapping("idCheck") 
 	public String idCheck(HttpServletRequest req, Model model) throws Exception { 
@@ -80,6 +96,7 @@ public class Controller_lia {
 		service.id_check(req, model);
 		return "common/idCheck";
 	}
+	
 	// 실명확인
 	@RequestMapping("nameCheck")
 	public String nameCheck(HttpServletRequest req, Model model) throws Exception {
@@ -87,12 +104,14 @@ public class Controller_lia {
 		service.nameCheck(req, model);
 		return "common/nameCheck";
 	}
+	
 	// 이용약관 페이지
 	@RequestMapping("terms")
 	public String terms() throws Exception {
 		logger.info("terms 호출중");
 		return "common/terms";
 	}
+	
 	// 회원가입 처리
 	@RequestMapping("signInPro")
 	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
@@ -100,6 +119,7 @@ public class Controller_lia {
 		service.signInPro(req, model);
 		return "common/signInPro";
 	}
+	
 	// 마이페이지
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("myPageTest")
@@ -107,6 +127,7 @@ public class Controller_lia {
 		logger.info("myPageTest 호출중");
 		return "common/myPageTest";
 	}
+	
 	// 로그인 실패
 	@RequestMapping("loginFail")
 	public String loginFail(HttpServletRequest req, Model model) throws Exception {
@@ -219,4 +240,25 @@ public class Controller_lia {
 		return "common/marketprice";
 	}
 	
+	// 안드로이드 검색
+	@ResponseBody
+	@RequestMapping("androidSearch")
+	public Map<String, Object> androidSearch(HttpServletRequest req){
+		logger.info("androidSearch 호출중");
+		
+		String keyword = req.getParameter("search");
+		
+		Map<String, String> in = new HashMap<String, String>();
+		in.put("keyword", keyword);
+		
+		ArrayList<CheqProductVO> clist = (ArrayList<CheqProductVO>) dao.search_cheq(keyword);
+		List<SavProductVO> slist = dao.search_sav(keyword);
+		List<LoanProductVO> llist = dao.search_loan(keyword);
+		
+		Map<String, Object> out = new HashMap<String, Object>();
+		out.put("clist", clist);
+		out.put("slist", slist);
+		out.put("llist", llist);
+		return out;
+	}
 }

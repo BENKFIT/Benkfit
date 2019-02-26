@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>계좌조회</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 function ajaxTest(){
 	var account = $("#cheq_account option:selected").val();
@@ -17,7 +21,6 @@ function ajaxTest(){
 	
 	var sel_cheq = "account=" + account+ "&type=" + type + "&order=" +order 
 	 + "&start_date=" +start_date  + "&end_date=" + end_date +"&end=" + end ;
-								
 	$.ajax({
 			type : "POST",
 			url : "${pageContext.request.contextPath}/cheq_info",
@@ -37,10 +40,11 @@ function ajaxTest(){
 	<div class="wrapper">
 		<h2>예금계좌조회</h2>
 		<hr>
-		<table class="table_kay">
+		<table class="table table-hover">
 			<tr>
 				<th>예금 계좌번호</th>
-				<td><select id="cheq_account" name="cheq_account">
+				<td colspan="2">
+				<select id="cheq_account" name="cheq_account">
 						<c:choose>
 							<c:when test="${account != null}">
 								<option value="${account}">${account}</option>
@@ -52,27 +56,27 @@ function ajaxTest(){
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
-				</select></td>
+				</select>
+				</td>
 			</tr>
 			<tr class="srch_area">
 				<th>조회기간</th>
 				<td>
-					<input type="date" class="datepicker" name="start_date" id="start_date"> ~
+					<input type="date" class="datepicker" name="start_date" id="start_date" > ~ 
  					<input type="date" class="datepicker" name="end_date" id="end_date">
-					
 				</td>
 				<td>
-					<span> <input type="button" class="date" id="r_today" name="date" value="당일"></span>
-					<span> <input type="button" class="date" id="r_week" name="date" value="1주일"></span>
-					<span> <input type="button" class="date" id="r_week1" name="date" value="2주일"></span>
-					<span> <input type="button" class="date" id="r_month1" name="date" value="1개월"></span>
-					<span> <input type="button" class="date" id="r_month3" name="date" value="3개월"></span>
-					<span> <input type="button" class="date" id="r_month6" name="date" value="6개월"></span>
+					<span><input type="button" class="date" id="r_today" name="date" value="당일"></span>
+					<span><input type="button" class="date" id="r_week" name="date" value="1주일"></span>
+					<span><input type="button" class="date" id="r_week1" name="date" value="2주일"></span>
+					<span><input type="button" class="date" id="r_month1" name="date" value="1개월"></span>
+					<span><input type="button" class="date" id="r_month3" name="date" value="3개월"></span>
+					<span><input type="button" class="date" id="r_month6" name="date" value="6개월"></span>
 				</td>
 			</tr>
 			<tr>
 				<th>조회조건</th>
-				<td>
+				<td colspan="2" style="text-align=center;">
 					<input type="radio" name="option" id="1" value="1" required>전체 
 					<input type="radio" name="option" id="2" value="2" required>입금 
 					<input type="radio" name="option" id="3" value="3" required>출금
@@ -80,23 +84,23 @@ function ajaxTest(){
 			</tr>
 			<tr>
 				<th>조회결과 순거</th>
-				<td>
+				<td colspan="2">
 					<input type="radio"  name="order" id="4" value="4">최근거래순 
 					<input type="radio" name="order"  id="5" value="5">과거거래순
 				</td>
 			</tr>
 			<tr>
 				<th>조회내역건수</th>
-				<td>
+				<td colspan="2">
 					<input type="radio" name="num" value="10">10건
 					<input type="radio" name="num" value="20">20건
 					<input type="radio" name="num" value="30">30건
 				</td>
 			</tr>
 			<tr>
-				<th colspan="2" class="trBtn">
+				<td colspan="3" class="trBtn">
 					<button class="btn2 btn2-success" onclick="ajaxTest();">조회</button>
-				</th>
+				</td>
 			</tr>
 		</table>
 		<br>
@@ -105,22 +109,5 @@ function ajaxTest(){
 		</div>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
-	<!-- <script>
-	$(function() {
-		  $( "#datepicker1 , #datepicker2" ).datepicker({
-		    dateFormat: 'yy.mm.dd',
-		    prevText: '이전 달',
-		    nextText: '다음 달',
-		    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-		    dayNames: ['일','월','화','수','목','금','토'],
-		    dayNamesShort: ['일','월','화','수','목','금','토'],
-		    dayNamesMin: ['일','월','화','수','목','금','토'],
-		    showMonthAfterYear: true,
-		    changeMonth: true,
-		    changeYear: true,
-		    yearSuffix: '년'
-		  });
-		});
-	-->
+
 </body>

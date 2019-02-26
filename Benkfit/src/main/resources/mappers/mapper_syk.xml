@@ -84,7 +84,7 @@
 	<select id="userAccounts" parameterType="String" resultType="String">
 		SELECT nvl(myCheq_account, '계좌가 없습니다.')
 		FROM myCheqAccount_tbl
-		WHERE c_id = #{id} 
+		WHERE c_id = #{id}
 	</select>
 	
 	<!-- 이체 -->
@@ -116,7 +116,7 @@
 	<!-- 자동이체 등록 -->
 	<insert id="autoAdd" parameterType="spring.mvc.benkfit.vo.AutoTransferVO">
 		INSERT INTO autoTransfer_tbl
-		VALUES(#{auto_from}, #{auto_to}, #{auto_value}, #{c_id}, #{auto_date}, AUTOTRANS_SEQ.nextval, #{auto_file})
+		VALUES(#{auto_from}, #{auto_to}, #{auto_value}, #{c_id}, #{auto_date}, AUTOTRANS_SEQ.nextval, #{auto_file}, #{auto_pwd})
 	</insert>
 	
 	<!-- 자동이체 삭제 -->
@@ -138,4 +138,29 @@
 		FROM autoTransfer_tbl
 		WHERE auto_date = #{day}
 	</select>
+	
+	<!-- 예금갯수 -->
+	<select id="cheqCnt" resultType="int">
+		SELECT COUNT(mycheq_account)
+		FROM mycheqAccount_tbl
+	</select>
+	
+	<!-- 예금이자계산 -->
+	<select id="cheqInterest" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+		SELECT mycheq_account, mycheq_rate, mycheq_amount, c_id
+		FROM mycheqaccount_tbl
+	</select>
+	
+	<!-- 적금갯수-->
+	<select id="savCnt" resultType="int">
+		SELECT COUNT(mysav_account)
+		FROM mysavAccount_tbl
+	</select>
+	
+	<!-- 적금이자계산 -->
+	<select id="savInterest" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+		SELECT mysav_account, mysav_rate, mysav_amount, c_id
+		FROM mysavAccount_tbl
+	</select>
+	
 </mapper>

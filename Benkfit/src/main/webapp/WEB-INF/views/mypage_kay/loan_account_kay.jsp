@@ -7,20 +7,28 @@
 <meta charset="UTF-8">
 <title>대출계좌조회</title>
 <script>
-	function load(){
-		sendRequest(load_callback, 'loan_info' , "post");
-	} 
-	function load_callback(){
-		var result = document.getElementById("result");
-		if(httpRequest.readyState == 4){
-			if(httpRequest.status == 200){
-				result.innerHTML = httpRequest.responseText;
-			}else{
-				result.innerHTML = "에러발생";
+function ajaxTest(){
+	var account = $("#myLoan_account option:selected").val();
+ 	var start_date = $('input[name="start_date"]').val();
+ 	var end_date = $('input[name="end_date"]').val(); 
+ 	var type =  $('input[name="option"]:checked').val();
+	var order =$('input[name="order"]:checked').val();
+	var end = $('input[name="num"]:checked').val();
+	
+	var sel_loan = "account=" + account+ "&type=" + type + "&order=" +order 
+	 + "&start_date=" +start_date  + "&end_date=" + end_date + "&end=" + end ;
+	
+	$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/loan_info",
+			data : sel_loan,
+			success : function(data) {
+				$('#result').html(data);
+			},	
+			error : function() {
+				alert('통신실패!!');
 			}
-		} else {
-			result.innerHTML = "상태 : " + httpRequest.readyState;
-		}
+		});
 	}
 	function loanBalance(){
 		var from = $('#from').val();
@@ -80,29 +88,29 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 		});
 	}
 </script>
+<script>
+$(function() {
+    $( ".date" ).datepicker({
+    });
+});
+</script>
 </head>
 <body>
 	<%@ include file="../Template/top.jsp"%>
 	<div class="wrapper">
 		<h2>대출계좌</h2>
 		<hr>
-		<table class="table_kay">
+		<table class="table table-hover">
 			<tr>
 				<th>대출 계좌번호</th>
-				<td><select name="myLoan_account">
-					<option value="계좌선택">계좌를 선택하세요.</option>
-						<c:forEach var="lo" items="${loan}">
-							<option value="myLoan_account">${lo.myLoan_account}</option>
-						</c:forEach>
-				</select></td>
 				<td><input type="file" id="from"></td>
-				<td>비밀번호:<input style="width: 90px;" type="password" id="password" placeholder="지갑파일을 등록하세요."></td>
+				<th>비밀번호 <input style="width: 90px;" type="password" id="password" placeholder="지갑파일을 등록하세요."></th>
 			</tr>
 			<tr class='srch_area'>
 				<th>조회기간</th>
-				<td><input type="text" id="search_start_date"
+				<td><input type="text" id="start_date" class="date" name="start_date"
 					style="width: 90px;"> ~ <input type="text" 
-					id="search_end_date" style="width: 90px;"></td>
+					id="end_date"name="end_date" class="date" style="width: 90px;"></td>
 				<td>
 					<span> <input type="button" value="대출한도" onclick="loanBalance();"></span>
 					<span> <input type="button" value="대출잔액" onclick="loanleft();"></span><br>
@@ -131,8 +139,16 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 					type="radio" name="sel_order">과거거래순</td>
 			</tr>
 			<tr>
+				<th>조회내역건수</th>
+				<td>
+					<input type="radio" name="num" value="10">10건
+					<input type="radio" name="num" value="20">20건
+					<input type="radio" name="num" value="30">30건
+				</td>
+			</tr>
+			<tr>
 				<th colspan="2" class="trBtn">
-					<button class="btn2 btn2-success" onclick="load();">조회</button>
+					<button class="btn2 btn2-success" onclick="ajaxTest();">조회</button>
 				</th>
 			</tr>
 		</table>

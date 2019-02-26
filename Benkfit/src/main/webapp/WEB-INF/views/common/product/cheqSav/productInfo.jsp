@@ -158,10 +158,8 @@ p {
 <body>
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
-
 	<c:if test="${type == 'cheq'}">
-		<div
-			style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
+		<div style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
 				<table style="text-align: center;">
 					<tr>

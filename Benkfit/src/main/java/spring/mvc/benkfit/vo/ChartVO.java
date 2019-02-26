@@ -6,7 +6,7 @@ public class ChartVO {
 	private int mySav_account;		// 적금 상품 가입자 수
 	private int myLoan_account;		// 대출 상품 가입자 수 
 	private String value;				// 가입 날짜
-	
+
 	public int getMyCheq_account() {
 		return myCheq_account;
 	}

@@ -275,26 +275,21 @@ public class ServiceImpl_sws implements Service_sws {
 		req.setAttribute("deleteCnt", deleteCnt);
 		req.setAttribute("pageNum", pageNum);
 	}
-
+	
 	@Override
 	public void chartList(HttpServletRequest req, Model model) {
-		
 		JSONObject map = (JSONObject)dao.getYearChat();
 		String chart = map.toString();
 		req.setAttribute("YearChat", chart);
 	}
-
 	@Override
 	public void chartList1(HttpServletRequest req, Model model) {
-		
 		JSONObject map = (JSONObject)dao.getMonthChat();
 		String chart = map.toString();
 		req.setAttribute("MonthChat", chart);
 	}
-
 	@Override
 	public void chartList2(HttpServletRequest req, Model model) {
-		
 		JSONObject map = (JSONObject)dao.getDayChat();
 		String chart = map.toString();
 		req.setAttribute("DayChat", chart);
