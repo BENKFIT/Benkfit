@@ -68,15 +68,15 @@ input, select {
 	<div style="margin: 100px 0px;">
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
-				
+
 				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
 				<c:forEach var="list" items="${loan}">
-					<div class="center-block col-4 princing-item red" style="margin: 30px 0px;">
+					<div class="center-block col-4 princing-item red"
+						style="margin: 30px 0px;">
 						<div class="pricing-divider ">
 							<%-- <h3 class="text-light">${list.loan_type}</h3> --%>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
-								<span class="h3">Won</span> ${list.loan_rate}% <span
-									class="h5">/year</span>
+								<span class="h3">Won</span> ${list.loan_rate}% <span class="h5">/year</span>
 							</h4>
 							<svg class='pricing-divider-img'
 								enable-background='new 0 0 300 100' height='100px' id='Layer_1'
@@ -109,9 +109,9 @@ input, select {
 								<li><b>대출금액 </b> ${list.loan_amount}원</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
-							<button type="button" class="btn btn-lg btn-block  btn-custom" class="btn btn-primary"
-								data-toggle="modal" data-target="#editloan"
-								onclick="loanEdit('${list.loan_num}');">수정/삭제</button>
+							<button type="button" class="btn btn-lg btn-block  btn-custom"
+								class="btn btn-primary" data-toggle="modal"
+								data-target="#editloan" onclick="loanEdit('${list.loan_num}');">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -140,7 +140,7 @@ input, select {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" 
+					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -211,7 +211,7 @@ input, select {
 										<option value="2">있음</option>
 								</select></td>
 							</tr>
-<!-- 							<tr>
+							<!-- 							<tr>
 								<td>대출상환방식</td>
 								<td><select name="paymethod">
 										<option value="1">없음</option>

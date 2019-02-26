@@ -139,7 +139,8 @@ p, a {
 				$('loanState').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("다시 시도해주세요.");
+				$('#loanState').html("다시 시도해주세요.");
 			}
 		});
 	}
@@ -156,7 +157,8 @@ p, a {
 				$('#balance').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("지갑계정을 선택해주세요.");
+				$('#balance').html("다시 시도해주세요.");
 			}
 		});
 	}
@@ -175,7 +177,8 @@ p, a {
 				$('#state').html("대출 신청이 완료되었습니다.");
 			},
 			error : function(){
-				alert("오류")
+				alert("오류");
+				$('#state').html("다시 시도해주세요.");
 			}
 		});
 	}

@@ -252,6 +252,8 @@
 												<li><a href="wallet">지갑만들기</a></li>
 												<li><a href="transfer">간편송금</a></li>
 												<li><a href="bank">간편은행</a></li>
+												<li><a href="verify">거래검증소</a></li>
+												
 											</ul></li>
 										<li class="menu-has-children"><a href="#">금융상품</a>
 											<ul>
