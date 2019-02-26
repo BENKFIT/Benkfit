@@ -48,27 +48,11 @@ public class ServiceImpl_bh implements Service_bh {
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 	Web3j web3_4 = Web3j.build(new HttpService("http://localhost:8547"));
 	Admin admin_4 = Admin.build(new HttpService("http://localhost:8547"));
-	// 테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
-	// 유경 path
-	// final String path = "C:\\ether\\geth\\private_net\\keystore\\";
-	//테스트시 path 경로는 본인에게 맞게 변경해주어야한다.
-	//final String path = "/Users/banhun/2_net/keystore/";
-	//유경 path
-	//final String path = "C:\\ether\\geth\\private_net\\keystore\\";
-	//int chkNum = 0;
-	
-	//훈컨트랙트모음
-	//private final String BenkfitAddress = ServiceImpl_syk.getBenkfit();
-	//private final String BankAddress = ServiceImpl_syk.getBank();
-	//private final String SlotAddress = ServiceImpl_syk.getSlot();
-	
-	//훈 address[0]
-	//private final String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
-	//훈 address[0] 키스토어
-	//private final String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json";
-	
-	//final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
-	//final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
+
+	// 훈컨트랙트모음
+	// private final String BenkfitAddress = ServiceImpl_syk.getBenkfit();
+	// private final String BankAddress = ServiceImpl_syk.getBank();
+	// private final String SlotAddress = ServiceImpl_syk.getSlot();
 
 	/*
 	 * 훈 전역 설정
@@ -121,7 +105,8 @@ public class ServiceImpl_bh implements Service_bh {
 				// 10이더 설정
 				BigDecimal ether = BigDecimal.valueOf(10);
 				// 자격증명
-				//Credentials credentials = WalletUtils.loadCredentials(password, "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
+				// Credentials credentials = WalletUtils.loadCredentials(password,
+				// "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943.json");
 				System.out.println("ether : " + ether);
 				Credentials credentials = WalletUtils.loadCredentials(password, owner_file);
 				// 이더전송
@@ -144,7 +129,7 @@ public class ServiceImpl_bh implements Service_bh {
 		model.addAttribute("Balance", Balance);
 	}
 
-	//이더 송금
+	// 이더 송금
 	@Override
 	public void transferPro(HttpServletRequest req, Model model) throws Exception {
 		System.out.println("===============================");
@@ -184,11 +169,13 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length() - 45,
 				req.getParameter("from").length() - 5));
-		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
-		//String from = fn.concat(req.getParameter("from").split("--")[2]);
-		
+		// String from =
+		// fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45,
+		// req.getParameter("from").length()-5));
+		// String from = fn.concat(req.getParameter("from").split("--")[2]);
+
 		System.out.println("fileSource : " + fileSource + "\tfrom : " + from);
-		
+
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");
 		// 형변환
@@ -224,9 +211,11 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length() - 45,
 				req.getParameter("from").length() - 5));
-		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
-		//String from = fn.concat(req.getParameter("from").split("--")[2]);
-		
+		// String from =
+		// fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45,
+		// req.getParameter("from").length()-5));
+		// String from = fn.concat(req.getParameter("from").split("--")[2]);
+
 		String password = req.getParameter("password");
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
@@ -293,12 +282,14 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length() - 45,
 				req.getParameter("from").length() - 5));
-		//String from = fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45, req.getParameter("from").length()-5));
-		//String from = fn.concat(req.getParameter("from").substring(49));
-		
+		// String from =
+		// fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45,
+		// req.getParameter("from").length()-5));
+		// String from = fn.concat(req.getParameter("from").substring(49));
+
 		System.out.println("fileSource : " + fileSource);
 		System.out.println("from : " + from);
-		
+
 		String password = req.getParameter("password");
 		String value = req.getParameter("value");
 		// 형변환
@@ -694,11 +685,11 @@ public class ServiceImpl_bh implements Service_bh {
 		// 주소값으로 해당 대출 계정의 정보 불러오기
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 위에서 받아온 해당 대출 상품의 대출금가져오기
-		//BigInteger value = BigInteger.valueOf(vo.get(0).getMyLoan_amount());
+		// BigInteger value = BigInteger.valueOf(vo.get(0).getMyLoan_amount());
 		// 자격증명
-		//위에서 받아온 해당 대출 상품의 대출금가져오기
+		// 위에서 받아온 해당 대출 상품의 대출금가져오기
 		BigInteger value = BigInteger.valueOf(vo.get(0).getmyloan_amount());
-		//자격증명
+		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials("password", owner_file);
 		// 계정 언락
 		if (admin.personalUnlockAccount(owner, "password").send().getResult()) {

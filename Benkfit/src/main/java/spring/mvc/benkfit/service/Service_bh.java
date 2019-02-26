@@ -96,7 +96,8 @@ public interface Service_bh {
 
 	// 대출신청리스트
 	public void loanApproval(HttpServletRequest req, Model model) throws Exception;
-	//대출신청허가
+
+	// 대출신청처리(허가)
 	public void loanApprovalPro(HttpServletRequest req, Model model) throws Exception;
 
 	// 대출신청처리(거절)
