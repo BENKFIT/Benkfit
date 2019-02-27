@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>대출상품수정하기</title>
 <style>
 .modal-body td {
 	padding: 10px;
@@ -22,7 +23,7 @@
 			<div class="modal-body" style="text-align: center;">
 				<div style="display: inline-block;">
 					<form action="loanEditPro" method="post">
-					<input type="hidden" value="${vo.loan_num}" name="loan_num">
+						<input type="hidden" value="${vo.loan_num}" name="loan_num">
 						<table>
 							<tr>
 								<td>상품번호</td>
@@ -35,7 +36,8 @@
 							</tr>
 							<tr>
 								<td>대출금액</td>
-								<td><input type="number" value="${vo.loan_amount}" name="amount"></td>
+								<td><input type="number" value="${vo.loan_amount}"
+									name="amount"></td>
 							</tr>
 							<tr>
 								<td>상품이율</td>
@@ -64,34 +66,35 @@
 							</tr>
 							<tr>
 								<td colspan="2" style="text-align: center;"><input
-									type="submit" value="수정">
-								</td>
+									type="submit" value="수정"></td>
 							</tr>
 						</table>
 					</form>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary" data-toggle="modal" data-target="#Cheq" onclick="loanDel('${vo.loan_num}');">삭제</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+				<button class="btn btn-secondary" data-toggle="modal"
+					data-target="#Cheq" onclick="loanDel('${vo.loan_num}');">삭제</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		function loanDel(loan_num){
+		function loanDel(loan_num) {
 			var num = "loan_num=" + loan_num;
+
 			$.ajax({
-				type : 'post',
-				data : num,
-				url :'${pageContext.request.contextPath}/loanDel',
-				success : function(data){
-					window.location.href = '${pageContext.request.contextPath}/loanRegi';
-				},
-				error : function(){
-					alert("Ajax error");
-				}				
-			});
+					type : 'post',
+					data : num,
+					url : '${pageContext.request.contextPath}/loanDel',
+					success : function(data) {
+						window.location.href = '${pageContext.request.contextPath}/loanRegi';
+					},
+					error : function() {
+						alert("Ajax error");
+					}
+				});
 		}
 	</script>
 

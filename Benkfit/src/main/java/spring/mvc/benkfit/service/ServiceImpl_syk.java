@@ -43,6 +43,7 @@ import spring.mvc.benkfit.sol.Benkfit;
 import spring.mvc.benkfit.sol.Slot;
 import spring.mvc.benkfit.vo.AutoTransferVO;
 import spring.mvc.benkfit.vo.CheqProductVO;
+import spring.mvc.benkfit.vo.ContractVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
 
@@ -71,34 +72,9 @@ public class ServiceImpl_syk implements Service_syk {
 	/*
 	 * 배포 : 톰캣서버가 열릴 때 한번만 배포
 	 */
-	private static String benkfit = "0xb824ebcb0a3cdddc8bbfd2ffc636ab1067ac74b8";
-	private static String bank = "0xaef3657b4cd86ea4f443ef5698e8190bfffc5471";
-	private static String slot = "0x84601de63c54038c0c4ffd4822813f3562c83b9a";
-	
-	public ServiceImpl_syk() throws Exception{
-		if(benkfit == null) {
-			System.out.println("===== contract 배포중 =====");
-			//coinbase 계정으로 배포
-			Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
-			@SuppressWarnings("deprecation")
-			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
-			@SuppressWarnings("deprecation")
-			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
-			@SuppressWarnings("deprecation")
-			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
-			
-			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
-			ServiceImpl_syk.bank = bank.getContractAddress();
-			ServiceImpl_syk.slot = slot.getContractAddress();
-			
-			System.out.println("Contract benkfit ==> " + this.benkfit);
-			System.out.println("Contract bank ==> " + this.bank);
-			System.out.println("Contract slot ==> " + this.slot);
-		}
-	}
-	
-/*	@PostConstruct
-	public void init() throws Exception{}}*/
+	private static String benkfit;
+	private static String bank;
+	private static String slot;
 	
 	//배포된 contract의 주소
 	public static String getBenkfit() {
@@ -615,4 +591,45 @@ public class ServiceImpl_syk implements Service_syk {
 		int result = dao.autoDel(num);
 		req.setAttribute("result", result);
 	}
+	
+	//배포페이지
+	@Override
+	public void deploy(HttpServletRequest req) throws Exception {
+		
+		List<ContractVO> vo = dao.deploy();
+				
+	}
+	
+	//배포
+	@Override
+	public void deployPro(HttpServletRequest req) throws Exception {
+		String name = req.getParameter("name");
+		System.out.println("===== " + name + " contract 배포중 =====");
+		//coinbase 계정으로 배포
+		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
+		ContractVO vo = new ContractVO();
+		
+		if(name.equals("Benkfit")) {
+			@SuppressWarnings("deprecation")
+			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
+			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
+			System.out.println("Contract benkfit ==> " + this.benkfit);
+			
+		}else if(name.equals("Bank")) {
+			@SuppressWarnings("deprecation")
+			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			ServiceImpl_syk.bank = bank.getContractAddress();
+			System.out.println("Contract bank ==> " + this.bank);
+		}else if(name.equals("Slot")) {
+			@SuppressWarnings("deprecation")
+			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			ServiceImpl_syk.slot = slot.getContractAddress();
+			System.out.println("Contract slot ==> " + this.slot);
+		}
+		vo.setCon_name(name);
+		vo.setCon_address(ServiceImpl_syk.benkfit);
+		
+		int result = dao.deployAdd(vo);
+	}
+	
 }

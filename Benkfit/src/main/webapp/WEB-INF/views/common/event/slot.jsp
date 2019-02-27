@@ -43,7 +43,8 @@ p, a {
 .inputButton {
 	background: #FFD662;
 }
-#from{
+
+#from {
 	padding: 6px 10px;
 	margin: 4px 0;
 	display: inline-block;
@@ -83,10 +84,11 @@ p, a {
 
 			<div>
 				<p class="login">
-					ID: <input type="file" id="from"><!-- <input type="text" id="address"> --> 
-					Password: <input type="password" id="password" value="password"> 
+					ID: <input type="file" id="from">
+					<!-- <input type="text" id="address"> -->
+					Password: <input type="password" id="password" value="password">
 					<input type="button" value="잔고확인" onClick="Balance();">
-					
+
 				</p>
 
 				<div id="machine">
@@ -127,12 +129,11 @@ p, a {
 				<p id="balance"></p>
 
 				<p id="messages">
-				슬롯 한판당 약 1분의 시간이 소요됩니다.<br>
-				이더는 Benkfit에서 이용하는 모든 거래에 수수료로 사용됩니다.<br>
-				무분별한 슬롯으로 수수료가 없어지지 않게 하세요.<br>
-				이더가 없으면 거래가 성사되지 않습니다.<br>
-				부족한 이더는 유경이한테 문의하세요.<br>
-				본 슬롯 게임은 단순히 기분탓으로 하는 게임입니다.<br></p>
+					슬롯 한판당 약 1분의 시간이 소요됩니다.<br> 이더는 Benkfit에서 이용하는 모든 거래에 수수료로
+					사용됩니다.<br> 무분별한 슬롯으로 수수료가 없어지지 않게 하세요.<br> 이더가 부족하면 거래가
+					성사되지 않을 수 있습니다.<br> 부족한 이더는 유경이한테 문의하세요.<br> 본 슬롯 게임은 단순히
+					기분으로 하는 게임입니다.<br>
+				</p>
 			</div>
 
 			<table class="table table-hover" style="width: 100%;">
@@ -155,55 +156,98 @@ p, a {
 			</table>
 		</div>
 	</div>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 	<!-- FOOTER  -->
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 <script type="text/javascript">
-	function Balance(){
+	function Balance() {
 		/* var address = $('#address').val(); */
 		var from = $('#from').val();
-		var alldata = {"from":from};
+		var alldata = {
+			"from" : from
+		};
 		$('#balance').html("잔액을 조회중입니다.");
-		
+
 		$.ajax({
-			url:"${pageContext.request.contextPath}/Balance",
+			url : "${pageContext.request.contextPath}/Balance",
 			type : "GET",
 			data : alldata,
-			success : function(data){
+			success : function(data) {
 				$('#balance').html(data);
 			},
-			error : function(){
+			error : function() {
 				alert("지갑 파일을 선택해주세요.")
 			}
 		});
 	}
-	
-	function spin(){
+
+	function spin() {
 		/* var address = $('#address').val(); */
 		var from = $('#from').val();
 		var password = $('#password').val();
 		var value = $('#bet_amount').val();
-		var alldata = {'from':from,'password':password,'value':value};
+		var alldata = {
+			'from' : from,
+			'password' : password,
+			'value' : value
+		};
 		$('#messages').html("결과를 출력중입니다.");
-		
+
 		$.ajax({
-			url:"${pageContext.request.contextPath}/slotResult",
+			url : "${pageContext.request.contextPath}/slotResult",
 			type : "GET",
 			data : alldata,
 			dataType : "JSON",
-			success : function(data){
+			success : function(data) {
 				$('#first').html(data.n1);
 				$('#second').html(data.n2);
 				$('#third').html(data.n3);
 				if (data.result == "true") {
-					$('#messages').html("축하합니다. "+data.reword+"ETH를 얻으셨습니다.");
+					$('#messages').html(
+							"축하합니다. " + data.reword + "ETH를 얻으셨습니다.");
 				} else {
 					$('#messages').html("다음기회를 이용해주세요.");
 				}
 			},
-			error : function(){
+			error : function() {
 				alert("지갑 파일을 선택해주세요.")
 			}
 		});

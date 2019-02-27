@@ -44,7 +44,7 @@ function ajaxTest(){
 				$('#messages').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("오류.");
 			}
 		});
 	}
@@ -82,7 +82,8 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 				$('#messages1').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("해당 지갑에 승인된 대출이 없습니다.")
+				$('#messages1').html("대출이 없습니다.");
 			}
 		});
 	}
