@@ -494,7 +494,7 @@
       
       <input type="hidden" name="hiddenJumin" value="0">
       <input type="hidden" name="hiddenAgree" value="0">
-      <input type="hidden" name="shaPwd" value="">
+      <!-- <input type="hidden" name="shaPwd" value=""> -->
       
         <div class="form-group">
         <label>신분증<span class="text-danger">*</span></label>

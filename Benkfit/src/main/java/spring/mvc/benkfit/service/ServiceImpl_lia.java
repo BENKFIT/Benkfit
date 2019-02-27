@@ -51,7 +51,7 @@ public class ServiceImpl_lia implements Service_lia {
 	// 파일 업로드 & 텍스트 인식
 	@Override
 	public void getText(String file, Model model) throws IOException {
-		
+		 
 		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
 		Process p = pb.start();
 		
@@ -72,7 +72,7 @@ public class ServiceImpl_lia implements Service_lia {
 		String name = "";
         String jumin = "";
         ArrayList<String> names = new ArrayList<String>();
-        
+      
 		try{
             //파일 객체 생성
             File txt = new File("C:\\DEV43\\python\\output\\getText.txt");

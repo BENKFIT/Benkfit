@@ -17,15 +17,14 @@
               error: function() {
                 alert("error");
               }
-            });
-        }, 1000)
-    }  */
+            }, 1000);
+        })
+    } */
 </script>
 </head>
 <body>
   <!-- TOP&SIDE -->
   <%@ include file="./top.jsp"%>
-<%--  <%@ include file="./NewFile.jsp"%> --%>
   
   <!-- CONTENT -->
   <div>

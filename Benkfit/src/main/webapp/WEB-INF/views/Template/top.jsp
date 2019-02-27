@@ -86,7 +86,7 @@
         <div class="menu__wrap">
           <ul data-menu="main" class="menu__level">
             <!-- 시큐리티 권한 따라 메뉴 달라짐  -->
-            <sec:authorize access="isAuthenticated()">
+            <sec:authorize access="hasAuthority('USER')">
               <sec:authorize access="!hasRole('ROLE_ADMIN')">
               <li class="menu__item"><a class="menu__link"
                 data-submenu="submenu-0" href="#">마이페이지</a></li>
@@ -104,7 +104,7 @@
               data-submenu="submenu-5" href="#">ATM</a></li>
           </ul>
           <!-- Submenu 0 마이페이지 -->
-          <sec:authorize access="isAuthenticated()">
+          <sec:authorize access="hasAuthority('USER')">
           <sec:authorize access="!hasRole('ROLE_ADMIN')">
           <ul data-menu="submenu-0" class="menu__level">
             <li class="menu__item"><a class="menu__link" href="mypage">마이페이지</a></li>

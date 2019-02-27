@@ -6,6 +6,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="Implements Google's Material Design in Bootstrap.">
+<title>CSS - Table | Exentriq - Bootstrap Material UI</title>
+<!-- CSS-->
+<link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
+<script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
+<script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
+<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
+<script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
+
+<script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
+<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
+
+<script src="https://unpkg.com/lodash@4.16.0"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
+
+<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
+<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
+<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
+<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
+<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
 <title>회원 조회</title>
 <style>
   .wrapper3 {
@@ -27,15 +63,7 @@
   
   .btnarea .btn {
     margin-bottom:10px;
-    background-color:#2D5772;
-    border-color:#2D5772;
-    color:#fff;
-  }
-  
-  .btnarea .btn:hover {
-    background-color:#FFD662;
-    border-color:#FFD662;
-    color:#fff
+    color:#ffffff;
   }
   
   .tb_header{
@@ -52,20 +80,29 @@
     text-align:center;
   }
   
-  #viewspan {
-    color:#2D5772;
-    cursor:pointer;
+  .thCenter {
+    text-align:center;
   }
   
-  #viewspan:hover{
-    color:#C64545;
-    font-weight:bold;
+  .levelSelelct {
+    background-color:transparent;
+    border:none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: 0;
+    box-shadow: none;
+    transition: all .3s;
+    text-align:center;  
   }
   
   .paging {
     margin-top:25px;
   }
 
+  .paging tr {
+    text-align:center;
+  }
+  
   .pageno {
     color:#2D5772;
     cursor:pointer;
@@ -81,6 +118,7 @@
     color:#666666;
     font-size:18px;
   }
+  
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -204,54 +242,55 @@
 
 <div class="wrapper3">
   <div class="wrapper2">
-       <table class="tb_header">
+    <div class="btnarea">
+      <a class="btn btn-danger eq-ui-waves-light" id="delBtn" style="color:#fff">삭제</a>
+     </div>
+       <table class="table eq-ui-data-table eq-ui-with-checkbox z-depth-1">
+         <thead>
          <tr>
-            <td colspan=12>
-              <div class="btnarea">
-               <input class="btn" type="button" value="삭제" id="delBtn">
-              </div>
-            </td>
+             <th><input type="checkbox" class="eq-ui-input filled-in" id="box1" />
+	               <label for="box1"></label></th>
+             <th colspan=2 style="text-align:center">고객등급</th>
+             <th style="text-align:center">고객명</th>
+             <th style="text-align:center">생년월일</th>
+             <th style="text-align:center">주소</th>
+             <th style="text-align:center">아이디</th>
+             <th style="text-align:center">연락처</th>
+             <th style="text-align:center">이메일</th>
+             <th style="text-align:center">가입일</th>
+             <th style="text-align:center">신분증</th>
+             <th class="eq-ui-data-table-cell-non-numeric">가입상품</th>
          </tr>
-         <tr class="rows header blue">
-             <th><input type="checkbox" id="box1" name="box1"></th>
-             <th colspan=2>고객등급</th>
-             <th>고객명</th>
-             <th>생년월일</th>
-             <th>주소</th>
-             <th>아이디</th>
-             <th>연락처</th>
-             <th>이메일</th>
-             <th>가입일</th>
-             <th>신분증</th>
-             <th>가입상품</th>
-         </tr>
-         
+         </thead>
          <c:forEach var="vo" items="${users}">
-         <tr class="rows">
-           <td class="cell"><input type="checkbox" id="${vo.c_id}" name="box2" value="${vo.c_id}"></td>
+         <tbody>
+         <tr>
+           <td class="cell"><input type="checkbox" class="eq-ui-input filled-in" id="${vo.c_id}" name="box2" value="${vo.c_id}" />
+            <label for="${vo.c_id}"></label></td>
            <td class="cell"><div id="level_div${vo.c_id}">${vo.c_level}</div></td>
-           <td class="cell">
-            <select name="level" id="level${vo.c_id}" onchange="changelevel('${vo.c_id}', '${vo.c_level}')">
-             <option value="" selected disabled hidden>변경선택</option>
+           <td class="eq-ui-data-table-cell-non-numeric">
+            <select class="levelSelelct" name="level" id="level${vo.c_id}" onchange="changelevel('${vo.c_id}', '${vo.c_level}')">
+             <option value="" selected disabled hidden>변경</option>
              <option value="승인전">승인전</option>
              <option value="승인1">승인1</option>
              <option value="승인2">승인2</option>
-            </select>
-           <td class="cell">${vo.c_name}</td>
-           <td class="cell">${vo.c_jumin1}</td>
-           <td class="cell" style="text-align:left">${vo.c_address}</td>
-           <td class="cell">${vo.c_id}</td>
-           <td class="cell">${vo.c_hp}</td>
-           <td class="cell">${vo.c_email}</td>
-           <td class="cell">${vo.c_regDate}</td>
-           <td class="cell">
+            </select></td>
+           <td style="text-align:center">${vo.c_name}</td>
+           <td style="text-align:center">${vo.c_jumin1}</td>
+           <td class="eq-ui-data-table-cell-non-numeric">${vo.c_address}</td>
+           <td style="text-align:center">${vo.c_id}</td>
+           <td style="text-align:center">${vo.c_hp}</td>
+           <td class="eq-ui-data-table-cell-non-numeric">${vo.c_email}</td>
+           <td style="text-align:center">${vo.c_regDate}</td>
+           <td style="text-align:center">
               <img src="/benkfit/resources/img/idcard/${vo.c_idCard}" style="width:20px;" 
                     onclick="openImg('${vo.c_idCard}')"></td>
-           <td class="cell">
-           <button type="button" class="btn btn-primary" id="mdBtn" data-toggle="modal" data-target="#myModal" 
-                    onclick="showAccount('${vo.c_id}')">조회</button></td>
+           <td style="display:table">
+           <div style="padding-left:20px; display:table-cell; vertical-align:middle">
+           <button type="button" class="btn btn-primary eq-ui-waves-light" id="mdBtn" data-toggle="modal" data-target="#myModal" 
+                    onclick="showAccount('${vo.c_id}')" style="">조회</button></div></td>
          </tr>
-              
+         </tbody>     
           <!-- Modal -->
           <div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg-centered" id="myModal2" style="margin-top:5%; margin-left:25%">
@@ -265,7 +304,7 @@
        <!-- 페이지 컨트롤 -->
           <table class="paging" align="center">
             <tr>
-              <th align="center">
+              <th style="text-align:center">
                 <!-- 회원 있으면 -->
                 <c:if test="${ucnt > 0}">
                   <c:if test="${startPage > pageBlock}">
