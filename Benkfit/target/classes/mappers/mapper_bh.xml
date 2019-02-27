@@ -40,7 +40,7 @@
 		parameterType="spring.mvc.benkfit.vo.MyloanAccountVO">
 		insert into myloanaccount_tbl(myLoan_account, loan_num,
 		myLoan_amount, c_id,myLoan_rate, myLoan_left)
-		values(#{myLoan_account},#{loan_num},#{myLoan_amount},#{c_id},#{myLoan_rate},#{myLoan_left})
+		values(#{myloan_account},#{loan_num},#{myloan_amount},#{c_id},#{myloan_rate},#{myloan_left})
 	</insert>
 
 	<!-- 대출금리 -->

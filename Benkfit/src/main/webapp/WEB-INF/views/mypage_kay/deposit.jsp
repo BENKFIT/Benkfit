@@ -34,7 +34,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th><input type="button" onclick="getBalance()" value="잔액확인"></th>
+				<th><input type="button" onclick="getBalance()" class="btn btn-primary" value="잔액확인"></th>
 				<td id="getBalance"></td>
 			</tr>
 			<tr>

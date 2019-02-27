@@ -176,9 +176,34 @@
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-2" href="#">상품관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
+								data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
+								data-submenu="submenu-0-4" href="#">은행관리</a></li>
+						</ul>
+						
+						<!-- Submenu 0-2 예금-->
+						<ul data-menu="submenu-0-2" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-1" href="cheqSavRegi">예금 상품</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-2-2" href="loanRegi">대출상품</a></li>
+							<li class="menu__item"><a class="menu__link" href="loanApproval">대출신청관리</a></li>
+						</ul>
+						
+						<!-- Submenu 0-3 이벤트관리 -->
+						<ul data-menu="submenu-0-3" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-3-1" href="event_list_sws">이벤트관리</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
+						</ul>
+						
+						<!-- Submenu 0-4 예금-->
+						<ul data-menu="submenu-0-4" class="menu__level">
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-4-1" href="benkfitControl">은행관리</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-4-2" href="productChart_sws">결산</a></li>
 						</ul>
 					</sec:authorize>
 
@@ -198,7 +223,7 @@
 					<ul data-menu="submenu-1-2" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
-						<li class="menu__item"><a class="menu__link" href="req_loan">
+						<li class="menu__item"><a class="menu__link" href="loanApply">
 								대출신청 </a></li>
 					</ul>
 					<!-- Submenu 3  안내 -->
@@ -240,6 +265,7 @@
 												<li><a href="wallet">지갑만들기</a></li>
 												<li><a href="transfer">간편송금</a></li>
 												<li><a href="bank">간편은행</a></li>
+												<li><a href="verify">거래검증소</a></li>
 											</ul></li>
 										<li class="menu-has-children"><a href="#">금융상품</a>
 											<ul>
@@ -315,85 +341,6 @@
             onItemClick : loadDummyData
           });
 
-/* <<<<<<< HEAD
-					<!-- Submenu 5 안내 -->
-					<ul data-menu="submenu-5" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="map_sws">ATM</a></li>
-					</ul>
-				</div>
-			</nav>
-		</nav>
-		<!--top-menu -->
-		<div id="page-content-wrapper">
-			<div class="container">
-				<!-- top-menu -->
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
-						<header id="header">
-							<div class="container">
-								<div id="logo" class="pull-left">
-									<h1>
-										<a href="index" class="scrollto"><img
-											src="/benkfit/resources/img/logo.jpeg"></a>
-									</h1>
-								</div>
-								<nav id="nav-menu-container">
-									<ul class="nav-menu">
-										<li><a href="#">체험관</a>
-											<ul>
-												<li><a href="wallet">지갑만들기</a></li>
-												<li><a href="transfer">간편송금</a></li>
-												<li><a href="bank">간편은행</a></li>
-												<li><a href="verify">거래검증소</a></li>
-												
-											</ul></li>
-										<li class="menu-has-children"><a href="#">금융상품</a>
-											<ul>
-												<li><a href="cheqSavList">예/적금</a></li>
-												<li><a href="loanList">대출</a></li>
-											</ul></li>
-										<li><a href="hoursOfUse_sws">안내</a></li>
-										<li><a href="eventList_sws">이벤트</a></li>
-										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
-										<sec:authorize access="isAnonymous()">
-											<li><a href="login">로그인</a><br></li>
-										</sec:authorize>
-										<sec:authorize access="isAuthenticated()">
-											<li><a href="logout">로그아웃</a></li>
-										</sec:authorize>
-										<li>
-											<div id="myOver" class="over" style="display: none;">
-												<span class="closebtn" onclick="closeSearch()"
-													title="Close over">×</span>
-												<div class="over-content">
-													<form action="search_pro" method="post" name="searchForm">
-														<input type="text" id="searchinput" name="search"
-															placeholder="Search..">
-														<!-- search.css -> .over input[type=text] height: 10%; -->
-														<button type="submit">
-															<i class="fa fa-search"></i>
-														</button>
-													</form>
-												</div>
-											</div>
-											<button class="openBtn" onclick="openSearch()">
-												<p>
-													<span class="glyphicon glyphicon-search"></span>
-												</p>
-											</button>
-										</li>
-									</ul>
-								</nav>
-							</div>
-						</header>
-						<!-- #header -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /#page-content-wrapper -->
-	</div>
-======= */
       // mobile menu toggle
       var openMenuCtrl = document.querySelector('.action--open'), 
         closeMenuCtrl = document.querySelector('.action--close');

@@ -259,12 +259,21 @@
 			<version>2.9.5</version>
 		</dependency>
 
-		<!-- web3j -->
+		<!-- web3j core-->
 		<dependency>
 			<groupId>org.web3j</groupId>
 			<artifactId>core</artifactId>
 			<version>4.1.0</version>
 		</dependency>
+		<!-- web3j core-->
+		<!-- web3j geth-->
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>geth</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		<!-- web3j geth-->
+
 
 		<dependency>
 			<groupId>com.oracle</groupId>
@@ -272,14 +281,14 @@
 			<version>12.1.0.1-atlassian-hosted</version>
 		</dependency>
 
-    <!-- dialogflow -->
+		<!-- dialogflow -->
 		<dependency>
-		    <groupId>com.google.cloud</groupId>
-		    <artifactId>google-cloud-dialogflow</artifactId>
-		    <version>0.80.0-alpha</version>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-dialogflow</artifactId>
+			<version>0.80.0-alpha</version>
 		</dependency>
-    <!-- dialogflow -->
-    
+		<!-- dialogflow -->
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>

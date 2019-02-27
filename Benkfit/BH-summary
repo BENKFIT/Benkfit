@@ -559,6 +559,33 @@
 		4. 관리자가 거절하면 신청시 납부했던 토큰은 바로 고객에게 돌아간다. 코드2
 	3. 오류 알럿 및 상태표시 메세지를 조금 더 세분화하였다.
 	
+2019-02-26
+	1. jsp css교체
+	2. 발표컴퓨터 서버 구축 및 테스트
+	
+2019-02-27
+	1. 테서렉트 설치
+		1. 패스 설정
+		2. 유정 신분증 인식 테스트 완료
+		3. 아영 서류 인식 테스트 완료
+	2. 은행 관리지 페이지 완료
+		1. totalSupply, remaing 등 기본 정보 표시
+		2. 대출관리 계정에 토큰 이동 함수 
+	3. 웹에서 마이닝 실행하기 완료
+		1. web3j core만 받았기 때문에 마이닝실행이 가능한 라이브러리를 다운받는다. 
+		pom.xml
+		<!-- web3j geth-->
+		<dependency>
+			<groupId>org.web3j</groupId>
+			<artifactId>geth</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		<!-- web3j geth-->
+		2. Geth geth = Geth.build(new HttpService("http://localhost:8545")); 설정
+			1. web3j와 겹치기 때문에 나중에 무리가 갈 수도..?  그러면 web3j.close() 활용해보자
+		3. 실행문에서 rpcapi에서 miner를 추가 하지 않았기 때문에 miner를 추가하고 서버를 다시 실행한다.
+		4. miner.start() , miner.stop() 모두 확인.
+	
 		
 	
 	
