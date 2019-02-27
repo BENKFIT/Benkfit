@@ -29,14 +29,11 @@
 					<td>${doc.doc_title}</td>
 					<td>${doc.doc_name}</td>
 					<td><fmt:formatDate value="${doc.doc_date}" pattern="yyyy.MM.dd"/></td>
-					<td><button class="btn2 btn2-info" onclick="window.location='detaildoc?doc_num=${doc.doc_num}'">조회</button></td>
+					<td> <a class="btn btn-primary eq-ui-waves-light eq-desert-orange-500" onclick="window.location='detaildoc?doc_num=${doc.doc_num}'">조회</a>
 				</tr>
 			</c:forEach> 
 			</tbody>
 		</table>
-		<div>
-			<img src=" " id="preview">
-		</div>
 	</div>
 	<%@ include file="../Template/footer.jsp"%>
 </body>

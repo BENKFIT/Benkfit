@@ -231,4 +231,30 @@ public class Controller_syk {
 		return "mypage_kay/auto/autoDel";
 	}
 	
+	/*
+	 * 배포
+	 */
+	
+	//배포페이지
+	@RequestMapping("deploy")
+	public String deploy(HttpServletRequest req) throws Exception{
+		logger.info("배포페이지");
+		service.deploy(req);
+		
+		return "admin/deploy/deploy";
+	}
+	
+	//배포
+	@RequestMapping("deployPro")
+	public String deployPro(HttpServletRequest req) throws Exception{
+		logger.info("배포");
+		service.deployPro(req);
+		
+		return "admin/deploy/deployPro";
+	}
+	
+	@RequestMapping("bean")
+	public String bean(HttpServletRequest req) {
+		return "admin/deploy/bean";
+	}
 }

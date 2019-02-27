@@ -87,6 +87,12 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 		});
 	}
 </script>
+<script>
+$(function() {
+    $( ".date" ).datepicker({
+    });
+});
+</script>
 </head>
 <body>
 	<%@ include file="../Template/top.jsp"%>
@@ -101,9 +107,9 @@ $		('#messages1').html("남은 대출금을 조회중입니다.");
 			</tr>
 			<tr class='srch_area'>
 				<th>조회기간</th>
-				<td><input type="date" id="start_date" name="start_date"
-					style="width: 90px;"> ~ <input type="date" 
-					id="end_date"name="end_date" style="width: 90px;"></td>
+				<td><input type="text" id="start_date" class="date" name="start_date"
+					style="width: 90px;"> ~ <input type="text" 
+					id="end_date"name="end_date" class="date" style="width: 90px;"></td>
 				<td>
 					<span> <input type="button" value="대출한도" onclick="loanBalance();"></span>
 					<span> <input type="button" value="대출잔액" onclick="loanleft();"></span><br>

@@ -14,10 +14,7 @@
 </head>
 <body>
 	<%@ include file="../Template/top.jsp"%>
-	<div style="text-align: center; margin: 200px 0px;">
-		<div style="display: inline-block;">
-		</div>
-	</div>
+
 
 	<table class="table_kay">
 		<tr>
