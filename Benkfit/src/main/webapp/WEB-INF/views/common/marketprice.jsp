@@ -58,32 +58,32 @@
 </head>
 <body>
 <%-- <%@ include file ="../Template/top.jsp" %> --%>
-	<div class="wrapper1" id="wrapper1">
-	  <div class="wrapper2">
-			<table class="ctbl" align="center">
-			 <thead>
-			  <tr class="ctr_head">
-			    <td class="cell" style="text-align:left">코인</td>
-			    <td class="cell">시세</td>
-			    <td class="cell">변동(%)</td>
-			    <td class="cell">거래금액</td>
-			    <td class="cell">시가총액</td>
-			  </tr>
-			 </thead>
-			 
-			 <tbody>
-			  <c:forEach var="vo" items="${price}">
-			    <tr class="ctr">
-				    <td class="cell" style="text-align:left">
-				      <c:choose>
-				        <c:when test="${vo.name=='Bitcoin'}">
-				                 비트코인
-				        </c:when>
-				        <c:when test="${vo.name=='Ethereum'}">
-				                이더리움
-				        </c:when>
-				        <c:when test="${vo.name=='Bitcoin Cash'}">
-				                 비트코인 캐시
+  <div class="wrapper1" id="wrapper1">
+    <div class="wrapper2">
+      <table class="ctbl" align="center">
+       <thead>
+        <tr class="ctr_head">
+          <td class="cell" style="text-align:left">코인</td>
+          <td class="cell">시세</td>
+          <td class="cell">변동(%)</td>
+          <td class="cell">거래금액</td>
+          <td class="cell">시가총액</td>
+        </tr>
+       </thead>
+       
+       <tbody>
+        <c:forEach var="vo" items="${price}">
+          <tr class="ctr">
+            <td class="cell" style="text-align:left">
+              <c:choose>
+                <c:when test="${vo.name=='Bitcoin'}">
+                         비트코인
+                </c:when>
+                <c:when test="${vo.name=='Ethereum'}">
+                        이더리움
+                </c:when>
+                <c:when test="${vo.name=='Bitcoin Cash'}">
+                         비트코인 캐시
                 </c:when>
                 <c:when test="${vo.name=='Dash'}">
                                 대시
@@ -295,42 +295,42 @@
                 <c:when test="${vo.name=='ROM'}">
                                  롬
                 </c:when>
-				        <c:otherwise>
-				        ${vo.name}
-				        </c:otherwise>
-				      </c:choose>
-				    </td>
-				    <td class="cell"><fmt:formatNumber value="${vo.marketprice}" pattern="#,###.##" />원</td>
-				    
-				    <c:choose>
-	            <c:when test = "${fn:startsWith(vo.changeNum, '+')}">
-	              <td class="cell" id="rateUp">
-	              +<fmt:formatNumber value="${vo.changeNum}" pattern="#,###.##" />  ${vo.changePer}
-	                <i class="rate_icon">▲</i>
-	              </td>
-	            </c:when>
-	            
-	            <c:when test = "${fn:startsWith(vo.changeNum, '-')}">
-	              <td class="cell" id="rateDown">
-	              <fmt:formatNumber value="${vo.changeNum}" pattern="#,###.##" />  ${vo.changePer}
-	                <i class="rate_icon">▼</i>
-	              </td>
-	            </c:when>
-	            
-	            <c:otherwise>
-	              <td class="cell">
-	              <fmt:formatNumber value="${vo.changeNum}" pattern="#,###.##" />  ${vo.changePer} －
-	              </td>
-	            </c:otherwise>
+                <c:otherwise>
+                ${vo.name}
+                </c:otherwise>
+              </c:choose>
+            </td>
+            <td class="cell"><fmt:formatNumber value="${vo.marketprice}" pattern="#,###.##" />원</td>
+            
+            <c:choose>
+              <c:when test = "${fn:startsWith(vo.changeNum, '+')}">
+                <td class="cell" id="rateUp">
+                +<fmt:formatNumber value="${vo.changeNum}" pattern="#,###.##" />  ${vo.changePer}
+                  <i class="rate_icon">▲</i>
+                </td>
+              </c:when>
+              
+              <c:when test = "${fn:startsWith(vo.changeNum, '-')}">
+                <td class="cell" id="rateDown">
+                <fmt:formatNumber value="${vo.changeNum}" pattern="#,###.##" />  ${vo.changePer}
+                  <i class="rate_icon">▼</i>
+                </td>
+              </c:when>
+              
+              <c:otherwise>
+                <td class="cell">
+                <fmt:formatNumber value="${vo.changeNum}" pattern="#,###.##" />  ${vo.changePer} －
+                </td>
+              </c:otherwise>
             </c:choose>
-				    <td class="cell"><fmt:formatNumber value="${vo.sort_amount}" pattern="#,###" />원</td>
-				    <td class="cell">${vo.total}</td>
-			    </tr>
-			  </c:forEach>
-			 </tbody>
-			</table>
-		</div>
-	</div>
+            <td class="cell"><fmt:formatNumber value="${vo.sort_amount}" pattern="#,###" />원</td>
+            <td class="cell">${vo.total}</td>
+          </tr>
+        </c:forEach>
+       </tbody>
+      </table>
+    </div>
+  </div>
 <%-- <%@ include file ="../Template/footer.jsp" %> --%>
 </body>
 </html>

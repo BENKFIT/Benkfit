@@ -630,7 +630,6 @@ public class ServiceImpl_syk implements Service_syk {
 		vo.setCon_address(ServiceImpl_syk.benkfit);
 		
 		int result = dao.deployAdd(vo);
-		
 	}
 	
 }

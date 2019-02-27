@@ -1,5 +1,5 @@
 package spring.mvc.benkfit.service;
-
+/* 손리아 */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -89,6 +89,7 @@ public class ServiceImpl_lia implements Service_lia {
             /*for(String str : list) {
             	System.out.println(str + "..");
             }*/
+            
             //이름 추출
             for(String str : list) {
             	if(str.contains("(")) {
@@ -336,7 +337,7 @@ public class ServiceImpl_lia implements Service_lia {
 	@Override
 	public void search_pro(HttpServletRequest req, Model model) {
 		String keyword = req.getParameter("search");
-		System.out.println("keyword : " + keyword);
+		//System.out.println("keyword : " + keyword);
 		
 		int cardCnt = dao.search_card_count(keyword);
 		int cheqCnt = dao.search_cheq_count(keyword);

@@ -132,16 +132,10 @@
                         <li class="menu__item"><a class="menu__link"
                            href="loan_account">대출계좌</a></li>
                         <li class="menu__item"><a class="menu__link"
-                            data-submenu="submenu-0-1-1-1" href="#">내서류</a></li>
-                     </ul>
-                     <!-- Submenu 0-1-1-1 내서류 -->
-                     <ul data-menu="submenu-0-1-1-1" class="menu__level">
-                        <li class="menu__item"><a class="menu__link" href="document">서류조회</a></li>
-                        <li class="menu__item"><a class="menu__link" href="upload">서류등록</a></li>
+                           href="document">내서류</a></li>
                      </ul>
                      <!-- Submenu 0-2 이체 -->
                      <ul data-menu="submenu-0-2" class="menu__level">
-                     	<li class="menu__item"><a class="menu__link" href="deposit">입금</a></li>
                         <li class="menu__item"><a class="menu__link" href="trans">계좌이체</a></li>
                         <li class="menu__item"><a class="menu__link" href="auto_trans">자동이체</a></li>
                      </ul>
@@ -150,7 +144,6 @@
                         <li class="menu__item"><a class="menu__link"
                            href="limit_sel">이체한도</a></li>
                         <li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-                        <li class="menu__item"><a class="menu__link" href="asset">자산관리</a></li>
                      </ul>
                      <!-- Submenu 0-4 내서류 -->
                      <ul data-menu="submenu-0-4" class="menu__level">
@@ -173,8 +166,6 @@
                         data-submenu="submenu-0-3" href="event_list_sws">이벤트관리</a></li>
                      <li class="menu__item"><a class="menu__link"
                         data-submenu="submenu-0-4" href="productChart_sws">결산</a></li>
-                     <li class="menu__item"><a class="menu__link"
-                        href="deploy">배포</a></li>
                   </ul>
                </sec:authorize>
 
@@ -194,7 +185,8 @@
                <ul data-menu="submenu-1-2" class="menu__level">
                   <li class="menu__item"><a class="menu__link"
                      data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
-                  <li class="menu__item"><a class="menu__link" href="req_loan">대출신청 </a></li>
+                  <li class="menu__item"><a class="menu__link" href="req_loan">
+                        대출신청 </a></li>
                </ul>
                <!-- Submenu 3  안내 -->
                <ul data-menu="submenu-3" class="menu__level">

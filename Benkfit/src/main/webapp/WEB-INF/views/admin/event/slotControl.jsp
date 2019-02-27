@@ -78,10 +78,10 @@ p, a {
 			<p>슬롯에 잔고가 남아있지 않으면 슬롯이 정상적으로 작동하지 않습니다.</p>
 			<div class="wrapper">
 				<p class="login">
-					관리자계정 :<input type="file" id="from"><br> 
-					비밀번호 : <input type="password" id="password" value="password"><br>
-					<br> <input type="button" value="슬롯잔액조회"
-						onClick="slotStockBalance();"> <br>
+					관리자계정 :<input type="file" id="from"><br> 비밀번호 : <input
+						type="password" id="password" value="password"><br> <br>
+					<input type="button" value="슬롯잔액조회" onClick="slotStockBalance();">
+					<br>
 				</p>
 				<p id="balance"></p>
 				<br> 금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;액 : <input
@@ -137,7 +137,7 @@ p, a {
 				$('#state').html("이더가 채워졌습니다. 확인해보세요.");
 			},
 			error : function() {
-				alert("오류")
+				alert("지갑파일을 선택해주세요.")
 			}
 		});
 	}
@@ -158,7 +158,7 @@ p, a {
 				$('#balance').html("슬롯의 잔액은 " + data + "ETH 입니다.");
 			},
 			error : function() {
-				alert("오류")
+				alert("지갑파일을 선택해주세요.")
 			}
 		});
 	}
