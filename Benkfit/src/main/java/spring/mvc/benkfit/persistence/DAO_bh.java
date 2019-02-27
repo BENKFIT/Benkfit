@@ -4,7 +4,6 @@ import java.util.List;
 
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
-import spring.mvc.benkfit.vo.documentVO;
 
 public interface DAO_bh {
 
@@ -55,4 +54,5 @@ public interface DAO_bh {
 
 	// 대출신청처리(거절)
 	public int rejection(String myLoan_account);
+	
 }

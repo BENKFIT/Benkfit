@@ -8,11 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
-import spring.mvc.benkfit.vo.documentVO;
 
 @Repository
 public class DAOImpl_bh implements DAO_bh {
-
+    
 	@Autowired
 	SqlSession sqlSession;
 
@@ -102,4 +101,5 @@ public class DAOImpl_bh implements DAO_bh {
 	public int rejection(String myLoan_account) {
 		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_bh.rejection", myLoan_account);
 	}
+
 }

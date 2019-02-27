@@ -24,6 +24,46 @@
 </style>
 <body>
 	<%@ include file="../Template/top.jsp"%>
+<<<<<<< HEAD
+	<div class="wrapper">
+		<h1>입금</h1>
+		<hr>
+		<table class="table_kay">
+			<tr>
+				<td><h3>입금정보</h3></td>
+			</tr>
+			<tr>
+				<th>입금계좌</th>
+				<td>
+					<input type="text" name="from" id="from" size="40">
+				</td>
+			</tr>
+			<tr>
+				<th>private key</th>
+				<td>
+					<input type="file" id="file">
+				</td>
+			</tr>
+			<tr>
+				<th><input type="button" onclick="getBalance()" class="btn btn-primary" value="잔액확인"></th>
+				<td id="getBalance"></td>
+			</tr>
+			<tr>
+				<th>비밀번호 입력</th>
+				<td>
+					<input type="password" id="password" class="inputStyle" required>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<div class="trBtn">
+			<p>입금시, 수수료(gas)가 발생합니다.</p>
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#trans" onclick="confirm();">확인</button>
+		</div>
+	</div>
+=======
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 40%;">

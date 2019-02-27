@@ -66,7 +66,7 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-
+<title>관리자 > 이벤트관리 > 슬롯관리</title>
 <body>
 
 	<%@ include file="../../Template/top.jsp"%>

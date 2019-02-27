@@ -194,6 +194,7 @@ input, select {
 							<tr>
 								<td>상환방식</td>
 								<td><select name="remethod">
+										<option value="뱅킷상환">뱅킷상환</option>
 										<option value="원리금균등상환">원리금균등상환</option>
 										<option value="만기일시상환">만기일시상환</option>
 								</select></td>

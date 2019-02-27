@@ -3,6 +3,7 @@ package spring.mvc.benkfit.service;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.web3j.protocol.http.HttpService;
 
@@ -102,6 +103,18 @@ public interface Service_bh {
 
 	// 대출신청처리(거절)
 	public void rejection(HttpServletRequest req, Model model) throws Exception;
+	
+	// 은행관리
+	public void benkfitControl(HttpServletRequest req, Model model) throws Exception;
+	
+	// 대출계좌 토큰 할당하기
+	public void benkfitLoanStock(HttpServletRequest req, Model model) throws Exception;
+	
+	// 마이닝
+	public void minerStart(HttpServletRequest req, Model model) throws Exception;
+	
+	// 마이닝중지
+	public void minerStop(HttpServletRequest req, Model model) throws Exception;
 
 	/*
 	 * 거래검증소
