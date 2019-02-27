@@ -6,10 +6,14 @@
 <meta charset="UTF-8">
 <title>BenkFit</title>
 <script type="text/javascript">
+<<<<<<< HEAD
+     window.onload = function() {
+=======
      /* window.onload = function() {
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
       setInterval(function() {
         $.ajax({
-              type: "POST",
+              type: "POST", 
               url : "${pageContext.request.contextPath}/marketprice",
               success: function(data) {
                 $("#priceTbl").html(data);
@@ -19,7 +23,23 @@
               }
             });
         }, 1000)
+<<<<<<< HEAD
+    } 
+    window.onload = function() {
+       $.ajax({
+             type: "POST",
+             url : "${pageContext.request.contextPath}/marketprice",
+             success: function(data) {
+               $("#priceTbl").html(data);
+             },
+             error: function() {
+               alert("error");
+             }
+           });
+    }  
+=======
     }  */
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 </script>
 </head>
 <body>

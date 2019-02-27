@@ -12,43 +12,42 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script>
-  $(document).ready(
-    function() {
-      var trigger = $('.hamburger'), overlay = $('.overlay'), isClosed = false;
+   $(document)
+         .ready(
+               function() {
+                  var trigger = $('.hamburger'), overlay = $('.overlay'), isClosed = false;
 
-      trigger.click(function() {
-        hamburger_cross();
-      });
+                  trigger.click(function() {
+                     hamburger_cross();
+                  });
 
-      function hamburger_cross() {
+                  function hamburger_cross() {
 
-        if (isClosed == true) {
-          overlay.hide();
-          trigger.removeClass('is-open');
-          trigger.addClass('is-closed');
-          isClosed = false;
+                     if (isClosed == true) {
+                        overlay.hide();
+                        trigger.removeClass('is-open');
+                        trigger.addClass('is-closed');
+                        isClosed = false;
 
-        } else {
-          overlay.show();
-          trigger.removeClass('is-closed');
-          trigger.addClass('is-open');
-          isClosed = true;
-        }
-      }
-      $('[data-toggle="offcanvas"]').click(function() {
-        $('#wrapper').toggleClass('toggled');
-      });
-  });
-  
-  $(document).ready(function(){
-    $('#loading').hide();
-  })
-  .ajaxStart(function(){
-    $('#loading').show();
-  })
-  .ajaxStop(function(){
-    $('#loading').hide();
-  })
+                     } else {
+                        overlay.show();
+                        trigger.removeClass('is-closed');
+                        trigger.addClass('is-open');
+                        isClosed = true;
+                     }
+                  }
+                  $('[data-toggle="offcanvas"]').click(function() {
+                     $('#wrapper').toggleClass('toggled');
+                  });
+               });
+
+   $(document).ready(function() {
+      $('#loading').hide();
+   }).ajaxStart(function() {
+      $('#loading').show();
+   }).ajaxStop(function() {
+      $('#loading').hide();
+   })
 </script>
 <style>
 #progress_Loading {
@@ -132,13 +131,8 @@
 							<ul data-menu="submenu-0-1-1" class="menu__level">
 								<li class="menu__item"><a class="menu__link"
 									href="loan_account">대출계좌</a></li>
-								<li class="menu__item"><a class="menu__link" href="#">내서류</a></li>
-							</ul>
-							<!-- Submenu 0-1-1-1 내서류 -->
-							<ul data-menu="submenu-0-1-1-1" class="menu__level">
 								<li class="menu__item"><a class="menu__link"
-									href="document">서류조회</a></li>
-								<li class="menu__item"><a class="menu__link" href="upload">서류등록</a></li>
+									href="document">내서류</a></li>
 							</ul>
 							<!-- Submenu 0-2 이체 -->
 							<ul data-menu="submenu-0-2" class="menu__level">
@@ -146,17 +140,11 @@
 								<li class="menu__item"><a class="menu__link"
 									href="auto_trans">자동이체</a></li>
 							</ul>
-							<!-- Submenu 0-2-1 자동이체 -->
-							<ul data-menu="submenu-0-2-1" class="menu__level">
-								<li class="menu__item"><a class="menu__link" href="#">자동이체
-										조회</a></li>
-							</ul>
 							<!-- Submenu 0-3 설정 -->
 							<ul data-menu="submenu-0-3" class="menu__level">
 								<li class="menu__item"><a class="menu__link"
 									href="limit_sel">이체한도</a></li>
 								<li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-								<li class="menu__item"><a class="menu__link" href="asset">자산관리</a></li>
 							</ul>
 							<!-- Submenu 0-4 내서류 -->
 							<ul data-menu="submenu-0-4" class="menu__level">
@@ -180,16 +168,17 @@
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-4" href="#">은행관리</a></li>
 						</ul>
-						
+
 						<!-- Submenu 0-2 예금-->
 						<ul data-menu="submenu-0-2" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-2-1" href="cheqSavRegi">예금 상품</a></li>
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-2-2" href="loanRegi">대출상품</a></li>
-							<li class="menu__item"><a class="menu__link" href="loanApproval">대출신청관리</a></li>
+							<li class="menu__item"><a class="menu__link"
+								href="loanApproval">대출신청관리</a></li>
 						</ul>
-						
+
 						<!-- Submenu 0-3 이벤트관리 -->
 						<ul data-menu="submenu-0-3" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
@@ -197,7 +186,7 @@
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
 						</ul>
-						
+
 						<!-- Submenu 0-4 예금-->
 						<ul data-menu="submenu-0-4" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
@@ -326,71 +315,73 @@
 
 	<!-- /view -->
 	<script>
-    (function() {
-      
-      $('a').click(function(){
-        var location = $(this).prop("href");
-        if(location != "#"){
-          window.location.href = location;
-        }
-      })
-      
-      var menuEl = document.getElementById('ml-menu'), mlmenu = new MLMenu(
-          menuEl, {
-            backCtrl : false, // show back button
-            onItemClick : loadDummyData
-          });
+      (function() {
 
       // mobile menu toggle
       var openMenuCtrl = document.querySelector('.action--open'), 
         closeMenuCtrl = document.querySelector('.action--close');
+         $('a').click(function() {
+            var location = $(this).prop("href");
+            if (location != "#") {
+               window.location.href = location;
+            }
+         })
 
-      openMenuCtrl.addEventListener('click', openMenu);
-      closeMenuCtrl.addEventListener('click', closeMenu);
+         var menuEl = document.getElementById('ml-menu'), mlmenu = new MLMenu(
+               menuEl, {
+                  backCtrl : false, // show back button
+                  onItemClick : loadDummyData
+               });
 
-      function openMenu() {
-        classie.add(menuEl, 'menu--open');
-      }
+         // mobile menu toggle
+         var openMenuCtrl = document.querySelector('.action--open'), closeMenuCtrl = document
+               .querySelector('.action--close');
 
-      function closeMenu() {
-        classie.remove(menuEl, 'menu--open');
-      }
-      // simulate grid content loading
-      var gridWrapper = document.querySelector('.content');
+         openMenuCtrl.addEventListener('click', openMenu);
+         closeMenuCtrl.addEventListener('click', closeMenu);
 
-      function loadDummyData(ev, itemName) {
-        
-        
-        ev.preventDefault();
+         function openMenu() {
+            classie.add(menuEl, 'menu--open');
+         }
 
-        closeMenu();
-        
-        if(gridWrapper != null){
-          gridWrapper.innerHTML = '';
-          classie.add(gridWrapper, 'content--loading');
-          setTimeout(function() {
-            classie.remove(gridWrapper, 'content--loading');
-            gridWrapper.innerHTML = '<ul class="products">'
-                + dummyData[itemName] + '<ul>';
-          }, 700);
-        }else{
-          if(location != "#") {
-            window.location = location;
-            return false;
-          } 
-        }
-      }
-    })();
-  </script>
+         function closeMenu() {
+            classie.remove(menuEl, 'menu--open');
+         }
+         // simulate grid content loading
+         var gridWrapper = document.querySelector('.content');
+
+         function loadDummyData(ev, itemName) {
+
+            ev.preventDefault();
+
+            closeMenu();
+
+            if (gridWrapper != null) {
+               gridWrapper.innerHTML = '';
+               classie.add(gridWrapper, 'content--loading');
+               setTimeout(function() {
+                  classie.remove(gridWrapper, 'content--loading');
+                  gridWrapper.innerHTML = '<ul class="products">'
+                        + dummyData[itemName] + '<ul>';
+               }, 700);
+            } else {
+               if (location != "#") {
+                  window.location = location;
+                  return false;
+               }
+            }
+         }
+      })();
+   </script>
 
 	<script>
-    function openSearch() {
-      document.getElementById("myOver").style.display="block";
-    }
+      function openSearch() {
+         document.getElementById("myOver").style.display = "block";
+      }
 
-    function closeSearch() {
-      document.getElementById("myOver").style.display = "none";
-    }
-  </script>
+      function closeSearch() {
+         document.getElementById("myOver").style.display = "none";
+      }
+   </script>
 </body>
 </html>

@@ -86,4 +86,13 @@ public interface Service_syk {
 	//자동이체 삭제
 	public void autoDel(HttpServletRequest req) throws Exception;
 	
+	/*
+	 * 배포
+	 */
+	
+	//배포페이지
+	public void deploy(HttpServletRequest req) throws Exception;
+	
+	//배포
+	public void deployPro(HttpServletRequest req) throws Exception;
 }
