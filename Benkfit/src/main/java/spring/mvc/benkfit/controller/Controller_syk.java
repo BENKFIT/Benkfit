@@ -192,14 +192,14 @@ public class Controller_syk {
 		return "mypage_kay/withdraw";
 	}
 	
-	//출금진행
+	/*//출금진행
 	@RequestMapping("withdrawPro")
 	public String withdrawPro(HttpServletRequest req) throws Exception{
 		logger.info("출금");
 		service.withdraw(req);
 		
 		return "mypage_kay/withdraw";
-	}
+	}*/
 	
 	/*
 	 * 자동이체

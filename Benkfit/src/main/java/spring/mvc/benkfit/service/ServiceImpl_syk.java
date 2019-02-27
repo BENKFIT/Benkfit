@@ -498,10 +498,10 @@ public class ServiceImpl_syk implements Service_syk {
 		//System.out.println("입금결과 : " + result);
 	}
 	
-	//출금
+	/*//출금
 	@Override
 	public void withdraw(HttpServletRequest req) throws Exception{
-		/*System.out.println("===== 출금 =====");
+		System.out.println("===== 출금 =====");
 		String account = req.getParameter("from");
 		String file = req.getParameter("file");
 		file = path.concat(file);
@@ -520,9 +520,9 @@ public class ServiceImpl_syk implements Service_syk {
 		String blockHash = transactionReceipt.getBlockHash();
 		System.out.println("blockhash : " + blockHash);
 		
-		req.setAttribute("blockhash", blockHash);*/
+		req.setAttribute("blockhash", blockHash);
 	}
-	
+	*/
 	/*// 잔액확인
 	@Override
 	public void getBalance(HttpServletRequest req) {
@@ -595,9 +595,8 @@ public class ServiceImpl_syk implements Service_syk {
 	//배포페이지
 	@Override
 	public void deploy(HttpServletRequest req) throws Exception {
-		
 		List<ContractVO> vo = dao.deploy();
-				
+		req.setAttribute("contract", vo);
 	}
 	
 	//배포
@@ -630,6 +629,37 @@ public class ServiceImpl_syk implements Service_syk {
 		vo.setCon_address(ServiceImpl_syk.benkfit);
 		
 		int result = dao.deployAdd(vo);
+		req.setAttribute("result", result);
 	}
-	
+
+	@Override
+	public void reDeploy(HttpServletRequest req) throws Exception {
+		String name = req.getParameter("contract");
+		ContractVO vo = new ContractVO();
+		
+		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
+		
+		if(name.equals("Benkfit")) {
+			@SuppressWarnings("deprecation")
+			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
+			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
+			System.out.println("Contract benkfit ==> " + this.benkfit);
+			
+		}else if(name.equals("Bank")) {
+			@SuppressWarnings("deprecation")
+			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			ServiceImpl_syk.bank = bank.getContractAddress();
+			System.out.println("Contract bank ==> " + this.bank);
+		}else if(name.equals("Slot")) {
+			@SuppressWarnings("deprecation")
+			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			ServiceImpl_syk.slot = slot.getContractAddress();
+			System.out.println("Contract slot ==> " + this.slot);
+		}
+		vo.setCon_name(name);
+		vo.setCon_address(ServiceImpl_syk.benkfit);
+		
+		int result = dao.reDeploy(vo);
+		req.setAttribute("result", result);
+	}
 }

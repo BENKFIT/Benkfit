@@ -40,7 +40,7 @@
 						<td>${con.con_address}</td>
 						<td>${con.con_deployDate}</td>
 						<td><a class="btn btn-info eq-ui-waves-light"
-							onclick="deploy('${con.con_name}')">재배포</a></td>
+							onclick="reDeploy'${con.con_name}')">재배포</a></td>
 					</c:forEach>
 				</c:if>
 			</table>
@@ -98,8 +98,8 @@
 
 
 	<script type="text/javascript">
-	function deploy(contract){
-		window.location.href="deployPro?contract=" + contract;		
+	function reDeploy(contract){
+		window.location.href="reDeploy?name=" + contract;		
 	}
 </script>
 

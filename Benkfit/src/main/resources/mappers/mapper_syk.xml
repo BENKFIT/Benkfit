@@ -174,4 +174,11 @@
 		INSERT INTO contract_tbl(con_name, con_address)
 		VALUES(#{con_name}, #{con_address})
 	</insert>
+	
+	<!-- 재배포 -->
+	<update id="reDeploy" parameterType="spring.mvc.benkfit.vo.ContractVO">
+		UPDATE contract_tbl
+		SET con_address = #{con_address}, con_deployDate = sysdate
+		WHERE con_name = #{con_name}
+	</update>
 </mapper>
