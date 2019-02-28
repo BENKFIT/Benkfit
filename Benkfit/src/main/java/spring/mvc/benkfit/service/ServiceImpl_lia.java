@@ -177,7 +177,7 @@ public class ServiceImpl_lia implements Service_lia {
 		MultipartFile file = req.getFile("idCard");
 		
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
-		String realDir = "C:\\DEV43\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\";
+		String realDir = "C:\\DEV43\\git\\benkfit\\src\\main\\webapp\\resources\\img\\idcard";
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -213,7 +213,7 @@ public class ServiceImpl_lia implements Service_lia {
 			
 			// 회원가입 처리
 			int insertCnt = dao.insertMember(vo);
-			
+			 
 			model.addAttribute("insertCnt", insertCnt);
         } catch(IOException e) {
         	e.printStackTrace();

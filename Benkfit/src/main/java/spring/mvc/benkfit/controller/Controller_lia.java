@@ -223,7 +223,7 @@ public class Controller_lia {
 	@RequestMapping("marketprice")
 	public String marketprice(Model model) throws Exception {
 		logger.info("marketprice 호출중");
-		//service.marketprice(model);
+		service.marketprice(model);
 		return "common/marketprice";
 	}
 	

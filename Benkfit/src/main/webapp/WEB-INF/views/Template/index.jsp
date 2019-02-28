@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>BenkFit</title>
 <script type="text/javascript">
-     /* window.onload = function() {
-      setInterval(function() {
+     window.onload = function() {
+      /* setInterval(function() { */
         $.ajax({
               type: "POST",
               url : "${pageContext.request.contextPath}/marketprice",
@@ -18,8 +18,8 @@
                 alert("error");
               }
             });
-        }, 1000)
-    }  */
+       /*  }, 1000) */
+    }
 </script>
 </head>
 <body>
@@ -28,8 +28,8 @@
   
   <!-- CONTENT -->
   <div>
-  <div id="priceTbl" style="height:4000px;">
-  </div>
+	  <div id="priceTbl" style="height:4000px;">
+	  </div>
   </div>
   
   <!-- FOOTER  -->
