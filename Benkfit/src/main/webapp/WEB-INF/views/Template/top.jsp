@@ -149,7 +149,6 @@
                         <li class="menu__item"><a class="menu__link"
                            href="limit_sel">이체한도</a></li>
                         <li class="menu__item"><a class="menu__link" href="qrcode">카드신청</a></li>
-                        <li class="menu__item"><a class="menu__link" href="asset">자산관리</a></li>
                      </ul>
                      <!-- Submenu 0-4 내서류 -->
                      <ul data-menu="submenu-0-4" class="menu__level">

@@ -155,7 +155,7 @@ public class Controller_syk {
 		logger.info("송금");
 		service.transPro(req);
 		
-		return "mypage_kay/result";
+		return "mypage_kay/trans/result";
 	}
 	
 	//잔액확인
@@ -164,7 +164,7 @@ public class Controller_syk {
 		logger.info("잔액확인");
 		service.getBalance(req);
 		
-		return "mypage_kay/getBalance";
+		return "mypage_kay/trans/getBalance";
 	}
 	
 	//입금
@@ -172,7 +172,7 @@ public class Controller_syk {
 	public String deposit(HttpServletRequest req) throws Exception{
 		logger.info("입금");
 		
-		return "mypage_kay/deposit";
+		return "mypage_kay/trans/deposit";
 	}
 	
 	//입금진행
@@ -181,7 +181,7 @@ public class Controller_syk {
 		logger.info("입금 실행");
 		service.depositPro(req);
 		
-		return "mypage_kay/deposit";
+		return "mypage_kay/trans/deposit";
 	}
 	
 	//출금페이지
@@ -189,7 +189,7 @@ public class Controller_syk {
 	public String withdraw(HttpServletRequest req) throws Exception{
 		logger.info("출금");
 		
-		return "mypage_kay/withdraw";
+		return "mypage_kay/trans/withdraw";
 	}
 	
 	//출금진행
@@ -198,7 +198,7 @@ public class Controller_syk {
 		logger.info("출금");
 		service.withdraw(req);
 		
-		return "mypage_kay/withdraw";
+		return "mypage_kay/trans/withdraw";
 	}
 	
 	/*
