@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!--  손리아  -->
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -24,7 +24,7 @@
   
   <!-- 회원 로그인 -->
   <select id="user_login" parameterType="String" resultType="spring.mvc.benkfit.vo.UsersVO">
-  	 select * from users_tbl where c_id=#{id}
+     select * from users_tbl where c_id=#{id}
   </select>
   
   <!-- 관리자 로그인 -->
@@ -95,12 +95,12 @@
   <!-- 관리자 > 회원조회 -->
   <select id="selectUsers" parameterType="java.util.Map" resultType="spring.mvc.benkfit.vo.UsersVO">
     <![CDATA[
-	    select * 
-	      from (select c_id, c_pwd, c_name, c_address, c_post, c_hp, c_jumin1, c_jumin2, c_email,
-							        c_idCard, c_regDate, c_level, rownum rNum
-							        from (select * from users_tbl order by c_regDate))
-				where rNum >= #{start} and rNum <= #{end}
-			]]>
+      select * 
+        from (select c_id, c_pwd, c_name, c_address, c_post, c_hp, c_jumin1, c_jumin2, c_email,
+                      c_idCard, c_regDate, c_level, rownum rNum
+                      from (select * from users_tbl order by c_regDate))
+        where rNum >= #{start} and rNum <= #{end}
+      ]]>
   </select>
   
   <!-- 관리자 > 회원삭제 -->
@@ -123,7 +123,7 @@
     select * from mysavaccount_tbl where c_id=#{id}
   </select> 
   
-  <!-- 관리자 > 회원별 적금 조회 -->
+  <!-- 관리자 > 회원별 대출 조회 -->
   <select id="selectLoan" parameterType="String" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
     select * from myloanaccount_tbl where c_id=#{id}
   </select> 
@@ -141,13 +141,13 @@
   
   <select id="getCheqTrans" parameterType="java.util.Map" resultMap="cheqTrans">
     <![CDATA[
-	    select *
-				from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
-				      tran_bank, tran_type, tran_code, mycheq_amount, rownum rNum
-				      from (select * from transdetail_tbl t, mycheqaccount_tbl m 
-				                where m.mycheq_account = t.tran_account
-				                 and t.tran_account = #{account} order by t.tran_date desc))
-				where rNum >= #{start} and rNum <= #{end}
+      select *
+        from (select tran_num, tran_account, tran_out, tran_in, tran_date, tran_amount,
+              tran_bank, tran_type, tran_code, mycheq_amount, rownum rNum
+              from (select * from transdetail_tbl t, mycheqaccount_tbl m 
+                        where m.mycheq_account = t.tran_account
+                         and t.tran_account = #{account} order by t.tran_date desc))
+        where rNum >= #{start} and rNum <= #{end}
     ]]>   
   </select>
   

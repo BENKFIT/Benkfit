@@ -40,6 +40,7 @@ $(document).ready(function() {
 	$('#qrcode').hide();
 	$('#createBtn').click(function() {
 		$('#qrcode').show();
+		
 		// input에 입력하는 값들을 뽑아서 변수에 저장
 		var m_strid = $('#m_strid').val();
 		var m_name = $('#m_name').val();
@@ -59,6 +60,7 @@ $(document).ready(function() {
 		// 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
 		var qrurl = googleQRUrl + "ID:"+ m_strid +"/PWD:"+m_pwd + "/NAME:"+ m_name
 		+ "/HP:"+ m_phone + '&choe=UTF-8'; 
+		
 		 $('#qrcode').prop('src', qrurl);
 	});
 }); 

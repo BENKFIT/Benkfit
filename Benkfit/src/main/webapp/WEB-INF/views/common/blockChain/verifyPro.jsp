@@ -1,0 +1,23 @@
+{
+	"chkNum":"${chkNum}",
+	"coinBase":"${coinBase}",
+	"from":"${from}",
+	"to":"${to}",
+	"bn":"${bn}",
+	"g_limit":"${g_limit}",
+	"g_used":"${g_used}",
+	"miner":"${miner}",
+	"parent":"${parent}",
+	"root":"${root}",
+	"time":"${time}",
+	"coinBase4":"${coinBase4}",
+	"from4":"${from4}",
+	"to4":"${to4}",
+	"bn4":"${bn4}",
+	"g_limit4":"${g_limit4}",
+	"g_used4":"${g_used4}",
+	"miner4":"${miner4}",
+	"parent4":"${parent4}",
+	"root4":"${root4}",
+	"time4":"${time4}"
+}
