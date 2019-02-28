@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="spring.mvc.benkfit.persistence.DAO_syk">
+
+	<!-- 예금상품목록 -->
+	<select id="cheqList" resultType="spring.mvc.benkfit.vo.CheqProductVO">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period 
+		FROM cheqproduct_tbl
+		ORDER BY cheq_num DESC
+	</select>
+	
+	<!-- 적금상품목록 -->
+	<select id="savList" resultType="spring.mvc.benkfit.vo.SavProductVO">
+		SELECT sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate, sav_period
+		FROM savproduct_tbl
+		ORDER BY sav_num DESC
+	</select>
+	
+	<!-- 예금정보 -->
+	<select id="cheqInfo" resultType="spring.mvc.benkfit.vo.CheqProductVO" parameterType="String">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period
+		FROM cheqproduct_tbl
+		WHERE cheq_num = #{num}
+	</select>
+	
+	<!-- 적금정보 -->
+	<select id="savInfo" parameterType="String" resultType="spring.mvc.benkfit.vo.SavProductVO">
+		SELECT sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate
+		FROM savProduct_tbl
+		WHERE sav_num = #{num}
+	</select>
+
+	<!-- 예금상품등록 -->
+	<insert id="RegiCheq" parameterType="spring.mvc.benkfit.vo.CheqProductVO">
+		INSERT INTO cheqproduct_tbl(cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_limit, cheq_period)
+		VALUES(cheqPro_seq.nextval, #{cheq_name}, #{cheq_rate}, #{cheq_type}, #{cheq_target}, #{cheq_limit}, #{cheq_period})
+	</insert>
+	
+	<!-- 적금상품등록 -->
+	<insert id="RegiSaving" parameterType="spring.mvc.benkfit.vo.CheqProductVO">
+		INSERT INTO savProduct_tbl(sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate, sav_autotrans)
+		VALUES(savPro_seq.nextval, #{sav_name}, #{sav_limit}, #{sav_period}, #{sav_target}, #{sav_rate}, #{sav_autotrans})
+	</insert>
+	
+	<!-- 예금계좌생성 -->
+	<insert id="createCheq" parameterType="java.util.Map">
+		INSERT INTO myCheqAccount_tbl(myCheq_account, myCheq_pwd ,cheq_num, c_id)
+		VALUES(#{account}, #{pwd}, #{num}, #{id})
+	</insert>
+	
+	<!-- 적금계좌생성 -->
+	<insert id="createSav" parameterType="java.util.Map">
+		INSERT INTO mySavAccount_tbl(mysav_account, mysav_pwd, sav_num, c_id, mysav_rate, mysav_due, mysav_amount)
+		<choose>
+			<when test="period == 12">
+				VALUES(#{account}, #{pwd}, #{num}, #{id}, 0.2, ADD_MONTHS(to_date(sysdate,'YY-MM-DD'),12), #{amount})
+			</when>
+			<when test="period == 24">
+				VALUES(#{account}, #{pwd}, #{num}, #{id}, 0.3, ADD_MONTHS(to_date(sysdate,'YY-MM-DD'),24), #{amount})
+			</when>
+			<when test="period == 36">
+				VALUES(#{account}, #{pwd}, #{num}, #{id}, 0.4, ADD_MONTHS(to_date(sysdate,'YY-MM-DD'),36), #{amount})
+			</when>
+		</choose>
+	</insert>
+	
+	<!-- 예금상품삭제 -->
+	<delete id="cheqDel" parameterType="String">
+		DELETE cheqProduct_tbl
+		WHERE cheq_num = #{num}
+	</delete>
+	
+	<!-- 적금상품삭제 -->
+	<delete id="savDel" parameterType="String">
+		DELETE savProduct_tbl
+		WHERE sav_num = #{num}
+	</delete>
+	
+	<!-- 계좌조회 -->
+	<select id="userAccounts" parameterType="String" resultType="String">
+		SELECT nvl(myCheq_account, '계좌가 없습니다.')
+		FROM myCheqAccount_tbl
+		WHERE c_id = #{id}
+	</select>
+	
+	<!-- 이체 -->
+	<insert id="transPro" parameterType="spring.mvc.benkfit.vo.TransDetailVO">
+		INSERT INTO transdetail_tbl(tran_num, tran_account, tran_out, tran_in, tran_amount, c_id, tran_type, tran_code, tran_blockhash)
+		VALUES(TRANSACTION_SEQ.nextval, #{tran_account}, #{tran_out}, #{tran_in}, #{tran_amount}, #{c_id}, #{tran_type}, #{tran_code}, #{tran_blockHash})
+	</insert>
+	
+	<!-- 적금이체 -->
+	<update id="savTrans" parameterType="java.util.Map">
+		UPDATE mySavAccount_tbl
+		SET 
+	</update>
+	
+	<!-- 입금 -->
+	<update id="depositPro" parameterType="java.util.Map">
+		UPDATE myCheqAccount_tbl
+		SET MYCHEQ_AMOUNT = MYCHEQ_AMOUNT + #{value}
+		WHERE MYCHEQ_ACCOUNT = #{account}
+	</update>
+	
+	<!-- 자동이체 조회 -->
+	<select id="autoSearch" parameterType="String" resultType="spring.mvc.benkfit.vo.AutoTransferVO">
+		SELECT auto_from, auto_to, auto_value, c_id, auto_date, auto_num
+		FROM autoTransfer_tbl
+		WHERE c_id = #{id}
+	</select>
+	
+	<!-- 자동이체 등록 -->
+	<insert id="autoAdd" parameterType="spring.mvc.benkfit.vo.AutoTransferVO">
+		INSERT INTO autoTransfer_tbl
+		VALUES(#{auto_from}, #{auto_to}, #{auto_value}, #{c_id}, #{auto_date}, AUTOTRANS_SEQ.nextval, #{auto_file}, #{auto_pwd})
+	</insert>
+	
+	<!-- 자동이체 삭제 -->
+	<delete id="autoDel" parameterType="int">
+		DELETE autoTransfer_tbl
+		WHERE auto_num = #{num}
+	</delete>
+	
+	<!-- 자동이체 갯수 -->
+	<select id="autoCnt" resultType="int">
+		SELECT COUNT(auto_from)
+		FROM autoTransfer_tbl
+		WHERE auto_date = #{day}
+	</select>
+	
+	<!-- 자동이체 목록 -->
+	<select id="autoList" resultType="spring.mvc.benkfit.vo.AutoTransferVO">
+		SELECT auto_from, auto_to, auto_value, c_id, auto_date, auto_num, auto_file
+		FROM autoTransfer_tbl
+		WHERE auto_date = #{day}
+	</select>
+	
+	<!-- 예금갯수 -->
+	<select id="cheqCnt" resultType="int">
+		SELECT COUNT(mycheq_account)
+		FROM mycheqAccount_tbl
+	</select>
+	
+	<!-- 예금이자계산 -->
+	<select id="cheqInterest" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+		SELECT mycheq_account, mycheq_rate, mycheq_amount, c_id
+		FROM mycheqaccount_tbl
+	</select>
+	
+	<!-- 적금갯수-->
+	<select id="savCnt" resultType="int">
+		SELECT COUNT(mysav_account)
+		FROM mysavAccount_tbl
+	</select>
+	
+	<!-- 적금이자계산 -->
+	<select id="savInterest" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+		SELECT mysav_account, mysav_rate, mysav_amount, c_id
+		FROM mysavAccount_tbl
+	</select>
+	
+	<!-- 배포조회 -->
+	<select id="deploy" resultType="spring.mvc.benkfit.vo.ContractVO">
+		SELECT con_name, con_address, con_deployDate
+		FROM contract_tbl
+	</select>
+	
+	<!-- 배포추가 -->
+	<insert id="deployAdd" parameterType="spring.mvc.benkfit.vo.ContractVO">
+		INSERT INTO contract_tbl(con_name, con_address)
+		VALUES(#{con_name}, #{con_address})
+	</insert>
+</mapper>

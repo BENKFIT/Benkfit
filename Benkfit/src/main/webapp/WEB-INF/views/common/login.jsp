@@ -42,7 +42,6 @@
   }
   
   #logindiv2 {
-    /* text-align:center; */
     display:inline-block;
   }
   
