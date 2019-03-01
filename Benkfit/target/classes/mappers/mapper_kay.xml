@@ -250,7 +250,7 @@
 		</if>
 	</select>
 
-	<!-- 계좌잔액 조회 -->
+	<!-- 예금잔액 조회 -->
 	<select id="delChe" resultType="int"
 		parameterType="java.util.Map">
 		select NVL(sum(mycheq_amount), 0)
@@ -270,6 +270,28 @@
 	<delete id="del_cheq" parameterType="java.util.Map">
 		delete from mycheqaccount_tbl
 		where c_id = #{id} and mycheq_account = #{account}
+	</delete>
+	
+	<!-- 적금잔액 조회 -->
+	<select id="delSav" resultType="int"
+		parameterType="java.util.Map">
+		select NVL(sum(mySav_amount), 0)
+		from mysavaccount_tbl
+		where c_id = #{id} AND mySav_account = #{account}
+		AND mySav_amount IS NOT NULL
+	</select>
+	
+	<!-- 적금 계좌pw 체크 -->
+	<select id="sav_pw" resultType="int">
+		SELECT count(*)
+		FROM mysavaccount_tbl
+		WHERE c_id = #{id} and mySav_account =#{account} and mysav_pwd = #{pwd}
+	</select>
+	
+	<!-- 적금계좌 해지 -->
+	<delete id="del_sav" parameterType="java.util.Map">
+		delete from mysavaccount_tbl
+		where c_id = #{id} and mySav_account = #{account}
 	</delete>
 
 	<!-- 서류등록 -->
@@ -304,10 +326,9 @@
 		where c_id = #{id} and doc_num =#{doc_num}
 	</delete>
 	
-	
 	<!-- 예산 차트 -->
 	<select id="budget" resultType="int">
-		SELECT sum(tran_amount)
+		SELECT NVL(sum(tran_amount), 0)
 		FROM transdetail_tbl
 		WHERE c_id = #{id}
 		and tran_date between #{start_day} and #{end_day}

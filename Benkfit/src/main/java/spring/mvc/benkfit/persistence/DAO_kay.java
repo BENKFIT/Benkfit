@@ -73,14 +73,23 @@ public interface DAO_kay {
 	//거래내역조회 -적금
 	public List<TransDetailVO> sel_sav(Map<String, Object> map);
 	
-	//계좌잔액
+	//예금 계좌잔액
 	public int delChe(Map<String, Object> map);
 	
 	//계좌pw 체크
 	public int cheq_pw(Map<String, Object> map);
 	
-	//계좌탈퇴
+	//예금해지
 	public int del_cheq(Map<String, Object> map);
+	
+	//적금 계좌잔액
+	public int delSav(Map<String, Object> map);
+	
+	//적금계좌pw 체크
+	public int sav_pw(Map<String, Object> map);
+	
+	//적금해지
+	public int del_sav(Map<String, Object> map);
 	
 	//서류등록처리
 	public int indocu(documentVO vo);

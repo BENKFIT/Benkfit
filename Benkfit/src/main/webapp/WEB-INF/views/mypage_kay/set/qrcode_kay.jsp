@@ -18,7 +18,8 @@
 <body>
 <%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<h2 style="text-align: center;">QRcode 카드발급</h2>
+		<h5 style="float:right;">마이페이지>설정>QRcode발급</h5>
+		<br>
 		<hr>
 		<div style="margin-left:18%;">
 		<div class="col-md-8">

@@ -29,7 +29,8 @@
 	</c:if>
 	<div class="wrapper">
 		<form action="myinfoPro" method="post">
-			<h2>정보수정</h2>
+			<h5 style="float:right;">마이페이지>회원정보수정</h5>
+			<br>
 			<hr>
 			<table class="table_kay">
 				<tr>

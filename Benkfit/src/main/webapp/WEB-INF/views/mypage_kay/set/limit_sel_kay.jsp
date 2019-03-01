@@ -27,9 +27,9 @@
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
 		<form action="lim_pro" method="post">
-			<h2 style="text-align: center;">이체한도조회</h2>
-			<hr>
+			<h5 style="float:right;">마이페이지>설정>이체한도조회/수정</h5>
 			<br>
+			<hr>
 			<div style="margin-left:23%;">
 				<div class="col-md-8">
 					<div class="eq-ui-form-group eq-ui-input-field">

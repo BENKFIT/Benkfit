@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import spring.mvc.benkfit.service.ServiceImpl_syk;
 import spring.mvc.benkfit.service.Service_kay;
 
@@ -29,6 +28,7 @@ public class Controller_kay {
 	 * 마이페이지
 	 * 
 	 */		
+	
 	/*마이페이지*/	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("mypage")
@@ -43,8 +43,8 @@ public class Controller_kay {
 	//자산관리
 	@RequestMapping("asset")
 	public String asset(HttpServletRequest req, Model model) throws Exception{
-		logger.info("asset");
-		return "mypage_kay/mypage/asset";
+		logger.info("assaet");
+		return "mypage_kay/mypage/asset_kay";
 	}
 	//자산관리
 	@RequestMapping("budget")
@@ -53,6 +53,7 @@ public class Controller_kay {
 		service.budget(req, model);
 		return "mypage_kay/mypage/budget_kay";
 	}
+	
 	/*
 	 * 예금. 적금. 대출 계좌 조회
 	 */
@@ -71,7 +72,7 @@ public class Controller_kay {
 		service.sel_cheq(req, model);
 		return "mypage_kay/cheq_sav/cheq_accountinfo_kay";
 	}
-	//예금 계좌해지 - pwcheq
+	//예금 계좌해지 - 계좌pw확인
 	@RequestMapping("delcheq")
 	public String delcheq(HttpServletRequest req, Model model) throws Exception{
 		logger.info("delcheq");
@@ -85,7 +86,6 @@ public class Controller_kay {
 		service.del_cheq(req, model);
 		return "mypage_kay/cheq_sav/account_kay";
 	}
-		
 	//대출계좌목록
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
@@ -112,6 +112,20 @@ public class Controller_kay {
 		logger.info("sav_info");
 		service.sel_sav(req, model);
 		return "mypage_kay/cheq_sav/sav_accountinfo_kay";
+	}
+	//적금 계좌해지 - 계좌pw확인
+	@RequestMapping("delsav")
+	public String savcheq(HttpServletRequest req, Model model) throws Exception{
+		logger.info("savcheq");
+		service.sls(req, model);
+		return "mypage_kay/cheq_sav/delsav_kay";
+	}
+	//적금 계좌해지 처리
+	@RequestMapping("del_sav")
+	public String del_sav(HttpServletRequest req, Model model) throws Exception{
+		logger.info("del_sav");
+		service.del_sav(req, model);
+		return "mypage_kay/cheq_sav/del_sav";
 	}
 	
 	/*
@@ -188,7 +202,6 @@ public class Controller_kay {
 	/*
 	 * 서류
 	 */
-	
 	//내서류 조회 - 목록
 	@RequestMapping("document")
 	public String document_kay(HttpServletRequest req, Model model) throws Exception{
@@ -234,7 +247,7 @@ public class Controller_kay {
 	public String down(HttpServletRequest req,HttpServletResponse res, Model model) throws Exception {
 		logger.info("down");
 		service.downdocu(req, res, model);
-		return "mypage_kay/mypage/down";
+		return "mypage_kay/mypage/down_kay";
 	}
 
 	/*
@@ -255,8 +268,7 @@ public class Controller_kay {
 		return "mypage_kay/trans/trans_infoChk_kay";
 	}
 	
-	
-	/*css*/
+	/* css */
 	
 	@RequestMapping("forms")
 	public String forms(HttpServletRequest req, Model model) throws Exception{
@@ -271,7 +283,7 @@ public class Controller_kay {
 	@RequestMapping("test")
 	public String test(HttpServletRequest req, Model model) throws Exception{
 		logger.info("123");
-		return "mypage_kay/123";
+		return "Template/chart";
 	}
 	@RequestMapping("table")
 	public String table(HttpServletRequest req, Model model) throws Exception{

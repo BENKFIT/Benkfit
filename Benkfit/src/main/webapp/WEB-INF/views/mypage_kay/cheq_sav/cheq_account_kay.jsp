@@ -41,7 +41,8 @@ function ajaxTest(){
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<h2>예금계좌조회</h2>
+		<h5 style="float:right;">마이페이지>조회>예금계좌조회</h5>
+		<br>
 		<hr>
 			<table class="table eq-ui-data-table z-depth-1">
 			<tr>
@@ -64,7 +65,7 @@ function ajaxTest(){
 			</tr>
 			<tr class="srch_area">
 				<th>조회기간</th>
-				<td>
+				<td style="text-align:left;">
 					<input type="date" class="date_kay"  name="start_date" id="start_date" > ~ 
  					<input type="date" class="date_kay" name="end_date" id="end_date">
 				</td>

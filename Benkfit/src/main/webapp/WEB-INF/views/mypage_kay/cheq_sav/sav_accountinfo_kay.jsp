@@ -39,7 +39,7 @@
 	<hr>
 	<br>
 	<table class="table table-hover">
-		<thead>
+		<thead style="background-color:#2980b9; color:white;">
 			<tr>
 				<th>거래번호</th>
 				<th>거래일자</th>
