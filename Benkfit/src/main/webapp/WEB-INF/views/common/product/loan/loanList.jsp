@@ -69,8 +69,9 @@
 				</c:forEach>
 			</div>
 		</div>
+		
 	</div>
-		<hr>
+	
 
 	<!-- FOOTER  -->
 	<%@ include file="../../../Template/footer.jsp"%>

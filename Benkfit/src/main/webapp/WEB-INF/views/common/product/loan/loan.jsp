@@ -84,7 +84,7 @@ p, a {
 			<p id="balance"></p> <br>
 			<input type="button" value="대출신청" onclick="loanPro();">
 			<div id="state"></div><br>
-			<center>
+			<!-- <center>
             <table>
                 <tr>
                     <td align="center">대출 원금</td>
@@ -112,7 +112,7 @@ p, a {
                         value="다시입력"> <input type="button" value="대출계산" onclick="loanCal();"></td>
                 </tr>
             </table>
-            </center>
+            </center> -->
 	        <div id="loanState"></div>
 		</div>
 	</div>
@@ -139,7 +139,8 @@ p, a {
 				$('loanState').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("다시 시도해주세요.");
+				$('#loanState').html("다시 시도해주세요.");
 			}
 		});
 	}
@@ -156,7 +157,8 @@ p, a {
 				$('#balance').html(data);
 			},
 			error : function(){
-				alert("오류")
+				alert("지갑파일과 비밀번호를 확인해주세요.");
+				$('#balance').html("다시 시도해주세요.");
 			}
 		});
 	}
@@ -175,7 +177,8 @@ p, a {
 				$('#state').html("대출 신청이 완료되었습니다.");
 			},
 			error : function(){
-				alert("오류")
+				alert("지갑파일과 비밀번호를 확인해주세요.");
+				$('#state').html("다시 시도해주세요.");
 			}
 		});
 	}

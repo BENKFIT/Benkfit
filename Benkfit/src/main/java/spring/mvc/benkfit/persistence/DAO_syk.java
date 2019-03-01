@@ -2,6 +2,8 @@ package spring.mvc.benkfit.persistence;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 import spring.mvc.benkfit.vo.*;
 
 public interface DAO_syk {
@@ -77,5 +79,11 @@ public interface DAO_syk {
 	
 	//적금리스트
 	public List<MySavAccountVO> savInterest();
+	
+	//배포리스트
+	public List<ContractVO> deploy();
+	
+	//배포
+	public int deployAdd(ContractVO vo);
 	
 }

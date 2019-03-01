@@ -1,70 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-
-	pageEncoding="UTF-8"%>
-
+  pageEncoding="UTF-8"%>
 <%@ include file="./setting.jsp"%>
-
 <!DOCTYPE html>
-
 <html>
-
 <meta charset="UTF-8">
-
 <title>BenkFit</title>
 <script type="text/javascript">
-<<<<<<< HEAD
-
-     window.onload = function() {
-
-     window.onload = function() {
-      setInterval(function() {
-
-        $.ajax({
-
-              type: "POST",
-
-              url : "${pageContext.request.contextPath}/marketprice",
-
-              success: function(data) {
-
-                $("#priceTbl").html(data);
-
-                $("#priceTbl").html(data);
-              },
-
-              error: function() {
-
-                alert("error");
-
-              }
-
-            });
-
-        }, 1000)
-
-    } 
-
-        })
-    } 
-=======
-<<<<<<< HEAD
-     window.onload = function() {
-      setInterval(function() {
-        $.ajax({
-              type: "POST",
-              url : "${pageContext.request.contextPath}/marketprice",
-              success: function(data) {
-                $("#priceTbl").html(data);
-              },
-              error: function() {
-                alert("error");
-              }
-            });
-        }, 1000)
-    } 
-=======
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
-    window.onload = function() {
+    
+/*     window.onload = function() {
        $.ajax({
              type: "POST",
              url : "${pageContext.request.contextPath}/marketprice",
@@ -75,42 +18,22 @@
                alert("error");
              }
            });
-    }  
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
+    }   */
 </script>
-
 </head>
-
 <body>
-	<!-- TOP&SIDE -->
-
-	<%@ include file="./top.jsp"%>
-<<<<<<< HEAD
-
-<%-- 	<%@ include file="./NewFile.jsp"%> --%>
-
-	<%-- <%@ include file="./NewFile.jsp"%> --%>
-=======
-<%-- 	<%@ include file="./NewFile.jsp"%> --%>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
-	
-
-	<!-- CONTENT -->
-
-	<div>
-
-	<div id="priceTbl" style="height:4000px;">
-
-	<div id="priceTbl" style="height:4000px;">
-	</div>
-
+  <!-- TOP&SIDE -->
+  <%@ include file="./top.jsp"%>
+<%--  <%@ include file="./NewFile.jsp"%> --%>
+  
+  <!-- CONTENT -->
+  <div>
+  <div id="priceTbl" style="height:4000px;">
   </div>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
-	<!-- FOOTER  -->
-	<%@ include file="./footer.jsp"%>
+  </div>
+  
+  <!-- FOOTER  -->
+  <%@ include file="./footer.jsp"%>
 
 </body>
 </html>

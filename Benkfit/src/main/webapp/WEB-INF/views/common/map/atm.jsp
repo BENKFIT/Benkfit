@@ -52,43 +52,45 @@ html, body {
 <style>
 #map_240f69cca4564fd2aa5d192a423760e3 {
 	position: relative;
-	width: 40%;
-	height: 60%;
+	width: 620px;
+	height: 600px;
 	left: 0.0%;
 	top: 0.0%;
 	display: inline-block;
 	margin-right: 100px;
 	z-index: 1;
 }
+thead > tr > th{
+	background: #2980B9;
+	color: white;
+}
 </style>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-	<div style="text-align: center; margin: 180px 0px;">
+
+	<div style="margin: 200px 0px; text-align: center;">
 		<div class="folium-map" id="map_240f69cca4564fd2aa5d192a423760e3"></div>
-		<!-- <div style="display: inline-block; width: 40%; height: 60%;"> -->
-		<div class="row">
-	       <div class="col-md-12">
-	            <table class="table eq-ui-data-table eq-ui-hoverable z-depth-1">
-	                <thead>
-	                	<tr>
-							<th class="eq-ui-data-table-cell-non-numeric">주소</th>
-							<th>은행</th>
+		<div style="display: inline-block;">
+			<table class="table eq-ui-data-table eq-ui-hoverable z-depth-1" style="height: 580px; width: 600px;">
+				<thead>
+					<tr>
+						<th class="eq-ui-data-table-cell-non-numeric">주소</th>
+						<th>은행</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<c:forEach items="${map}" var="map">
+						<tr>
+							<td
+								class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">${map.key}</td>
+							<td>${map.value}</td>
 						</tr>
-	                </thead>
-	
-	                <tbody>
-	                	<c:forEach items="${map}" var="map">
-							<tr>
-								<td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">${map.key}</td>
-								<td>${map.value}</td>
-							</tr>
-						</c:forEach>
-	                </tbody>
-	            </table>
-	        </div>
-	    </div>		
-	</div>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
 	<script>
@@ -418,225 +420,6 @@ html, body {
 		});
 		marker_2063bd29c45b4d47991cdf0ddc9b1b41
 				.setIcon(icon_4d11547399f94857b8622c45f3cf0336);
-
-		var popup_da840aef3d41476694d08e2a6ab1331f = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_dfc682d9e5b74e10aff38e3f0b624fb7 = $(`<div id="html_dfc682d9e5b74e10aff38e3f0b624fb7" style="width: 100.0%; height: 100.0%;">서울 금천구 가산동459-11 제이플라츠203-1</div>`)[0];
-		popup_da840aef3d41476694d08e2a6ab1331f
-				.setContent(html_dfc682d9e5b74e10aff38e3f0b624fb7);
-
-		marker_2063bd29c45b4d47991cdf0ddc9b1b41
-				.bindPopup(popup_da840aef3d41476694d08e2a6ab1331f);
-
-		var marker_21ea134989ac4753bbbdd5023f8d6f92 = L.marker(
-				[ 37.481970706999995, 126.88151194 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_f3e6883983494aa39edbdcd9785a98ef = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_21ea134989ac4753bbbdd5023f8d6f92
-				.setIcon(icon_f3e6883983494aa39edbdcd9785a98ef);
-
-		var popup_12410f3f8c384afda89d4c38775453fd = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_0be72142d8fc495194b43f5eeae5f3c4 = $(`<div id="html_0be72142d8fc495194b43f5eeae5f3c4" style="width: 100.0%; height: 100.0%;">서울 금천구 가산동459-11 제이플라츠1층</div>`)[0];
-		popup_12410f3f8c384afda89d4c38775453fd
-				.setContent(html_0be72142d8fc495194b43f5eeae5f3c4);
-
-		marker_21ea134989ac4753bbbdd5023f8d6f92
-				.bindPopup(popup_12410f3f8c384afda89d4c38775453fd);
-
-		var marker_ffaa8cb3ad37429880345b4158b45b34 = L.marker(
-				[ 37.481970706999995, 126.88151194 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_2202e63fd36a43a9b97ae28e2be9becf = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_ffaa8cb3ad37429880345b4158b45b34
-				.setIcon(icon_2202e63fd36a43a9b97ae28e2be9becf);
-
-		var popup_4786978b9176458787e5a107703cda2a = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_ac7d33942020486396e32e74673827c8 = $(`<div id="html_ac7d33942020486396e32e74673827c8" style="width: 100.0%; height: 100.0%;">서울 금천구 가산동459-11 제일은행5층</div>`)[0];
-		popup_4786978b9176458787e5a107703cda2a
-				.setContent(html_ac7d33942020486396e32e74673827c8);
-
-		marker_ffaa8cb3ad37429880345b4158b45b34
-				.bindPopup(popup_4786978b9176458787e5a107703cda2a);
-
-		var marker_1202e258742343d8897ea86dff041c2c = L.marker(
-				[ 37.481912892, 126.88158099 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_1ee19cc693f74ef5bda447a9d17089bc = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_1202e258742343d8897ea86dff041c2c
-				.setIcon(icon_1ee19cc693f74ef5bda447a9d17089bc);
-
-		var popup_d2e7970fc781407789ac6f12259e5bc6 = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_54f44cc48d894353b083f3965d571a90 = $(`<div id="html_54f44cc48d894353b083f3965d571a90" style="width: 100.0%; height: 100.0%;">서울특별시 금천구 가산디지털1로 186 제이플라츠</div>`)[0];
-		popup_d2e7970fc781407789ac6f12259e5bc6
-				.setContent(html_54f44cc48d894353b083f3965d571a90);
-
-		marker_1202e258742343d8897ea86dff041c2c
-				.bindPopup(popup_d2e7970fc781407789ac6f12259e5bc6);
-
-		var marker_029c12abc865445986ba54c07b6445b2 = L.marker(
-				[ 37.481912892, 126.88158099 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_8b5bca6ab764484b9e2e3ae7d3c9e5fe = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_029c12abc865445986ba54c07b6445b2
-				.setIcon(icon_8b5bca6ab764484b9e2e3ae7d3c9e5fe);
-
-		var popup_ea43cc7637124a059a459840241a7c2f = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_e7880cef14054f138215dd94cc6e33e6 = $(`<div id="html_e7880cef14054f138215dd94cc6e33e6" style="width: 100.0%; height: 100.0%;">서울 금천구 가산디지털1로 186(가산동)</div>`)[0];
-		popup_ea43cc7637124a059a459840241a7c2f
-				.setContent(html_e7880cef14054f138215dd94cc6e33e6);
-
-		marker_029c12abc865445986ba54c07b6445b2
-				.bindPopup(popup_ea43cc7637124a059a459840241a7c2f);
-
-		var marker_4140c6fd9ba84a8d88e551f489b892e0 = L.marker(
-				[ 37.475451701, 126.88187386 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_ec450334939e483d9590f6766a884126 = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_4140c6fd9ba84a8d88e551f489b892e0
-				.setIcon(icon_ec450334939e483d9590f6766a884126);
-
-		var popup_2ba5c892ebf544a086eabea0d7b4a4f2 = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_27750ce8b508457ba65cd92aa638a09e = $(`<div id="html_27750ce8b508457ba65cd92aa638a09e" style="width: 100.0%; height: 100.0%;">서울특별시 금천구 디지털로 130</div>`)[0];
-		popup_2ba5c892ebf544a086eabea0d7b4a4f2
-				.setContent(html_27750ce8b508457ba65cd92aa638a09e);
-
-		marker_4140c6fd9ba84a8d88e551f489b892e0
-				.bindPopup(popup_2ba5c892ebf544a086eabea0d7b4a4f2);
-
-		var marker_ad6ee3e8979046a49ac21d15d93de718 = L.marker(
-				[ 37.477208897, 126.88372051 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_88303b945a224c32a675e647ff6eea5f = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_ad6ee3e8979046a49ac21d15d93de718
-				.setIcon(icon_88303b945a224c32a675e647ff6eea5f);
-
-		var popup_4a6b2e143dca44d8b160414890b7f8be = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_a7443974eb7344ecaa5a0673c0f094c6 = $(`<div id="html_a7443974eb7344ecaa5a0673c0f094c6" style="width: 100.0%; height: 100.0%;">서울 금천구 가산동371-37 STＸ-V타워19층</div>`)[0];
-		popup_4a6b2e143dca44d8b160414890b7f8be
-				.setContent(html_a7443974eb7344ecaa5a0673c0f094c6);
-
-		marker_ad6ee3e8979046a49ac21d15d93de718
-				.bindPopup(popup_4a6b2e143dca44d8b160414890b7f8be);
-
-		var marker_e4f85d074e4e45dd8968960c945c5220 = L.marker(
-				[ 37.477208897, 126.88372051 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_b9c7c8800bc44907aa4ab328d0f8fb1e = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_e4f85d074e4e45dd8968960c945c5220
-				.setIcon(icon_b9c7c8800bc44907aa4ab328d0f8fb1e);
-
-		var popup_748fc701f3d74ed195e6e61a8d283b1c = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_8fe89bf096d44ea994587ea7eeaaff67 = $(`<div id="html_8fe89bf096d44ea994587ea7eeaaff67" style="width: 100.0%; height: 100.0%;">서울 금천구 가산동 371-37 STＸ-VTOWER</div>`)[0];
-		popup_748fc701f3d74ed195e6e61a8d283b1c
-				.setContent(html_8fe89bf096d44ea994587ea7eeaaff67);
-
-		marker_e4f85d074e4e45dd8968960c945c5220
-				.bindPopup(popup_748fc701f3d74ed195e6e61a8d283b1c);
-
-		var marker_4c1f0f8c9eac41a1b01e17899ef0b13b = L.marker(
-				[ 37.484249329, 126.87808432 ], {
-					icon : new L.Icon.Default(),
-				}).addTo(map_240f69cca4564fd2aa5d192a423760e3);
-
-		var icon_ba084e53225e4a51be8e4fe131b43daf = L.AwesomeMarkers.icon({
-			icon : 'info-sign',
-			iconColor : 'white',
-			markerColor : 'red',
-			prefix : 'glyphicon',
-			extraClasses : 'fa-rotate-0'
-		});
-		marker_4c1f0f8c9eac41a1b01e17899ef0b13b
-				.setIcon(icon_ba084e53225e4a51be8e4fe131b43daf);
-
-		var popup_c232ab9d057c468d825143421ca5fd03 = L.popup({
-			maxWidth : '500'
-		});
-
-		var html_8d697b136ed44af9aa9653ab545f8c40 = $(`<div id="html_8d697b136ed44af9aa9653ab545f8c40" style="width: 100.0%; height: 100.0%;">서울특별시 금천구 가산디지털2로 184</div>`)[0];
-		popup_c232ab9d057c468d825143421ca5fd03
-				.setContent(html_8d697b136ed44af9aa9653ab545f8c40);
-
-		marker_4c1f0f8c9eac41a1b01e17899ef0b13b
-				.bindPopup(popup_c232ab9d057c468d825143421ca5fd03);
 	</script>
 </body>
 </html>

@@ -3,6 +3,8 @@ package spring.mvc.benkfit.persistence;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -150,6 +152,18 @@ public class DAOImpl_syk implements DAO_syk{
 
 	@Override
 	public List<MySavAccountVO> savInterest() {
-		return null;
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.savInterest");
+	}
+
+	//배포조회
+	@Override
+	public List<ContractVO> deploy() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.deploy");
+	}
+
+	//배포추가
+	@Override
+	public int deployAdd(ContractVO vo) {
+		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.deployAdd", vo);
 	}
 }

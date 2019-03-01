@@ -918,13 +918,11 @@ $('.eq-ui-btn-fab-action').closeFAB();</code></pre>
 </footer-->
 
 <div class="container">
-
     <div class="row">
         <div class="col-md-12">
             <br/><br/><br/><br/><br/><br/>
         </div>
     </div>
-    
 </div>
     </main><script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
 <script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>

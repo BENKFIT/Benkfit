@@ -163,4 +163,15 @@
 		FROM mysavAccount_tbl
 	</select>
 	
+	<!-- 배포조회 -->
+	<select id="deploy" resultType="spring.mvc.benkfit.vo.ContractVO">
+		SELECT con_name, con_address, con_deployDate
+		FROM contract_tbl
+	</select>
+	
+	<!-- 배포추가 -->
+	<insert id="deployAdd" parameterType="spring.mvc.benkfit.vo.ContractVO">
+		INSERT INTO contract_tbl(con_name, con_address)
+		VALUES(#{con_name}, #{con_address})
+	</insert>
 </mapper>

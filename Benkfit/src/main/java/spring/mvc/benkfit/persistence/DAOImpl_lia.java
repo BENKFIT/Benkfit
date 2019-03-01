@@ -1,5 +1,5 @@
 package spring.mvc.benkfit.persistence;
-
+/* 손리아 */
 import java.util.List;
 import java.util.Map;
 
@@ -193,5 +193,5 @@ public class DAOImpl_lia implements DAO_lia {
 	public List<PriceVO> selectCoins() {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCoins");
 	}
-
+	
 }

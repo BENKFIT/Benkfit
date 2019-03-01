@@ -32,7 +32,7 @@
 	<select id="loanleft" parameterType="String" resultType="int">
 		select
 		myloan_left from myloanaccount_tbl where myloan_account =
-		#{myLoan_account}
+		#{myLoan_account} and myloan_type = 1
 	</select>
 
 	<!-- 대출상품신청 -->
@@ -40,8 +40,14 @@
 		parameterType="spring.mvc.benkfit.vo.MyloanAccountVO">
 		insert into myloanaccount_tbl(myLoan_account, loan_num,
 		myLoan_amount, c_id,myLoan_rate, myLoan_left)
-		values(#{myLoan_account},#{loan_num},#{myLoan_amount},#{c_id},#{myLoan_rate},#{myLoan_left})
+		values(#{myloan_account},#{loan_num},#{myloan_amount},#{c_id},#{myloan_rate},#{myloan_left})
 	</insert>
+
+	<!-- 대출금리 -->
+<!-- 	<select id="loanRate" parameterType="int" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		select
+		loan_rate from loanproduct_tbl where loan_num = #{loan_num};
+	</select> -->
 
 	<!-- 대출상환 -->
 	<update id="loanRepayment"
@@ -103,11 +109,21 @@
 		#{myLoan_account}
 	</select>
 
-	<!-- 대출허가완료 -->
+	<!-- 대출신청처리(승인) -->
 	<update id="loanApprovalPro" parameterType="String">
 		update
 		myloanaccount_tbl
 		set myLoan_type = 1
+		where myLoan_account =
+		#{myLoan_account}
+	</update>
+
+	<!-- 대출신청처리(거절) -->
+	<update id="rejection" parameterType="String">
+		update
+		myloanaccount_tbl
+		set
+		myLoan_type = 2
 		where myLoan_account =
 		#{myLoan_account}
 	</update>
