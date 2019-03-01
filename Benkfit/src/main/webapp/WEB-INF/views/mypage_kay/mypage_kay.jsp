@@ -20,12 +20,7 @@
 						<h4>User Profile</h4>
 					</div>
 					<div class="panel-body">
-						<div class="col-md-4 col-xs-12 col-sm-6 col-lg-4">
-							<img alt="User Pic"
-								src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-								id="profile-image1" class="img-circle img-responsive">
-						</div>
-						<div class="col-md-8 col-xs-12 col-sm-6 col-lg-8">
+						<div class="col-md-14 col-xs-14 col-sm-18 col-lg-14">
 							<div class="User_Profile">
 								<h2>${usVO.c_name} [${usVO.c_id}]</h2>
 							</div>
@@ -46,7 +41,6 @@
 							</ul>
 							<hr>
 							<div class="col-sm-12 col-xs-8 tital ">
-									<button class="btn2 btn2-success" onclick="move(6)">알림</button>&nbsp;
 									<button class="btn2 btn2-success"  onclick="move(7)">qrcode</button>&nbsp;
 									<button class="btn2 btn2-success" onclick="move(8)">정보수정</button>&nbsp; 
 									<button class="btn2 btn2-success"  onclick="move(9)">내서류</button>&nbsp;
@@ -56,12 +50,13 @@
 					</div>
 				</div>
 			</div>
-			<div id="tab1" class="tab_content">
+			<br>
+			<div id="tab1" class="acc_content">
 				<!--Content-->
 				<h3 >예금관리</h3>			
 				<hr>
 				<table class="table table-hover">
-					<thead id="mypage_thead">
+					<thead>
 						<tr>
 							<th>번호</th>
 							<th>계좌명</th>
@@ -87,10 +82,11 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br>
 				<h3>적금관리</h3>
 				<hr>
 				<table class="table table-hover">
-					<thead id="mypage_thead">
+					<thead>
 						<tr>
 							<th>번호</th>
 							<th>계좌명</th>
@@ -115,10 +111,11 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				<br>
 				<h3>대출관리</h3>
 				<hr>
 				<table class="table table-hover">
-					<thead id="mypage_thead">
+					<thead>
 						<tr>
 							<th>대출상품번호</th>
 							<th>계좌번호</th>
@@ -132,10 +129,10 @@
 						<c:forEach var="loan" items="${loan}">
 						<tr>
 							<td>${loan.loan_num} </td>
-							<td>${loan.myLoan_account} </td>
-							<td>￦<fmt:formatNumber value="${loan.myLoan_amount}" pattern="#,###.##"/></td>
-							<td>${loan.myLoan_date}</td>
-							<td>${loan.myLoan_late}</td>
+							<td>${loan.myloan_account} </td>
+							<td>￦<fmt:formatNumber value="${loan.myloan_amount}" pattern="#,###.##"/></td>
+							<td>${loan.myloan_date}</td>
+							<td>${loan.myloan_late}</td>
 							<td>
 								<button class="btn2 btn2-success" onclick="move(3)">조회
 								</button>&nbsp;
@@ -145,10 +142,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-			<div id="tab2" class="tab_content">
-			<h3>자산관리</h3> 
-			<hr> 
 			</div>
 		</div>
 		</form>

@@ -1,9 +1,12 @@
 package spring.mvc.benkfit.service;
 
 import java.io.*;
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.net.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -11,21 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.*;
-import org.web3j.crypto.Credentials;
-import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.admin.Admin;
-import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
-import org.web3j.protocol.core.methods.response.TransactionReceipt;
 import org.web3j.protocol.http.HttpService;
-import org.web3j.tx.Transfer;
-import org.web3j.utils.Convert;
 
 import spring.mvc.benkfit.persistence.DAO_sws;
 import spring.mvc.benkfit.vo.*;
@@ -134,7 +128,6 @@ public class ServiceImpl_sws implements Service_sws {
 
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		String eve_num = req.getParameter("eve_num");
-
 
 		EventVo vo = dao.getEvent(eve_num);
 
@@ -281,28 +274,75 @@ public class ServiceImpl_sws implements Service_sws {
 		req.setAttribute("deleteCnt", deleteCnt);
 		req.setAttribute("pageNum", pageNum);
 	}
-
+	
 	@Override
 	public void chartList(HttpServletRequest req, Model model) {
-		
 		JSONObject map = (JSONObject)dao.getYearChat();
 		String chart = map.toString();
 		req.setAttribute("YearChat", chart);
 	}
-
+	
 	@Override
 	public void chartList1(HttpServletRequest req, Model model) {
-		
 		JSONObject map = (JSONObject)dao.getMonthChat();
 		String chart = map.toString();
 		req.setAttribute("MonthChat", chart);
 	}
-
+	
 	@Override
 	public void chartList2(HttpServletRequest req, Model model) {
-		
 		JSONObject map = (JSONObject)dao.getDayChat();
 		String chart = map.toString();
 		req.setAttribute("DayChat", chart);
+	}
+
+	@Override
+	public void getMap(HttpServletRequest req, Model model) throws IOException {
+		
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\output\\map.py");
+		Process p  = pb.start();    // 프로세스 호출
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+		String line = "";
+
+		StringBuilder sb = new StringBuilder();
+		System.out.println("시작!");
+
+		while((line = br.readLine()) != null) {
+			sb.append(line + "\n");
+			System.out.println("sdf: " + sb.append(line + "\n"));
+		}
+		String info = sb.toString();
+
+		System.out.println(info);
+		System.out.println("종료!");
+
+		br.close();
+		
+		// 파일 읽기
+		File file = new File("C:\\DEV43\\python\\output\\map.csv");
+		
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(file),"MS949"));
+
+		List<String> list = new ArrayList<String>();
+		
+		String line2 = "";
+		while(br2.ready()) {
+			line2 = br2.readLine();
+			list.add(line2);
+		}
+		
+		br2.close();
+		list.remove(0);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		for(String str : list) {
+			String add = str.split(",")[0];
+			String ban = str.split(",")[1];
+			
+			map.put(add, ban);
+		}
+		req.setAttribute("map", map);
 	}
 }

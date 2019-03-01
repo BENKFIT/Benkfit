@@ -44,21 +44,20 @@ public class Controller_kay {
 	public String cheq_info(HttpServletRequest req, Model model) throws Exception{
 		logger.info("cheq_info");
 		service.sel_cheq(req, model);
-		return "mypage_kay/cheq_accountinfo";
+		return "mypage_kay/cheq_accountinfo_kay";
 	}
 	//대출계좌조회
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_account");
-		//service.myloan_list(req, model);
 		return "mypage_kay/loan_account_kay";
 	}
 	//대출계좌조회
 	@RequestMapping("loan_info")
 	public String loan_info(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_info");
-		service.myloan_list(req, model);
-		return "mypage_kay/loan_accountinfo";
+		service.sel_loan(req, model);
+		return "mypage_kay/loan_accountinfo_kay";
 	}
 	//적금계좌조회
 	@RequestMapping("sav_account")
@@ -71,7 +70,21 @@ public class Controller_kay {
 	@RequestMapping("sav_info")
 	public String sav_info(HttpServletRequest req, Model model) throws Exception{
 		logger.info("sav_info");
-		return "mypage_kay/sav_accountinfo";
+		service.sel_sav(req, model);
+		return "mypage_kay/sav_accountinfo_kay";
+	}
+	//자산관리
+	@RequestMapping("asset")
+	public String dsd(HttpServletRequest req, Model model) throws Exception{
+		logger.info("asset");
+		return "mypage_kay/asset_kay";
+	}
+	//자산관리
+	@RequestMapping("budget")
+	public String budget(HttpServletRequest req, Model model) throws Exception{
+		logger.info("budget");
+		service.budget(req, model);
+		return "mypage_kay/budget_kay";
 	}
 	//QRcode 발급
 	@RequestMapping("qrcode")
@@ -85,7 +98,7 @@ public class Controller_kay {
 	public String qrPro(HttpServletRequest req, Model model) throws Exception{
 		logger.info("qrPro");
 		service.qrPro(req, model);
-		return "mypage_kay/qrPro";
+		return "mypage_kay/qrPro_kay";
 	}
 	//이체한도조회
 	@RequestMapping("limit_sel")
@@ -133,7 +146,7 @@ public class Controller_kay {
 	public String detaildoc(HttpServletRequest req, Model model) throws Exception{
 		logger.info("detaildoc");
 		service.detaildocu(req, model);
-		return "mypage_kay/detaildoc";
+		return "mypage_kay/detaildoc_kay";
 	}
 	// 서류양식
 	@RequestMapping("upload")
@@ -145,7 +158,7 @@ public class Controller_kay {
 	public String getText(String file, Model model) throws IOException {
 		logger.info("value");
 		service.getText(file, model);
-		return "mypage_kay/value";
+		return "mypage_kay/value_kay";
 	}
 	//서류등록처리
 	@RequestMapping("upresult")
@@ -159,7 +172,7 @@ public class Controller_kay {
 	public String deleterdocu(HttpServletRequest req, Model model) throws Exception {
 		logger.info("deleterdocu 호출중");
 		service.deletedocu(req, model);
-		return "mypage_kay/deletedocu";
+		return "mypage_kay/deletedocu_kay";
 	}
 	//회원탈퇴 -pw
 	@RequestMapping("deluserPw")
@@ -179,55 +192,41 @@ public class Controller_kay {
 	public String trans(HttpServletRequest req, Model model) throws Exception{
 		logger.info("trans");
 		service_syk.trans(req);
-		
-		return "mypage_kay/trans_info";
+		return "mypage_kay/trans_info_kay";
 	}
 	//계좌이체정보확인
 	@RequestMapping("trans_Chk")
 	public String trans_Chk(HttpServletRequest req, Model model) throws Exception{
 		logger.info("trans_Chk");
-		return "mypage_kay/trans_infoChk";
-	}
-	/*//자동이체
-	@RequestMapping("auto_trans")
-	public String auto_trans(HttpServletRequest req, Model model) throws Exception{
-		logger.info("auto_trans");
-		return "mypage_kay/auto_trans";
-	}
-	//자동이체정보확인
-	@RequestMapping("auto_Chk")
-	public String auto_Chk(HttpServletRequest req, Model model) throws Exception{
-		logger.info("auto_Chk");
-		return "mypage_kay/auto_transChk";
-	}*/
-	
-	
-	/*//계좌해지 - pwcheq
+		return "mypage_kay/trans_infoChk_kay";
 	}
 	//계좌해지 - pwcheq
 	@RequestMapping("delcheq")
 	public String delcheq(HttpServletRequest req, Model model) throws Exception{
 		logger.info("delcheq");
 		service.sls(req, model);
-		return "mypage_kay/delcheq";
+		return "mypage_kay/delcheq_kay";
 	}
 	//계좌해지 처리
 	@RequestMapping("account")
 	public String del_cheq(HttpServletRequest req, Model model) throws Exception{
 		logger.info("account");
 		service.del_cheq(req, model);
-		return "mypage_kay/account";
+		return "mypage_kay/account_kay";
 	}
-/*	//기본setting 페이지
-	@RequestMapping("test")
-	public String test(HttpServletRequest req, Model model) throws Exception{
-		logger.info("test");
-		return "mypage_kay/test_kay2";
+	@RequestMapping("forms")
+	public String forms(HttpServletRequest req, Model model) throws Exception{
+		logger.info("forms");
+		return "Template/form";
 	}
-	//기본setting 페이지
-	@RequestMapping("sdf")
-	public String sdf(HttpServletRequest req, Model model) throws Exception{
-		logger.info("sdf");
-		return "mypage_kay/sdf";
-	}*/
+	@RequestMapping("button")
+	public String button(HttpServletRequest req, Model model) throws Exception{
+		logger.info("button");
+		return "Template/button";
+	}
+	@RequestMapping("table")
+	public String table(HttpServletRequest req, Model model) throws Exception{
+		logger.info("table");
+		return "Template/table_new";
+	}
 }

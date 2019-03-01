@@ -56,5 +56,13 @@ public interface DAO_sws {
 	
 	public List<TransDetailVO> TransDetail(String id);
 	
+	public int qrConfirmIdPwd(Map<String, Object> map);
+	
+	public List<myCheqAccountVO> myCheqAccounts(String id);
+	
+	public List<MySavAccountVO> mySavAccounts(String id);
+	
+	public List<MyloanAccountVO> myLoanAccounts(String id);
+	
 	/*public AndroidVO selectWallet(String id);*/
 }

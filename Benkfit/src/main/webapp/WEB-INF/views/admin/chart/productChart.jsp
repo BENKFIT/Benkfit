@@ -39,7 +39,6 @@ input[type=button] {
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
-
 <script type="text/javascript">
 	var queryObject = "";
 	var queryObjectLen = "";
@@ -79,7 +78,6 @@ input[type=button] {
 
 									data.addRow([ day, value1, value2, value3 ]);
 								}
-
 								var chart = new google.visualization.ChartWrapper(
 										{
 											chartType : 'LineChart',
@@ -240,8 +238,7 @@ input[type=button] {
 									var value2 = queryObject.barlist[i].value2;
 									var value3 = queryObject.barlist[i].value3;
 
-									data.addRow([ day, value1, value2,
-											value3 ]);
+									data.addRow([ day, value1, value2, value3 ]);
 								}
 
 								var chart = new google.visualization.ChartWrapper(
@@ -358,7 +355,6 @@ input[type=button] {
 
 						}
 					}
-
 						google.charts.load('current', {
 							'packages' : [ 'line', 'controls' ]
 						});
@@ -517,10 +513,8 @@ input[type=button] {
 										}, false); //화면 크기에 따라 그래프 크기 변경
 								dashboard.bind([ control ], [ chart ]);
 								dashboard.draw(data);
-
 							}
 							google.charts.setOnLoadCallback(drawDashboard);
-
 						}
 					}
 						google.charts.load('current', {

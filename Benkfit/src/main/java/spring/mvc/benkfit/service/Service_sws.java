@@ -1,10 +1,10 @@
 package spring.mvc.benkfit.service;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
-
-import spring.mvc.benkfit.vo.myCheqAccountVO;
 
 public interface Service_sws {
 	
@@ -34,4 +34,7 @@ public interface Service_sws {
 	
 	// 일별 차트 
 	public void chartList2(HttpServletRequest req, Model model);
+	
+	// ATM
+	public void getMap(HttpServletRequest req, Model model) throws IOException;
 }

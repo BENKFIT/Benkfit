@@ -4,61 +4,61 @@ import java.sql.Date;
 
 public class MyloanAccountVO {
 	
-	private String myLoan_account; /* 대출 계좌번호 */
-	private int myLoan_amount; /* 대출금액 */
-	private Date myLoan_date;/* 가입날짜 */
-	private int myLoan_state;/* 상태코드 */
-	private Date myLoan_late; /* 만기 */
-	private int myLoan_type; /* 대출 승인여부 */
-    private Date myLoan_over; /* 연체 기간 */  
+	private String myloan_account; /* 대출 계좌번호 */
+	private int myloan_amount; /* 대출금액 */
+	private Date myloan_date;/* 가입날짜 */
+	private int myloan_state;/* 상태코드 */
+	private Date myloan_late; /* 만기 */
+	private int myloan_type; /* 대출 승인여부 */
+    private Date myloan_over; /* 연체 기간 */  
 	private String loan_num; /* 대출 상품번호 */
 	private String c_id; /* 고객 아이디 */
-	private double myLoan_rate; /* 연이율 */
-	private int myLoan_left; /*대출 잔금*/
+	private double myloan_rate; /* 연이율 */
+	private int myloan_left; /*대출 잔금*/
 	private String code; /* 계좌 종류 */
 	private int doc_num;
 	
-	public String getMyLoan_account() {
-		return myLoan_account;
+	public String getmyloan_account() {
+		return myloan_account;
 	}
-	public void setMyLoan_account(String myLoan_account) {
-		this.myLoan_account = myLoan_account;
+	public void setmyloan_account(String myloan_account) {
+		this.myloan_account = myloan_account;
 	}
-	public int getMyLoan_amount() {
-		return myLoan_amount;
+	public int getmyloan_amount() {
+		return myloan_amount;
 	}
-	public void setMyLoan_amount(int myLoan_amount) {
-		this.myLoan_amount = myLoan_amount;
+	public void setmyloan_amount(int myloan_amount) {
+		this.myloan_amount = myloan_amount;
 	}
-	public Date getMyLoan_date() {
-		return myLoan_date;
+	public Date getmyloan_date() {
+		return myloan_date;
 	}
-	public void setMyLoan_date(Date myLoan_date) {
-		this.myLoan_date = myLoan_date;
+	public void setmyloan_date(Date myloan_date) {
+		this.myloan_date = myloan_date;
 	}
-	public int getMyLoan_state() {
-		return myLoan_state;
+	public int getmyloan_state() {
+		return myloan_state;
 	}
-	public void setMyLoan_state(int myLoan_state) {
-		this.myLoan_state = myLoan_state;
+	public void setmyloan_state(int myloan_state) {
+		this.myloan_state = myloan_state;
 	}
-	public Date getMyLoan_late() {
-		return myLoan_late;
+	public Date getmyloan_late() {
+		return myloan_late;
 	}
-	public void setMyLoan_late(Date myLoan_late) {
-		this.myLoan_late = myLoan_late;
+	public void setmyloan_late(Date myloan_late) {
+		this.myloan_late = myloan_late;
 	}
-	public int getMyLoan_type() {
-		return myLoan_type;
+	public int getmyloan_type() {
+		return myloan_type;
 	}
-	public void setMyLoan_type(int myLoan_type) {
-		this.myLoan_type = myLoan_type;
+	public void setmyloan_type(int myloan_type) {
+		this.myloan_type = myloan_type;
 	}
-	public Date getMyLoan_over() {
-		return myLoan_over;
+	public Date getmyloan_over() {
+		return myloan_over;
 	}
-	public void setMyLoan_over(Date myLoan_over) {
-		this.myLoan_over = myLoan_over;
+	public void setmyloan_over(Date myloan_over) {
+		this.myloan_over = myloan_over;
 	}
 	public String getLoan_num() {
 		return loan_num;
@@ -72,18 +72,18 @@ public class MyloanAccountVO {
 	public void setC_id(String c_id) {
 		this.c_id = c_id;
 	}
-	public double getMyLoan_rate() {
-		return myLoan_rate;
+	public double getmyloan_rate() {
+		return myloan_rate;
 	}
-	public void setMyLoan_rate(double myLoan_rate) {
-		this.myLoan_rate = myLoan_rate;
+	public void setmyloan_rate(double myloan_rate) {
+		this.myloan_rate = myloan_rate;
 	}
 	
-	public int getMyLoan_left() {
-		return myLoan_left;
+	public int getmyloan_left() {
+		return myloan_left;
 	}
-	public void setMyLoan_left(int myLoan_left) {
-		this.myLoan_left = myLoan_left;
+	public void setmyloan_left(int myloan_left) {
+		this.myloan_left = myloan_left;
 	}
 	
 	public String getCode() {
@@ -100,11 +100,10 @@ public class MyloanAccountVO {
 	}
 	@Override
 	public String toString() {
-		return "MyloanAccountVO [myLoan_account=" + myLoan_account + ", myLoan_amount=" + myLoan_amount
-				+ ", myLoan_date=" + myLoan_date + ", myLoan_state=" + myLoan_state + ", myLoan_late=" + myLoan_late
-				+ ", myLoan_type=" + myLoan_type + ", myLoan_over=" + myLoan_over + ", loan_num=" + loan_num + ", c_id="
-				+ c_id + ", myLoan_rate=" + myLoan_rate + ", myLoan_left=" + myLoan_left + ", code=" + code
+		return "MyloanAccountVO [myloan_account=" + myloan_account + ", myloan_amount=" + myloan_amount
+				+ ", myloan_date=" + myloan_date + ", myloan_state=" + myloan_state + ", myloan_late=" + myloan_late
+				+ ", myloan_type=" + myloan_type + ", myloan_over=" + myloan_over + ", loan_num=" + loan_num + ", c_id="
+				+ c_id + ", myloan_rate=" + myloan_rate + ", myloan_left=" + myloan_left + ", code=" + code
 				+ ", doc_num=" + doc_num + "]";
 	}
-	
 }

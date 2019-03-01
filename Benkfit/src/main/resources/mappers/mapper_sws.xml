@@ -112,7 +112,7 @@
 	
 	<!-- 일별 차트3 -->
 	<select id="getDayThirdChat" resultType="spring.mvc.benkfit.vo.ChartVO">
-		SELECT DISTINCT TO_CHAR(ml.myloan_date, 'DD') value, COUNT(ml.myLoan_account) myLoan_account
+		SELECT DISTINCT TO_CHAR(ml.myloan_date, 'DD') value, COUNT(ml.myloan_account) myLoan_account
 		FROM MyloanAccount_tbl ml
 		GROUP BY TO_CHAR(ml.myloan_date, 'DD')
 		ORDER BY value
@@ -192,6 +192,34 @@
 		              	) 
 		         )
 		]]>
+	</select>
+	
+	<!-- 안드로이드 qr로그인  -->
+	<select id="qrConfirmIdPwd" resultType="int">
+		SELECT COUNT(*)
+		FROM users_tbl
+		WHERE c_id = #{id} AND c_pwd = #{pwd}
+	</select>
+	
+	<!-- 안드로이드 예금계좌 내역 -->
+	<select id="myCheqAccounts" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+		select *
+		from myCheqAccount_tbl
+		where c_id = #{c_id}
+	</select>
+	
+	<!-- 안드로이드 적금계좌 내역 -->
+	<select id="mySavAccounts" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+		select *
+		from mySavAccount_tbl
+		where c_id = #{id}
+	</select>
+	
+	<!-- 안드로이드 대출계좌 내역 -->
+	<select id="myLoanAccounts" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		select *
+		from MyloanAccount_tbl
+		where c_id = #{id}
 	</select>
 	
 	<!-- 예금계좌확인 -->

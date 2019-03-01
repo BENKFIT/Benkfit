@@ -7,13 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.web3j.crypto.Credentials;
@@ -26,13 +24,15 @@ import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
 
+import spring.mvc.benkfit.HomeController;
 import spring.mvc.benkfit.persistence.DAO_lia;
 import spring.mvc.benkfit.persistence.DAO_sws;
 import spring.mvc.benkfit.service.ServiceImpl_syk;
 import spring.mvc.benkfit.service.Service_sws;
-import spring.mvc.benkfit.vo.AndroidVO;
 import spring.mvc.benkfit.vo.CheqProductVO;
 import spring.mvc.benkfit.vo.LoanProductVO;
+import spring.mvc.benkfit.vo.MySavAccountVO;
+import spring.mvc.benkfit.vo.MyloanAccountVO;
 import spring.mvc.benkfit.vo.SavProductVO;
 import spring.mvc.benkfit.vo.TransDetailVO;
 import spring.mvc.benkfit.vo.UsersVO;
@@ -62,7 +62,7 @@ public class Controller_sws {
 	@Autowired
 	DAO_lia dao2;
 
-	private static final Logger logger = LoggerFactory.getLogger(Controller_sws.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	// 첫방문 고객 안내
 	@RequestMapping("firstVisit_sws")
@@ -92,7 +92,7 @@ public class Controller_sws {
 		return "common/info/useFee";
 	}
 
-	// **********************************************************************************
+	// ********************************************************************************** //
 
 	// 이벤트 목록
 	@RequestMapping("eventList_sws")
@@ -192,22 +192,19 @@ public class Controller_sws {
 		return "admin/event/event_deletePro";
 	}
 
-	// 다음지도 ATM
+	// 다음지도 은행
 	@RequestMapping("map_sws")
 	public String map_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("map_sws");
 
-		return "common/map/atmMap";
+		return "common/map/map";
 	}
-	
 	// 결산 차트
 	@RequestMapping("productChart_sws")
 	public String productChart_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("productChart_sws");
-
 		return "admin/chart/productChart";
 	}
-	
 	// 년별 차트
 	@RequestMapping("chartYear_sws")
 	public String chartYear_sws(HttpServletRequest req, Model model) throws Exception{
@@ -328,6 +325,36 @@ public class Controller_sws {
 		return out;
 	}
 	
+	// QR코드 로그인
+	@ResponseBody
+	@RequestMapping("androidQrcodeLogin")
+	public Map<String, String> androidQrcodeLogin(HttpServletRequest req) {
+		logger.info("androidQrcodeLogin()");
+		
+		String item = req.getParameter("item");
+		System.out.println("item == " + item);
+		String id = req.getParameter("item").split("/")[0].split(":")[1];
+		String pwd = req.getParameter("item").split("/")[1].split(":")[1];
+		System.out.println("id = " + id + "pwd = " + pwd);
+		
+		Map<String, Object> in = new HashMap<String, Object>();
+		in.put("id", id);
+		in.put("pwd", pwd);
+		
+		System.out.println("id:" + id + "   pwd:" + pwd);
+
+		int cnt = dao.qrConfirmIdPwd(in);
+
+		Map<String, String> out = new HashMap<String, String>();
+		if(cnt != 0) {
+			out.put("c_id", id);
+		} else {
+			out.put("c_id", null);
+		}
+
+		return out;
+	}
+	
 	// 앱 지갑 생성
 	@ResponseBody
 	@RequestMapping("androidCheq")
@@ -385,16 +412,79 @@ public class Controller_sws {
 		String id = req.getParameter("id");
 		List<TransDetailVO> t = dao.TransDetail(id);
 		
+		/*for(TransDetailVO vo : t) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		 
+			String date = sdf.format(vo.getTran_date());
+			vo.setTran_date(date);
+		}*/
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("TransDetail", t);
 		
 		return map;
 	}
 	
+	// 안드로이드 예금계좌내역
+	@ResponseBody
+	@RequestMapping("androidMyCheqAccounts")
+	public Map<String, Object> androidMyCheqAccounts(HttpServletRequest req) {
+		logger.info("androidMyCheqAccounts()");
+
+		String id = req.getParameter("id");
+		List<myCheqAccountVO> c = dao.myCheqAccounts(id);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("myCheqAccount", c);
+		
+		return map;
+	}
+	
+	// 안드로이드 적금계좌내역
+	@ResponseBody
+	@RequestMapping("androidMySavAccounts")
+	public Map<String, Object> androidMySavAccounts(HttpServletRequest req) {
+		logger.info("androidMySavAccounts()");
+
+		String id = req.getParameter("id");
+		List<MySavAccountVO> s = dao.mySavAccounts(id);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mySavAccount", s);
+		
+		return map;
+	}
+	
+	// 안드로이드 대출계좌내역
+	@ResponseBody
+	@RequestMapping("androidMyLoanAccounts")
+	public Map<String, Object> androidMyLoanAccounts(HttpServletRequest req) {
+		logger.info("androidMyLoanAccounts()");
+
+		String id = req.getParameter("id");
+		List<MyloanAccountVO> l = dao.myLoanAccounts(id);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("myLoanAccount", l);
+		
+		return map;
+	}
+	
+	// 아코디언 테스트
 	@RequestMapping("faq_sws2")
 	public String faq_sws2() throws Exception {
 		logger.info("faq_sws2");
 		return "common/info/faq2";
+	}
+	
+	// ATM
+	@RequestMapping("atm_sws")
+	public String atm(HttpServletRequest req, Model model) throws Exception {
+		logger.info("atm_sws");
+		
+		service.getMap(req, model);
+		
+		return "common/map/atm";
 	}
 	
 /*	// 앱 지갑 생성 확인

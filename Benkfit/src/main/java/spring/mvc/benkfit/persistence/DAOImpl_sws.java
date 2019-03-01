@@ -8,7 +8,6 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.web3j.protocol.admin.Admin;
-import org.web3j.protocol.admin.methods.response.NewAccountIdentifier;
 import org.web3j.protocol.http.HttpService;
 
 import spring.mvc.benkfit.vo.*;
@@ -251,7 +250,7 @@ public class DAOImpl_sws implements DAO_sws {
 		return c;
 	}
 	
-	// 적금금 상품 리스트 조회
+	// 적금 상품 리스트 조회
 	@Override
 	public List<SavProductVO> savProduct() {
 		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
@@ -291,6 +290,7 @@ public class DAOImpl_sws implements DAO_sws {
 		return l;
 	}
 	
+	// 지갑생성
 	@Override
 	public int insertWallet(myCheqAccountVO vo){
 		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
@@ -298,13 +298,48 @@ public class DAOImpl_sws implements DAO_sws {
 		return result;
 	}
 	
-
+	// 거래내역
 	@Override
 	public List<TransDetailVO> TransDetail(String id) {
 		
 		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
 		List<TransDetailVO> t = mapper.TransDetail(id);
 		return t;
+	}
+
+	// qr코드 로그인
+	@Override
+	public int qrConfirmIdPwd(Map<String, Object> map) {
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		int cnt = mapper.qrConfirmIdPwd(map);
+		return cnt;
+	}
+	
+	// 예금계좌내역
+	@Override
+	public List<myCheqAccountVO> myCheqAccounts(String id) {
+		
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<myCheqAccountVO> t = mapper.myCheqAccounts(id);
+		return t;
+	}
+	
+	// 적금계좌내역
+	@Override
+	public List<MySavAccountVO> mySavAccounts(String id) {
+		
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<MySavAccountVO> s = mapper.mySavAccounts(id);
+		return s;
+	}
+	
+	// 대출계좌내역
+	@Override
+	public List<MyloanAccountVO> myLoanAccounts(String id) {
+		
+		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
+		List<MyloanAccountVO> l = mapper.myLoanAccounts(id);
+		return l;
 	}
 
 /*	@Override
