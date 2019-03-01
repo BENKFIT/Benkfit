@@ -124,7 +124,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<%@ include file="../../common/chatbot.jsp"%>
 
 	<script type="text/javascript">
 		$(function () {

@@ -122,7 +122,7 @@
 			<!-- 결과 출력 위치 -->
 		</div>
 	</div>
-	<%@ include file="../../Template/footer.jsp"%>
+		<%@ include file="../../common/chatbot.jsp"%>
 </body>
 <script
 	src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>

@@ -37,6 +37,6 @@
 			</tbody>
 		</table>
 	</div>
-	<%@ include file="../../Template/footer.jsp"%>
+	<%@ include file="../../common/chatbot.jsp"%>
 </body>
 </html>

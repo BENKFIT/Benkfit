@@ -126,7 +126,7 @@ function ajaxTest(){
 			<!-- 결과 출력 위치 -->
 		</div>
 	</div>
-	<%@ include file="../../Template/footer.jsp"%>
+	<%@ include file="../../common/chatbot.jsp"%>
 <script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
 <script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
 <script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>

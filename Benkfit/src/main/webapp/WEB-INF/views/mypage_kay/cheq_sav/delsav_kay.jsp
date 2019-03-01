@@ -61,7 +61,7 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="../../Template/footer.jsp"%>
+	<%@ include file="../../common/chatbot.jsp"%>
 </body>
 <script>
 $(document).ready(function() {

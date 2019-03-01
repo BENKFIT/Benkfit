@@ -24,6 +24,6 @@
 		</script>
 	</c:if>
 
-	<%@ include file ="../../Template/footer.jsp" %>	
+	<%@ include file="../../common/chatbot.jsp"%>
 </body>
 </html>

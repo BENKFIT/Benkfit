@@ -68,7 +68,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-	<%@ include file="../../Template/footer.jsp"%>
+	<%@ include file="../../common/chatbot.jsp"%>
 </body>
 <script
 	src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>

@@ -170,6 +170,8 @@
 				data-target="#trans" onclick="confirm();">확인</button>
 		</div>
 	</div> -->
+	
+	<%@ include file="../../common/chatbot.jsp"%>
 
 	<script type="text/javascript">
 	$(function () {
