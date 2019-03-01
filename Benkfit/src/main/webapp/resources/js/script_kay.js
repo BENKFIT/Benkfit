@@ -30,9 +30,7 @@ function move(str){
 	}else if(str==13){//계좌관리-적금-조회
 		document.mypage.action="sav_account";
 	}else if(str==14){//계좌관리-적금-해지
-		document.mypage.action="delsav_account";
-	}else if(str==15){//계좌관리-적금-해지
-		document.mypage.action="mypage";
+		document.mypage.action="delsav";
 	}
 }
 /*QR코드발급*/

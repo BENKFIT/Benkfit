@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>BenkFit</title>
 <script type="text/javascript">
-<<<<<<< HEAD
      /* 
     window.onload = function() {
        $.ajax({
@@ -21,7 +20,7 @@
            });
     }  
     }  */
-=======
+    
      window.onload = function() {
       /* setInterval(function() { */
         $.ajax({
@@ -36,7 +35,6 @@
             });
        /*  }, 1000) */
     }
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 </script>
 </head>
 <body>
@@ -49,8 +47,6 @@
 	  </div>
   </div>
   
-  <!-- FOOTER  -->
-  <%@ include file="./footer.jsp"%>
 
 </body>
 </html>

@@ -165,7 +165,8 @@
 								data-submenu="submenu-0-2" href="#">상품관리</a></li>
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
-							<li class="menu__item"><a class="menu__link" href="manage">은행관리</a></li>
+							<li class="menu__item"><a class="menu__link"
+								data-submenu="submenu-0-4" href="#">은행관리</a></li>
 						</ul>
 
 						<!-- Submenu 0-2 예금-->
@@ -182,6 +183,13 @@
 								data-submenu="submenu-0-3-1" href="event_list_sws">이벤트관리</a></li>
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
+						</ul>
+
+						<!-- Submenu 0-4 은행관리-->
+						<ul data-menu="submenu-0-4" class="menu__level">
+							<li class="menu__item"><a class="menu__link" href="benkfitControl">은행관리</a></li>
+							<li class="menu__item"><a class="menu__link" href="deploy">배포</a></li>
+							<li class="menu__item"><a class="menu__link" href="productChart_sws">결산</a></li>
 						</ul>
 					</sec:authorize>
 

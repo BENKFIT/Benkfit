@@ -46,8 +46,10 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<h2>적금계좌조회</h2>
+		<h5 style="float:right;">마이페이지>조회>적금계좌조회</h5>
+		<br>
 		<hr>
+		<br>
 		<table class="table eq-ui-data-table z-depth-1">
 			<tr>
 				<th>적금 계좌번호</th>
@@ -58,7 +60,6 @@
 							</c:when>
 							<c:otherwise>
 								<option value="계좌를 선택하세요." disabled selected>&nbsp;&nbsp;계좌를선택하세요.</option>
-								
 								<c:forEach var="sav" items="${sav}">
 									<option value="${sav.mySav_account}">${sav.mySav_account}</option>
 								</c:forEach>
@@ -69,7 +70,7 @@
 			</tr>
 			<tr class="srch_area">
 				<th>조회기간</th>
-				<td><input type="date" class="date_kay" name="start_date"
+				<td style="text-align:left;"><input type="date" class="date_kay" name="start_date"
 					id="start_date"> ~ <input type="date" class="date_kay"
 					name="end_date" id="end_date"></td>
 				<td><span> <input type="button" class="btn btn-info"
