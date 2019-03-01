@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.web3j.protocol.http.HttpService;
 
 import spring.mvc.benkfit.service.Service_bh;
 
@@ -275,6 +273,38 @@ public class Controller_bh {
 		logger.info("rejection");
 		service.rejection(req, model);
 		return "admin/product/loan/result";
+	}
+	
+	// 은행관리
+	@RequestMapping("benkfitControl")
+	public String benkfitControl(HttpServletRequest req, Model model) throws Exception {
+		logger.info("benkfitControl");
+		service.benkfitControl(req, model);
+		return "admin/control/benkfitControl";
+	}
+	
+	// 대출계좌 토큰 할당
+	@RequestMapping("benkfitLoanStock")
+	public String benkfitLoanStock(HttpServletRequest req, Model model) throws Exception {
+		logger.info("benkfitLoanStock");
+		service.benkfitLoanStock(req, model);
+		return "admin/control/benkfitLoanStock";
+	}
+	
+	//마이닝하기
+	@RequestMapping("minerStart")
+	public String minerStart(HttpServletRequest req, Model model) throws Exception {
+		logger.info("minerStart");
+		service.minerStart(req, model);
+		return "admin/control/mining";
+	}
+	
+	//마이닝중지
+	@RequestMapping("minerStop")
+	public String minerStop(HttpServletRequest req, Model model) throws Exception {
+		logger.info("minerStop");
+		service.minerStop(req, model);
+		return "admin/control/mining";
 	}
 
 	/*

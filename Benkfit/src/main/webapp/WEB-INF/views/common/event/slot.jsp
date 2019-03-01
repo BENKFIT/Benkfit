@@ -53,6 +53,7 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
+<title>회원 > 이벤트 > 슬롯머신</title>
 <body>
 
 	<!-- TOP&SIDE -->

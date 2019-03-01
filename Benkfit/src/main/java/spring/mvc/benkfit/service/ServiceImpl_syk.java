@@ -32,6 +32,7 @@ import org.web3j.protocol.core.RemoteCall;
 import org.web3j.protocol.core.Request;
 import org.web3j.protocol.core.methods.response.Log;
 import org.web3j.protocol.core.methods.response.TransactionReceipt;
+import org.web3j.protocol.geth.Geth;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
@@ -52,43 +53,21 @@ public class ServiceImpl_syk implements Service_syk {
 
 	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
+	Geth geth = Geth.build(new HttpService("http://localhost:8545"));
 
-	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
-	final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
-	final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
-	final String owner_pwd = "password";
+	int chkNum = Setting.chkNum;
+	final String path = Setting.path;
+	private final String owner = Setting.owner;
+	private final String owner_pwd = Setting.owner_pwd;
+	private final String owner_file = Setting.owner_file;
+	private final String fn = Setting.fn;
 
-	int chkNum = 0;
-
-	String fn = "0x";
-
-	final BigInteger gasPrice = BigInteger.valueOf(3000000);
-	final BigInteger gasLimit = BigInteger.valueOf(3000000);
-	final BigInteger initialWeiValue = BigInteger.valueOf(0);
+	final BigInteger gasPrice = Setting.gasPrice;
+	final BigInteger gasLimit = Setting.gasLimit;
+	final BigInteger initialWeiValue = Setting.initialWeiValue;
 
 	@Autowired
 	DAOImpl_syk dao;
-
-	/*
-	 * 배포 : 톰캣서버가 열릴 때 한번만 배포
-	 */
-	private static String benkfit;
-	private static String bank;
-	private static String slot;
-	
-	//배포된 contract의 주소
-	public static String getBenkfit() {
-		return benkfit;
-	}
-	
-	public static String getBank() {
-		return bank;
-	}
-	
-	public static String getSlot() {
-		return slot;
-	}
-
 
 	/*
 	 * 상품
@@ -193,37 +172,37 @@ public class ServiceImpl_syk implements Service_syk {
 		boolean success = false;
 		int result = 0;
 		// 새 계정생성
-		NewAccountIdentifier newAccount = admin.personalNewAccount(password).send();
-		String account = newAccount.getAccountId();
-		if (newAccount != null) {
+		NewAccountIdentifier _newAccount = admin.personalNewAccount(password).send();
+		String newAccount = _newAccount.getAccountId();
+		if (_newAccount != null) {
 			success = true;
 			model.addAttribute("success", success);
 			System.out.println("새로운 계정을 만드는 함수입니다.");
 			System.out.println("새 계정의 입력받은 비밀번호 : " + password);
 			System.out.println("성공여부 : " + success);
 
-			// 10이더 전송
-			Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
-			
-			String contract = getBenkfit();
-			@SuppressWarnings("deprecation")
-			Benkfit createCheq = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
-			TransactionReceipt transfer = createCheq.transfer(account, BigInteger.valueOf(10)).send();
+			// 계정이 성공적으로 생성되면 owner계정에서 자동으로 10이더를 보내준다.
+			if (success) {
+				// 10이더 설정
+				BigDecimal ether = BigDecimal.valueOf(10);
+				// 자격증명
+				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
+				// 이더전송
+				TransactionReceipt transfer = Transfer
+						.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 
-			Log log = createCheq.getTransferEvents(transfer).get(0).log;
-			System.out.println("createCheq : " + log);
-			
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id", id);
-			map.put("num", num);
-			map.put("pwd", password);
-			map.put("account", account);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", id);
+				map.put("num", num);
+				map.put("pwd", password);
+				map.put("account", newAccount);
 
-			result = dao.createCheq(map);
+				result = dao.createCheq(map);
+				System.out.println("newAccount : " + newAccount);
+				req.setAttribute("Accountcnt", result);
+				req.setAttribute("num", num);
+			}
 		}
-		System.out.println("newAccount : " + account);
-		req.setAttribute("Accountcnt", result);
-		req.setAttribute("num", num);
 	}
 
 	// 적금계좌생성
@@ -240,37 +219,36 @@ public class ServiceImpl_syk implements Service_syk {
 		boolean success = false;
 		int result = 0;
 		// 새 계정생성
-		NewAccountIdentifier newAccount = admin.personalNewAccount(password).send();
-		String account = newAccount.getAccountId();
-		if (newAccount != null) {
+		NewAccountIdentifier _newAccount = admin.personalNewAccount(password).send();
+		String newAccount = _newAccount.getAccountId();
+		if (_newAccount != null) {
 			success = true;
 			model.addAttribute("success", success);
 			System.out.println("새로운 계정을 만드는 함수입니다.");
 			System.out.println("새 계정의 입력받은 비밀번호 : " + password);
 			System.out.println("성공여부 : " + success);
 
-			// 10이더 전송
-			Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
-			
-			String contract = getBenkfit();
-			@SuppressWarnings("deprecation")
-			Benkfit createSav = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
-			TransactionReceipt transfer = createSav.transfer(account, BigInteger.valueOf(10)).send();
-			
-			Log log = createSav.getTransferEvents(transfer).get(0).log;
-			System.out.println("createSav : " + log);
+			// 계정이 성공적으로 생성되면 owner계정에서 자동으로 10이더를 보내준다.
+			if (success) {
+				// 10이더 설정
+				BigDecimal ether = BigDecimal.valueOf(10);
+				// 자격증명
+				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
+				// 이더전송
+				TransactionReceipt transfer = Transfer
+						.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", id);
+				map.put("num", num);
+				map.put("pwd", password);
+				map.put("account", newAccount);
+				map.put("period", period);
+				map.put("amount", 10);
 
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("id", id);
-			map.put("num", num);
-			map.put("pwd", password);
-			map.put("account", account);
-			map.put("period", period);
-			map.put("amount", 10);
-
-			result = dao.createSav(map);
+				result = dao.createSav(map);
+				req.setAttribute("Accountcnt", result);
+			}
 		}
-		req.setAttribute("Accountcnt", result);
 	}
 
 	// 예금상품수정
@@ -310,31 +288,31 @@ public class ServiceImpl_syk implements Service_syk {
 		req.setAttribute("num", num);
 		req.setAttribute("result", result);
 	}
-	
-	//적금만기, 해지
+
+	// 적금만기, 해지
 	@Override
-	public void savExpire(HttpServletRequest req) throws Exception{
-		String contract = getBenkfit();
+	public void savExpire(HttpServletRequest req) throws Exception {
+		String contract = Setting.getBenkfit();
 		String password = req.getParameter("password");
 		String file = req.getParameter("file");
 		String account = req.getParameter("account");
-		
-		//가입했던 적금의 금액과 이율 검색
+
+		// 가입했던 적금의 금액과 이율 검색
 		int amount = dao.savExpire(account);
 		int rate = 0;
 		amount = amount * rate;
-		
+
 		BigInteger value = BigInteger.valueOf(amount);
-		
+
 		Credentials credential = WalletUtils.loadCredentials(password, file);
 		@SuppressWarnings("deprecation")
 		Benkfit savExpire = Benkfit.load(contract, web3j, credential, gasPrice, gasLimit);
-		TransactionReceipt transactionReceipt =  savExpire.output(account, value).send();
+		TransactionReceipt transactionReceipt = savExpire.output(account, value).send();
 		String blockhash = transactionReceipt.getBlockHash();
 
 		Log log = savExpire.getTransferEvents(transactionReceipt).get(0).log;
 		System.out.println("savExpire : " + log);
-		
+
 		req.setAttribute("blockhash", blockhash);
 	}
 
@@ -358,7 +336,7 @@ public class ServiceImpl_syk implements Service_syk {
 	@Override
 	public void transPro(HttpServletRequest req) throws Exception {
 		System.out.println("== 이체 ==");
-		
+
 		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
@@ -368,28 +346,28 @@ public class ServiceImpl_syk implements Service_syk {
 		String fileSource = path.concat(req.getParameter("file"));
 		String from = fn.concat(req.getParameter("file").substring(37));
 		System.out.println("from : " + from);
-		
+
 		int value = Integer.parseInt(req.getParameter("amount"));
 		String to = req.getParameter("to");
 		BigInteger ether = BigInteger.valueOf(value);
 
-		//지갑로드
+		// 지갑로드
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
-		
-		//contract 부르기
-		String contract = getBenkfit();
+
+		// contract 부르기
+		String contract = Setting.getBenkfit();
 		@SuppressWarnings("deprecation")
 		Benkfit transfer = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
-		
-		//transfer실행
+
+		// transfer실행
 		TransactionReceipt transactionReceipt = transfer.transfer(to, ether).send();
 		String blockHash = transactionReceipt.getBlockHash();
-		
-		//event 실행
+
+		// event 실행
 		Log log = transfer.getTransferEvents(transactionReceipt).get(0).log;
-		
+
 		System.out.println("transPro : " + log);
-		
+
 		if (blockHash != null) {
 			TransDetailVO vo = new TransDetailVO();
 			vo.setTran_account(from);
@@ -409,58 +387,59 @@ public class ServiceImpl_syk implements Service_syk {
 	}
 
 	// 적금이체
-	public void savTrans(HttpServletRequest req) throws Exception{
+	public void savTrans(HttpServletRequest req) throws Exception {
 		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		
+
 		long value = Long.parseLong(req.getParameter("value"));
 		BigInteger ether = BigInteger.valueOf(value);
 		String file = req.getParameter("file");
 		String pwd = req.getParameter("pwd");
 		String account = req.getParameter("account");
-		
-		String contract = getBenkfit();
-		
-		//지갑 로드
+
+		String contract = Setting.getBenkfit();
+
+		// 지갑 로드
 		Credentials credentials = WalletUtils.loadCredentials(pwd, file);
-		
-		//contract 연결
+
+		// contract 연결
 		@SuppressWarnings("deprecation")
 		Benkfit savTrans = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
-		
-		//input함수 실행
+
+		// input함수 실행
 		TransactionReceipt input = savTrans.input(ether).send();
-		
-		//event 실행
+
+		// event 실행
 		String from = savTrans.getTransferEvents(input).get(0).from;
 		Log log = savTrans.getTransferEvents(input).get(0).log;
 		String to = savTrans.getTransferEvents(input).get(0).to;
 		BigInteger amount = savTrans.getTransferEvents(input).get(0).value;
-		
+
 		System.out.println("savTrans : " + log);
-		
-		//DB-INSERT
+
+		// DB-INSERT
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("from", from);
 		map.put("amount", amount);
 		map.put("account", account);
-		
+
 		dao.savTrans(map);
 	}
-	
-	//잔액확인
+
+	// 잔액확인
 	@Override
-	public void getBalance(HttpServletRequest req) throws Exception{
+	public void getBalance(HttpServletRequest req) throws Exception {
 		System.out.println("========잔액확인=========");
-		String account = req.getParameter("account");
+		String account = fn.concat(req.getParameter("file").split("--")[2]);
 		String file = req.getParameter("file").substring(12);
 		file = path.concat(file);
 		String pwd = req.getParameter("password");
-		
-		String contract = getBenkfit();
-		
-		//지갑로드
+
+		String contract = Setting.getBenkfit();
+		System.out.println("============" + contract + "============");
+
+		// 지갑로드
 		Credentials credentials = WalletUtils.loadCredentials(pwd, file);
 		@SuppressWarnings("deprecation")
 		Benkfit getBalance = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
@@ -468,28 +447,32 @@ public class ServiceImpl_syk implements Service_syk {
 		System.out.println("balance ==>" + balance);
 		req.setAttribute("balance", balance);
 	}
-	
-	//입금
+
+	// 입금
 	@Override
-	public void depositPro(HttpServletRequest req) throws Exception{
+	public void depositPro(HttpServletRequest req) throws Exception {
 		System.out.println("============입금============");
 		String password = req.getParameter("password");
-		String from = req.getParameter("from");
+		//String from = req.getParameter("from");
+		String from = fn.concat(req.getParameter("file").split("--")[2]);
 		String file = req.getParameter("file");
 		file = path.concat(file);
+		System.out.println(from);
+		System.out.println(file);
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		BigInteger value = BigInteger.valueOf(amount);
-		
-		//지갑로드
-		String benkfit = getBenkfit();
+		System.out.println(value);
+
+		// 지갑로드
+		String benkfit = Setting.getBenkfit();
 		Credentials credential = WalletUtils.loadCredentials(password, file);
 		@SuppressWarnings("deprecation")
 		Benkfit depositPro = Benkfit.load(benkfit, web3j, credential, gasPrice, gasLimit);
 		TransactionReceipt transactionReceipt = depositPro.input(value).send();
 		Log log = depositPro.getTransferEvents(transactionReceipt).get(0).log;
-		
+
 		System.out.println("depositPro : " + log);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("account", from);
 		map.put("value", value);
@@ -498,6 +481,147 @@ public class ServiceImpl_syk implements Service_syk {
 		//System.out.println("입금결과 : " + result);
 	}
 	
+
+	/*
+	 * 자동이체
+	 */
+	// 자동이체 페이지
+	public void autoTrans(HttpServletRequest req) throws Exception {
+		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+
+		List<AutoTransferVO> auto = dao.autoSearch(id);
+		List<String> accounts = dao.userAccounts(id);
+
+		req.setAttribute("auto", auto);
+		req.setAttribute("accounts", accounts);
+	}
+
+	// 자동이체 등록
+	@Override
+	public void autoAdd(HttpServletRequest req) throws Exception {
+		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String from = req.getParameter("from");
+		String to = req.getParameter("to");
+		int value = Integer.parseInt(req.getParameter("value"));
+		int number = Integer.parseInt(req.getParameter("date"));
+		String file = req.getParameter("file");
+		file = path.concat(file);
+		String password = req.getParameter("password");
+
+		AutoTransferVO vo = new AutoTransferVO();
+		vo.setAuto_from(from);
+		vo.setAuto_to(to);
+		vo.setAuto_value(value);
+		vo.setAuto_date(number);
+		vo.setC_id(id);
+		vo.setAuto_file(file);
+		vo.setAuto_pwd(password);
+
+		int result = dao.autoAdd(vo);
+
+		req.setAttribute("autoAdd", result);
+	}
+
+	// 자동이체 삭제
+	@Override
+	public void autoDel(HttpServletRequest req) throws Exception {
+		int num = Integer.parseInt(req.getParameter("auto_num"));
+
+		int result = dao.autoDel(num);
+		req.setAttribute("result", result);
+	}
+	
+	//배포페이지
+	@Override
+	public void deploy(HttpServletRequest req) throws Exception {
+		List<ContractVO> vo = dao.deploy();
+		req.setAttribute("contract", vo);
+	}
+	
+	//배포
+	@Override
+	public void deployPro(HttpServletRequest req) throws Exception {
+		String name = req.getParameter("name");
+		System.out.println("===== " + name + " contract 배포중 =====");
+		//coinbase 계정으로 배포
+		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
+		ContractVO vo = new ContractVO();
+		
+		String address = "";
+		if(name.equals("Benkfit")) {
+			@SuppressWarnings("deprecation")
+			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
+			address = benkfit.getContractAddress();
+			Setting.setBenkfit(address);
+			vo.setCon_address(address);
+			System.out.println("Contract benkfit ==> " + Setting.getBenkfit());
+			
+		}else if(name.equals("Bank")) {
+			@SuppressWarnings("deprecation")
+			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			address = bank.getContractAddress();
+			Setting.setBank(address);
+			vo.setCon_address(address);
+			System.out.println("Contract bank ==> " + Setting.getBank());
+			
+		}else if(name.equals("Slot")) {
+			@SuppressWarnings("deprecation")
+			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			address = slot.getContractAddress();
+			Setting.setSlot(address);
+			vo.setCon_address(address);
+			System.out.println("Contract slot ==> " + Setting.getSlot());
+		}
+		vo.setCon_name(name);
+		
+		int result = dao.deployAdd(vo);
+		req.setAttribute("deployPro", result);
+	}
+
+	//재배포
+	@Override
+	public void reDeploy(HttpServletRequest req) throws Exception {
+		String name = req.getParameter("contract");
+		System.out.println("===== " + name + " contract 재배포중 =====");
+		
+		ContractVO vo = new ContractVO();
+		
+		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
+		
+		String address = "";
+		if(name.equals("Benkfit")) {
+			@SuppressWarnings("deprecation")
+			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
+			address = benkfit.getContractAddress();
+			Setting.setBenkfit(address);
+			vo.setCon_address(address);
+			System.out.println("Contract benkfit ==> " + benkfit.getContractAddress());
+			
+		}else if(name.equals("Bank")) {
+			@SuppressWarnings("deprecation")
+			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			address = bank.getContractAddress();
+			Setting.setBank(address);
+			vo.setCon_address(address);
+			System.out.println("Contract bank ==> " + Setting.getBank());
+			
+		}else if(name.equals("Slot")) {
+			@SuppressWarnings("deprecation")
+			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
+			address = slot.getContractAddress();
+			vo.setCon_address(address);
+			Setting.setSlot(address);
+			System.out.println("Contract slot ==> " + Setting.getSlot());
+		}
+		vo.setCon_name(name);
+		
+		int result = dao.reDeploy(vo);
+		req.setAttribute("reDeploy", vo.getCon_address());
+	}
 	/*//출금
 	@Override
 	public void withdraw(HttpServletRequest req) throws Exception{
@@ -522,7 +646,7 @@ public class ServiceImpl_syk implements Service_syk {
 		
 		req.setAttribute("blockhash", blockHash);
 	}
-	*/
+	 */
 	/*// 잔액확인
 	@Override
 	public void getBalance(HttpServletRequest req) {
@@ -530,136 +654,7 @@ public class ServiceImpl_syk implements Service_syk {
 		System.out.println("account ===> " + account);
 		BigInteger balance = null;
 
-		try {
-			balance = this.web3j.ethGetBalance(account, DefaultBlockParameter.valueOf("latest")).sendAsync().get()
-					.getBalance();
-		} catch (InterruptedException | ExecutionException e) {
-			e.getMessage();
-		}
-		req.setAttribute("balance", balance);
+		// int result = dao.depositPro(map);
+		// System.out.println("입금결과 : " + result);
 	}*/
-	
-	/*
-	 * 자동이체
-	 */
-	//자동이체 페이지
-	public void autoTrans(HttpServletRequest req) throws Exception{
-		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
-		User user = (User) securityContext.getPrincipal();
-		String id = user.getUsername();
-		
-		List<AutoTransferVO> auto = dao.autoSearch(id);
-		List<String> accounts = dao.userAccounts(id);
-		
-		req.setAttribute("auto", auto);
-		req.setAttribute("accounts", accounts);
-	}
-
-	//자동이체 등록
-	@Override
-	public void autoAdd(HttpServletRequest req) throws Exception {
-		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
-		User user = (User) securityContext.getPrincipal();
-		String id = user.getUsername();
-		String from = req.getParameter("from");
-		String to = req.getParameter("to");
-		int value = Integer.parseInt(req.getParameter("value"));
-		int number = Integer.parseInt(req.getParameter("date"));
-		String file = req.getParameter("file");
-		file = path.concat(file);
-		String password = req.getParameter("password");
-		
-		AutoTransferVO vo = new AutoTransferVO();
-		vo.setAuto_from(from);
-		vo.setAuto_to(to);
-		vo.setAuto_value(value);
-		vo.setAuto_date(number);
-		vo.setC_id(id);
-		vo.setAuto_file(file);
-		vo.setAuto_pwd(password);
-		
-		int result = dao.autoAdd(vo);
-		
-		req.setAttribute("autoAdd", result);
-	}
-
-	//자동이체 삭제
-	@Override
-	public void autoDel(HttpServletRequest req) throws Exception {
-		int num = Integer.parseInt(req.getParameter("auto_num"));
-		
-		int result = dao.autoDel(num);
-		req.setAttribute("result", result);
-	}
-	
-	//배포페이지
-	@Override
-	public void deploy(HttpServletRequest req) throws Exception {
-		List<ContractVO> vo = dao.deploy();
-		req.setAttribute("contract", vo);
-	}
-	
-	//배포
-	@Override
-	public void deployPro(HttpServletRequest req) throws Exception {
-		String name = req.getParameter("name");
-		System.out.println("===== " + name + " contract 배포중 =====");
-		//coinbase 계정으로 배포
-		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
-		ContractVO vo = new ContractVO();
-		
-		if(name.equals("Benkfit")) {
-			@SuppressWarnings("deprecation")
-			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
-			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
-			System.out.println("Contract benkfit ==> " + this.benkfit);
-			
-		}else if(name.equals("Bank")) {
-			@SuppressWarnings("deprecation")
-			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
-			ServiceImpl_syk.bank = bank.getContractAddress();
-			System.out.println("Contract bank ==> " + this.bank);
-		}else if(name.equals("Slot")) {
-			@SuppressWarnings("deprecation")
-			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
-			ServiceImpl_syk.slot = slot.getContractAddress();
-			System.out.println("Contract slot ==> " + this.slot);
-		}
-		vo.setCon_name(name);
-		vo.setCon_address(ServiceImpl_syk.benkfit);
-		
-		int result = dao.deployAdd(vo);
-		req.setAttribute("result", result);
-	}
-
-	@Override
-	public void reDeploy(HttpServletRequest req) throws Exception {
-		String name = req.getParameter("contract");
-		ContractVO vo = new ContractVO();
-		
-		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
-		
-		if(name.equals("Benkfit")) {
-			@SuppressWarnings("deprecation")
-			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
-			ServiceImpl_syk.benkfit = benkfit.getContractAddress();
-			System.out.println("Contract benkfit ==> " + this.benkfit);
-			
-		}else if(name.equals("Bank")) {
-			@SuppressWarnings("deprecation")
-			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
-			ServiceImpl_syk.bank = bank.getContractAddress();
-			System.out.println("Contract bank ==> " + this.bank);
-		}else if(name.equals("Slot")) {
-			@SuppressWarnings("deprecation")
-			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
-			ServiceImpl_syk.slot = slot.getContractAddress();
-			System.out.println("Contract slot ==> " + this.slot);
-		}
-		vo.setCon_name(name);
-		vo.setCon_address(ServiceImpl_syk.benkfit);
-		
-		int result = dao.reDeploy(vo);
-		req.setAttribute("result", result);
-	}
 }

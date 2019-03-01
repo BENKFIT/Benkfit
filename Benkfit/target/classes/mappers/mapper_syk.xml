@@ -167,6 +167,7 @@
 	<select id="deploy" resultType="spring.mvc.benkfit.vo.ContractVO">
 		SELECT con_name, con_address, con_deployDate
 		FROM contract_tbl
+		ORDER BY con_name
 	</select>
 	
 	<!-- 배포추가 -->
@@ -181,4 +182,11 @@
 		SET con_address = #{con_address}, con_deployDate = sysdate
 		WHERE con_name = #{con_name}
 	</update>
+	
+	<!-- contract 읽기 -->
+	<select id="contract" resultType="spring.mvc.benkfit.vo.ContractVO">
+		SELECT * 
+		FROM contract_tbl
+		ORDER BY con_name
+	</select>
 </mapper>

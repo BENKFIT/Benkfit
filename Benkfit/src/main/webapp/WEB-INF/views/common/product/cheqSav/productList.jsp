@@ -28,7 +28,7 @@
 						<div class="pricing-divider ">
 							<h3 class="text-light">${list.cheq_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
-								<span class="h3">Ether</span> ${list.cheq_rate}% <span
+								<span class="h4">Ether</span> ${list.cheq_rate}% <span
 									class="h5">/year</span>
 							</h4>
 							<svg class='pricing-divider-img'
