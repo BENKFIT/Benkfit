@@ -192,14 +192,14 @@ public class Controller_syk {
 		return "mypage_kay/trans/withdraw";
 	}
 	
-	//출금진행
+	/*//출금진행
 	@RequestMapping("withdrawPro")
 	public String withdrawPro(HttpServletRequest req) throws Exception{
 		logger.info("출금");
 		service.withdraw(req);
 		
-		return "mypage_kay/trans/withdraw";
-	}
+		return "mypage_kay/withdraw";
+	}*/
 	
 	/*
 	 * 자동이체
@@ -232,16 +232,16 @@ public class Controller_syk {
 	}
 	
 	/*
-	 * 배포
+	 * 관리페이지
 	 */
 	
-	//배포페이지
-	@RequestMapping("deploy")
+	//관리페이지
+	@RequestMapping("manage")
 	public String deploy(HttpServletRequest req) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
 		
-		return "admin/deploy/deploy";
+		return "admin/manage/manage";
 	}
 	
 	//배포
@@ -250,11 +250,14 @@ public class Controller_syk {
 		logger.info("배포");
 		service.deployPro(req);
 		
-		return "admin/deploy/deployPro";
+		return "admin/deploy/result";
 	}
 	
-	@RequestMapping("bean")
-	public String bean(HttpServletRequest req) {
-		return "admin/deploy/bean";
+	@RequestMapping("reDeploy")
+	public String reDeploy(HttpServletRequest req) throws Exception {
+		logger.info("재배포");
+		service.reDeploy(req);
+		
+		return "admin/deploy/reDeploy";
 	}
 }

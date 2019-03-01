@@ -166,4 +166,16 @@ public class DAOImpl_syk implements DAO_syk{
 	public int deployAdd(ContractVO vo) {
 		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.deployAdd", vo);
 	}
+
+	//재배포
+	@Override
+	public int reDeploy(ContractVO vo) {
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_syk.reDeploy", vo);
+	}
+
+	//contract 읽어오기
+	@Override
+	public List<ContractVO> contract() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.contract");
+	}
 }
