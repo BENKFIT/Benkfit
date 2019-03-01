@@ -193,5 +193,5 @@ public class DAOImpl_lia implements DAO_lia {
 	public List<PriceVO> selectCoins() {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCoins");
 	}
-
+	
 }

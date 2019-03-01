@@ -132,7 +132,7 @@
 	<select id="cheqOut" resultType="int">
 		select NVL(sum(tran_amount),0)
 		from transdetail_tbl
-		where c_id = #{id} and tran_account = #{account} and tran_type in('출금','입금')
+		where c_id = #{id} and tran_account = #{account} and tran_type in('출금','이체')
 		<if test="start_date != null and end_date != null">
 			and tran_date between #{start_date} and #{end_date}
 		</if>
@@ -278,9 +278,9 @@
 		insert into document_tbl(doc_title, doc_num, doc_date, doc_name, doc_jumin1,
 		doc_jumin2,
 		doc_perAddress, doc_department, doc_position, doc_period_from, doc_period_to,
-		doc_comName, doc_comAddress,doc_img,c_id)
+		doc_comName, doc_comAddress, doc_img, c_id)
 		values(#{doc_title}, doc_num_seq.nextval, sysdate,
-		#{doc_name},#{doc_jumin1},#{doc_jumin2},
+		#{doc_name},#{doc_jumin1}, #{doc_jumin2},
 		#{doc_perAddress},#{doc_department},#{doc_position},#{doc_period_from},
 		#{doc_period_to}, #{doc_comName},#{doc_comAddress}, #{doc_img}
 		,#{c_id})

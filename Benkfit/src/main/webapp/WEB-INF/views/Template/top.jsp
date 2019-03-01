@@ -183,7 +183,6 @@
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
 						</ul>
-
 					</sec:authorize>
 
 					<!-- Submenu 1 금융상품 -->

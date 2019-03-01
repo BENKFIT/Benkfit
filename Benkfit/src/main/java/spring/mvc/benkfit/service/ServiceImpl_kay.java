@@ -1,11 +1,14 @@
 package spring.mvc.benkfit.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,7 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -273,6 +278,7 @@ public class ServiceImpl_kay implements Service_kay{
 		String order = req.getParameter("order");
 		int start = 1;
 		int end = Integer.parseInt(req.getParameter("end"));
+		
 		String delCheq = req.getParameter("delCheq");
 		System.out.println("계좌선택 : " + delCheq);
 		System.out.println("====cheq_info====");
@@ -544,9 +550,11 @@ public class ServiceImpl_kay implements Service_kay{
 		// 이미지 파일
 		MultipartFile file = req.getFile("doc_img");
 		String saveDir = req.getRealPath("/resources/img/doc/"); 
+		String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
+		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
 		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
 		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
-		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
+		//String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
 
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -668,6 +676,7 @@ public class ServiceImpl_kay implements Service_kay{
 			map.put("end_day",vo3.getEnd_day());
 			int budget3 = dao.budget(map);
 			model.addAttribute("budget3" ,budget3);
+			System.out.println("budget3 : "+budget3);
 		}
 		if(vo != null) {
 			Map<String, Object> map = new HashMap<>();
@@ -676,8 +685,48 @@ public class ServiceImpl_kay implements Service_kay{
 			map.put("end_day",vo.getEnd_day());
 			int budget = dao.budget(map);
 			model.addAttribute("budget" ,budget);
+			
 		}
 		System.out.println("num : "+ num);
 		model.addAttribute("num", num);
 	}
+	@Override
+	public void downdocu(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		 String dFile = "재직증명서-양식.docx";
+		  String upDir = "C:\\Users\\82109\\Desktop";
+		  String path = upDir+File.separator+dFile;
+		  
+		  File file = new File(path);
+
+		  String userAgent = req.getHeader("User-Agent");
+		  boolean ie = userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("rv:11") > -1;
+		  String fileName = null;
+		   
+		  if (ie) {
+		   fileName = URLEncoder.encode(file.getName(), "utf-8");
+		  } else {
+		   fileName = new String(file.getName().getBytes("utf-8"),"iso-8859-1");
+		  }
+		  
+		  res.setContentType("application/octet-stream");
+		  res.setHeader("Content-Disposition","attachment;filename=\"" +fileName+"\";");
+		  
+		  FileInputStream fis=new FileInputStream(file);
+		  BufferedInputStream bis=new BufferedInputStream(fis);
+		  ServletOutputStream so=res.getOutputStream();
+		  BufferedOutputStream bos=new BufferedOutputStream(so);
+		  
+		  byte[] data=new byte[2048];
+		  int input=0;
+		  while((input=bis.read(data))!=-1){
+		   bos.write(data,0,input);
+		   bos.flush();
+		  }
+		  
+		  if(bos!=null) bos.close();
+		  if(bis!=null) bis.close();
+		  if(so!=null) so.close();
+		  if(fis!=null) fis.close();
+		 }
+		
 }

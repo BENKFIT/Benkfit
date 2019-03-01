@@ -146,7 +146,7 @@
          <!-- 페이지 컨트롤 -->
           <table class="paging" align="center">
             <tr>
-              <th align="center">
+              <th style="text-align:center">
                 <!-- 거래내역 있으면 -->
                 <c:if test="${tcnt > 0}">
                   <c:if test="${startPage > pageBlock}">
