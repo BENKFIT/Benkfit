@@ -31,39 +31,15 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
 <script type="text/javascript" src="${path}/js/qrcode.js"></script>
 <script type="text/javascript" src="${path}/js/classie.js"></script>
-<!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/main.js"></script>
-<!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script>
-<!-- 사이드메뉴 -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- qr코드 -->
 <script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
-<!-- qr코드 -->
-<script type="text/javascript" src="${path}/js/qrcode.js"></script>
-<!-- qr코드 -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="${path}/js/script_kay.js"></script>
-<!-- kay 스크립트 -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- 추가(alert) -->
 <script type="text/javascript" src="${path}/js/download.js"></script>
-<!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request.js"></script>
-<!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request2.js"></script>
-<!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/classie.js"></script><!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/main.js"></script><!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script><!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script><!-- qr코드 -->
-<script type="text/javascript" src="${path}/js/qrcode.js"></script><!-- qr코드 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/js/script_kay.js"></script><!-- kay 스크립트 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- 추가(alert) -->
-<script type="text/javascript" src="${path}/js/download.js"></script><!-- qr다운, -->
-<script type="text/javascript" src="${path}/js/request.js"></script><!-- qr다운, -->
-<script type="text/javascript" src="${path}/js/request2.js"></script><!-- qr다운, -->
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -87,4 +63,6 @@ pageEncoding="UTF-8"%>
 <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
 <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 
+<link href="${path}/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="${path}/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 

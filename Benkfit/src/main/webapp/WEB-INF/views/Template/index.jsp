@@ -89,5 +89,6 @@
 		ga('create', 'UA-XXXXX-X', 'auto');
 		ga('send', 'pageview');
 	</script>
+<%@ include file="./footer.jsp"%>
 </body>
 </html>

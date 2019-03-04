@@ -100,9 +100,14 @@
 	</update>
 	
 	<!-- 입금 -->
-	<update id="depositPro" parameterType="java.util.Map">
+	<insert id="depositPro1" parameterType="java.util.Map">
+		INSERT INTO transdetail_tbl(tran_num, tran_account, tran_out, tran_in, tran_amount, c_id, tran_type, tran_code, tran_blockhash)
+		VALUES(TRANSACTION_SEQ.nextval, #{account}, #{account}, #{account}, #{amount}, #{c_id}, '입금', 'A', #{blockHash})
+	</insert>
+	
+	<update id="depositPro2" parameterType="java.util.Map">
 		UPDATE myCheqAccount_tbl
-		SET MYCHEQ_AMOUNT = MYCHEQ_AMOUNT + #{value}
+		SET MYCHEQ_AMOUNT = MYCHEQ_AMOUNT + #{amount}
 		WHERE MYCHEQ_ACCOUNT = #{account}
 	</update>
 	

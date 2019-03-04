@@ -189,8 +189,7 @@ public class ServiceImpl_syk implements Service_syk {
 				// 자격증명
 				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 				// 이더전송
-				TransactionReceipt transfer = Transfer
-						.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
+				TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("id", id);
@@ -243,8 +242,7 @@ public class ServiceImpl_syk implements Service_syk {
 				// 자격증명
 				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 				// 이더전송
-				TransactionReceipt transfer = Transfer
-						.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
+				TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("id", id);
 				map.put("num", num);
@@ -342,7 +340,7 @@ public class ServiceImpl_syk implements Service_syk {
 		String id = user.getUsername();
 
 		List<String> accounts = dao.userAccounts(id);
-		req.setAttribute("accounts", accounts);
+		req.setAttribute("cheq", accounts);
 	}
 
 	// 이체
@@ -353,7 +351,7 @@ public class ServiceImpl_syk implements Service_syk {
 		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		String password = req.getParameter("pwd");
+		String password = req.getParameter("password");
 		System.out.println("password : " + password);
 
 		String fileSource = path.concat(req.getParameter("file"));
@@ -442,62 +440,85 @@ public class ServiceImpl_syk implements Service_syk {
 
 	// 잔액확인
 	@Override
-	public void getBalance(HttpServletRequest req) throws Exception {
+	public void getBalance(HttpServletRequest req) {
 		System.out.println("========잔액확인=========");
 		String account = fn.concat(req.getParameter("file").split("--")[2]);
-		String file = req.getParameter("file").substring(12);
+		String file = req.getParameter("file");
+		if(file.contains("fakepath")) {
+			file = file.substring(12);
+		}
 		file = path.concat(file);
 		String pwd = req.getParameter("password");
-
+		BigInteger balance = null;
+		System.out.println(req.getParameter("file") + "\t" + account + "\t" + file);
 		String contract = Setting.getBenkfit();
 		System.out.println("============" + contract + "============");
 
 		// 지갑로드
-		Credentials credentials = WalletUtils.loadCredentials(pwd, file);
-		@SuppressWarnings("deprecation")
-		Benkfit getBalance = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
-		BigInteger balance = getBalance.balanceOf(account).send();
-		System.out.println("balance ==>" + balance);
-		req.setAttribute("balance", balance);
+		Credentials credentials = null;
+		try {
+			credentials = WalletUtils.loadCredentials(pwd, file);
+			@SuppressWarnings("deprecation")
+			Benkfit getBalance = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
+			try {
+				balance = getBalance.balanceOf(account).send();
+			} catch (Exception e) {
+				balance = BigInteger.valueOf(0);
+			}
+			if(balance == null) balance = BigInteger.valueOf(0);
+			System.out.println("balance ==>" + balance);
+			req.setAttribute("balance", balance);
+		} catch (IOException | CipherException e) {
+			e.printStackTrace();
+		}
 	}
 
 	// 입금
 	@Override
 	public void depositPro(HttpServletRequest req) throws Exception {
+		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		
 		System.out.println("============입금============");
 		String password = req.getParameter("password");
 		//String from = req.getParameter("from");
 		String from = fn.concat(req.getParameter("file").split("--")[2]);
 		String file = req.getParameter("file");
+		if(file.contains("fakepath")) {
+			file = file.substring(12);
+		}
 		file = path.concat(file);
-		System.out.println(from);
-		System.out.println(file);
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		BigInteger value = BigInteger.valueOf(amount);
-		System.out.println(value);
-
+		System.out.println("file : " + file + "\t from : " + from);
 		// 지갑로드
 		String benkfit = Setting.getBenkfit();
+		System.out.println(benkfit);
 		Credentials credential = WalletUtils.loadCredentials(password, file);
 		@SuppressWarnings("deprecation")
 		Benkfit depositPro = Benkfit.load(benkfit, web3j, credential, gasPrice, gasLimit);
 		TransactionReceipt transactionReceipt = depositPro.input(value).send();
-		Log log = depositPro.getTransferEvents(transactionReceipt).get(0).log;
-
-		System.out.println("depositPro : " + log);
-
+		String blockHash = transactionReceipt.getBlockHash();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("account", from);
-		map.put("value", value);
+		map.put("amount", value);
+		map.put("blockHash", blockHash);
+		map.put("c_id", id);
 		
-		//int result = dao.depositPro(map);
-		//System.out.println("입금결과 : " + result);
+		int result = dao.depositPro(map);
+		
+		System.out.println(from); 
+		System.out.println(file);
+		System.out.println(value);
+		System.out.println("benkfit -- > " + benkfit + "\t result -->" + result);
 	}
 	
 
 	/*
 	 * 자동이체
 	 */
+	
 	// 자동이체 페이지
 	public void autoTrans(HttpServletRequest req) throws Exception {
 		Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();

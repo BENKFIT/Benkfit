@@ -4,20 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="description"
-	content="Implements Google's Material Design in Bootstrap.">
-<title>contract 배포</title>
-<link
-	href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5"
-	rel="stylesheet">
-<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
-	rel="stylesheet">
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
+<title>관리자 > 은행관리</title>
+<script type="text/javascript"	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
@@ -26,9 +14,7 @@
 		<div
 			class="eq-ui-card doc-margin-bottom doc-tabs doc-tabs-not-padding">
 			<div class="eq-ui-card-supporting-text">
-
-				<div
-					class="eq-ui-scrollbar-wrap eq-ui-scrollbar-wrap-x eq-ui-scrollbar-wrap-hide">
+				<div class="eq-ui-scrollbar-wrap eq-ui-scrollbar-wrap-x eq-ui-scrollbar-wrap-hide">
 					<ul
 						class="eq-ui-tabs eq-ui-tabs-color-inverted eq-ui-tabs-justified">
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t1">Start/End</a></li>
@@ -56,7 +42,7 @@
 	<!-- 관리자 > 배포 -->
 	<div id="eq-ui-tab-s2-t2" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<h5 style="float: right;">관리자 > 배포</h5>
+			<span style="float: right;">관리자 > 배포</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -107,7 +93,7 @@
 	<!-- 관리자 > 자금현황 -->
 	<div id="eq-ui-tab-s2-t3" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<h5 style="float: right;">관리자 > 자금현황</h5>
+			<span style="float: right;">관리자 > 자금현황</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">대출토큰할당량</td>
@@ -119,7 +105,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">LSSoan balance</td>
+					<td class="eq-ui-data-table-cell-non-numeric">Loan balance</td>
 					<td id="loan_balance">${loan_balance}</td>
 				</tr>
 				<tr>
@@ -225,7 +211,7 @@
 					$(id).html(data);
 				},
 				error : function() {
-					alert("reDeploy error");
+					alert("다시 시도해주세요.");
 				}
 			});
 		}
@@ -953,46 +939,6 @@
 		});
 	});
 </script>
-
-	<script
-		src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-	<script
-		src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-	<script
-		src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
-	<script
-		src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
-
-	<script src="/benkfit/resources/assets/js/tp/tp-color.html"
-		type="riot/tag"></script>
-	<script
-		src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
-
-	<script src="https://unpkg.com/lodash@4.16.0"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
-
-	<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-	<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-	<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-	<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-	<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
-
-	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-	<script>
-		(function(b, o, i, l, e, r) {
-			b.GoogleAnalyticsObject = l;
-			b[l] || (b[l] = function() {
-				(b[l].q = b[l].q || []).push(arguments)
-			});
-			b[l].l = +new Date;
-			e = o.createElement(i);
-			r = o.getElementsByTagName(i)[0];
-			e.src = '//www.google-analytics.com/analytics.js';
-			r.parentNode.insertBefore(e, r)
-		}(window, document, 'script', 'ga'));
-		ga('create', 'UA-XXXXX-X', 'auto');
-		ga('send', 'pageview');
-	</script>
+<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>
