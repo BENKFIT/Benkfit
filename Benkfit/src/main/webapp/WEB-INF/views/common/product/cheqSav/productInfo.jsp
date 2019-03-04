@@ -4,21 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="description" content="Implements Google's Material Design in Bootstrap.">
-     <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
-    <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
-<title>예/적금상품안내</title>
+<title>상품 > 예/적금</title>
 <style type="text/css">
 td {
 	color: white;
@@ -41,7 +27,7 @@ details td {
 #joinBtn1 {
 	color: white;
 	border: 1px solid white;
-	background-color: #C64545;
+	background-color: #1AA85C;
 	border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
@@ -60,7 +46,7 @@ details td {
 #joinBtn3 {
 	color: white;
 	border: 1px solid white;
-	background-color: #1AA85C;
+	background-color: #C64545;
 	border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
@@ -81,7 +67,6 @@ details td {
 	display: inline-block;
 	margin: 200px;
 }
-
 .div2 {
 	height: 500px;
 	text-align: center;
@@ -165,7 +150,7 @@ p {
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
 	<c:if test="${type == 'cheq'}">
-		<div style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
+		<div style="text-align: center; background-color: #1AA85C; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
 				<table style="text-align: center;">
 					<tr>
@@ -198,7 +183,7 @@ p {
 							<td>
 								<sec:authorize access="isAnonymous()">
 									<button type="button" class="btn btn-primary"
-									style="color: white; border: 1px solid white; background-color: #C64545; border-radius: 5px; width: 200px; font-size: 20px;"
+									style="color: white; border: 1px solid white; background-color: #1AA85C; border-radius: 5px; width: 200px; font-size: 20px;"
 									data-toggle="modal" data-target="#loginFail">가입하기</button>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
@@ -592,14 +577,11 @@ p {
 						<input type="hidden" value="${info.cheq_num}" name="num">
 							<table>
 								<tr>
-									<td>비밀번호</td>
 									<td>
-										<input type="password" name="password">
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="가입하기">
+										<div class="eq-ui-form-group eq-ui-input-field">
+										<input id="password" type="password" class="eq-ui-input" name="password">
+										<label for="password">비밀번호</label>
+									</div>
 									</td>
 								</tr>
 							</table>
@@ -607,6 +589,8 @@ p {
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input type="submit" value="가입하기" class="btn btn-primary"
+										data-toggle="tooltip" data-placement="bottom" title="입금시, 수수료가 발생합니다.">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
@@ -635,24 +619,24 @@ p {
 						<input type="hidden" value="${info.sav_num}" name="num">
 							<table>
 								<tr>
-									<td>비밀번호</td>
 									<td>
-										<input type="password" name="password">
+										<div class="eq-ui-form-group eq-ui-input-field">
+										<input id="password" type="password" class="eq-ui-input" name="password">
+										<label for="password">비밀번호</label>
+									</div>
 									</td>
 								</tr>
 								<tr>
-									<td>가입기간</td>
 									<td>
-										<select name="period">
-											<option value="12">12개월</option>
-											<option value="24">24개월</option>
-											<option value="36">36개월</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="가입하기">
+										<div class="eq-ui-form-group eq-ui-input-field">
+		                                    <select class="eq-ui-select" name="period">
+		                                        <option value="" disabled selected>가입기간을 선택해주세요.</option>
+		                                        <option value="12">12개월</option>
+		                                        <option value="24">24개월</option>
+		                                        <option value="36">36개월</option>
+		                                    </select>
+		                                    <label>가입기간</label>
+	                               		</div>
 									</td>
 								</tr>
 							</table>
@@ -660,6 +644,8 @@ p {
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input type="submit" value="가입하기" class="btn btn-primary"
+										data-toggle="tooltip" data-placement="bottom" title="입금시, 수수료가 발생합니다.">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
@@ -667,5 +653,11 @@ p {
 		</div>
 	</div>
 	</c:if>
+	<script type="text/javascript">
+	$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
+	<%@ include file="../../../Template/footer.jsp"%>
 </body>
 </html>

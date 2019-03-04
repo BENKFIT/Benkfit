@@ -5,6 +5,7 @@
 <html>
 <head>
 <title>이체</title>
+<title>마이페이지 > 이체</title>
 <style>
 .modal-body td {
 	padding: 10px;
@@ -16,7 +17,7 @@
 
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-		<h5 style="float: right;">마이페이지>이체</h5>
+		<span style="float: right;">마이페이지>이체</span>
 			<div class="col-md-12">
 				<form class="doc-form" action="transPro" method="post">
 					<table>
@@ -26,10 +27,19 @@
 						<tr>
 							<td colspan="4">
 								<div class="col-md-12">
-									<div class="eq-ui-form-group eq-ui-input-field">
+									<!-- <div class="eq-ui-form-group eq-ui-input-field">
 										<input id="from" type="text" class="eq-ui-input"> <label
 											for="from">출금계좌</label>
-									</div>
+									</div> -->
+									<div class="eq-ui-form-group eq-ui-input-field">
+                                    <select id="from" class="eq-ui-select" name="from">
+                                        <option value="" disabled selected>계좌를 선택하세요.</option>
+                                        <c:forEach var="cheq" items="${cheq}">
+                                        	 <option value="${cheq}">${cheq}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <label>출금계좌</label>
+                                </div>
 								</div>
 							</td>
 						</tr>
@@ -38,7 +48,7 @@
 								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-file">
 										<a class="btn btn-primary eq-ui-waves-light" data-toggle="tooltip" data-placement="bottom" title="private key파일을 올려주세요."> Upload <input
-											id="file" type="file" multiple>
+											id="file" type="file" multiple name="file">
 										</a>
 										<div class="eq-ui-input-file-path">
 											<input type="text" class="eq-ui-input"
@@ -52,7 +62,7 @@
 							<td colspan="2">
 								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-field">
-										<input id="password" type="password" class="eq-ui-input">
+										<input id="password" type="password" class="eq-ui-input" name="password">
 										<label for="password">비밀번호</label>
 									</div>
 								</div>
@@ -74,7 +84,7 @@
 							<td colspan="4">
 								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-field">
-										<input id="to" type="text" class="eq-ui-input"> <label
+										<input id="to" type="text" class="eq-ui-input" name="to"> <label
 											for="to">입금계좌</label>
 									</div>
 								</div>
@@ -84,7 +94,7 @@
 							<td colspan="4">
 								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-field">
-										<input id="amount" type="number" class="eq-ui-input">
+										<input id="amount" type="number" class="eq-ui-input" name="amount">
 										<label for="amount">금액</label>
 									</div>
 								</div>
@@ -165,28 +175,28 @@
 		  $('[data-toggle="tooltip"]').tooltip()
 			})
 	
-		function getBalance() {
-			//var select = $('#out option:selected').val();
-			var select = $('#from').val();
-			var file = $('#file').val();
-			var password = $('#password').val();
-			var account = "account=" + select + "&file=" + file + '&password='
-					+ password;
+	function getBalance() {
+		//var select = $('#out option:selected').val();
+		var select = $('#from').val();
+		var file = $('#file').val();
+		var password = $('#password').val();
+		var account = "account=" + select + "&file=" + file + '&password='
+				+ password;
 
-			$("#getBalance").html("잔액을 확인중입니다.");
-			$.ajax({
-				type : 'post',
-				data : account,
-				url : '${pageContext.request.contextPath}/getBalance',
-				success : function(data) {
-					$("#getBalance").html(data);
-				},
-				error : function() {
-					alert("getBalance error");
-				}
-			});
-		}
-
+		$("#getBalance").html("잔액을 확인중입니다.");
+		$.ajax({
+			type : 'post',
+			data : account,
+			url : '${pageContext.request.contextPath}/getBalance',
+			success : function(data) {
+				$("#getBalance").html(data);
+			},
+			error : function() {
+				alert("getBalance error");
+			}
+		});
+	}
+	
 	</script>
 <%@ include file="../../Template/footer.jsp"%>
 </body>

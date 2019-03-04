@@ -32,13 +32,12 @@ public class Setting {
 	}
 	
 	/*
-	 * 배포 : 톰캣서버가 열릴 때 한번만 배포
+	 * 배포
 	 */
 	private static String benkfit;
 	private static String bank;
 	private static String slot;
 
-	// 체크넘버
 	final static int chkNum = 0;
 	final static String fn = "0x";
 	

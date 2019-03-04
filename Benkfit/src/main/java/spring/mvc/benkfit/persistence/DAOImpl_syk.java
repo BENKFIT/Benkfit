@@ -102,7 +102,8 @@ public class DAOImpl_syk implements DAO_syk{
 	
 	//입금
 	public int depositPro(Map<String, Object> map) {
-		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_syk.depositPro", map);
+		sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.depositPro1", map);
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_syk.depositPro2", map);
 	}
 
 	//자동이체 조회

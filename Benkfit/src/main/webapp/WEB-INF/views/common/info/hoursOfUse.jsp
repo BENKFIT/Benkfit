@@ -28,7 +28,7 @@ thead>tr{
 	<%@ include file="../../Template/top.jsp"%>
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-			<h5 style="float: right;">이용안내>예금/적금</h5>
+			<span style="float: right;">이용안내>예금/적금</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -50,7 +50,7 @@ thead>tr{
 				</tbody>
 			</table>
 
-			<h5 style="float: right;">이용안내>이체</h5>
+			<span style="float: right;">이용안내>이체</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -72,7 +72,7 @@ thead>tr{
 				</tbody>
 			</table>
 
-			<h5 style="float: right;">이용안내>대출</h5>
+			<span style="float: right;">이용안내>대출</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -92,5 +92,6 @@ thead>tr{
 			</table>
 		</div>
 	</div>
+	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>
