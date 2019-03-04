@@ -92,7 +92,7 @@ function ajaxTest(){
 				</td>
 			</tr>
 			<tr>
-				<th>조회결과 순거</th>
+				<th>조회결과 순서</th>
 				<td colspan="2" class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"> 
 					<div class="eq-ui-form-group">
              		   <input name="order" type="radio" id="test4" value="4" class="eq-ui-input with-gap" />
@@ -127,23 +127,6 @@ function ajaxTest(){
 		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
-<script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-<script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
-<script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
-
-<script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
-<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
-
-<script src="https://unpkg.com/lodash@4.16.0"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
-
-<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
          
 </body>
 </html>

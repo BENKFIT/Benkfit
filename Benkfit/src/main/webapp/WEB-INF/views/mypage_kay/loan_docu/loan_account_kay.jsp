@@ -18,103 +18,12 @@
 	rel="stylesheet">
 <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
 	rel="stylesheet">
-<script>
-function selectFile() {
-	document.getElementById("file").click();
-}
-	function ajaxTest() {
-		var account = $("#myLoan_account option:selected").val();
-		var start_date = $('input[name="start_date"]').val();
-		var end_date = $('input[name="end_date"]').val();
-		var type = $('input[name="option"]:checked').val();
-		var order = $('input[name="order"]:checked').val();
-		var end = $('input[name="num"]:checked').val();
 
-		var sel_loan = "account=" + account + "&type=" + type + "&order="
-				+ order + "&start_date=" + start_date + "&end_date=" + end_date
-				+ "&end=" + end;
-
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/loan_info",
-			data : sel_loan,
-			success : function(data) {
-				$('#result').html(data);
-			},
-			error : function() {
-				alert('통신실패!!');
-			}
-		});
-	}
-	function loanBalance() {
-		var from = $('#from').val();
-		var password = $('#password').val();
-		var alldata = {
-			'from' : from,
-			'password' : password
-		};
-		$('#messages').html("대출한도를 출력중입니다.");
-		$.ajax({
-			url : "${pageContext.request.contextPath}/loanBalance",
-			type : "GET",
-			data : alldata,
-			success : function(data) {
-				$('#messages').html(data);
-			},
-			error : function() {
-				alert("오류")
-			}
-		});
-	}
-	function loanRepayment() {
-		var from = $('#from').val();
-		var amount = $("#amount").val();
-		var alldata = {
-			'from' : from,
-			'amount' : amount
-		};
-		$('#messages2').html("입력하신 금액만큼 대출을 상환중입니다.");
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/loanRepayment",
-			type : "GET",
-			data : alldata,
-			success : function(data) {
-				$('#messages2').html(data);
-			},
-			error : function() {
-				alert("오류")
-			}
-		});
-	}
-	function loanleft() {
-		var from = $('#from').val();
-		if (from == null) {
-			alert("지갑을 등록하세요.");
-		}
-		var alldata = {
-			'from' : from
-		};
-		$('#messages1').html("남은 대출금을 조회중입니다.");
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/loanleft",
-			type : "GET",
-			data : alldata,
-			success : function(data) {
-				$('#messages1').html(data);
-			},
-			error : function() {
-				alert("오류")
-			}
-		});
-	}
-</script>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<h5 style="float:right;">마이페이지>조회>대출관리</h5>
+		<h5 style="float: right;">마이페이지>조회>대출관리</h5>
 		<br>
 		<hr>
 		<br>
@@ -123,23 +32,23 @@ function selectFile() {
 				<th>대출 계좌번호</th>
 				<td colspan="3">
 					<div class="col-md-6">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="eq-ui-form-group eq-ui-input-file">
-							<span>
-								<button type="button" class="btn btn-primary eq-ui-waves-light"
-									id="signInBtn" name="idCardFile" onclick="selectFile();">
-									Upload</button>
-								<input type="text" class="eq-ui-input" id="file_text"
-									name="document_text" style="float:right;">
-								</span>
-								<div class="eq-ui-input-file-path">
-									<input type="file" class="eq-ui-input" id="file" name="doc_img"
-										required readonly>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="eq-ui-form-group eq-ui-input-file">
+									<span>
+										<button type="button"
+											class="btn btn-primary eq-ui-waves-light" id="signInBtn"
+											name="idCardFile" onclick="selectFile();">Upload</button> <input
+										type="text" class="eq-ui-input" name="document_text"
+										style="float: right;">
+									</span>
+									<div class="eq-ui-input-file-path">
+										<input type="file" class="eq-ui-input" id="from"
+											name="doc_img" required readonly>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 					</div>
 				</td>
 				<!-- <td  style="text-align: right;">
@@ -163,9 +72,9 @@ function selectFile() {
 			</tr>
 			<tr class='srch_area'>
 				<th>조회기간</th>
-				<td colspan="1" style="text-align:left;"><input type="date" class="date_kay"
-					name="start_date" id="start_date"> ~ <input type="date"
-					class="date_kay" name="end_date" id="end_date"></td>
+				<td colspan="1" style="text-align: left;"><input type="date"
+					class="date_kay" name="start_date" id="start_date"> ~ <input
+					type="date" class="date_kay" name="end_date" id="end_date"></td>
 				<td colspan="2"><span> <input type="button"
 						class="btn btn-info " id="r_today" name="date" value="당일"></span>
 					<span> <input type="button" class="btn btn-info "
@@ -180,12 +89,15 @@ function selectFile() {
 			</tr>
 			<tr>
 				<th>상환할 금액</th>
-				<td style="text-align: left; padding-bottom: 12px;"><span>
-						<input type="button" class="btn btn-success" value="대출상환"
-						onclick="loanRepayment();">
-				</span></td>
-				<td  colspan="2"><div id="messages2"></div></td>
-				
+				<td style="text-align: left; padding-bottom: 12px;"><input
+					type="button" class="btn btn-success" value="대출상환"
+					onclick="loanRepayment();">
+					<div class="eq-ui-input-file-path">
+						<input type="text" class="eq-ui-input" id="amount"
+							placeholder="지갑파일을 등록하세요.">
+					</div></td>
+				<td colspan="2"><div id="messages2"></div></td>
+
 			</tr>
 			<tr>
 				<th>대출한도</th>
@@ -213,10 +125,10 @@ function selectFile() {
 					class="eq-ui-input with-gap" /> <label for="test2">입금</label> <input
 					name="option" type="radio" id="test3" value="3"
 					class="eq-ui-input with-gap" /> <label for="test3">출금</label>
-					
+
 				</td>
 
-							</tr>
+			</tr>
 			<tr>
 				<th>조회결과 순서</th>
 				<td colspan="3"
@@ -259,28 +171,98 @@ function selectFile() {
 
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
-<script
-	src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
+<script>
+	function selectFile() {
+		document.getElementById("file").click();
+	}
+	function ajaxTest() {
+		var account = $("#myLoan_account option:selected").val();
+		var start_date = $('input[name="start_date"]').val();
+		var end_date = $('input[name="end_date"]').val();
+		var type = $('input[name="option"]:checked').val();
+		var order = $('input[name="order"]:checked').val();
+		var end = $('input[name="num"]:checked').val();
 
-<script src="/benkfit/resources/assets/js/tp/tp-color.html"
-	type="riot/tag"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
+		var sel_loan = "account=" + account + "&type=" + type + "&order="
+				+ order + "&start_date=" + start_date + "&end_date=" + end_date
+				+ "&end=" + end;
 
-<script src="https://unpkg.com/lodash@4.16.0"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/loan_info",
+			data : sel_loan,
+			success : function(data) {
+				$('#result').html(data);
+			},
+			error : function() {
+				alert('통신실패!!');
+			}
+		});
+	}
+	function loanBalance() {
+		var from = $('#from').val();
+		var password = $('#password').val();
+		var alldata = {
+			'from' : from,
+			'password' : password
+		};
+		$('#messages').html("대출한도를 출력중입니다.");
+		$.ajax({
+			url : "${pageContext.request.contextPath}/loanBalance",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				$('#messages').html(data);
+			},
+			error : function() {
+				alert("다시 시도해주세요")
+				$('#messages').html("비밀번호를 확인해주세요.");
+			}
+		});
+	}
+	function loanRepayment() {
+		var from = $('#from').val();
+		var amount = $("#amount").val();
+		var alldata = {
+			'from' : from,
+			'amount' : amount
+		};
+		$('#messages2').html("입력하신 금액만큼 대출을 상환중입니다.");
 
-<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
+		$.ajax({
+			url : "${pageContext.request.contextPath}/loanRepayment",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				$('#messages2').html(data);
+			},
+			error : function() {
+				alert("오류");
+				$('#messages2').html("다시 시도해주세요.");
+			}
+		});
+	}
+	function loanleft() {
+		var from = $('#from').val();
+		if (from == null) {
+			alert("지갑을 등록하세요.");
+		}
+		var alldata = {
+			'from' : from
+		};
+		$('#messages1').html("남은 대출금을 조회중입니다.");
 
+		$.ajax({
+			url : "${pageContext.request.contextPath}/loanleft",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				$('#messages1').html(data);
+			},
+			error : function() {
+				alert("오류")
+			}
+		});
+	}
+</script>
 </html>

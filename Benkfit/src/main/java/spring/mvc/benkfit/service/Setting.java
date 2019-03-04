@@ -34,29 +34,29 @@ public class Setting {
 	/*
 	 * 배포
 	 */
-	private static String benkfit;
-	private static String bank;
-	private static String slot;
+	private static String benkfit ="0x0b18181f4dfd119f831189a7ff3f5a208654273e";
+	private static String bank ="0x2a90ba9747e42bb85a788d1054d4f50ab62455f3";
+	private static String slot ="0x2496c784d09831aa00aa154996a526a6a3d11072";
 
 	final static int chkNum = 0;
 	final static String fn = "0x";
 	
 	// 유경
-	final static String path = "C:\\ether\\geth\\private_net\\keystore\\";
-	final static String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
-	final static String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
-	final static String owner_pwd = "password";
+//	final static String path = "C:\\ether\\geth\\private_net\\keystore\\";
+//	final static String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
+//	final static String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
+//	final static String owner_pwd = "password";
 	
 	/*
 	 * 훈 전역 설정
 	 */
-/*
-	final String path = "/Users/banhun/2_net/keystore/";
-	private final String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
-	private final String owner_pwd = "password";
-	private final String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943";
 
-*/
+	final static String path = "/Users/banhun/2_net/keystore/";
+	final static String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
+	final static String owner_pwd = "password";
+	final static String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943";
+
+
 	final static BigInteger gasPrice = BigInteger.valueOf(3000000);
 	final static BigInteger gasLimit = BigInteger.valueOf(3000000);
 	final static BigInteger initialWeiValue = BigInteger.valueOf(0);
