@@ -590,7 +590,7 @@ p {
 					<div class="modal-footer">
 						<input type="submit" value="가입하기" class="btn btn-primary"
 							data-toggle="tooltip" data-placement="bottom"
-							title="입금시, 수수료가 발생합니다.">
+							title="가입시, 10Ether가 자동으로 입금됩니다.">
 						<button type="button" class="btn btn-secondary"
 							data-dismiss="modal">Close</button>
 					</div>
@@ -645,8 +645,7 @@ p {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit" value="가입하기" class="btn btn-primary"
-										data-toggle="tooltip" data-placement="bottom" title="입금시, 수수료가 발생합니다.">
+					<input type="submit" value="가입하기" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="가입시, 10Ether가 자동으로 입금됩니다.">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>

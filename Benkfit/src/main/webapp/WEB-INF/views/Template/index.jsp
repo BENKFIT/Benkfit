@@ -48,6 +48,8 @@
   <div id="priceTbl" style="height:4000px;">
   </div>
   </div>
+  <%@ include file="./footer.jsp"%>
+
   
   <script
 		src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>

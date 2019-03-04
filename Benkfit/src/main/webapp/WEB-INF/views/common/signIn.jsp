@@ -91,14 +91,12 @@
    .display-none{ /*감추기*/
        display:none;
    }
-
 </style>
 <script type="text/javascript">
   //파일업로드 버튼 기능
   function selectFile() {
     document.getElementById("file").click();
   } 
-
   //업로드할 파일명 보이기, 업로드 직후 텍스트 인식 > 이름 & 주민번호 자동입력
   $(function(){ 
     $('#file').change(function(){
@@ -136,7 +134,6 @@
       });
     })
   });
-  
   //정규식 ajax
   $(function() {
     //아이디 체크
@@ -489,14 +486,11 @@
       document.signIn.customControlAutosizing.focus();
       return false;
     }
-    
   }
 </script>
 </head>
 <body style="background-color:#ddd">
-
 <%@ include file ="../Template/top.jsp" %>
-
 <div class="container2" style="margin-top:150px; margin-bottom:150px;">
   <div class="row">
     <div class="col-lg-4 col-md-4 mx-auto">
@@ -620,7 +614,6 @@
             }
           </script>
         </div>
-        
       <div class="form-group">
         <div class="custom-control custom-checkbox">
               <input type="checkbox" class="termsCheckBox" id="customControlAutosizing" name="tnc">
@@ -628,22 +621,16 @@
           </div>
       </div>
         <button type="submit" class="btn btn-success btn-block" id="register" style="background:#FFD662; border-color:#FFD662; color:#636363">회원가입</button>
-      
       </form>
       </div>
     </div>
     </div>
   </div>
 </div>
-
 <!-- 텍스트 인식 로딩중 -->
 <div class="wrap-loading display-none">
     <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
 </div> 
-
-
-
 <%@ include file ="../Template/footer.jsp" %>
-
 </body>
 </html>

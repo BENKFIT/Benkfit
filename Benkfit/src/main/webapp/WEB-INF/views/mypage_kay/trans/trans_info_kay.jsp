@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>이체</title>
 <title>마이페이지 > 이체</title>
 <style>
 .modal-body td {
@@ -28,11 +29,11 @@
 								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-file">
 										<a class="btn btn-primary eq-ui-waves-light" data-toggle="tooltip" data-placement="bottom" title="private key파일을 올려주세요."> Upload <input
-											id="file" type="file" multiple name="file">
+											id="file" type="file" multiple name="file" name="file">
 										</a>
 										<div class="eq-ui-input-file-path">
 											<input type="text" class="eq-ui-input"
-												placeholder="Upload one or more files" readonly>
+												placeholder="Upload your private key" readonly>
 										</div>
 									</div>
 								</div>
@@ -92,6 +93,7 @@
 		</div>
 	</div>
 
+
 	<script type="text/javascript">
 	$(function () {
 		  $('[data-toggle="tooltip"]').tooltip()
@@ -120,6 +122,7 @@
 	}
 	
 	</script>
-	<%@ include file="../../Template/footer.jsp"%>
+<%@ include file="../../Template/footer.jsp"%>
 </body>
+
 </html>

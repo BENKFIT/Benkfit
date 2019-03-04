@@ -23,9 +23,15 @@
 				window.location="loanList";
 			</script>
 		</c:when>
+		<c:when test="${result == -3}">
+			<script type="text/javascript">
+				alert("한도를 초과하는 대출신청은 불가합니다.");
+				window.location="loanList";
+			</script>
+		</c:when>
 		<c:when test="${result == 0 }">
 			<script type="text/javascript">
-				alert("실패");
+				alert("신청에 실패하였습니다. 고객센터에 문의하세요.");
 				window.location="loanList";
 			</script>
 		</c:when>

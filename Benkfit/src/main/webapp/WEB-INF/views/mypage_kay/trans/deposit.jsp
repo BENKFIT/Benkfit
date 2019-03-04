@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>이체</title>
 <title>마이페이지 > 이체</title>
 </head>
 <style>
@@ -88,7 +89,7 @@
 			</div>
 		</div>
 	</div>
-	
+	<%@ include file="../../common/chatbot.jsp"%>
 
 	<script type="text/javascript">
 		$(function () {
@@ -135,7 +136,7 @@
 			$('#btn').html("<a class='btn btn-warning eq-ui-waves-light' onclick='myAccounts();' >내계좌</a>");
 		}
 	</script>
-	
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
+
 </html>
