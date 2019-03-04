@@ -1,13 +1,20 @@
 package spring.mvc.benkfit.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import spring.mvc.benkfit.service.Service_bh;
 
@@ -274,7 +281,7 @@ public class Controller_bh {
 		service.rejection(req, model);
 		return "admin/product/loan/result";
 	}
-	
+
 	// 은행관리
 	@RequestMapping("benkfitControl")
 	public String benkfitControl(HttpServletRequest req, Model model) throws Exception {
@@ -282,7 +289,7 @@ public class Controller_bh {
 		service.benkfitControl(req, model);
 		return "admin/control/benkfitControl";
 	}
-	
+
 	// 대출계좌 토큰 할당
 	@RequestMapping("benkfitLoanStock")
 	public String benkfitLoanStock(HttpServletRequest req, Model model) throws Exception {
@@ -290,16 +297,16 @@ public class Controller_bh {
 		service.benkfitLoanStock(req, model);
 		return "admin/control/benkfitLoanStock";
 	}
-	
-	//마이닝하기
+
+	// 마이닝하기
 	@RequestMapping("minerStart")
 	public String minerStart(HttpServletRequest req, Model model) throws Exception {
 		logger.info("minerStart");
 		service.minerStart(req, model);
 		return "admin/control/mining";
 	}
-	
-	//마이닝중지
+
+	// 마이닝중지
 	@RequestMapping("minerStop")
 	public String minerStop(HttpServletRequest req, Model model) throws Exception {
 		logger.info("minerStop");
@@ -325,4 +332,18 @@ public class Controller_bh {
 		service.verify(req, model);
 		return "common/blockChain/verifyPro";
 	}
+	
+	@RequestMapping("hocument")
+	public String hocument(HttpServletRequest req, Model model) throws Exception {
+		logger.info("hocument");
+		return "common/blockChain/hocument";
+	}
+	
+	@RequestMapping("hocumentPro")
+	public String hocumentPro(HttpServletRequest req, Model model) throws Exception {
+		logger.info("hocument");
+		service.hocumentPro(req, model);
+		return "common/blockChain/hocumentPro";
+	}
+
 }

@@ -212,8 +212,6 @@
 					<ul data-menu="submenu-1-2" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
-						<li class="menu__item"><a class="menu__link" href="loanApply">
-								대출신청 </a></li>
 					</ul>
 					<!-- Submenu 3  안내 -->
 					<ul data-menu="submenu-3" class="menu__level">
