@@ -171,19 +171,6 @@ function selectFile() {
 					</div>
 					</div>
 				</td>
-				<!-- <td  style="text-align: right;">
-					<div class="eq-ui-form-group eq-ui-input-file">
-						
-						<a class="btn btn-primary eq-ui-waves-light"> Upload <input
-							type="file" id="from">
-						</a>
-					</div>
-				</td>
-				<td colspan="3">
-					<div class="eq-ui-input-file-path">
-						<input type="text" class="eq-ui-input" readonly>
-					</div>
-				</td> -->
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -209,12 +196,16 @@ function selectFile() {
 			</tr>
 			<tr>
 				<th>상환할 금액</th>
-				<td style="text-align: left; padding-bottom: 12px;"><span>
-						<input type="button" class="btn btn-success" value="대출상환"
+				<td style="text-align:left; padding-bottom: 12px;">
+					   <div class="eq-ui-form-group eq-ui-input-file">
+		                	<input type="button" class="btn btn-success" value="대출상환"
 						onclick="loanRepayment();">
-				</span></td>
-				<td  colspan="2"><div id="messages2"></div></td>
-				
+		                <div class="eq-ui-input-file-path">
+		                   <input type="text"  class="eq-ui-input" id="amount" placeholder="지갑파일을 등록하세요.">
+		                </div>
+          			  </div>
+				</td>
+				<td colspan="2" style="text-align:right;"><div id="messages2"></div></td>
 			</tr>
 			<tr>
 				<th>대출한도</th>

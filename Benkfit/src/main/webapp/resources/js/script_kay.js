@@ -33,36 +33,7 @@ function move(str){
 		document.mypage.action="delsav";
 	}
 }
-/*QR코드발급*/
-$(document).ready(function() {
-	$('#qrcode').hide();
-	$('#createBtn').click(function() {
-		$('#qrcode').show();
-		
-		// input에 입력하는 값들을 뽑아서 변수에 저장
-		var m_strid = $('#m_strid').val();
-		var m_name = $('#m_name').val();
-		var m_phone = $('#m_phone').val();
-		var m_pwd	=$('#m_pwd').val();
-		
-		// encodeURIComponent로 인코딩 합시당. 
-		m_strid = encodeURIComponent(m_strid);
-		m_name = encodeURIComponent(m_name);
-		m_phone = encodeURIComponent(m_phone);
-		m_pwd = encodeURIComponent(m_pwd);
-		
-		// 뒤에 코드가 길어지니까 그냥 한번 변수에 주소를 저장
-		googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=" ;
-		
-		// 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
-		// 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
-		var qrurl = googleQRUrl + "ID:"+ m_strid +"/PWD:"+m_pwd + "/NAME:"+ m_name
-		+ "/HP:"+ m_phone + '&choe=UTF-8'; 
-		
-		 $('#qrcode').prop('src', qrurl);
-	});
-}); /*
-
+/*
  날짜 객체 받아서 문자열로 리턴하는 함수 
 function getDateStr(myDate){
 	var yyyy = myDate.getFullYear();
@@ -149,7 +120,4 @@ $(document).ready(function() {
 document.oncontextmenu=function(){return false;} // 우클릭 방지
 document.onselectstart=function(){return false;} // 드래그 방지
 document.ondragstart=function(){return true;} // 선택 방지
-document.onmousedown=function(){return true;}
-
-
-*/
+document.onmousedown=function(){return true;}*/
