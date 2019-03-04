@@ -117,7 +117,7 @@
 		from myCheqAccount_tbl
 		where c_id = #{id} AND mycheq_account = #{account}
 	</select>
-
+	
 	<!-- 입급 금액 합계 -->
 	<select id="cheqIn" resultType="int">
 		select NVL(sum(tran_amount),0)

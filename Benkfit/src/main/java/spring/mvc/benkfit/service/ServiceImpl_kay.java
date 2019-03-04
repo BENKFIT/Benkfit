@@ -279,18 +279,16 @@ public class ServiceImpl_kay implements Service_kay{
 		String type = req.getParameter("type");
 		String order = req.getParameter("order");
 		int start = 1;
-		int end = Integer.parseInt(req.getParameter("end"));
+		int end = Integer.parseInt(req.getParameter("end"));//한페이지에 보여질 글 갯수
 		
-		String delCheq = req.getParameter("delCheq");
-		System.out.println("계좌선택 : " + delCheq);
-		System.out.println("====cheq_info====");
-
+		
 		if(type.equals("undefined")) {
 			type = "";
 		}
 		if(order.equals("undefined")) {
 			order = "";
 		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("account", account);
@@ -305,6 +303,10 @@ public class ServiceImpl_kay implements Service_kay{
 		int CheqIn = dao.cheqIn(map);//입금합계
 		int CheqOut	= dao.cheqOut(map);//출금합계
 		List<TransDetailVO> cheq = dao.sel_cheq(map); //거래내역
+		
+		if(cheq != null) {
+			
+		}
 		
 		model.addAttribute("cheqinfo", cheqinfo);
 		model.addAttribute("CheqIn", CheqIn);

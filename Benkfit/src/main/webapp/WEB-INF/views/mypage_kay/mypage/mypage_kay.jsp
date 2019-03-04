@@ -64,7 +64,7 @@ function setting(){
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
 		<div class="mypage"
-			style="height: 700px; width: 1120px; border: 1px solid #ccc;">
+			style="height: 700px; width: 1120px; border: 1px solid #ccc; background-color:white;">
 			<h4 style="padding-left: 22px; text-align: center;">My Page</h4>
 			<hr style="width: 1100px;">
 			<div

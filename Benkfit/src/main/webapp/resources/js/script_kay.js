@@ -61,49 +61,49 @@ $(document).ready(function() {
 		
 		 $('#qrcode').prop('src', qrurl);
 	});
-}); 
+}); /*
 
-/* 날짜 객체 받아서 문자열로 리턴하는 함수 */
+ 날짜 객체 받아서 문자열로 리턴하는 함수 
 function getDateStr(myDate){
 	var yyyy = myDate.getFullYear();
 	var mm = ("00"+(myDate.getMonth() + 1)).slice(-2);
 	var dd = ("00" +myDate.getDate()).slice(-2);
 	return yyyy + '-' + mm + '-' + dd;
 }
-/* 오늘 날짜를 문자열로 반환 */
+ 오늘 날짜를 문자열로 반환 
 function today() {
   var d = new Date();
   return getDateStr(d);
 }
-/* 오늘로부터 1주일전 날짜 반환 */
+ 오늘로부터 1주일전 날짜 반환 
 function lastWeek() {
   var d = new Date();
   var dayOfMonth = d.getDate();
   d.setDate(dayOfMonth - 7);
   return getDateStr(d);
 }
-/* 오늘로부터 1주일전 날짜 반환 */
+ 오늘로부터 1주일전 날짜 반환 
 function lastWeek1() {
 	  var d = new Date();
 	  var dayOfMonth = d.getDate();
 	  d.setDate(dayOfMonth - 14);
 	  return getDateStr(d);
 	}
-/* 오늘로부터 1개월전 날짜 반환 */
+ 오늘로부터 1개월전 날짜 반환 
 function lastMonth1() {
   var d = new Date();
   var monthOfYear = d.getMonth();
   d.setMonth(monthOfYear - 1);
   return getDateStr(d);
 }
-/* 오늘로부터 3개월전 날짜 반환 */
+ 오늘로부터 3개월전 날짜 반환 
 function lastMonth3() {
 	  var d = new Date()
 	  var monthOfYear = d.getMonth();
 	  d.setMonth(monthOfYear - 3);
 	  return getDateStr(d);
 	}
-/* 오늘로부터 6개월전 날짜 반환 */
+ 오늘로부터 6개월전 날짜 반환 
 function lastMonth6() {
 	  var d = new Date();
 	  var monthOfYear = d.getMonth();
@@ -126,7 +126,7 @@ $(".srch_area :button").click(function(){
   }else{
   	$("#start_date").val(lastMonth6());
   }
-})
+})*/
 /*//드래그,마우스오른쪽 금지.
 $(document).ready(function() {
     $(document).bind("contextmenu", function(e){

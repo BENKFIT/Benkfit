@@ -8,7 +8,7 @@
 <title>계좌조회</title>
 </head>
 <body>
-	<h2>적금정보</h2>
+	<p style="font-size:15px;text-align:right;">적금 계좌정보</p>
 	<hr>
 	<table class="table eq-ui-data-table z-depth-1">
 		<tr>
@@ -36,12 +36,13 @@
 			<td>${savinfo.mySav_amount}</td>
 		</tr>
 	</table>
+	<p style="font-size:15px; text-align:right;">적금 거래내역</h2>
 	<hr>
 	<br>
-	<table class="table table-hover">
+		<table class="table eq-ui-data-table eq-ui-header-fixed z-depth-1">
 		<thead style="background-color:#2980b9; color:white;">
 			<tr>
-				<th>거래번호</th>
+				<th style="text-align:left;">거래번호</th>
 				<th>거래일자</th>
 				<th>계좌번호</th>
 				<th>금액</th>
@@ -50,7 +51,7 @@
 				<th>타입</th>
 			</tr>
 		</thead>
-	<tbody style="background-color:white;">
+	<tbody style="background-color:white; height:300px;">
 			<c:if test="${empty sav}">
 				<tr>
 					<td colspan="7" style="text-align: center;">거래내역이 존재하지 않습니다.</td>
@@ -58,7 +59,7 @@
 			</c:if>
 			<c:forEach var="list" items="${sav}">
 				<tr>
-					<td>${list.tran_num}</td>
+					<td style="text-align:left;">${list.tran_num}</td>
 					<td>${list.tran_date}</td>
 					<td>${list.tran_account}</td>
 					<td>￦<fmt:formatNumber value="${list.tran_amount}"

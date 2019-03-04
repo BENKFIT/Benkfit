@@ -33,6 +33,7 @@ function ajaxTest(){
 		});
 	}
 </script>
+
 <style>
 	.wrap-loading{ 
     position: fixed;
@@ -146,5 +147,71 @@ function ajaxTest(){
 		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
+	<script>
+/* 날짜 객체 받아서 문자열로 리턴하는 함수 */
+function getDateStr(myDate){
+	var yyyy = myDate.getFullYear();
+	var mm = ("00"+(myDate.getMonth() + 1)).slice(-2);
+	var dd = ("00" +myDate.getDate()).slice(-2);
+	return yyyy + '-' + mm + '-' + dd;
+}
+/* 오늘 날짜를 문자열로 반환 */
+function today() {
+  var d = new Date();
+  return getDateStr(d);
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek() {
+  var d = new Date();
+  var dayOfMonth = d.getDate();
+  d.setDate(dayOfMonth - 7);
+  return getDateStr(d);
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek1() {
+	  var d = new Date();
+	  var dayOfMonth = d.getDate();
+	  d.setDate(dayOfMonth - 14);
+	  return getDateStr(d);
+	}
+/* 오늘로부터 1개월전 날짜 반환 */
+function lastMonth1() {
+  var d = new Date();
+  var monthOfYear = d.getMonth();
+  d.setMonth(monthOfYear - 1);
+  return getDateStr(d);
+}
+/* 오늘로부터 3개월전 날짜 반환 */
+function lastMonth3() {
+	  var d = new Date()
+	  var monthOfYear = d.getMonth();
+	  d.setMonth(monthOfYear - 3);
+	  return getDateStr(d);
+	}
+/* 오늘로부터 6개월전 날짜 반환 */
+function lastMonth6() {
+	  var d = new Date();
+	  var monthOfYear = d.getMonth();
+	  d.setMonth(monthOfYear - 6);
+	  return getDateStr(d);
+}
+$(".srch_area :button").click(function(){
+  var rname = $(this).attr("id")
+  $("#end_date").val(today());
+	if(rname == "r_today"){
+    $("#start_date").val(today());
+  }else if(rname == "r_week") {
+  	$("#start_date").val(lastWeek());
+  }else if(rname == "r_week1") {
+  	$("#start_date").val(lastWeek1());
+  }else if(rname == "r_month1") {
+  	$("#start_date").val(lastMonth1());
+  }else if(rname == "r_month3") {
+  	$("#start_date").val(lastMonth3());
+  }else{
+  	$("#start_date").val(lastMonth6());
+  }
+})
+</script>
 </body>
 </html>
