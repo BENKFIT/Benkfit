@@ -571,29 +571,30 @@ p {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div style="display: inline-block;">
-						<form action="createCheq" method="post">
-						<input type="hidden" value="${info.cheq_num}" name="num">
+				<form action="createCheq" method="post">
+					<div class="modal-body" style="text-align: center;">
+						<div style="display: inline-block;">
+							<input type="hidden" value="${info.cheq_num}" name="num">
 							<table>
 								<tr>
 									<td>
 										<div class="eq-ui-form-group eq-ui-input-field">
-										<input id="password" type="password" class="eq-ui-input" name="password">
-										<label for="password">비밀번호</label>
-									</div>
+											<input id="password" type="password" class="eq-ui-input"
+												name="password"> <label for="password">비밀번호</label>
+										</div>
 									</td>
 								</tr>
 							</table>
-						</form>
+						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="submit" value="가입하기" class="btn btn-primary"
-										data-toggle="tooltip" data-placement="bottom" title="입금시, 수수료가 발생합니다.">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-				</div>
+					<div class="modal-footer">
+						<input type="submit" value="가입하기" class="btn btn-primary"
+							data-toggle="tooltip" data-placement="bottom"
+							title="입금시, 수수료가 발생합니다.">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

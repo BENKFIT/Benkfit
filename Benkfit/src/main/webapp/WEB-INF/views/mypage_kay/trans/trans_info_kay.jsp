@@ -26,25 +26,6 @@
 						<tr>
 							<td colspan="4">
 								<div class="col-md-12">
-									<!-- <div class="eq-ui-form-group eq-ui-input-field">
-										<input id="from" type="text" class="eq-ui-input"> <label
-											for="from">출금계좌</label>
-									</div> -->
-									<div class="eq-ui-form-group eq-ui-input-field">
-                                    <select id="from" class="eq-ui-select" name="from">
-                                        <option value="" disabled selected>계좌를 선택하세요.</option>
-                                        <c:forEach var="cheq" items="${cheq}">
-                                        	 <option value="${cheq}">${cheq}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <label>출금계좌</label>
-                                </div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">
-								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-file">
 										<a class="btn btn-primary eq-ui-waves-light" data-toggle="tooltip" data-placement="bottom" title="private key파일을 올려주세요."> Upload <input
 											id="file" type="file" multiple name="file">

@@ -92,4 +92,12 @@ public interface DAO_syk {
 	//contract읽기
 	public List<ContractVO> contract();
 	
+	//contract - benkfit
+	public String getBenkfit();
+	
+	//contract - bank
+	public String getBank();
+	
+	//contract - slot
+	public String getSlot();
 }
