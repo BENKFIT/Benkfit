@@ -250,14 +250,24 @@ public class Controller_syk {
 		logger.info("배포");
 		service.deployPro(req);
 		
-		return "admin/deploy/result";
+		return "admin/manage/result";
 	}
 	
+	//재배포
 	@RequestMapping("reDeploy")
 	public String reDeploy(HttpServletRequest req) throws Exception {
 		logger.info("재배포");
 		service.reDeploy(req);
 		
-		return "admin/deploy/reDeploy";
+		return "admin/manage/reDeploy";
+	}
+	
+	//내계좌
+	@RequestMapping("getMyAccounts")
+	public String getMyAccounts(HttpServletRequest req) throws Exception{
+		logger.info("내계좌");
+		service.trans(req);
+		
+		return "mypage_kay/trans/getMyAccounts";
 	}
 }

@@ -1,66 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./setting.jsp" %>    
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<script	src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
 <body>
 <!-- 챗봇 -->
 <%@ include file="../common/chatbot.jsp"%>
-	<!-- footer  -->
-	<footer> 
-	<div class="container1">
-		<div class="row">
-			<div class="btn-group btn-group-justified">
-				<div class="btn-group">
-					<button type="button" class="btn btn-nav">
-						<span class="glyphicon glyphicon-map-marker"></span>
-						<p>회사위치</p>
-					</button>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-nav">
-						<span class="glyphicon glyphicon-briefcase"></span>
-						<p>회사정보</p>
-					</button>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-nav">
-						<span class="glyphicon glyphicon-earphone"></span>
-						<p>고객센터</p>
-					</button>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-nav">
-						<span class="glyphicon glyphicon-question-sign"></span>
-						<p>문의사항</p>
-					</button>
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-nav">
-						<span class="glyphicon glyphicon-info-sign"></span>
-						<p>이용약관</p>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
-<script>
-	var activeEl = 2;
-	$(function() {
-	    var items = $('.btn-nav');
-	    $(items[activeEl]).addClass('active');
-	    $('.btn-nav').click(function() {
-	        $( items[activeEl] ).removeClass('active');
-	        $( this ).addClass('active');
-	        activeEl = $('.btn-nav').index( this );
-	    });
-	});
-</script>
+<script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
+<script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
+<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
+<script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
+
+<script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
+<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
+
+<script src="https://unpkg.com/lodash@4.16.0"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
+
+<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
+<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
+<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
+<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
+<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
+	
+
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function(b, o, i, l, e, r) {
+			b.GoogleAnalyticsObject = l;
+			b[l] || (b[l] = function() {
+				(b[l].q = b[l].q || []).push(arguments)
+			});
+			b[l].l = +new Date;
+			e = o.createElement(i);
+			r = o.getElementsByTagName(i)[0];
+			e.src = '//www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e, r)
+		}(window, document, 'script', 'ga'));
+		ga('create', 'UA-XXXXX-X', 'auto');
+		ga('send', 'pageview');
+	</script>
 </body>
 </html>

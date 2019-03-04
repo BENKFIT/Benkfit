@@ -58,22 +58,21 @@ input, select {
 		<div style="display: inline-block;">
 			<!-- 등록 -->
 			<div class="listBox" style="position: relative;">
-				<button class="btn btn-primary"
-					style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); background: rgba(255, 255, 255, 1.0); border: none;"
+				<button style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); border: none; background: none;"
 					data-toggle="modal" data-target="#exampleModalCenter">&#43;</button>
 			</div>
 		</div>
 	</div>
 	<hr>
-	<div style="margin: 100px 0px;">
+	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
+		<span style="float: right;">금융상품 > 예금</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				
 				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
 				<c:forEach var="list" items="${cheq}">
-					<div class="center-block col-4 princing-item red" style="margin: 30px 0px;">
+					<div class="center-block col-4 princing-item green" style="margin: 30px 0px;">
 						<div class="pricing-divider ">
-							<h3 class="text-light">${list.cheq_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
 								<span class="h3">Ether</span> ${list.cheq_rate}% <span
 									class="h5">/year</span>
@@ -109,7 +108,7 @@ input, select {
 								<li><b>저축금액 </b> ${list.cheq_limit}</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
-							<button type="button" class="btn btn-lg btn-block  btn-custom" class="btn btn-primary"
+							<button type="button" class="btn btn-lg btn-block  btn-custom3" class="btn btn-primary"
 								data-toggle="modal" data-target="#editCheq"
 								onclick="cheqEdit('${list.cheq_num}');">수정/삭제</button>
 						</div>
@@ -119,15 +118,15 @@ input, select {
 		</div>
 	</div>
 	<hr>
-	<div style="margin: 100px 0px;">
+	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
+		<span style="float: right;">금융상품 > 적금</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 			
 			<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
 				<c:forEach var="list" items="${sav}">
 					<div class="center-block col-4 princing-item blue" style="margin: 30px 0px;">
 						<div class="pricing-divider ">
-							<h3 class="text-light">${list.sav_type}</h3>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
 								<span class="h3">Ether</span> ${list.sav_rate}% <span class="h5">/year</span>
 							</h4>
