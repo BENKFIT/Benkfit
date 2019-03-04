@@ -54,5 +54,5 @@ public interface DAO_bh {
 
 	// 대출신청처리(거절)
 	public int rejection(String myLoan_account);
-	
+
 }
