@@ -50,7 +50,7 @@
 				<th>타입</th>
 			</tr>
 		</thead>
-		<tbody>
+	<tbody style="background-color:white;">
 			<c:if test="${empty sav}">
 				<tr>
 					<td colspan="7" style="text-align: center;">거래내역이 존재하지 않습니다.</td>

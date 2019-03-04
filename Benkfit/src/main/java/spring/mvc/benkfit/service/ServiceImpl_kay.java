@@ -510,6 +510,7 @@ public class ServiceImpl_kay implements Service_kay{
 		Charset cs = StandardCharsets.UTF_8;
 		//파일 내용담을 리스트
 		List<String> list = new ArrayList<String>();
+		
 		try{
 			list = Files.readAllLines(path,cs);
 			System.out.println("list:"+ list);
@@ -583,11 +584,11 @@ public class ServiceImpl_kay implements Service_kay{
 		// 이미지 파일
 		MultipartFile file = req.getFile("doc_img");
 		String saveDir = req.getRealPath("/resources/img/doc/"); 
-		String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
+		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
 		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
 		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
 		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
-		//String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
+		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
 
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));

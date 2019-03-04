@@ -62,18 +62,6 @@ $(document).ready(function() {
 		 $('#qrcode').prop('src', qrurl);
 	});
 }); 
-//qr코드 저장/
-$('#saveBtn').click(function() {
-	var x = new XMLHttpRequest();
-	var qrurl = googleQRUrl + "&ID="+ m_strid +"&PWD="+m_pwd + "&NAME="+ m_name
-	+ "&HP="+ m_phone +'&choe=UTF-8'; 
-	swal("qr발급완료","OK","success");
-	x.open("GET", qrurl , true);
-	x.responseType = 'blob';
-	x.onload=function(e){download(x.response, "qrcode.png", "image/png"); 
-	}
-	x.send();
-});
 
 /* 날짜 객체 받아서 문자열로 리턴하는 함수 */
 function getDateStr(myDate){

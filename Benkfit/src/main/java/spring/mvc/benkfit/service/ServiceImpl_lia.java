@@ -437,7 +437,6 @@ public class ServiceImpl_lia implements Service_lia {
 		int cnt  = dao.deleteUsers(id);
 		model.addAttribute("cnt", cnt);
 	}
-	
 	// 관리자메뉴 > 회원 등급 수정
 	@Override
 	public void updateUsers(HttpServletRequest req, Model model) {
@@ -482,7 +481,6 @@ public class ServiceImpl_lia implements Service_lia {
 			model.addAttribute("loan", loan);
 		}
 	}
-
 	// 관리자 메뉴 > 회원 거래내역 조회
 	@Override
 	public void selTransaction(HttpServletRequest req, Model model) {
@@ -510,7 +508,6 @@ public class ServiceImpl_lia implements Service_lia {
 		if(pageNum == null || pageNum.equals("undefined")) {
 			pageNum = "1";	//첫페이지를 1페이지로 지정
 		}
-		
 		currentPage = Integer.parseInt(pageNum);
 		
 		pageCount = (tcnt / pageSize) + (tcnt % pageSize > 0 ? 1 : 0);

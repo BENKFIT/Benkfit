@@ -14,7 +14,6 @@
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-
 	<table class="table_kay">
 		<tr>
 			<td><h3>출금정보</h3></td>
@@ -151,5 +150,7 @@
 			$('#m_pwd').val(pwd);
 		}
 	</script>
+	<%@ include file="../../Template/footer.jsp"%>
 </body>
+
 </html>

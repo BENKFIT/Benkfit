@@ -27,13 +27,13 @@
 			<th>예금 세율</th>
 			<td>${cheqinfo.myCheq_taxRate}</td>
 			<th>이체한도</th>
-			<td>${cheqinfo.myCheq_limit}</td>
+			<td>￦<fmt:formatNumber value="${cheqinfo.myCheq_limit}" pattern="#,###.##"/></td>
 		</tr>
 	</table>
 	<br>
 	<h2>거래내역</h2>
 	<hr>
-	<table class="table table-hover">
+	<table class="table eq-ui-data-table z-depth-1" style="background-color:white;">
 		<tr>
 			<th>입금합계</th>
 			<c:if test="${CheqIn == 0}">
@@ -62,7 +62,7 @@
 				<th>타입</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody style="background-color:white;">
 			<c:if test="${empty cheq}">
 				<tr>
 					<td colspan="7" style="text-align: center;">거래내역이 존재하지 않습니다.</td>

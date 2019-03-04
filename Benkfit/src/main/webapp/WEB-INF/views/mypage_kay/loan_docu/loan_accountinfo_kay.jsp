@@ -6,11 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>대출계좌조회</title>
+<style>
+	.wrap-loading{ 
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',endColorstr='#20000000');    /* ie */
+	}
+   .wrap-loading div{ /*로딩 이미지*/
+       position: fixed;
+       top:50%;
+       left:50%;
+       margin-left: -21px;
+       margin-top: -21px;
+   }
+</style>
+
 </head>
 <body>
 	<h2>대출정보</h2>
 	<hr>
-	<table class="table table-hover">
+	<table class="table eq-ui-data-table z-depth-1" style="background-color:white;">
 		<tr>
 			<th>계좌상품번호</th>
 			<td>${loaninfo.loan_num}</td>
@@ -51,7 +69,7 @@
 				<th>타입</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody style="background-color:white;">
 			<c:if test="${empty loan}">
 				<tr>
 					<td colspan="7" style="text-align: center;">거래내역이 존재하지 않습니다.</td>
@@ -71,6 +89,5 @@
 			</c:forEach>
 		</tbody>
 	</table>
-
 </body>
 </html>

@@ -4,33 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="description"
-	content="Implements Google's Material Design in Bootstrap.">
 <title>서류등록</title>
-<!-- CSS-->
-<link
-	href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5"
-	rel="stylesheet">
-<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
-	rel="stylesheet">
-<style>
-/* #file {
-		opacity:50;
-		overflow: hidden;
-		background-color:#fff;
-		border:0;
-		width: 1px; height: 1px;
-		padding: 0; 
-		margin: -1px;
-		clip:rect(0,0,0,0); 
-		border: 0;
-		box-shadow:0;
-	} */
-</style>
 <script>
 	//파일업로드 버튼 기능
 	function selectFile() {
@@ -62,7 +36,12 @@
 					$("#doc_period_from").val(data.split("/")[9]);
 					$("#doc_period_to").val(data.split("/")[10]);
 					swal("파일 업로드", "OK", "success");
-				},
+				},beforeSend:function(){
+		              $('.wrap-loading').removeClass('display-none');
+		          },
+		          complete:function(){
+		              $('.wrap-loading').addClass('display-none');
+		          },
 				error : function() {
 					swal("오류", "다시 시도하세요.", "error");
 				}
@@ -70,11 +49,34 @@
 		})
 	});
 </script>
+<style>
+	.wrap-loading{ 
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',endColorstr='#20000000');    /* ie */
+	}
+   .wrap-loading div{ /*로딩 이미지*/
+       position: fixed;
+       top:50%;
+       left:50%;
+       margin-left: -21px;
+       margin-top: -21px;
+   }
+    .display-none{ /*감추기*/
+       display:none;
+   }
+</style>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
+	<div class="wrap-loading display-none">
+	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+	</div> 
 	<div class="wrapper">
-		<h5 style="float: right;">마이페이지>조회>대출관리>내서류>서류등록</h5><br>
+		<p style="float: right; font-size:12px;">마이페이지>조회>대출관리>내서류>서류등록</p><br>
 		<hr>
 		<br>
 		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;
@@ -95,16 +97,16 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="eq-ui-form-group eq-ui-input-file">
-								<button type="button" class="btn btn-primary eq-ui-waves-light"
-									id="signInBtn" name="idCardFile" onclick="selectFile();">
-									Upload</button>
-								<input type="text" class="eq-ui-input" id="file_text"
+								<a class="btn btn-primary eq-ui-waves-light"
+									id="file" onclick="selectFile();">
+									Upload
+								<input type="file" class="eq-ui-input" id="doc_img" name="doc_img"
 									name="document_text">
-									
+									</a>
 								<div class="eq-ui-input-file-path">
-									<input type="file" class="eq-ui-input" id="file" name="doc_img"
-										required readonly>
-								</div>
+									<input type="text" id="doc_img" name="doc_img" class="eq-ui-input"
+									placeholder="서류업로드 해주세요." readonly>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -278,31 +280,7 @@
 			</form>
 		</div>
 	</div>
-	<%@ include file="../../common/chatbot.jsp"%>
+	<%@ include file="../../Template/footer.jsp"%>
 </body>
-<script
-	src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
-<script
-	src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
-
-<script src="/benkfit/resources/assets/js/tp/tp-color.html"
-	type="riot/tag"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
-
-<script src="https://unpkg.com/lodash@4.16.0"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
-
-<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
-
 
 </html>

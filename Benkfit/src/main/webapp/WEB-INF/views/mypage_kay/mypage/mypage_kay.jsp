@@ -4,18 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="description"
-	content="Implements Google's Material Design in Bootstrap.">
-<!-- CSS-->
-<link
-	href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5"
-	rel="stylesheet">
-<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
-	rel="stylesheet">
 <title>마이페이지</title>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
@@ -77,37 +65,42 @@ function setting(){
 	<div class="wrapper">
 		<div class="mypage"
 			style="height: 700px; width: 1120px; border: 1px solid #ccc;">
-			<h1 style="padding-left:22px; text-align:center;">My Page</h1>
+			<h4 style="padding-left: 22px; text-align: center;">My Page</h4>
 			<hr style="width: 1100px;">
 			<div
-				style="width: 530px; height: 600px; display: inline-block; padding:20px;">
+				style="width:530px; height:600px; display:inline-block; padding: 20px;">
 				<div class="panel-body">
 					<div class="User_Profile">
-						<p><h1>${usVO.c_name}&nbsp;&nbsp;<span style="font-size:18px;">회원님</span></h1></p>
+						<p>
+							<h5>${usVO.c_name}&nbsp;&nbsp;<span style="font-size:15px;">회원님</span>
+							</h5>
+						</p>
 					</div>
 					<ul class="User_Profile details" style="padding: 0px;">
 						<hr>
 						<li>
-							<p style="font-size:20px;">	
-								<span class="glyphicon glyphicon-phone one" style="width:350px; font-size:20px;">
-								 연락처 : ${usVO.c_hp}</span>
+							<p style="font-size: 12px;">
+								<span class="glyphicon glyphicon-phone one"
+									style="width: 350px; font-size: 20px;"> 연락처 :
+									${usVO.c_hp}
+									</span>
 							</p>
 						</li>
 						<li>
-						<p>
-							<span class="glyphicon glyphicon-envelope one"
-									style="width:350px; font-size:20px;">
-									이메일 :  ${usVO.c_email}</span>
-									
-							</p></li>
+							<p>
+								<span class="glyphicon glyphicon-envelope one"
+									style="width: 350px; font-size: 20px;"> 
+									이메일 :	${usVO.c_email}</span>
+							</p>
+						</li>
 						<li><p>
-								<span class="glyphicon glyphicon-ok-circle" style="width:350px; font-size:20px;">
-								 가입일 :  ${usVO.c_regDate}</span>
-								
+								<span class="glyphicon glyphicon-ok-circle"
+									style="width: 350px; font-size: 20px;"> 
+									가입일 : ${usVO.c_regDate}</span>
 							</p></li>
-						<li>
-							<hr>
-							<br>
+						<li style="font-size: 10px;" >
+							<hr> 
+							<br> 
 							<button class="btn btn-success eq-ui-waves-light"
 								onclick="window.location='qrcode'">qrcode</button>&nbsp;
 							<button class="btn btn-success eq-ui-waves-light"
@@ -120,45 +113,55 @@ function setting(){
 					</ul>
 				</div>
 			</div>
-			
-			<div
-				style="width: 550px; padding: 10px; display: inline-block; position: absolute;">
-					<div class="panel-body">
-				<h3>자산관리</h3>
-				<br> <label for="num">예산</label> <input type="text" name="num"
-					id="num" style="text-align: right;" placeholder="숫자만입력"
-					class="eq-ui-input"
-					onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" />
-				<button class="btn btn-primary eq-ui-waves-light"
-					onclick="setting();">설정</button>
+			<div style="width: 550px; padding: 10px; display: inline-block; position: absolute;">
+				<div class="panel-body">
+					<p style="font-size:20px;">자산관리</p>
+					<table>
+						<tr>
+							<td>
+								<div class="col-md-12">
+									<div class="eq-ui-form-group eq-ui-input-file">
+										<input type="text" name="num" id="num"
+											style="text-align: right;" placeholder="숫자만입력"
+											class="eq-ui-input"
+											onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+									</div>
+								</div>
+							</td>
+							<td>
+								<a class="btn btn-primary eq-ui-waves-light"
+									onclick="setting();">
+									예산설정</a>
+							</td>
+						</tr>
+					</table>
+				</div>
 				<div id="chart"></div>
 			</div>
-			</div>
 		</div>
+
 		<br>
-			<div id="tab1" class="acc_content">
+		<div id="tab1" class="acc_content">
 				<!--Content-->
-				<h3>예금관리</h3>
+				<p style="font-size:15px;text-align:right;">마이페이지>조회>예금관리</p>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color: #2980b9; color: white;">
 						<tr>
-							<th>번호</th>
 							<th>계좌명</th>
 							<th>계좌번호</th>
 							<th>잔액</th>
-							<th>조회/이체</th>
+							<th style="text-align:right;">조회/이체</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody style="background-color:white;">
 						<c:forEach var="cheq" items="${cheq}">
 							<tr>
-								<td>1</td>
 								<td>${cheq.cheq_num}</td>
 								<td>${cheq.myCheq_account}</td>
 								<td>￦<fmt:formatNumber value="${cheq.myCheq_amount}"
 										pattern="#,###.##" /></td>
-								<td><button class="btn btn-success eq-ui-waves-light"
+								<td style="text-align:right;"><button class="btn btn-success eq-ui-waves-light"
 									onclick="window.location='cheq_account?account=${cheq.myCheq_account}'">조회</button>&nbsp;
 									<button class="btn btn-danger eq-ui-waves-light"
 									onclick="window.location='delcheq?account=${cheq.myCheq_account}'">해지</button>
@@ -168,27 +171,25 @@ function setting(){
 					</tbody>
 				</table>
 				<br>
-				<h3>적금관리</h3>
+				<p style="font-size:15px;float: right;">마이페이지>조회>적금관리</p>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color: #2980b9; color: white;">
 						<tr>
-							<th>번호</th>
 							<th>계좌명</th>
 							<th>계좌번호</th>
 							<th>잔액</th>
-							<th>조회/이체</th>
+							<th style="text-align:right;">조회/이체</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody style="background-color:white;">
 						<c:forEach var="sav" items="${sav}">
 							<tr>
-								<td>${num}</td>
 								<td>${sav.mySav_name}</td>
 								<td>${sav.mySav_account}</td>
 								<td>￦<fmt:formatNumber value="${sav.mySav_amount}"
 										pattern="#,###.##" /></td>
-								<td><button class="btn btn-success eq-ui-waves-light"
+								<td style="text-align:right;"><button class="btn btn-success eq-ui-waves-light"
 									onclick="window.location='sav_account?account=${sav.mySav_account}'">조회</button> &nbsp; <button
 									class="btn btn-danger eq-ui-waves-light" onclick="window.location='delsav?account=${sav.mySav_account}'">해지</button>
 								</td>
@@ -197,7 +198,7 @@ function setting(){
 					</tbody>
 				</table>
 				<br>
-				<h3>대출관리</h3>
+				<p style="font-size:15px;float:right;">마이페이지>조회>대출관리</p>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color:#2980b9;color:white;">
@@ -207,10 +208,10 @@ function setting(){
 							<th>잔액</th>
 							<th>대출일</th>
 							<th>만기일</th>
-							<th>조회/상환</th>
+							<th style="text-align:right;">조회/상환</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody style="background-color:white;">
 						<c:forEach var="loan" items="${loan}">
 							<tr>
 								<td>${loan.loan_num}</td>
@@ -219,7 +220,7 @@ function setting(){
 										pattern="#,###.##" /></td>
 								<td>${loan.myloan_date}</td>
 								<td>${loan.myloan_late}</td>
-								<td><button class="btn btn-success eq-ui-waves-light"
+								<td style="text-align:right;"><button class="btn btn-success eq-ui-waves-light"
 									onclick="window.location='loan_account?account=${loan.myloan_account}'">조회</button> &nbsp; <button
 									class="btn btn-danger eq-ui-waves-light" onclick="window.location='delsav?account=${loan.myloan_account}'">상환</button>
 								</td>
@@ -228,31 +229,8 @@ function setting(){
 					</tbody>
 				</table>
 			</div>
-	</div>
-	<%@ include file="../../common/chatbot.jsp"%>
+		</div>
+	<%@ include file="../../Template/footer.jsp"%>
+	
 </body>
-<script
-	src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
-<script
-	src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
-
-<script src="/benkfit/resources/assets/js/tp/tp-color.html"
-	type="riot/tag"></script>
-<script
-	src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
-
-<script src="https://unpkg.com/lodash@4.16.0"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
-
-<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
-
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="description" content="Implements Google's Material Design in Bootstrap.">
-    <title>Components - Buttons | Exentriq - Bootstrap Material UI</title>
+    <title>Components - Forms | Exentriq - Bootstrap Material UI</title>
     <!-- CSS-->
     <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
     <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
@@ -1769,9 +1769,10 @@ $(document).ready(function(){
     </div>
     
 </div>
-    </main><script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
+
+ <script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
 <script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
+<script src="/benkfit/resourcess/assets/js/vendor/jquery-timeago/jquery.timeago.js"></script>
 <script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
 
 <script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
@@ -1796,6 +1797,6 @@ $(document).ready(function(){
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
-
   </body>
+ 
 </html>

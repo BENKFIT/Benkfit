@@ -46,7 +46,7 @@
 	  <div id="priceTbl" style="height:4000px;">
 	  </div>
   </div>
-  
+  <%@ include file="./footer.jsp"%>
 
 </body>
 </html>

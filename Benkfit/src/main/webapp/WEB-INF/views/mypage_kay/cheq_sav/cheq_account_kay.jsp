@@ -4,15 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="description" content="Implements Google's Material Design in Bootstrap.">
-    <title>Forms</title>
-    <!-- CSS-->
-    <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
-    <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 <script>
 function ajaxTest(){
 	var account = $("#cheq_account option:selected").val();
@@ -30,18 +21,46 @@ function ajaxTest(){
 			data : sel_cheq,
 			success : function(data) {
 				$('#result').html(data);
-			},	
+			},	beforeSend:function(){
+	              $('.wrap-loading').removeClass('display-none');
+	          },
+	          complete:function(){
+	              $('.wrap-loading').addClass('display-none');
+	          },
 			error : function() {
 				alert('통신실패!!');
 			}
 		});
 	}
 </script>
+<style>
+	.wrap-loading{ 
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',endColorstr='#20000000');    /* ie */
+	}
+   .wrap-loading div{ /*로딩 이미지*/
+       position: fixed;
+       top:50%;
+       left:50%;
+       margin-left: -21px;
+       margin-top: -21px;
+   }
+    .display-none{ /*감추기*/
+       display:none;
+   }
+</style>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
+	<div class="wrap-loading display-none">
+	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+	</div> 
 	<div class="wrapper">
-		<h5 style="float:right;">마이페이지>조회>예금계좌조회</h5>
+		<p style="float:right;font-size:12px;">마이페이지>조회>예금계좌조회</p>
 		<br>
 		<hr>
 			<table class="table eq-ui-data-table z-depth-1">
@@ -126,24 +145,6 @@ function ajaxTest(){
 			<!-- 결과 출력 위치 -->
 		</div>
 	</div>
-	<%@ include file="../../common/chatbot.jsp"%>
-<script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-<script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
-<script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
-
-<script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
-<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
-
-<script src="https://unpkg.com/lodash@4.16.0"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
-
-<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
-         
+	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>
