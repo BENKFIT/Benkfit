@@ -32,10 +32,20 @@
    text-align:center;
   }
   
-  #juminBtn, #signInBtn {
+  #juminBtn {
+    position:relative;
+    background-color:#ddd;
+    border:0; 
+    color:#636363; 
+    width:20%;
+    height:34px; 
+    padding:0px 5px;
+  }
+  
+  #signInBtn {
     position:relative;
     background-color:#FFD662;
-    border:0; 
+    border:0px; 
     color:#636363; 
     width:20%;
     height:34px; 
@@ -67,7 +77,6 @@
     right:0;
     top:0;
     bottom:0;
-    /* background: rgba(0,0,0,0.2); */
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',endColorstr='#20000000');    /* ie */
 }
 
@@ -108,9 +117,6 @@
             $("#fileAjax").css("visibility", "visible");
             $("#fileAjax").css("background-color", "#c4daff");
             $("#fileAjax").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1].trim());
-            /* $("#showJumin2").css("visibility", "visible");
-            $("#showJumin2").css("background-color", "#c4daff");
-            $("#showJumin2").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1].trim()); */
             $("#name").css("background-color", "#c4daff");
             $("#jumin1").css("background-color", "#c4daff");
             $("#jumin2").css("background-color", "#c4daff");
@@ -153,17 +159,21 @@
                 $("#idVal").css("color", "#C64545");
                 $("#idVal").html("id는 6~15자 사이여야합니다");
                 $("#register").attr('disabled', true);
+                $("#register").css('background-color', '#ddd')
               } else {
                 //결과 출력
                 if(data == 1) { 
                   $("#idVal").css("color", "#C64545");
                   $("#idVal").html("이미 사용중인 아이디입니다. 다른 아이디를 입력해주세요");
                   $("#register").attr('disabled', true);
+                  $("#register").css('background-color', '#ddd')
                 }
                 else {
                   $("#idVal").css("color", "#2D5772");
                   $("#idVal").html("사용 가능한 아이디입니다");
                   $("#register").attr('disabled', false);
+                  $("#register").css('background-color', '#FFD662')
+                  
                 }
               }
             },
@@ -175,6 +185,7 @@
           $("#idVal").css("color", "#C64545");
           $("#idVal").html("id는 영소문자와 숫자로만 구성가능합니다.");
           $("#register").attr('disabled', true);
+          $("#register").css('background-color', '#ddd')
         } 
       }
     })
@@ -192,8 +203,10 @@
         if(valid.test(pwd)) { 
           $("#pwdVal").html("");
           $("#register").attr("disabled", false);
+          $("#register").css('background-color', '#FFD662')
         } else {
           $("#register").attr('disabled', true);
+          $("#register").css('background-color', '#ddd')
           $("#pwdVal").css("visibility", "visible"); //표시
           $.ajax({
             type: "POST",
@@ -222,6 +235,7 @@
       } else {
         if(pwd != repwd) { 
           $("#register").attr('disabled', true);
+          $("#register").css('background-color', '#ddd')
           $("#pwdChk").css("visibility", "visible"); //표시
           $.ajax({
             type: "POST",
@@ -238,6 +252,7 @@
         } else {
           $("#pwdChk").html("");
           $("#register").attr("disabled", false);
+          $("#register").css('background-color', '#FFD662')
         }
       }
     })
@@ -255,8 +270,10 @@
         if(valid.test(name)) { 
           $("#nameVal").html(""); 
           $("#register").attr('disabled', false);
+          $("#register").css('background-color', '#FFD662')
         } else {
           $("#register").attr('disabled', true);
+          $("#register").css('background-color', '#ddd')
           $("#nameVal").css("visibility", "visible"); //표시
           $.ajax({
             type: "POST",
@@ -296,9 +313,11 @@
         if(valid.test(hp)) { 
           $("#hpVal").html("") //숨김
           $("#register").attr('disabled', false);
+          $("#register").css('background-color', '#FFD662')
         } else {
           $("#hpVal").css("visibility", "visible"); //표시
           $("#register").attr('disabled', true);
+          $("#register").css('background-color', '#ddd')
           $.ajax({
             type: "POST",
             data: "msg=" + msg,
@@ -328,9 +347,11 @@
         if(valid.test(email)) { 
           $("#emailVal").html("");
           $("#register").attr('disabled', false);
+          $("#register").css('background-color', '#FFD662')
         } else {
           $("#emailVal").css("visibility", "visible"); //표시
           $("#register").attr('disabled', true);
+          $("#register").css('background-color', '#ddd')
           $.ajax({
             type: "POST",
             data: "msg=" + msg,
@@ -409,10 +430,14 @@
     if((11-(tempSum%11))%10 != arrNum2[6]) {
         $("#juminVal").html("주민번호가 올바르지 않습니다");
         $("#juminBtn").attr('disabled', true);
+        $("#juminBtn").css('background-color', '#ddd')
+        
     } else {
         $("#juminVal").html("");
         $("#juminBtn").attr('disabled', false);
+        $("#juminBtn").css('background-color', '#FFD662')
         $("#register").attr('disabled', false);
+        $("#register").css('background-color', '#FFD662')
     }
   }
   
@@ -428,25 +453,12 @@
    }
   }
 
-  // 약관 모달
+  // 약관 팝업
   function showTerms() {
-    document.getElementById("myModalS").style.visibility = "visible";
-    var agree = document.signIn.hiddenAgree.value;
-      $.ajax({
-            type: "POST",
-            data: "agree="+agree,
-            url: "${pageContext.request.contextPath}/terms",
-            success: function(data) {
-              $("#myModalS2").css('text-align','center');
-              $("#modal-contentS").css('width','170%'); 
-              $("#modal-contentS").html(data);
-            },
-            error: function() {
-                alert("약관 오류");
-            }
-        });
-    }
-  
+	  var url = "terms"
+	  window.open(url, "terms", "menubar=no, width=600, height=800, top=50, left=300");
+  }
+
   // 회원가입 버튼 클릭시 실행
   function signInCheck() {
     var addr1 = document.signIn.addr1.value;
@@ -485,7 +497,7 @@
 
 <%@ include file ="../Template/top.jsp" %>
 
-<div class="container2" style="margin-top:150px; margin-bottom:70px;">
+<div class="container2" style="margin-top:150px; margin-bottom:150px;">
   <div class="row">
     <div class="col-lg-4 col-md-4 mx-auto">
     <div class="card">
@@ -494,7 +506,7 @@
       
       <input type="hidden" name="hiddenJumin" value="0">
       <input type="hidden" name="hiddenAgree" value="0">
-      <input type="hidden" name="shaPwd" value="">
+      <!-- <input type="hidden" name="shaPwd" value=""> -->
       
         <div class="form-group">
         <label>신분증<span class="text-danger">*</span></label>
@@ -612,20 +624,11 @@
       <div class="form-group">
         <div class="custom-control custom-checkbox">
               <input type="checkbox" class="termsCheckBox" id="customControlAutosizing" name="tnc">
-                <button type="button" id="agreement" data-toggle="modal" data-target="#myModalS" 
-                    onclick="showTerms();">이용약관</button>동의
+                <button type="button" id="agreement" onclick="showTerms();">이용약관</button>동의
           </div>
       </div>
         <button type="submit" class="btn btn-success btn-block" id="register" style="background:#FFD662; border-color:#FFD662; color:#636363">회원가입</button>
       
-        <!-- 약관 Modal -->
-        <div class="modal fade bd-example-modal-lg" id="myModalS" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg-centered" id="myModalS2" style="margin-top:5%; margin-left:25%">
-            <div class="modal-content" id="modal-contentS">
-            </div>
-          </div>
-        </div>
-        <!-- 약관 Modal -->
       </form>
       </div>
     </div>

@@ -54,38 +54,20 @@ public class ServiceImpl_bh implements Service_bh {
 	Geth geth = Geth.build(new HttpService("http://localhost:8545"));
 
 	// 훈컨트랙트모음
-	private final String BenkfitAddress = ServiceImpl_syk.getBenkfit();
-	private final String BankAddress = ServiceImpl_syk.getBank();
-	private final String SlotAddress = ServiceImpl_syk.getSlot();
+	private final String BenkfitAddress = Setting.getBenkfit();
+	private final String BankAddress = Setting.getBank();
+	private final String SlotAddress = Setting.getSlot();
 
-	/*
-	 * 훈 전역 설정
-	 */
-	// 체크넘버
-	int chkNum = 0;
-	// 경로
-	final String path = "/Users/banhun/2_net/keystore/";
-	// 훈 address[0]
-	private final String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
-	// 훈 관리자 비밀번호
-	private final String owner_pwd = "password";
-	// 훈 address[0] 키스토어
-	private final String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943";
-	// 지갑주소 맨 앞자리
-	private final String fn = "0x";
-	// benkfit 컨트랙트
-	// private final String BenkfitAddress =
-	// "0xe540e40a2ccaaadf7c142a94c9a05c6858ac4836";
-	// bank 컨트랙트
-	// private final String BankAddress =
-	// "0x62cef7fe54af475d459b2bea520646363b9010d4";
-	// slot 컨트랙트
-	// private final String SlotAddress =
-	// "0x0d554d4586dd91953252fd98a329576658f45def";
+	int chkNum = Setting.chkNum;
+	final String path = Setting.path;
+	private final String owner = Setting.owner;
+	private final String owner_pwd = Setting.owner_pwd;
+	private final String owner_file = Setting.owner_file;
+	private final String fn = Setting.fn;
 
-	// 가스 임의 설정
-	BigInteger gasPrice = BigInteger.valueOf(3000000);
-	BigInteger gasLimit = BigInteger.valueOf(3000000);
+	final BigInteger gasPrice = Setting.gasPrice;
+	final BigInteger gasLimit = Setting.gasLimit;
+	final BigInteger initialWeiValue = Setting.initialWeiValue;
 
 	@Autowired
 	DAO_bh dao;

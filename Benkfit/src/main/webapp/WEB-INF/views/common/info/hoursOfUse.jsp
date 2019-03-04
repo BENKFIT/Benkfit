@@ -17,6 +17,10 @@ td, tr>th, p {
 .table eq-ui-data-table z-depth-1{
 	margin-bottom: 100px;
 }
+thead>tr{
+	background: #2980B9;
+	color: white;
+}
 </style>
 </head>
 <html>
@@ -24,8 +28,7 @@ td, tr>th, p {
 	<%@ include file="../../Template/top.jsp"%>
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-			<p style="font-size: 20px;">예금 / 적금</p>
-
+			<span style="float: right;">이용안내>예금/적금</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -47,7 +50,7 @@ td, tr>th, p {
 				</tbody>
 			</table>
 
-			<p style="font-size: 20px;">이체</p>
+			<span style="float: right;">이용안내>이체</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -69,7 +72,7 @@ td, tr>th, p {
 				</tbody>
 			</table>
 
-			<p style="font-size: 20px;">대출</p>
+			<span style="float: right;">이용안내>대출</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -89,8 +92,6 @@ td, tr>th, p {
 			</table>
 		</div>
 	</div>
-
-
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 </html>

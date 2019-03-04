@@ -7,45 +7,67 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="Implements Google's Material Design in Bootstrap.">
+<!-- CSS-->
+<link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
+<script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
+<script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
+<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
+<script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
+<script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
+<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
+<script src="https://unpkg.com/lodash@4.16.0"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
+<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
+<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
+<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
+<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
+<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
+<script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
 <style>
-    #login {
-      height:100%;
-      background-color:#ddd;
-    }
-    
-    #login .div class wrapper #login-row #login-column #login-box {
-      margin-top: 120px;
-      max-width: 600px;
-      height: 320px;
-      border: 1px solid #31708f;
-      background-color: #fff;
-      text-align:center;
-    }
-    
-    #login .div class wrapper #login-row #login-column #login-box #login-form {
-      padding: 20px; 
-    }
-    
-    #login .div class wrapper #login-row #login-column #login-box #login-form label a {
-      margin-top:-20px; 
-    }
-    
-    .loginspan {
-      color:#636363;
-    }
-    
-    #reg {
-      margin-left:110px;
-    }
-    
-    #find_result, #gotologin {
+    #logindiv1 {
+    text-align:center;
+  }
+  
+  #logindiv2 {
+    display:inline-block;
+    width:30%;
+  }
+  
+  label {
+    text-align:left;
+  }
+  
+  #find_result {
+    text-align:center;
+    font-size:20px;
+    margin-top:40px;
+    color:#ff0000;
+  }
+  
+  #gotologin {
       text-align:center;
       font-size:20px;
       margin-top:15px;
-    }
+    } 
+    
+   #gotologin a {
+     text-decoration:none;
+   }
+    
 </style>
 <script type="text/javascript">
     function inputChk() {
@@ -85,42 +107,52 @@
 	         }); 
     	 }
     }
+    
+    function gotologin() {
+    	window.location="login";
+    }
 </script>
 </head>
 <body>
 <%@ include file ="../Template/top.jsp" %>
 
-<div id="login">
-        <h3 class="text-center text-white pt-5"></h3>
-        <div class="div class wrapper">
-            <div id="login-row" class="row justify-content-center align-items-center">
-                <div id="login-column" style="width:70%;">
-                    <div id="login-box" class="col-md-12">
-                    <form id="login-form" class="form" action="" method="post" name="findForm">
-                            <h3 class="text-center text-info"><span class="loginspan">아이디 찾기</span></h3><br>
-                            <div class="form-group">
-                                <label for="name" class="text-info"><span class="loginspan">이름</span></label><br>
-                                <input type="text" name="name" id="name" class="form-control" placeholder="한글 이름 입력" autofocus required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="text-info"><span class="loginspan">가입시 등록한 이메일</span></label><br>
-                                <input type="email" name="email" id="email" class="form-control" placeholder="benkfit@benkfit.com" required>
-                            </div>
-                            <div id="register-link" class="text-center">
-                                <button type="button" id="search" name="search" class="btn btn-info btn-md" onclick="inputChk();" style="background-color:#FFD662; border-color:#FFD662; color:#636363">
-                                                            확인</button>
-                            </div>
-                        </form>
-                        <div id="find_result"></div>
-                        <div id="gotologin" style="visibility:hidden">
-											    <a href="login">로그인하러 가기</a>
-											  </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="logindiv1">
+  <div id="logindiv2">
     
+    <form id="login-form" name="findForm" action="" method="post" style="margin-top:250px;">
+    
+	    <div class="row">
+         <div class="eq-ui-form-group eq-ui-input-field">
+             <h3>아이디 찾기</h3>
+         </div>
+	    </div>
+	    
+	    <div class="row" style="margin-bottom:20px;">
+	       <div class="eq-ui-form-group eq-ui-input-field">
+	          <input id="name" name="name" type="text" class="eq-ui-input">
+	          <label for="name">한글 이름</label>
+	       </div>
+	    </div>
+	    
+	    <div class="row" style="margin-bottom:20px;">
+	      <div class="eq-ui-form-group eq-ui-input-field">
+	          <input id="email" name="email" type="email" class="eq-ui-input">
+	          <label for="email">가입시 등록한 이메일 (예: benkfit@benkfit.com )</label>
+	      </div>
+	    </div>
+	    
+	    <div class="row" style="margin-top:20px;">
+	      <input type="button" class="btn btn-default" id="search" name="search" onclick="inputChk();" value="확인" style="background-color:#2D5772; color:#fff;">
+        <input type="button" class="btn btn-default" id="cancel" name="cancel" onclick="gotologin();" value="취소" style="background-color:#2D5772; color:#fff;">
+	    </div>
+	    
+	    <div id="find_result"></div>
+	    <div id="gotologin" style="visibility:hidden">
+	      <a href="login">로그인하러 가기</a>
+	    </div>
+   </form>
+  </div>
+</div>  
 <%@ include file ="../Template/footer.jsp" %>
 </body>
 </html>

@@ -18,8 +18,13 @@ td, tr>th, p {
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
+<<<<<<< HEAD
+<div style="text-align: center;">
+<!-- 	<div
+=======
 	<div style="text-align: center;">
 		<!-- 	<div
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
 		<div
 			style="display: inline-block; width: 60%; height: 70%; margin-top: 200px;">

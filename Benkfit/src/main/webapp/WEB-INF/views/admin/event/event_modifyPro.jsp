@@ -6,6 +6,7 @@
 	<c:if test="${updateCnt == 0}">
 		<script type="text/javascript">
 			alert("이벤트 수정에 실패하였습니다.")
+			window.location='event_list_sws?pageNum=${pageNum}';
 		</script>
 	</c:if>
 	

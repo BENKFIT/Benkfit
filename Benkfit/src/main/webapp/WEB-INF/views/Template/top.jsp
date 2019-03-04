@@ -102,7 +102,7 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-3" href="#">안내</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-5" href="#">ATM</a></li>
+							data-submenu="submenu-5" href="#">위치</a></li>		
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<sec:authorize access="isAuthenticated()">
@@ -136,6 +136,7 @@
 							</ul>
 							<!-- Submenu 0-2 이체 -->
 							<ul data-menu="submenu-0-2" class="menu__level">
+								<li class="menu__item"><a class="menu__link" href="deposit">입금</a></li>
 								<li class="menu__item"><a class="menu__link" href="trans">계좌이체</a></li>
 								<li class="menu__item"><a class="menu__link"
 									href="auto_trans">자동이체</a></li>
@@ -165,16 +166,13 @@
 								data-submenu="submenu-0-2" href="#">상품관리</a></li>
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-3" href="#">이벤트관리</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-4" href="#">은행관리</a></li>
+							<li class="menu__item"><a class="menu__link" href="manage">은행관리</a></li>
 						</ul>
 
 						<!-- Submenu 0-2 예금-->
 						<ul data-menu="submenu-0-2" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-1" href="cheqSavRegi">예금 상품</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-2-2" href="loanRegi">대출상품</a></li>
+							<li class="menu__item"><a class="menu__link" href="cheqSavRegi">예금 상품</a></li>
+							<li class="menu__item"><a class="menu__link" href="loanRegi">대출상품</a></li>
 							<li class="menu__item"><a class="menu__link"
 								href="loanApproval">대출신청관리</a></li>
 						</ul>
@@ -186,27 +184,13 @@
 							<li class="menu__item"><a class="menu__link"
 								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
 						</ul>
-
-						<!-- Submenu 0-4 예금-->
-						<ul data-menu="submenu-0-4" class="menu__level">
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-4-1" href="benkfitControl">은행관리</a></li>
-							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-4-2" href="productChart_sws">결산</a></li>
-						</ul>
 					</sec:authorize>
 
 					<!-- Submenu 1 금융상품 -->
 					<ul data-menu="submenu-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1" href="#">예금</a></li>
+						<li class="menu__item"><a class="menu__link" href="cheqSavList">예금</a></li>
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-2" href="#">대출</a></li>
-					</ul>
-					<!-- Submenu 1-1 예금-->
-					<ul data-menu="submenu-1-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-1-1-1" href="cheqSavList">예금 상품</a></li>
 					</ul>
 					<!-- Submenu 1-2 대출-->
 					<ul data-menu="submenu-1-2" class="menu__level">
@@ -226,7 +210,8 @@
 
 					<!-- Submenu 5 안내 -->
 					<ul data-menu="submenu-5" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="map_sws">ATM</a></li>
+						<li class="menu__item"><a class="menu__link" href="map_sws">은행</a></li>
+						<li class="menu__item"><a class="menu__link" href="atm_sws">ATM</a></li>
 					</ul>
 				</div>
 			</nav>

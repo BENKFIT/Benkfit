@@ -75,7 +75,7 @@ public class ScheduleT {
 				String blockHash = "";
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(password, file);
-					String contract = ServiceImpl_syk.getBenkfit();
+					String contract = Setting.getBenkfit();
 					@SuppressWarnings("deprecation")
 					Benkfit auto = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
 					
@@ -124,7 +124,7 @@ public class ScheduleT {
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 					
-					String contract = ServiceImpl_syk.getBenkfit();
+					String contract = Setting.getBenkfit();
 					@SuppressWarnings("deprecation")
 					Benkfit cheqInterest = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
 					TransactionReceipt transfer = cheqInterest.output(account, interest).send();
@@ -169,7 +169,7 @@ public class ScheduleT {
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 					
-					String contract = ServiceImpl_syk.getBenkfit();
+					String contract = Setting.getBenkfit();
 					@SuppressWarnings("deprecation")
 					Benkfit cheqInterest = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
 					TransactionReceipt transfer = cheqInterest.output(account, interest).send();

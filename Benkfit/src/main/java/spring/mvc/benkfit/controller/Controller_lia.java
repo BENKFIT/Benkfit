@@ -12,11 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +43,7 @@ public class Controller_lia {
 	
 	// 로그인
 	@RequestMapping("login")
-	public String login() throws Exception {
+	public String login(HttpServletRequest req) throws Exception {
 		logger.info("login 호출중");
 		return "common/login";
 	}
@@ -118,14 +113,6 @@ public class Controller_lia {
 		logger.info("signInPro 호출중");
 		service.signInPro(req, model);
 		return "common/signInPro";
-	}
-	
-	// 마이페이지
-	@PreAuthorize("isAuthenticated()")
-	@RequestMapping("myPageTest")
-	public String myPageTest() throws Exception {
-		logger.info("myPageTest 호출중");
-		return "common/myPageTest";
 	}
 	
 	// 로그인 실패
@@ -236,7 +223,7 @@ public class Controller_lia {
 	@RequestMapping("marketprice")
 	public String marketprice(Model model) throws Exception {
 		logger.info("marketprice 호출중");
-		//service.marketprice(model);
+		service.marketprice(model);
 		return "common/marketprice";
 	}
 	

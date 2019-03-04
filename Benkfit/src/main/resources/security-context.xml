@@ -8,12 +8,6 @@
     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
   <security:http use-expressions="true">
-    <!-- <security:intercept-url pattern="/admin**" 
-      access="hasAuthority('ROLE_ADMIN')" /> -->
-    <!-- <security:intercept-url pattern="/my**"
-      access="isAuthenticated()" /> -->
-    <!-- <security:intercept-url pattern="/**"
-      access="permitAll" /> -->
     <security:form-login 
       login-page="/login" 
       login-processing-url="/loginPro"
@@ -26,7 +20,8 @@
       invalidate-session="true"
       logout-success-url="/index" />  
   </security:http >
-<!--  authentication-failure-url : 로그인 실패 시 이동 URL -->
+<!--  authentication-failure-handler-ref="userLoginFailureHandler" -->
+<!-- authentication-failure-url="/loginFail" -->
   
   <security:authentication-manager>
     <security:authentication-provider>
@@ -35,5 +30,7 @@
        authorities-by-username-query="SELECT username, authority FROM authorities WHERE username=?" />
     </security:authentication-provider>
   </security:authentication-manager>
+ 
+ <!-- <bean id="userLoginFailureHandler" class="spring.mvc.benkfit.service.UserLoginFailureHandler" /> -->
  
 </beans>

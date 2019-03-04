@@ -31,39 +31,15 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
 <script type="text/javascript" src="${path}/js/qrcode.js"></script>
 <script type="text/javascript" src="${path}/js/classie.js"></script>
-<!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/main.js"></script>
-<!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script>
-<!-- 사이드메뉴 -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!-- qr코드 -->
 <script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script>
-<!-- qr코드 -->
-<script type="text/javascript" src="${path}/js/qrcode.js"></script>
-<!-- qr코드 -->
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="${path}/js/script_kay.js"></script>
-<!-- kay 스크립트 -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- 추가(alert) -->
 <script type="text/javascript" src="${path}/js/download.js"></script>
-<!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request.js"></script>
-<!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request2.js"></script>
-<!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/classie.js"></script><!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/main.js"></script><!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/modernizr-custom.js"></script><!-- 사이드메뉴 -->
-<script type="text/javascript" src="${path}/js/jquery.qrcode.js"></script><!-- qr코드 -->
-<script type="text/javascript" src="${path}/js/qrcode.js"></script><!-- qr코드 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/js/script_kay.js"></script><!-- kay 스크립트 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- 추가(alert) -->
-<script type="text/javascript" src="${path}/js/download.js"></script><!-- qr다운, -->
-<script type="text/javascript" src="${path}/js/request.js"></script><!-- qr다운, -->
-<script type="text/javascript" src="${path}/js/request2.js"></script><!-- qr다운, -->
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -75,6 +51,18 @@ pageEncoding="UTF-8"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+<!-- Form, Table, Button -->
 
+ <!-- CSS-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="Implements Google's Material Design in Bootstrap.">
 
+<link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
+
+<link href="${path}/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="${path}/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 

@@ -63,8 +63,8 @@ public interface Service_syk {
 	//적금이체
 	public void savTrans(HttpServletRequest req) throws Exception;
 	
-	//출금
-	public void withdraw(HttpServletRequest req) throws Exception;
+	/*//출금
+	public void withdraw(HttpServletRequest req) throws Exception;*/
 	
 	//입금
 	public void depositPro(HttpServletRequest req) throws Exception;
@@ -95,4 +95,7 @@ public interface Service_syk {
 	
 	//배포
 	public void deployPro(HttpServletRequest req) throws Exception;
+	
+	//재배포
+	public void reDeploy(HttpServletRequest req) throws Exception;
 }

@@ -155,7 +155,7 @@ public class Controller_syk {
 		logger.info("송금");
 		service.transPro(req);
 		
-		return "mypage_kay/result";
+		return "mypage_kay/trans/result";
 	}
 	
 	//잔액확인
@@ -164,7 +164,7 @@ public class Controller_syk {
 		logger.info("잔액확인");
 		service.getBalance(req);
 		
-		return "mypage_kay/getBalance";
+		return "mypage_kay/trans/getBalance";
 	}
 	
 	//입금
@@ -172,7 +172,7 @@ public class Controller_syk {
 	public String deposit(HttpServletRequest req) throws Exception{
 		logger.info("입금");
 		
-		return "mypage_kay/deposit";
+		return "mypage_kay/trans/deposit";
 	}
 	
 	//입금진행
@@ -181,7 +181,7 @@ public class Controller_syk {
 		logger.info("입금 실행");
 		service.depositPro(req);
 		
-		return "mypage_kay/deposit";
+		return "mypage_kay/trans/deposit";
 	}
 	
 	//출금페이지
@@ -189,17 +189,17 @@ public class Controller_syk {
 	public String withdraw(HttpServletRequest req) throws Exception{
 		logger.info("출금");
 		
-		return "mypage_kay/withdraw";
+		return "mypage_kay/trans/withdraw";
 	}
 	
-	//출금진행
+	/*//출금진행
 	@RequestMapping("withdrawPro")
 	public String withdrawPro(HttpServletRequest req) throws Exception{
 		logger.info("출금");
 		service.withdraw(req);
 		
 		return "mypage_kay/withdraw";
-	}
+	}*/
 	
 	/*
 	 * 자동이체
@@ -232,16 +232,16 @@ public class Controller_syk {
 	}
 	
 	/*
-	 * 배포
+	 * 관리페이지
 	 */
 	
-	//배포페이지
-	@RequestMapping("deploy")
+	//관리페이지
+	@RequestMapping("manage")
 	public String deploy(HttpServletRequest req) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
 		
-		return "admin/deploy/deploy";
+		return "admin/manage/manage";
 	}
 	
 	//배포
@@ -250,11 +250,24 @@ public class Controller_syk {
 		logger.info("배포");
 		service.deployPro(req);
 		
-		return "admin/deploy/deployPro";
+		return "admin/manage/result";
 	}
 	
-	@RequestMapping("bean")
-	public String bean(HttpServletRequest req) {
-		return "admin/deploy/bean";
+	//재배포
+	@RequestMapping("reDeploy")
+	public String reDeploy(HttpServletRequest req) throws Exception {
+		logger.info("재배포");
+		service.reDeploy(req);
+		
+		return "admin/manage/reDeploy";
+	}
+	
+	//내계좌
+	@RequestMapping("getMyAccounts")
+	public String getMyAccounts(HttpServletRequest req) throws Exception{
+		logger.info("내계좌");
+		service.trans(req);
+		
+		return "mypage_kay/trans/getMyAccounts";
 	}
 }

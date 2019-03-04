@@ -1,11 +1,14 @@
 package spring.mvc.benkfit.service;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,7 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -86,11 +91,13 @@ public class ServiceImpl_kay implements Service_kay{
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal(); 
 		String id = user.getUsername();
+		String account = req.getParameter("account");
 
-		System.out.println("세션 : " + id);
-
+		System.out.println("계좌선택 : "+ account);
+		
 		List<MySavAccountVO> sav = dao.mysav_list(id) ;
-
+		
+		model.addAttribute("account", account);
 		model.addAttribute("id", id);
 		model.addAttribute("sav", sav);
 	}
@@ -273,6 +280,7 @@ public class ServiceImpl_kay implements Service_kay{
 		String order = req.getParameter("order");
 		int start = 1;
 		int end = Integer.parseInt(req.getParameter("end"));
+		
 		String delCheq = req.getParameter("delCheq");
 		System.out.println("계좌선택 : " + delCheq);
 		System.out.println("====cheq_info====");
@@ -302,7 +310,6 @@ public class ServiceImpl_kay implements Service_kay{
 		model.addAttribute("CheqIn", CheqIn);
 		model.addAttribute("CheqOut", CheqOut);
 		model.addAttribute("cheq", cheq);
-
 	}
 	//대출계좌 상세 조회
 	@Override
@@ -387,7 +394,7 @@ public class ServiceImpl_kay implements Service_kay{
 		model.addAttribute("CheqOut",CheqOut);
 		model.addAttribute("sav",sav); 
 	}
-	//해지조회
+	//예금해지 - 체크
 	@Override
 	public void sls(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
@@ -402,7 +409,7 @@ public class ServiceImpl_kay implements Service_kay{
 		model.addAttribute("id", id);
 		model.addAttribute("account", account);
 	}
-	//계좌해지
+	//예금계좌해지
 	@Override
 	public void del_cheq(HttpServletRequest req, Model model) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
@@ -411,11 +418,6 @@ public class ServiceImpl_kay implements Service_kay{
 		String account = req.getParameter("account");
 		String pwd =  req.getParameter("pwd");
 
-		System.out.println("====해지====");
-		System.out.println("id : " + id);
-		System.out.println("account : "+ account);
-		System.out.println("pwd : " + pwd);
-
 		Map<String,Object> map = new HashMap<>();
 		map.put("id", id);
 		map.put("account", account);
@@ -423,13 +425,13 @@ public class ServiceImpl_kay implements Service_kay{
 
 		int cheqPw = dao.cheq_pw(map); //비밀번호 체크
 		int cheq = 0; //잔액체크
-		int del_cheq = 0; //탈퇴처리
+		int del_cheq = 0; //해지처리
 
 		if(cheqPw != 0) {//비밀번호 체크 
 			cheq = dao.delChe(map); //잔액체크
 			model.addAttribute("cheq",cheq);
 			if(cheq == 0) { //잔액이 0이면 
-				del_cheq = dao.del_cheq(map); //탈퇴처리
+				del_cheq = dao.del_cheq(map); //해지처리
 				model.addAttribute("del_cheq",del_cheq);
 			} 
 		}
@@ -437,6 +439,43 @@ public class ServiceImpl_kay implements Service_kay{
 		model.addAttribute("id", id);
 		model.addAttribute("account", account);
 	}
+	//적금해지
+	@Override
+	public void del_sav(HttpServletRequest req, Model model) throws Exception {
+		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
+		User user = (User) securityContext.getPrincipal();
+		String id = user.getUsername();
+		String account = req.getParameter("account");
+		String pwd =  req.getParameter("pwd");
+		
+		System.out.println("적금계좌: "+ account);
+		
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("account", account);
+		map.put("pwd", pwd);
+
+		int savPw = dao.sav_pw(map); //비밀번호 체크
+		int sav = 0; //잔액체크
+		int del_sav = 0; //해지처리
+		System.out.println("savPw :"+ savPw);
+		
+		if(savPw != 0) {//비밀번호 체크 
+			sav = dao.delSav(map); //잔액체크
+			System.out.println("sav"+sav);
+			model.addAttribute("sav",sav);
+			
+			if(sav == 0) { //잔액이 0이면 
+				del_sav = dao.del_sav(map); //탈퇴처리
+				System.out.println("del_sav"+del_sav);
+				model.addAttribute("del_sav",del_sav);
+			} 
+		}
+		model.addAttribute("savPw", savPw);
+		model.addAttribute("id", id);
+		model.addAttribute("account", account);
+	}
+	
 	// 파일 업로드 & 텍스트 인식
 	@Override
 	public void getText(String file, Model model) throws IOException {
@@ -462,7 +501,7 @@ public class ServiceImpl_kay implements Service_kay{
 		System.out.println(info);
 		System.out.println("end");
 
-		br.close();
+		br.close();	
 
 		//파일 객체 생성
 		//Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");
@@ -544,9 +583,11 @@ public class ServiceImpl_kay implements Service_kay{
 		// 이미지 파일
 		MultipartFile file = req.getFile("doc_img");
 		String saveDir = req.getRealPath("/resources/img/doc/"); 
+		String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
+		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
 		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
 		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
-		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
+		//String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
 
 		try {
 			file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -639,6 +680,8 @@ public class ServiceImpl_kay implements Service_kay{
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
 		String num = req.getParameter("num");
+		System.out.println("num : "+ num);
+		model.addAttribute("num", num);
 		
 		DateVO vo = dao.day();
 		DateVO vo1 = dao.day1();
@@ -677,7 +720,48 @@ public class ServiceImpl_kay implements Service_kay{
 			int budget = dao.budget(map);
 			model.addAttribute("budget" ,budget);
 		}
-		System.out.println("num : "+ num);
-		model.addAttribute("num", num);
+	
 	}
+	@Override
+	public void downdocu(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
+		 String dFile = "재직증명서-양식.docx";
+		  String upDir = "C:\\Users\\82109\\Desktop";
+		  String path = upDir+File.separator+dFile;
+		  
+		  File file = new File(path);
+
+		  String userAgent = req.getHeader("User-Agent");
+		  boolean ie = userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("rv:11") > -1;
+		  String fileName = null;
+		   
+		  if (ie) {
+		   fileName = URLEncoder.encode(file.getName(), "utf-8");
+		  } else {
+		   fileName = new String(file.getName().getBytes("utf-8"),"iso-8859-1");
+		  }
+		  
+		  res.setContentType("application/octet-stream");
+		  res.setHeader("Content-Disposition","attachment;filename=\"" +fileName+"\";");
+		  
+		  FileInputStream fis=new FileInputStream(file);
+		  BufferedInputStream bis=new BufferedInputStream(fis);
+		  ServletOutputStream so=res.getOutputStream();
+		  BufferedOutputStream bos=new BufferedOutputStream(so);
+		  
+		  byte[] data=new byte[2048];
+		  int input=0;
+		  while((input=bis.read(data))!=-1){
+		   bos.write(data,0,input);
+		   bos.flush();
+		  }
+		  
+		  if(bos!=null) bos.close();
+		  if(bis!=null) bis.close();
+		  if(so!=null) so.close();
+		  if(fis!=null) fis.close();
+		 }
+	
+	
+	
+		
 }
