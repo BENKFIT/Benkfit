@@ -57,6 +57,9 @@ public interface Service_kay {
 	//예금해지
 	public void del_cheq(HttpServletRequest req, Model model)throws Exception;
 	
+	//적금해지
+	public void del_sav(HttpServletRequest req, Model model)throws Exception;
+	
 	//해지
 	public void sls(HttpServletRequest req, Model model)throws Exception;
 	

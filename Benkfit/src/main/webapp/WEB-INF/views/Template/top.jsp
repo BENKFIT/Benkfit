@@ -102,7 +102,7 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-3" href="#">안내</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-5" href="#">위치</a></li>
+							data-submenu="submenu-5" href="#">위치</a></li>		
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<sec:authorize access="isAuthenticated()">

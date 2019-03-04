@@ -18,6 +18,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	speak: none;
+		color: white;
 }
 #ml-menu{
 	font-family: 'feather';
@@ -53,6 +54,7 @@
 	overflow: hidden;
 	width: 100%;
 	left : 0;
+	color:white;
 }
 
 .menu__level {
@@ -67,24 +69,27 @@
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
+	color:white;
 }
 
 .menu__level--current {
 	visibility: visible;
+	color:white;
 }
 
 .menu__item {
+	color:white;
 	display: block;
 	width: calc(100% - 50px);
 }
 
 .menu__link {
+	color: white;
 	text-decoration: none !important;
 	font-weight: 600;
 	position: relative;
 	display: block;
 	padding: 1em 2.5em 1em 1.5em;
-	color: black;
 	-webkit-transition: color 0.1s;
 	transition: color 0.1s;
 }
@@ -95,13 +100,15 @@
 	position: absolute;
 	right: 0;
 	padding: 0.25em 1.25em;
-	color: #2a2b30;
+	color: white;
 	text-decoration: none !important;
 }
-
-.menu__link:hover,
+.menu__link:hover {
+	color: white;
+text-decoration: underline !important;
+}
 .menu__link[data-submenu]:hover::after {
-	color: black;
+	color: white;
 	text-decoration: none !important;
 }
 .menu__link--current::before {
@@ -112,7 +119,7 @@
 	top: 50%;
 	left: 0.5em;
 	height: 4px;
-	color: black;
+	color: white;
 	text-decoration: none !important;
 }
 
@@ -233,6 +240,7 @@
     margin-bottom: 600px;
     top: 10px;
     left: 15px;
+    color: white;
 }
 .menu__breadcrumbs a {
 	font-weight: bold;
@@ -241,7 +249,7 @@
 	vertical-align: middle;
 	letter-spacing: 1px;
 	text-transform: uppercase;
-	color: black;
+	color: white;
 }
 
 .menu__breadcrumbs a:last-child {
@@ -249,7 +257,7 @@
 }
 
 .menu__breadcrumbs a:hover {
-	color: black;
+	color: white;
 }
 
 .menu__breadcrumbs a:not(:last-child)::after {
@@ -257,11 +265,11 @@
 	font-family: 'feather';
 	display: inline-block;
 	padding: 0 0.5em;
-	color: #33353e;
+	color: white;
 }
 
 .menu__breadcrumbs a:not(:last-child):hover::after {
-	color: #33353e;
+	color: white;
 }
 
 .menu__back {

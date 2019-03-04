@@ -11,7 +11,13 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Implements Google's Material Design in Bootstrap.">
+     <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+    <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 <title>예/적금상품안내</title>
 <style type="text/css">
 td {
@@ -661,9 +667,5 @@ p {
 		</div>
 	</div>
 	</c:if>
-
-	<!-- FOOTER  -->
-	<%@ include file="../../../Template/footer.jsp"%>
-
 </body>
 </html>

@@ -58,7 +58,7 @@ public class ServiceImpl_sws implements Service_sws {
 		int pageCount = 0;		
 		int startPage = 0;		
 		int endPage = 0;		
-
+		
 		String strId = (String) req.getSession().getAttribute("cId");
 
 		cnt = dao.getEventCnt(strId);
@@ -197,13 +197,10 @@ public class ServiceImpl_sws implements Service_sws {
 	@Override
 	public void event_modifyForm_sws(HttpServletRequest req, Model model) {
 
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String pageNum = req.getParameter("pageNum");
 		String eve_num = req.getParameter("eve_num");
 
-
 		EventVo vo = dao.getEvent(eve_num);
-
-		vo = dao.getEvent(eve_num);
 
 		req.setAttribute("dto", vo);
 		req.setAttribute("pageNum", pageNum);	 
@@ -256,6 +253,7 @@ public class ServiceImpl_sws implements Service_sws {
 
 			int updateCnt = dao.updateEvent(vo);
 
+			req.setAttribute("eve_num", eve_num);
 			req.setAttribute("updateCnt", updateCnt);
 			req.setAttribute("pageNum", pageNum);
 		} catch (Exception e) {

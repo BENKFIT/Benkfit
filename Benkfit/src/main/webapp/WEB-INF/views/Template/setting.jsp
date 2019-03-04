@@ -23,15 +23,6 @@ pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="${path}/css/top.css" />
 <link rel="stylesheet" href="${path}/css/TOP2.css" />
 <link rel="stylesheet" href="${path}/css/mypage_kay.css" />
-<link rel="stylesheet" href="${path}/css/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${path}/css/css/icons.min.css" />  
-<%-- <link rel="stylesheet" href="${path}/css/css/main.css" /> --%>
-<link rel="stylesheet" href="${path}/css/css/responsive.css" />
-<link rel="stylesheet" href="${path}/css/css/color-schemes/color.css" />
-<link rel="stylesheet" href="${path}/css/css/color-schemes/color1.css" />
-<link rel="stylesheet" href="${path}/css/css/color-schemes/color2.css" />
-<link rel="stylesheet" href="${path}/css/css/color-schemes/color4.css" />
-<link rel="stylesheet" href="${path}/css/css/color-schemes/color5.css" />
 
 <!-- JS -->
 <script type="text/javascript" src="${path}/js/classie.js"></script>
@@ -73,30 +64,6 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="${path}/js/download.js"></script><!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request.js"></script><!-- qr다운, -->
 <script type="text/javascript" src="${path}/js/request2.js"></script><!-- qr다운, -->
-<script src="${path}/js/js/jquery.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/select2.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/slick.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/isotope.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.counterup.js" type="text/javascript"></script>
-<script src="${path}/js/js/waypoints.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/highcharts.js" type="text/javascript"></script>
-<script src="${path}/js/js/exporting.js" type="text/javascript"></script>
-<script src="${path}/js/js/highcharts-more.js" type="text/javascript"></script>
-<script src="${path}/js/js/moment.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.circliful.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/fullcalendar.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.downCount.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.bootstrap-touchspin.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.formtowizard.js" type="text/javascript"></script>
-<script src="${path}/js/js/form-validator.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/form-validator-lang-en.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/cropbox-min.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/ion.rangeSlider.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/jquery.poptrox.min.js" type="text/javascript"></script>
-<script src="${path}/js/js/styleswitcher.js" type="text/javascript"></script>
-<script src="${path}/js/js/main.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -108,6 +75,16 @@ pageEncoding="UTF-8"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
+<!-- Form, Table, Button -->
 
+ <!-- CSS-->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="Implements Google's Material Design in Bootstrap.">
+
+<link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 
 

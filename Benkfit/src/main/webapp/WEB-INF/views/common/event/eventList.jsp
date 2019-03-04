@@ -4,6 +4,7 @@
 <%@ include file="../../Template/setting.jsp"%>
 <html>
 <head>
+<title> 이벤트 </title>
 <style>
 	td>a {
 		color : black;
@@ -15,30 +16,29 @@
 
 	<div style="margin-top: 200px; height: 60%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-			<h2>이벤트</h2>
-			<br>
+			<span style="float: right;">이벤트</span>
 			<table class="table table-hover" style="width: 100%;">
 				<thead>
-					<tr style="background: #FFD662">
-						<th style="width: 10%; text-align: center">No</th>
-						<th style="width: 70%;">제목</th>
-						<th style="width: 20%; text-align: center">등록일</th>
+					<tr style="background: #2980B9;">
+						<th class="eq-ui-data-table-cell-non-numeric" style="width: 10%; color: #ffffff;">No</th>
+						<th class="eq-ui-data-table-cell-non-numeric" style="width: 70%; color: #ffffff;">제목</th>
+						<th class="eq-ui-data-table-cell-non-numeric" style="width: 20%; color: #ffffff;">등록일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:if test="${cnt >= 1}">
 						<c:forEach var="dto" items="${dtos}">
-							<tr class="booklist">
-								<td align="center">${number}<c:set var="number" value="${number-1}"/></td>
-								<td><a href="eventContentForm_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}">${dto.eve_title}</a></td>
-								<td align="center"><fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_regDate}" /></td>
+							<tr>
+								<td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">${number}<c:set var="number" value="${number-1}"/></td>
+								<td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"><a href="eventContentForm_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}">${dto.eve_title}</a></td>
+								<td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"><fmt:formatDate type="both" pattern="yyyy-MM-dd" value="${dto.eve_regDate}" /></td>
 							</tr>
 						</c:forEach>
 					</c:if>
 
 					<c:if test="${cnt == 0}">
-						<tr>
-							<td colspan="3" align="center">이벤트가 존재하지 않습니다.</td>
+						<tr style="background: #2980B9;">
+							<td class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate" colspan="3" align="center">이벤트가 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
 				</tbody>

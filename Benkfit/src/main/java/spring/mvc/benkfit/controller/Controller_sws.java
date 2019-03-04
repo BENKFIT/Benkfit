@@ -112,7 +112,7 @@ public class Controller_sws {
 		
 		service.eventContentForm_sws(req, model);
 
-		if (eve_num.equals("23")) {
+		if (eve_num.equals("46")) {
 			return "common/event/slot";
 		}
 		
@@ -135,12 +135,11 @@ public class Controller_sws {
 		logger.info("event_contentForm_sws");
 		String eve_num = req.getParameter("eve_num");
 
-		if (eve_num.equals("23")) {
+		service.eventContentForm_sws(req, model);
+		
+		if (eve_num.equals("46")) {
 			return "common/event/slotAdmin";
 		}
-		service.eventContentForm_sws(req, model);
-
-
 		return "admin/event/event_contentForm";
 	}
 

@@ -8,7 +8,7 @@
 <title>정보수정</title>
 </head>
 <body>
-	<h2>계좌정보</h2>
+	<h4>계좌정보</h4>
 	<hr>
 	<table class="table eq-ui-data-table z-depth-1">
 		<tr>
@@ -50,8 +50,8 @@
 		</tr>
 	</table>
 	<br>
-	<table  class="table eq-ui-data-table eq-ui-data-table-lazy-load z-depth-1">
-		<thead>
+	<table class="table table-hover">
+		<thead style="background-color:#2980b9; color:white;">
 			<tr>
 				<th>거래번호</th>
 				<th>거래일자</th>

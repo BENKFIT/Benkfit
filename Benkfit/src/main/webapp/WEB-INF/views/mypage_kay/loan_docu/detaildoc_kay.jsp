@@ -21,7 +21,8 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-	<h1>서류상세페이지</h1>
+	<h5 style="float:right;">대출관리>내서류>서류목록>서류상세페이지</h5>
+	<br>
 		<hr>
 		<div class="document">
 			<form action="upresult" method="post" name="fileup"

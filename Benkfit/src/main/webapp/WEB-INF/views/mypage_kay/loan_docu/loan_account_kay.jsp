@@ -19,6 +19,9 @@
 <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
 	rel="stylesheet">
 <script>
+function selectFile() {
+	document.getElementById("file").click();
+}
 	function ajaxTest() {
 		var account = $("#myLoan_account option:selected").val();
 		var start_date = $('input[name="start_date"]').val();
@@ -111,14 +114,37 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<h2>대출계좌</h2>
+		<h5 style="float:right;">마이페이지>조회>대출관리</h5>
+		<br>
 		<hr>
+		<br>
 		<table class="table eq-ui-data-table z-depth-1">
 			<tr>
 				<th>대출 계좌번호</th>
-				<td>
-					<div class="eq-ui-form-group eq-ui-input-file"
-						style="text-align: left;">
+				<td colspan="3">
+					<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="eq-ui-form-group eq-ui-input-file">
+							<span>
+								<button type="button" class="btn btn-primary eq-ui-waves-light"
+									id="signInBtn" name="idCardFile" onclick="selectFile();">
+									Upload</button>
+								<input type="text" class="eq-ui-input" id="file_text"
+									name="document_text" style="float:right;">
+								</span>
+								<div class="eq-ui-input-file-path">
+									<input type="file" class="eq-ui-input" id="file" name="doc_img"
+										required readonly>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</td>
+				<!-- <td  style="text-align: right;">
+					<div class="eq-ui-form-group eq-ui-input-file">
+						
 						<a class="btn btn-primary eq-ui-waves-light"> Upload <input
 							type="file" id="from">
 						</a>
@@ -128,7 +154,7 @@
 					<div class="eq-ui-input-file-path">
 						<input type="text" class="eq-ui-input" readonly>
 					</div>
-				</td>
+				</td> -->
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -137,7 +163,7 @@
 			</tr>
 			<tr class='srch_area'>
 				<th>조회기간</th>
-				<td colspan="1"><input type="date" class="date_kay"
+				<td colspan="1" style="text-align:left;"><input type="date" class="date_kay"
 					name="start_date" id="start_date"> ~ <input type="date"
 					class="date_kay" name="end_date" id="end_date"></td>
 				<td colspan="2"><span> <input type="button"
@@ -158,8 +184,8 @@
 						<input type="button" class="btn btn-success" value="대출상환"
 						onclick="loanRepayment();">
 				</span></td>
-				<td colspan="2"><span> <input type="text" id="amount"
-						class="eq-ui-input" placeholder="지갑파일을 등록하세요."></span></td>
+				<td  colspan="2"><div id="messages2"></div></td>
+				
 			</tr>
 			<tr>
 				<th>대출한도</th>
@@ -187,11 +213,10 @@
 					class="eq-ui-input with-gap" /> <label for="test2">입금</label> <input
 					name="option" type="radio" id="test3" value="3"
 					class="eq-ui-input with-gap" /> <label for="test3">출금</label>
-					</div>
+					
 				</td>
 
-				<td><div id="messages2"></div></td>
-			</tr>
+							</tr>
 			<tr>
 				<th>조회결과 순서</th>
 				<td colspan="3"

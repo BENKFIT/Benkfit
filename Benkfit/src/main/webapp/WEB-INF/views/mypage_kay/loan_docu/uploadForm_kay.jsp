@@ -74,9 +74,9 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<p><h1>서류등록</h1>
-			<h5 style="float: right;">마이페이지>조회>대출관리>내서류>서류등록</h5></p> <br>
+		<h5 style="float: right;">마이페이지>조회>대출관리>내서류>서류등록</h5><br>
 		<hr>
+		<br>
 		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;
 		<button class="btn btn-success eq-ui-waves-light"
 			onclick="window.location='down'">서류양식다운로드</button>

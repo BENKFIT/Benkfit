@@ -62,7 +62,8 @@ html, body {
 }
 thead > tr > th{
 	background: #2980B9;
-	color: white;
+	color: #ffffff;
+	text-align: left;
 }
 </style>
 </head>
@@ -75,17 +76,16 @@ thead > tr > th{
 			<table class="table eq-ui-data-table eq-ui-hoverable z-depth-1" style="height: 580px; width: 600px;">
 				<thead>
 					<tr>
-						<th class="eq-ui-data-table-cell-non-numeric">주소</th>
-						<th>은행</th>
+						<th style="text-align: left; color: #ffffff">주소</th>
+						<th style="text-align: left; color: #ffffff">은행</th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach items="${map}" var="map">
 						<tr>
-							<td
-								class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">${map.key}</td>
-							<td>${map.value}</td>
+							<td style="text-align: left">${map.key}</td>
+							<td style="text-align: left">${map.value}</td>
 						</tr>
 					</c:forEach>
 				</tbody>

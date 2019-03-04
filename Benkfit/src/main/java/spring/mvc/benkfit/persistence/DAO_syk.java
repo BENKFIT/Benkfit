@@ -86,4 +86,10 @@ public interface DAO_syk {
 	//배포
 	public int deployAdd(ContractVO vo);
 	
+	//재배포
+	public int reDeploy(ContractVO vo);
+	
+	//contract읽기
+	public List<ContractVO> contract();
+	
 }

@@ -167,6 +167,7 @@
 	<select id="deploy" resultType="spring.mvc.benkfit.vo.ContractVO">
 		SELECT con_name, con_address, con_deployDate
 		FROM contract_tbl
+		ORDER BY con_name
 	</select>
 	
 	<!-- 배포추가 -->
@@ -174,4 +175,18 @@
 		INSERT INTO contract_tbl(con_name, con_address)
 		VALUES(#{con_name}, #{con_address})
 	</insert>
+	
+	<!-- 재배포 -->
+	<update id="reDeploy" parameterType="spring.mvc.benkfit.vo.ContractVO">
+		UPDATE contract_tbl
+		SET con_address = #{con_address}, con_deployDate = sysdate
+		WHERE con_name = #{con_name}
+	</update>
+	
+	<!-- contract 읽기 -->
+	<select id="contract" resultType="spring.mvc.benkfit.vo.ContractVO">
+		SELECT * 
+		FROM contract_tbl
+		ORDER BY con_name
+	</select>
 </mapper>
