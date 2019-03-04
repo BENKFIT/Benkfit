@@ -61,6 +61,7 @@ public class ServiceImpl_syk implements Service_syk {
 	private final String owner_pwd = Setting.owner_pwd;
 	private final String owner_file = Setting.owner_file;
 	private final String fn = Setting.fn;
+	// 체크넘버
 
 	final BigInteger gasPrice = Setting.gasPrice;
 	final BigInteger gasLimit = Setting.gasLimit;
@@ -202,6 +203,13 @@ public class ServiceImpl_syk implements Service_syk {
 				req.setAttribute("num", num);
 			}
 		}
+		req.setAttribute("Accountcnt", result);
+		req.setAttribute("id", id);
+		System.out.println("newAccount : " + newAccount);
+		req.setAttribute("Accountcnt", result);
+		req.setAttribute("num", num);
+		req.setAttribute("password", password);
+		req.setAttribute("account", newAccount);
 	}
 
 	// 적금계좌생성
@@ -247,6 +255,11 @@ public class ServiceImpl_syk implements Service_syk {
 				req.setAttribute("Accountcnt", result);
 			}
 		}
+		System.out.println("newAccount : " + newAccount);
+
+		req.setAttribute("cnt", result);
+		req.setAttribute("num", num);
+		req.setAttribute("Accountcnt", result);
 	}
 
 	// 예금상품수정

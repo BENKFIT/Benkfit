@@ -200,6 +200,7 @@ function setting(){
 				<br>
 				<p style="font-size:15px;float:right;">마이페이지>조회>대출관리</p>
 				<hr>
+				<br>
 				<table class="table table-hover">
 					<thead style="background-color:#2980b9;color:white;">
 						<tr>

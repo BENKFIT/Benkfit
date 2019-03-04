@@ -501,7 +501,7 @@ public class ServiceImpl_kay implements Service_kay{
 		System.out.println(info);
 		System.out.println("end");
 
-		br.close();
+		br.close();	
 
 		//파일 객체 생성
 		//Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");

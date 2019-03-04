@@ -102,7 +102,7 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-3" href="#">안내</a></li>
 						<li class="menu__item"><a class="menu__link"
-							data-submenu="submenu-5" href="#">ATM</a></li>
+							data-submenu="submenu-5" href="#">위치</a></li>		
 					</ul>
 					<!-- Submenu 0 마이페이지 -->
 					<sec:authorize access="isAuthenticated()">
@@ -220,7 +220,8 @@
 
 					<!-- Submenu 5 안내 -->
 					<ul data-menu="submenu-5" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="map_sws">ATM</a></li>
+						<li class="menu__item"><a class="menu__link" href="map_sws">은행</a></li>
+						<li class="menu__item"><a class="menu__link" href="atm_sws">ATM</a></li>
 					</ul>
 				</div>
 			</nav>

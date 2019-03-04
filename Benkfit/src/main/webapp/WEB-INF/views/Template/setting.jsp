@@ -59,5 +59,8 @@ pageEncoding="UTF-8"%>
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="description" content="Implements Google's Material Design in Bootstrap.">
 
+<link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
+<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
+
 <link href="${path}/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
 <link href="${path}/assets/css/doc.css?v=0.4.5" rel="stylesheet">
