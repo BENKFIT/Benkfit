@@ -4,13 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="description"
-	content="Implements Google's Material Design in Bootstrap.">
 <title>대출계좌</title>
 <!-- CSS-->
 <link
@@ -18,10 +11,37 @@
 	rel="stylesheet">
 <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
 	rel="stylesheet">
+<style>
+.wrap-loading {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
+		endColorstr='#20000000'); /* ie */
+}
 
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+}
+
+.display-none { /*감추기*/
+	display: none;
+}
+</style>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
+	<div class="wrap-loading display-none">
+		<div>
+			<img src="/benkfit/resources/img/loading/loading.gif">
+		</div>
+	</div>
 	<div class="wrapper">
 		<h5 style="float: right;">마이페이지>조회>대출관리</h5>
 		<br>
@@ -51,19 +71,15 @@
 						</div>
 					</div>
 				</td>
-				<!-- <td  style="text-align: right;">
+				<td style="text-align: right;">
 					<div class="eq-ui-form-group eq-ui-input-file">
-						
+
 						<a class="btn btn-primary eq-ui-waves-light"> Upload <input
 							type="file" id="from">
 						</a>
+
 					</div>
 				</td>
-				<td colspan="3">
-					<div class="eq-ui-input-file-path">
-						<input type="text" class="eq-ui-input" readonly>
-					</div>
-				</td> -->
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -97,7 +113,6 @@
 							placeholder="지갑파일을 등록하세요.">
 					</div></td>
 				<td colspan="2"><div id="messages2"></div></td>
-
 			</tr>
 			<tr>
 				<th>대출한도</th>
@@ -125,7 +140,6 @@
 					class="eq-ui-input with-gap" /> <label for="test2">입금</label> <input
 					name="option" type="radio" id="test3" value="3"
 					class="eq-ui-input with-gap" /> <label for="test3">출금</label>
-
 				</td>
 
 			</tr>
@@ -168,8 +182,74 @@
 		</div>
 		<div id="messages"></div>
 	</div>
-
 	<%@ include file="../../Template/footer.jsp"%>
+	<script>
+/* 날짜 객체 받아서 문자열로 리턴하는 함수 */
+function getDateStr(myDate){
+	var yyyy = myDate.getFullYear();
+	var mm = ("00"+(myDate.getMonth() + 1)).slice(-2);
+	var dd = ("00" +myDate.getDate()).slice(-2);
+	return yyyy + '-' + mm + '-' + dd;
+}
+/* 오늘 날짜를 문자열로 반환 */
+function today() {
+  var d = new Date();
+  return getDateStr(d);
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek() {
+  var d = new Date();
+  var dayOfMonth = d.getDate();
+  d.setDate(dayOfMonth - 7);
+  return getDateStr(d);
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek1() {
+	  var d = new Date();
+	  var dayOfMonth = d.getDate();
+	  d.setDate(dayOfMonth - 14);
+	  return getDateStr(d);
+	}
+/* 오늘로부터 1개월전 날짜 반환 */
+function lastMonth1() {
+  var d = new Date();
+  var monthOfYear = d.getMonth();
+  d.setMonth(monthOfYear - 1);
+  return getDateStr(d);
+}
+/* 오늘로부터 3개월전 날짜 반환 */
+function lastMonth3() {
+	  var d = new Date()
+	  var monthOfYear = d.getMonth();
+	  d.setMonth(monthOfYear - 3);
+	  return getDateStr(d);
+	}
+/* 오늘로부터 6개월전 날짜 반환 */
+function lastMonth6() {
+	  var d = new Date();
+	  var monthOfYear = d.getMonth();
+	  d.setMonth(monthOfYear - 6);
+	  return getDateStr(d);
+}
+$(".srch_area :button").click(function(){
+  var rname = $(this).attr("id")
+  $("#end_date").val(today());
+	if(rname == "r_today"){
+    $("#start_date").val(today());
+  }else if(rname == "r_week") {
+  	$("#start_date").val(lastWeek());
+  }else if(rname == "r_week1") {
+  	$("#start_date").val(lastWeek1());
+  }else if(rname == "r_month1") {
+  	$("#start_date").val(lastMonth1());
+  }else if(rname == "r_month3") {
+  	$("#start_date").val(lastMonth3());
+  }else{
+  	$("#start_date").val(lastMonth6());
+  }
+})
+</script>
+
 </body>
 <script>
 	function selectFile() {

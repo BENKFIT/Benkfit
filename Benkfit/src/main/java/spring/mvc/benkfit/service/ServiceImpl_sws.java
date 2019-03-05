@@ -70,8 +70,8 @@ public class ServiceImpl_sws implements Service_sws {
 		if(pageNum == null) {
 			pageNum = "1";		
 		}
-
 		currentPage = Integer.parseInt(pageNum);	
+
 		System.out.println("currentPage : " + currentPage);
 
 		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	
