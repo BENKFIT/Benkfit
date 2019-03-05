@@ -65,10 +65,10 @@ p, a {
 			<table style="width: 375px; display: inline">
 				<tr>
 					<div class="eq-ui-form-group eq-ui-input-field">
-						<input class="btn btn-info" type="button" value="잔고확인"
+						<input class="btn btn-info" type="button" value="관리자잔액확인"
 							onClick="Balance();">
 					</div>
-					<td id="balance"></td>
+					<td colspan="3" align="center" id="balance"></td>
 				</tr>
 				<tr>
 					<td>
@@ -94,6 +94,8 @@ p, a {
 			<div class="trBtn">
 				<br> <button type="button" class="btn btn-success"
 					onclick="slotStock();">슬롯잔액채우기</button>
+					<button type="button" class="btn btn-info" title="관리자 지갑을 등록 후 비밀번호를입력하세요."
+					onclick="slotStockBalance();">슬롯잔고확인</button>
 			</div>
 		</div>
 	</div>
@@ -120,7 +122,8 @@ p, a {
 				$('#state').html("이더가 채워졌습니다. 확인해보세요.");
 			},
 			error : function() {
-				alert("지갑파일을 선택해주세요.")
+				alert("다시 시도해주세요.");
+				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
 			}
 		});
 	}
@@ -141,7 +144,29 @@ p, a {
 				$('#balance').html("슬롯의 잔액은 " + data + "ETH 입니다.");
 			},
 			error : function() {
-				alert("지갑파일을 선택해주세요.")
+				alert("다시 시도해주세요.");
+				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");	
+			}
+		});
+	}
+	function Balance() {
+		/* var address = $('#address').val(); */
+		var from = $('#from').val();
+		var alldata = {
+			"from" : from
+		};
+		$('#balance').html("잔액을 조회중입니다.");
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/Balance",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				$('#balance').html(data);
+			},
+			error : function() {
+				alert("다시 시도해주세요.");
+				$('#balance').html("지갑파일과 비밀번호를 확인해주세요.");	
 			}
 		});
 	}

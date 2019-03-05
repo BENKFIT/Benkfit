@@ -109,6 +109,10 @@
 					<td id="loan_balance">${loan_balance}</td>
 				</tr>
 				<tr>
+					<td class="eq-ui-data-table-cell-non-numeric">State</td>
+					<td id="state1"></td>
+				</tr>
+				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">name</td>
 					<td id="name">${name}</td>
 				</tr>
@@ -221,7 +225,7 @@
 			var alldata = {
 				'value' : value
 			};
-			$('#state').html("자금 이동중입니다. 잠시만 기다려주세요.");
+			$('#state1').html("자금 이동중입니다. 잠시만 기다려주세요.");
 
 			$.ajax({
 				url : "${pageContext.request.contextPath}/benkfitLoanStock",
@@ -234,14 +238,14 @@
 						$('#name').html(data.name);
 						$('#remaning').html(data.remaning);
 						$('#loan_balance').html(data.loan_balance);
-						$('#state').html("자금 이동 성공.");
+						$('#state1').html("자금 이동 성공.");
 					} else {
-						$('#state').html("다시 시도하세요.");
+						$('#state1').html("다시 시도하세요.");
 					}
 				},
 				error : function() {
 					alert("다시 시도하세요.");
-					$('#state').html("다시 시도하세요.");
+					$('#state1').html("다시 시도하세요.");
 				}
 			});
 		}

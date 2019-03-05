@@ -587,9 +587,6 @@ public class ServiceImpl_kay implements Service_kay{
 		MultipartFile file = req.getFile("doc_img");
 		String saveDir = req.getRealPath("/resources/img/doc/"); 
 		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
-		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
-		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
-		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
 		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
 
 		try {
@@ -727,8 +724,9 @@ public class ServiceImpl_kay implements Service_kay{
 	}
 	@Override
 	public void downdocu(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
-		 String dFile = "재직증명서-양식.docx";
-		  String upDir = "C:\\Users\\82109\\Desktop";
+		  String dFile = "재직증명서-양식.docx";
+		  //String upDir = "C:\\Users\\82109\\Desktop";
+		  String upDir = "/Users/banhun/tesseract/docu";
 		  String path = upDir+File.separator+dFile;
 		  
 		  File file = new File(path);
