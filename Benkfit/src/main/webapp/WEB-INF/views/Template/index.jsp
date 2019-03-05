@@ -41,7 +41,7 @@
 <body>
   <!-- TOP&SIDE -->
   <%@ include file="./top.jsp"%>
-  <%-- <%@ include file="./NewFile.jsp"%> --%>
+  <%@ include file="./NewFile.jsp"%>
   
   <!-- CONTENT -->
   <div>

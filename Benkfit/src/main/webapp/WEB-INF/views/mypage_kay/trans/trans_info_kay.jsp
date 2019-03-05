@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>이체</title>
 <title>마이페이지 > 이체</title>
 <style>
 .modal-body td {

@@ -102,7 +102,7 @@ function ajaxTest(){
 				<th>조회조건</th>
 				<td colspan="2" class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
 					<div class="eq-ui-form-group">
-             		   <input name="option" type="radio" id="test1" value="1" class="eq-ui-input with-gap" />
+             		   <input name="option" type="radio" id="test1" value="1" checked class="eq-ui-input with-gap" />
                		 	<label for="test1">전체</label>
                		 	<input name="option" type="radio" id="test2" value="2" class="eq-ui-input with-gap" />
                		 	<label for="test2">입금</label>
@@ -115,7 +115,7 @@ function ajaxTest(){
 				<th>조회결과 순서</th>
 				<td colspan="2" class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"> 
 					<div class="eq-ui-form-group">
-             		   <input name="order" type="radio" id="test4" value="4" class="eq-ui-input with-gap" />
+             		   <input name="order" type="radio" checked id="test4" value="4" class="eq-ui-input with-gap" />
                		 	<label for="test4">최근거래순</label>
                		 	<input name="order" type="radio" id="test5" value="5" class="eq-ui-input with-gap" />
                		 	<label for="test5">과거거래순</label>
@@ -126,7 +126,7 @@ function ajaxTest(){
 				<th>조회내역건수</th>
 				<td colspan="2" class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
 				<div class="eq-ui-form-group">
-             		   <input name="num" type="radio" id="test6" value="10" class="eq-ui-input with-gap" />
+             		   <input name="num" type="radio" checked id="test6" value="10" class="eq-ui-input with-gap" />
                		 	<label for="test6">10건</label>
                		 	<input name="num" type="radio" id="test7" value="20" class="eq-ui-input with-gap" />
                		 	<label for="test7">20건</label>
