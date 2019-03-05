@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+<link rel="shortcut icon" href="/benkfit/resources/img/money.ico">
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"   uri="http://www.springframework.org/security/tags"%>
@@ -36,7 +39,6 @@ pageEncoding="UTF-8"%>
 <script type="text/javascript" src="${path}/js/download.js"></script>
 <script type="text/javascript" src="${path}/js/request.js"></script>
 <script type="text/javascript" src="${path}/js/request2.js"></script>
-<script type="text/javascript" src="${path}/js/classie.js"></script><!-- 사이드메뉴 -->
 <script type="text/javascript" src="${path}/js/script_kay.js"></script><!-- kay 스크립트 -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- 추가(alert) -->
 

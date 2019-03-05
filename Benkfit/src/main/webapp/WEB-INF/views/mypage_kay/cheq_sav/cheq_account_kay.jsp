@@ -61,7 +61,7 @@ function ajaxTest(){
 	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
 	</div> 
 	<div class="wrapper">
-		<p style="float:right;font-size:12px;">마이페이지>조회>예금계좌조회</p>
+		<p style="float:right;font-size:15px;">마이페이지>조회>예금계좌조회</p>
 		<br>
 		<hr>
 			<table class="table eq-ui-data-table z-depth-1">

@@ -114,12 +114,12 @@
             $("#name").val(data.split("/")[0]);
             $("#fileAjax").css("visibility", "visible");
             $("#fileAjax").css("background-color", "#c4daff");
-            $("#fileAjax").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1].trim());
+            $("#fileAjax").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1]);
             $("#name").css("background-color", "#c4daff");
             $("#jumin1").css("background-color", "#c4daff");
             $("#jumin2").css("background-color", "#c4daff");
-            $("#jumin1").val(data.split("/")[1].split("-")[0].trim());
-            $("#jumin2").val(data.split("/")[1].split("-")[1].trim());
+            $("#jumin1").val(data.split("/")[1].split("-")[0]);
+            $("#jumin2").val(data.split("/")[1].split("-")[1]);
             $("#jumin2").click();
           },
           beforeSend:function(){
@@ -629,7 +629,7 @@
 </div>
 <!-- 텍스트 인식 로딩중 -->
 <div class="wrap-loading display-none">
-    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+    <div><img src="/benkfit/resources/img/loading/478 (7).gif"></div>
 </div> 
 <%@ include file ="../Template/footer.jsp" %>
 </body>

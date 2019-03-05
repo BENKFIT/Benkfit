@@ -28,12 +28,6 @@ function selectFile() {
 			success : function(data) {
 				$('#result').html(data);
 			},
-			beforeSend:function(){
-	              $('.wrap-loading').removeClass('display-none');
-          	},
-            complete:function(){
-              $('.wrap-loading').addClass('display-none');
-            },
 			error : function() {
 				alert('통신실패!!');
 			}
@@ -75,12 +69,6 @@ function selectFile() {
 			success : function(data) {
 				$('#messages2').html(data);
 			},
-			beforeSend:function(){
-	              $('.wrap-loading').removeClass('display-none');
-	          },
-	          complete:function(){
-	              $('.wrap-loading').addClass('display-none');
-	          },
 			error : function() {
 				alert("오류")
 			}
@@ -103,12 +91,6 @@ function selectFile() {
 			success : function(data) {
 				$('#messages1').html(data);
 			},
-			 beforeSend:function(){
-	              $('.wrap-loading').removeClass('display-none');
-	          },
-	          complete:function(){
-	              $('.wrap-loading').addClass('display-none');
-	          },
 			error : function() {
 				alert("오류");
 			}
@@ -142,7 +124,7 @@ function selectFile() {
 	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
 	</div> 
 	<div class="wrapper">
-		<p style="float:right;font-size:12px;">마이페이지>조회>대출관리</p>
+		<p style="float:right;font-size:15px;">마이페이지>조회>대출관리</p>
 		<br>
 		<hr>
 		<br>
@@ -199,7 +181,7 @@ function selectFile() {
 				<td style="text-align:left; padding-bottom: 12px;">
 					   <div class="eq-ui-form-group eq-ui-input-file">
 		                	<input type="button" class="btn btn-success" value="대출상환"
-						onclick="loanRepayment();">
+							onclick="loanRepayment();">
 		                <div class="eq-ui-input-file-path">
 		                   <input type="text"  class="eq-ui-input" id="amount" placeholder="지갑파일을 등록하세요.">
 		                </div>

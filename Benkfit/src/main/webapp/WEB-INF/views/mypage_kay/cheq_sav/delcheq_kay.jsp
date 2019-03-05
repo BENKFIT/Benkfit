@@ -30,7 +30,6 @@ $(document).ready(function() {
 	font-size: 12px;
 }  
 </style>
-
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>

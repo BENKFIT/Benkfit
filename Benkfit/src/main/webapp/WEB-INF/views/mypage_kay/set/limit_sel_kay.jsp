@@ -15,7 +15,7 @@
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
 		<form action="lim_pro" method="post">
-			<p style="float:right; font-size:12px;">마이페이지>설정>이체한도조회/수정</p>
+			<p style="float:right; font-size:15px;">마이페이지>설정>이체한도조회/수정</p>
 			<br>
 			<hr>
 			<div style="margin-left:23%;">

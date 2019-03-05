@@ -298,7 +298,7 @@
 	<!-- LoadingBar -->
 	<div id="loading">
 		<div id="progress_Loading">
-			<img src="/benkfit/resources/img/loading/loading.gif">
+			<img src="/benkfit/resources/img/loading/478 (7).gif">
 		</div>
 	</div>
 

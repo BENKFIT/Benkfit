@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+v<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<p style="float:right;font-size:12px;">마이페이지>조회>적금계좌조회</p>
+		<p style="float:right;font-size:15px;">마이페이지>조회>적금계좌조회</p>
 		<br>
 		<hr>
 		<br>

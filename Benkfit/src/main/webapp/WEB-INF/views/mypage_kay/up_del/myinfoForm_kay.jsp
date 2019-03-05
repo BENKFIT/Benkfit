@@ -16,7 +16,7 @@
 	</c:if>
 	<div class="wrapper">
 		<form action="myinfoPro" method="post">
-			<p style="float:right;font-size:12px;">마이페이지>회원정보수정</p>
+			<p style="float:right;font-size:15px;">마이페이지>회원정보수정</p>
 			<br>
 			<hr>
 			<table class="table_kay">

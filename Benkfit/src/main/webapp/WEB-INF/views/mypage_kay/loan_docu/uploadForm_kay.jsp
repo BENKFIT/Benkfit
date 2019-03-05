@@ -73,10 +73,10 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrap-loading display-none">
-	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+	    <div>	<img src="/benkfit/resources/img/loading/478 (7).gif"></div>
 	</div> 
 	<div class="wrapper">
-		<p style="float: right; font-size:12px;">마이페이지>조회>대출관리>내서류>서류등록</p><br>
+		<p style="float: right; font-size:15px;">마이페이지>조회>대출관리>내서류>서류등록</p><br>
 		<hr>
 		<br>
 		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;
