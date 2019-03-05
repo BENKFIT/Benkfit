@@ -6,7 +6,7 @@
 	<c:if test="${limCnt == 1}">
 		<script type="text/javascript">
 			alert("수정성공");
-				window.location="limit_sel";
+				window.location="mypage";
 		</script>
 	</c:if>
 	<c:if test="${limCnt != 1}">

@@ -103,16 +103,16 @@ public interface Service_bh {
 
 	// 대출신청처리(거절)
 	public void rejection(HttpServletRequest req, Model model) throws Exception;
-	
+
 	// 은행관리
 	public void benkfitControl(HttpServletRequest req, Model model) throws Exception;
-	
+
 	// 대출계좌 토큰 할당하기
 	public void benkfitLoanStock(HttpServletRequest req, Model model) throws Exception;
-	
+
 	// 마이닝
 	public void minerStart(HttpServletRequest req, Model model) throws Exception;
-	
+
 	// 마이닝중지
 	public void minerStop(HttpServletRequest req, Model model) throws Exception;
 
@@ -121,5 +121,6 @@ public interface Service_bh {
 	 */
 	// 거래검증하기
 	public void verify(HttpServletRequest req, Model model) throws Exception;
+	public void hocumentPro(HttpServletRequest req, Model model) throws Exception;
 
 }

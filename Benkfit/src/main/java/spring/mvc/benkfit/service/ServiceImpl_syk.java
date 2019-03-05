@@ -50,6 +50,9 @@ import spring.mvc.benkfit.vo.TransDetailVO;
 
 @Service
 public class ServiceImpl_syk implements Service_syk {
+	
+	@Autowired
+	DAOImpl_syk dao;
 
 	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
@@ -61,14 +64,10 @@ public class ServiceImpl_syk implements Service_syk {
 	private final String owner_pwd = Setting.owner_pwd;
 	private final String owner_file = Setting.owner_file;
 	private final String fn = Setting.fn;
-	// 체크넘버
 
 	final BigInteger gasPrice = Setting.gasPrice;
 	final BigInteger gasLimit = Setting.gasLimit;
 	final BigInteger initialWeiValue = Setting.initialWeiValue;
-
-	@Autowired
-	DAOImpl_syk dao;
 
 	/*
 	 * 상품
@@ -91,7 +90,6 @@ public class ServiceImpl_syk implements Service_syk {
 
 		CheqProductVO info = dao.cheqInfo(num);
 		req.setAttribute("type", "cheq");
-		System.out.println("-----" + req.getAttribute("type"));
 		req.setAttribute("info", info);
 	}
 
@@ -102,7 +100,6 @@ public class ServiceImpl_syk implements Service_syk {
 
 		SavProductVO info = dao.savInfo(num);
 		req.setAttribute("type", "sav");
-		System.out.println("-----" + req.getAttribute("type"));
 		req.setAttribute("info", info);
 	}
 
@@ -128,7 +125,6 @@ public class ServiceImpl_syk implements Service_syk {
 
 		result = dao.RegiCheq(vo);
 
-		System.out.println("예금상품등록 : " + result);
 		req.setAttribute("cnt", result);
 	}
 
@@ -156,7 +152,6 @@ public class ServiceImpl_syk implements Service_syk {
 
 		result = dao.RegiSaving(vo);
 
-		System.out.println("적금상품등록 : " + result);
 		req.setAttribute("cnt", result);
 	}
 
@@ -178,17 +173,10 @@ public class ServiceImpl_syk implements Service_syk {
 		if (_newAccount != null) {
 			success = true;
 			model.addAttribute("success", success);
-			System.out.println("새로운 계정을 만드는 함수입니다.");
-			System.out.println("새 계정의 입력받은 비밀번호 : " + password);
-			System.out.println("성공여부 : " + success);
 
-			// 계정이 성공적으로 생성되면 owner계정에서 자동으로 10이더를 보내준다.
 			if (success) {
-				// 10이더 설정
 				BigDecimal ether = BigDecimal.valueOf(10);
-				// 자격증명
 				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
-				// 이더전송
 				TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -205,7 +193,6 @@ public class ServiceImpl_syk implements Service_syk {
 		}
 		req.setAttribute("Accountcnt", result);
 		req.setAttribute("id", id);
-		System.out.println("newAccount : " + newAccount);
 		req.setAttribute("Accountcnt", result);
 		req.setAttribute("num", num);
 		req.setAttribute("password", password);
@@ -225,23 +212,15 @@ public class ServiceImpl_syk implements Service_syk {
 
 		boolean success = false;
 		int result = 0;
-		// 새 계정생성
 		NewAccountIdentifier _newAccount = admin.personalNewAccount(password).send();
 		String newAccount = _newAccount.getAccountId();
 		if (_newAccount != null) {
 			success = true;
 			model.addAttribute("success", success);
-			System.out.println("새로운 계정을 만드는 함수입니다.");
-			System.out.println("새 계정의 입력받은 비밀번호 : " + password);
-			System.out.println("성공여부 : " + success);
 
-			// 계정이 성공적으로 생성되면 owner계정에서 자동으로 10이더를 보내준다.
 			if (success) {
-				// 10이더 설정
 				BigDecimal ether = BigDecimal.valueOf(10);
-				// 자격증명
 				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
-				// 이더전송
 				TransactionReceipt transfer = Transfer.sendFunds(web3j, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("id", id);
@@ -255,8 +234,6 @@ public class ServiceImpl_syk implements Service_syk {
 				req.setAttribute("Accountcnt", result);
 			}
 		}
-		System.out.println("newAccount : " + newAccount);
-
 		req.setAttribute("cnt", result);
 		req.setAttribute("num", num);
 		req.setAttribute("Accountcnt", result);
@@ -303,7 +280,6 @@ public class ServiceImpl_syk implements Service_syk {
 	// 적금만기, 해지
 	@Override
 	public void savExpire(HttpServletRequest req) throws Exception {
-		String contract = Setting.getBenkfit();
 		String password = req.getParameter("password");
 		String file = req.getParameter("file");
 		String account = req.getParameter("account");
@@ -316,13 +292,13 @@ public class ServiceImpl_syk implements Service_syk {
 		BigInteger value = BigInteger.valueOf(amount);
 
 		Credentials credential = WalletUtils.loadCredentials(password, file);
+		String benkfit = dao.getBenkfit();
 		@SuppressWarnings("deprecation")
-		Benkfit savExpire = Benkfit.load(contract, web3j, credential, gasPrice, gasLimit);
+		Benkfit savExpire = Benkfit.load(benkfit, web3j, credential, gasPrice, gasLimit);
 		TransactionReceipt transactionReceipt = savExpire.output(account, value).send();
 		String blockhash = transactionReceipt.getBlockHash();
 
 		Log log = savExpire.getTransferEvents(transactionReceipt).get(0).log;
-		System.out.println("savExpire : " + log);
 
 		req.setAttribute("blockhash", blockhash);
 	}
@@ -352,11 +328,9 @@ public class ServiceImpl_syk implements Service_syk {
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
 		String password = req.getParameter("password");
-		System.out.println("password : " + password);
 
 		String fileSource = path.concat(req.getParameter("file"));
 		String from = fn.concat(req.getParameter("file").substring(37));
-		System.out.println("from : " + from);
 
 		int value = Integer.parseInt(req.getParameter("amount"));
 		String to = req.getParameter("to");
@@ -365,10 +339,9 @@ public class ServiceImpl_syk implements Service_syk {
 		// 지갑로드
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 
-		// contract 부르기
-		String contract = Setting.getBenkfit();
+		String benkfit = dao.getBenkfit();
 		@SuppressWarnings("deprecation")
-		Benkfit transfer = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
+		Benkfit transfer = Benkfit.load(benkfit, web3j, credentials, gasPrice, gasLimit);
 
 		// transfer실행
 		TransactionReceipt transactionReceipt = transfer.transfer(to, ether).send();
@@ -409,14 +382,13 @@ public class ServiceImpl_syk implements Service_syk {
 		String pwd = req.getParameter("pwd");
 		String account = req.getParameter("account");
 
-		String contract = Setting.getBenkfit();
-
 		// 지갑 로드
 		Credentials credentials = WalletUtils.loadCredentials(pwd, file);
 
+		String benkfit = dao.getBenkfit();
 		// contract 연결
 		@SuppressWarnings("deprecation")
-		Benkfit savTrans = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
+		Benkfit savTrans = Benkfit.load(benkfit, web3j, credentials, gasPrice, gasLimit);
 
 		// input함수 실행
 		TransactionReceipt input = savTrans.input(ether).send();
@@ -426,8 +398,6 @@ public class ServiceImpl_syk implements Service_syk {
 		Log log = savTrans.getTransferEvents(input).get(0).log;
 		String to = savTrans.getTransferEvents(input).get(0).to;
 		BigInteger amount = savTrans.getTransferEvents(input).get(0).value;
-
-		System.out.println("savTrans : " + log);
 
 		// DB-INSERT
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -451,15 +421,14 @@ public class ServiceImpl_syk implements Service_syk {
 		String pwd = req.getParameter("password");
 		BigInteger balance = null;
 		System.out.println(req.getParameter("file") + "\t" + account + "\t" + file);
-		String contract = Setting.getBenkfit();
-		System.out.println("============" + contract + "============");
 
 		// 지갑로드
 		Credentials credentials = null;
 		try {
 			credentials = WalletUtils.loadCredentials(pwd, file);
+			String benkfit = dao.getBenkfit();
 			@SuppressWarnings("deprecation")
-			Benkfit getBalance = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
+			Benkfit getBalance = Benkfit.load(benkfit, web3j, credentials, gasPrice, gasLimit);
 			try {
 				balance = getBalance.balanceOf(account).send();
 			} catch (Exception e) {
@@ -480,7 +449,6 @@ public class ServiceImpl_syk implements Service_syk {
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
 		
-		System.out.println("============입금============");
 		String password = req.getParameter("password");
 		//String from = req.getParameter("from");
 		String from = fn.concat(req.getParameter("file").split("--")[2]);
@@ -491,11 +459,8 @@ public class ServiceImpl_syk implements Service_syk {
 		file = path.concat(file);
 		int amount = Integer.parseInt(req.getParameter("amount"));
 		BigInteger value = BigInteger.valueOf(amount);
-		System.out.println("file : " + file + "\t from : " + from);
-		// 지갑로드
-		String benkfit = Setting.getBenkfit();
-		System.out.println(benkfit);
 		Credentials credential = WalletUtils.loadCredentials(password, file);
+		String benkfit = dao.getBenkfit();
 		@SuppressWarnings("deprecation")
 		Benkfit depositPro = Benkfit.load(benkfit, web3j, credential, gasPrice, gasLimit);
 		TransactionReceipt transactionReceipt = depositPro.input(value).send();
@@ -507,11 +472,6 @@ public class ServiceImpl_syk implements Service_syk {
 		map.put("c_id", id);
 		
 		int result = dao.depositPro(map);
-		
-		System.out.println(from); 
-		System.out.println(file);
-		System.out.println(value);
-		System.out.println("benkfit -- > " + benkfit + "\t result -->" + result);
 	}
 	
 
@@ -590,25 +550,19 @@ public class ServiceImpl_syk implements Service_syk {
 			@SuppressWarnings("deprecation")
 			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
 			address = benkfit.getContractAddress();
-			Setting.setBenkfit(address);
 			vo.setCon_address(address);
-			System.out.println("Contract benkfit ==> " + Setting.getBenkfit());
 			
 		}else if(name.equals("Bank")) {
 			@SuppressWarnings("deprecation")
 			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
 			address = bank.getContractAddress();
-			Setting.setBank(address);
 			vo.setCon_address(address);
-			System.out.println("Contract bank ==> " + Setting.getBank());
 			
 		}else if(name.equals("Slot")) {
 			@SuppressWarnings("deprecation")
 			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
 			address = slot.getContractAddress();
-			Setting.setSlot(address);
 			vo.setCon_address(address);
-			System.out.println("Contract slot ==> " + Setting.getSlot());
 		}
 		vo.setCon_name(name);
 		
@@ -620,36 +574,26 @@ public class ServiceImpl_syk implements Service_syk {
 	@Override
 	public void reDeploy(HttpServletRequest req) throws Exception {
 		String name = req.getParameter("contract");
-		System.out.println("===== " + name + " contract 재배포중 =====");
-		
 		ContractVO vo = new ContractVO();
-		
 		Credentials owner = WalletUtils.loadCredentials(owner_pwd, owner_file);
-		
 		String address = "";
 		if(name.equals("Benkfit")) {
 			@SuppressWarnings("deprecation")
 			Benkfit benkfit = Benkfit.deploy(web3j, owner, gasPrice, gasLimit).send();
 			address = benkfit.getContractAddress();
-			Setting.setBenkfit(address);
 			vo.setCon_address(address);
-			System.out.println("Contract benkfit ==> " + benkfit.getContractAddress());
 			
 		}else if(name.equals("Bank")) {
 			@SuppressWarnings("deprecation")
 			Bank bank = Bank.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
 			address = bank.getContractAddress();
-			Setting.setBank(address);
 			vo.setCon_address(address);
-			System.out.println("Contract bank ==> " + Setting.getBank());
 			
 		}else if(name.equals("Slot")) {
 			@SuppressWarnings("deprecation")
 			Slot slot = Slot.deploy(web3j, owner, gasPrice, gasLimit, initialWeiValue).send();
 			address = slot.getContractAddress();
 			vo.setCon_address(address);
-			Setting.setSlot(address);
-			System.out.println("Contract slot ==> " + Setting.getSlot());
 		}
 		vo.setCon_name(name);
 		
@@ -666,14 +610,10 @@ public class ServiceImpl_syk implements Service_syk {
 		String pwd = req.getParameter("pwd");
 		BigInteger value = BigInteger.valueOf(Integer.parseInt(req.getParameter("amount")));
 		
-		String contract = getBenkfit();
-		
 		System.out.println("from : " + account + "\nfile : " + file + "\npwd : " + pwd + "\nvalue : " + value);
-		
-		//지갑로드
 		Credentials credential = WalletUtils.loadCredentials(pwd, file);
 		@SuppressWarnings("deprecation")
-		Benkfit withdraw = Benkfit.load(contract, web3j, credential, gasPrice, gasLimit);
+		Benkfit withdraw = Benkfit.load(benkfit, web3j, credential, gasPrice, gasLimit);
 		TransactionReceipt transactionReceipt = withdraw.output(account, value).send();
 		String blockHash = transactionReceipt.getBlockHash();
 		System.out.println("blockhash : " + blockHash);

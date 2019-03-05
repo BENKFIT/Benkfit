@@ -8,7 +8,6 @@
 <title>Document</title>
 </head>
 <body>
-	<%@ include file="../../Template/top.jsp"%>
 	<c:if test="${update == 0 }">
 		<!-- 실패 -->
 		<script type="text/javascript">
@@ -23,7 +22,5 @@
 			window.location = "mypage";
 		</script>
 	</c:if>
-
-	<%@ include file ="../../Template/footer.jsp" %>	
 </body>
 </html>

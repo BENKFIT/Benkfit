@@ -100,8 +100,7 @@
 		</div>
 	</div>
 
-	<%@ include file="../../Template/footer.jsp"%>
-
+<%@ include file="../../common/chatbot.jsp"%>
 	<script type="text/javascript">
 		function getBalance(){
 			var select = $('#from').val();

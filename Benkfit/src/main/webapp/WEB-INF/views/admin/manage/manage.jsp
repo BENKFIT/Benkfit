@@ -130,9 +130,9 @@
 	<div id="eq-ui-tab-s2-t4" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
 			<div style="display: inline-block;">
-				<a class="btn btn-success eq-ui-waves-light" id="btn">연별</a>
-				<a class="btn btn-success eq-ui-waves-light" id="btn1">월별</a>
-				<a class="btn btn-success eq-ui-waves-light" id="btn2">일별</a>
+				<a class="btn btn-success eq-ui-waves-light" id="btn" style="margin-right: 50px;">연별</a>
+				<a class="btn btn-info eq-ui-waves-light" id="btn1" style="margin-right: 50px;">월별</a>
+				<a class="btn btn-warning eq-ui-waves-light" id="btn2">일별</a>
 			</div>
 			
 			<div id="Line_Controls_Chart">

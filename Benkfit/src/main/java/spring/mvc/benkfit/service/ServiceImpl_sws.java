@@ -70,8 +70,8 @@ public class ServiceImpl_sws implements Service_sws {
 		if(pageNum == null) {
 			pageNum = "1";		
 		}
-
 		currentPage = Integer.parseInt(pageNum);	
+
 		System.out.println("currentPage : " + currentPage);
 
 		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	
@@ -144,7 +144,7 @@ public class ServiceImpl_sws implements Service_sws {
 		MultipartFile file = ((MultipartRequest) req).getFile("eve_img");
 
 		String saveDir = req.getRealPath("resources/img/event/");
-		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
+		String realDir = "C:\\Users\\k304\\git2\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
 		System.out.println("saveDir : " + saveDir);
 		System.out.println("realDir : " + realDir);
 
@@ -211,7 +211,7 @@ public class ServiceImpl_sws implements Service_sws {
 		MultipartFile file = ((MultipartRequest) req).getFile("eve_img");
 
 		String saveDir = req.getRealPath("resources/img/event/");
-		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
+		String realDir = "C:\\Users\\k304\\git2\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
 		System.out.println("saveDir : " + saveDir);
 		System.out.println("realDir : " + realDir);
 

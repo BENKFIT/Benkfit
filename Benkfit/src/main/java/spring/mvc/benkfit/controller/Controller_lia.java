@@ -36,6 +36,7 @@ public class Controller_lia {
 	DAO_lia dao;
 	
 	// 메인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("index")
 	public String index(HttpServletRequest req) throws Exception {
 		logger.info("index 호출중");
@@ -43,6 +44,7 @@ public class Controller_lia {
 	}
 	
 	// 로그인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("login")
 	public String login(HttpServletRequest req) throws Exception {
 		logger.info("login 호출중");
@@ -50,6 +52,7 @@ public class Controller_lia {
 	}
 	
 	// 로그인 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loginPro 호출중");
@@ -63,6 +66,7 @@ public class Controller_lia {
 	}
 	
 	// 로그아웃
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest req) throws Exception {
 		logger.info("logout 호출중");
@@ -71,6 +75,7 @@ public class Controller_lia {
 	}
 	
 	// 회원가입 양식
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("signIn")
 	public String signIn() throws Exception {
 		logger.info("signIn 호출중");
@@ -78,6 +83,7 @@ public class Controller_lia {
 	}
 	
 	// 신분증 텍스트 인식
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("getText") 
 	public String getText(String file, Model model) throws IOException {
 		logger.info("getText 호출중");
@@ -86,6 +92,7 @@ public class Controller_lia {
 	}
 	
 	// id 중복확인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("idCheck") 
 	public String idCheck(HttpServletRequest req, Model model) throws Exception { 
 		logger.info("idCheck 호출중");
@@ -94,6 +101,7 @@ public class Controller_lia {
 	}
 	
 	// 실명확인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("nameCheck")
 	public String nameCheck(HttpServletRequest req, Model model) throws Exception {
 		logger.info("nameCheck 호출중");
@@ -102,6 +110,7 @@ public class Controller_lia {
 	}
 	
 	// 이용약관 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("terms")
 	public String terms() throws Exception {
 		logger.info("terms 호출중");
@@ -118,6 +127,7 @@ public class Controller_lia {
 	}
 	
 	// 로그인 실패
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loginFail")
 	public String loginFail(HttpServletRequest req, Model model) throws Exception {
 		//service.loginPro(req, model);
@@ -125,6 +135,7 @@ public class Controller_lia {
 	}
 	
 	// 아이디 찾기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("findMyId")
 	public String findMyId() throws Exception {
 		logger.info("findMyId 호출중");
@@ -132,6 +143,7 @@ public class Controller_lia {
 	}
 	
 	// 아이디 찾기 결과
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("findAccount")
 	public String findAccount(HttpServletRequest req, Model model) throws Exception {
 		logger.info("findAccount");
@@ -140,6 +152,7 @@ public class Controller_lia {
 	}
 		
 	// 비밀번호 찾기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("findMyPwd")
 	public String findMyPwd() throws Exception {
 		logger.info("findMyPwd 호출중");
@@ -147,6 +160,7 @@ public class Controller_lia {
 	}
 	
 	// 임시 비밀번호 이메일 보내기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("pwdEmail")
 	public String pwdEmail(HttpServletRequest req, Model model) throws Exception {
 		logger.info("pwdEmail 호출중");
@@ -155,6 +169,7 @@ public class Controller_lia {
 	}
 	
 	// 검색 결과
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("search_pro")
 	public String search(HttpServletRequest req, Model model) throws Exception {
 		logger.info("search_pro 호출중");
@@ -163,6 +178,7 @@ public class Controller_lia {
 	}
 	
 	// 관리자 메뉴 > 회원 조회
+	@Transactional(rollbackFor=Exception.class)
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("selectUsers")
 	public String selectUsers(HttpServletRequest req, Model model) throws Exception {
@@ -172,6 +188,7 @@ public class Controller_lia {
 	}
 	
 	// 관리자 메뉴 > 회원 삭제
+	@Transactional(rollbackFor=Exception.class)
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("deleteUsers")
 	public String deleteUsers(HttpServletRequest req, Model model) throws Exception {
@@ -181,6 +198,7 @@ public class Controller_lia {
 	}
 	
 	// 관리자 메뉴 > 회원 등급 수정
+	@Transactional(rollbackFor=Exception.class)
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("updateUsers")
 	public String updateUsers(HttpServletRequest req, Model model) throws Exception {
@@ -190,6 +208,7 @@ public class Controller_lia {
 	}
 	
 	// 관리자 메뉴 > 회원 계좌 조회
+	@Transactional(rollbackFor=Exception.class)
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("selAccount")
 	public String selAccount(HttpServletRequest req, Model model) throws Exception {
@@ -199,6 +218,7 @@ public class Controller_lia {
 	}
 	
 	// 관리자 메뉴 > 회원 거래내역 조회
+	@Transactional(rollbackFor=Exception.class)
 	@Secured("ROLE_ADMIN")
 	@RequestMapping("selTransaction")
 	public String selTransaction(HttpServletRequest req, Model model) throws Exception {
@@ -208,6 +228,7 @@ public class Controller_lia {
 	}
 	
 	// 챗봇
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("chatbot")
 	public String chatbot() throws Exception {
 		logger.info("chatbot 호출중");
@@ -215,6 +236,7 @@ public class Controller_lia {
 	}
 	
 	// 자산관리 안내
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("financial_info")
 	public String financial_info() throws Exception {
 		logger.info("financial_info 호출중");
@@ -222,6 +244,7 @@ public class Controller_lia {
 	}
 	
 	// 코인 시세
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("marketprice")
 	public String marketprice(Model model) throws Exception {
 		logger.info("marketprice 호출중");
@@ -230,6 +253,7 @@ public class Controller_lia {
 	}
 	
 	// 안드로이드 검색
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidSearch")
 	public Map<String, Object> androidSearch(HttpServletRequest req){

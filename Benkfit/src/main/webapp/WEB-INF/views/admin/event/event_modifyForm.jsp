@@ -19,7 +19,7 @@
 					<td colspan="4">
 						<div class="eq-ui-form-group eq-ui-input-file">
 							<a class="btn btn-primary eq-ui-waves-light" style="color: white;"> Upload 
-							<input class="btn btn-primary" id="img2" type="file" name="eve_img" multiple autofocus required>
+							<input class="btn btn-primary" id="img" type="file" name="eve_img" multiple autofocus required>
 							</a>
 							<div class="eq-ui-input-file-path">
 								<input type="text" class="eq-ui-input"
@@ -34,7 +34,7 @@
 						<div style="text-align: center;">
 							<img
 								style="max-width: 400px; max-height: 380px; display: inline-block;"
-								id="imgView2" src="/benkfit/resources/img/event/${dto.eve_img}" />
+								id="imgView" src="/benkfit/resources/img/event/${dto.eve_img}" />
 						</div>
 					</td>
 				</tr>

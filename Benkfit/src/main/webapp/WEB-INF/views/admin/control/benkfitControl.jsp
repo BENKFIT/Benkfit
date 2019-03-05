@@ -26,11 +26,12 @@
 				<th>대출토큰할당량</th>
 				<td colspan="3"><input type="text" name="value" id="value"
 					class="inputStyle" placeholder="loan token" required></td>
-			</tr>
-			<tr>
-				<td><div class="trBtn">
-				<button type="button" class="btn btn-primary" onclick="benkfitLoanStock();">대출토큰할당</button>
-				</div></td>
+				<td>
+					<div class="trBtn">
+						<button type="button" class="btn btn-primary"
+							onclick="benkfitLoanStock();">대출토큰할당</button>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<th>State</th>
@@ -56,8 +57,12 @@
 		<hr>
 		<div class="trBtn">
 			<p id="">안녕하세요. 관리자님.</p>
-			<button type="button" class="btn btn-primary" onclick="minerStart();">은행시작</button>
-			<button type="button" class="btn btn-primary" onclick="minerStop();">은행중지</button>
+			<!-- 			<button type="button" class="btn btn-primary" onclick="minerStart();">은행시작</button>
+			<button type="button" class="btn btn-primary" onclick="minerStop();">은행중지</button> -->
+			<button type="button" class="btn btn-success eq-ui-waves-light"
+				onclick="minerStart();">은행시작</button>
+			<button type="button" class="btn btn-danger eq-ui-waves-light"
+				onclick="minerStop();">은행중지</button>
 		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
@@ -92,14 +97,14 @@
 			}
 		});
 	}
-	
-	function minerStart(){
+
+	function minerStart() {
 		var value = $('#value').val();
 		var alldata = {
 			'value' : value
 		};
 		$('#state').html("은행업무를 시작하겠습니다.");
-		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/minerStart",
 			type : "GET",
@@ -114,14 +119,14 @@
 			}
 		});
 	}
-	
-	function minerStop(){
+
+	function minerStop() {
 		var value = $('#value').val();
 		var alldata = {
 			'value' : value
 		};
 		$('#state').html("은행업무를 중지하겠습니다.");
-		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/minerStop",
 			type : "GET",

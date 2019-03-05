@@ -4,15 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="description" content="Implements Google's Material Design in Bootstrap.">
-    <title>Forms</title>
-    <!-- CSS-->
-    <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
-    <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 <script>
 function ajaxTest(){
 	var account = $("#cheq_account option:selected").val();
@@ -30,18 +21,47 @@ function ajaxTest(){
 			data : sel_cheq,
 			success : function(data) {
 				$('#result').html(data);
-			},	
+			},	beforeSend:function(){
+	              $('.wrap-loading').removeClass('display-none');
+	          },
+	          complete:function(){
+	              $('.wrap-loading').addClass('display-none');
+	          },
 			error : function() {
 				alert('통신실패!!');
 			}
 		});
 	}
 </script>
+
+<style>
+	.wrap-loading{ 
+    position: fixed;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',endColorstr='#20000000');    /* ie */
+	}
+   .wrap-loading div{ /*로딩 이미지*/
+       position: fixed;
+       top:50%;
+       left:50%;
+       margin-left: -21px;
+       margin-top: -21px;
+   }
+    .display-none{ /*감추기*/
+       display:none;
+   }
+</style>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
+	<div class="wrap-loading display-none">
+	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+	</div> 
 	<div class="wrapper">
-		<h5 style="float:right;">마이페이지>조회>예금계좌조회</h5>
+		<p style="float:right;font-size:12px;">마이페이지>조회>예금계좌조회</p>
 		<br>
 		<hr>
 			<table class="table eq-ui-data-table z-depth-1">
@@ -92,7 +112,7 @@ function ajaxTest(){
 				</td>
 			</tr>
 			<tr>
-				<th>조회결과 순거</th>
+				<th>조회결과 순서</th>
 				<td colspan="2" class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"> 
 					<div class="eq-ui-form-group">
              		   <input name="order" type="radio" id="test4" value="4" class="eq-ui-input with-gap" />
@@ -127,23 +147,73 @@ function ajaxTest(){
 		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
-<script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
-<script src="/benkfit/resources/assets/js/vendor/moment/min/moment.min.js?v=2.13.0"></script>
-<script src="/benkfit/resources/assets/js/vendor/jquery-timeago/jquery.timeago.js?v=1.4.3"></script>
-<script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
 
-<script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
-<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
+	<script>
+/* 날짜 객체 받아서 문자열로 리턴하는 함수 */
+function getDateStr(myDate){
+	var yyyy = myDate.getFullYear();
+	var mm = ("00"+(myDate.getMonth() + 1)).slice(-2);
+	var dd = ("00" +myDate.getDate()).slice(-2);
+	return yyyy + '-' + mm + '-' + dd;
+}
+/* 오늘 날짜를 문자열로 반환 */
+function today() {
+  var d = new Date();
+  return getDateStr(d);
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek() {
+  var d = new Date();
+  var dayOfMonth = d.getDate();
+  d.setDate(dayOfMonth - 7);
+  return getDateStr(d);
+}
+/* 오늘로부터 1주일전 날짜 반환 */
+function lastWeek1() {
+	  var d = new Date();
+	  var dayOfMonth = d.getDate();
+	  d.setDate(dayOfMonth - 14);
+	  return getDateStr(d);
+	}
+/* 오늘로부터 1개월전 날짜 반환 */
+function lastMonth1() {
+  var d = new Date();
+  var monthOfYear = d.getMonth();
+  d.setMonth(monthOfYear - 1);
+  return getDateStr(d);
+}
+/* 오늘로부터 3개월전 날짜 반환 */
+function lastMonth3() {
+	  var d = new Date()
+	  var monthOfYear = d.getMonth();
+	  d.setMonth(monthOfYear - 3);
+	  return getDateStr(d);
+	}
+/* 오늘로부터 6개월전 날짜 반환 */
+function lastMonth6() {
+	  var d = new Date();
+	  var monthOfYear = d.getMonth();
+	  d.setMonth(monthOfYear - 6);
+	  return getDateStr(d);
+}
+$(".srch_area :button").click(function(){
+  var rname = $(this).attr("id")
+  $("#end_date").val(today());
+	if(rname == "r_today"){
+    $("#start_date").val(today());
+  }else if(rname == "r_week") {
+  	$("#start_date").val(lastWeek());
+  }else if(rname == "r_week1") {
+  	$("#start_date").val(lastWeek1());
+  }else if(rname == "r_month1") {
+  	$("#start_date").val(lastMonth1());
+  }else if(rname == "r_month3") {
+  	$("#start_date").val(lastMonth3());
+  }else{
+  	$("#start_date").val(lastMonth6());
+  }
+})
+</script>
 
-<script src="https://unpkg.com/lodash@4.16.0"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/vue@2.5.21/dist/vue.js"></script>
-
-<script src="/benkfit/resources/assets/js/doc.js?v=0.4.5"></script>
-<script src="/benkfit/resources/assets/js/ctrl/ctrl-color.js"></script>
-<script src="/benkfit/resources/assets/js/vue/collapsible.js"></script>
-<script src="/benkfit/resources/assets/js/vue/dropdown.js"></script>
-<script src="/benkfit/resources/assets/js/vue/tabs.js"></script>
-         
 </body>
 </html>

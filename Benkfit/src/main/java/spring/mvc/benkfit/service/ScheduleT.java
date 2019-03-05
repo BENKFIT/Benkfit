@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
@@ -31,21 +32,22 @@ public class ScheduleT {
 	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 
-	final String path = "C:\\ether\\geth\\private_net\\keystore\\";
-	final String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
-	final String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
-	final String owner_pwd = "password";
+	final String path = Setting.path;
+	final String owner = Setting.owner;
+	final String owner_file = Setting.owner_file;
+	final String owner_pwd = Setting.owner_pwd;
 	
-	int chkNum = 0;
+	int chkNum = Setting.chkNum;
 
-	String fn = "0x";
+	String fn = Setting.fn;
 
-	BigInteger gasPrice = BigInteger.valueOf(3000000);
-	BigInteger gasLimit = BigInteger.valueOf(3000000);
+	BigInteger gasPrice = Setting.gasPrice;
+	BigInteger gasLimit = Setting.gasLimit;
 	
 	@Autowired
 	DAOImpl_syk dao;
 	
+	@Transactional(rollbackFor=Exception.class)
 	@Scheduled(cron="0 0 12 * * ?")
 	public void auto() {
 		System.out.println("========= 자동이체 실행 =========");
@@ -75,7 +77,7 @@ public class ScheduleT {
 				String blockHash = "";
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(password, file);
-					String contract = Setting.getBenkfit();
+					String contract = dao.getBenkfit();
 					@SuppressWarnings("deprecation")
 					Benkfit auto = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
 					
@@ -106,6 +108,7 @@ public class ScheduleT {
 	}
 	
 	//예금이자
+	@Transactional(rollbackFor=Exception.class)
 	@Scheduled(cron="0 0 13 * * ?")
 	public void cheqInterest() {
 		System.out.println("========= 예금 이자 계산 =========");
@@ -124,7 +127,7 @@ public class ScheduleT {
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 					
-					String contract = Setting.getBenkfit();
+					String contract = dao.getBenkfit();
 					@SuppressWarnings("deprecation")
 					Benkfit cheqInterest = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
 					TransactionReceipt transfer = cheqInterest.output(account, interest).send();
@@ -150,6 +153,7 @@ public class ScheduleT {
 	}
 	
 	//적금이자
+	@Transactional(rollbackFor=Exception.class)
 	@Scheduled(cron="0 0 14 * * ?")
 	public void savInterest() {
 		System.out.println("========= 적금 이자 계산 =========");
@@ -169,7 +173,7 @@ public class ScheduleT {
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 					
-					String contract = Setting.getBenkfit();
+					String contract = dao.getBenkfit();
 					@SuppressWarnings("deprecation")
 					Benkfit cheqInterest = Benkfit.load(contract, web3j, credentials, gasPrice, gasLimit);
 					TransactionReceipt transfer = cheqInterest.output(account, interest).send();

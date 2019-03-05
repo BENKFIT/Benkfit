@@ -11,7 +11,7 @@ import spring.mvc.benkfit.vo.MyloanAccountVO;
 
 @Repository
 public class DAOImpl_bh implements DAO_bh {
-    
+
 	@Autowired
 	SqlSession sqlSession;
 
@@ -44,6 +44,12 @@ public class DAOImpl_bh implements DAO_bh {
 	@Override
 	public int loanApply(MyloanAccountVO vo) {
 		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_bh.loanApply", vo);
+	}
+	
+	// 계정체크
+	@Override
+	public int account_chenk(String myLoan_account) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_bh.account_chenk", myLoan_account);
 	}
 
 	// 대출금리
@@ -101,5 +107,6 @@ public class DAOImpl_bh implements DAO_bh {
 	public int rejection(String myLoan_account) {
 		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_bh.rejection", myLoan_account);
 	}
+
 
 }

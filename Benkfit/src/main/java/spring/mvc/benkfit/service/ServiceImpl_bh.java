@@ -1,18 +1,24 @@
 package spring.mvc.benkfit.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
@@ -29,26 +35,29 @@ import org.web3j.tuples.generated.Tuple5;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
 
+import com.google.protobuf.ByteOutput;
+
 import spring.mvc.benkfit.sol.Bank;
 import spring.mvc.benkfit.sol.Benkfit;
 import spring.mvc.benkfit.sol.Slot;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
 import spring.mvc.benkfit.persistence.DAO_bh;
+import spring.mvc.benkfit.persistence.DAO_syk;
 
 @Service
 public class ServiceImpl_bh implements Service_bh {
+	
+	@Autowired
+	DAO_bh dao;
+	@Autowired
+	DAO_syk dao2;
 
 	Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 	Web3j web3_4 = Web3j.build(new HttpService("http://localhost:8547"));
 	Admin admin_4 = Admin.build(new HttpService("http://localhost:8547"));
 	Geth geth = Geth.build(new HttpService("http://localhost:8545"));
-
-	// 훈컨트랙트모음
-	private final String BenkfitAddress = Setting.getBenkfit();
-	private final String BankAddress = Setting.getBank();
-	private final String SlotAddress = Setting.getSlot();
 
 	int chkNum = Setting.chkNum;
 	final String path = Setting.path;
@@ -61,8 +70,6 @@ public class ServiceImpl_bh implements Service_bh {
 	final BigInteger gasLimit = Setting.gasLimit;
 	final BigInteger initialWeiValue = Setting.initialWeiValue;
 
-	@Autowired
-	DAO_bh dao;
 
 	/*
 	 * 이더리움 간편 체험
@@ -77,21 +84,21 @@ public class ServiceImpl_bh implements Service_bh {
 		boolean success = false;
 		NewAccountIdentifier _newAccount = admin.personalNewAccount(password).send();
 		String newAccount = _newAccount.getAccountId();
-		if(_newAccount != null) {
+		if (_newAccount != null) {
 			success = true;
 			model.addAttribute("newAccount", newAccount);
-			
+
 			// 계정이 성공적으로 생성되면 owner계정에서 자동으로 10이더를 보내준다.
 			if (success) {
 				// 10이더 설정
 				BigDecimal ether = BigDecimal.valueOf(10);
-				//자격증명
+				// 자격증명
 				Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 				// 이더전송
 				TransactionReceipt transfer = Transfer
 						.sendFunds(web3, credentials, newAccount, ether, Convert.Unit.ETHER).send();
 			}
-			
+
 		}
 	}
 
@@ -163,6 +170,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Bank 컨트랙트 로드
+			String BankAddress = dao2.getBank();
 			Bank contract = Bank.load(BankAddress, web3, credentials, gasPrice, gasLimit);
 			// 예금함수 불러오기
 			TransactionReceipt depositTx = contract.deposit(ether).send();
@@ -199,6 +207,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Bank 컨트랙트 로드
+			String BankAddress = dao2.getBank();
 			Bank contract = Bank.load(BankAddress, web3, credentials, gasPrice, gasLimit);
 			// 잔액함수 불러오기
 			BigInteger balance = contract.balance().send();
@@ -224,6 +233,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Bank 컨트랙트 로드
+			String BankAddress = dao2.getBank();
 			Bank contract = Bank.load(BankAddress, web3, credentials, gasPrice, gasLimit);
 			// 인출함수실행
 			TransactionReceipt withdraw = contract.withdraw(ether).send();
@@ -274,6 +284,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 
 			// 몇번째 게임인지 카운트를 누르고 시작
@@ -322,6 +333,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 			// 킬 함수
 			TransactionReceipt kill = contract.kill().send();
@@ -357,6 +369,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 			// 슬롯 잔고 채우는 함수 실행
 			TransactionReceipt slotStock = contract.ownerInput(ether).send();
@@ -383,6 +396,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 			// 잔액반환함수 실행
 			BigInteger slotStockBalance = contract.total().send();
@@ -430,51 +444,76 @@ public class ServiceImpl_bh implements Service_bh {
 		int myLoan_amount = Integer.parseInt(req.getParameter("amount"));
 		int myLoan_left = Integer.parseInt(req.getParameter("amount"));
 		double myLoan_rate = Double.parseDouble(req.getParameter("rate"));
+		System.out.println(myLoan_amount);
+		System.out.println(myLoan_rate);
+		
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
-		// 언락
-		if (admin.personalUnlockAccount(from, password).send().getResult()) {
-			@SuppressWarnings("deprecation")
-			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
-			// 해당계정의 잔액을 부르고
-			BigInteger balance = contract.balanceOf(from).send();
-			int balanceInt = balance.intValue();
-			// 해당 상품의 금리를 불러서
-			LoanProductVO info = dao.loanInfo(num);
-			double rate = info.getLoan_rate();
-			// 초기 이자금을 계산 한 후
-			int f_rate = (int) (myLoan_amount * (rate / 100));
-			BigInteger f_rate_b = BigInteger.valueOf(f_rate);
-
-			// 해당계정의 잔액이 초기 이자금보다 크면 진행
-			if (balanceInt > f_rate) {
-				Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
-				User user = (User) securityContext.getPrincipal();
-
-				// 신청시 초기 이자금을 납부한다.
-				TransactionReceipt transfer = contract.transfer(owner, f_rate_b).send();
-
-				String c_id = user.getUsername();
-				MyloanAccountVO vo = new MyloanAccountVO();
-				vo.setC_id(c_id);
-				vo.setLoan_num(num);
-				vo.setmyloan_amount(myLoan_amount);
-				vo.setmyloan_account(from);
-				vo.setmyloan_rate(myLoan_rate);
-				vo.setmyloan_left(myLoan_left);
-
-				result = dao.loanApply(vo);
-				model.addAttribute("result", result);
-				// 잔액이 부족하면
+		
+		int accountNum = dao.account_chenk(from);
+		//해당계정에 대출이 있으면 거절
+		if(accountNum > 0) {
+			result = -4;
+			model.addAttribute("result", result);
+		//해당계정의 대출이 없으면
+		}else {
+			// 언락
+			if (admin.personalUnlockAccount(from, password).send().getResult()) {
+				@SuppressWarnings("deprecation")
+				String BenkfitAddress = dao2.getBenkfit();
+				Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
+				// 해당계정의 잔액을 부르고
+				BigInteger balance = contract.balanceOf(from).send();
+				int balanceInt = balance.intValue();
+				// 해당 상품의 한도금액도 부르고
+				LoanProductVO info = dao.loanInfo(num);
+				int amount = info.getLoan_amount();
+				// 고객이 신청한 금액이 상품의 한도금액보다 크면 안되고
+				if (myLoan_amount > amount) {
+					result = -3;
+					model.addAttribute("result", result);
+					// 신청한 금액이 대출한도내라면
+				} else {
+					// 해당 상품의 금리를 불러서
+					double rate = info.getLoan_rate();
+					
+					// 초기 이자금을 계산 한 후
+					int f_rate = (int) (myLoan_amount * (rate / 100));
+					BigInteger f_rate_b = BigInteger.valueOf(f_rate);
+					
+					// 해당계정의 잔액이 초기 이자금보다 크면 진행
+					if (balanceInt > f_rate) {
+						Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
+						User user = (User) securityContext.getPrincipal();
+						
+						// 신청시 초기 이자금을 납부한다.
+						TransactionReceipt transfer = contract.transfer(owner, f_rate_b).send();
+						
+						String c_id = user.getUsername();
+						MyloanAccountVO vo = new MyloanAccountVO();
+						vo.setC_id(c_id);
+						vo.setLoan_num(num);
+						vo.setmyloan_amount(myLoan_amount);
+						vo.setmyloan_account(from);
+						vo.setmyloan_rate(myLoan_rate);
+						vo.setmyloan_left(myLoan_left);
+						
+						result = dao.loanApply(vo);
+						model.addAttribute("result", result);
+						// 잔액이 부족하면
+					} else {
+						result = -2;
+						model.addAttribute("result", result);
+					}
+				}
+				// 언락이 풀리지 않으면 비밀번호가 다르므로 -1 리턴
 			} else {
-				result = -2;
+				result = -1;
 				model.addAttribute("result", result);
 			}
-			// 언락이 풀리지 않으면 비밀번호가 다르므로 -1 리턴
-		} else {
-			result = -1;
-			model.addAttribute("result", result);
+			
 		}
+
 	}
 
 	// 대출액가져오기(한도)
@@ -484,11 +523,15 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").split("--")[2]);
 		String password = req.getParameter("password");
+		System.out.println(fileSource);
+		System.out.println(password);
+		System.out.println(req.getParameter("from"));
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		// 계정 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
 			// 컨트랙트 불러오기
+			String BenkfitAddress = dao2.getBenkfit();
 			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// allowance(대출잔액)가져오기
@@ -509,27 +552,29 @@ public class ServiceImpl_bh implements Service_bh {
 	// 대출금 거래하기
 	@Override
 	public void loanTransfer(HttpServletRequest req, Model model) throws Exception {
+		System.out.println();
 		int result;
 		// 지갑파일, 계정주소, 비밀번호 가져오기
-		String fileSource = path.concat(req.getParameter("from").substring(12));
-		String from = fn.concat(req.getParameter("from").split("--")[2]);
+		String fileSource = path.concat(req.getParameter("file"));
+		String from = fn.concat(req.getParameter("file").split("--")[2]);
 		String password = req.getParameter("password");
 		String to = req.getParameter("to");
-		String value_ = req.getParameter("value");
-		BigInteger value = Convert.toWei(value_, Convert.Unit.ETHER).toBigInteger();
+		int value_ = Integer.parseInt(req.getParameter("amount"));
+		BigInteger value = BigInteger.valueOf(value_);
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		// 계정 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			// 컨트랙트 불러오기
 			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			TransactionReceipt transferFrom = contract.transferFrom(owner, to, value).send();
 			result = 1;
-			model.addAttribute("result", result);
+			model.addAttribute("loanTransfer_result", result);
 		} else {
 			result = 0;
-			model.addAttribute("result", result);
+			model.addAttribute("loanTransfer_result", result);
 		}
 	}
 
@@ -655,6 +700,7 @@ public class ServiceImpl_bh implements Service_bh {
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		// 계정 언락
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			// 컨트랙트로드
 			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
@@ -684,10 +730,11 @@ public class ServiceImpl_bh implements Service_bh {
 		// BigInteger로 형변환
 		BigInteger value = BigInteger.valueOf(val);
 
-		//자격증명
+		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
-		//계정언락
+		// 계정언락
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			// 컨트랙트로드
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// 위에서 계산한 값을 다시 돌려준다.
@@ -697,24 +744,25 @@ public class ServiceImpl_bh implements Service_bh {
 		}
 
 	}
-	
+
 	// 은행관리
 	@Override
 	public void benkfitControl(HttpServletRequest req, Model model) throws Exception {
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			BigInteger totalSupply = contract.totalSupply().send();
 			String name = contract.name().send();
 			BigInteger remaning = contract.remaning().send();
 			BigInteger loan_balance = contract.balanceOf(owner).send();
-			
+
 			model.addAttribute("totalSupply", totalSupply);
 			model.addAttribute("name", name);
 			model.addAttribute("remaning", remaning);
 			model.addAttribute("loan_balance", loan_balance);
 		}
-		
+
 	}
 
 	// 대출계좌 토큰 할당하기
@@ -724,21 +772,21 @@ public class ServiceImpl_bh implements Service_bh {
 		BigInteger value = BigInteger.valueOf(_value);
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			TransactionReceipt output = contract.output(owner, value).send();
 			BigInteger totalSupply = contract.totalSupply().send();
 			String name = contract.name().send();
 			BigInteger remaning = contract.remaning().send();
 			BigInteger loan_balance = contract.balanceOf(owner).send();
-			
+
 			model.addAttribute("totalSupply", totalSupply);
 			model.addAttribute("name", name);
 			model.addAttribute("remaning", remaning);
 			model.addAttribute("loan_balance", loan_balance);
 		}
-		
-	}
 
+	}
 
 	/*
 	 * 거래검증소
@@ -759,23 +807,35 @@ public class ServiceImpl_bh implements Service_bh {
 			String from = web3.ethGetTransactionReceipt(value).send().getResult().getFrom();
 			String to = web3.ethGetTransactionReceipt(value).send().getResult().getTo();
 			BigInteger bn = web3.ethGetTransactionReceipt(value).send().getResult().getBlockNumber();
-			BigInteger g_limit = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getGasLimit();
-			BigInteger g_used = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getGasUsed();
-			String miner = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getMiner();
-			String parent = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getParentHash();
-			String root = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getReceiptsRoot();
-			BigInteger time = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getTimestamp();
-			
+			BigInteger g_limit = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getGasLimit();
+			BigInteger g_used = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getGasUsed();
+			String miner = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getMiner();
+			String parent = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getParentHash();
+			String root = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getReceiptsRoot();
+			BigInteger time = web3.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getTimestamp();
+
 			String from4 = web3_4.ethGetTransactionReceipt(value).send().getResult().getFrom();
 			String to4 = web3_4.ethGetTransactionReceipt(value).send().getResult().getTo();
 			BigInteger bn4 = web3_4.ethGetTransactionReceipt(value).send().getResult().getBlockNumber();
-			BigInteger g_limit4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getGasLimit();
-			BigInteger g_used4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getGasUsed();
-			String miner4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getMiner();
-			String parent4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getParentHash();
-			String root4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getReceiptsRoot();
-			BigInteger time4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult().getTimestamp();
-			
+			BigInteger g_limit4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getGasLimit();
+			BigInteger g_used4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getGasUsed();
+			String miner4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getMiner();
+			String parent4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getParentHash();
+			String root4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getReceiptsRoot();
+			BigInteger time4 = web3_4.ethGetBlockByNumber(DefaultBlockParameter.valueOf(bn), true).send().getResult()
+					.getTimestamp();
+
 			// 값을 보낸다.
 			model.addAttribute("coinBase", coinBase);
 			model.addAttribute("from", from);
@@ -787,7 +847,7 @@ public class ServiceImpl_bh implements Service_bh {
 			model.addAttribute("parent", parent);
 			model.addAttribute("root", root);
 			model.addAttribute("time", time);
-			
+
 			model.addAttribute("coinBase4", coinBase4);
 			model.addAttribute("from4", from4);
 			model.addAttribute("to4", to4);
@@ -798,7 +858,7 @@ public class ServiceImpl_bh implements Service_bh {
 			model.addAttribute("parent4", parent4);
 			model.addAttribute("root4", root4);
 			model.addAttribute("time4", time4);
-			
+
 			chkNum = 1;
 			model.addAttribute("chkNum", chkNum);
 		} else {
@@ -806,8 +866,8 @@ public class ServiceImpl_bh implements Service_bh {
 			model.addAttribute("chkNum", chkNum);
 		}
 	}
-	
-	//마이닝시작
+
+	// 마이닝시작
 	@Override
 	public void minerStart(HttpServletRequest req, Model model) throws Exception {
 		System.out.println("==마이닝진입");
@@ -815,13 +875,13 @@ public class ServiceImpl_bh implements Service_bh {
 		Boolean state = false;
 		MinerStartResponse miner_Start = geth.minerStart(threadCount).send();
 		Boolean mining = web3.ethMining().send().getResult();
-		Boolean mining1= geth.ethMining().send().getResult();
+		Boolean mining1 = geth.ethMining().send().getResult();
 		System.out.println(mining);
 		System.out.println(mining1);
 		model.addAttribute("state", state);
 	}
-	
-	//마이닝중지
+
+	// 마이닝중지
 	@Override
 	public void minerStop(HttpServletRequest req, Model model) throws Exception {
 		System.out.println("==마이닝중지");
@@ -830,5 +890,12 @@ public class ServiceImpl_bh implements Service_bh {
 		model.addAttribute("state", state);
 	}
 
+	@Override
+	public void hocumentPro(HttpServletRequest req, Model model) throws Exception {
+		System.out.println("인코딩");
+		String result = req.getParameter("result");
+		System.out.println("result");
+	}
+	
 	
 }

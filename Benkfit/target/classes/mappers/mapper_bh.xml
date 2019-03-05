@@ -39,9 +39,15 @@
 	<insert id="loanApply"
 		parameterType="spring.mvc.benkfit.vo.MyloanAccountVO">
 		insert into myloanaccount_tbl(myLoan_account, loan_num,
-		myLoan_amount, c_id,myLoan_rate, myLoan_left)
-		values(#{myloan_account},#{loan_num},#{myloan_amount},#{c_id},#{myloan_rate},#{myloan_left})
+		myLoan_amount, c_id,myLoan_rate, myLoan_left, myLoan_state)
+		values(#{myloan_account},#{loan_num},#{myloan_amount},#{c_id},#{myloan_rate},#{myloan_left},0)
 	</insert>
+	
+	<!-- 계정체크 -->
+	<select id="account_chenk" parameterType="String" resultType="int">
+		select * from myloanaccount_tbl 
+		where myloan_account = #{myloan_account};
+	</select>
 
 	<!-- 대출금리 -->
 <!-- 	<select id="loanRate" parameterType="int" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
@@ -52,8 +58,8 @@
 	<!-- 대출상환 -->
 	<update id="loanRepayment"
 		parameterType="spring.mvc.benkfit.vo.MyloanAccountVO">
-		update myloanaccount_tbl set myLoan_left =
-		#{myLoan_left} where myLoan_account = #{myLoan_account}
+		update myloanaccount_tbl set myloan_left =
+		#{myloan_left} where myloan_account = #{myloan_account}
 	</update>
 
 	<!-- admin -->
@@ -87,7 +93,7 @@
 	</delete>
 
 	<!-- 대출신청리스트 -->
-	<select id="loanApproval"
+<!-- 	<select id="loanApproval"
 		resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
 		select l.myLoan_account
 		, l.myLoan_amount
@@ -100,6 +106,10 @@
 		from myloanaccount_tbl l,
 		DOCUMENT_TBL d
 		where l.c_id = d.c_id
+	</select> -->
+	<select id="loanApproval"
+		resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		select * from myloanaccount_tbl
 	</select>
 
 	<!-- 계정에맞는대출상품가져오기 -->

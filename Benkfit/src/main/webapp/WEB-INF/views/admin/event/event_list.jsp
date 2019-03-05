@@ -28,19 +28,6 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-	/* ------------------------------------------------------------------ */
-	var file = document.querySelector('#img2');
-	
-	file.onchange = function(){
-		var fileList = file.files;
-		
-		var reader = new FileReader();
-		reader.readAsDataURL(fileList[0]);
-		
-		reader.onload = function (){
-			document.querySelector('#imgView2').src = reader.result;
-		}
-	}
 </script>
 </head>
 <body>
@@ -249,10 +236,11 @@
 				<form action="event_modifyPro_sws" method="post"
 					enctype="multipart/form-data">
 					
+					<input type="hidden" name="eve_num" value="${dto.eve_num}">
 					<input type="hidden" name="pageNum" value="${pageNum}"> 
 
 					<div class="modal-body" style="text-align: center;">
-						<div style="display: inline-block;" id="result">
+						<div style="display: inline-block;" id="res">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -264,22 +252,26 @@
 			</div>
 		</div>
 	</div>
-	
+</body>
 <script type="text/javascript">
 function eventUpdate(eve_num) {
 	var num = "eve_num=" + eve_num;
+	alert(num);
 	$.ajax({
 			type : 'post',
 			data : num,
 			url : '${pageContext.request.contextPath}/event_modifyForm_sws',
 			success : function(data) {
-				$("#result").html(data);
+				$("#res").html(data);
+				alert(num);
 			},
 			error : function() {
 				alert("Ajax error");
 			}
 		});
 	}
+$('#exampleModalUpdate').modal('hide', function(){
+	$('#res').html();
+});
 </script>
-</body>
 </html>

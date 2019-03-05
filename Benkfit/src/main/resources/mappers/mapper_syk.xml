@@ -95,8 +95,9 @@
 	
 	<!-- 적금이체 -->
 	<update id="savTrans" parameterType="java.util.Map">
-		UPDATE mySavAccount_tbl
-		SET 
+		UPDATE mysavaccount_tbl 
+		SET mysav_amount += #{amount}
+		WHERE mysav_account = #{account}
 	</update>
 	
 	<!-- 입금 -->
@@ -193,5 +194,26 @@
 		SELECT * 
 		FROM contract_tbl
 		ORDER BY con_name
+	</select>
+	
+	<!-- getBenkfit -->
+	<select id="getBenkfit" resultType="String">
+		SELECT DISTINCT con_address
+		FROM contract_tbl
+		WHERE con_name = 'Benkfit'
+	</select>
+	
+	<!-- getBank -->
+	<select id="getBank" resultType="String">
+		SELECT DISTINCT con_address
+		FROM contract_tbl
+		WHERE con_name = 'Bank'
+	</select>
+	
+	<!-- getSlot -->
+	<select id="getSlot" resultType="String">
+		SELECT DISTINCT con_address
+		FROM contract_tbl
+		WHERE con_name = 'Slot'
 	</select>
 </mapper>

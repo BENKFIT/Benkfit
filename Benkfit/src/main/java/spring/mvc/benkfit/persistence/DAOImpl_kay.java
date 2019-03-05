@@ -244,5 +244,4 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return dao.del_sav(map);
 	}
-	
 }

@@ -1,13 +1,21 @@
 package spring.mvc.benkfit.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import spring.mvc.benkfit.service.Service_bh;
 
@@ -23,6 +31,7 @@ public class Controller_bh {
 	 * 이더리움간편체험
 	 */
 	// 계정생성폼
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("wallet")
 	public String create(HttpServletRequest req, Model model) throws Exception {
 		logger.info("create");
@@ -30,6 +39,7 @@ public class Controller_bh {
 	}
 
 	// 계정생성 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("createAccount")
 	public String createAccount(HttpServletRequest req, Model model) throws Exception {
 		logger.info("CreateAccount");
@@ -38,6 +48,7 @@ public class Controller_bh {
 	}
 
 	// 이더잔액
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("Balance")
 	public String Balance(HttpServletRequest req, Model model) throws Exception {
 		logger.info("Balance");
@@ -46,6 +57,7 @@ public class Controller_bh {
 	}
 
 	// 이더송금메인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("transfer")
 	public String transfer(HttpServletRequest req, Model model) throws Exception {
 		logger.info("transfer");
@@ -53,6 +65,7 @@ public class Controller_bh {
 	}
 
 	// 송금완료
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("transferPro")
 	public String transferPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("transferPro");
@@ -61,12 +74,14 @@ public class Controller_bh {
 	}
 
 	// 이더예금메인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("bank")
 	public String deposit(HttpServletRequest req, Model model) throws Exception {
 		return "common/blockChain/bank";
 	}
 
 	// 이더예금
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("depositPro_Eth")
 	public String depositPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("depositPro");
@@ -75,6 +90,7 @@ public class Controller_bh {
 	}
 
 	// 이더예금액보기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("bankBalance")
 	public String bankBalance(HttpServletRequest req, Model model) throws Exception {
 		logger.info("bankBalance");
@@ -83,6 +99,7 @@ public class Controller_bh {
 	}
 
 	// 이더 예금 인출하기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("bankWithdraw")
 	public String bankWithdraw(HttpServletRequest req, Model model) throws Exception {
 		logger.info("bankWithdraw");
@@ -98,6 +115,7 @@ public class Controller_bh {
 	 * common
 	 */
 	// 슬롯머신메인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("slot")
 	public String slot(HttpServletRequest req, Model model) throws Exception {
 		logger.info("slot");
@@ -105,6 +123,7 @@ public class Controller_bh {
 	}
 
 	// 슬롯머신플레이
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("slotResult")
 	public String slotResult(HttpServletRequest req, Model model) throws Exception {
 		logger.info("slotResult");
@@ -116,6 +135,7 @@ public class Controller_bh {
 	 * admin
 	 */
 	// 슬롯머신관리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("slotControl")
 	public String slotControl(HttpServletRequest req, Model model) throws Exception {
 		logger.info("slotControl");
@@ -123,6 +143,7 @@ public class Controller_bh {
 	}
 
 	// 슬롯잔고채우기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("slotStock")
 	public String slotStock(HttpServletRequest req, Model model) throws Exception {
 		logger.info("slotStock");
@@ -131,6 +152,7 @@ public class Controller_bh {
 	}
 
 	// 슬롯머신잔고확인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("slotStockBalance")
 	public String slotStockBalance(HttpServletRequest req, Model model) throws Exception {
 		logger.info("slotStockBalance");
@@ -146,6 +168,7 @@ public class Controller_bh {
 	 * common
 	 */
 	// 대출 상품 목록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanList")
 	public String loanList(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanList");
@@ -154,6 +177,7 @@ public class Controller_bh {
 	}
 
 	// 대출 상품 정보
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanInfo")
 	public String loanInfo(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanInfo");
@@ -162,6 +186,7 @@ public class Controller_bh {
 	}
 
 	// 대출 가이드
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanGuide")
 	public String loanGuide(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanGuide");
@@ -169,6 +194,7 @@ public class Controller_bh {
 	}
 
 	// 대출 신청
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanApply")
 	public String loanApply(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanApply");
@@ -177,6 +203,7 @@ public class Controller_bh {
 	}
 
 	// 대출한도확인하기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanBalance")
 	public String loanBalance(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanBalance");
@@ -185,6 +212,7 @@ public class Controller_bh {
 	}
 
 	// 대출잔액확인하기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanleft")
 	public String loanleft(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanleft");
@@ -193,6 +221,7 @@ public class Controller_bh {
 	}
 
 	// 대출금거래하기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanTransfer")
 	public String loanTransfer(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanTransfer");
@@ -201,6 +230,7 @@ public class Controller_bh {
 	}
 
 	// 대출상환하기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanRepayment")
 	public String loanRepayment(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanRepayment");
@@ -212,6 +242,7 @@ public class Controller_bh {
 	 * admin
 	 */
 	// 대출 상품 등록 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanRegi")
 	public String loanAdd(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanRegi");
@@ -220,6 +251,7 @@ public class Controller_bh {
 	}
 
 	// 대출 상품 등록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanRegiPro")
 	public String loanAddPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanRegiPro");
@@ -228,6 +260,7 @@ public class Controller_bh {
 	}
 
 	// 대출 상품 수정
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanEdit")
 	public String loanEdit(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanEdit");
@@ -236,6 +269,7 @@ public class Controller_bh {
 	}
 
 	// 대출 상품 수청 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanEditPro")
 	public String loanEditPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanEdit");
@@ -244,6 +278,7 @@ public class Controller_bh {
 	}
 
 	// 대출 상품 마감
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanDel")
 	public String loanDel(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanDel");
@@ -252,6 +287,7 @@ public class Controller_bh {
 	}
 
 	// 대출신청리스트
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanApproval")
 	public String loanApproval(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanApproval");
@@ -260,6 +296,7 @@ public class Controller_bh {
 	}
 
 	// 대출신청처리(승인)
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanApprovalPro")
 	public String loanApprovalPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanApprovalPro");
@@ -268,38 +305,43 @@ public class Controller_bh {
 	}
 
 	// 대출신청처리(거절)
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("rejection")
 	public String rejection(HttpServletRequest req, Model model) throws Exception {
 		logger.info("rejection");
 		service.rejection(req, model);
 		return "admin/product/loan/result";
 	}
-	
+
 	// 은행관리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("benkfitControl")
 	public String benkfitControl(HttpServletRequest req, Model model) throws Exception {
 		logger.info("benkfitControl");
 		service.benkfitControl(req, model);
 		return "admin/control/benkfitControl";
 	}
-	
+
 	// 대출계좌 토큰 할당
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("benkfitLoanStock")
 	public String benkfitLoanStock(HttpServletRequest req, Model model) throws Exception {
 		logger.info("benkfitLoanStock");
 		service.benkfitLoanStock(req, model);
 		return "admin/control/benkfitLoanStock";
 	}
-	
-	//마이닝하기
+
+	// 마이닝하기
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("minerStart")
 	public String minerStart(HttpServletRequest req, Model model) throws Exception {
 		logger.info("minerStart");
 		service.minerStart(req, model);
 		return "admin/control/mining";
 	}
-	
-	//마이닝중지
+
+	// 마이닝중지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("minerStop")
 	public String minerStop(HttpServletRequest req, Model model) throws Exception {
 		logger.info("minerStop");
@@ -312,6 +354,7 @@ public class Controller_bh {
 	 */
 
 	// 거래검증폼
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("verify")
 	public String verify(HttpServletRequest req, Model model) throws Exception {
 		logger.info("verify");
@@ -319,10 +362,26 @@ public class Controller_bh {
 	}
 
 	// 거래검증
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("verifyPro")
 	public String verifyPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("verifyPro");
 		service.verify(req, model);
 		return "common/blockChain/verifyPro";
+	}
+	
+	@Transactional(rollbackFor=Exception.class)
+	@RequestMapping("hocument")
+	public String hocument(HttpServletRequest req, Model model) throws Exception {
+		logger.info("hocument");
+		return "common/blockChain/hocument";
+	}
+	
+	@Transactional(rollbackFor=Exception.class)
+	@RequestMapping("hocumentPro")
+	public String hocumentPro(HttpServletRequest req, Model model) throws Exception {
+		logger.info("hocument");
+		service.hocumentPro(req, model);
+		return "common/blockChain/hocumentPro";
 	}
 }
