@@ -43,20 +43,21 @@ import spring.mvc.benkfit.sol.Slot;
 import spring.mvc.benkfit.vo.LoanProductVO;
 import spring.mvc.benkfit.vo.MyloanAccountVO;
 import spring.mvc.benkfit.persistence.DAO_bh;
+import spring.mvc.benkfit.persistence.DAO_syk;
 
 @Service
 public class ServiceImpl_bh implements Service_bh {
+	
+	@Autowired
+	DAO_bh dao;
+	@Autowired
+	DAO_syk dao2;
 
 	Web3j web3 = Web3j.build(new HttpService("http://localhost:8545"));
 	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
 	Web3j web3_4 = Web3j.build(new HttpService("http://localhost:8547"));
 	Admin admin_4 = Admin.build(new HttpService("http://localhost:8547"));
 	Geth geth = Geth.build(new HttpService("http://localhost:8545"));
-
-	// 훈컨트랙트모음
-	private final String BenkfitAddress = Setting.getBenkfit();
-	private final String BankAddress = Setting.getBank();
-	private final String SlotAddress = Setting.getSlot();
 
 	int chkNum = Setting.chkNum;
 	final String path = Setting.path;
@@ -69,8 +70,6 @@ public class ServiceImpl_bh implements Service_bh {
 	final BigInteger gasLimit = Setting.gasLimit;
 	final BigInteger initialWeiValue = Setting.initialWeiValue;
 
-	@Autowired
-	DAO_bh dao;
 
 	/*
 	 * 이더리움 간편 체험
@@ -171,6 +170,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Bank 컨트랙트 로드
+			String BankAddress = dao2.getBank();
 			Bank contract = Bank.load(BankAddress, web3, credentials, gasPrice, gasLimit);
 			// 예금함수 불러오기
 			TransactionReceipt depositTx = contract.deposit(ether).send();
@@ -207,6 +207,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Bank 컨트랙트 로드
+			String BankAddress = dao2.getBank();
 			Bank contract = Bank.load(BankAddress, web3, credentials, gasPrice, gasLimit);
 			// 잔액함수 불러오기
 			BigInteger balance = contract.balance().send();
@@ -232,6 +233,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Bank 컨트랙트 로드
+			String BankAddress = dao2.getBank();
 			Bank contract = Bank.load(BankAddress, web3, credentials, gasPrice, gasLimit);
 			// 인출함수실행
 			TransactionReceipt withdraw = contract.withdraw(ether).send();
@@ -282,6 +284,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 
 			// 몇번째 게임인지 카운트를 누르고 시작
@@ -330,6 +333,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 			// 킬 함수
 			TransactionReceipt kill = contract.kill().send();
@@ -365,6 +369,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 			// 슬롯 잔고 채우는 함수 실행
 			TransactionReceipt slotStock = contract.ownerInput(ether).send();
@@ -391,6 +396,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 성공시
 			@SuppressWarnings("deprecation")
 			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
 			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
 			// 잔액반환함수 실행
 			BigInteger slotStockBalance = contract.total().send();
@@ -454,6 +460,7 @@ public class ServiceImpl_bh implements Service_bh {
 			// 언락
 			if (admin.personalUnlockAccount(from, password).send().getResult()) {
 				@SuppressWarnings("deprecation")
+				String BenkfitAddress = dao2.getBenkfit();
 				Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 				// 해당계정의 잔액을 부르고
 				BigInteger balance = contract.balanceOf(from).send();
@@ -524,6 +531,7 @@ public class ServiceImpl_bh implements Service_bh {
 		// 계정 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
 			// 컨트랙트 불러오기
+			String BenkfitAddress = dao2.getBenkfit();
 			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// allowance(대출잔액)가져오기
@@ -557,6 +565,7 @@ public class ServiceImpl_bh implements Service_bh {
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		// 계정 언락
 		if (admin.personalUnlockAccount(from, password).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			// 컨트랙트 불러오기
 			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
@@ -691,6 +700,7 @@ public class ServiceImpl_bh implements Service_bh {
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		// 계정 언락
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			// 컨트랙트로드
 			@SuppressWarnings("deprecation")
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
@@ -724,6 +734,7 @@ public class ServiceImpl_bh implements Service_bh {
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		// 계정언락
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			// 컨트랙트로드
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			// 위에서 계산한 값을 다시 돌려준다.
@@ -739,6 +750,7 @@ public class ServiceImpl_bh implements Service_bh {
 	public void benkfitControl(HttpServletRequest req, Model model) throws Exception {
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			BigInteger totalSupply = contract.totalSupply().send();
 			String name = contract.name().send();
@@ -760,6 +772,7 @@ public class ServiceImpl_bh implements Service_bh {
 		BigInteger value = BigInteger.valueOf(_value);
 		Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
 		if (admin.personalUnlockAccount(owner, owner_pwd).send().getResult()) {
+			String BenkfitAddress = dao2.getBenkfit();
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			TransactionReceipt output = contract.output(owner, value).send();
 			BigInteger totalSupply = contract.totalSupply().send();
