@@ -198,12 +198,21 @@ public class Controller_sws {
 
 		return "common/map/map";
 	}
+	
 	// 결산 차트
 	@RequestMapping("productChart_sws")
 	public String productChart_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("productChart_sws");
 		return "admin/chart/productChart";
 	}
+	
+	// 결산 차트2
+	@RequestMapping("productChart_sws2")
+	public String productChart_sws2(HttpServletRequest req, Model model) throws Exception{
+		logger.info("productChart_sws2");
+		return "admin/chart/productChart2";
+	}
+	
 	// 년별 차트
 	@RequestMapping("chartYear_sws")
 	public String chartYear_sws(HttpServletRequest req, Model model) throws Exception{

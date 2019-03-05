@@ -1,11 +1,7 @@
-<!-- 송운선 2019-01-22 17:43 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <html>
-<script type="text/javascript">
-	
-</script>
 <body>
 	<div>
 		<div>
@@ -22,9 +18,8 @@
 				<tr>
 					<td colspan="4">
 						<div class="eq-ui-form-group eq-ui-input-file">
-							<a class="btn btn-primary eq-ui-waves-light"
-								style="color: white;"> Upload <input class="btn btn-primary"
-								id="img2" type="file" name="eve_img" multiple autofocus required>
+							<a class="btn btn-primary eq-ui-waves-light" style="color: white;"> Upload 
+							<input class="btn btn-primary" id="img2" type="file" name="eve_img" multiple autofocus required>
 							</a>
 							<div class="eq-ui-input-file-path">
 								<input type="text" class="eq-ui-input"
@@ -40,16 +35,6 @@
 							<img
 								style="max-width: 400px; max-height: 380px; display: inline-block;"
 								id="imgView2" src="/benkfit/resources/img/event/${dto.eve_img}" />
-						</div>
-					</td>
-				</tr>
-
-				<tr>
-					<td colspan="4">
-						<div style="text-align: center;">
-							<img
-								style="max-width: 400px; max-height: 380px; display: inline-block;"
-								id="imgView2" />
 						</div>
 					</td>
 				</tr>

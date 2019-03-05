@@ -31,8 +31,8 @@
 						</tr>
 
 						<tr>
-							<td colspan="2"><img
-								src="/benkfit/resources/img/event/${dto.eve_img}" style="width: 100%"></td>
+							<td colspan="2">
+							<img src="/benkfit/resources/img/event/${dto.eve_img}" style="width: 100%"></td>
 						</tr>
 
 						<tr>

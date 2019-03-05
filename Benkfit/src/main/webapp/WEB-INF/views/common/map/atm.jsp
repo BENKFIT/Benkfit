@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../../Template/setting.jsp"%>
 <html>
 <body>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script>
 	L_PREFER_CANVAS = false;
 	L_NO_TOUCH = false;

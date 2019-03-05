@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -108,6 +109,7 @@ public class Controller_lia {
 	}
 	
 	// 회원가입 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("signInPro")
 	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
 		logger.info("signInPro 호출중");

@@ -20,9 +20,9 @@
 			<table class="table table-hover" style="width: 100%;">
 				<thead>
 					<tr style="background: #2980B9;">
-						<th class="eq-ui-data-table-cell-non-numeric" style="width: 10%; color: #ffffff;">No</th>
-						<th class="eq-ui-data-table-cell-non-numeric" style="width: 70%; color: #ffffff;">제목</th>
-						<th class="eq-ui-data-table-cell-non-numeric" style="width: 20%; color: #ffffff;">등록일</th>
+						<th class="eq-ui-data-table-cell-non-numeric" style="width: 13%; color: #ffffff;">No</th>
+						<th class="eq-ui-data-table-cell-non-numeric" style="width: 77%; color: #ffffff;">제목</th>
+						<th class="eq-ui-data-table-cell-non-numeric" style="width: 10%; color: #ffffff;">등록일</th>
 					</tr>
 				</thead>
 				<tbody>

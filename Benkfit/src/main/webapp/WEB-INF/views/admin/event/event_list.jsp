@@ -1,5 +1,3 @@
-
-<!-- 송운선 2019-01-22 17:43 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
@@ -12,6 +10,7 @@
 }
 </style>
 <script type="text/javascript">
+
 	/*****************이미지 미리보기*****************/
 	$(function() {
 		$("#img").on('change', function() {
@@ -27,6 +26,19 @@
 				$('#imgView').attr('src', e.target.result);
 			}
 			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	/* ------------------------------------------------------------------ */
+	var file = document.querySelector('#img2');
+	
+	file.onchange = function(){
+		var fileList = file.files;
+		
+		var reader = new FileReader();
+		reader.readAsDataURL(fileList[0]);
+		
+		reader.onload = function (){
+			document.querySelector('#imgView2').src = reader.result;
 		}
 	}
 </script>
@@ -253,21 +265,21 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript">
-	function eventUpdate(eve_num) {
-		var num = "eve_num=" + eve_num;
-		$.ajax({
-					type : 'post',
-					data : num,
-					url : '${pageContext.request.contextPath}/event_modifyForm_sws',
-					success : function(data) {
-						$("#result").html(data);
-					},
-					error : function() {
-						alert("Ajax error");
-					}
-				});
-		}
-	</script>
+<script type="text/javascript">
+function eventUpdate(eve_num) {
+	var num = "eve_num=" + eve_num;
+	$.ajax({
+			type : 'post',
+			data : num,
+			url : '${pageContext.request.contextPath}/event_modifyForm_sws',
+			success : function(data) {
+				$("#result").html(data);
+			},
+			error : function() {
+				alert("Ajax error");
+			}
+		});
+	}
+</script>
 </body>
 </html>

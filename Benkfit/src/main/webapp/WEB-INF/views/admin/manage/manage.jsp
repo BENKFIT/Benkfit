@@ -137,7 +137,7 @@
 			
 			<div id="Line_Controls_Chart">
 				<!-- 라인 차트 생성할 영역 -->
-				<div id="lineChartArea" style="padding: 0px 20px 0px 0px;"></div>
+				<div id="lineChartArea" style="padding: 30px 20px 0px 0px;"></div>
 				<!-- 컨트롤바를 생성할 영역 -->
 				<div id="controlsArea" style="padding: 0px 20px 0px 0px;"></div>
 			</div>
@@ -219,7 +219,7 @@
 		function benkfitLoanStock() {
 			var value = $('#value').val();
 			var alldata = {
-				'value' : value
+				'value' : value 
 			};
 			$('#state').html("자금 이동중입니다. 잠시만 기다려주세요.");
 
@@ -304,7 +304,7 @@
 				queryObjectLen = queryObject.barlist.length;
 				
 				var chartDrowFun1 = {
-						chartDrow : function() {
+						chartDrow1 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -339,12 +339,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
-													}
+													},
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -405,9 +411,18 @@
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -447,7 +462,7 @@
 					    google.charts.load('current', {
 					    	'packages':['line','controls']
 					    });
-					    chartDrowFun1.chartDrow(); //chartDrow() 실행
+					    chartDrowFun1.chartDrow1(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
@@ -462,8 +477,8 @@
 				queryObject = JSON.parse(data);
 				queryObjectLen = queryObject.barlist.length;
 				
-				var chartDrowFun1 = {
-						chartDrow : function() {
+				var chartDrowFun2 = {
+						chartDrow2 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -498,12 +513,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
 													}
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -564,9 +585,18 @@
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -606,7 +636,7 @@
 					    google.charts.load('current', {
 					    	'packages':['line','controls']
 					    });
-					    chartDrowFun1.chartDrow(); //chartDrow() 실행
+					    chartDrowFun2.chartDrow2(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
@@ -622,9 +652,9 @@
 				queryObject = JSON.parse(data);
 				queryObjectLen = queryObject.barlist.length;
 				
-				var chartDrowFun2 = {
+				var chartDrowFun3 = {
 
-						chartDrow2 : function() {
+						chartDrow3 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -661,12 +691,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
 													}
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -727,9 +763,18 @@
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -752,8 +797,7 @@
 								date_formatter.format(data, 0);
 
 								var dashboard = new google.visualization.Dashboard(
-										document
-												.getElementById('Line_Controls_Chart'));
+										document.getElementById('Line_Controls_Chart'));
 								window.addEventListener('resize',
 										function() {
 											dashboard.draw(data);
@@ -769,7 +813,7 @@
 						google.charts.load('current', {
 							'packages' : [ 'line', 'controls' ]
 						});
-						chartDrowFun2.chartDrow2(); //chartDrow() 실행
+						chartDrowFun3.chartDrow3(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
@@ -785,9 +829,9 @@
 				queryObject = JSON.parse(data);
 				queryObjectLen = queryObject.barlist.length;
 				
-				var chartDrowFun3 = {
+				var chartDrowFun4 = {
 
-						chartDrow : function() {
+						chartDrow4 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -825,12 +869,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
 													}
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -888,12 +938,22 @@
 											controlType : 'ChartRangeFilter',
 											containerId : 'controlsArea', //control bar를 생성할 영역
 											options : {
+												backgroundColor : 'none',
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -931,7 +991,7 @@
 						google.charts.load('current', {
 							'packages' : [ 'line', 'controls' ]
 						});
-						chartDrowFun3.chartDrow(); //chartDrow() 실행
+						chartDrowFun4.chartDrow4(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
