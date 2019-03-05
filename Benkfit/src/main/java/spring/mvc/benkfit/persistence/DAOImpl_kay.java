@@ -226,6 +226,22 @@ public class DAOImpl_kay implements DAO_kay{
 		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
 		return  dao.day3();
 	}
-	
-	
+	//적금 계좌잔액
+	@Override
+	public int delSav(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.delSav(map);
+	}
+	//적금계좌pw 체크
+	@Override
+	public int sav_pw(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return  dao.sav_pw(map);
+	}
+	//적금해지
+	@Override
+	public int del_sav(Map<String, Object> map) {
+		DAO_kay dao = sqlSession.getMapper(DAO_kay.class);
+		return dao.del_sav(map);
+	}
 }

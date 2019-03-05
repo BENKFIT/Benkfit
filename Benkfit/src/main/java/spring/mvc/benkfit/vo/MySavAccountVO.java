@@ -17,7 +17,16 @@ public class MySavAccountVO {
 	private String c_id; 
 	private String sav_num;  //상품번호
 	private String code;
+	private String mysav_pwd; //비밀번호
 	
+	
+	
+	public String getMysav_pwd() {
+		return mysav_pwd;
+	}
+	public void setMysav_pwd(String mysav_pwd) {
+		this.mysav_pwd = mysav_pwd;
+	}
 	public Date getMySav_due() {
 		return mySav_due;
 	}
@@ -108,7 +117,8 @@ public class MySavAccountVO {
 				+ mySav_date + ", mySav_due=" + mySav_due + ", mySav_regdate=" + mySav_regdate + ", mySav_amount="
 				+ mySav_amount + ", mySav_rate=" + mySav_rate + ", mySav_monSaving=" + mySav_monSaving
 				+ ", mySav_method=" + mySav_method + ", mySav_benefit=" + mySav_benefit + ", mySav_taxRate="
-				+ mySav_taxRate + ", c_id=" + c_id + ", sav_num=" + sav_num + ", code=" + code + "]";
+				+ mySav_taxRate + ", c_id=" + c_id + ", sav_num=" + sav_num + ", code=" + code + ", mysav_pwd="
+				+ mysav_pwd + "]";
 	}
 	
 	

@@ -4,15 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<meta charset="UTF-8">
-<title>예/적금상품안내</title>
+<title>상품 > 예/적금</title>
 <style type="text/css">
 td {
 	color: white;
@@ -35,7 +27,7 @@ details td {
 #joinBtn1 {
 	color: white;
 	border: 1px solid white;
-	background-color: #C64545;
+	background-color: #1AA85C;
 	border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
@@ -54,7 +46,7 @@ details td {
 #joinBtn3 {
 	color: white;
 	border: 1px solid white;
-	background-color: #1AA85C;
+	background-color: #C64545;
 	border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
@@ -75,7 +67,6 @@ details td {
 	display: inline-block;
 	margin: 200px;
 }
-
 .div2 {
 	height: 500px;
 	text-align: center;
@@ -159,7 +150,7 @@ p {
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
 	<c:if test="${type == 'cheq'}">
-		<div style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
+		<div style="text-align: center; background-color: #1AA85C; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
 				<table style="text-align: center;">
 					<tr>
@@ -192,7 +183,7 @@ p {
 							<td>
 								<sec:authorize access="isAnonymous()">
 									<button type="button" class="btn btn-primary"
-									style="color: white; border: 1px solid white; background-color: #C64545; border-radius: 5px; width: 200px; font-size: 20px;"
+									style="color: white; border: 1px solid white; background-color: #1AA85C; border-radius: 5px; width: 200px; font-size: 20px;"
 									data-toggle="modal" data-target="#loginFail">가입하기</button>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
@@ -580,30 +571,30 @@ p {
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div style="display: inline-block;">
-						<form action="createCheq" method="post">
-						<input type="hidden" value="${info.cheq_num}" name="num">
+				<form action="createCheq" method="post">
+					<div class="modal-body" style="text-align: center;">
+						<div style="display: inline-block;">
+							<input type="hidden" value="${info.cheq_num}" name="num">
 							<table>
 								<tr>
-									<td>비밀번호</td>
 									<td>
-										<input type="password" name="password">
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="가입하기">
+										<div class="eq-ui-form-group eq-ui-input-field">
+											<input id="password" type="password" class="eq-ui-input"
+												name="password"> <label for="password">비밀번호</label>
+										</div>
 									</td>
 								</tr>
 							</table>
-						</form>
+						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-				</div>
+					<div class="modal-footer">
+						<input type="submit" value="가입하기" class="btn btn-primary"
+							data-toggle="tooltip" data-placement="bottom"
+							title="가입시, 10Ether가 자동으로 입금됩니다.">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -629,24 +620,24 @@ p {
 						<input type="hidden" value="${info.sav_num}" name="num">
 							<table>
 								<tr>
-									<td>비밀번호</td>
 									<td>
-										<input type="password" name="password">
+										<div class="eq-ui-form-group eq-ui-input-field">
+										<input id="password" type="password" class="eq-ui-input" name="password">
+										<label for="password">비밀번호</label>
+									</div>
 									</td>
 								</tr>
 								<tr>
-									<td>가입기간</td>
 									<td>
-										<select name="period">
-											<option value="12">12개월</option>
-											<option value="24">24개월</option>
-											<option value="36">36개월</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
-										<input type="submit" value="가입하기">
+										<div class="eq-ui-form-group eq-ui-input-field">
+		                                    <select class="eq-ui-select" name="period">
+		                                        <option value="" disabled selected>가입기간을 선택해주세요.</option>
+		                                        <option value="12">12개월</option>
+		                                        <option value="24">24개월</option>
+		                                        <option value="36">36개월</option>
+		                                    </select>
+		                                    <label>가입기간</label>
+	                               		</div>
 									</td>
 								</tr>
 							</table>
@@ -654,6 +645,7 @@ p {
 					</div>
 				</div>
 				<div class="modal-footer">
+					<input type="submit" value="가입하기" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="가입시, 10Ether가 자동으로 입금됩니다.">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
@@ -661,9 +653,11 @@ p {
 		</div>
 	</div>
 	</c:if>
-
-	<!-- FOOTER  -->
+	<script type="text/javascript">
+	$(function () {
+		  $('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>
 	<%@ include file="../../../Template/footer.jsp"%>
-
 </body>
 </html>

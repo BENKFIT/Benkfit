@@ -103,7 +103,7 @@
 	</select>
 	
 	<!-- 일별 차트2 -->
-	<select id="getDaySecondChat" resultType="int">
+	<select id="getDaySecondChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(ms.mysav_date, 'DD') value, COUNT(ms.mySav_account) mySav_account
 		FROM mySavAccount_tbl ms
 		GROUP BY TO_CHAR(ms.mysav_date, 'DD')
@@ -112,7 +112,7 @@
 	
 	<!-- 일별 차트3 -->
 	<select id="getDayThirdChat" resultType="spring.mvc.benkfit.vo.ChartVO">
-		SELECT DISTINCT TO_CHAR(ml.myloan_date, 'DD') value, COUNT(ml.myLoan_account) myLoan_account
+		SELECT DISTINCT TO_CHAR(ml.myloan_date, 'DD') value, COUNT(ml.myloan_account) myLoan_account
 		FROM MyloanAccount_tbl ml
 		GROUP BY TO_CHAR(ml.myloan_date, 'DD')
 		ORDER BY value
@@ -132,9 +132,100 @@
 		where c_id = #{id}
 	</select>
 	
-<!-- 	<select id="getMemberInfo2" resultType="spring.mvc.benkfit.vo.UsersVO">
-		SELECT *
+	<!-- 예금상품리스트 -->
+ 	<select id="cheqProduct" resultType="spring.mvc.benkfit.vo.CheqProductVO">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period 
+		FROM cheqproduct_tbl
+		ORDER BY cheq_num DESC
+	</select>
+	
+	<!-- 적금상품리스트 -->
+ 	<select id="savProduct" resultType="spring.mvc.benkfit.vo.SavProductVO">
+		SELECT sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate
+		FROM savproduct_tbl
+		ORDER BY sav_num DESC
+	</select>
+	
+	<!-- 대출상품리스트 -->
+ 	<select id="loanProduct" resultType="spring.mvc.benkfit.vo.LoanProductVO">
+		SELECT loan_num, loan_name , loan_amount , loan_period , loan_target, loan_rate
+		FROM loanProduct_tbl
+		ORDER BY loan_num DESC
+	</select>
+	
+	<!-- 예금상품상세 페이지 -->
+ 	<select id="cheqProductContent" resultType="spring.mvc.benkfit.vo.CheqProductVO" parameterType="java.util.Map">
+		SELECT cheq_num, cheq_name, cheq_rate, cheq_type, cheq_target, cheq_regDate, cheq_limit, cheq_period 
+		FROM cheqproduct_tbl
+		WHERE cheq_num=#{num} AND cheq_name=#{name}
+	</select>
+	
+	<!-- 적금상품상세 페이지 -->
+ 	<select id="savProductContent" resultType="spring.mvc.benkfit.vo.SavProductVO" parameterType="java.util.Map">
+		SELECT sav_num, sav_name , sav_limit , sav_period , sav_target, sav_rate
+		FROM savproduct_tbl
+		WHERE sav_num=#{num} AND sav_name=#{name}
+	</select>
+	
+	<!-- 대출상품상세 페이지 -->
+ 	<select id="loanProductContent" resultType="spring.mvc.benkfit.vo.LoanProductVO" parameterType="java.util.Map">
+		SELECT loan_num, loan_name , loan_amount , loan_period , loan_target, loan_rate
+		FROM loanProduct_tbl
+		WHERE loan_num=#{num} AND loan_name=#{name}
+	</select>
+	
+	<!-- 예금계좌생성 -->
+	<insert id="insertWallet" parameterType="java.util.Map">
+		INSERT INTO myCheqAccount_tbl(myCheq_account, myCheq_pwd ,cheq_num, c_id)
+		VALUES(#{account}, #{pwd}, #{num}, #{id})
+	</insert>
+	
+	<!-- 안드로이드 거래내역 -->
+ 	<select id="TransDetail" resultType="spring.mvc.benkfit.vo.TransDetailVO">
+ 	    <![CDATA[
+			select * 
+			from ( select tran_num , tran_account, tran_out, tran_in, 
+				   		  tran_date ,tran_amount, tran_type, c_id, tran_code
+		           from ( SELECT * 
+		               		FROM transdetail_tbl
+		               		where c_id = #{c_id}
+		              	) 
+		         )
+		]]>
+	</select>
+	
+	<!-- 안드로이드 qr로그인  -->
+	<select id="qrConfirmIdPwd" resultType="int">
+		SELECT COUNT(*)
 		FROM users_tbl
+		WHERE c_id = #{id} AND c_pwd = #{pwd}
+	</select>
+	
+	<!-- 안드로이드 예금계좌 내역 -->
+	<select id="myCheqAccounts" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+		select *
+		from myCheqAccount_tbl
 		where c_id = #{c_id}
+	</select>
+	
+	<!-- 안드로이드 적금계좌 내역 -->
+	<select id="mySavAccounts" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+		select *
+		from mySavAccount_tbl
+		where c_id = #{id}
+	</select>
+	
+	<!-- 안드로이드 대출계좌 내역 -->
+	<select id="myLoanAccounts" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+		select *
+		from MyloanAccount_tbl
+		where c_id = #{id}
+	</select>
+	
+	<!-- 예금계좌확인 -->
+	<!-- <select id="selectWallet" resultType="spring.mvc.benkfit.vo.AndroidVO">
+		SELECT c_id, myCheq_account
+		FROM myCheqAccount_tbl
+		WHERE c_id = #{id}
 	</select> -->
 </mapper>

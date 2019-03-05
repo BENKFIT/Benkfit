@@ -4,42 +4,96 @@
 <%@ include file="../../Template/setting.jsp" %> 
 <html>
 <body>
-<%@ include file ="../../Template/top.jsp" %>
-<div class="wrapper">
-	<div class="table">
-		<div class="rows header blue" style="text-align: center;">
-			<div class="cell" style="display: inline-block;">첫방문 고객 안내</div>
-		</div>
+	<%@ include file ="../../Template/top.jsp" %>
+		
+	<table class="table table-hover" style="margin-top: 200px;">
+	    <thead>
+	        <tr>
+	            <th>#</th>
 	
-		<div class="rows">
-			<div class="cell">ninjalug</div>
-			<div class="cell">misterninja@hotmail.com</div>
-			<div class="cell">************</div>
-			<div class="cell">Yes</div>
-		</div>
+	            <th>First Name</th>
+	            <th>Last Name</th>
+	            <th>Username</th>
+	        </tr>
+	    </thead>
 	
-		<div class="rows">
-			<div class="cell">jsmith41</div>
-			<div class="cell">joseph.smith@gmail.com</div>
-			<div class="cell">************</div>
-			<div class="cell">No</div>
-		</div>
+	    <tbody>
+	        <tr>
+	            <th scope="row">1</th>
 	
-		<div class="rows">
-			<div class="cell">1337hax0r15</div>
-			<div class="cell">hackerdude1000@aol.com</div>
-			<div class="cell">************</div>
-			<div class="cell">Yes</div>
-		</div>
+	            <td>Mark</td>
+	            <td>Otto</td>
+	            <td>@mdo</td>
+	        </tr>
 	
-		<div class="rows">
-			<div class="cell">hairyharry19</div>
-			<div class="cell">harryharry@gmail.com</div>
-			<div class="cell">************</div>
-			<div class="cell">Yes</div>
-		</div>
-	</div>
-</div>
-<%@ include file ="../../Template/footer.jsp" %>
+	        <tr>
+	            <th scope="row">2</th>
+	
+	            <td>Mark</td>
+	            <td>Otto</td>
+	            <td>@TwBootstrap</td>
+	        </tr>
+	
+	        <tr>
+	            <th scope="row">3</th>
+	
+	            <td>Jacob</td>
+	            <td>Thornton</td>
+	            <td>@fat</td>
+	        </tr>
+	
+	        <tr>
+	            <th scope="row">4</th>
+	
+	            <td colspan="2">Larry the Bird</td>
+	            <td>@twitter</td>
+	        </tr>
+	    </tbody>
+	    
+	</table><table class="table table-hover">
+	    <thead>
+	        <tr>
+	            <th>#</th>
+	            <th>First Name</th>
+	            <th>Last Name</th>
+	            <th>Username</th>
+	        </tr>
+	    </thead>
+	
+	    <tbody>
+	        <tr>
+	            <th scope="row">1</th>
+	
+	            <td>Mark</td>
+	            <td>Otto</td>
+	            <td>@mdo</td>
+	        </tr>
+	
+	        <tr>
+	            <th scope="row">2</th>
+	
+	            <td>Mark</td>
+	            <td>Otto</td>
+	            <td>@TwBootstrap</td>
+	        </tr>
+	
+	        <tr>
+	            <th scope="row">3</th>
+	
+	            <td>Jacob</td>
+	            <td>Thornton</td>
+	            <td>@fat</td>
+	        </tr>
+	
+	        <tr>
+	            <th scope="row">4</th>
+	            
+	            <td colspan="2">Larry the Bird</td>
+	            <td>@twitter</td>
+	        </tr>
+	    </tbody>
+	</table>
+	
+	<%@ include file ="../../Template/footer.jsp" %>
 </body>
 </html>

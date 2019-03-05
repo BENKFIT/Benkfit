@@ -102,7 +102,8 @@ public class DAOImpl_syk implements DAO_syk{
 	
 	//입금
 	public int depositPro(Map<String, Object> map) {
-		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_syk.depositPro", map);
+		sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.depositPro1", map);
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_syk.depositPro2", map);
 	}
 
 	//자동이체 조회
@@ -165,5 +166,35 @@ public class DAOImpl_syk implements DAO_syk{
 	@Override
 	public int deployAdd(ContractVO vo) {
 		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.deployAdd", vo);
+	}
+
+	//재배포
+	@Override
+	public int reDeploy(ContractVO vo) {
+		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_syk.reDeploy", vo);
+	}
+
+	//contract 읽어오기
+	@Override
+	public List<ContractVO> contract() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.contract");
+	}
+
+	//contract - benkfit
+	@Override
+	public String getBenkfit() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getBenkfit");
+	}
+
+	//contract - bank
+	@Override
+	public String getBank() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getBank");
+	}
+
+	//contract - slot
+	@Override
+	public String getSlot() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getSlot");
 	}
 }

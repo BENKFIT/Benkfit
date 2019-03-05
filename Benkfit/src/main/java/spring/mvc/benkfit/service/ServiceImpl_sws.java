@@ -1,10 +1,14 @@
 package spring.mvc.benkfit.service;
 
 import java.io.*;
-import java.net.*;
+import java.math.BigInteger;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.*;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.admin.Admin;
+import org.web3j.protocol.http.HttpService;
 
 import spring.mvc.benkfit.persistence.DAO_sws;
 import spring.mvc.benkfit.vo.*;
@@ -20,54 +27,57 @@ import spring.mvc.benkfit.vo.*;
 @Service
 public class ServiceImpl_sws implements Service_sws {
 
+	Web3j web3j = Web3j.build(new HttpService("http://localhost:8545"));
+	Admin admin = Admin.build(new HttpService("http://localhost:8545"));
+
+	final String path = "C:\\DEV43\\ether\\keystore\\";
+	int chkNum = 0;
+
+	String fn = "0x";
+
+	BigInteger gasPrice = BigInteger.valueOf(3000000);
+	BigInteger gasLimit = BigInteger.valueOf(3000000);
+	
 	@Autowired
 	DAO_sws dao;
 
 	// 이벤트 목록
 	@Override
 	public void eventList_sws(HttpServletRequest req, Model model) {
-		// 3단계. 화면으로부터 입력받은 값을 받아온다.
-		// 페이징
-		int pageSize = 10;	// 한 페이지당 출력할 글 갯수
-		int pageBlock = 3;  // 한 블럭당 페이지 갯수
+		
+		int pageSize = 10;	
+		int pageBlock = 3;  
 
-		int cnt = 0;		// 글갯수
-		int start = 0;		// 햔재 페이지 시작 글번호
-		int end = 0;		// 현재 페이지 마지막 글번호
-		int number = 0;		// 출력용 글번호
-		String pageNum = "";	// 페이지 번호
-		int currentPage = 0;	// 현재 페이지
+		int cnt = 0;	
+		int start = 0;		
+		int end = 0;		
+		int number = 0;		
+		String pageNum = "";	
+		int currentPage = 0;	
 
-		int pageCount = 0;		// 페이지 갯수
-		int startPage = 0;		// 시작 페이지
-		int endPage = 0;		// 마지막 페이지
-
+		int pageCount = 0;		
+		int startPage = 0;		
+		int endPage = 0;		
+		
 		String strId = (String) req.getSession().getAttribute("cId");
 
-		// 5-1단계. 글갯수 구하기
 		cnt = dao.getEventCnt(strId);
 
-		System.out.println("cnt : " + cnt);		// 먼저 테이블에 30건을 insert
+		System.out.println("cnt : " + cnt);		
 
 		pageNum = req.getParameter("pageNum");
 
 		if(pageNum == null) {
-			pageNum = "1";		// 첫페이지를 1페이지로 지정
+			pageNum = "1";		
 		}
+		currentPage = Integer.parseInt(pageNum);	
 
-		// 글 30건 기준
-		currentPage = Integer.parseInt(pageNum);	// 현재 페이지 : 1
 		System.out.println("currentPage : " + currentPage);
 
-		// 페이지 갯수 구하기 6 = (30 / 5) + (0)
-		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	// 페이지 갯수 + 나머지 있으면 1
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1 : 0);	
 
-		// 햔재 페이지 시작 글번호 1 (페이지별)
-		// 1 = (1 - 1) * 5 + 1
 		start = (currentPage - 1) * pageSize + 1;
 
-		// 현재 페이지 마지막 글번호 (페이지별)
-		// 5 = 1 +  -1;
 		end = start + pageSize - 1;
 
 		System.out.println("start : " + start);
@@ -75,50 +85,40 @@ public class ServiceImpl_sws implements Service_sws {
 
 		if(end > cnt) end = cnt;
 
-		// 출력용 글번호
-		// 30 = 30 - (1 - 1) * 5
-		number = cnt - (currentPage - 1) * pageSize;	// 출력용 글번호
+		number = cnt - (currentPage - 1) * pageSize;	
 
 		System.out.println("number : " + number);
 		System.out.println("pageSize : " + pageSize);
 
 		if(cnt > 0) {
-			// 5-2. 게시글 목록 조회
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);
 
 			List<EventVo> dtos = dao.getEventList(map);
 
-			req.setAttribute("dtos", dtos);		// 큰 바구니 : 게시글 목록   cf) 작은바구니 : 게시글 1건
+			req.setAttribute("dtos", dtos);		
 		}
 
-		// 6단계. request나 session에 처리 결과를 저장 (jsp에 전달하기 위함)
-
-
-		// 시작페이지
-		// 1 = (1 / 3) * 3 + 1;
 		startPage = (currentPage / pageBlock) * pageBlock + 1;
 		if(currentPage % pageBlock == 0) startPage -= pageBlock;
 		System.out.println("startPage : " + startPage);
 
-		// 마지막 페이지
-		// 3 = 1 + 3 - 1;
 		endPage = startPage + pageBlock - 1;
 		if(endPage > pageCount) endPage = pageCount;
 		System.out.println("endPage : " + endPage);
 		System.out.println("============================");
 
-		req.setAttribute("cnt", cnt);			// 글 갯수
-		req.setAttribute("number", number);		// 출력용 글번호
-		req.setAttribute("pageNum", pageNum);	// 페이지 번호
+		req.setAttribute("cnt", cnt);			
+		req.setAttribute("number", number);		
+		req.setAttribute("pageNum", pageNum);	
 
 		if(cnt > 0) {
-			req.setAttribute("startPage", startPage);		// 시작페이지
-			req.setAttribute("endPage", endPage);			// 마지막 페이지
-			req.setAttribute("pageBlock", pageBlock);	  	// 출력할 페이지 갯수
-			req.setAttribute("pageCount", pageCount);   	// 페이지 갯수
-			req.setAttribute("currentPage", currentPage); 	// 현재 페이지
+			req.setAttribute("startPage", startPage);		
+			req.setAttribute("endPage", endPage);			
+			req.setAttribute("pageBlock", pageBlock);	  	
+			req.setAttribute("pageCount", pageCount);   	
+			req.setAttribute("currentPage", currentPage); 	
 		}
 	}
 
@@ -128,7 +128,6 @@ public class ServiceImpl_sws implements Service_sws {
 
 		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
 		String eve_num = req.getParameter("eve_num");
-
 
 		EventVo vo = dao.getEvent(eve_num);
 
@@ -198,13 +197,10 @@ public class ServiceImpl_sws implements Service_sws {
 	@Override
 	public void event_modifyForm_sws(HttpServletRequest req, Model model) {
 
-		int pageNum = Integer.parseInt(req.getParameter("pageNum"));
+		String pageNum = req.getParameter("pageNum");
 		String eve_num = req.getParameter("eve_num");
 
-
 		EventVo vo = dao.getEvent(eve_num);
-
-		vo = dao.getEvent(eve_num);
 
 		req.setAttribute("dto", vo);
 		req.setAttribute("pageNum", pageNum);	 
@@ -257,6 +253,7 @@ public class ServiceImpl_sws implements Service_sws {
 
 			int updateCnt = dao.updateEvent(vo);
 
+			req.setAttribute("eve_num", eve_num);
 			req.setAttribute("updateCnt", updateCnt);
 			req.setAttribute("pageNum", pageNum);
 		} catch (Exception e) {
@@ -282,16 +279,68 @@ public class ServiceImpl_sws implements Service_sws {
 		String chart = map.toString();
 		req.setAttribute("YearChat", chart);
 	}
+	
 	@Override
 	public void chartList1(HttpServletRequest req, Model model) {
 		JSONObject map = (JSONObject)dao.getMonthChat();
 		String chart = map.toString();
 		req.setAttribute("MonthChat", chart);
 	}
+	
 	@Override
 	public void chartList2(HttpServletRequest req, Model model) {
 		JSONObject map = (JSONObject)dao.getDayChat();
 		String chart = map.toString();
 		req.setAttribute("DayChat", chart);
+	}
+
+	@Override
+	public void getMap(HttpServletRequest req, Model model) throws IOException {
+		
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\output\\map.py");
+		Process p  = pb.start();    // 프로세스 호출
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+		String line = "";
+
+		StringBuilder sb = new StringBuilder();
+		System.out.println("시작!");
+
+		while((line = br.readLine()) != null) {
+			sb.append(line + "\n");
+			System.out.println("sdf: " + sb.append(line + "\n"));
+		}
+		String info = sb.toString();
+
+		System.out.println(info);
+		System.out.println("종료!");
+
+		br.close();
+		
+		// 파일 읽기
+		File file = new File("C:\\DEV43\\python\\output\\map.csv");
+		
+		BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(file),"MS949"));
+
+		List<String> list = new ArrayList<String>();
+		
+		String line2 = "";
+		while(br2.ready()) {
+			line2 = br2.readLine();
+			list.add(line2);
+		}
+		
+		br2.close();
+		list.remove(0);
+		
+		Map<String, String> map = new HashMap<String, String>();
+		for(String str : list) {
+			String add = str.split(",")[0];
+			String ban = str.split(",")[1];
+			
+			map.put(add, ban);
+		}
+		req.setAttribute("map", map);
 	}
 }

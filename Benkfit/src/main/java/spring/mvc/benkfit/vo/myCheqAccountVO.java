@@ -14,6 +14,7 @@ public class myCheqAccountVO {
 	private String c_id; /* 고객 아이디 */
 	private double cheq_rate; /* 연이율 */
 	private String code; /* 계좌 종류 */
+	private String pwd;  /* 계좌생성할때 받는 비밀번호 */
 	
 	public String getMyCheq_account() {
 		return myCheq_account;
@@ -75,6 +76,12 @@ public class myCheqAccountVO {
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	
 	@Override
