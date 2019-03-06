@@ -17,6 +17,7 @@
 			var path2 = path.split("\\");
 			var path3 = path2.length;
 			var path4 = path2[path3 - 1];
+			
 			$('#file_text').val(path4);
 
 			$.ajax({
@@ -36,12 +37,14 @@
 					$("#doc_period_from").val(data.split("/")[9]);
 					$("#doc_period_to").val(data.split("/")[10]);
 					swal("파일 업로드", "OK", "success");
-				},beforeSend:function(){
-		              $('.wrap-loading').removeClass('display-none');
-		          },
-		          complete:function(){
-		              $('.wrap-loading').addClass('display-none');
-		          },
+				},
+				beforeSend : function(xhr) {
+					$('.wrap-loading').removeClass('display-none');
+					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+				},
+				complete : function() {
+					$('.wrap-loading').addClass('display-none');
+				},
 				error : function() {
 					swal("오류", "다시 시도하세요.", "error");
 				}
@@ -50,36 +53,42 @@
 	});
 </script>
 <style>
-	.wrap-loading{ 
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',endColorstr='#20000000');    /* ie */
-	}
-   .wrap-loading div{ /*로딩 이미지*/
-       position: fixed;
-       top:50%;
-       left:50%;
-       margin-left: -21px;
-       margin-top: -21px;
-   }
-    .display-none{ /*감추기*/
-       display:none;
-   }
+.wrap-loading {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
+		endColorstr='#20000000'); /* ie */
+}
+
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+}
+
+.display-none { /*감추기*/
+	display: none;
+}
 </style>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrap-loading display-none">
-	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
-	</div> 
+		<div>
+			<img src="/benkfit/resources/img/loading/loading.gif">
+		</div>
+	</div>
 	<div class="wrapper">
-		<p style="float: right; font-size:12px;">마이페이지>조회>대출관리>내서류>서류등록</p><br>
-		<hr>
+		<p style="float: right; font-size: 12px;">마이페이지>조회>대출관리>내서류>서류등록</p>
 		<br>
-		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;
+		<hr>
+		<br> <label>서류양식<span class="text-danger">*</span></label> &nbsp;
+		&nbsp;
 		<button class="btn btn-success eq-ui-waves-light"
 			onclick="window.location='down'">서류양식다운로드</button>
 		&nbsp;
@@ -88,32 +97,31 @@
 			<form action="upresult" method="post" name="fileup"
 				enctype="multipart/form-data">
 				<table class="table_kay">
-				<!-- <div class="form-group"> -->
+					<!-- <div class="form-group"> -->
 					<tr>
 						<th>서류업로드 *</th>
 						<td>
-						<div class="row">
-				<div class="col-md-8">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="eq-ui-form-group eq-ui-input-file">
-								<a class="btn btn-primary eq-ui-waves-light"
-									id="file" onclick="selectFile();">
-									Upload
-								<input type="file" class="eq-ui-input" id="doc_img" name="doc_img"
-									name="document_text">
-									</a>
-								<div class="eq-ui-input-file-path">
-									<input type="text" id="doc_img" name="doc_img" class="eq-ui-input"
-									placeholder="서류업로드 해주세요." readonly>
+							<div class="row">
+								<div class="col-md-8">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="eq-ui-form-group eq-ui-input-file">
+												<a class="btn btn-primary eq-ui-waves-light" id="file"
+													onclick="selectFile();"> Upload <input type="file"
+													class="eq-ui-input" id="doc_img" name="doc_img"
+													name="document_text">
+												</a>
+												<div class="eq-ui-input-file-path">
+													<input type="text" id="doc_img" name="doc_img"
+														class="eq-ui-input" placeholder="서류업로드 해주세요." readonly>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							</div>
-						</div>
-					</div>
-					</div>
-				</div>
-				</td>
-				</tr>
+						</td>
+					</tr>
 					<tr>
 						<th>서류명</th>
 						<td>
@@ -217,12 +225,12 @@
 					<tr>
 						<th>직위</th>
 						<td>
-						<div class="col-md-6">
+							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="eq-ui-form-group eq-ui-input-field">
 											<input type="text" class="eq-ui-input" id="doc_position"
-										name="doc_position">
+												name="doc_position">
 										</div>
 									</div>
 								</div>
@@ -232,12 +240,12 @@
 					<tr>
 						<th>회사주소</th>
 						<td colspan="3">
-						<div class="col-md-9">
+							<div class="col-md-9">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="eq-ui-form-group eq-ui-input-field">
-										<input type="text" class="eq-ui-input"
-											id="doc_comAddress" name="doc_comAddress" size="100">
+											<input type="text" class="eq-ui-input" id="doc_comAddress"
+												name="doc_comAddress" size="100">
 										</div>
 									</div>
 								</div>
@@ -247,23 +255,22 @@
 					<tr>
 						<th>기간</th>
 						<td>
-						<div class="col-md-6">
+							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="eq-ui-form-group eq-ui-input-field">
-										<input type="text" class="eq-ui-input"
-							id="doc_period_from" name="doc_period_from" placeholder="부터(시작일)">
+											<input type="text" class="eq-ui-input" id="doc_period_from"
+												name="doc_period_from" placeholder="부터(시작일)">
 										</div>
 									</div>
 								</div>
 							</div>
-						<div class="col-md-6">
+							<div class="col-md-6">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="eq-ui-form-group eq-ui-input-field">
-										  <input
-									type="text" class="eq-ui-input" id="doc_period_to"
-									name="doc_period_to" placeholder="까지(종료일)">
+											<input type="text" class="eq-ui-input" id="doc_period_to"
+												name="doc_period_to" placeholder="까지(종료일)">
 										</div>
 									</div>
 								</div>

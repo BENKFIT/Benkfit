@@ -69,7 +69,6 @@ public class ScheduleT {
 				int amount = list.getAuto_value();
 				BigInteger value = BigInteger.valueOf(amount);
 				String file = list.getAuto_file();
-				file = path.concat(file);
 				String password = list.getAuto_pwd();
 				
 				String blockHash = "";
@@ -119,7 +118,7 @@ public class ScheduleT {
 				double rate = vo.getCheq_rate();
 				String c_id = vo.getC_id();
 				
-				BigInteger interest = BigInteger.valueOf((long) (amount * rate / 12));
+				BigInteger interest = BigInteger.valueOf((long) (amount * rate / 365));
 				amount += interest.intValue();
 				try {
 					Credentials credentials = WalletUtils.loadCredentials(owner_pwd, owner_file);
@@ -163,7 +162,7 @@ public class ScheduleT {
 				double rate = list.getMySav_rate();
 				String c_id = list.getC_id();
 				
-				BigInteger interest = BigInteger.valueOf((long) (amount * rate / 12));
+				BigInteger interest = BigInteger.valueOf((long) (amount * rate / 365));
 				amount += interest.intValue();
 				
 				try {

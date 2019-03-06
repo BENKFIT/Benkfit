@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -269,5 +272,13 @@ public class Controller_syk {
 		service.trans(req);
 		
 		return "mypage_kay/trans/getMyAccounts";
+	}
+	
+	// 권한이 없는 사용자에게 안내 페이지 출력
+	@RequestMapping("/common/denied")
+	public String denied(Model model, Authentication auth, HttpServletRequest req) {
+		AccessDeniedException ade = (AccessDeniedException) req.getAttribute(WebAttributes.ACCESS_DENIED_403);
+		model.addAttribute("errMsg", ade);
+		return "common/denied";
 	}
 }

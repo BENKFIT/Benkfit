@@ -105,24 +105,25 @@
       var path3 = path2.length;
       var path4 = path2[path3-1];
       $('#file_text').val(path4);
-      
       $.ajax({
-          type: "POST",
+          type: 'post',
           data: "file=" + path4,
-          url: "${pageContext.request.contextPath}/getText", //{컨트롤러}/이동페이지
+          url: "${pageContext.request.contextPath}/getText",
           success: function(data) {
             $("#name").val(data.split("/")[0]);
             $("#fileAjax").css("visibility", "visible");
             $("#fileAjax").css("background-color", "#c4daff");
-            $("#fileAjax").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1].trim());
+            $("#fileAjax").html("주민번호 뒷자리:"+data.split("/")[1].split("-")[1]);
             $("#name").css("background-color", "#c4daff");
             $("#jumin1").css("background-color", "#c4daff");
             $("#jumin2").css("background-color", "#c4daff");
-            $("#jumin1").val(data.split("/")[1].split("-")[0].trim());
-            $("#jumin2").val(data.split("/")[1].split("-")[1].trim());
+            $("#jumin1").val(data.split("/")[1].split("-")[0]);
+            $("#jumin2").val(data.split("/")[1].split("-")[1]);
             $("#jumin2").click();
           },
-          beforeSend:function(){
+          beforeSend:function(xhr){
+        	  //비밀번호 인증시, 아래 한 줄 누락시키면 deniedHandler로 이동
+              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
               $('.wrap-loading').removeClass('display-none');
           },
           complete:function(){
@@ -496,8 +497,8 @@
     <div class="col-lg-4 col-md-4 mx-auto">
     <div class="card">
       <div class="card-body">
-      <form action="signInPro" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();">
-      
+      <form action="./signInPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();" >
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       <input type="hidden" name="hiddenJumin" value="0">
       <input type="hidden" name="hiddenAgree" value="0">
       <!-- <input type="hidden" name="shaPwd" value=""> -->

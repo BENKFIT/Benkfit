@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,25 +49,25 @@ public class Controller_lia {
 		return "common/login";
 	}
 	
-	// 로그인 처리
+	/*// 로그인 처리
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loginPro 호출중");
 		service.loginPro(req, model);
-		/* 세션id 구하기
+		 세션id 구하기
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal(); 
 		String sessionId = user.getUsername();
-		System.out.println("세션 : " + sessionId); */
+		System.out.println("세션 : " + sessionId); 
 		return "common/loginPro";
-	}
+	}*/
 	
 	// 로그아웃
 	@RequestMapping("logout")
-	public String logout(HttpServletRequest req) throws Exception {
+	public String logout(HttpSession session) throws Exception {
 		logger.info("logout 호출중");
-		req.getSession().invalidate();
-		return "Template/index";
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 	// 회원가입 양식
@@ -111,7 +112,7 @@ public class Controller_lia {
 	@RequestMapping("signInPro")
 	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
 		logger.info("signInPro 호출중");
-		service.signInPro(req, model);
+		service.signInPro(req,  model);
 		return "common/signInPro";
 	}
 	

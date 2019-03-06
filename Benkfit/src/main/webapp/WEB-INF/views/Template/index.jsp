@@ -7,9 +7,8 @@
 <title>BenkFit</title>
 <script type="text/javascript">
     
-     /* 
-    window.onload = function() {
-       $.ajax({
+    
+       /* $.ajax({
              type: "POST",
              url : "${pageContext.request.contextPath}/marketprice",
              success: function(data) {
@@ -18,13 +17,9 @@
              error: function() {
                alert("error");
              }
-           });
-    }  
-    }  */
-    
-     window.onload = function() {
-      /* setInterval(function() { */
-        $.ajax({
+           }); */
+      /* setInterval(function() { 
+          $.ajax({
               type: "POST",
               url : "${pageContext.request.contextPath}/marketprice",
               success: function(data) {
@@ -34,8 +29,7 @@
                 alert("error");
               }
             });
-       /*  }, 1000) */
-    }
+        }, 1000) */
 </script>
 </head>
 <body>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="spring.mvc.benkfit.persistence.UserDAO">
+
+	<!-- 회원가입 -->
+	<insert id="insertUser" parameterType="java.util.Map">
+		INSERT INTO users(userid, passwd, name, enabled, authority) 
+		VALUES(#{userid},#{passwd},#{name},1,#{authority})
+	</insert>
+	
+	<!-- 로그인 -->
+	<!-- 스프링 시큐리티에서 체크하는 필드로 별칭을 줌, 암호화된 비밀번호와 사용자가 입력한 비밀번호를 가 내부로직으로 비교처리-->
+	<select id="selectUser" resultType="java.util.Map"> <!-- #{map의 key} -->
+		SELECT 
+			userid as username, passwd as password, name, enabled, authority
+		  FROM users
+		 WHERE userid=#{userid}
+	</select>
+		
+</mapper>
+    

@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +34,9 @@ public class Controller_kay {
 	/*마이페이지*/	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("mypage")
-	public String mypage_kay(HttpServletRequest req, Model model) throws Exception{
+	public String mypage_kay(HttpServletRequest req, Model model, Authentication authentication) throws Exception{
 		logger.info("mypage_kay");
-		service.mypage_info(req, model);
+		service.mypage_info(req, model, authentication);
 		service.myCheq_list(req, model);
 		service.myloan_list(req, model);
 		service.mysav_list(req, model);
@@ -221,12 +223,14 @@ public class Controller_kay {
 	public String signIn() throws Exception {
 		return "mypage_kay/loan_docu/uploadForm_kay";
 	}
+	
 	//문서서류인식
-	@RequestMapping("value") 
+	@RequestMapping("value")
+	@Secured("ROLE_USER")
 	public String getText(String file, Model model) throws IOException {
 		logger.info("value");
 		service.getText(file, model);
-		return "mypage_kay/loan_docuvalue_kay";
+		return "mypage_kay/loan_docu/value_kay";
 	}
 	//서류등록처리
 	@RequestMapping("upresult")

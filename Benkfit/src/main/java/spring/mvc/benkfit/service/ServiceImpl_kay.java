@@ -43,11 +43,9 @@ public class ServiceImpl_kay implements Service_kay{
 
 	//마이페이지 내 정보
 	@Override
-	public void mypage_info(HttpServletRequest req, Model model) {
+	public void mypage_info(HttpServletRequest req, Model model, Authentication authentication) {
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
-		User user = (User) securityContext.getPrincipal(); 
-		String id = user.getUsername();
-
+		String id = authentication.getName();
 		UsersVO usVO = dao.mypage_info(id) ;
 
 		model.addAttribute("usVO", usVO);
@@ -506,8 +504,8 @@ public class ServiceImpl_kay implements Service_kay{
 		br.close();	
 
 		//파일 객체 생성
-		//Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");
-		Path path = Paths.get("/Users/banhun/tesseract/output/get.txt");
+		Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");
+		//Path path = Paths.get("/Users/banhun/tesseract/output/get.txt");
 		// 캐릭터셋 지정
 		Charset cs = StandardCharsets.UTF_8;
 		//파일 내용담을 리스트
