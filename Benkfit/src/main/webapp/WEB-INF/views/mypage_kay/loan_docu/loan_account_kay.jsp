@@ -71,15 +71,6 @@
 						</div>
 					</div>
 				</td>
-				<td style="text-align: right;">
-					<div class="eq-ui-form-group eq-ui-input-file">
-
-						<a class="btn btn-primary eq-ui-waves-light"> Upload <input
-							type="file" id="from">
-						</a>
-
-					</div>
-				</td>
 			</tr>
 			<tr>
 				<th>비밀번호</th>
@@ -134,7 +125,7 @@
 				<th>조회조건</th>
 				<td
 					class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
-					<input name="option" type="radio" id="test1" value="1"
+					<input name="option" type="radio" checked id="test1" value="1"
 					class="eq-ui-input with-gap" /> <label for="test1">전체</label> <input
 					name="option" type="radio" id="test2" value="2"
 					class="eq-ui-input with-gap" /> <label for="test2">입금</label> <input
@@ -148,7 +139,7 @@
 				<td colspan="3"
 					class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
 					<div class="eq-ui-form-group">
-						<input name="order" type="radio" id="test4" value="4"
+						<input name="order" type="radio" checked id="test4" value="4"
 							class="eq-ui-input with-gap" /> <label for="test4">최근거래순</label>
 						<input name="order" type="radio" id="test5" value="5"
 							class="eq-ui-input with-gap" /> <label for="test5">과거거래순</label>
@@ -160,7 +151,7 @@
 				<td colspan="3"
 					class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
 					<div class="eq-ui-form-group">
-						<input name="num" type="radio" id="test6" value="10"
+						<input name="num" type="radio" checked id="test6" value="10"
 							class="eq-ui-input with-gap" /> <label for="test6">10건</label> <input
 							name="num" type="radio" id="test7" value="20"
 							class="eq-ui-input with-gap" /> <label for="test7">20건</label> <input
@@ -317,7 +308,7 @@ $(".srch_area :button").click(function(){
 				$('#messages2').html(data);
 			},
 			error : function() {
-				alert("오류");
+				alert("금액을 입력하세요.");
 				$('#messages2').html("다시 시도해주세요.");
 			}
 		});
@@ -340,7 +331,8 @@ $(".srch_area :button").click(function(){
 				$('#messages1').html(data);
 			},
 			error : function() {
-				alert("오류")
+				alert("대출이 없습니다.");
+				$('#messages1').html("대출이 없습니다.");
 			}
 		});
 	}

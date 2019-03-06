@@ -276,7 +276,7 @@ public class Controller_kay {
 	public String getText(String file, Model model) throws IOException {
 		logger.info("value");
 		service.getText(file, model);
-		return "mypage_kay/loan_docuvalue_kay";
+		return "mypage_kay/loan_docu/value_kay";
 	}
 	
 	//서류등록처리

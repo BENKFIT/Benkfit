@@ -20,7 +20,7 @@
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t1">Start/End</a></li>
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t2">배포</a></li>
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t3">자금현황</a></li>
-						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t4">결산</a></li>
+						<li class="eq-ui-tab" id="btn0"><a href="#eq-ui-tab-s2-t4">결산</a></li>
 					</ul>
 				</div>
 
@@ -109,6 +109,10 @@
 					<td id="loan_balance">${loan_balance}</td>
 				</tr>
 				<tr>
+					<td class="eq-ui-data-table-cell-non-numeric">State</td>
+					<td id="state1"></td>
+				</tr>
+				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">name</td>
 					<td id="name">${name}</td>
 				</tr>
@@ -143,7 +147,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<!-- 등록 modal -->
 	<div class="modal fade" id="deploy" tabindex="-1" role="dialog"
@@ -221,7 +224,7 @@
 			var alldata = {
 				'value' : value 
 			};
-			$('#state').html("자금 이동중입니다. 잠시만 기다려주세요.");
+			$('#state1').html("자금 이동중입니다. 잠시만 기다려주세요.");
 
 			$.ajax({
 				url : "${pageContext.request.contextPath}/benkfitLoanStock",
@@ -234,14 +237,14 @@
 						$('#name').html(data.name);
 						$('#remaning').html(data.remaning);
 						$('#loan_balance').html(data.loan_balance);
-						$('#state').html("자금 이동 성공.");
+						$('#state1').html("자금 이동 성공.");
 					} else {
-						$('#state').html("다시 시도하세요.");
+						$('#state1').html("다시 시도하세요.");
 					}
 				},
 				error : function() {
 					alert("다시 시도하세요.");
-					$('#state').html("다시 시도하세요.");
+					$('#state1').html("다시 시도하세요.");
 				}
 			});
 		}
@@ -290,12 +293,14 @@
 			});
 		}
 	</script>
-	
+
 	<!-- Chart -->
 	<script type="text/javascript">
+		
 	var queryObject = "";
 	var queryObjectLen = "";
 
+	$('#btn0').click(function(){
 		$.ajax({
 			type : 'POST',
 			url : '${pageContext.request.contextPath}/chartYear_sws',
@@ -316,6 +321,12 @@
 							function drawDashboard() {
 								var data = new google.visualization.DataTable();
 								//그래프에 표시할 컬럼 추가
+								/* data = [
+									["날짜", queryObject.barlist[0].day],
+									["예금 가입자 수", queryObject.barlist[0].value1],
+									["적금 가입자 수", queryObject.barlist[0].value2],
+									["대출 가입자 수", queryObject.barlist[0].value1]
+								]; */
 								data.addColumn('number', '날짜');
 								data.addColumn('number', '예금 가입자 수');
 								data.addColumn('number', '적금 가입자 수');
@@ -327,7 +338,7 @@
 									var value1 = queryObject.barlist[i].value1;
 									var value2 = queryObject.barlist[i].value2;
 									var value3 = queryObject.barlist[i].value3;
-
+										
 									data.addRow([ day, value1, value2, value3 ]);
 								}
 								var chart = new google.visualization.ChartWrapper(
@@ -468,7 +479,8 @@
 				alert('server error occured');
 			}
 		});
-		
+	})
+	
 	$('#btn').click(function(){
 		$.ajax({
 			type : 'POST',
@@ -976,8 +988,7 @@
 								date_formatter.format(data, 0);
 
 								var dashboard = new google.visualization.Dashboard(
-										document
-												.getElementById('Line_Controls_Chart'));
+										document.getElementById('Line_Controls_Chart'));
 								window.addEventListener('resize',
 										function() {
 											dashboard.draw(data);

@@ -13,6 +13,7 @@
 		</c:when>
 		<c:when test="${deployPro == 1}">
 			<script type="text/javascript">
+				alert("배포에 성공하셨습니다.");
 				window.location = "manage";
 			</script>
 		</c:when>

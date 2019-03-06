@@ -45,8 +45,8 @@
 	
 	<!-- 계정체크 -->
 	<select id="account_chenk" parameterType="String" resultType="int">
-		select * from myloanaccount_tbl 
-		where myloan_account = #{myloan_account};
+		select count(*) from myloanaccount_tbl 
+		where myloan_account = #{myLoan_account}
 	</select>
 
 	<!-- 대출금리 -->

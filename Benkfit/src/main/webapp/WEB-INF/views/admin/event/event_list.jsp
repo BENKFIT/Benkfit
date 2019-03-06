@@ -257,6 +257,7 @@
 function eventUpdate(eve_num) {
 	var num = "eve_num=" + eve_num;
 	alert(num);
+	
 	$.ajax({
 			type : 'post',
 			data : num,
@@ -270,8 +271,5 @@ function eventUpdate(eve_num) {
 			}
 		});
 	}
-$('#exampleModalUpdate').modal('hide', function(){
-	$('#res').html();
-});
 </script>
 </html>
