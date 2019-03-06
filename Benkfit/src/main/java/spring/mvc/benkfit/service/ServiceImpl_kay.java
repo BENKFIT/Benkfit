@@ -479,7 +479,7 @@ public class ServiceImpl_kay implements Service_kay{
 	
 	// 파일 업로드 & 텍스트 인식
 	@Override
-	public void getText(String file, Model model) throws IOException {
+	public void value(String file, Model model) throws IOException {
 
 		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
 		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/benkfit.py", file);
@@ -577,7 +577,7 @@ public class ServiceImpl_kay implements Service_kay{
 	//서류등록처리
 	@SuppressWarnings("deprecation")
 	@Override
-	public void signInPro(MultipartHttpServletRequest req, Model model) {
+	public void indocu(MultipartHttpServletRequest req, Model model) {
 		
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();

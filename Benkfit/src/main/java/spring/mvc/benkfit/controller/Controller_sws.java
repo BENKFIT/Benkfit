@@ -72,7 +72,7 @@ public class Controller_sws {
 		logger.info("firstVisit_sws");
 		return "common/info/firstVisit";
 	}
-
+	
 	// FAQ
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("faq_sws")

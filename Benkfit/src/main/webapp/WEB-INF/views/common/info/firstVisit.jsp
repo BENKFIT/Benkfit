@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <html>
-<<<<<<< HEAD
 <style>
 td, tr>th, p {
 	text-align: center;
@@ -20,9 +19,6 @@ thead>tr {
 }
 </style>
 <title>안내 > 첫방문 고객 안내</title>
-=======
-<title> 안내 > 첫방문 고객안내</title>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div style="margin-top: 200px; text-align: center;">
