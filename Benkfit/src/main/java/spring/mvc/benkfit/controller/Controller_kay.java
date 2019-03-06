@@ -284,7 +284,7 @@ public class Controller_kay {
 	@RequestMapping("test")
 	public String test(HttpServletRequest req, Model model) throws Exception{
 		logger.info("123");
-		return "Template/chart";
+		return "mypage_kay/up_del/s";
 	}
 	@RequestMapping("table")
 	public String table(HttpServletRequest req, Model model) throws Exception{

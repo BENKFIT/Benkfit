@@ -3,6 +3,7 @@
 <html>
 <body>
 <head>
+<title> 위치 > ATM </title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script>
 	L_PREFER_CANVAS = false;
@@ -45,7 +46,6 @@ html, body {
 	left: 0;
 }
 </style>
-
 <meta name="viewport"
 	content="width=device-width,
         initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />

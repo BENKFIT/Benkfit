@@ -3,6 +3,7 @@ v<%@ page language="java" contentType="text/html; charset=UTF-8"
 <%@ include file="../../Template/setting.jsp"%>
 <!DOCTYPE html>
 <html>
+<title> 마이페이지 > 적금계좌조회</title>
 <head>
 <script>
 	function ajaxTest() {
@@ -32,7 +33,7 @@ v<%@ page language="java" contentType="text/html; charset=UTF-8"
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<p style="float:right;font-size:15px;">마이페이지>조회>적금계좌조회</p>
+		<span class="style">마이페이지>조회>적금계좌조회</span>
 		<br>
 		<hr>
 		<br>

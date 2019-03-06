@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
-<title>회원정보수정
+<title>회원정보수정-비밀번호확인
 </title>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);

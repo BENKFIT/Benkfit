@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <head>
-<title>이용시간안내</title>
+<title> 안내 > 이용시간안내</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script
@@ -28,7 +28,7 @@ thead>tr{
 	<%@ include file="../../Template/top.jsp"%>
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-			<span style="float: right;">이용안내>예금/적금</span>
+			<span class="style">이용안내 > 예금/적금</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -50,7 +50,7 @@ thead>tr{
 				</tbody>
 			</table>
 
-			<span style="float: right;">이용안내>이체</span>
+			<span class="style">이용안내 > 이체</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -72,7 +72,7 @@ thead>tr{
 				</tbody>
 			</table>
 
-			<span style="float: right;">이용안내>대출</span>
+			<span class="style">이용안내 > 대출</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>

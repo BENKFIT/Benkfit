@@ -28,19 +28,16 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-<title>체험관 > 거래검증소</title>
+<title> 체험관 > 거래검증소 </title>
 <body>
-
 	<!-- TOP&SIDE -->
 	<%@ include file="../../Template/top.jsp"%>
-
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
-		<div
-			style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
+		<div style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
 			<h3 style="padding-left: 22px; text-align: center;">Easy
 				Verification</h3>
+			<span class="style">체험관 > 거래검증소</span> <br>
 			<hr style="width: 1100px;">
-			<span style="float: right;">체험관 > 거래검증소</span> <br>
 			<table style="width: 300px; display: inline">
 				<tr>
 					<td colspan="8"><p>Tx_hash로 당신의 거래를 검증하세요.</p></td>

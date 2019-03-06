@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../Template/setting.jsp"%>
 <html>
+<title>체험관 > 간편은행</title>
 <style type="text/css">
 input, select {
 	padding: 6px 10px;
@@ -58,11 +59,8 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-
 <body>
-
 <%@ include file ="../Template/top.jsp" %>
-
 	<div style="margin-top: -30px; height: 40%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%; margin: 200px 0px;">
 			<p class="title">간편 은행</p>

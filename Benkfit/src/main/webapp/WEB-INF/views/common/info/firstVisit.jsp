@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp" %> 
 <html>
+<title> 안내 > 첫방문 고객안내</title>
 <body>
 	<%@ include file ="../../Template/top.jsp" %>
 		

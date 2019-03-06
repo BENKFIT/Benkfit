@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>qrCode</title>
+<title> 설정 > QRcode발급</title>
 </head>
 <body>
 <%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<p style="float:right;font-size:15px;">마이페이지>설정>QRcode발급</p>
+		<span class="style">마이페이지>설정>QRcode발급</span>
 		<br>
 		<hr>
 		<div style="margin-left:18%;">

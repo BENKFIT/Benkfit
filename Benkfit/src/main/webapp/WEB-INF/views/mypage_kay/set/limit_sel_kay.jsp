@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>이체한도 조회</title>
+<title> 설정 > 이체한도 조회</title>
 <script>
 	function getSelectValue(frm) {
 		frm.optionValue.value = frm.account_limit.options[frm.account_limit.selectedIndex].value;

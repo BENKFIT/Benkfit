@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>마이페이지</title>
+<title> 고객 > 마이페이지</title>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
@@ -139,7 +139,7 @@ function setting(){
 		<div id="tab1" class="acc_content">
 				<!--Content-->
 				<br>
-				<span class="style">마이페이지>조회>예금관리</span>
+				<span class="style"> 마이페이지 > 조회 > 예금관리</span>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color: #2980b9; color: white;">
@@ -167,7 +167,7 @@ function setting(){
 					</tbody>
 				</table>
 				<br>
-				<span class="style">마이페이지>조회>적금관리</span>
+				<span class="style"> 마이페이지 > 조회 > 적금관리</span>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color: #2980b9; color: white;">
@@ -194,7 +194,7 @@ function setting(){
 					</tbody>
 				</table>
 				<br>
-				<span class="style">마이페이지>조회>대출관리</span>
+				<span class="style"> 마이페이지 > 조회 > 대출관리</span>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color:#2980b9;color:white;">

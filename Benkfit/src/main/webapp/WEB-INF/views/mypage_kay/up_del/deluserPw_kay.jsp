@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
-<title>회원탈퇴</title>
+<title> 고객 > 회원탈퇴</title>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 .form {

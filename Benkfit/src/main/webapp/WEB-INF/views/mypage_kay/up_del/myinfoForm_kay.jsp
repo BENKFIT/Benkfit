@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
-<title>회원정보수정</title>
+<title> 마이페이지 > 회원정보수정</title>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
@@ -16,7 +16,7 @@
 	</c:if>
 	<div class="wrapper">
 		<form action="myinfoPro" method="post">
-			<p style="float:right;font-size:15px;">마이페이지>회원정보수정</p>
+			<span class="style">마이페이지>회원정보수정</span>
 			<br>
 			<hr>
 			<table class="table_kay">

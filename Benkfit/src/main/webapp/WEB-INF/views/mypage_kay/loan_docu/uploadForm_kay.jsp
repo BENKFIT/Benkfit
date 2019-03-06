@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>서류등록</title>
+<title> 대출관리 > 서류등록</title>
 <script>
 	//파일업로드 버튼 기능
 	function selectFile() {
@@ -76,7 +76,7 @@
 	    <div>	<img src="/benkfit/resources/img/loading/478 (7).gif"></div>
 	</div> 
 	<div class="wrapper">
-		<p style="float: right; font-size:15px;">마이페이지>조회>대출관리>내서류>서류등록</p><br>
+		<span class="style">마이페이지 > 조회 > 대출관리 > 내서류 > 서류등록</span><br>
 		<hr>
 		<br>
 		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;

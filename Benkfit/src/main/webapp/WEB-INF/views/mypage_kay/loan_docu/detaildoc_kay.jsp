@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>정보등록</title>
+<title> 대출관리 > 서류상세페이지 </title>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>

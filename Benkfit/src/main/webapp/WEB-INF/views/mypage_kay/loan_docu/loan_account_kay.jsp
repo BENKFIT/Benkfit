@@ -4,100 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>대출계좌</title>
-<script>
-function selectFile() {
-	document.getElementById("file").click();
-}
-	function ajaxTest() {
-		var account = $("#myLoan_account option:selected").val();
-		var start_date = $('input[name="start_date"]').val();
-		var end_date = $('input[name="end_date"]').val();
-		var type = $('input[name="option"]:checked').val();
-		var order = $('input[name="order"]:checked').val();
-		var end = $('input[name="num"]:checked').val();
-
-		var sel_loan = "account=" + account + "&type=" + type + "&order="
-				+ order + "&start_date=" + start_date + "&end_date=" + end_date
-				+ "&end=" + end;
-
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/loan_info",
-			data : sel_loan,
-			success : function(data) {
-				$('#result').html(data);
-			},
-			error : function() {
-				alert('통신실패!!');
-			}
-		});
-	}
-	function loanBalance() {
-		var from = $('#from').val();
-		var password = $('#password').val();
-		var alldata = {
-			'from' : from,
-			'password' : password
-		};
-		$('#messages').html("대출한도를 출력중입니다.");
-		$.ajax({
-			url : "${pageContext.request.contextPath}/loanBalance",
-			type : "GET",
-			data : alldata,
-			success : function(data) {
-				$('#messages').html(data);
-			},
-			error : function() {
-				alert("오류")
-			}
-		});
-	}
-	function loanRepayment() {
-		var from = $('#from').val();
-		var amount = $("#amount").val();
-		var alldata = {
-			'from' : from,
-			'amount' : amount
-		};
-		$('#messages2').html("입력하신 금액만큼 대출을 상환중입니다.");
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/loanRepayment",
-			type : "GET",
-			data : alldata,
-			success : function(data) {
-				$('#messages2').html(data);
-			},
-			error : function() {
-				alert("오류")
-			}
-		});
-	}
-	function loanleft() {
-		var from = $('#from').val();
-		if (from == null) {
-			alert("지갑을 등록하세요.");
-		}
-		var alldata = {
-			'from' : from
-		};
-		$('#messages1').html("남은 대출금을 조회중입니다.");
-
-		$.ajax({
-			url : "${pageContext.request.contextPath}/loanleft",
-			type : "GET",
-			data : alldata,
-			success : function(data) {
-				$('#messages1').html(data);
-			},
-			error : function() {
-				alert("오류");
-			}
-		});
-	}
-</script>
-
+<title> 마이페이지 > 대출계좌조회</title>
 <!-- CSS-->
 <link
 	href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5"
@@ -129,13 +36,8 @@ function selectFile() {
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-	<div class="wrap-loading display-none">
-		<div>
-			<img src="/benkfit/resources/img/loading/loading.gif">
-		</div>
-	</div>
 	<div class="wrapper">
-		<span class="style">마이페이지>조회>대출관리</span>
+		<span class="style"> 마이페이지 > 조회 > 대출관리</span>
 		<br>
 		<hr>
 		<table class="table eq-ui-data-table z-depth-1">
@@ -154,6 +56,24 @@ function selectFile() {
 								name="doc_img" required readonly>
 						</div>
 					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>계좌선택</th>
+				<td colspan="3">
+						<select id="loan_account" class="eq-ui-select">
+						<c:choose>
+							<c:when test="${account != null}">
+								<option value="${account}">${account}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="계좌를 선택하세요." disabled selected>계좌를 선택하세요.</option>
+								<c:forEach var="lo" items="${loan}">
+									<option value="${lo.myloan_account}">${lo.myloan_account}</option>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+				</select>	
 				</td>
 			</tr>
 			<tr>
@@ -180,24 +100,20 @@ function selectFile() {
 			</tr>
 			<tr>
 				<th>상환할 금액</th>
-				<td style="text-align:left; padding-bottom: 12px;">
-					   <div class="eq-ui-form-group eq-ui-input-file">
-		                	<input type="button" class="btn btn-success" value="대출상환"
-							onclick="loanRepayment();">
-		                <div class="eq-ui-input-file-path">
-		                   <input type="text"  class="eq-ui-input" id="amount" placeholder="지갑파일을 등록하세요.">
-		                </div>
-          			  </div>
-				</td>
-				<td colspan="2" style="text-align:right;"><div id="messages2"></div></td>
-				<td style="text-align: left; padding-bottom: 12px;"><input
+				<td colspan="2" style="text-align: left; padding-bottom: 12px;"><input
 					type="button" class="btn btn-success" value="대출상환"
 					onclick="loanRepayment();">
 					<div class="eq-ui-input-file-path">
 						<input type="text" class="eq-ui-input" id="amount"
 							placeholder="지갑파일을 등록하세요.">
 					</div></td>
-				<td colspan="2"><div id="messages2"></div></td>
+				<td>
+					<input type="radio" name="type" value="1" checked/> 현금상환
+					<input type="radio" name="type" value="2" /> 코인상환
+					<br><br>
+					<div id="messages2"></div>
+				</td>
+			<!-- 	<td colspan="2"></td> -->
 			</tr>
 			<tr>
 				<th>대출한도</th>
@@ -341,7 +257,7 @@ $(".srch_area :button").click(function(){
 		document.getElementById("file").click();
 	}
 	function ajaxTest() {
-		var account = $("#myLoan_account option:selected").val();
+		var account = $("#loan_account option:selected").val();
 		var start_date = $('input[name="start_date"]').val();
 		var end_date = $('input[name="end_date"]').val();
 		var type = $('input[name="option"]:checked').val();
@@ -357,6 +273,7 @@ $(".srch_area :button").click(function(){
 			url : "${pageContext.request.contextPath}/loan_info",
 			data : sel_loan,
 			success : function(data) {
+				alert(account);
 				$('#result').html(data);
 			},
 			error : function() {

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서류 조회</title>
+<title> 대출관리 > 내서류목록</title>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>

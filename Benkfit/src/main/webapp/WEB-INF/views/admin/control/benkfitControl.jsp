@@ -14,7 +14,6 @@
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-
 	<div class="wrapper">
 		<h1>은행관리</h1>
 		<hr>

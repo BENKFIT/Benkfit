@@ -4,7 +4,7 @@
 <%@ include file="../../Template/setting.jsp"%>
 <html>
 <head>
-<title>관리자 >이벤트 > 상세 </title>
+<title>관리자 > 이벤트 상세 </title>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
@@ -15,7 +15,8 @@
 		
 		<div style="margin-top: -30px; width: 100%; text-align: center;">
 			<div style="display: inline-block; width: 60%; margin: 200px 0px;">
-				<span style="float: right;">관리자 > 이벤트 > 상세</span> <br>
+			<br>
+				<span class="style">관리자 > 이벤트 > 상세</span> 
 				<table class="table eq-ui-data-table z-depth-1" style="width: 100%;">
 					<thead>
 						<tr style="background: #2980B9;">

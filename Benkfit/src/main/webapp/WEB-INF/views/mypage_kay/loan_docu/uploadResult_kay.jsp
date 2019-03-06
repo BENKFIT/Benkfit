@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>정보수정</title>
+<title>서류등록처리</title>
 </head>
 		<c:if test="${result == 1}">
 			<script type="text/javascript">

@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <head>
+<title> 안내 > 이용 수수료 안내</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script
@@ -18,13 +19,10 @@ td, tr>th, p {
 <html>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-<<<<<<< HEAD
 <div style="text-align: center;">
 <!-- 	<div
-=======
 	<div style="text-align: center;">
 		<!-- 	<div
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
 		<div
 			style="display: inline-block; width: 60%; height: 70%; margin-top: 200px;">
@@ -33,12 +31,12 @@ td, tr>th, p {
 			<p style="font-size: 20px;">예금 / 적금</p>
 			<table class="table table-hover" style="width: 100%;">
 				<thead>
-					<tr style="background: #FFD662">
+					<tr style="background: #2980b9; color:white;">
 						<th colspan="2" style="width: 50%">구분</th>
 						<th style="width: 50%">수수료</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
 					<tr>
 						<td rowspan="7" style="padding-top: 128px">제직 증명서 발급</td>
 						<td>예금잔액증명서</td>
@@ -80,16 +78,16 @@ td, tr>th, p {
 		</div>
 	</div>
 	<div class="container" style="height: 40%; width: 62%;">
-		<br>
+		<br>		<br>
 		<p style="font-size: 20px;">이체</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662">
+				<tr style="background: #2980b9; color:white;">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody >
 				<tr>
 					<td>간편이체</td>
 					<td>면제</td>
@@ -111,10 +109,10 @@ td, tr>th, p {
 	</div>
 	<div class="container" style="height: 57%; width: 62%;">
 		<br>
-		<p style="font-size: 20px;">대출</p>
+		<p style="font-size:20px;">대출</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662">
+				<tr style="background: #2980b9; color:white;">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
 				</tr>
@@ -156,7 +154,7 @@ td, tr>th, p {
 		<p style="font-size: 20px;">카드</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662">
+				<tr style="background: #2980b9; color:white;">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
 				</tr>
@@ -195,7 +193,7 @@ td, tr>th, p {
 		<p style="font-size: 20px;">외환</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662">
+				<tr style="background: #2980b9; color:white;">
 					<th colspan="2" style="width: 25%">구분</th>
 					<th style="width: 25%">해외송금 국가</th>
 					<th style="width: 25%">해외송금 금액</th>

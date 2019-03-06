@@ -4,7 +4,7 @@
 <%@ include file="../../Template/setting.jsp"%>
 <html>
 <head>
-<title> 이벤트 </title>
+<title> 메인 > 이벤트 </title>
 <style>
 	td>a {
 		color : black;
@@ -16,7 +16,7 @@
 
 	<div style="margin-top: 200px; height: 60%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-			<span style="float: right;">이벤트</span>
+			<span class="style"> 메인 > 이벤트</span>
 			<table class="table table-hover" style="width: 100%;">
 				<thead>
 					<tr style="background: #2980B9;">
