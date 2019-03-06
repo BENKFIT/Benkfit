@@ -1,42 +1,70 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>지갑생성</title>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-.modal-body td {
-	padding: 10px;
+p, a {
+	color: rgb(119, 119, 119);
+	font-weight: 12px;
+}
+
+.title {
+	font-size: 50px;
+	text-align: center;
+}
+
+#machine {
+	text-align: center;
+}
+
+#from {
+	padding: 6px 10px;
+	margin: 4px 0;
+	display: inline-block;
+	border: 1px solid #FFD662;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 </style>
-</head>
+<title>체험관 > 지갑만들기</title>
 <body>
+
+	<!-- TOP&SIDE -->
 	<%@ include file="../../Template/top.jsp"%>
 
-	<div class="wrapper">
-		<h1>지갑만들기</h1>
-		<hr>
-		<table class="table_kay">
-			<tr>
-				<td colspan="3"><h4>당신의 지갑으로 예금을 간편히 즐기세요. 이더를 간직하고 보관하세요!</h4></td>
-			</tr>
-			<tr>
-				<th>비밀번호 입력</th>
-				<td><input type="password" name="password" id="password"
-					class="inputStyle" required placeholder="PASSWORD" required></td>
-			</tr>
-			<tr>
-				<th>State</th>
-				<td colspan="3" id="state"></td>
-			</tr>
-		</table>
-		<hr>
-		<div class="trBtn">
-			<p id="">생성시, 수수료(gas)가 발생하지 않습니다.</p>
-			<p id="">계정이 생성되면 자동으로 10ETH를 드립니다.</p>
-			<button type="button" class="btn btn-primary" onclick="create();">생성</button>
+	<div style="margin-top: -30px; width: 100%; text-align: center;">
+		<div
+			style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
+			<h3 style="padding-left: 22px; text-align: center;">Wallet Create</h3>
+			<hr style="width: 1100px;">
+			<span style="float: right;">체험관 > 지갑만들기</span> <br>
+			<table style="width: 300px; display: inline">
+				<tr>
+					<td colspan="8"><p>블록체인의 시작은 지갑만들기부터.</p></td>
+				</tr>
+								<tr>
+					<td colspan="8"><p>비밀번호만 입력하고 생성을 누르면 끝!</p></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="eq-ui-form-group eq-ui-input-field">
+							<input id="password" type="password" class="eq-ui-input validate">
+							<label for="textarea_field">Password</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" id="state">state</td>
+				</tr>
+			</table>
+			<hr style="width: 1100px;">
+			<div class="trBtn">
+				<p id="">생성시, 수수료(gas)가 발생하지 않습니다.</p>
+				<p id="">계정이 생성되면 자동으로 10ETH를 드립니다.</p>
+				<button type="button" class="btn btn-success" onclick="create();">생성</button>
+			</div>
 		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>

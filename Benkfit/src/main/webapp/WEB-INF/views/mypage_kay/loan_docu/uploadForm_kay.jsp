@@ -36,7 +36,8 @@
 					$("#doc_period_from").val(data.split("/")[9]);
 					$("#doc_period_to").val(data.split("/")[10]);
 					swal("파일 업로드", "OK", "success");
-				},beforeSend:function(){
+				},
+				 beforeSend:function(){
 		              $('.wrap-loading').removeClass('display-none');
 		          },
 		          complete:function(){

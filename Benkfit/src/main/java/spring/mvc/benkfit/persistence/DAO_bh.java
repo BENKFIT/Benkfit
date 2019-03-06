@@ -25,6 +25,9 @@ public interface DAO_bh {
 
 	// 대출신청
 	public int loanApply(MyloanAccountVO vo);
+	
+	//계정체크
+	public int account_chenk(String myLoan_account);
 
 	// 대출금리
 	// public LoanProductVO loanRate(int loan_num);

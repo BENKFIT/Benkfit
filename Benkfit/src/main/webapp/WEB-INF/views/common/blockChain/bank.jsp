@@ -1,61 +1,111 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
-<!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>간편은행</title>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
-.modal-body td {
-	padding: 10px;
+p, a {
+	color: rgb(119, 119, 119);
+	font-weight: 12px;
+}
+
+.title {
+	font-size: 50px;
+	text-align: center;
+}
+
+#machine {
+	text-align: center;
+}
+
+#from {
+	padding: 6px 10px;
+	margin: 4px 0;
+	display: inline-block;
+	border: 1px solid #FFD662;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 </style>
-</head>
+<title>체험관 > 간편은행</title>
 <body>
+
+	<!-- TOP&SIDE -->
 	<%@ include file="../../Template/top.jsp"%>
 
-	<div class="wrapper">
-		<h1>간편은행</h1>
-		<hr>
-		<table class="table_kay">
-			<tr>
-				<td colspan="3"><h4>당신의 지갑으로 예금을 간편히 즐기세요. 이더를 간직하고 보관하세요!</h4></td>
-			</tr>
-			<tr>
-				<th>지갑파일y</th>
-				<td><input type="file" name="file" id="from"></td>
-			</tr>
-			<tr>
-				<td><input type="button" onclick="Balance();" class="btn btn-primary" value="잔액확인"
-					required></td>
-				<td colspan="3" id="balance"></td>
-			</tr>
-			<tr>
-				<th>거래이더</th>
-				<td><input type="text" id="value" class="inputStyle" placeholder="ETHER"></td>
-			</tr>
-			<tr>
-				<th>비밀번호 입력</th>
-				<td><input type="password" name="password" id="password"
-					class="inputStyle" placeholder="PASSWORD" required></td>
-			</tr>
-			<tr>
-				<th>State</th>
-				<td colspan="3" id="state"></td>
-			</tr>
-			<tr>
-				<th>Tx_hash</th>
-				<td colspan="3" id="tx"></td>
-			</tr>
+	<div style="margin-top: -30px; width: 100%; text-align: center;">
+		<div
+			style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
+			<h3 style="padding-left: 22px; text-align: center;">Easy Bank</h3>
+			<hr style="width: 1100px;">
+			<span style="float: right;">체험관 > 간편은행</span> <br>
+			<table style="width: 300px; display: inline">
+				<tr>
+					<td colspan="8"><p>당신의 지갑으로 예금을 간편히 즐기세요.</p></td>
+				</tr>
+				<tr>
+					<td colspan="8"><p>이더를 간직하고 보관하세요!</p></td>
+				</tr>
+				<tr>
+					<td>
+						<!-- <input class="btn btn-primary" type="file" id="from"> -->
+						<div class="eq-ui-form-group eq-ui-input-file">
+							<a class="btn btn-primary eq-ui-waves-light"
+								style="color: white;"> Upload <input class="btn btn-primary"
+								id="from" type="file" multiple>
+							</a>
+							<div class="eq-ui-input-file-path">
+								<input type="text" class="eq-ui-input"
+									placeholder="Upload private key files" readonly
+									style="width: 500px;">
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
 
-		</table>
-		<hr>
-		<div class="trBtn">
-			<p id="">거래시, 수수료(gas)가 발생합니다.</p>
-			<button type="button" class="btn btn-primary" onclick="deposit();">입금</button>
-			<button type="button" class="btn btn-primary" onclick="bankWithdraw();">출금</button>
-			<button type="button" class="btn btn-primary" onclick="bankBalance();">예금조회</button>
+			<table style="width: 375px; display: inline">
+				<tr>
+					<div class="eq-ui-form-group eq-ui-input-field">
+						<input class="btn btn-info" type="button" value="잔고확인"
+							onClick="Balance();">
+					</div>
+					<td align="center" id="balance"></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="eq-ui-form-group eq-ui-input-field">
+							<input id="value" type="text" class="eq-ui-input validate"
+								style="width: 375px;"> <label for="textarea_field">ETHER</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="eq-ui-form-group eq-ui-input-field">
+							<input id="password" type="password" class="eq-ui-input validate"
+								style="width: 375px;"> <label for="textarea_field">Password</label>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td colspan="3" align="center" id="state">state</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" id="tx">TX_hash</td>
+				</tr>
+			</table>
+			<hr>
+			<div class="trBtn">
+				<p id="">거래시, 수수료(gas)가 발생합니다.</p>
+				<button type="button" class="btn btn-success" onclick="deposit();">입금</button>
+				<button type="button" class="btn btn-warning"
+					onclick="bankWithdraw();">출금</button>
+				<button type="button" class="btn btn-info" onclick="bankBalance();">예금조회</button>
+			</div>
 		</div>
 	</div>
 	<%@ include file="../../Template/footer.jsp"%>
@@ -98,10 +148,10 @@
 			data : alldata,
 			dataType : "JSON",
 			success : function(data) {
-				if(data.chkNum == 1){
+				if (data.chkNum == 1) {
 					$('#state').html("입금완료되었습니다. 잔액을 확인해보세요.");
 					$('#tx').html(data.Tx_hash);
-				}else{
+				} else {
 					$('#success').html("해당 거래가 성사되지 않았습니다.");
 				}
 			},
@@ -129,6 +179,7 @@
 			},
 			error : function() {
 				alert("지갑파일과 비밀번호를 확인해주세요.");
+				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
 			}
 		});
 	}
@@ -150,15 +201,16 @@
 			data : alldata,
 			dataType : "JSON",
 			success : function(data) {
-				if(data.chkNum == 1){
+				if (data.chkNum == 1) {
 					$('#state').html("출금완료되었습니다. 잔액을 확인해보세요.");
 					$('#tx').html(data.Tx_hash);
-				}else{
-					$('#success').html("해당 거래가 성사되지 않았습니다.");
+				} else {
+					$('#state').html("해당 거래가 성사되지 않았습니다.");
 				}
 			},
 			error : function() {
 				alert("지갑파일과 비밀번호를 확인해주세요.");
+				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
 			}
 		});
 	}

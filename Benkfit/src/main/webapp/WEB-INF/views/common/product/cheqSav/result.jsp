@@ -7,7 +7,7 @@
 	<c:choose>
 		<c:when test="${cnt == 1}">
 			<script type="text/javascript">
-				window.location="cheqSavRegi";
+				window.location="cheqSavList";
 			</script>
 		</c:when>
 		<c:when test="${Accountcnt == 1}">

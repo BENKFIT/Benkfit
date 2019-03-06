@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.google.api.Http;
 
 import spring.mvc.benkfit.service.ServiceImpl_syk;
+import spring.mvc.benkfit.service.Service_bh;
 
 @Controller
 public class Controller_syk {
@@ -20,6 +21,8 @@ public class Controller_syk {
 	
 	@Autowired
 	ServiceImpl_syk service;
+	@Autowired
+	Service_bh service2;
 	
 	/*
 	 * common
@@ -151,11 +154,16 @@ public class Controller_syk {
 	
 	//계좌이체
 	@RequestMapping("transPro")
-	public String trans(HttpServletRequest req) throws Exception {
+	public String trans(HttpServletRequest req, Model model) throws Exception {
 		logger.info("송금");
-		service.transPro(req);
-		
-		return "mypage_kay/trans/result";
+		String type = req.getParameter("type");
+		if(type.equals("1")) {
+			service.transPro(req);
+			return "mypage_kay/trans/result";
+		}else{
+			service2.loanTransfer(req, model);
+			return "common/product/loan/result";
+		}
 	}
 	
 	//잔액확인
@@ -237,10 +245,10 @@ public class Controller_syk {
 	
 	//관리페이지
 	@RequestMapping("manage")
-	public String deploy(HttpServletRequest req) throws Exception{
+	public String deploy(HttpServletRequest req, Model model) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
-		
+		service2.benkfitControl(req, model);
 		return "admin/manage/manage";
 	}
 	

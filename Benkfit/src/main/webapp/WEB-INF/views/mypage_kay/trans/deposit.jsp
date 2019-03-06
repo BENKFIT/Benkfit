@@ -15,8 +15,6 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 
-
-
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 40%;">
 			<span style="float: right;">마이페이지>입금</span>
