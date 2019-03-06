@@ -12,7 +12,7 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
-<title>예/적금상품등록</title>
+<title> 관리자 > 예/적금상품등록</title>
 <style>
 .listBox {
 	border: 5px dotted rgb(189, 189, 189);
@@ -31,12 +31,12 @@ input, select {
 }
 
 .productBtn, input[type=submit] {
-	background: #FFD662;
+	background: #2980b9;
 	margin: 10px 20px;
-	border: 1px solid #FFD662;
+	border: 1px solid #2980b9;
 	font-size: 20px;
-	padding: 10px;
 	border-radius: 5px;
+	color:white;
 }
 
 .regTbl {
@@ -66,7 +66,7 @@ input, select {
 	<hr>
 	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
-		<span style="float: right;">금융상품 > 예금</span>
+		<span class="style">금융상품 > 예금</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				
 				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
@@ -120,7 +120,7 @@ input, select {
 	<hr>
 	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
-		<span style="float: right;">금융상품 > 적금</span>
+		<span class="style">금융상품 > 적금</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 			
 			<!-- 가운데 정렬 시 아래의 margin을 삭제 -->

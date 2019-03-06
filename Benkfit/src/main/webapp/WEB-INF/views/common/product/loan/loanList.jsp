@@ -20,7 +20,7 @@
 
 	<!-- Table -->
 	<div style="margin: 200px 0px;">
-		<span style="float: right;">금융상품 > 대출</span>
+		<span class="style" style="margin-right:150px;">금융상품 > 대출</span>
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				<c:forEach var="list" items="${loan}">

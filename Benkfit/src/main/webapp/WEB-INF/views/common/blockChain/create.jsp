@@ -35,11 +35,10 @@ p, a {
 	<%@ include file="../../Template/top.jsp"%>
 
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
-		<div
-			style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
+		<div style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
 			<h3 style="padding-left: 22px; text-align: center;">Wallet Create</h3>
+			<span class="style">체험관 > 지갑만들기</span> <br>
 			<hr style="width: 1100px;">
-			<span style="float: right;">체험관 > 지갑만들기</span> <br>
 			<table style="width: 300px; display: inline">
 				<tr>
 					<td colspan="8"><p>블록체인의 시작은 지갑만들기부터.</p></td>

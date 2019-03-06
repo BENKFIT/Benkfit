@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>상품 > 예/적금</title>
+<title> 상품 > 예/적금</title>
 <style type="text/css">
 td {
 	color: white;

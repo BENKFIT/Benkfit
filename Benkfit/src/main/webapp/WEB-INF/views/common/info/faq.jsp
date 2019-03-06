@@ -1,6 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
+<<<<<<< HEAD
+=======
+<head>
+<title> 안내 > 자주묻는질문</title>
+<style>
+summary::-webkit-details-marker { 
+ 
+    margin-right: 5px;
+ 
+}
+
+img {
+	margin-top: -4px;
+	margin-right: 6px;
+	
+}
+summary{
+	text-align: left;
+}
+pre{
+	text-align: left;
+}
+</style>
+</head>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <html>
 <title>안내 > FAQ</title>
 <body>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>계좌해지</title>
+<title> 마이페이지 > 적금계좌해지</title>
 <style>
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:300); */
 .form {

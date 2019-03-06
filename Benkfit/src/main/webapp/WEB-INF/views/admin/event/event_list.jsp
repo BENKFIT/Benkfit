@@ -36,7 +36,7 @@
 	<div
 		style="margin-top: 200px; height: 60%; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%;">
-			<span style="float: right;">관리자 > 이벤트</span>
+			<span class="style">관리자 > 이벤트관리</span>
 			<table class="table table-hover" style="width: 100%;">
 				<thead>
 					<tr style="background: #2980B9;">

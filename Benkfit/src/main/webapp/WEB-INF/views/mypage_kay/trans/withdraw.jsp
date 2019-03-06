@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이체</title>
+<title> 마이페이지 > 계좌이체</title>
 <style>
 .modal-body td {
 	padding: 10px;

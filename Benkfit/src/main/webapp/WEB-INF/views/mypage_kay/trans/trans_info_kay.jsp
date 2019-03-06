@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>마이페이지 > 이체</title>
+<title> 마이페이지 > 계좌이체</title>
 <style>
 .modal-body td {
 	padding: 10px;
@@ -16,7 +16,7 @@
 
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<span style="float: right;">마이페이지>이체</span>
+			<span class="style"> 마이페이지 > 계좌이체</span>
 			<div class="col-md-12">
 				<form class="doc-form" action="transPro" method="post">
 

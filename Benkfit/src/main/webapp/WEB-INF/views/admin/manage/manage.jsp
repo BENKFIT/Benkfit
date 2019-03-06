@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>관리자 > 은행관리</title>
+<title> 관리자 > 은행관리</title>
 <script type="text/javascript"	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
@@ -42,7 +42,7 @@
 	<!-- 관리자 > 배포 -->
 	<div id="eq-ui-tab-s2-t2" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<span style="float: right;">관리자 > 배포</span>
+			<span class="style">관리자 > 배포</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -93,7 +93,7 @@
 	<!-- 관리자 > 자금현황 -->
 	<div id="eq-ui-tab-s2-t3" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<span style="float: right;">관리자 > 자금현황</span>
+			<span class="style">관리자 > 자금현황</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">대출토큰할당량</td>

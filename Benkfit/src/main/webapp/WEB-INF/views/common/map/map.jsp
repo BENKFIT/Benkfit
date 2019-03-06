@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <head>
+<title> 위치 > 은행 </title>
 <style>
 .map_wrap, .map_wrap * {
 	margin: 0;

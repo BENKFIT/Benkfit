@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title> 조회 > 예금계좌조회 </title>
 <script>
 function ajaxTest(){
 	var account = $("#cheq_account option:selected").val();
@@ -33,7 +34,6 @@ function ajaxTest(){
 		});
 	}
 </script>
-
 <style>
 	.wrap-loading{ 
     position: fixed;
@@ -61,7 +61,7 @@ function ajaxTest(){
 	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
 	</div> 
 	<div class="wrapper">
-		<p style="float:right;font-size:12px;">마이페이지>조회>예금계좌조회</p>
+		<span class="style">마이페이지>조회>예금계좌조회</span>
 		<br>
 		<hr>
 			<table class="table eq-ui-data-table z-depth-1">
@@ -80,7 +80,7 @@ function ajaxTest(){
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
-				</select>
+				</select>	
 				</td>
 			</tr>
 			<tr class="srch_area">
