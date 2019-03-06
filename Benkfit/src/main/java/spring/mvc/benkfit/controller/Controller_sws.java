@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,9 +63,10 @@ public class Controller_sws {
 	@Autowired
 	DAO_lia dao2;
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(Controller_sws.class);
 
 	// 첫방문 고객 안내
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("firstVisit_sws")
 	public String firstVisit_sws() throws Exception {
 		logger.info("firstVisit_sws");
@@ -72,6 +74,7 @@ public class Controller_sws {
 	}
 
 	// FAQ
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("faq_sws")
 	public String faq_sws() throws Exception {
 		logger.info("faq_sws");
@@ -79,6 +82,7 @@ public class Controller_sws {
 	}
 
 	// 이용 시간 안내
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("hoursOfUse_sws")
 	public String hoursOfUse_sws() throws Exception {
 		logger.info("hoursOfUse_sws");
@@ -86,6 +90,7 @@ public class Controller_sws {
 	}
 
 	// 이용 수수료 안내
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("useFee_sws")
 	public String useFee_sws() throws Exception {
 		logger.info("useFee_sws");
@@ -95,6 +100,7 @@ public class Controller_sws {
 	// ********************************************************************************** //
 
 	// 이벤트 목록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("eventList_sws")
 	public String eventList_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("eventList_sws");
@@ -105,6 +111,7 @@ public class Controller_sws {
 	}
 
 	// 이벤트 상세 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("eventContentForm_sws")
 	public String eventContentForm_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("eventContentForm_sws");
@@ -120,6 +127,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 목록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_list_sws")
 	public String event_list_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_list_sws");
@@ -130,6 +138,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 상세 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_contentForm_sws")
 	public String event_contentForm_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_contentForm_sws");
@@ -144,6 +153,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 추가 폼
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_addForm_sws")
 	public String event_addForm_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_addForm_sws");
@@ -152,6 +162,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 추가 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_addPro_sws")
 	public String event_addPro_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_addPro_sws");
@@ -162,6 +173,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 수정 폼
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_modifyForm_sws")
 	public String event_modifyForm_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_modifyForm_sws");
@@ -172,6 +184,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 수정 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_modifyPro_sws")
 	public String event_modifyPro_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_modifyPro_sws");
@@ -182,6 +195,7 @@ public class Controller_sws {
 	}
 
 	// 관리자 - 이벤트 삭체 처리
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("event_deletePro_sws")
 	public String event_deletePro_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("event_deletePro_sws");
@@ -192,19 +206,32 @@ public class Controller_sws {
 	}
 
 	// 다음지도 은행
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("map_sws")
 	public String map_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("map_sws");
 
 		return "common/map/map";
 	}
+	
 	// 결산 차트
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("productChart_sws")
 	public String productChart_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("productChart_sws");
 		return "admin/chart/productChart";
 	}
+	
+	// 결산 차트2
+	@Transactional(rollbackFor=Exception.class)
+	@RequestMapping("productChart_sws2")
+	public String productChart_sws2(HttpServletRequest req, Model model) throws Exception{
+		logger.info("productChart_sws2");
+		return "admin/chart/productChart2";
+	}
+	
 	// 년별 차트
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("chartYear_sws")
 	public String chartYear_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("chartYear_sws");
@@ -215,6 +242,7 @@ public class Controller_sws {
 	}
 	
 	// 월별 차트
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("chartMonth_sws")
 	public String chartMonth_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("chartMonth_sws");
@@ -225,6 +253,7 @@ public class Controller_sws {
 	}
 	
 	// 일별 차트
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("chartDay_sws")
 	public String chartDay_sws(HttpServletRequest req, Model model) throws Exception{
 		logger.info("chartDay_sws");
@@ -235,9 +264,10 @@ public class Controller_sws {
 	}
 
 	// 앱 로그인
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidSignIn")
-	public Map<String, String> androidSignIn(HttpServletRequest req){
+	public Map<String, String> androidSignIn(HttpServletRequest req) throws Exception{
 		logger.info("androidSignIn()");
 
 		String id = req.getParameter("id");
@@ -260,9 +290,10 @@ public class Controller_sws {
 	}
 
 	// 앱 메인페이지
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidMain")
-	public Map<String, Object> androidMain(HttpServletRequest req) {
+	public Map<String, Object> androidMain(HttpServletRequest req) throws Exception{
 		logger.info("androidMain()");
 
 		String id = req.getParameter("id");
@@ -279,9 +310,10 @@ public class Controller_sws {
 	}
 	
 	// 금융 상품 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidProduct")
-	public Map<String, Object> androidProduct(HttpServletRequest req) {
+	public Map<String, Object> androidProduct(HttpServletRequest req) throws Exception{
 		logger.info("androidProduct()");
 
 		String id = req.getParameter("id");
@@ -298,9 +330,10 @@ public class Controller_sws {
 	}
 	
 	// 금융 상품 상세 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidProductContent")
-	public Map<String, Object> androidProductContent(HttpServletRequest req) {
+	public Map<String, Object> androidProductContent(HttpServletRequest req) throws Exception{
 		logger.info("androidProductContent()");
 		
 		String num = req.getParameter("item").split("\n")[0].substring(10);
@@ -325,9 +358,10 @@ public class Controller_sws {
 	}
 	
 	// QR코드 로그인
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidQrcodeLogin")
-	public Map<String, String> androidQrcodeLogin(HttpServletRequest req) {
+	public Map<String, String> androidQrcodeLogin(HttpServletRequest req) throws Exception{
 		logger.info("androidQrcodeLogin()");
 		
 		String item = req.getParameter("item");
@@ -355,6 +389,7 @@ public class Controller_sws {
 	}
 	
 	// 앱 지갑 생성
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidCheq")
 	public Map<String, Object> androidCheq(HttpServletRequest req) throws Exception{
@@ -403,19 +438,14 @@ public class Controller_sws {
 	}
 	
 	// 안드로이드 거래내역
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidTransDetail")
-	public Map<String, Object> androidTransDetail(HttpServletRequest req) {
+	public Map<String, Object> androidTransDetail(HttpServletRequest req) throws Exception{
 		logger.info("androidTransDetail()");
 
 		String id = req.getParameter("id");
 		List<TransDetailVO> t = dao.TransDetail(id);
-		
-		/*for(TransDetailVO vo : t) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		 
-			String date = sdf.format(vo.getTran_date());
-			vo.setTran_date(date);
-		}*/
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("TransDetail", t);
@@ -424,9 +454,10 @@ public class Controller_sws {
 	}
 	
 	// 안드로이드 예금계좌내역
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidMyCheqAccounts")
-	public Map<String, Object> androidMyCheqAccounts(HttpServletRequest req) {
+	public Map<String, Object> androidMyCheqAccounts(HttpServletRequest req) throws Exception{
 		logger.info("androidMyCheqAccounts()");
 
 		String id = req.getParameter("id");
@@ -439,9 +470,10 @@ public class Controller_sws {
 	}
 	
 	// 안드로이드 적금계좌내역
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidMySavAccounts")
-	public Map<String, Object> androidMySavAccounts(HttpServletRequest req) {
+	public Map<String, Object> androidMySavAccounts(HttpServletRequest req) throws Exception{
 		logger.info("androidMySavAccounts()");
 
 		String id = req.getParameter("id");
@@ -454,9 +486,10 @@ public class Controller_sws {
 	}
 	
 	// 안드로이드 대출계좌내역
+	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidMyLoanAccounts")
-	public Map<String, Object> androidMyLoanAccounts(HttpServletRequest req) {
+	public Map<String, Object> androidMyLoanAccounts(HttpServletRequest req) throws Exception{
 		logger.info("androidMyLoanAccounts()");
 
 		String id = req.getParameter("id");
@@ -470,6 +503,7 @@ public class Controller_sws {
 	}
 	
 	// 아코디언 테스트
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("faq_sws2")
 	public String faq_sws2() throws Exception {
 		logger.info("faq_sws2");
@@ -477,6 +511,7 @@ public class Controller_sws {
 	}
 	
 	// ATM
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("atm_sws")
 	public String atm(HttpServletRequest req, Model model) throws Exception {
 		logger.info("atm_sws");
@@ -485,28 +520,5 @@ public class Controller_sws {
 		
 		return "common/map/atm";
 	}
-	
-/*	// 앱 지갑 생성 확인
-	@ResponseBody
-	@RequestMapping("androidCreateCheq")
-	public Map<String, Object> androidCreateCheq(HttpServletRequest req, Model model) throws Exception {
-		logger.info("androidCreateCheq()");
-
-		String id = req.getParameter("id");
-		AndroidVO a = dao.selectWallet(id);
-		
-		String num = (String)req.getAttribute("num");
-		String password = (String)req.getAttribute("password");
-		String account = (String)req.getAttribute("account");
-
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("data1", id);
-		map.put("data2", num);
-		map.put("data3", password);
-		map.put("data4", account);
-		map.put("users", 0);
-		
-		return map;
-	}*/
 }
 	

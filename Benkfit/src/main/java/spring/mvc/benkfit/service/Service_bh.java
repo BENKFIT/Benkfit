@@ -40,9 +40,6 @@ public interface Service_bh {
 	// 슬롯머신플레이
 	public void slot(HttpServletRequest req, Model model) throws Exception;
 
-	// 슬롯머신 컨트랙트 삭제(해당 계정의 잔고는 address(0)으로 돌아오고 계정은 삭제된다.
-	public void slotKill(HttpServletRequest req, Model model) throws Exception;
-
 	/*
 	 * admin
 	 */
@@ -51,6 +48,9 @@ public interface Service_bh {
 
 	// 슬롯머신잔고확인
 	public void slotStockBalance(HttpServletRequest req, Model model) throws Exception;
+
+	// 슬롯머신 컨트랙트 삭제(해당 계정의 잔고는 address(0)으로 돌아오고 계정은 삭제된다.
+	public void slotKill(HttpServletRequest req, Model model) throws Exception;
 
 	/*
 	 * 대출
@@ -95,8 +95,17 @@ public interface Service_bh {
 	// 대출상품마감
 	public void loanDel(HttpServletRequest req, Model model) throws Exception;
 
-	// 대출신청리스트
+	// 대출신청리스트-전체
 	public void loanApproval(HttpServletRequest req, Model model) throws Exception;
+	
+	// 대출신청리스트-승인
+	public void loanApproval1(HttpServletRequest req, Model model) throws Exception;
+	
+	// 대출신청리스트-대기
+	public void loanApproval2(HttpServletRequest req, Model model) throws Exception;
+
+	// 대출신청리스트-거절
+	public void loanApproval3(HttpServletRequest req, Model model) throws Exception;
 
 	// 대출신청처리(허가)
 	public void loanApprovalPro(HttpServletRequest req, Model model) throws Exception;

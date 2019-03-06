@@ -32,8 +32,16 @@ public class Setting {
 	 */
 
 	final static String path = "/Users/banhun/2_net/keystore/";
-	final static String owner = "0xd5cc7a592fa96a270aa2cb99bddd262982c57943";
+	final static String owner = "0xef4755f7ac11c82514e488dfc11f293084f8625e";
 	final static String owner_pwd = "password";
-	final static String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-02-14T07-51-00.079742000Z--d5cc7a592fa96a270aa2cb99bddd262982c57943";
+	final static String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-03-05T11-34-26.497959000Z--ef4755f7ac11c82514e488dfc11f293084f8625e";
+
+	/*
+	 * 운선 전역 설정
+	 */
+//	final static String path = "C:/DEV43/ether/keystore";
+//	final static String owner = "0x4aca841d5384d16bd0ade39037a14b338caf06c9";
+//	final static String owner_pwd = "1234";
+//	final static String owner_file = "C:/DEV43/ether/keystore/UTC--2019-02-15T06-08-59.949370200Z--4aca841d5384d16bd0ade39037a14b338caf06c9";
 
 }

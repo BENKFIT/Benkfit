@@ -116,9 +116,9 @@
 			<!-- 	<td colspan="2"></td> -->
 			</tr>
 			<tr>
-				<th>대출한도</th>
+				<th>사용가능금액</th>
 				<td colspan="2" style="text-align: left; padding-bottom: 12px;">
-					<span> <input type="button" value="대출한도"
+					<span> <input type="button" value="사용가능금액"
 						class="btn btn-success" onclick="loanBalance();"></span>
 				</td>
 				<td><div id="messages">사용 가능 대출금액</div></td>
@@ -305,9 +305,13 @@ $(".srch_area :button").click(function(){
 	function loanRepayment() {
 		var from = $('#from').val();
 		var amount = $("#amount").val();
+		var password = $('#password').val();
+		var type = $('input:radio[name=type]:checked').val();
 		var alldata = {
 			'from' : from,
-			'amount' : amount
+			'amount' : amount,
+			'password' : password,
+			'type' : type
 		};
 		$('#messages2').html("입력하신 금액만큼 대출을 상환중입니다.");
 

@@ -1,5 +1,3 @@
-
-<!-- 송운선 2019-01-22 17:43 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
@@ -12,6 +10,7 @@
 }
 </style>
 <script type="text/javascript">
+
 	/*****************이미지 미리보기*****************/
 	$(function() {
 		$("#img").on('change', function() {
@@ -237,10 +236,11 @@
 				<form action="event_modifyPro_sws" method="post"
 					enctype="multipart/form-data">
 					
+					<input type="hidden" name="eve_num" value="${dto.eve_num}">
 					<input type="hidden" name="pageNum" value="${pageNum}"> 
 
 					<div class="modal-body" style="text-align: center;">
-						<div style="display: inline-block;" id="result">
+						<div style="display: inline-block;" id="res">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -252,22 +252,24 @@
 			</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript">
-	function eventUpdate(eve_num) {
-		var num = "eve_num=" + eve_num;
-		$.ajax({
-					type : 'post',
-					data : num,
-					url : '${pageContext.request.contextPath}/event_modifyForm_sws',
-					success : function(data) {
-						$("#result").html(data);
-					},
-					error : function() {
-						alert("Ajax error");
-					}
-				});
-		}
-	</script>
 </body>
+<script type="text/javascript">
+function eventUpdate(eve_num) {
+	var num = "eve_num=" + eve_num;
+	alert(num);
+	
+	$.ajax({
+			type : 'post',
+			data : num,
+			url : '${pageContext.request.contextPath}/event_modifyForm_sws',
+			success : function(data) {
+				$("#res").html(data);
+				alert(num);
+			},
+			error : function() {
+				alert("Ajax error");
+			}
+		});
+	}
+</script>
 </html>

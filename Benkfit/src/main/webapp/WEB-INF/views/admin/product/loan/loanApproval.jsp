@@ -39,6 +39,13 @@ p, a {
 				style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
 				<h3 style="padding-left: 22px; text-align: center;">대출신청리스트</h3>
 				<hr style="width: 1100px;">
+				<div style="float:center;">
+				<input type="radio" name="type" value="0" checked> 전체조회
+				<input type="radio" name="type" value="1"> 승인조회
+				<input type="radio" name="type" value="2"> 대기조회
+				<input type="radio" name="type" value="3"> 거절조회
+				<button type="button" class="btn btn-info" onclick="select();">조회</button>
+				</div>
 				<span class="style">상품관리 > 대출신청리스트</span> <br>
 				<table class="table eq-ui-data-table eq-ui-with-checkbox z-depth-1">
 					<thead>
@@ -46,7 +53,7 @@ p, a {
 							<th></th>
 							<th>지갑주소</th>
 							<th>대출금액</th>
-							<!-- <th >만기날짜</th> -->
+							<th>신청날짜</th>
 							<th>승인여부</th>
 							<th>상품번호</th>
 							<th>고객아이디</th>
@@ -62,7 +69,7 @@ p, a {
 									<label for="checkbox-1"></label></td>
 								<td>${dto.myloan_account}</td>
 								<td>${dto.myloan_amount}원</td>
-								<%-- <td align="center">${dto.myloan_late}</td> --%>
+								<td>${dto.myloan_date}</td>
 								<td><c:if test="${dto.myloan_type == 0}">
 								승인대기
 							</c:if> <c:if test="${dto.myloan_type == 1}">
@@ -80,9 +87,9 @@ p, a {
 						</tbody>	
 				</table>
 				<br>
-				<button type="submit" class="btn btn-primary">승인</button>
-				<button type="button" class="btn btn-primary" value="거절"
-					onclick="rejection();">거절</button>
+				<button type="submit" class="btn btn-success">승인</button>
+				<button type="button" class="btn btn-warning" value="거절" onclick="rejection();">거절</button>
+				
 			</div>
 		</form>
 	</div>
@@ -92,9 +99,9 @@ p, a {
 </body>
 <script type="text/javascript">
 	function rejection() {
-		var loan_num = $('#loan_num').val();
+		var myLoan_account = $('#myLoan_account').val();
 		var alldata = {
-			"loan_num" : loan_num
+			"myLoan_account" : myLoan_account
 		};
 
 		$.ajax({
@@ -102,12 +109,26 @@ p, a {
 			type : "GET",
 			data : alldata,
 			success : function(data) {
-				alert("성공");
+				location.href="loanApproval";
 			},
 			error : function() {
-				alert("오류");
 			}
 		});
+	}
+	function select() {
+		var value = $('input:radio[name=type]:checked').val();
+		var alldata = {
+			"value" : value
+		};
+		if(value == 0){
+			location.href="loanApproval";
+		}else if(value == 1){
+			location.href="loanApproval1";
+		}else if(value == 2){
+			location.href="loanApproval2";
+		}else{
+			location.href="loanApproval3";
+		}
 	}
 </script>
 </html>
