@@ -188,9 +188,9 @@
 						<!-- Submenu 0-3 이벤트관리 -->
 						<ul data-menu="submenu-0-3" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3-1" href="event_list_sws">이벤트관리</a></li>
+								href="event_list_sws">이벤트관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								data-submenu="submenu-0-3-2" href="slotControl">슬롯관리</a></li>
+								href="slotControl">슬롯관리</a></li>
 						</ul>
 					</sec:authorize>
 

@@ -96,6 +96,8 @@ p, a {
 					onclick="slotStock();">슬롯잔액채우기</button>
 					<button type="button" class="btn btn-info" title="관리자 지갑을 등록 후 비밀번호를입력하세요."
 					onclick="slotStockBalance();">슬롯잔고확인</button>
+					<button type="button" class="btn btn-danger" title="슬롯컨트랙트가 사라집니다. 사용하시려면 재배포하세요."
+					onclick="slotKill();">슬롯중지</button>
 			</div>
 		</div>
 	</div>
@@ -124,6 +126,30 @@ p, a {
 			error : function() {
 				alert("다시 시도해주세요.");
 				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
+			}
+		});
+	}
+	function slotKill() {
+		var from = $('#from').val();
+		var password = $('#password').val();
+		var alldata = {
+			'from' : from,
+			'password' : password
+		};
+		$('#balance').html("슬롯의 이더가 관리자에게 돌아갑니다.");
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/slotKill",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				alert("슬롯이 중지되었습니다. 사용하시려면 재배포하세요.")
+				$('#balance').html("슬롯의 이더가 관리자에게 돌아갔습니다.");
+				$('#state').html("슬롯이 중지되었습니다.");	
+			},
+			error : function() {
+				alert("다시 시도해주세요.");
+				$('#state').html("슬롯이 중지되지 않았습니다.");	
 			}
 		});
 	}

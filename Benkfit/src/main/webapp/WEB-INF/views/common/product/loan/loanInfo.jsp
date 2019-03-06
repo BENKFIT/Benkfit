@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>상품 > 예/적금</title>
+<title>상품 > 대출</title>
 <style type="text/css">
 td {
 	color: white;
@@ -353,10 +353,7 @@ p {
 								</tr>
 								<tr>
 									<td>
-										<div class="eq-ui-form-group eq-ui-input-field">
-											<input id="state" type="text" class="eq-ui-input"
-												name="state" style="width: 300px;"> <label
-												for="state">state</label>
+										<div class="eq-ui-form-group eq-ui-input-field" id="state">
 										</div>
 									</td>
 								</tr>

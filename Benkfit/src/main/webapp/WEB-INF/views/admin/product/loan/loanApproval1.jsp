@@ -40,8 +40,8 @@ p, a {
 				<h3 style="padding-left: 22px; text-align: center;">대출신청리스트</h3>
 				<hr style="width: 1100px;">
 				<div style="float:center;">
-				<input type="radio" name="type" value="0" checked> 전체조회
-				<input type="radio" name="type" value="1"> 승인조회
+				<input type="radio" name="type" value="0"> 전체조회
+				<input type="radio" name="type" value="1" checked> 승인조회
 				<input type="radio" name="type" value="2"> 대기조회
 				<input type="radio" name="type" value="3"> 거절조회
 				<button type="button" class="btn btn-info" onclick="select();">조회</button>
