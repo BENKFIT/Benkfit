@@ -272,7 +272,7 @@ public class Controller_syk {
 	public String deploy(HttpServletRequest req, Model model) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
-		/*service2.benkfitControl(req, model);*/
+		service2.benkfitControl(req, model);
 		return "admin/manage/manage";
 	}
 	

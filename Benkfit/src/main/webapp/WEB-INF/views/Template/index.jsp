@@ -44,7 +44,7 @@
   
   <div style="margin: 100px 0px; text-align: center;">
   	<div style="display: inline-block; width: 100%;">
-  		<%-- <%@ include file="./NewFile.jsp"%> --%>
+  		<%@ include file="./NewFile.jsp"%>
   	</div>
   </div>
   
