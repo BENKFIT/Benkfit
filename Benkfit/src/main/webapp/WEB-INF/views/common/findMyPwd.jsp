@@ -7,12 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="description" content="Implements Google's Material Design in Bootstrap.">
-<!-- CSS-->
+CSS
 <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
 <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 <script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
@@ -36,7 +36,7 @@
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-</script>
+</script> -->
 <style>
    #logindiv1 {
     text-align:center;

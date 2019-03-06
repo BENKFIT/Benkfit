@@ -66,7 +66,7 @@
 <body>
 
 <div class="title">
-<h3>${id}님의 계좌</h3>
+<h4>${id}님의 계좌</h4>
 </div>
 
 <div class=wrapper4>
@@ -74,7 +74,7 @@
      
       <div class="wrapper6">
        <div class="btnarea2">
-        <h3>예금</h3>
+        <h5>예금</h5>
        </div>
        <table class="tb_header2">
          <tr class="rows header">
@@ -131,7 +131,7 @@
          
          <div class="wrapper6">
          <div class="btnarea2">
-          <h3>적금</h3>
+          <h5>적금</h5>
          </div>
          <table class="tb_header2">
          <tr class="rows header green">
@@ -181,7 +181,7 @@
          
          <div class="wrapper6">
          <div class="btnarea2">
-          <h3>대출</h3>
+          <h5>대출</h5>
          </div>
          <table class="tb_header2">
          <tr class="rows header blue">

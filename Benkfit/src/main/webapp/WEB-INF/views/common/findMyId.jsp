@@ -7,12 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="msapplication-tap-highlight" content="no">
 <meta name="description" content="Implements Google's Material Design in Bootstrap.">
-<!-- CSS-->
+CSS
 <link href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5" rel="stylesheet">
 <link href="/benkfit/resources/assets/css/doc.css?v=0.4.5" rel="stylesheet">
 <script src="/benkfit/resources/assets/js/vendor/jquery/dist/jquery.min.js?v=2.1.4"></script>
@@ -36,7 +36,7 @@
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-</script>
+</script> -->
 <style>
     #logindiv1 {
     text-align:center;
@@ -81,30 +81,27 @@
 	    		alert("이메일을 입력해주세요");
 	    		email.focus();
     	} else if(name.value != null && email.value!= null) {
-    		  $(function() {
-	           var name = $("#name").val();
-	           var email = $("#email").val();
-	           
-	           $.ajax({
-	             type: "POST",
-	             data: "name="+name+"&email="+email,
-	             url: "${pageContext.request.contextPath}/findAccount",
-	             success: function(data) {
-		              if(data == 0) {
-		            	     $("#find_result").css("visibility", "visible");
-	                     $("#find_result").html("일치하는 정보가 없습니다");
-	                     $("#gotologin").css("visibility", "invisible");
-		              } else {
-		            	     $("#find_result").css("visibility", "visible");
-		                   $("#find_result").html("아이디는 " + data + " 입니다."); 
-		                   $("#gotologin").css("visibility", "visible");
-		              }
-	             },
-	             error: function() {
-	            	  alert("오류")
-	             }
-	           });
-	         }); 
+           var name = $("#name").val();
+           var email = $("#email").val();
+           $.ajax({
+             type: "POST",
+             data: "name="+name+"&email="+email,
+             url: "${pageContext.request.contextPath}/findAccount",
+             success: function(data) {
+	              if(data == 0) {
+	            	     $("#find_result").css("visibility", "visible");
+                     $("#find_result").html("일치하는 정보가 없습니다");
+                     $("#gotologin").css("visibility", "invisible");
+	              } else {
+	            	     $("#find_result").css("visibility", "visible");
+	                   $("#find_result").html("아이디는 " + data + " 입니다."); 
+	                   $("#gotologin").css("visibility", "visible");
+	              }
+             },
+             error: function() {
+            	  alert("오류")
+             }
+           });
     	 }
     }
     

@@ -130,6 +130,7 @@ public class ServiceImpl_lia implements Service_lia {
 		System.out.println("selectCnt: " + selectCnt);
 		model.addAttribute("id", strId);
 	}
+	
 	// 실명확인
 	@Override
 	public void nameCheck(HttpServletRequest req, Model model) {
@@ -273,7 +274,7 @@ public class ServiceImpl_lia implements Service_lia {
 		map.put("email", email);
 		
 		String id = dao.findMyId(map);
-		
+		 
 		if(id == null) {
 			model.addAttribute("id", "0");
 		} else {
