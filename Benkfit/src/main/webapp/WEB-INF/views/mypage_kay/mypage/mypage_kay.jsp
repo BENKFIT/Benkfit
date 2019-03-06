@@ -67,14 +67,11 @@ function setting(){
 			style="height: 700px; width: 1120px; border: 1px solid #ccc; background-color:white;">
 			<h4 style="padding-left: 22px; text-align: center;">My Page</h4>
 			<hr style="width: 1100px;">
-			<div
-				style="width:530px; height:600px; display:inline-block; padding: 20px;">
+			<div style="width:530px; height:600px; display:inline-block; padding: 20px;">
 				<div class="panel-body">
 					<div class="User_Profile">
-						<p>
-							<h5>${usVO.c_name}&nbsp;&nbsp;<span style="font-size:15px;">회원님</span>
-							</h5>
-						</p>
+						<h5>${usVO.c_name}&nbsp;&nbsp;<span style="font-size:15px;">회원님</span>
+						</h5>
 					</div>
 					<ul class="User_Profile details" style="padding: 0px;">
 						<hr>
@@ -115,7 +112,7 @@ function setting(){
 			</div>
 			<div style="width: 550px; padding: 10px; display: inline-block; position: absolute;">
 				<div class="panel-body">
-					<p style="font-size:20px;">자산관리</p>
+					<span style="font-size:20px;">자산관리</span>
 					<table>
 						<tr>
 							<td>
@@ -139,11 +136,10 @@ function setting(){
 				<div id="chart"></div>
 			</div>
 		</div>
-
-		<br>
 		<div id="tab1" class="acc_content">
 				<!--Content-->
-				<p style="font-size:15px;text-align:right;">마이페이지>조회>예금관리</p>
+				<br>
+				<span class="style">마이페이지>조회>예금관리</span>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color: #2980b9; color: white;">
@@ -171,7 +167,7 @@ function setting(){
 					</tbody>
 				</table>
 				<br>
-				<p style="font-size:15px;float: right;">마이페이지>조회>적금관리</p>
+				<span class="style">마이페이지>조회>적금관리</span>
 				<hr>
 				<table class="table table-hover">
 					<thead style="background-color: #2980b9; color: white;">
@@ -198,9 +194,8 @@ function setting(){
 					</tbody>
 				</table>
 				<br>
-				<p style="font-size:15px;float:right;">마이페이지>조회>대출관리</p>
+				<span class="style">마이페이지>조회>대출관리</span>
 				<hr>
-				<br>
 				<table class="table table-hover">
 					<thead style="background-color:#2980b9;color:white;">
 						<tr>

@@ -10,10 +10,9 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-	<p style="float:right;font-size:15px;">대출관리>내서류>서류목록</p>
+	<span class="style">대출관리>내서류>서류목록</span>
 	<br>
 	<hr>
-	<br>
 	<table class="table table-hover" >
 		<thead style="background-color: #2980b9; color: white;">
 			<tr>

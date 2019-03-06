@@ -75,7 +75,7 @@
 		</button>
 		<!-- Sidebar -->
 		<nav class="navbar navbar-inverse navbar-fixed-top"
-			id="sidebar-wrapper" role="navigation">
+			id="sidebar-wrapper" role="navigation" >
 			<!-- side-menu -->
 			<button class="action action--open" aria-label="Open Menu">
 				<span class="icon icon--menu"></span>

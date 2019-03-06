@@ -2,34 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <html>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<style type="text/css">
-
-input, select {
-	padding: 6px 10px;
-	margin: 4px 0;
-	display: inline-block;
-	border: 1px solid #FFD662;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-input[type=button] {
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-	background-color: #FFD662;
-	color: white;
-}
-
-input[type=button]:hover {
-	color: black;
-}
-
+<style>
 p, a {
 	color: rgb(119, 119, 119);
 	font-weight: 12px;
@@ -44,19 +19,6 @@ p, a {
 	text-align: center;
 }
 
-.inputButton {
-	background: #FFD662;
-}
-
-#from {
-	padding: 6px 10px;
-	margin: 4px 0;
-	display: inline-block;
-	border: 1px solid #FFD662;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
 #from {
 	padding: 6px 10px;
 	margin: 4px 0;
@@ -66,55 +28,78 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-<title>관리자 > 이벤트관리 > 슬롯관리</title>
+<title>관리자메뉴 > 이벤트관리 > 슬롯관리</title>
 <body>
 
+	<!-- TOP&SIDE -->
 	<%@ include file="../../Template/top.jsp"%>
 
-	<div
-		style="margin-top: -30px; height: 40%; width: 100%; text-align: center;">
-		<div style="display: inline-block; width: 60%; margin: 200px 0px;">
-			<p class="title">슬롯 관리</p>
-			<p>슬롯에 잔고가 남아있지 않으면 슬롯이 정상적으로 작동하지 않습니다.</p>
-			<div class="wrapper">
-				<p class="login">
-					관리자계정 :<input type="file" id="from"><br> 비밀번호 : <input
-						type="password" id="password" value="password"><br> <br>
-					<input type="button" value="슬롯잔액조회" onClick="slotStockBalance();">
-					<br>
-				</p>
-				<p id="balance"></p>
-				<br> 금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;액 : <input
-					type="text" id="value" placeholder="계정과 비밀번호도 입력해주세요."><br>
-				<br> <input type="button" value="슬롯잔액채우기"
-					onclick="slotStock();">
+	<div style="margin-top: -30px; width: 100%; text-align: center;">
+		<div
+			style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
+			<h3 style="padding-left: 22px; text-align: center;">Slot Manage</h3>
+			<hr style="width: 1100px;">
+			<span style="float: right;">관리자메뉴 > 이벤트관리 > 슬롯관리</span> <br>
+			<table style="width: 300px; display: inline">
+				<tr>
+					<td colspan="8"><p>슬롯에 잔고가 남아있지 않으면 슬롯이 정상적으로 작동하지 않습니다.</p></td>
+				</tr>
+				<tr>
+					<td>
+						<!-- <input class="btn btn-primary" type="file" id="from"> -->
+						<div class="eq-ui-form-group eq-ui-input-file">
+							<a class="btn btn-primary eq-ui-waves-light"
+								style="color: white;"> Upload <input class="btn btn-primary"
+								id="from" type="file" multiple>
+							</a>
+							<div class="eq-ui-input-file-path">
+								<input type="text" class="eq-ui-input"
+									placeholder="Upload private key files" readonly
+									style="width: 500px;">
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
 
-				<div id="state"></div>
+			<table style="width: 375px; display: inline">
+				<tr>
+					<div class="eq-ui-form-group eq-ui-input-field">
+						<input class="btn btn-info" type="button" value="관리자잔액확인"
+							onClick="Balance();">
+					</div>
+					<td colspan="3" align="center" id="balance"></td>
+				</tr>
+				<tr>
+					<td>
+						<div class="eq-ui-form-group eq-ui-input-field">
+							<input id="value" type="text" class="eq-ui-input validate"
+								style="width: 375px;"> <label for="textarea_field">ETHER</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="eq-ui-form-group eq-ui-input-field">
+							<input id="password" type="password" class="eq-ui-input validate"
+								style="width: 375px;"> <label for="textarea_field">Password</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center" id="state">state</td>
+				</tr>
+			</table>
+						<hr>
+			<div class="trBtn">
+				<br> <button type="button" class="btn btn-success"
+					onclick="slotStock();">슬롯잔액채우기</button>
+					<button type="button" class="btn btn-info" title="관리자 지갑을 등록 후 비밀번호를입력하세요."
+					onclick="slotStockBalance();">슬롯잔고확인</button>
 			</div>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<%@ include file="../../Template/footer.jsp"%>
 </body>
 <script type="text/javascript">
@@ -137,7 +122,8 @@ p, a {
 				$('#state').html("이더가 채워졌습니다. 확인해보세요.");
 			},
 			error : function() {
-				alert("지갑파일을 선택해주세요.")
+				alert("다시 시도해주세요.");
+				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
 			}
 		});
 	}
@@ -158,7 +144,29 @@ p, a {
 				$('#balance').html("슬롯의 잔액은 " + data + "ETH 입니다.");
 			},
 			error : function() {
-				alert("지갑파일을 선택해주세요.")
+				alert("다시 시도해주세요.");
+				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");	
+			}
+		});
+	}
+	function Balance() {
+		/* var address = $('#address').val(); */
+		var from = $('#from').val();
+		var alldata = {
+			"from" : from
+		};
+		$('#balance').html("잔액을 조회중입니다.");
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/Balance",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				$('#balance').html(data);
+			},
+			error : function() {
+				alert("다시 시도해주세요.");
+				$('#balance').html("지갑파일과 비밀번호를 확인해주세요.");	
 			}
 		});
 	}

@@ -18,7 +18,6 @@
 			var path3 = path2.length;
 			var path4 = path2[path3 - 1];
 			$('#file_text').val(path4);
-
 			$.ajax({
 				type : "POST",
 				data : "file=" + path4,
@@ -36,7 +35,8 @@
 					$("#doc_period_from").val(data.split("/")[9]);
 					$("#doc_period_to").val(data.split("/")[10]);
 					swal("파일 업로드", "OK", "success");
-				},beforeSend:function(){
+				},
+				 beforeSend:function(){
 		              $('.wrap-loading').removeClass('display-none');
 		          },
 		          complete:function(){

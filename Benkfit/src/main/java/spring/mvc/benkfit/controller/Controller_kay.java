@@ -90,6 +90,7 @@ public class Controller_kay {
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_account");
+		service.myloan_list(req, model);
 		return "mypage_kay/loan_docu/loan_account_kay";
 	}
 	//대출계좌 상세조회
@@ -231,7 +232,7 @@ public class Controller_kay {
 	//서류등록처리
 	@RequestMapping("upresult")
 	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
-		logger.info("signInPro ");
+		logger.info("upresult");
 		service.signInPro(req, model);
 		return "mypage_kay/loan_docu/uploadResult_kay";
 	}

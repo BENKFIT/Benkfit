@@ -19,7 +19,8 @@
 	<%@ include file="../../Template/top.jsp"%>
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 70%;">
-			<span style="float: right;">마이페이지>자동이체</span>
+			<span class="style">마이페이지>자동이체</span>
+			<br>
 			<div class="row">
 				<div class="col-md-24">
 					<table

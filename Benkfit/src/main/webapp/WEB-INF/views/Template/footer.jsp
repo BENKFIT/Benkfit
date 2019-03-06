@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <body>
@@ -12,7 +12,7 @@
 <script src="/benkfit/resources/assets/js/exentriq-bootstrap-material-ui.min.js?v=0.4.5"></script>
 
 <script src="/benkfit/resources/assets/js/tp/tp-color.html" type="riot/tag"></script>
-<script src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
+<script	src="/benkfit/resources/assets/js/vendor/riot/riot+compiler.min.js?v=2.3.0"></script>
 
 <script src="https://unpkg.com/lodash@4.16.0"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

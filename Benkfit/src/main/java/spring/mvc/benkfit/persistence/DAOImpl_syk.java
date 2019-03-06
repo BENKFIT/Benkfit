@@ -179,4 +179,22 @@ public class DAOImpl_syk implements DAO_syk{
 	public List<ContractVO> contract() {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_syk.contract");
 	}
+
+	//contract - benkfit
+	@Override
+	public String getBenkfit() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getBenkfit");
+	}
+
+	//contract - bank
+	@Override
+	public String getBank() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getBank");
+	}
+
+	//contract - slot
+	@Override
+	public String getSlot() {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getSlot");
+	}
 }

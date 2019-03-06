@@ -12,7 +12,7 @@
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
-<title>대출상품등록</title>
+<title>상품등록</title>
 <style>
 .listBox {
 	border: 5px dotted rgb(189, 189, 189);
@@ -58,25 +58,24 @@ input, select {
 		<div style="display: inline-block;">
 			<!-- 등록 -->
 			<div class="listBox" style="position: relative;">
-				<button class="btn btn-primary"
-					style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); background: rgba(255, 255, 255, 1.0); border: none;"
+				<button style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); border: none; background: none;"
 					data-toggle="modal" data-target="#exampleModalCenter">&#43;</button>
 			</div>
 		</div>
 	</div>
 	<hr>
-	<div style="margin: 100px 0px;">
+	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
+		<span style="float: right;">금융상품 > 대출</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
-
+				
 				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
 				<c:forEach var="list" items="${loan}">
-					<div class="center-block col-4 princing-item red"
-						style="margin: 30px 0px;">
+					<div class="center-block col-4 princing-item green" style="margin: 30px 0px;">
 						<div class="pricing-divider ">
-							<%-- <h3 class="text-light">${list.loan_type}</h3> --%>
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
-								<span class="h3">Won</span> ${list.loan_rate}% <span class="h5">/year</span>
+								<span class="h3">Ether</span> ${list.loan_rate}% <span
+									class="h5">/year</span>
 							</h4>
 							<svg class='pricing-divider-img'
 								enable-background='new 0 0 300 100' height='100px' id='Layer_1'
@@ -107,11 +106,11 @@ input, select {
 								<li><b>가입대상(등급)</b> ${list.loan_target}</li>
 								<%-- <li><b>예금종류</b> ${list.loan_type}</li> --%>
 								<li><b>대출금액 </b> ${list.loan_amount}원</li>
-								<li><b>예금자보호대상</b></li>
+								<!-- <li><b>예금자보호대상</b></li> -->
 							</ul>
-							<button type="button" class="btn btn-lg btn-block  btn-custom"
-								class="btn btn-primary" data-toggle="modal"
-								data-target="#editloan" onclick="loanEdit('${list.loan_num}');">수정/삭제</button>
+						<button type="button" class="btn btn-lg btn-block  btn-custom3" class="btn btn-primary"
+								data-toggle="modal" data-target="#editloan" 
+								onclick="loanEdit('${list.loan_num}');">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -170,7 +169,7 @@ input, select {
 							<tr>
 								<td>대출금액</td>
 								<td><select name="amount">
-										<option value="50000000">~5000만원</option>
+										<option value="10000000">~1천만원</option>
 										<option value="100000000">~1억원</option>
 								</select></td>
 							</tr>
@@ -186,9 +185,9 @@ input, select {
 							<tr>
 								<td>상품이율</td>
 								<td><select name="rate">
-										<option value="0.05">5%</option>
-										<option value="0.08">8%</option>
-										<option value="0.1">10%</option>
+										<option value="5">5%</option>
+										<option value="8">8%</option>
+										<option value="10">10%</option>
 								</select></td>
 							</tr>
 							<tr>
