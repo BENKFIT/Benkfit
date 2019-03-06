@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>실명확인</title>
+<title> 회원가입 > 실명확인</title>
 <style>
 	.nameCheckDiv {
 		padding: 35px;

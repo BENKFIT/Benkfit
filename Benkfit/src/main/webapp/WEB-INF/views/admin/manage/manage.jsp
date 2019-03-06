@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>관리자 > 은행관리</title>
+<title> 관리자 > 은행관리</title>
 <script type="text/javascript"	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
@@ -20,7 +20,7 @@
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t1">Start/End</a></li>
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t2">배포</a></li>
 						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t3">자금현황</a></li>
-						<li class="eq-ui-tab"><a href="#eq-ui-tab-s2-t4">결산</a></li>
+						<li class="eq-ui-tab" id="btn0"><a href="#eq-ui-tab-s2-t4">결산</a></li>
 					</ul>
 				</div>
 
@@ -42,7 +42,7 @@
 	<!-- 관리자 > 배포 -->
 	<div id="eq-ui-tab-s2-t2" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<span style="float: right;">관리자 > 배포</span>
+			<span class="style">관리자 > 배포</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<thead>
 					<tr>
@@ -93,7 +93,7 @@
 	<!-- 관리자 > 자금현황 -->
 	<div id="eq-ui-tab-s2-t3" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
-			<span style="float: right;">관리자 > 자금현황</span>
+			<span class="style">관리자 > 자금현황</span>
 			<table class="table eq-ui-data-table z-depth-1">
 				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">대출토큰할당량</td>
@@ -105,28 +105,28 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">Loan balance</td>
-					<td id="loan_balance">${loan_balance}</td>
+					<td class="eq-ui-data-table-cell-non-numeric">자금계정</td>
+					<td id="loan_balance">${loan_balance}Won</td>
 				</tr>
 				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">State</td>
 					<td id="state1"></td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">name</td>
+					<td class="eq-ui-data-table-cell-non-numeric">토큰이름</td>
 					<td id="name">${name}</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">remaning</td>
-					<td id="remaning">${remaning}</td>
+					<td class="eq-ui-data-table-cell-non-numeric">남은배포량</td>
+					<td id="remaning">${remaning}Won</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">totalSupply</td>
-					<td id="totalSupply">${totalSupply}</td>
+					<td class="eq-ui-data-table-cell-non-numeric">총 배포량</td>
+					<td id="totalSupply">${totalSupply}Won</td>
 				</tr>
 			</table>
 			<a class="btn btn-primary eq-ui-waves-light"
-				onclick="benkfitLoanStock();" style="margin: 20px 0px 100px 0px;">대출토큰할당</a>
+				onclick="benkfitLoanStock();" style="margin: 20px 0px 100px 0px;">관리자토큰할당</a>
 		</div>
 	</div>
 
@@ -134,20 +134,19 @@
 	<div id="eq-ui-tab-s2-t4" style="text-align: center;">
 		<div style="display: inline-block; width: 50%;">
 			<div style="display: inline-block;">
-				<a class="btn btn-success eq-ui-waves-light" id="btn">연별</a>
-				<a class="btn btn-success eq-ui-waves-light" id="btn1">월별</a>
-				<a class="btn btn-success eq-ui-waves-light" id="btn2">일별</a>
+				<a class="btn btn-success eq-ui-waves-light" id="btn" style="margin-right: 50px;">연별</a>
+				<a class="btn btn-info eq-ui-waves-light" id="btn1" style="margin-right: 50px;">월별</a>
+				<a class="btn btn-warning eq-ui-waves-light" id="btn2">일별</a>
 			</div>
 			
 			<div id="Line_Controls_Chart">
 				<!-- 라인 차트 생성할 영역 -->
-				<div id="lineChartArea" style="padding: 0px 20px 0px 0px;"></div>
+				<div id="lineChartArea" style="padding: 30px 20px 0px 0px;"></div>
 				<!-- 컨트롤바를 생성할 영역 -->
 				<div id="controlsArea" style="padding: 0px 20px 0px 0px;"></div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- 등록 modal -->
 	<div class="modal fade" id="deploy" tabindex="-1" role="dialog"
@@ -223,7 +222,7 @@
 		function benkfitLoanStock() {
 			var value = $('#value').val();
 			var alldata = {
-				'value' : value
+				'value' : value 
 			};
 			$('#state1').html("자금 이동중입니다. 잠시만 기다려주세요.");
 
@@ -294,12 +293,14 @@
 			});
 		}
 	</script>
-	
+
 	<!-- Chart -->
 	<script type="text/javascript">
+		
 	var queryObject = "";
 	var queryObjectLen = "";
 
+	$('#btn0').click(function(){
 		$.ajax({
 			type : 'POST',
 			url : '${pageContext.request.contextPath}/chartYear_sws',
@@ -308,7 +309,7 @@
 				queryObjectLen = queryObject.barlist.length;
 				
 				var chartDrowFun1 = {
-						chartDrow : function() {
+						chartDrow1 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -320,6 +321,12 @@
 							function drawDashboard() {
 								var data = new google.visualization.DataTable();
 								//그래프에 표시할 컬럼 추가
+								/* data = [
+									["날짜", queryObject.barlist[0].day],
+									["예금 가입자 수", queryObject.barlist[0].value1],
+									["적금 가입자 수", queryObject.barlist[0].value2],
+									["대출 가입자 수", queryObject.barlist[0].value1]
+								]; */
 								data.addColumn('number', '날짜');
 								data.addColumn('number', '예금 가입자 수');
 								data.addColumn('number', '적금 가입자 수');
@@ -331,7 +338,7 @@
 									var value1 = queryObject.barlist[i].value1;
 									var value2 = queryObject.barlist[i].value2;
 									var value3 = queryObject.barlist[i].value3;
-
+										
 									data.addRow([ day, value1, value2, value3 ]);
 								}
 								var chart = new google.visualization.ChartWrapper(
@@ -343,12 +350,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
-													}
+													},
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -409,9 +422,18 @@
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -451,13 +473,14 @@
 					    google.charts.load('current', {
 					    	'packages':['line','controls']
 					    });
-					    chartDrowFun1.chartDrow(); //chartDrow() 실행
+					    chartDrowFun1.chartDrow1(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
 			}
 		});
-		
+	})
+	
 	$('#btn').click(function(){
 		$.ajax({
 			type : 'POST',
@@ -466,8 +489,8 @@
 				queryObject = JSON.parse(data);
 				queryObjectLen = queryObject.barlist.length;
 				
-				var chartDrowFun1 = {
-						chartDrow : function() {
+				var chartDrowFun2 = {
+						chartDrow2 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -502,12 +525,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
 													}
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -568,9 +597,18 @@
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -610,7 +648,7 @@
 					    google.charts.load('current', {
 					    	'packages':['line','controls']
 					    });
-					    chartDrowFun1.chartDrow(); //chartDrow() 실행
+					    chartDrowFun2.chartDrow2(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
@@ -626,9 +664,9 @@
 				queryObject = JSON.parse(data);
 				queryObjectLen = queryObject.barlist.length;
 				
-				var chartDrowFun2 = {
+				var chartDrowFun3 = {
 
-						chartDrow2 : function() {
+						chartDrow3 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -665,12 +703,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
 													}
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -731,9 +775,18 @@
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -756,8 +809,7 @@
 								date_formatter.format(data, 0);
 
 								var dashboard = new google.visualization.Dashboard(
-										document
-												.getElementById('Line_Controls_Chart'));
+										document.getElementById('Line_Controls_Chart'));
 								window.addEventListener('resize',
 										function() {
 											dashboard.draw(data);
@@ -773,7 +825,7 @@
 						google.charts.load('current', {
 							'packages' : [ 'line', 'controls' ]
 						});
-						chartDrowFun2.chartDrow2(); //chartDrow() 실행
+						chartDrowFun3.chartDrow3(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');
@@ -789,9 +841,9 @@
 				queryObject = JSON.parse(data);
 				queryObjectLen = queryObject.barlist.length;
 				
-				var chartDrowFun3 = {
+				var chartDrowFun4 = {
 
-						chartDrow : function() {
+						chartDrow4 : function() {
 							var chartData = '';
 					        //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
 					        var chartDateformat = '      ';
@@ -829,12 +881,18 @@
 												focusTarget : 'category',
 												height : 500,
 												width : '100%',
+												backgroundColor: 'none',
 												legend : {
 													position : "top",
 													textStyle : {
 														fontSize : 13
 													}
 												},
+												series: {
+										            0: { color: '#D63B37' },
+										            1: { color: '#006D3C' },
+										            2: { color: '#2980b9' },
+										        },
 												pointSize : 5,
 												tooltip : {
 													textStyle : {
@@ -892,12 +950,22 @@
 											controlType : 'ChartRangeFilter',
 											containerId : 'controlsArea', //control bar를 생성할 영역
 											options : {
+												backgroundColor : 'none',
 												ui : {
 													chartType : 'LineChart',
 													chartOptions : {
+														series: {
+												            0: { color: '#D63B37' },
+												            1: { color: '#006D3C' },
+												            2: { color: '#2980b9' },
+												        },
+														'backgroundColor' : {
+													        'fill': 'none',
+													        'opacity': 100
+													     },
 														chartArea : {
 															'width' : '60%',
-															'height' : 80
+															'height' : 80,
 														},
 														hAxis : {
 															'baselineColor' : 'none',
@@ -920,8 +988,7 @@
 								date_formatter.format(data, 0);
 
 								var dashboard = new google.visualization.Dashboard(
-										document
-												.getElementById('Line_Controls_Chart'));
+										document.getElementById('Line_Controls_Chart'));
 								window.addEventListener('resize',
 										function() {
 											dashboard.draw(data);
@@ -935,7 +1002,7 @@
 						google.charts.load('current', {
 							'packages' : [ 'line', 'controls' ]
 						});
-						chartDrowFun3.chartDrow(); //chartDrow() 실행
+						chartDrowFun4.chartDrow4(); //chartDrow() 실행
 			},
 			error : function(xhr, type) {
 				alert('server error occured');

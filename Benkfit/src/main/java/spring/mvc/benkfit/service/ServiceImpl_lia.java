@@ -119,7 +119,6 @@ public class ServiceImpl_lia implements Service_lia {
         } 
 		model.addAttribute("name", name);
 	}
-	
 	// id중복확인
 	@Override
 	public void id_check(HttpServletRequest req, Model model) {
@@ -177,7 +176,6 @@ public class ServiceImpl_lia implements Service_lia {
 	public void signInPro(MultipartHttpServletRequest req, Model model) {
 		// 이미지 파일
 		MultipartFile file = req.getFile("idCard");
-		
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
 		//String realDir = "C:\\DEV43\\git\\benkfit\\src\\main\\webapp\\resources\\img\\idcard";
 		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/idcard";
@@ -222,7 +220,6 @@ public class ServiceImpl_lia implements Service_lia {
         	e.printStackTrace();
         }
 	}
-
 	// 로그인, 비밀번호 확인
 	@Override
 	public void loginPro(HttpServletRequest req, Model model) {

@@ -28,7 +28,7 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-<title>회원 > 이벤트 > 슬롯머신</title>
+<title> 이벤트 > 슬롯머신</title>
 <body>
 
 	<!-- TOP&SIDE -->
@@ -39,7 +39,7 @@ p, a {
 
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
-			<span style="float: right;">ETH Slots</span> <br>
+			<span class="style">ETH Slots</span> <br>
 			<table class="table eq-ui-data-table z-depth-1" style="width: 100%;">
 				<thead>
 					<tr style="background: #2980B9;">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>예금상품조회</title>
+<title>금융상품 > 예금상품</title>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -20,7 +20,7 @@
 
 	<!-- Table -->
 	<div style="margin: 200px 0px;">
-		<span style="float: right;">금융상품 > 예금</span>
+		<span class="style" style="margin-right:150px;">금융상품 > 예금</span>
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				<c:forEach var="list" items="${cheq}">
@@ -69,8 +69,7 @@
 			</div>
 		</div>
 		<hr>
-		
-		<span style="float: right;">금융상품 > 적금</span>
+		<span class="style" style="margin-right:150px;">금융상품 > 적금</span> 
 		<div class="container-fluid bg-gradient p-5">
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
 				<c:forEach var="list" items="${sav}">

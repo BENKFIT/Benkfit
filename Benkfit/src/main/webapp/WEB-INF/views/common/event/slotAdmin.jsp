@@ -36,10 +36,9 @@ p, a {
 
 	<input type="hidden" name="eve_num" value="${dto.eve_num}">
 	<input type="hidden" name="pageNum" value="${pageNum}">
-
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
 		<div style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
-			<span style="float: right;">관리자 > 이벤트 > ETH Slots</span> <br>
+			<span class="style">관리자 > 이벤트 > ETH Slots</span> <br>
 			<table class="table eq-ui-data-table z-depth-1" style="width: 100%;">
 				<thead>
 					<tr style="background: #2980B9;">

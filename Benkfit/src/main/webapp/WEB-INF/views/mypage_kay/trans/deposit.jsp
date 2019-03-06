@@ -4,8 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>이체</title>
-<title>마이페이지 > 이체</title>
+<title> 마이페이지 > 입금</title>
 </head>
 <style>
 	tr{
@@ -17,7 +16,7 @@
 
 	<div style="margin: 200px 0px; text-align: center;">
 		<div style="display: inline-block; width: 40%;">
-			<span style="float: right;">마이페이지>입금</span>
+			<span class="style">마이페이지 > 입금</span>
 			<div class="col-md-12">
 				<form class="doc-form" action="depositPro" method="post">
 					<table>
@@ -127,7 +126,6 @@
 			
 			});
 		}
-		
 		function changeText(){
 			var data = "<div class='eq-ui-form-group eq-ui-input-field'><input id='from' type='text' class='eq-ui-input' name='from'> <label for='from'>입금계좌</label></div>";
 			$('#accounts').html(data);

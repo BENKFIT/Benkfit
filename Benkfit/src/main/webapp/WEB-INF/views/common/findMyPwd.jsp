@@ -6,8 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<<<<<<< HEAD
 <title>비밀번호 찾기</title>
 <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+=======
+<title> 로그인  > 비밀번호 찾기</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="msapplication-tap-highlight" content="no">

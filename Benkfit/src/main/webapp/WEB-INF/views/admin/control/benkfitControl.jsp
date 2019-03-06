@@ -14,7 +14,6 @@
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-
 	<div class="wrapper">
 		<h1>은행관리</h1>
 		<hr>
@@ -38,20 +37,20 @@
 				<td id="state"></td>
 			</tr>
 			<tr>
-				<th>loan_balance</th>
-				<td id="loan_balance">${loan_balance}</td>
+				<th>관리계정</th>
+				<td id="loan_balance">${loan_balance}Won</td>
 			</tr>
 			<tr>
-				<th>name</th>
+				<th>토큰이름</th>
 				<td id="name">${name}</td>
 			</tr>
 			<tr>
-				<th>remaning</th>
-				<td id="remaning">${remaning}</td>
+				<th>남은 배포량</th>
+				<td id="remaning">${remaning}Won</td>
 			</tr>
 			<tr>
-				<th>totalSupply</th>
-				<td id="totalSupply">${totalSupply}</td>
+				<th>총 토큰량</th>
+				<td id="totalSupply">${totalSupply}Won</td>
 			</tr>
 		</table>
 		<hr>

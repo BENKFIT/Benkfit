@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>대출계좌</title>
+<title> 마이페이지 > 대출계좌조회</title>
 <!-- CSS-->
 <link
 	href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5"
@@ -29,7 +29,6 @@
 	margin-left: -21px;
 	margin-top: -21px;
 }
-
 .display-none { /*감추기*/
 	display: none;
 }
@@ -37,39 +36,44 @@
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
-	<div class="wrap-loading display-none">
-		<div>
-			<img src="/benkfit/resources/img/loading/loading.gif">
-		</div>
-	</div>
 	<div class="wrapper">
-		<h5 style="float: right;">마이페이지>조회>대출관리</h5>
+		<span class="style"> 마이페이지 > 조회 > 대출관리</span>
 		<br>
 		<hr>
-		<br>
 		<table class="table eq-ui-data-table z-depth-1">
 			<tr>
 				<th>대출 계좌번호</th>
 				<td colspan="3">
-					<div class="col-md-6">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="eq-ui-form-group eq-ui-input-file">
-									<span>
-										<button type="button"
-											class="btn btn-primary eq-ui-waves-light" id="signInBtn"
-											name="idCardFile" onclick="selectFile();">Upload</button> <input
-										type="text" class="eq-ui-input" name="document_text"
-										style="float: right;">
-									</span>
-									<div class="eq-ui-input-file-path">
-										<input type="file" class="eq-ui-input" id="from"
-											name="doc_img" required readonly>
-									</div>
-								</div>
-							</div>
+					<div class="eq-ui-form-group eq-ui-input-file">
+							<button type="button"
+								class="btn btn-primary eq-ui-waves-light" id="signInBtn"
+								name="idCardFile" onclick="selectFile();">Upload</button> 
+								<input
+							type="text" class="eq-ui-input" name="document_text"
+							style="float: right;">
+						<div class="eq-ui-input-file-path">
+							<input type="file" class="eq-ui-input" id="from"
+								name="doc_img" required readonly>
 						</div>
 					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>계좌선택</th>
+				<td colspan="3">
+						<select id="loan_account" class="eq-ui-select">
+						<c:choose>
+							<c:when test="${account != null}">
+								<option value="${account}">${account}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="계좌를 선택하세요." disabled selected>계좌를 선택하세요.</option>
+								<c:forEach var="lo" items="${loan}">
+									<option value="${lo.myloan_account}">${lo.myloan_account}</option>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+				</select>	
 				</td>
 			</tr>
 			<tr>
@@ -96,19 +100,25 @@
 			</tr>
 			<tr>
 				<th>상환할 금액</th>
-				<td style="text-align: left; padding-bottom: 12px;"><input
+				<td colspan="2" style="text-align: left; padding-bottom: 12px;"><input
 					type="button" class="btn btn-success" value="대출상환"
 					onclick="loanRepayment();">
 					<div class="eq-ui-input-file-path">
 						<input type="text" class="eq-ui-input" id="amount"
 							placeholder="지갑파일을 등록하세요.">
 					</div></td>
-				<td colspan="2"><div id="messages2"></div></td>
+				<td>
+					<input type="radio" name="type" value="1" checked/> 현금상환
+					<input type="radio" name="type" value="2" /> 코인상환
+					<br><br>
+					<div id="messages2"></div>
+				</td>
+			<!-- 	<td colspan="2"></td> -->
 			</tr>
 			<tr>
-				<th>대출한도</th>
+				<th>사용가능금액</th>
 				<td colspan="2" style="text-align: left; padding-bottom: 12px;">
-					<span> <input type="button" value="대출한도"
+					<span> <input type="button" value="사용가능금액"
 						class="btn btn-success" onclick="loanBalance();"></span>
 				</td>
 				<td><div id="messages">사용 가능 대출금액</div></td>
@@ -247,7 +257,7 @@ $(".srch_area :button").click(function(){
 		document.getElementById("file").click();
 	}
 	function ajaxTest() {
-		var account = $("#myLoan_account option:selected").val();
+		var account = $("#loan_account option:selected").val();
 		var start_date = $('input[name="start_date"]').val();
 		var end_date = $('input[name="end_date"]').val();
 		var type = $('input[name="option"]:checked').val();
@@ -263,6 +273,7 @@ $(".srch_area :button").click(function(){
 			url : "${pageContext.request.contextPath}/loan_info",
 			data : sel_loan,
 			success : function(data) {
+				alert(account);
 				$('#result').html(data);
 			},
 			error : function() {
@@ -294,9 +305,13 @@ $(".srch_area :button").click(function(){
 	function loanRepayment() {
 		var from = $('#from').val();
 		var amount = $("#amount").val();
+		var password = $('#password').val();
+		var type = $('input:radio[name=type]:checked').val();
 		var alldata = {
 			'from' : from,
-			'amount' : amount
+			'amount' : amount,
+			'password' : password,
+			'type' : type
 		};
 		$('#messages2').html("입력하신 금액만큼 대출을 상환중입니다.");
 

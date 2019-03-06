@@ -46,8 +46,17 @@ public interface DAO_bh {
 	// 대출상품삭제
 	public int loanDel(String loan_num);
 
-	// 대출신청리스트
+	// 대출신청리스트-전체
 	public List<MyloanAccountVO> loanApproval();
+	
+	// 대출신청리스트-승인
+	public List<MyloanAccountVO> loanApproval1();
+		
+	// 대출신청리스트-대기
+	public List<MyloanAccountVO> loanApproval2();
+		
+	// 대출신청리스트-거절
+	public List<MyloanAccountVO> loanApproval3();
 
 	// 계정에맞는대출상품가져오기
 	public List<MyloanAccountVO> loanApprovalPro_info(String myLoan_account);

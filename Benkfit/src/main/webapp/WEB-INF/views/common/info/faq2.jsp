@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <html>
+<title> 안내 > 자주묻는질문</title>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="widget pad50-65">

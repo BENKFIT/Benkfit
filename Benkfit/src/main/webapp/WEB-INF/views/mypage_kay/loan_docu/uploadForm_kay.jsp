@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>서류등록</title>
+<title> 대출관리 > 서류등록</title>
 <script>
 	//파일업로드 버튼 기능
 	function selectFile() {
@@ -18,7 +18,6 @@
 			var path3 = path2.length;
 			var path4 = path2[path3 - 1];
 			$('#file_text').val(path4);
-
 			$.ajax({
 				type : "POST",
 				data : "file=" + path4,
@@ -74,10 +73,10 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrap-loading display-none">
-	    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+	    <div>	<img src="/benkfit/resources/img/loading/478 (7).gif"></div>
 	</div> 
 	<div class="wrapper">
-		<p style="float: right; font-size:12px;">마이페이지>조회>대출관리>내서류>서류등록</p><br>
+		<span class="style">마이페이지 > 조회 > 대출관리 > 내서류 > 서류등록</span><br>
 		<hr>
 		<br>
 		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;

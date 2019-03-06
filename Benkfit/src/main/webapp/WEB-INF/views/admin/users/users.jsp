@@ -5,7 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 <title>회원 조회</title>
+=======
+<title>관리자 > 회원관리</title>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <style>
   .wrapper3 {
     width:100%;

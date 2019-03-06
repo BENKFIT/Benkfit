@@ -28,18 +28,17 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-<title>관리자메뉴 > 이벤트관리 > 슬롯관리</title>
+<title>관리자메뉴 > 이벤트 - 슬롯관리</title>
 <body>
-
 	<!-- TOP&SIDE -->
 	<%@ include file="../../Template/top.jsp"%>
 
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
-		<div
-			style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
+		<div style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
 			<h3 style="padding-left: 22px; text-align: center;">Slot Manage</h3>
-			<hr style="width: 1100px;">
-			<span style="float: right;">관리자메뉴 > 이벤트관리 > 슬롯관리</span> <br>
+			<!-- <hr style="width: 1100px;"> -->
+			<span class="style">관리자메뉴 > 이벤트관리 > 슬롯관리</span> <br>
+			<hr>
 			<table style="width: 300px; display: inline">
 				<tr>
 					<td colspan="8"><p>슬롯에 잔고가 남아있지 않으면 슬롯이 정상적으로 작동하지 않습니다.</p></td>
@@ -96,6 +95,8 @@ p, a {
 					onclick="slotStock();">슬롯잔액채우기</button>
 					<button type="button" class="btn btn-info" title="관리자 지갑을 등록 후 비밀번호를입력하세요."
 					onclick="slotStockBalance();">슬롯잔고확인</button>
+					<button type="button" class="btn btn-danger" title="슬롯컨트랙트가 사라집니다. 사용하시려면 재배포하세요."
+					onclick="slotKill();">슬롯중지</button>
 			</div>
 		</div>
 	</div>
@@ -124,6 +125,30 @@ p, a {
 			error : function() {
 				alert("다시 시도해주세요.");
 				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
+			}
+		});
+	}
+	function slotKill() {
+		var from = $('#from').val();
+		var password = $('#password').val();
+		var alldata = {
+			'from' : from,
+			'password' : password
+		};
+		$('#balance').html("슬롯의 이더가 관리자에게 돌아갑니다.");
+
+		$.ajax({
+			url : "${pageContext.request.contextPath}/slotKill",
+			type : "GET",
+			data : alldata,
+			success : function(data) {
+				alert("슬롯이 중지되었습니다. 사용하시려면 재배포하세요.")
+				$('#balance').html("슬롯의 이더가 관리자에게 돌아갔습니다.");
+				$('#state').html("슬롯이 중지되었습니다.");	
+			},
+			error : function() {
+				alert("다시 시도해주세요.");
+				$('#state').html("슬롯이 중지되지 않았습니다.");	
 			}
 		});
 	}

@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>해지처리</title>
 </head>
 <body>
 	<c:choose>
