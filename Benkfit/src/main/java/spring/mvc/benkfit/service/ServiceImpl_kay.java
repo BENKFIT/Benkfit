@@ -326,10 +326,9 @@ public class ServiceImpl_kay implements Service_kay{
 		String order = req.getParameter("order");
 		int start = 1;
 		int end = Integer.parseInt(req.getParameter("end"));
-		String delCheq = req.getParameter("delCheq");
 		
-		System.out.println("계좌선택 : " + delCheq);
-		System.out.println("====cheq_info====");
+		System.out.println("계좌선택 : " + account);
+		System.out.println("====loan_info====");
 
 		if(type.equals("undefined")) {
 			type = "";
@@ -482,8 +481,8 @@ public class ServiceImpl_kay implements Service_kay{
 	@Override
 	public void getText(String file, Model model) throws IOException {
 
-		//ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/benkfit.py", file);
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
+		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/benkfit.py", file);
 		Process p = pb.start();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -506,8 +505,8 @@ public class ServiceImpl_kay implements Service_kay{
 		br.close();	
 
 		//파일 객체 생성
-		//Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");
-		Path path = Paths.get("/Users/banhun/tesseract/output/get.txt");
+		Path path = Paths.get("C:\\DEV43\\python\\output\\get.txt");
+		//Path path = Paths.get("/Users/banhun/tesseract/output/get.txt");
 		// 캐릭터셋 지정
 		Charset cs = StandardCharsets.UTF_8;
 		//파일 내용담을 리스트
@@ -579,6 +578,7 @@ public class ServiceImpl_kay implements Service_kay{
 	@SuppressWarnings("deprecation")
 	@Override
 	public void signInPro(MultipartHttpServletRequest req, Model model) {
+		
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();

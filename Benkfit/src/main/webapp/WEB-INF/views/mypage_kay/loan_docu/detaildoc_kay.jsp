@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>정보등록</title>
+<title> 대출관리 > 서류상세페이지 </title>
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-	<p style="float:right;font-size:12px;">대출관리>내서류>서류목록>서류상세페이지</p>
+	<span class="style">대출관리>내서류>서류목록>서류상세페이지</span>
 	<br>
 		<hr>
 		<div class="document">

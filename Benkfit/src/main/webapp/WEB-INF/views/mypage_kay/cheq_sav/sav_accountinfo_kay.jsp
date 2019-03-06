@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>계좌조회</title>
+<title> 마이페이지 > 적금계좌조회</title>
 </head>
 <body>
-	<p style="font-size:15px;text-align:right;">적금 계좌정보</p>
+	<span class="style">적금 계좌정보</span>
 	<hr>
 	<table class="table eq-ui-data-table z-depth-1">
 		<tr>
@@ -36,7 +36,7 @@
 			<td>${savinfo.mySav_amount}</td>
 		</tr>
 	</table>
-	<p style="font-size:15px; text-align:right;">적금 거래내역</h2>
+	<span class="style">적금 거래내역</span>
 	<hr>
 	<br>
 		<table class="table eq-ui-data-table eq-ui-header-fixed z-depth-1">

@@ -28,7 +28,7 @@ p, a {
 	box-sizing: border-box;
 }
 </style>
-<title>상품관리 > 대출신청리스트</title>
+<title>관리자 > 대출신청리스트</title>
 <body>
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
@@ -46,8 +46,7 @@ p, a {
 				<input type="radio" name="type" value="3"> 거절조회
 				<button type="button" class="btn btn-info" onclick="select();">조회</button>
 				</div>
-				<span style="float: right;">상품관리 > 대출신청리스트</span> <br>
-				<hr>
+				<span class="style">상품관리 > 대출신청리스트</span> <br>
 				<table class="table eq-ui-data-table eq-ui-with-checkbox z-depth-1">
 					<thead>
 						<tr>
@@ -94,7 +93,6 @@ p, a {
 			</div>
 		</form>
 	</div>
-
 
 	<!-- FOOTER  -->
 	<%@ include file="../../../Template/footer.jsp"%>

@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>정보수정</title>
+<title> 조회 > 예금계좌조회 </title>
 </head>
 <body>
-	<p style="font-size:15px; text-align:right;">계좌정보</p>
+	<span class="style">계좌정보</span>
 	<hr>
 	<table class="table eq-ui-data-table z-depth-1">
 		<tr>
@@ -31,7 +31,7 @@
 		</tr>
 	</table>
 	<br>
-	<p style="font-size:15px; text-align:right;">예금 거래내역</p>
+	<span class="style">예금 거래내역</span>
 	<hr>
 	<table class="table eq-ui-data-table z-depth-1" style="background-color:white;">
 		<tr>

@@ -3,6 +3,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <head>
+<<<<<<< HEAD
+<title>안내 > 이용 수수료</title>
+=======
+<title> 안내 > 이용 수수료 안내</title>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script
@@ -10,8 +15,15 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
-td, tr>th, p {
+tr>td, tr>th, p {
 	text-align: center;
+}
+.table eq-ui-data-table z-depth-1{
+	margin-bottom: 100px;
+}
+table > thead > tr > th{
+	background: #2980B9;
+	color: #ffffff;
 }
 </style>
 </head>
@@ -19,12 +31,18 @@ td, tr>th, p {
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 <<<<<<< HEAD
+	
+=======
 <div style="text-align: center;">
 <!-- 	<div
-=======
-	<div style="text-align: center;">
-		<!-- 	<div
 >>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
+	<div style="text-align: center;">
+<<<<<<< HEAD
+		<div style="display: inline-block; width: 60%; height: 62%; margin-top: 200px;">
+		<span style="float: right;">이용안내 > 예금/적금</span>
+			<table class="table eq-ui-data-table z-depth-1">
+=======
+		<!-- 	<div
 		style="margin-top: 200px; height: 70%; width: 100%; text-align: center;"> -->
 		<div
 			style="display: inline-block; width: 60%; height: 70%; margin-top: 200px;">
@@ -32,118 +50,154 @@ td, tr>th, p {
 			<br>
 			<p style="font-size: 20px;">예금 / 적금</p>
 			<table class="table table-hover" style="width: 100%;">
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 				<thead>
-					<tr style="background: #FFD662">
+<<<<<<< HEAD
+					<tr>
+						<th colspan="2" style="width: 50%; color: #ffffff; text-align: center;">구분</th>
+						<th style="width: 50%; color: #ffffff; text-align: center;">수수료</th>
+=======
+					<tr style="background: #2980b9; color:white;">
 						<th colspan="2" style="width: 50%">구분</th>
 						<th style="width: 50%">수수료</th>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
 					<tr>
-						<td rowspan="7" style="padding-top: 128px">제직 증명서 발급</td>
-						<td>예금잔액증명서</td>
-						<td>1,000원 (부수당)</td>
+						<td rowspan="7" style="padding-top: 157px; text-align: center;">제직 증명서 발급</td>
+						<td style="text-align: center;">예금잔액증명서</td>
+						<td style="text-align: center;">1,000원 (부수당)</td>
 					</tr>
 					<tr>
-						<td>거래내역서</td>
-						<td>1,000원 (부수당)</td>
+						<td style="text-align: center;">거래내역서</td>
+						<td style="text-align: center;">1,000원 (부수당)</td>
 					</tr>
 					<tr>
-						<td>계좌개설확인서</td>
-						<td rowspan="4" style="padding-top: 70px">무료</td>
+						<td style="text-align: center;">계좌개설확인서</td>
+						<td rowspan="4" style="padding-top: 83px; text-align: center;">무료</td>
 					</tr>
 					<tr>
-						<td>이체확인증</td>
+						<td style="text-align: center;">이체확인증</td>
 					</tr>
 					<tr>
-						<td>금융소득원천징수내역조회표</td>
+						<td style="text-align: center;">금융소득원천징수내역조회표</td>
 					</tr>
 					<tr>
-						<td>지급조서</td>
+						<td style="text-align: center;">지급조서</td>
 					</tr>
 					<tr>
-						<td>은행조회서</td>
-						<td>수신 10,000원 / 여수신 30,000원</td>
+						<td style="text-align: center;">은행조회서</td>
+						<td style="text-align: center;">수신 10,000원 / 여수신 30,000원</td>
 					</tr>
 					<tr>
-						<td>질권설정</td>
-						<td></td>
-						<td>5,000원 (건당)</td>
+						<td style="text-align: center;">질권설정</td>
+						<td style="text-align: center;"></td>
+						<td style="text-align: center;">5,000원 (건당)</td>
 					</tr>
 					<tr>
-						<td>명의변경</td>
-						<td></td>
-						<td>5,000원 (고객당) - 단, 개인 고객의 개명에 의한 변경시는 면제</td>
+						<td style="text-align: center;">명의변경</td>
+						<td style="text-align: center;"></td>
+						<td style="text-align: center;">5,000원 (고객당) - 단, 개인 고객의 개명에 의한 변경시는 면제</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
+	
 	<div class="container" style="height: 40%; width: 62%;">
+<<<<<<< HEAD
 		<br>
+		<span style="float: right;">이용안내 > 이체</span>
+		<table class="table eq-ui-data-table z-depth-1">
+=======
+		<br>		<br>
 		<p style="font-size: 20px;">이체</p>
 		<table class="table table-hover">
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 			<thead>
-				<tr style="background: #FFD662">
+<<<<<<< HEAD
+				<tr>
+					<th style="width: 50%; color: #ffffff; text-align: center;">구분</th>
+					<th style="width: 50%; color: #ffffff; text-align: center;">수수료</th>
+=======
+				<tr style="background: #2980b9; color:white;">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 				</tr>
 			</thead>
-			<tbody>
+			<tbody >
 				<tr>
-					<td>간편이체</td>
-					<td>면제</td>
+					<td style="text-align: center;">간편이체</td>
+					<td style="text-align: center;">면제</td>
 				</tr>
 				<tr>
-					<td>당행이체</td>
-					<td>무료</td>
+					<td style="text-align: center;">당행이체</td>
+					<td style="text-align: center;">무료</td>
 				</tr>
 				<tr>
-					<td>타행이체</td>
-					<td>면제</td>
+					<td style="text-align: center;">타행이체</td>
+					<td style="text-align: center;">면제</td>
 				</tr>
 				<tr>
-					<td>타행 자동이체</td>
-					<td>면제</td>
+					<td style="text-align: center;">타행 자동이체</td>
+					<td style="text-align: center;">면제</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	
 	<div class="container" style="height: 57%; width: 62%;">
 		<br>
-		<p style="font-size: 20px;">대출</p>
+<<<<<<< HEAD
+		<span style="float: right;">이용안내 > 대출</span>
+		<table class="table eq-ui-data-table z-depth-1">
+=======
+		<p style="font-size:20px;">대출</p>
 		<table class="table table-hover">
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 			<thead>
-				<tr style="background: #FFD662">
+<<<<<<< HEAD
+				<tr>
+					<th style="width: 50%; color: #ffffff; text-align: center;">구분</th>
+					<th style="width: 50%; color: #ffffff; text-align: center;">수수료</th>
+=======
+				<tr style="background: #2980b9; color:white;">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>금융거래확인서</td>
-					<td rowspan="2" style="padding-top: 27px">1,000원 (부수당)</td>
+					<td style="text-align: center;">금융거래확인서</td>
+					<td rowspan="2" style="padding-top: 27px; text-align: center;">1,000원 (부수당)</td>
 				</tr>
 				<tr>
-					<td>부채증명서</td>
+					<td style="text-align: center;">부채증명서</td>
 				</tr>
 				<tr>
-					<td>대출금계산서</td>
-					<td rowspan="5" style="padding-top: 90px">무료</td>
+					<td style="text-align: center;">대출금계산서</td>
+					<td rowspan="5" style="padding-top: 107px; text-align: center;">무료</td>
 				</tr>
 				<tr>
-					<td>대출이자상환증명서</td>
+					<td style="text-align: center;">대출이자상환증명서</td>
 				</tr>
 				<tr>
-					<td>연체완납확인서</td>
+					<td style="text-align: center;">연체완납확인서</td>
 				</tr>
 				<tr>
-					<td>대출금완제확인서</td>
+					<td style="text-align: center;">대출금완제확인서</td>
 				</tr>
 				<tr>
-					<td>대위변제증명서</td>
+					<td style="text-align: center;">대위변제증명서</td>
 				</tr>
 				<tr>
+<<<<<<< HEAD
+					<td style="text-align: center;">중도상환해약금</td>
+					<td style="text-align: center;">면제</td>
+=======
 					<td>중도상환해약금</td>
 					<td>면제</td>
 				</tr>
@@ -156,7 +210,7 @@ td, tr>th, p {
 		<p style="font-size: 20px;">카드</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662">
+				<tr style="background: #2980b9; color:white;">
 					<th style="width: 50%">구분</th>
 					<th style="width: 50%">수수료</th>
 				</tr>
@@ -195,7 +249,7 @@ td, tr>th, p {
 		<p style="font-size: 20px;">외환</p>
 		<table class="table table-hover">
 			<thead>
-				<tr style="background: #FFD662">
+				<tr style="background: #2980b9; color:white;">
 					<th colspan="2" style="width: 25%">구분</th>
 					<th style="width: 25%">해외송금 국가</th>
 					<th style="width: 25%">해외송금 금액</th>
@@ -245,6 +299,7 @@ td, tr>th, p {
 					<td>-</td>
 					<td>송금액 무관</td>
 					<td>해당없음</td>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 				</tr>
 			</tbody>
 		</table>

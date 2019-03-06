@@ -75,7 +75,7 @@
 		</button>
 		<!-- Sidebar -->
 		<nav class="navbar navbar-inverse navbar-fixed-top"
-			id="sidebar-wrapper" role="navigation">
+			id="sidebar-wrapper" role="navigation" >
 			<!-- side-menu -->
 			<button class="action action--open" aria-label="Open Menu">
 				<span class="icon icon--menu"></span>
@@ -179,7 +179,7 @@
 
 						<!-- Submenu 0-2 예금-->
 						<ul data-menu="submenu-0-2" class="menu__level">
-							<li class="menu__item"><a class="menu__link" href="cheqSavRegi">예금 상품</a></li>
+							<li class="menu__item"><a class="menu__link" href="cheqSavRegi">예/적금 상품</a></li>
 							<li class="menu__item"><a class="menu__link" href="loanRegi">대출상품</a></li>
 							<li class="menu__item"><a class="menu__link"
 								href="loanApproval">대출신청관리</a></li>
@@ -205,15 +205,16 @@
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
 					</ul>
+					
 					<!-- Submenu 3  안내 -->
 					<ul data-menu="submenu-3" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
-							href="firstVisit_sws">첫방문 고객 안내</a></li>
+							href="firstVisit_sws">고객 안내</a></li>
 						<li class="menu__item"><a class="menu__link" href="faq_sws">FAQ</a></li>
 						<li class="menu__item"><a class="menu__link"
-							href="hoursOfUse_sws">이용시간 안내</a></li>
+							href="hoursOfUse_sws">이용시간</a></li>
 						<li class="menu__item"><a class="menu__link"
-							href="useFee_sws">이용 수수료 안내</a></li>
+							href="useFee_sws">수수료 안내</a></li>
 					</ul>
 
 					<!-- Submenu 5 안내 -->
@@ -235,7 +236,7 @@
 								<div id="logo" class="pull-left">
 									<h1>
 										<a href="index" class="scrollto"><img
-											src="/benkfit/resources/img/logo.jpeg"></a>
+											src="/benkfit/resources/img/logo/logo.png"></a>
 									</h1>
 								</div>
 								<nav id="nav-menu-container">
@@ -252,7 +253,7 @@
 												<li><a href="cheqSavList">예/적금</a></li>
 												<li><a href="loanList">대출</a></li>
 											</ul></li>
-										<li><a href="hoursOfUse_sws">안내</a></li>
+										<li><a href="firstVisit_sws">안내</a></li>
 										<li><a href="eventList_sws">이벤트</a></li>
 										<!-- 시큐리티 권한 따라 메뉴 달라짐  -->
 										<sec:authorize access="isAnonymous()">
@@ -298,7 +299,7 @@
 	<!-- LoadingBar -->
 	<div id="loading">
 		<div id="progress_Loading">
-			<img src="/benkfit/resources/img/loading/loading.gif">
+			<img src="/benkfit/resources/img/loading/478 (7).gif">
 		</div>
 	</div>
 
