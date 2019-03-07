@@ -4,210 +4,325 @@
 <%@ include file="../../Template/setting.jsp" %>
 <!DOCTYPE html>
 <html>
+
 <head>
-<<<<<<< HEAD
-<title>회원 조회</title>
-=======
-<title>관리자 > 회원관리</title>
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
-<style>
-  .wrapper3 {
-    width:100%;
-    vertical-align:middel;
-    text-align:center;
-  }
-  
-  .wrapper2 {
-      display:inline-block;
-      margin-top:150px;
-      width:90%;
-      align:center;
-  }
-  
-  .btnarea {
-    text-align:left;
-  }
-  
-  .btnarea .btn {
-    margin-bottom:10px;
-    color:#ffffff;
-  }
-  
-  .tb_header{
-     display:inline-block;
-  }
-  
-  .tb_header tr th {
-    color:#fff;
-    padding: 10px;
-    text-align:center;
-  }
-  
-  .tb_header tr td {
-    text-align:center;
-  }
-  
-  .thCenter {
-    text-align:center;
-  }
-  
-  .levelSelelct {
-    background-color:transparent;
-    border:none;
-    border-bottom: 1px solid #9e9e9e;
-    border-radius: 0;
-    outline: 0;
-    box-shadow: none;
-    transition: all .3s;
-    text-align:center;  
-  }
-  
-  .paging {
-    margin-top:25px;
-  }
-
-  .paging tr {
-    text-align:center;
-  }
-  
-  .pageno {
-    color:#2D5772;
-    cursor:pointer;
-    font-size:18px;
-  }
-  
-  .pageno:hover {
-    color:#53a0d1;
-    
-  }
-  
-  #currentPage {
-    color:#666666;
-    font-size:18px;
-  }
-  
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-   rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-      // 전체 선택, 해제
-      $("#box1").click(function() {
-        if($("#box1").prop("checked")) {
-          $("input[name=box2]").prop("checked", true);
-        } else {
-          $("input[name=box2]").prop("checked", false);
+    <title>회원 조회</title>
+    <style>
+        .wrapper3 {
+            width: 100%;
+            vertical-align: middel;
+            text-align: center;
         }
-      })
-      
-      // 선택 회원 삭제
-      $("#delBtn").click(function() {
-        var con = confirm("선택 회원을 정말 삭제하시겠습니까?");
-        if(con) {
-          $("input[name=box2]:checked").each(function() {
-              var id = $(this).val(); 
-              $.ajax({
-                  type: "POST",
-                  data: "id=" + id,
-                  url: "${pageContext.request.contextPath}/deleteUsers", //{컨트롤러}/이동페이지
-                  success: function(data) {
-                    if(data.trim().split("/")[0] == 1) {
-                      window.location="selectUsers";
-                    } else {
-                      alert("회원 삭제에 실패했습니다. 잠시후 다시 시도해주십시오");
-                    }
-                  },
-                  error: function() {
-                      alert("오류");
-                  }
-              });
-          })
-        } else {
-          return false;
-        }
-      })
-      
-    });
-    
-    // 신분증 크게 보기
-    function openImg(img) {
-      imgwin = window.open("", "new", "width=600, height=400, left=600, top=200");
-      imgwin.document.write("<img src=/benkfit/resources/img/idcard/"+img+" onclick='self.close()' style='height:350; cursor:pointer;'>");
-    }
-    
-    // 회원 등급 변경
-    function changelevel(id, current) {
-       var level = $("#level"+id+" option:selected").val();
-       var params = "id=" + id + "&level=" + level;
-       
-       if(level == current) {
-         return;
-       } else {
-         $.ajax({
-             type: "POST",
-             data: params,
-             url: "${pageContext.request.contextPath}/updateUsers",
-             success: function(data) {
-               if(data.trim().split("/")[0] == 1) {
-                 $("#level_div"+id).css("color","#C64545");
-                 $("#level_div"+id).html(data.trim().split("/")[1]);
-               } else {
-                 alert("회원 등급 수정에 실패하였습니다. 잠시후 다시 시도해주십시오.");
-               }
-             },
-             error: function() {
-                 alert("오류");
-             }
-         });
-       }
-    }   
 
-    // 가입 상품 조회
-    function showAccount(id) {
-      $.ajax({
-            type: "POST",
-            data: "id="+id,
-            url: "${pageContext.request.contextPath}/selAccount",
-            success: function(data) {
-              $("#myModal2").css('text-align','center');
-              $("#modal-content").css('width','200%');
-              $("#modal-content").html(data);
-            },
-            error: function() {
-                alert("가입상품 조회 오류");
-            }
+        .wrapper2 {
+            display: inline-block;
+            margin-top: 150px;
+            width: 90%;
+            align: center;
+        }
+
+        .btnarea {
+            text-align: left;
+        }
+
+        .btnarea .btn {
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .tb_header {
+            display: inline-block;
+        }
+
+        .tb_header tr th {
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .tb_header tr td {
+            text-align: center;
+        }
+
+        .thCenter {
+            text-align: center;
+        }
+
+        .levelSelelct {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #9e9e9e;
+            border-radius: 0;
+            outline: 0;
+            box-shadow: none;
+            transition: all .3s;
+            text-align: center;
+        }
+
+        .paging {
+            margin-top: 25px;
+        }
+
+        .paging tr {
+            text-align: center;
+        }
+
+        .pageno {
+            color: #2D5772;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .pageno:hover {
+            color: #53a0d1;
+
+        }
+
+        #currentPage {
+            color: #666666;
+            font-size: 18px;
+        }
+
+        /* selAccount style  */
+
+        .wrapper4 {
+            margin: 0 20px 20px 20px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .wrapper5 {
+            margin: 0 5 5 5;
+            text-align: center;
+            width: 100%;
+        }
+
+        .wrapper6 {
+            margin: 0 5 5 5;
+            display: inline-block;
+        }
+
+        .title {
+            padding-top: 20px;
+        }
+        
+        .title h4 {
+            margin-left: 30px;
+        }
+
+        .btnarea2 {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .tb_header2 {
+            width: 900px;
+        }
+
+        .tb_header2 tr th {
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .tb_header2 tr td {
+            text-align: center;
+        }
+
+        #closeModal {
+            margin-top: 40px;
+        }
+
+        .viewTrans {
+            color: #53a0d1;
+            cursor: pointer;
+        }
+
+        .viewTrans:hover {
+            color: #822929;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            // 전체 선택, 해제
+            $("#box1").click(function() {
+                if ($("#box1").prop("checked")) {
+                    $("input[name=box2]").prop("checked", true);
+                } else {
+                    $("input[name=box2]").prop("checked", false);
+                }
+            })
+
+            // 선택 회원 삭제
+            $("#delBtn").click(function() {
+                var con = confirm("선택 회원을 정말 삭제하시겠습니까?");
+                if (con) {
+                    $("input[name=box2]:checked").each(function() {
+                        var id = $(this).val();
+                        $.ajax({
+                            type: "POST",
+                            data: "id=" + id,
+                            url: "${pageContext.request.contextPath}/deleteUsers", //{컨트롤러}/이동페이지
+                            success: function(data) {
+                                if (data.trim().split("/")[0] == 1) {
+                                    window.location = "selectUsers";
+                                } else {
+                                    alert("회원 삭제에 실패했습니다. 잠시후 다시 시도해주십시오");
+                                }
+                            },
+                            error: function() {
+                                alert("오류");
+                            }
+                        });
+                    })
+                } else {
+                    return false;
+                }
+            })
+
         });
-    }
-    
-    // 거래내역 조회
-    function getTrans(account, code, pageNum) {
-      var params = "account=" + account + "&code=" + code + "&pageNum=" + pageNum;
-        $.ajax({
-              type: "POST",
-              data: params,
-              url: "${pageContext.request.contextPath}/selTransaction",
-              success: function(data) {
-                $("#modal-contentT").html(data);
-              },
-              error: function() {
-                  alert("거래 내역 조회 오류");
-              }
-          }); 
-      }
-    
-    // 거래내역 모달 닫기
-    function closeModal2() {
-       document.getElementById("myModalT").click();
-    }
-    
-</script>
-</head>
-<body>
-<%@ include file ="../../Template/top.jsp" %>
 
-<div class="wrapper3">
+        // 신분증 크게 보기
+        function openImg(img) {
+            imgwin = window.open("", "new", "width=600, height=400, left=600, top=200");
+            imgwin.document.write("<img src=/benkfit/resources/img/idcard/" + img + " onclick='self.close()' style='height:350; cursor:pointer;'>");
+        }
+
+        // 회원 등급 변경
+        /* function changelevel(id, current) {
+            var level = $("#level" + id + " option:selected").val();
+            var params = "id=" + id + "&level=" + level;
+
+            if (level == current) {
+                return;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    data: params,
+                    url: "${pageContext.request.contextPath}/updateUsers",
+                    success: function(data) {
+                        if (data.trim().split("/")[0] == 1) {
+                            $("#level_div" + id).css("color", "#C64545");
+                            $("#level_div" + id).html(data.trim().split("/")[1]);
+                        } else {
+                            alert("회원 등급 수정에 실패하였습니다. 잠시후 다시 시도해주십시오.");
+                        }
+                    },
+                    error: function() {
+                        alert("오류");
+                    }
+                });
+            }
+        } */
+     // 회원 등급 변경
+        function changelevel(id, current) {
+            var level = $("#level" + id + " option:selected").val();
+            var params = "id=" + id + "&level=" + level;
+            sendRequest(level_callback, "updateUsers", "GET", params);
+        }
+        function level_callback() {
+        	if(httpRequest.readyState == 4) { //completed : 모든 데이터 취득 완료 상태
+                if(httpRequest.status == 200) { //정상종료
+                	var data = httpRequest.responseText;
+                	if (data.trim().split("/")[0] == 1) {
+                		    var id = data.trim().split("/")[2];
+                        $("#level_div" + id).css("color", "#C64545");
+                        $("#level_div" + id).html(data.trim().split("/")[1]);
+                    } else {
+                        alert("회원 등급 수정에 실패하였습니다. 잠시후 다시 시도해주십시오.");
+                    }
+                } else {
+                  alert("에러발생");
+                }
+         } else {
+           //alert(httpRequest.readyState);
+         }
+        }
+        
+        // 가입 상품 조회
+        /* function showAccount(id) {
+            $.ajax({
+                type: "POST",
+                data: "id=" + id,
+                url: "${pageContext.request.contextPath}/selAccount",
+                success: function(data) {
+                    $("#myModal2").css('text-align', 'center');
+                    $("#modal-content").css('width', '200%');
+                    $("#modal-content").html(data);
+                },
+                error: function() {
+                    alert("가입상품 조회 오류");
+                }
+            });
+        } */
+        // 가입 상품 조회
+        function showAccount(id) {
+        	var params = "id=" + id;
+        	sendRequest(account_callback, "selAccount", "GET", params);
+        }
+        function account_callback() {
+        	if(httpRequest.readyState == 4) { //completed : 모든 데이터 취득 완료 상태
+                if(httpRequest.status == 200) { //정상종료
+                  var data = httpRequest.responseText;
+                  $("#modal-content").html(data);
+                } else {
+                  alert("에러발생");
+                }
+         } else {
+           //alert(httpRequest.readyState);
+         }
+        }
+        
+        // 거래내역 조회
+        /* function getTrans(account, code, pageNum) {
+            var params = "account=" + account + "&code=" + code + "&pageNum=" + pageNum;
+	            $.ajax({
+	                type: "POST",
+	                data: params,
+	                url: "${pageContext.request.contextPath}/selTransaction",
+	                success: function(data) {
+	                    $("#modal-contentT").html(data);
+	                },
+	                error: function() {
+	                    alert("거래 내역 조회 오류");
+	                }
+	            });
+        } */
+        // 거래내역 조회
+        function getTrans(account, code, pageNum) {
+        	var params = "account=" + account + "&code=" + code + "&pageNum=" + pageNum;
+        	//alert(params);
+        	sendRequest(trans_callback, "selTransaction", "GET", params);
+        }
+        
+        function trans_callback() {
+        	if(httpRequest.readyState == 4) { //completed : 모든 데이터 취득 완료 상태
+        	       if(httpRequest.status == 200) { //정상종료
+        	    	   var data = httpRequest.responseText;
+        	    	   $("#modal-contentT").html(data);
+        	       } else {
+        	    	   alert("에러발생");
+        	       }
+        	} else {
+        		//alert(httpRequest.readyState);
+        	}
+        }
+        
+        // 거래내역 모달 닫기
+        function closeModal2() {
+            document.getElementById("myModalT").click();
+        }
+
+    </script>
+</head>
+
+<body>
+    <%@ include file ="../../Template/top.jsp" %>
+
+    <div class="wrapper3">
   <div class="wrapper2">
     <div class="btnarea">
       <a class="btn btn-danger eq-ui-waves-light" id="delBtn" style="color:#fff">삭제</a>
@@ -216,7 +331,7 @@
          <thead>
          <tr>
              <th><input type="checkbox" class="eq-ui-input filled-in" id="box1" />
-	               <label for="box1"></label></th>
+                 <label for="box1"></label></th>
              <th colspan=2 style="text-align:center">고객등급</th>
              <th style="text-align:center">고객명</th>
              <th style="text-align:center">생년월일</th>
@@ -310,7 +425,7 @@
           </table>
   </div>
 </div>
-         
-<%@ include file ="../../Template/footer.jsp" %>
+    <%@ include file ="../../Template/footer.jsp" %>
 </body>
+
 </html>

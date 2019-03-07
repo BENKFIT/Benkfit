@@ -52,8 +52,8 @@ public class ServiceImpl_lia implements Service_lia {
 	@Override
 	public void getText(String file, Model model) throws IOException {
 		 
-		//ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/test.py", file);
+		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
+		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/test.py", file);
 		Process p = pb.start();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -76,8 +76,8 @@ public class ServiceImpl_lia implements Service_lia {
       
 		try{
             //파일 객체 생성
-            //File txt = new File("C:\\DEV43\\python\\output\\getText.txt");
-            File txt = new File("/Users/banhun/tesseract/output/getText.txt");
+            File txt = new File("C:\\DEV43\\python\\output\\getText.txt");
+            //File txt = new File("/Users/banhun/tesseract/output/getText.txt");
             
            //스캐너로 파일 읽기
             ArrayList<String> list = new ArrayList<String>();
@@ -177,8 +177,8 @@ public class ServiceImpl_lia implements Service_lia {
 		// 이미지 파일
 		MultipartFile file = req.getFile("idCard");
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
-		//String realDir = "C:\\DEV43\\git\\benkfit\\src\\main\\webapp\\resources\\img\\idcard";
-		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/idcard";
+		String realDir = "C:\\DEV43\\git\\benkfit\\src\\main\\webapp\\resources\\img\\idcard";
+		//String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/idcard";
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -427,6 +427,16 @@ public class ServiceImpl_lia implements Service_lia {
 			
 			List<UsersVO> users = dao.selectUsers(map);
 			model.addAttribute("users", users);
+			
+			// 계좌조회
+			/*List<myCheqAccountVO> cheq = dao.selectCheq();
+			List<MySavAccountVO> sav = dao.selectSav();
+			List<MyloanAccountVO> loan = dao.selectLoan();
+			
+			model.addAttribute("cheq", cheq);
+			model.addAttribute("sav", sav);
+			model.addAttribute("loan", loan);*/
+			
 		}
 	}
 
@@ -449,12 +459,14 @@ public class ServiceImpl_lia implements Service_lia {
 		int cnt  = dao.updateUsers(map);
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("level", level);
+		model.addAttribute("id", id);
 	}
 
 	// 관리자메뉴 > 계좌조회
 	@Override
 	public void selAccount(HttpServletRequest req, Model model) {
 		String id = req.getParameter("id");
+		 
 		List<myCheqAccountVO> cheq = dao.selectCheq(id);
 		List<MySavAccountVO> sav = dao.selectSav(id);
 		List<MyloanAccountVO> loan = dao.selectLoan(id);
@@ -481,6 +493,7 @@ public class ServiceImpl_lia implements Service_lia {
 			model.addAttribute("loan", loan);
 		}
 	}
+	
 	// 관리자 메뉴 > 회원 거래내역 조회
 	@Override
 	public void selTransaction(HttpServletRequest req, Model model) {
@@ -558,8 +571,8 @@ public class ServiceImpl_lia implements Service_lia {
 	@Override
 	public void marketprice(Model model) throws IOException {
 		// Process : 자바에서 외부프로그램을 호출할때 사용
-		//ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/coin.py");
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/coin.py");
+		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/coin.py");
+		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/coin.py");
 		Process p = pb.start();   //프로세스 호출
 		
 		// 프로세서의 실행결과를 스트림으로 리턴

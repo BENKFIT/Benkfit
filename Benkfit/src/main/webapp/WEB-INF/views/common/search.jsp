@@ -45,7 +45,7 @@
 
       <table class="table table-hover" style="width: 100%;">
         <thead>
-          <tr style="background: #FFD662">
+          <tr style="background: #2980B9">
             <th style="width: 10%; text-align: center">No</th>
             <th style="width: 70%;">상품명</th>
             <th style="width: 20%; text-align: center">등록일</th>
@@ -77,7 +77,7 @@
 
       <table class="table table-hover" style="width: 100%;">
         <thead>
-          <tr style="background: #FFD662">
+          <tr style="background: #2980B9">
             <th style="width: 10%; text-align: center">No</th>
             <th style="width: 70%;">상품명</th>
             <th style="width: 20%; text-align: center">등록일</th>
@@ -109,7 +109,7 @@
 
       <table class="table table-hover" style="width: 100%;">
         <thead>
-          <tr style="background: #FFD662">
+          <tr style="background: #2980B9">
             <th style="width: 10%; text-align: center">No</th>
             <th style="width: 70%;">상품명</th>
             <th style="width: 20%; text-align: center">등록일</th>

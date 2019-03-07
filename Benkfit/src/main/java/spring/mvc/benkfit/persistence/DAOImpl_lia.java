@@ -139,18 +139,27 @@ public class DAOImpl_lia implements DAO_lia {
 	public List<myCheqAccountVO> selectCheq(String id) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCheq", id);
 	}
+	/*public List<myCheqAccountVO> selectCheq() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectCheq");
+	}*/
 	
 	// 관리자메뉴 > 회원별 적금 조회
 	@Override
 	public List<MySavAccountVO> selectSav(String id) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectSav", id);
 	}
+	/*public List<MySavAccountVO> selectSav() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectSav");
+	}*/
 
 	// 관리자메뉴 > 회원별 대출 조회
 	@Override
 	public List<MyloanAccountVO> selectLoan(String id) {
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectLoan", id);
 	}
+	/*public List<MyloanAccountVO> selectLoan() {
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_lia.selectLoan");
+	}*/
 
 	// 관리자메뉴 > 계좌 거래내역 건수
 	@Override

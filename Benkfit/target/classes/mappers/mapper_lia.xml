@@ -117,16 +117,25 @@
   <select id="selectCheq" parameterType="String" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
     select * from cheqproduct_tbl c, mycheqaccount_tbl m where c.cheq_num = m.cheq_num and c_id=#{id}
   </select>
+  <!-- <select id="selectCheq" resultType="spring.mvc.benkfit.vo.myCheqAccountVO">
+    select * from cheqproduct_tbl c, mycheqaccount_tbl m where c.cheq_num = m.cheq_num
+  </select> -->
   
   <!-- 관리자 > 회원별 적금 조회 -->
   <select id="selectSav" parameterType="String" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
     select * from mysavaccount_tbl where c_id=#{id}
-  </select> 
+  </select>
+  <!-- <select id="selectSav" resultType="spring.mvc.benkfit.vo.MySavAccountVO">
+    select * from mysavaccount_tbl
+  </select>  -->
   
   <!-- 관리자 > 회원별 대출 조회 -->
   <select id="selectLoan" parameterType="String" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
     select * from myloanaccount_tbl where c_id=#{id}
-  </select> 
+  </select>
+  <!-- <select id="selectLoan" resultType="spring.mvc.benkfit.vo.MyloanAccountVO">
+    select * from myloanaccount_tbl
+  </select> -->
   
   <!-- 관리자 > 거래내역 건수 -->
   <select id="getTransCnt" parameterType="String" resultType="int">
