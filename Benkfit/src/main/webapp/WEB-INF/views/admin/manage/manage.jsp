@@ -105,28 +105,28 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">Loan balance</td>
-					<td id="loan_balance">${loan_balance}</td>
+					<td class="eq-ui-data-table-cell-non-numeric">자금계정</td>
+					<td id="loan_balance">${loan_balance}Won</td>
 				</tr>
 				<tr>
 					<td class="eq-ui-data-table-cell-non-numeric">State</td>
 					<td id="state1"></td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">name</td>
+					<td class="eq-ui-data-table-cell-non-numeric">토큰이름</td>
 					<td id="name">${name}</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">remaning</td>
-					<td id="remaning">${remaning}</td>
+					<td class="eq-ui-data-table-cell-non-numeric">남은배포량</td>
+					<td id="remaning">${remaning}Won</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">totalSupply</td>
-					<td id="totalSupply">${totalSupply}</td>
+					<td class="eq-ui-data-table-cell-non-numeric">총 배포량</td>
+					<td id="totalSupply">${totalSupply}Won</td>
 				</tr>
 			</table>
 			<a class="btn btn-primary eq-ui-waves-light"
-				onclick="benkfitLoanStock();" style="margin: 20px 0px 100px 0px;">대출토큰할당</a>
+				onclick="benkfitLoanStock();" style="margin: 20px 0px 100px 0px;">관리자토큰할당</a>
 		</div>
 	</div>
 

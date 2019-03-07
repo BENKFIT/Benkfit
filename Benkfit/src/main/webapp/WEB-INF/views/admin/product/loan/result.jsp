@@ -8,9 +8,12 @@
 		<c:when test="${cnt == 1}">
 			<c:redirect url="loanRegi"/>
 		</c:when>
-	</c:choose>
-	<c:choose>
+
 		<c:when test="${result == 1}">
+			<c:redirect url="loanApproval"/>
+		</c:when>
+		
+		<c:when test="${result == 2}">
 			<c:redirect url="loanApproval"/>
 		</c:when>
 	</c:choose>

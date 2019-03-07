@@ -188,15 +188,20 @@
 						<!-- Submenu 0-3 이벤트관리 -->
 						<ul data-menu="submenu-0-3" class="menu__level">
 							<li class="menu__item"><a class="menu__link"
-								 href="event_list_sws">이벤트관리</a></li>
+								href="event_list_sws">이벤트관리</a></li>
 							<li class="menu__item"><a class="menu__link"
-								 href="slotControl">슬롯관리</a></li>
+								href="slotControl">슬롯관리</a></li>
 						</ul>
 					</sec:authorize>
 
 					<!-- Submenu 1 금융상품 -->
 					<ul data-menu="submenu-1" class="menu__level">
-						<li class="menu__item"><a class="menu__link" href="cheqSavList">예금상품</a></li>
+						<li class="menu__item"><a class="menu__link" href="cheqSavList">예금</a></li>
+						<li class="menu__item"><a class="menu__link"
+							data-submenu="submenu-1-2" href="#">대출</a></li>
+					</ul>
+					<!-- Submenu 1-2 대출-->
+					<ul data-menu="submenu-1-2" class="menu__level">
 						<li class="menu__item"><a class="menu__link"
 							data-submenu="submenu-1-2-1" href="loanList">대출상품</a></li>
 					</ul>

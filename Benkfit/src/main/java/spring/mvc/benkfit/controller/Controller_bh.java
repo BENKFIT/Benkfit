@@ -30,7 +30,7 @@ public class Controller_bh {
 	/*
 	 * 이더리움간편체험
 	 */
-	// 계정생성폼
+	// 계정생성폼 - 지갑
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("wallet")
 	public String create(HttpServletRequest req, Model model) throws Exception {
@@ -159,6 +159,14 @@ public class Controller_bh {
 		service.slotStockBalance(req, model);
 		return "admin/event/slotStockBalance";
 	}
+	
+	// 슬롯머kill함수
+	@RequestMapping("slotKill")
+	public String slotKill(HttpServletRequest req, Model model) throws Exception {
+		logger.info("slotKill");
+		service.slotKill(req, model);
+		return "admin/event/slotControl";
+	}
 
 	/*
 	 * 대출
@@ -167,7 +175,7 @@ public class Controller_bh {
 	/*
 	 * common
 	 */
-	// 대출 상품 목록
+	//대출 상품 목록
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanList")
 	public String loanList(HttpServletRequest req, Model model) throws Exception {
@@ -203,7 +211,6 @@ public class Controller_bh {
 	}
 
 	// 대출한도확인하기
-	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanBalance")
 	public String loanBalance(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanBalance");
@@ -212,7 +219,6 @@ public class Controller_bh {
 	}
 
 	// 대출잔액확인하기
-	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanleft")
 	public String loanleft(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanleft");
@@ -286,13 +292,39 @@ public class Controller_bh {
 		return "admin/product/loan/delResult";
 	}
 
-	// 대출신청리스트
+	// 대출신청리스트-전체
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanApproval")
 	public String loanApproval(HttpServletRequest req, Model model) throws Exception {
 		logger.info("loanApproval");
 		service.loanApproval(req, model);
+		System.out.println("=====전체c");
 		return "admin/product/loan/loanApproval";
+	}
+	
+	// 대출신청리스트-승인
+	@RequestMapping("loanApproval1")
+	public String loanApproval1(HttpServletRequest req, Model model) throws Exception {
+		logger.info("loanApproval1");
+		service.loanApproval1(req, model);
+		System.out.println("=====승인c");
+		return "admin/product/loan/loanApproval1";
+	}
+	// 대출신청리스트-대기
+	@RequestMapping("loanApproval2")
+	public String loanApproval2(HttpServletRequest req, Model model) throws Exception {
+		logger.info("loanApproval2");
+		service.loanApproval2(req, model);
+		System.out.println("=====대기c");
+		return "admin/product/loan/loanApproval2";
+	}
+	// 대출신청리스트-거절
+	@RequestMapping("loanApproval3")
+	public String loanApproval3(HttpServletRequest req, Model model) throws Exception {
+		logger.info("loanApproval3");
+		service.loanApproval3(req, model);
+		System.out.println("=====거절c");
+		return "admin/product/loan/loanApproval3";
 	}
 
 	// 대출신청처리(승인)

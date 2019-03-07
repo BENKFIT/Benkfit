@@ -27,7 +27,6 @@ import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
 
-import spring.mvc.benkfit.HomeController;
 import spring.mvc.benkfit.persistence.DAO_lia;
 import spring.mvc.benkfit.persistence.DAO_sws;
 import spring.mvc.benkfit.service.ServiceImpl_syk;
@@ -70,11 +69,11 @@ public class Controller_sws {
 	// 첫방문 고객 안내
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("firstVisit_sws")
-	public String firstVisit_sws() throws Exception {
+	public String string() throws Exception {
 		logger.info("firstVisit_sws");
 		return "common/info/firstVisit";
 	}
-
+	
 	// FAQ
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("faq_sws")
@@ -212,7 +211,6 @@ public class Controller_sws {
 	@RequestMapping("map_sws")
 	public String map_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("map_sws");
-
 		return "common/map/map";
 	}
 	
@@ -517,9 +515,7 @@ public class Controller_sws {
 	@RequestMapping("atm_sws")
 	public String atm(HttpServletRequest req, Model model) throws Exception {
 		logger.info("atm_sws");
-		
 		service.getMap(req, model);
-		
 		return "common/map/atm";
 	}
 }
