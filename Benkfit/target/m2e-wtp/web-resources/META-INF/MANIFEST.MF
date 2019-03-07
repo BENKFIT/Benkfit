@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: k
 Build-Jdk: 1.8.0_181
+=======
+Built-By: 82109
+Build-Jdk: 1.8.0_161
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 Created-By: Maven Integration for Eclipse
 

@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.*;
+import spring.mvc.benkfit.service.Setting;
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
@@ -319,7 +320,7 @@ public class ServiceImpl_kay implements Service_kay{
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		String account = req.getParameter("account");
+		String account = Setting.fn.concat(req.getParameter("account"));
 		String start_date = req.getParameter("start_date");
 		String end_date= req.getParameter("end_date");
 		String type = req.getParameter("type");
@@ -479,7 +480,7 @@ public class ServiceImpl_kay implements Service_kay{
 	
 	// 파일 업로드 & 텍스트 인식
 	@Override
-	public void getText(String file, Model model) throws IOException {
+	public void value(String file, Model model) throws IOException {
 
 		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
 		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/benkfit.py", file);
@@ -577,7 +578,7 @@ public class ServiceImpl_kay implements Service_kay{
 	//서류등록처리
 	@SuppressWarnings("deprecation")
 	@Override
-	public void signInPro(MultipartHttpServletRequest req, Model model) {
+	public void indocu(MultipartHttpServletRequest req, Model model) {
 		
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();

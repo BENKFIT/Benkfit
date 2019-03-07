@@ -105,7 +105,7 @@ public class Controller_kay {
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_account");
-		service.myloan_list(req, model);
+		/*service.myloan_list(req, model);*/
 		return "mypage_kay/loan_docu/loan_account_kay";
 	}
 	
@@ -267,25 +267,25 @@ public class Controller_kay {
 	// 서류등록
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("upload")
-	public String signIn() throws Exception {
+	public String upload() throws Exception {
 		return "mypage_kay/loan_docu/uploadForm_kay";
 	}
 	
 	//문서서류인식
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("value") 
-	public String getText(String file, Model model) throws IOException {
+	public String value(String file, Model model) throws IOException {
 		logger.info("value");
-		service.getText(file, model);
+		service.value(file, model);
 		return "mypage_kay/loan_docu/value_kay";
 	}
 	
 	//서류등록처리
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("upresult")
-	public String signInPro(MultipartHttpServletRequest req, Model model) throws Exception {
+	public String indocu(MultipartHttpServletRequest req, Model model) throws Exception {
 		logger.info("upresult");
-		service.signInPro(req, model);
+		service.indocu(req, model);
 		return "mypage_kay/loan_docu/uploadResult_kay";
 	}
 	

@@ -35,7 +35,6 @@ public class Controller_syk {
 	public String checkingList(HttpServletRequest req) {
 		logger.info("예금상품목록이동");
 		service.cheqSavList(req);
-		
 		return "common/product/cheqSav/productList";
 	}
 	
@@ -45,7 +44,6 @@ public class Controller_syk {
 	public String cheqInfo(HttpServletRequest req) {
 		logger.info("예금상품상세페이지");
 		service.cheqInfo(req);
-		
 		return "common/product/cheqSav/productInfo";
 	}
 	
@@ -196,7 +194,6 @@ public class Controller_syk {
 	@RequestMapping("deposit")
 	public String deposit(HttpServletRequest req) throws Exception{
 		logger.info("입금");
-		
 		return "mypage_kay/trans/deposit";
 	}
 	
@@ -272,7 +269,7 @@ public class Controller_syk {
 	public String deploy(HttpServletRequest req, Model model) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
-		service2.benkfitControl(req, model);
+	/*	service2.benkfitControl(req, model);*/
 		return "admin/manage/manage";
 	}
 	

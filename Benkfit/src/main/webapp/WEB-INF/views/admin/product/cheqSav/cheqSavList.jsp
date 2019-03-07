@@ -9,10 +9,8 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
 <meta charset="UTF-8">
-<title> 관리자 > 예/적금상품등록</title>
+<title>관리자 > 예/적금상품등록</title>
 <style>
 .listBox {
 	border: 5px dotted rgb(189, 189, 189);
@@ -36,7 +34,7 @@ input, select {
 	border: 1px solid #2980b9;
 	font-size: 20px;
 	border-radius: 5px;
-	color:white;
+	color: white;
 }
 
 .regTbl {
@@ -44,6 +42,9 @@ input, select {
 }
 
 .regTbl td {
+	padding: 10px;
+}
+.modal-body td {
 	padding: 10px;
 }
 </style>
@@ -58,7 +59,8 @@ input, select {
 		<div style="display: inline-block;">
 			<!-- 등록 -->
 			<div class="listBox" style="position: relative;">
-				<button style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); border: none; background: none;"
+				<button
+					style="position: relative; font-size: 30px; position: absolute; top: 160px; left: 130px; color: rgb(189, 189, 189); border: none; background: none;"
 					data-toggle="modal" data-target="#exampleModalCenter">&#43;</button>
 			</div>
 		</div>
@@ -66,12 +68,13 @@ input, select {
 	<hr>
 	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
-		<span class="style">금융상품 > 예금</span>
+			<span class="style">금융상품 > 예금</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
-				
+
 				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
-				<c:forEach var="list" items="${cheq}">
-					<div class="center-block col-4 princing-item green" style="margin: 30px 0px;">
+				<c:forEach var="list" items="${cheq}" varStatus="status">
+					<div class="center-block col-4 princing-item green"
+						style="margin: 30px 0px;">
 						<div class="pricing-divider ">
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
 								<span class="h3">Ether</span> ${list.cheq_rate}% <span
@@ -108,9 +111,9 @@ input, select {
 								<li><b>저축금액 </b> ${list.cheq_limit}</li>
 								<li><b>예금자보호대상</b></li>
 							</ul>
-							<button type="button" class="btn btn-lg btn-block  btn-custom3" class="btn btn-primary"
-								data-toggle="modal" data-target="#editCheq"
-								onclick="cheqEdit('${list.cheq_num}');">수정/삭제</button>
+							<button type="button" class="btn btn-lg btn-block  btn-custom3"
+								class="btn btn-primary" data-toggle="modal"
+								data-target="#editCheq${list.cheq_num}${status.index}">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -120,12 +123,13 @@ input, select {
 	<hr>
 	<div style="margin: 50px 0px;">
 		<div class="container-fluid bg-gradient p-5">
-		<span class="style">금융상품 > 적금</span>
+			<span class="style">금융상품 > 적금</span>
 			<div class="row mx-auto text-center w-75" style="text-align: center;">
-			
-			<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
-				<c:forEach var="list" items="${sav}">
-					<div class="center-block col-4 princing-item blue" style="margin: 30px 0px;">
+
+				<!-- 가운데 정렬 시 아래의 margin을 삭제 -->
+				<c:forEach var="list" items="${sav}" varStatus="status2">
+					<div class="center-block col-4 princing-item blue"
+						style="margin: 30px 0px;">
 						<div class="pricing-divider ">
 							<h4 class="my-0 display-2 text-light font-weight-normal mb-3">
 								<span class="h3">Ether</span> ${list.sav_rate}% <span class="h5">/year</span>
@@ -163,8 +167,8 @@ input, select {
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom2"
-								data-toggle="modal" data-target="#editSav"
-								onclick="savEdit('${list.sav_num}');">수정/삭제</button>
+								data-toggle="modal"
+								data-target="#editSav${list.sav_num}${status2.index+1000}">수정/삭제</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -315,7 +319,7 @@ input, select {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" 
+					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -394,6 +398,7 @@ input, select {
 			</div>
 		</div>
 	</div>
+
 	<!-- Modal3 - 적금등록 -->
 	<div class="modal fade" id="Sav" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -475,45 +480,157 @@ input, select {
 	</div>
 
 	<!-- 예금수정삭제 -->
-	<div class="modal fade" id="editCheq" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
+	<c:forEach var="list" items="${cheq}" varStatus="status">
+		<div class="modal fade${list.cheq_num}${status.index}"
+			id="editCheq${list.cheq_num}${status.index}" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="text-align: center;">
+						<div style="display: inline-block;">수정할 정보를 입력하세요.</div>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						<div style="display: inline-block;">
+							<form action="cheqEditPro" method="post">
+								<table>
+									<tr>
+										<td>상품번호</td>
+										<td><input type="text" value="${list.cheq_num}"
+											name="num" disabled></td>
+									</tr>
+									<tr>
+										<td>상품이름</td>
+										<td><input type="text" value="${list.cheq_name}"
+											name="name"></td>
+									</tr>
+									<tr>
+										<td>상품타입</td>
+										<td><input type="text" value="${list.cheq_type}"
+											name="type"></td>
+									</tr>
+									<tr>
+										<td>상품이율</td>
+										<td><input type="number" value="${list.cheq_rate}"
+											name="rate"></td>
+									</tr>
+									<tr>
+										<td>가입대상</td>
+										<td><input type="text" value="${list.cheq_target}"
+											name="target"></td>
+									</tr>
+									<tr>
+										<td>등록일자</td>
+										<td><input type="text" value="${list.cheq_regDate}"
+											name="regDate" disabled></td>
+									</tr>
+									<tr>
+										<td>제한금액</td>
+										<td><input type="number" value="${list.cheq_limit}"
+											name="number"></td>
+									</tr>
+									<tr>
+										<td>가입기간</td>
+										<td><input type="text" value="${list.cheq_period}"
+											name="period"></td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align: center;"><input
+											type="submit" value="수정"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" onclick="window.location='cheqDel?cheq_num=${list.cheq_num}'">삭제</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
 
 	<!-- 적금수정삭제 -->
-	<div class="modal fade" id="editSav" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalCenterTitle" aria-hidden="true"></div>
+	<c:forEach var="list" items="${sav}" varStatus="status2">
+		<div class="modal fade"
+			id="editSav${list.sav_num}${status2.index+1000}" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header" style="text-align: center;">
+						<div style="display: inline-block;">수정할 정보를 입력하세요.</div>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" style="text-align: center;">
+						<div style="display: inline-block;">
+							<form action="savEditPro" method="post">
+								<table>
+									<tr>
+										<td>상품번호</td>
+										<td><input type="text" value="${list.sav_num}" name="num"
+											disabled></td>
+									</tr>
+									<tr>
+										<td>상품이름</td>
+										<td><input type="text" value="${list.sav_name}"
+											name="name"></td>
+									</tr>
+									<tr>
+										<td>상품타입</td>
+										<td><input type="text" value="${list.sav_type}"
+											name="type"></td>
+									</tr>
+									<tr>
+										<td>상품이율</td>
+										<td><input type="number" value="${list.sav_rate}"
+											name="rate"></td>
+									</tr>
+									<tr>
+										<td>가입대상</td>
+										<td><input type="text" value="${list.sav_target}"
+											name="target"></td>
+									</tr>
+									<tr>
+										<td>등록일자</td>
+										<td><input type="text" value="${list.sav_regDate}"
+											name="regDate" disabled></td>
+									</tr>
+									<tr>
+										<td>제한금액</td>
+										<td><input type="number" value="${list.sav_limit}"
+											name="number"></td>
+									</tr>
+									<tr>
+										<td>가입기간</td>
+										<td><input type="text" value="${list.sav_period}"
+											name="period"></td>
+									</tr>
+									<tr>
+										<td colspan="2" style="text-align: center;"><input
+											type="submit" value="수정"></td>
+									</tr>
+								</table>
+							</form>
+						</div>
+					</div>
 
-	<!-- 수정삭제 -->
-	<script type="text/javascript">
-		function cheqEdit(cheq_num) {
-			var num = "cheq_num=" + cheq_num;
-			$.ajax({
-				type : 'post',
-				data : num,
-				url : '${pageContext.request.contextPath}/cheqEdit',
-				success : function(data) {
-					$("#editCheq").html(data);
-				},
-				error : function() {
-					alert("Ajax error");
-				}
-			});
-		}
-		
-		function savEdit(sav_num){
-			var num = "sav_num=" + sav_num;
-			$.ajax({
-				type : 'post',
-				data : num,
-				url : '${pageContext.request.contextPath}/savEdit',
-				success : function(data){
-					$("#editSav").html(data);
-				},
-				error : function(){
-					alert("Ajax error");
-				}
-			});
-		}
-	</script>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" onclick="window.location='savDel?sav_num=${list.sav_num}'">삭제</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</c:forEach>
 
 	<!-- footer -->
 	<%@ include file="../../../Template/footer.jsp"%>

@@ -5,7 +5,7 @@
 <body>
 	<div>
 		<div>
-			<input type="hidden" name="pageNum" value="${pageNum}"> 
+			<input type="hidden" name="pageNum" value="${pageNum}">
 			<input type="hidden" name="eve_num" value="${dto.eve_num}">
 
 			<table class="table table-hover">
