@@ -30,7 +30,7 @@ public class Controller_bh {
 	/*
 	 * 이더리움간편체험
 	 */
-	// 계정생성폼
+	// 계정생성폼 - 지갑
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("wallet")
 	public String create(HttpServletRequest req, Model model) throws Exception {
@@ -175,7 +175,7 @@ public class Controller_bh {
 	/*
 	 * common
 	 */
-	// 대출 상품 목록
+	//대출 상품 목록
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loanList")
 	public String loanList(HttpServletRequest req, Model model) throws Exception {

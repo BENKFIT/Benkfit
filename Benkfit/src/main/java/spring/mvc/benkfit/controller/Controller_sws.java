@@ -68,7 +68,7 @@ public class Controller_sws {
 	// 첫방문 고객 안내
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("firstVisit_sws")
-	public String firstVisit_sws() throws Exception {
+	public String string() throws Exception {
 		logger.info("firstVisit_sws");
 		return "common/info/firstVisit";
 	}
@@ -210,7 +210,6 @@ public class Controller_sws {
 	@RequestMapping("map_sws")
 	public String map_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("map_sws");
-
 		return "common/map/map";
 	}
 	
@@ -515,9 +514,7 @@ public class Controller_sws {
 	@RequestMapping("atm_sws")
 	public String atm(HttpServletRequest req, Model model) throws Exception {
 		logger.info("atm_sws");
-		
 		service.getMap(req, model);
-		
 		return "common/map/atm";
 	}
 }
