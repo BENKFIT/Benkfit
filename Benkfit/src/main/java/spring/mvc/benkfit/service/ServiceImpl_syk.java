@@ -127,7 +127,6 @@ public class ServiceImpl_syk implements Service_syk {
 
 		req.setAttribute("cnt", result);
 	}
-
 	// 적금상품등록
 	@Override
 	public void savRegiPro(HttpServletRequest req) {
@@ -154,7 +153,6 @@ public class ServiceImpl_syk implements Service_syk {
 
 		req.setAttribute("cnt", result);
 	}
-
 	// 예금계좌생성
 	@Override
 	public void createCheq(HttpServletRequest req, Model model) throws Exception {
@@ -198,7 +196,7 @@ public class ServiceImpl_syk implements Service_syk {
 		req.setAttribute("password", password);
 		req.setAttribute("account", newAccount);
 	}
-
+	
 	// 적금계좌생성
 	@Override
 	public void createSav(HttpServletRequest req, Model model) throws Exception {

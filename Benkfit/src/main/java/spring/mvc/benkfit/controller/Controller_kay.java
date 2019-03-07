@@ -105,7 +105,7 @@ public class Controller_kay {
 	@RequestMapping("loan_account")
 	public String loan_account(HttpServletRequest req, Model model) throws Exception{
 		logger.info("loan_account");
-		service.myloan_list(req, model);
+		/*service.myloan_list(req, model);*/
 		return "mypage_kay/loan_docu/loan_account_kay";
 	}
 	
