@@ -2,6 +2,8 @@ package spring.mvc.benkfit.controller;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -119,7 +121,7 @@ public class Controller_sws {
 		
 		service.eventContentForm_sws(req, model);
 
-		if (eve_num.equals("46")) {
+		if (eve_num.equals("1")) {
 			return "common/event/slot";
 		}
 		
@@ -146,7 +148,7 @@ public class Controller_sws {
 
 		service.eventContentForm_sws(req, model);
 		
-		if (eve_num.equals("46")) {
+		if (eve_num.equals("1")) {
 			return "common/event/slotAdmin";
 		}
 		return "admin/event/event_contentForm";
@@ -263,7 +265,7 @@ public class Controller_sws {
 		return "admin/chart/chartDay";
 	}
 
-	// 앱 로그인
+	// 안드로이드 로그인
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidSignIn")
@@ -289,7 +291,7 @@ public class Controller_sws {
 		return out;
 	}
 
-	// 앱 메인페이지
+	// 안드로이드 메인페이지
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidMain")
