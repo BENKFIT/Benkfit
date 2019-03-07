@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>상품 > 예/적금</title>
+<title> 상품 > 예/적금</title>
 <style type="text/css">
 td {
 	color: white;
@@ -67,6 +67,7 @@ details td {
 	display: inline-block;
 	margin: 200px;
 }
+
 .div2 {
 	height: 500px;
 	text-align: center;
@@ -141,7 +142,8 @@ p {
 	text-decoration: none;
 	cursor: pointer;
 }
-#cheqModal td, #savModal td{
+
+#cheqModal td, #savModal td {
 	color: black;
 }
 </style>
@@ -150,7 +152,8 @@ p {
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
 	<c:if test="${type == 'cheq'}">
-		<div style="text-align: center; background-color: #1AA85C; width: 100%; height: 60%;">
+		<div
+			style="text-align: center; background-color: #1AA85C; width: 100%; height: 60%;">
 			<div style="display: inline-block; margin-top: 200px;">
 				<table style="text-align: center;">
 					<tr>
@@ -164,35 +167,32 @@ p {
 					</tr>
 				</table>
 				<br /> <br />
-				
-					<table class="infoTbl">
-						<tr>
-							<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
-							<td style="padding: 5px 10px;">1년 기준(세전)</td>
-						</tr>
-						<tr>
-							<td style="border-right: 1px solid white; padding: 5px 10px;">1개월부터</td>
-							<td style="padding: 5px 10px;">연 ${info.cheq_rate} %</td>
-						</tr>
-					</table>
-					<table class="infoTbl">
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>
-								<sec:authorize access="isAnonymous()">
-									<button type="button" class="btn btn-primary"
+
+				<table class="infoTbl">
+					<tr>
+						<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
+						<td style="padding: 5px 10px;">1년 기준(세전)</td>
+					</tr>
+					<tr>
+						<td style="border-right: 1px solid white; padding: 5px 10px;">1개월부터</td>
+						<td style="padding: 5px 10px;">연 ${info.cheq_rate} %</td>
+					</tr>
+				</table>
+				<table class="infoTbl">
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td><sec:authorize access="isAnonymous()">
+								<button type="button" class="btn btn-primary"
 									style="color: white; border: 1px solid white; background-color: #1AA85C; border-radius: 5px; width: 200px; font-size: 20px;"
 									data-toggle="modal" data-target="#loginFail">가입하기</button>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<button type="button" class="btn btn-primary" id="joinBtn1"
+							</sec:authorize> <sec:authorize access="isAuthenticated()">
+								<button type="button" class="btn btn-primary" id="joinBtn1"
 									data-toggle="modal" data-target="#cheqModal">가입하기</button>
-								</sec:authorize>
-							</td>
-						</tr>
-					</table>
+							</sec:authorize></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 
@@ -302,17 +302,14 @@ p {
 						<td>&nbsp;</td>
 					</tr>
 					<tr>
-						<td>
-							<sec:authorize access="isAnonymous()">
+						<td><sec:authorize access="isAnonymous()">
 								<button type="button" class="btn btn-primary"
 									style="color: white; border: 1px solid white; background-color: #2D5772; border-radius: 5px; width: 200px; font-size: 20px; margin: 10px 0px;"
 									data-toggle="modal" data-target="#loginFail">가입하기</button>
-							</sec:authorize> 
-							<sec:authorize access="isAuthenticated()">
+							</sec:authorize> <sec:authorize access="isAuthenticated()">
 								<button type="button" class="btn btn-primary" id="joinBtn2"
 									data-toggle="modal" data-target="#savModal">가입하기</button>
-							</sec:authorize>
-						</td>
+							</sec:authorize></td>
 					</tr>
 				</table>
 
@@ -539,9 +536,8 @@ p {
 	</c:if> --%>
 
 	<!-- 로그인-Modal1 -->
-	<div class="modal fade" id="loginFail" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
+	<div class="modal fade" id="loginFail" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content" style="width: 500px;">
 				<div class="modal-body" style="text-align: center;">
@@ -556,102 +552,101 @@ p {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 예금상품Modal -->
 	<c:if test="${type == 'cheq'}">
-	<div class="modal fade" id="cheqModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content" style="width: 500px;">
-				<div class="modal-header" style="text-align: center;">
-					<div style="display: inline-block;">내용을 입력하세요.</div>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<form action="createCheq" method="post">
-					<div class="modal-body" style="text-align: center;">
-						<div style="display: inline-block;">
-							<input type="hidden" value="${info.cheq_num}" name="num">
-							<table>
-								<tr>
-									<td>
-										<div class="eq-ui-form-group eq-ui-input-field">
-											<input id="password" type="password" class="eq-ui-input"
-												name="password"> <label for="password">비밀번호</label>
-										</div>
-									</td>
-								</tr>
-							</table>
+		<div class="modal fade" id="cheqModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content" style="width: 500px;">
+					<div class="modal-header" style="text-align: center;">
+						<div style="display: inline-block;">내용을 입력하세요.</div>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="createCheq" method="post">
+						<div class="modal-body" style="text-align: center;">
+							<div style="display: inline-block;">
+								<input type="hidden" value="${info.cheq_num}" name="num">
+								<table>
+									<tr>
+										<td>
+											<div class="eq-ui-form-group eq-ui-input-field">
+												<input id="password" type="password" class="eq-ui-input"
+													name="password"> <label for="password">비밀번호</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="submit" value="가입하기" class="btn btn-primary"
-							data-toggle="tooltip" data-placement="bottom"
-							title="가입시, 10Ether가 자동으로 입금됩니다.">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-					</div>
-				</form>
+						<div class="modal-footer">
+							<input type="submit" value="가입하기" class="btn btn-primary"
+								data-toggle="tooltip" data-placement="bottom"
+								title="가입시, 10Ether가 자동으로 입금됩니다.">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
 	</c:if>
-	
+
 	<!-- 적금상품Modal -->
 	<c:if test="${type == 'sav'}">
-	<div class="modal fade" id="savModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content"  style="width: 500px;">
-				<div class="modal-header" style="text-align: center;">
-					<div style="display: inline-block;">내용을 입력하세요.</div>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body" style="text-align: center;">
-					<div style="display: inline-block;">
-						<form action="createSav" method="post">
-						<input type="hidden" value="${info.sav_num}" name="num">
-							<table>
-								<tr>
-									<td>
-										<div class="eq-ui-form-group eq-ui-input-field">
-										<input id="password" type="password" class="eq-ui-input" name="password">
-										<label for="password">비밀번호</label>
-									</div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="eq-ui-form-group eq-ui-input-field">
-		                                    <select class="eq-ui-select" name="period">
-		                                        <option value="" disabled selected>가입기간을 선택해주세요.</option>
-		                                        <option value="12">12개월</option>
-		                                        <option value="24">24개월</option>
-		                                        <option value="36">36개월</option>
-		                                    </select>
-		                                    <label>가입기간</label>
-	                               		</div>
-									</td>
-								</tr>
-							</table>
-						</form>
+		<div class="modal fade" id="savModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content" style="width: 500px;">
+					<div class="modal-header" style="text-align: center;">
+						<div style="display: inline-block;">내용을 입력하세요.</div>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="submit" value="가입하기" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="가입시, 10Ether가 자동으로 입금됩니다.">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
+					<form action="createSav" method="post">
+						<div class="modal-body" style="text-align: center;">
+							<div style="display: inline-block;">
+								<input type="hidden" value="${info.sav_num}" name="num">
+								<table>
+									<tr>
+										<td>
+											<div class="eq-ui-form-group eq-ui-input-field">
+												<input id="password" type="password" class="eq-ui-input"
+													name="password"> <label for="password">비밀번호</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="eq-ui-form-group eq-ui-input-field">
+												<select class="eq-ui-select" name="period">
+													<option value="" disabled selected>가입기간을 선택해주세요.</option>
+													<option value="12">12개월</option>
+													<option value="24">24개월</option>
+													<option value="36">36개월</option>
+												</select> <label>가입기간</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<input type="submit" value="가입하기" class="btn btn-primary"
+								data-toggle="tooltip" data-placement="bottom"
+								title="가입시, 10Ether가 자동으로 입금됩니다.">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-	</div>
 	</c:if>
 	<script type="text/javascript">
 	$(function () {

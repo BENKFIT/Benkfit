@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
-<title>회원탈퇴</title>
+<title> 고객 > 회원탈퇴</title>
 <style>
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 .form {
@@ -24,12 +24,6 @@
 	font-size: 12px;
 } 
 </style>
-<!-- CSS-->
-<link
-	href="/benkfit/resources/assets/css/exentriq-bootstrap-material-ui.min.css?v=0.4.5"
-	rel="stylesheet">
-<link href="/benkfit/resources/assets/css/doc.css?v=0.4.5"
-	rel="stylesheet">
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>

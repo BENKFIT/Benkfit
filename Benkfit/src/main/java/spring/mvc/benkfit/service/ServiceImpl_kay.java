@@ -324,10 +324,9 @@ public class ServiceImpl_kay implements Service_kay{
 		String order = req.getParameter("order");
 		int start = 1;
 		int end = Integer.parseInt(req.getParameter("end"));
-		String delCheq = req.getParameter("delCheq");
 		
-		System.out.println("계좌선택 : " + delCheq);
-		System.out.println("====cheq_info====");
+		System.out.println("계좌선택 : " + account);
+		System.out.println("====loan_info====");
 
 		if(type.equals("undefined")) {
 			type = "";
@@ -478,10 +477,10 @@ public class ServiceImpl_kay implements Service_kay{
 	
 	// 파일 업로드 & 텍스트 인식
 	@Override
-	public void getText(String file, Model model) throws IOException {
+	public void value(String file, Model model) throws IOException {
 
-		//ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/benkfit.py", file);
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\source\\benkfit.py", file);
+		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/benkfit.py", file);
 		Process p = pb.start();
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -576,7 +575,8 @@ public class ServiceImpl_kay implements Service_kay{
 	//서류등록처리
 	@SuppressWarnings("deprecation")
 	@Override
-	public void signInPro(MultipartHttpServletRequest req, Model model) {
+	public void indocu(MultipartHttpServletRequest req, Model model) {
+		
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
@@ -585,9 +585,6 @@ public class ServiceImpl_kay implements Service_kay{
 		MultipartFile file = req.getFile("doc_img");
 		String saveDir = req.getRealPath("/resources/img/doc/"); 
 		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
-		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
-		//String realDir = "C:\\DEV43\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc\\"; 
-		//String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\doc";
 		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/doc/";
 
 		try {
@@ -725,8 +722,9 @@ public class ServiceImpl_kay implements Service_kay{
 	}
 	@Override
 	public void downdocu(HttpServletRequest req, HttpServletResponse res, Model model) throws Exception{
-		 String dFile = "재직증명서-양식.docx";
-		  String upDir = "C:\\Users\\82109\\Desktop";
+		  String dFile = "재직증명서-양식.docx";
+		  //String upDir = "C:\\Users\\82109\\Desktop";
+		  String upDir = "/Users/banhun/tesseract/docu";
 		  String path = upDir+File.separator+dFile;
 		  
 		  File file = new File(path);

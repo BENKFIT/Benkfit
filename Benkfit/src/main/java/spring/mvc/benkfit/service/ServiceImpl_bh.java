@@ -265,10 +265,6 @@ public class ServiceImpl_bh implements Service_bh {
 		// 값받기
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").split("--")[2]);
-		// String from =
-		// fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-45,
-		// req.getParameter("from").length()-5));
-		// String from = fn.concat(req.getParameter("from").substring(49));
 
 		System.out.println("fileSource : " + fileSource);
 		System.out.println("from : " + from);
@@ -311,40 +307,6 @@ public class ServiceImpl_bh implements Service_bh {
 			data.put("reword", reword);
 			data.put("result", result);
 			model.addAttribute("data", data);
-		}
-	}
-
-	// 슬롯머신 컨트랙트 삭제(kill, 해당 계정의 잔고는 address(0)으로 돌아오고 계정은 삭제된다.)
-	// 관리자만 가능하게 해야한다.
-	@Override
-	public void slotKill(HttpServletRequest req, Model model) throws Exception {
-		// 값받기
-		String fileSource = path.concat(req.getParameter("from").substring(12));
-		// 훈이오빠
-		String from = fn.concat(req.getParameter("from").split("--")[2]);
-		// 유경
-		// String from =
-		// fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-37));
-		String password = req.getParameter("password");
-		// 자격증명
-		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
-		// 계정언락
-		if (admin.personalUnlockAccount(from, password).send().getResult()) {
-			// 성공시
-			@SuppressWarnings("deprecation")
-			// Slot 컨트랙트 로드
-			String SlotAddress = dao2.getSlot();
-			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
-			// 킬 함수
-			TransactionReceipt kill = contract.kill().send();
-			// 정상종료 체크
-			if (kill.getBlockNumber() != null) {
-				chkNum = 1;
-				model.addAttribute("chkNum", chkNum);
-			} else {
-				chkNum = 0;
-				model.addAttribute("chkNum", chkNum);
-			}
 		}
 	}
 
@@ -404,6 +366,41 @@ public class ServiceImpl_bh implements Service_bh {
 			model.addAttribute("slotStockBalance", slotStockBalance);
 		}
 	}
+	
+	// 슬롯머신 컨트랙트 삭제(kill, 해당 계정의 잔고는 address(0)으로 돌아오고 계정은 삭제된다.)
+	// 관리자만 가능하게 해야한다.
+	@Override
+	public void slotKill(HttpServletRequest req, Model model) throws Exception {
+		System.out.println("==============kill함수 진입");
+		// 값받기
+		String fileSource = path.concat(req.getParameter("from").substring(12));
+		// 훈이오빠
+		String from = fn.concat(req.getParameter("from").split("--")[2]);
+		// 유경
+		// String from =
+		// fn.concat(req.getParameter("from").substring(req.getParameter("from").length()-37));
+		String password = req.getParameter("password");
+		// 자격증명
+		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
+		// 계정언락
+		if (admin.personalUnlockAccount(from, password).send().getResult()) {
+			// 성공시
+			@SuppressWarnings("deprecation")
+			// Slot 컨트랙트 로드
+			String SlotAddress = dao2.getSlot();
+			Slot contract = Slot.load(SlotAddress, web3, credentials, gasPrice, gasLimit);
+			// 킬 함수
+			TransactionReceipt kill = contract.kill().send();
+			// 정상종료 체크
+			if (kill.getBlockNumber() != null) {
+				chkNum = 1;
+				model.addAttribute("chkNum", chkNum);
+			} else {
+				chkNum = 0;
+				model.addAttribute("chkNum", chkNum);
+			}
+		}
+	}
 
 	/*
 	 * 대출 address[0]에 100억을 넣는다.
@@ -444,61 +441,74 @@ public class ServiceImpl_bh implements Service_bh {
 		int myLoan_amount = Integer.parseInt(req.getParameter("amount"));
 		int myLoan_left = Integer.parseInt(req.getParameter("amount"));
 		double myLoan_rate = Double.parseDouble(req.getParameter("rate"));
+		System.out.println(myLoan_amount);
+		System.out.println(myLoan_rate);
+		
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
-		// 언락
-		if (admin.personalUnlockAccount(from, password).send().getResult()) {
-			String BenkfitAddress = dao2.getBenkfit();
-			@SuppressWarnings("deprecation")
-			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
-			// 해당계정의 잔액을 부르고
-			BigInteger balance = contract.balanceOf(from).send();
-			int balanceInt = balance.intValue();
-			LoanProductVO info = dao.loanInfo(num);
-			// 해당 상품의 한도금액도 부르고
-			int amount = info.getLoan_amount();
-			// 고객이 신청한 금액이 상품의 한도금액보다 크면 안되고
-			if (myLoan_amount > amount) {
-				result = -3;
-				model.addAttribute("result", result);
-				// 신청한 금액이 대출한도내라면
-			} else {
-				// 해당 상품의 금리를 불러서
-				double rate = info.getLoan_rate();
-
-				// 초기 이자금을 계산 한 후
-				int f_rate = (int) (myLoan_amount * (rate / 100));
-				BigInteger f_rate_b = BigInteger.valueOf(f_rate);
-
-				// 해당계정의 잔액이 초기 이자금보다 크면 진행
-				if (balanceInt > f_rate) {
-					Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
-					User user = (User) securityContext.getPrincipal();
-
-					// 신청시 초기 이자금을 납부한다.
-					TransactionReceipt transfer = contract.transfer(owner, f_rate_b).send();
-
-					String c_id = user.getUsername();
-					MyloanAccountVO vo = new MyloanAccountVO();
-					vo.setC_id(c_id);
-					vo.setLoan_num(num);
-					vo.setmyloan_amount(myLoan_amount);
-					vo.setmyloan_account(from);
-					vo.setmyloan_rate(myLoan_rate);
-					vo.setmyloan_left(myLoan_left);
-
-					result = dao.loanApply(vo);
-					model.addAttribute("result", result);
-					// 잔액이 부족하면
-				} else {
-					result = -2;
-					model.addAttribute("result", result);
-				}
-			}
-			// 언락이 풀리지 않으면 비밀번호가 다르므로 -1 리턴
-		} else {
-			result = -1;
+		
+		int accountNum = dao.account_chenk(from);
+		//해당계정에 대출이 있으면 거절
+		if(accountNum > 0) {
+			result = -4;
 			model.addAttribute("result", result);
+		//해당계정의 대출이 없으면
+		}else {
+			// 언락
+			if (admin.personalUnlockAccount(from, password).send().getResult()) {
+				@SuppressWarnings("deprecation")
+				String BenkfitAddress = dao2.getBenkfit();
+				Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
+				// 해당계정의 잔액을 부르고
+				BigInteger balance = contract.balanceOf(from).send();
+				int balanceInt = balance.intValue();
+				// 해당 상품의 한도금액도 부르고
+				LoanProductVO info = dao.loanInfo(num);
+				int amount = info.getLoan_amount();
+				// 고객이 신청한 금액이 상품의 한도금액보다 크면 안되고
+				if (myLoan_amount > amount) {
+					result = -3;
+					model.addAttribute("result", result);
+					// 신청한 금액이 대출한도내라면
+				} else {
+					// 해당 상품의 금리를 불러서
+					double rate = info.getLoan_rate();
+					
+					// 초기 이자금을 계산 한 후
+					int f_rate = (int) (myLoan_amount * (rate / 100));
+					BigInteger f_rate_b = BigInteger.valueOf(f_rate);
+					
+					// 해당계정의 잔액이 초기 이자금보다 크면 진행
+					if (balanceInt > f_rate) {
+						Authentication securityContext = SecurityContextHolder.getContext().getAuthentication();
+						User user = (User) securityContext.getPrincipal();
+						
+						// 신청시 초기 이자금을 납부한다.
+						TransactionReceipt transfer = contract.transfer(owner, f_rate_b).send();
+						
+						String c_id = user.getUsername();
+						MyloanAccountVO vo = new MyloanAccountVO();
+						vo.setC_id(c_id);
+						vo.setLoan_num(num);
+						vo.setmyloan_amount(myLoan_amount);
+						vo.setmyloan_account(from);
+						vo.setmyloan_rate(myLoan_rate);
+						vo.setmyloan_left(myLoan_left);
+						
+						result = dao.loanApply(vo);
+						model.addAttribute("result", result);
+						// 잔액이 부족하면
+					} else {
+						result = -2;
+						model.addAttribute("result", result);
+					}
+				}
+				// 언락이 풀리지 않으면 비밀번호가 다르므로 -1 리턴
+			} else {
+				result = -1;
+				model.addAttribute("result", result);
+			}
+			
 		}
 
 	}
@@ -510,6 +520,9 @@ public class ServiceImpl_bh implements Service_bh {
 		String fileSource = path.concat(req.getParameter("from").substring(12));
 		String from = fn.concat(req.getParameter("from").split("--")[2]);
 		String password = req.getParameter("password");
+		System.out.println(fileSource);
+		System.out.println(password);
+		System.out.println(req.getParameter("from"));
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		// 계정 언락
@@ -536,14 +549,15 @@ public class ServiceImpl_bh implements Service_bh {
 	// 대출금 거래하기
 	@Override
 	public void loanTransfer(HttpServletRequest req, Model model) throws Exception {
+		System.out.println();
 		int result;
 		// 지갑파일, 계정주소, 비밀번호 가져오기
-		String fileSource = path.concat(req.getParameter("from").substring(12));
-		String from = fn.concat(req.getParameter("from").split("--")[2]);
+		String fileSource = path.concat(req.getParameter("file"));
+		String from = fn.concat(req.getParameter("file").split("--")[2]);
 		String password = req.getParameter("password");
 		String to = req.getParameter("to");
-		String value_ = req.getParameter("value");
-		BigInteger value = Convert.toWei(value_, Convert.Unit.ETHER).toBigInteger();
+		int value_ = Integer.parseInt(req.getParameter("amount"));
+		BigInteger value = BigInteger.valueOf(value_);
 		// 자격증명
 		Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
 		// 계정 언락
@@ -554,10 +568,10 @@ public class ServiceImpl_bh implements Service_bh {
 			Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
 			TransactionReceipt transferFrom = contract.transferFrom(owner, to, value).send();
 			result = 1;
-			model.addAttribute("result", result);
+			model.addAttribute("loanTransfer_result", result);
 		} else {
 			result = 0;
-			model.addAttribute("result", result);
+			model.addAttribute("loanTransfer_result", result);
 		}
 	}
 
@@ -567,6 +581,8 @@ public class ServiceImpl_bh implements Service_bh {
 		// 값받기
 		String myLoan_account = fn.concat(req.getParameter("from").split("--")[2]);
 		int amount = Integer.parseInt(req.getParameter("amount"));
+		int type = Integer.parseInt(req.getParameter("type"));
+		String password = req.getParameter("password");
 		// 해당계정의 대출정보를 가져온다.
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 현재 대출 잔액 = 대출잔액 - 갚은돈.
@@ -575,9 +591,46 @@ public class ServiceImpl_bh implements Service_bh {
 		MyloanAccountVO vo1 = new MyloanAccountVO();
 		vo1.setmyloan_account(myLoan_account);
 		vo1.setmyloan_left(myLoan_left);
-		int result = dao.loanRepayment(vo1);
-		model.addAttribute("loanRepayment_result", result);
+		
+		if(type == 1) {
+			int result = dao.loanRepayment(vo1);
+			model.addAttribute("loanRepayment_result", result);
+		}else {
+			String fileSource = path.concat(req.getParameter("from").substring(12));
+			String from = fn.concat(req.getParameter("from").split("--")[2]);
+			// 자격증명
+			Credentials credentials = WalletUtils.loadCredentials(password, fileSource);
+			// 계정 언락
+			if (admin.personalUnlockAccount(from, password).send().getResult()) {
+				// 컨트랙트 불러오기
+				String BenkfitAddress = dao2.getBenkfit();
+				@SuppressWarnings("deprecation")
+				Benkfit contract = Benkfit.load(BenkfitAddress, web3, credentials, gasPrice, gasLimit);
+				//해당 계정의 예금 잔액 확인
+				BigInteger bal = contract.balanceOf(from).send();
+				int balance = bal.intValue();
+				//상환할 금액보다 잔액이 적으면
+				if(amount > balance) {
+					int result = -1;		//잔액이부족합니다.
+					model.addAttribute("loanRepayment_result", result);
+					
+				//상환한 금액이 잔액보다 많으면 상환 실행
+				}else {
+					BigInteger value = BigInteger.valueOf(amount);
+					TransactionReceipt repayment = contract.transfer(owner, value).send();
+					
+					int result = dao.loanRepayment(vo1);
+					model.addAttribute("loanRepayment_result", result);
+				}
+				
+			//계정이 언락되지 않음
+			}else {
+				int result = -2;		//비밀번호를 확인해주세요
+				model.addAttribute("loanRepayment_result", result);
+			}
+		}
 	}
+	
 
 	/*
 	 * admin
@@ -661,20 +714,46 @@ public class ServiceImpl_bh implements Service_bh {
 		model.addAttribute("result", result);
 	}
 
-	// 대출신청리스트
+	// 대출신청리스트-전체
 	@Override
 	public void loanApproval(HttpServletRequest req, Model model) throws Exception {
 		// 전체리스트를 가져온다
 		List<MyloanAccountVO> dtos = dao.loanApproval();
 		model.addAttribute("dtos", dtos);
+		System.out.println("=====전체s");
+	}
+	
+	// 대출신청리스트-승인
+	@Override
+	public void loanApproval1(HttpServletRequest req, Model model) throws Exception {
+		List<MyloanAccountVO> dtos = dao.loanApproval1();
+		model.addAttribute("dtos", dtos);
+		System.out.println("=====승인s");
 	}
 
+	// 대출신청리스트-대기
+	@Override
+	public void loanApproval2(HttpServletRequest req, Model model) throws Exception {
+		List<MyloanAccountVO> dtos = dao.loanApproval2();
+		model.addAttribute("dtos", dtos);
+		System.out.println("=====대기s");
+	}
+
+	// 대출신청리스트-거절
+	@Override
+	public void loanApproval3(HttpServletRequest req, Model model) throws Exception {
+		List<MyloanAccountVO> dtos = dao.loanApproval3();
+		model.addAttribute("dtos", dtos);
+		System.out.println("=====거절s");
+	}
+	
 	// 대출신청처리(승인)
 	@Override
 	public void loanApprovalPro(HttpServletRequest req, Model model) throws Exception {
 		int result;
 		// 주소값가져오기
 		String myLoan_account = req.getParameter("myLoan_account");
+		
 		// 주소값으로 해당 대출 계정의 정보 불러오기
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 위에서 받아온 해당 대출 상품의 대출금가져오기
@@ -701,6 +780,7 @@ public class ServiceImpl_bh implements Service_bh {
 		int result;
 		// 주소값가져오기
 		String myLoan_account = req.getParameter("myLoan_account");
+		System.out.println(myLoan_account);
 		// 주소값으로 해당 대출 계정의 정보 불러오기
 		List<MyloanAccountVO> vo = dao.loanApprovalPro_info(myLoan_account);
 		// 신청시 미리 납부한 이자를 돌려주어야 한다.
@@ -879,6 +959,11 @@ public class ServiceImpl_bh implements Service_bh {
 		String result = req.getParameter("result");
 		System.out.println("result");
 	}
-	
+
+
+
+
+
+
 	
 }

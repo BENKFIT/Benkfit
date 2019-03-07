@@ -9,12 +9,14 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.api.Http;
 
 import spring.mvc.benkfit.service.ServiceImpl_syk;
+import spring.mvc.benkfit.service.Service_bh;
 
 @Controller
 public class Controller_syk {
@@ -23,12 +25,15 @@ public class Controller_syk {
 	
 	@Autowired
 	ServiceImpl_syk service;
+	@Autowired
+	Service_bh service2;
 	
 	/*
 	 * common
 	 */
 	
 	//예금 목록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("cheqSavList")
 	public String checkingList(HttpServletRequest req) {
 		logger.info("예금상품목록이동");
@@ -38,6 +43,7 @@ public class Controller_syk {
 	}
 	
 	//예금 상품 정보
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("cheqInfo")
 	public String cheqInfo(HttpServletRequest req) {
 		logger.info("예금상품상세페이지");
@@ -47,6 +53,7 @@ public class Controller_syk {
 	}
 	
 	//적금 상품 정보
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("savInfo")
 	public String savInfo(HttpServletRequest req) {
 		logger.info("적금상품상세페이지");
@@ -56,6 +63,7 @@ public class Controller_syk {
 	}
 	
 	//예금 가이드
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("checkingGuide")
 	public String checkingGuide(HttpServletRequest req) {
 		logger.info("예금가이드");
@@ -68,6 +76,7 @@ public class Controller_syk {
 	 */
 	
 	//예금 등록 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("cheqSavRegi")
 	public String cheqSavRegi(HttpServletRequest req) {
 		logger.info("예금등록페이지이동");
@@ -77,6 +86,7 @@ public class Controller_syk {
 	}
 	
 	//예금 상품 등록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("cheqRegiPro")
 	public String cheqRegiPro(HttpServletRequest req) {
 		logger.info("상품등록");
@@ -86,6 +96,7 @@ public class Controller_syk {
 	}
 	
 	//적금 상품 등록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("savRegiPro")
 	public String savRegiPro(HttpServletRequest req) {
 		logger.info("상품등록");
@@ -95,6 +106,7 @@ public class Controller_syk {
 	}
 	
 	//예금계좌생성
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("createCheq")
 	public String createCheq(HttpServletRequest req, Model model) throws Exception{
 		logger.info("예금계좌생성");
@@ -104,6 +116,7 @@ public class Controller_syk {
 	}
 	
 	//적금계좌생성
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("createSav")
 	public String createSav(HttpServletRequest req, Model model) throws Exception {
 		logger.info("예금계좌생성");
@@ -113,6 +126,7 @@ public class Controller_syk {
 	}
 	
 	//예금상품수정
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("cheqEdit")
 	public String cheqEdit(HttpServletRequest req) {
 		logger.info("예금상품수정");
@@ -122,6 +136,7 @@ public class Controller_syk {
 	}
 	
 	//적금상품수정
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("savEdit")
 	public String savEdit(HttpServletRequest req) {
 		logger.info("적금상품수정");
@@ -131,6 +146,7 @@ public class Controller_syk {
 	}
 	
 	//예금상품삭제
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("cheqDel")
 	public String cheqDel(HttpServletRequest req) {
 		logger.info("예금상품삭제");
@@ -140,6 +156,7 @@ public class Controller_syk {
 	}
 	
 	//적금상품삭제
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("savDel")
 	public String savDel(HttpServletRequest req) {
 		logger.info("적금상품삭제");
@@ -153,15 +170,22 @@ public class Controller_syk {
 	 */
 	
 	//계좌이체
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("transPro")
-	public String trans(HttpServletRequest req) throws Exception {
+	public String trans(HttpServletRequest req, Model model) throws Exception {
 		logger.info("송금");
-		service.transPro(req);
-		
-		return "mypage_kay/trans/result";
+		String type = req.getParameter("type");
+		if(type.equals("1")) {
+			service.transPro(req);
+			return "mypage_kay/trans/result";
+		}else{
+			service2.loanTransfer(req, model);
+			return "common/product/loan/result";
+		}
 	}
 	
 	//잔액확인
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("getBalance")
 	public String getBalance(HttpServletRequest req) throws Exception{
 		logger.info("잔액확인");
@@ -171,6 +195,7 @@ public class Controller_syk {
 	}
 	
 	//입금
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("deposit")
 	public String deposit(HttpServletRequest req) throws Exception{
 		logger.info("입금");
@@ -179,6 +204,7 @@ public class Controller_syk {
 	}
 	
 	//입금진행
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("depositPro")
 	public String depositPro(HttpServletRequest req) throws Exception{
 		logger.info("입금 실행");
@@ -188,6 +214,7 @@ public class Controller_syk {
 	}
 	
 	//출금페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("withdraw")
 	public String withdraw(HttpServletRequest req) throws Exception{
 		logger.info("출금");
@@ -196,6 +223,7 @@ public class Controller_syk {
 	}
 	
 	/*//출금진행
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("withdrawPro")
 	public String withdrawPro(HttpServletRequest req) throws Exception{
 		logger.info("출금");
@@ -209,6 +237,7 @@ public class Controller_syk {
 	 */
 	
 	//자동이체 페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("auto_trans")
 	public String autoTrans(HttpServletRequest req) throws Exception{
 		logger.info("자동이체 페이지");
@@ -218,6 +247,7 @@ public class Controller_syk {
 	}
 	
 	//자동이체 등록
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("autoAdd")
 	public String autoAdd(HttpServletRequest req) throws Exception{
 		logger.info("자동이체 등록");
@@ -226,6 +256,7 @@ public class Controller_syk {
 	}
 	
 	//자동이체 삭제
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("autoDel")
 	public String autoDel(HttpServletRequest req) throws Exception{
 		logger.info("자동이체 삭제");
@@ -239,15 +270,17 @@ public class Controller_syk {
 	 */
 	
 	//관리페이지
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("manage")
-	public String deploy(HttpServletRequest req) throws Exception{
+	public String deploy(HttpServletRequest req, Model model) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
-		
+		service2.benkfitControl(req, model);
 		return "admin/manage/manage";
 	}
 	
 	//배포
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("deployPro")
 	public String deployPro(HttpServletRequest req) throws Exception{
 		logger.info("배포");
@@ -257,6 +290,7 @@ public class Controller_syk {
 	}
 	
 	//재배포
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("reDeploy")
 	public String reDeploy(HttpServletRequest req) throws Exception {
 		logger.info("재배포");
@@ -266,6 +300,7 @@ public class Controller_syk {
 	}
 	
 	//내계좌
+	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("getMyAccounts")
 	public String getMyAccounts(HttpServletRequest req) throws Exception{
 		logger.info("내계좌");

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>서류등록</title>
+<title> 대출관리 > 서류등록</title>
 <script>
 	//파일업로드 버튼 기능
 	function selectFile() {
@@ -19,7 +19,6 @@
 			var path4 = path2[path3 - 1];
 			
 			$('#file_text').val(path4);
-
 			$.ajax({
 				type : "POST",
 				data : "file=" + path4,
@@ -38,6 +37,7 @@
 					$("#doc_period_to").val(data.split("/")[10]);
 					swal("파일 업로드", "OK", "success");
 				},
+<<<<<<< HEAD
 				beforeSend : function(xhr) {
 					$('.wrap-loading').removeClass('display-none');
 					xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
@@ -45,6 +45,14 @@
 				complete : function() {
 					$('.wrap-loading').addClass('display-none');
 				},
+=======
+				 beforeSend:function(){
+		              $('.wrap-loading').removeClass('display-none');
+		          },
+		          complete:function(){
+		              $('.wrap-loading').addClass('display-none');
+		          },
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 				error : function() {
 					swal("오류", "다시 시도하세요.", "error");
 				}
@@ -79,12 +87,22 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrap-loading display-none">
+<<<<<<< HEAD
 		<div>
 			<img src="/benkfit/resources/img/loading/loading.gif">
 		</div>
 	</div>
+=======
+	    <div>	<img src="/benkfit/resources/img/loading/478 (7).gif"></div>
+	</div> 
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 	<div class="wrapper">
+<<<<<<< HEAD
 		<p style="float: right; font-size: 12px;">마이페이지>조회>대출관리>내서류>서류등록</p>
+=======
+		<span class="style">마이페이지 > 조회 > 대출관리 > 내서류 > 서류등록</span><br>
+		<hr>
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 		<br>
 		<hr>
 		<br> <label>서류양식<span class="text-danger">*</span></label> &nbsp;

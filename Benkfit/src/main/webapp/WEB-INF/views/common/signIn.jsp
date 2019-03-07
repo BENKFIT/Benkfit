@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SignIn Form</title>
+<title> 고객 > 회원가입</title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -630,7 +630,7 @@
 </div>
 <!-- 텍스트 인식 로딩중 -->
 <div class="wrap-loading display-none">
-    <div><img src="/benkfit/resources/img/loading/loading.gif"></div>
+    <div><img src="/benkfit/resources/img/loading/478 (7).gif"></div>
 </div> 
 <%@ include file ="../Template/footer.jsp" %>
 </body>

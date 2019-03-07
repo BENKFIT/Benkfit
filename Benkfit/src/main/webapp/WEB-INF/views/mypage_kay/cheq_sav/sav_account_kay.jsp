@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+v<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../../Template/setting.jsp"%>
 <!DOCTYPE html>
 <html>
+<title> 마이페이지 > 적금계좌조회</title>
 <head>
 <script>
 	function ajaxTest() {
@@ -32,7 +33,7 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<p style="float:right;font-size:12px;">마이페이지>조회>적금계좌조회</p>
+		<span class="style">마이페이지>조회>적금계좌조회</span>
 		<br>
 		<hr>
 		<br>
@@ -76,7 +77,7 @@
 				<td colspan="2"
 					class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
 					<div class="eq-ui-form-group">
-						<input name="order" type="radio" id="test4" value="4"
+						<input name="order" type="radio" checked id="test4" value="4"
 							class="eq-ui-input with-gap" /> <label for="test4">최근거래순</label>
 						<input name="order" type="radio" id="test5" value="5"
 							class="eq-ui-input with-gap" /> <label for="test5">과거거래순</label>
@@ -88,7 +89,7 @@
 				<td colspan="2"
 					class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate">
 					<div class="eq-ui-form-group">
-						<input name="num" type="radio" id="test6" value="10"
+						<input name="num" type="radio" checked id="test6" value="10"
 							class="eq-ui-input with-gap" /> <label for="test6">10건</label> <input
 							name="num" type="radio" id="test7" value="20"
 							class="eq-ui-input with-gap" /> <label for="test7">20건</label> <input

@@ -25,6 +25,10 @@
     height: 30%;
 	margin: auto;
 }
+.style{
+	float:right;
+	font-size:17px;
+}
 /* 
 .updateInfo {
 	margin: 15px;

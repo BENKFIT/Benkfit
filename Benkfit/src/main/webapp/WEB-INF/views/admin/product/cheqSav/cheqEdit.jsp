@@ -62,8 +62,8 @@
 									name="period"></td>
 							</tr>
 							<tr>
-								<td colspan="2" style="text-align: center;"><input
-									type="submit" value="수정">
+								<td colspan="2" style="text-align: center;">
+								<input type="submit" value="수정">
 								</td>
 							</tr>
 						</table>

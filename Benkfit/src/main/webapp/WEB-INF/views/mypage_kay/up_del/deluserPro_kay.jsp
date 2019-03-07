@@ -5,7 +5,7 @@
 <html lang="ko-KR">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>DELETEUSER</title>
 </head>
 <body>
 	<c:choose>

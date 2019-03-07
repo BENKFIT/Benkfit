@@ -9,6 +9,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
@@ -46,6 +47,7 @@ public class ScheduleT {
 	@Autowired
 	DAOImpl_syk dao;
 	
+	@Transactional(rollbackFor=Exception.class)
 	@Scheduled(cron="0 0 12 * * ?")
 	public void auto() {
 		System.out.println("========= 자동이체 실행 =========");
@@ -105,6 +107,7 @@ public class ScheduleT {
 	}
 	
 	//예금이자
+	@Transactional(rollbackFor=Exception.class)
 	@Scheduled(cron="0 0 13 * * ?")
 	public void cheqInterest() {
 		System.out.println("========= 예금 이자 계산 =========");
@@ -149,6 +152,7 @@ public class ScheduleT {
 	}
 	
 	//적금이자
+	@Transactional(rollbackFor=Exception.class)
 	@Scheduled(cron="0 0 14 * * ?")
 	public void savInterest() {
 		System.out.println("========= 적금 이자 계산 =========");

@@ -57,8 +57,8 @@ public class ServiceImpl_lia implements Service_lia {
 	// 파일 업로드 & 텍스트 인식
 	@Override
 	public void getText(String file, Model model) throws IOException {
-		System.out.println("------getText------");
-		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
+		//ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
+		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/test.py", file);
 		Process p = pb.start();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -81,7 +81,8 @@ public class ServiceImpl_lia implements Service_lia {
       
 		try{
             //파일 객체 생성
-            File txt = new File("C:\\DEV43\\python\\output\\getText.txt");
+            //File txt = new File("C:\\DEV43\\python\\output\\getText.txt");
+            File txt = new File("/Users/banhun/tesseract/output/getText.txt");
             
            //스캐너로 파일 읽기
             ArrayList<String> list = new ArrayList<String>();
@@ -123,7 +124,6 @@ public class ServiceImpl_lia implements Service_lia {
         } 
 		model.addAttribute("name", name);
 	}
-	
 	// id중복확인
 	@Override
 	public void id_check(HttpServletRequest req, Model model) {
@@ -150,7 +150,6 @@ public class ServiceImpl_lia implements Service_lia {
 		// 실명확인
 		int selectCnt = dao.name_check(map);
 		//System.out.println("실명확인cnt : " + selectCnt);
-		
 		// 결과 저장
 		model.addAttribute("selectCnt", selectCnt);
 	}
@@ -181,9 +180,9 @@ public class ServiceImpl_lia implements Service_lia {
 	public void signInPro(MultipartHttpServletRequest req, Model model) {
 		// 이미지 파일
 		MultipartFile file = req.getFile("idCard");
-		
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
 		String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\";
+		//String realDir = "C:\\DEV43\\git\\benkfit\\src\\main\\webapp\\resources\\img\\idcard";
         
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -228,7 +227,6 @@ public class ServiceImpl_lia implements Service_lia {
         	e.printStackTrace();
         }
 	}
-
 	// 로그인, 비밀번호 확인
 	@Override
 	public void loginPro(HttpServletRequest req, Model model) {
@@ -567,7 +565,8 @@ public class ServiceImpl_lia implements Service_lia {
 	@Override
 	public void marketprice(Model model) throws IOException {
 		// Process : 자바에서 외부프로그램을 호출할때 사용
-		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/coin.py");
+		//ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/coin.py");
+		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/coin.py");
 		Process p = pb.start();   //프로세스 호출
 		
 		// 프로세서의 실행결과를 스트림으로 리턴

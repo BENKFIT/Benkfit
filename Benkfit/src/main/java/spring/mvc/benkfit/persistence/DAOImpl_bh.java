@@ -45,6 +45,12 @@ public class DAOImpl_bh implements DAO_bh {
 	public int loanApply(MyloanAccountVO vo) {
 		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_bh.loanApply", vo);
 	}
+	
+	// 계정체크
+	@Override
+	public int account_chenk(String myLoan_account) {
+		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_bh.account_chenk", myLoan_account);
+	}
 
 	// 대출금리
 //	@Override
@@ -78,10 +84,32 @@ public class DAOImpl_bh implements DAO_bh {
 		return sqlSession.delete("spring.mvc.benkfit.persistence.DAO_bh.loanDel", loan_num);
 	}
 
-	// 대출신청리스트
+	// 대출신청리스트-전체
 	@Override
 	public List<MyloanAccountVO> loanApproval() {
+		System.out.println("===================전체목록d");
 		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_bh.loanApproval");
+	}
+	
+	// 대출신청리스트-승인
+	@Override
+	public List<MyloanAccountVO> loanApproval1() {
+		System.out.println("===================승인목록d");
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_bh.loanApproval1");
+	}
+
+	// 대출신청리스트-대기
+	@Override
+	public List<MyloanAccountVO> loanApproval2() {
+		System.out.println("===================대기목록d");
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_bh.loanApproval2");
+	}
+
+	// 대출신청리스트-거절
+	@Override
+	public List<MyloanAccountVO> loanApproval3() {
+		System.out.println("===================거절목록d");
+		return sqlSession.selectList("spring.mvc.benkfit.persistence.DAO_bh.loanApproval3");
 	}
 
 	// 계정에맞는대출상품가져오기
@@ -101,5 +129,8 @@ public class DAOImpl_bh implements DAO_bh {
 	public int rejection(String myLoan_account) {
 		return sqlSession.update("spring.mvc.benkfit.persistence.DAO_bh.rejection", myLoan_account);
 	}
+
+
+
 
 }

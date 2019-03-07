@@ -1,13 +1,16 @@
 <!-- 2019/01/25 손리아 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+=======
+>>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <%-- <%@ include file="../Template/setting.jsp" %> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>실명확인</title>
+<title> 회원가입 > 실명확인</title>
 <style>
 	.nameCheckDiv {
 		padding: 35px;

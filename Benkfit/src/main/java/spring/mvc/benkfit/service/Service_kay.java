@@ -65,10 +65,10 @@ public interface Service_kay {
 	public void sls(HttpServletRequest req, Model model)throws Exception;
 	
 	// 파일 업로드 & 텍스트 인식
-	public void getText(String file, Model model) throws IOException;
+	public void value(String file, Model model) throws IOException;
 
 	//서류등록처리
-	public void signInPro(MultipartHttpServletRequest req, Model model)throws Exception;
+	public void indocu(MultipartHttpServletRequest req, Model model)throws Exception;
 	
 	//서류조회
 	public void seldocu(HttpServletRequest req, Model model)throws Exception;

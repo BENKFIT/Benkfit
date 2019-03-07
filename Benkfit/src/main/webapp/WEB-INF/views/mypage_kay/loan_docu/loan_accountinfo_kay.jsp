@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>대출계좌조회</title>
+<title> 마이페이지 > 대출계좌조회</title>
 <style>
 	.wrap-loading{ 
     position: fixed;
@@ -23,11 +23,9 @@
        margin-top: -21px;
    }
 </style>
-
 </head>
 <body>
-	<p style="font-size:15px; text-align:right;">대출정보</p>
-	<hr>
+	<span class="style">대출정보</span>
 	<table class="table eq-ui-data-table z-depth-1" style="background-color:white;">
 		<tr>
 			<th>계좌상품번호</th>
@@ -54,9 +52,7 @@
 					pattern="#,###.##" /></td>
 		</tr>
 	</table>
-	<p style="font-size:15px; text-align:right;">대출 거래내역</p>
-	<hr>
-	<br>
+	<span class="style">대출 거래내역</span>
 	<table class="table eq-ui-data-table eq-ui-header-fixed z-depth-1">
 		<thead style="background-color:#2980b9; color:white;">
 			<tr>

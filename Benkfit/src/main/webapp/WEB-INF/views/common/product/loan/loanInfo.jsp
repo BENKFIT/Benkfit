@@ -4,15 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1./js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<meta charset="UTF-8">
-<title>대출상품안내</title>
+<title>상품 > 대출</title>
 <style type="text/css">
 td {
 	color: white;
@@ -54,7 +46,7 @@ details td {
 #joinBtn3 {
 	color: white;
 	border: 1px solid white;
-	background-color: #1AA85C;
+	background-color: #C64545;
 	border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
@@ -150,138 +142,147 @@ p {
 	text-decoration: none;
 	cursor: pointer;
 }
-#cheqModal td, #savModal td{
+
+#cheqModal td, #savModal td {
 	color: black;
+}
+
+#from {
+	padding: 6px 10px;
+	margin: 4px 0;
+	display: inline-block;
+	border: 1px solid #FFD662;
+	border-radius: 4px;
+	box-sizing: border-box;
 }
 </style>
 </head>
 <body>
 	<!-- TOP&SIDE -->
 	<%@ include file="../../../Template/top.jsp"%>
-		<div
-			style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
-			<div style="display: inline-block; margin-top: 200px;">
-				<table style="text-align: center;">
+	<div
+		style="text-align: center; background-color: #C64545; width: 100%; height: 60%;">
+		<div style="display: inline-block; margin-top: 200px;">
+			<table style="text-align: center;">
+				<tr>
+					<td>${info.loan_name}</td>
+				</tr>
+				<tr>
+					<td style="font-size: 50px;">어려운 대출도</td>
+				</tr>
+				<tr>
+					<td style="font-size: 50px;">매우 간단하게</td>
+				</tr>
+			</table>
+			<br /> <br />
+
+			<table class="infoTbl">
+				<tr>
+					<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
+					<td style="padding: 5px 10px;">1년 기준(세전)</td>
+				</tr>
+				<tr>
+					<td style="border-right: 1px solid white; padding: 5px 10px;">1개월부터</td>
+					<td style="padding: 5px 10px;">연 ${info.loan_rate} %</td>
+				</tr>
+			</table>
+			<table class="infoTbl">
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<sec:authorize access="isAnonymous()">
+							<button type="button" class="btn btn-primary"
+								style="color: white; border: 1px solid white; background-color: #C64545; border-radius: 5px; width: 200px; font-size: 20px;"
+								data-toggle="modal" data-target="#loginFail">가입하기</button>
+						</sec:authorize> 
+						<sec:authorize access="isAuthenticated()">
+							<button type="button" class="btn btn-primary" id="joinBtn1"
+								data-toggle="modal" data-target="#cheqModal">가입하기</button>
+						</sec:authorize>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="div1">
+		<div class="div1-1">
+			<p>누구나 쉽고 스마트하게</p>
+		</div>
+	</div>
+
+	<div class="div2">
+		<div class="div2-1">
+			<p>새롭고 간편한 대출</p>
+		</div>
+	</div>
+
+	<div class="div3">
+		<div class="div3-1">
+			<p>신청과 동시에 파바박!</p>
+		</div>
+	</div>
+
+	<div class="div4">
+		<div class="div4-1">
+			<details>
+				<summary>상품안내</summary>
+				<table>
 					<tr>
-						<td>${info.loan_name}</td>
+						<th>가입대상</th>
 					</tr>
 					<tr>
-						<td style="font-size: 50px;">어려운 대출도</td>
+						<td>${info.loan_target}</td>
 					</tr>
 					<tr>
-						<td style="font-size: 50px;">매우 간단하게</td>
+						<td>대한민국인</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th>대출종류</th>
+					</tr>
+					<tr>
+						<td>${info.loan_reMethod}</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th>대출금액</th>
+					</tr>
+					<tr>
+						<td>${info.loan_amount}</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th>대출만기</th>
+					</tr>
+					<tr>
+						<td>${info.loan_period}</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<th>예금자보호대상</th>
+					</tr>
+					<tr>
+						<td>1인당 최고 5천만원이며, 초과하는 나머지금액은 보호하지 않습니다.</td>
 					</tr>
 				</table>
-				<br /> <br />
-				
-					<table class="infoTbl">
-						<tr>
-							<td style="border-right: 1px solid white; padding: 5px 10px;">최소</td>
-							<td style="padding: 5px 10px;">1년 기준(세전)</td>
-						</tr>
-						<tr>
-							<td style="border-right: 1px solid white; padding: 5px 10px;">1개월부터</td>
-							<td style="padding: 5px 10px;">연 ${info.loan_rate} %</td>
-						</tr>
-					</table>
-					<table class="infoTbl">
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>
-								<sec:authorize access="isAnonymous()">
-									<button type="button" class="btn btn-primary"
-									style="color: white; border: 1px solid white; background-color: #C64545; border-radius: 5px; width: 200px; font-size: 20px;"
-									data-toggle="modal" data-target="#loginFail">가입하기</button>
-								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
-									<button type="button" class="btn btn-primary" id="joinBtn1"
-									data-toggle="modal" data-target="#cheqModal">가입하기</button>
-								</sec:authorize>
-							</td>
-						</tr>
-					</table>
-			</div>
+			</details>
 		</div>
-
-		<div class="div1">
-			<div class="div1-1">
-				<p>누구나 쉽고 스마트하게</p>
-			</div>
-		</div>
-
-		<div class="div2">
-			<div class="div2-1">
-				<p>새롭고 간편한 대출</p>
-			</div>
-		</div>
-
-		<div class="div3">
-			<div class="div3-1">
-				<p>신청과 동시에 파바박!</p>
-			</div>
-		</div>
-
-		<div class="div4">
-			<div class="div4-1">
-				<details>
-					<summary>상품안내</summary>
-					<table>
-						<tr>
-							<th>가입대상</th>
-						</tr>
-						<tr>
-							<td>${info.loan_target}</td>
-						</tr>
-						<tr>
-							<td>대한민국인</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<th>대출종류</th>
-						</tr>
-						<tr>
-							<td>${info.loan_reMethod}</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<th>대출금액</th>
-						</tr>
-						<tr>
-							<td>${info.loan_amount}</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<th>대출만기</th>
-						</tr>
-						<tr>
-							<td>${info.loan_period}</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<th>예금자보호대상</th>
-						</tr>
-						<tr>
-							<td>1인당 최고 5천만원이며, 초과하는 나머지금액은 보호하지 않습니다.</td>
-						</tr>
-					</table>
-				</details>
-			</div>
-		</div>
+	</div>
 
 	<!-- 로그인-Modal1 -->
-	<div class="modal fade" id="loginFail" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
+	<div class="modal fade" id="loginFail" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content" style="width: 500px;">
 				<div class="modal-body" style="text-align: center;">
@@ -296,11 +297,10 @@ p {
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 대출상품Modal -->
-	<div class="modal fade" id="cheqModal" tabindex="-1"
-		role="dialog" aria-labelledby="exampleModalCenterTitle"
-		aria-hidden="true">
+	<div class="modal fade" id="cheqModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content" style="width: 500px;">
 				<div class="modal-header" style="text-align: center;">
@@ -313,37 +313,60 @@ p {
 				<div class="modal-body" style="text-align: center;">
 					<div style="display: inline-block;">
 						<form action="loanApply" method="post">
-						<input type="hidden" value="${info.loan_num}" name="num">
-						<input type="hidden" value="${info.loan_rate}" name="rate">
+							<input type="hidden" value="${info.loan_num}" name="num">
+							<input type="hidden" value="${info.loan_rate}" name="rate">
 							<table>
 								<tr>
-									<td>지갑계정</td>
-									<td><input type="file" name="from"></td>
-								</tr>
-								<tr>
-									<td>비밀번호</td>
 									<td>
-										<input type="password" name="password">
+										<!-- <input class="btn btn-primary" type="file" id="from"> -->
+										<div class="eq-ui-form-group eq-ui-input-file">
+											<a class="btn btn-primary eq-ui-waves-light"
+												style="color: white;"> Upload <input
+												class="btn btn-primary" id="from" name="from" type="file"
+												multiple>
+											</a>
+											<div class="eq-ui-input-file-path">
+												<input type="text" class="eq-ui-input"
+													placeholder="Upload private key files" readonly
+													style="width: 300px;">
+											</div>
+										</div>
 									</td>
 								</tr>
 								<tr>
-									<td>대출금액</td>
 									<td>
-										<input type="text" name="amount">
+										<div class="eq-ui-form-group eq-ui-input-field">
+											<input id="password" type="password" class="eq-ui-input"
+												name="password" style="width: 300px;"> <label
+												for="password">비밀번호</label>
+										</div>
 									</td>
 								</tr>
 								<tr>
-									<td colspan="2">
-										<input type="submit" value="신청하기">
+									<td>
+										<div class="eq-ui-form-group eq-ui-input-field">
+											<input id="amount" type="text" class="eq-ui-input"
+												name="amount" style="width: 300px;"> <label
+												for="amount">대출금액</label>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="eq-ui-form-group eq-ui-input-field" id="state">
+										</div>
 									</td>
 								</tr>
 							</table>
+							<div class="modal-footer">
+								<input type="submit" value="신청하기" class="btn btn-primary"
+									data-toggle="tooltip" data-placement="bottom"
+									title="입금시, 수수료가 발생합니다." onclick="state();">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+							</div>
 						</form>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
@@ -353,4 +376,9 @@ p {
 	<%@ include file="../../../Template/footer.jsp"%>
 
 </body>
+<script type="text/javascript">
+	function state(){
+		$('#state').html("대출을 신청중입니다.");
+	}
+</script>
 </html>

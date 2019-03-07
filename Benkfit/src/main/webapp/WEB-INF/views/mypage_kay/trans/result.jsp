@@ -8,7 +8,7 @@
 		<c:when test="${chkNum == 1}">
 			<script type="text/javascript">
 				alert('송금완료');
-				window.location="mypage";
+				window.location="trans";
 			</script>
 		</c:when>
 		<c:when test="${chkNum != 1}">

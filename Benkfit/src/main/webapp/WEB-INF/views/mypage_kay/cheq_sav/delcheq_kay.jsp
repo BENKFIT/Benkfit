@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR">
 <head>
-<title>계좌해지</title>
+<title> 마이페이지 > 예금계좌해지</title>
 <script>
 $(document).ready(function() {
 	swal("예금해지","계좌에 잔액이 남아있을 시 해지가 불가능합니다.","warning");
@@ -30,7 +30,6 @@ $(document).ready(function() {
 	font-size: 12px;
 }  
 </style>
-
 </head>
 <body>
 	<%@ include file="../../Template/top.jsp"%>
