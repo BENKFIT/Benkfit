@@ -65,6 +65,9 @@ public interface DAO_lia {
 	public List<myCheqAccountVO> selectCheq(String id);
 	public List<MySavAccountVO> selectSav(String id);
 	public List<MyloanAccountVO> selectLoan(String id);
+	/*public List<myCheqAccountVO> selectCheq();
+	public List<MySavAccountVO> selectSav();
+	public List<MyloanAccountVO> selectLoan();*/
 	
 	// 관리자메뉴 > 거래내역 조회
 	public int getTransCnt(String account);

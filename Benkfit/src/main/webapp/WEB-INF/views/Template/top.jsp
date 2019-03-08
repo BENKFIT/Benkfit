@@ -269,7 +269,7 @@
 												<div class="over-content">
 													<form action="search_pro" method="post" name="searchForm">
 														<input type="text" id="searchinput" name="search"
-															placeholder="Search.." autofocus style="padding: 11.5">
+															placeholder="Search.." autofocus style="padding: 11">
 														<!-- search.css -> .over input[type=text] height: 10%; -->
 														<button type="submit">
 															<i class="fa fa-search"></i>

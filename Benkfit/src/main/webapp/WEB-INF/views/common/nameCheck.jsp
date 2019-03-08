@@ -1,8 +1,8 @@
-<!-- 2019/01/25 손리아 -->
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- <%@ include file="../Template/setting.jsp" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 2019/01/25 손리아 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,17 +19,15 @@
 	}
 	
 	.btn {
-		margin:15px;
+		margin:20px;
 		background:#FFD662;
 		text-align:center;
-		color:#FFF; 
+		color:#000; 
 		font-size:20px;
 		width:100px;
 		height:50px; 
 	}
-	
 </style>
-
 <script type="text/javascript">
 	function comfirm() {
 		opener.document.signIn.hiddenJumin.value="1";
@@ -44,7 +42,6 @@
 </script>
 </head>
 <body>
-	
 	<c:if test="${selectCnt == 1}">
 		<div class="nameCheckDiv">
 			<span>실명인증 완료</span>

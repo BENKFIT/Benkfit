@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import spring.mvc.benkfit.persistence.DAOImpl_kay;
 import spring.mvc.benkfit.vo.*;
+import spring.mvc.benkfit.service.Setting;
 
 @Service
 public class ServiceImpl_kay implements Service_kay{
@@ -319,7 +320,7 @@ public class ServiceImpl_kay implements Service_kay{
 		Authentication  securityContext = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) securityContext.getPrincipal();
 		String id = user.getUsername();
-		String account = req.getParameter("account");
+		String account = Setting.fn.concat(req.getParameter("account"));
 		String start_date = req.getParameter("start_date");
 		String end_date= req.getParameter("end_date");
 		String type = req.getParameter("type");
