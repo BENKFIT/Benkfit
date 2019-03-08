@@ -144,8 +144,8 @@ public class ServiceImpl_sws implements Service_sws {
 		MultipartFile file = ((MultipartRequest) req).getFile("eve_img");
 
 		String saveDir = req.getRealPath("resources/img/event/");
-//		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
-		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/event/";
+		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
+		/*String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/event/";*/
 		System.out.println("saveDir : " + saveDir);
 		System.out.println("realDir : " + realDir);
 
@@ -212,8 +212,8 @@ public class ServiceImpl_sws implements Service_sws {
 		MultipartFile file = ((MultipartRequest) req).getFile("eve_img");
 
 		String saveDir = req.getRealPath("resources/img/event/");
-		//String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
-		String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/event/";
+		String realDir = "C:\\DEV43\\git2\\Benkfit\\src\\main\\webapp\\resources\\img\\event\\";
+		/*String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/event/";*/
 		System.out.println("saveDir : " + saveDir);
 		System.out.println("realDir : " + realDir);
 

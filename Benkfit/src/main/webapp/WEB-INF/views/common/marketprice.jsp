@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인</title>
 <style>
   .wrapper1 {
     width:100%;
@@ -77,13 +77,13 @@
             <td class="cell" style="text-align:left">
               <c:choose>
                 <c:when test="${vo.name=='Bitcoin'}">
-                         비트코인
+                                비트코인
                 </c:when>
                 <c:when test="${vo.name=='Ethereum'}">
-                        이더리움
+                                이더리움
                 </c:when>
                 <c:when test="${vo.name=='Bitcoin Cash'}">
-                         비트코인 캐시
+                                비트코인 캐시
                 </c:when>
                 <c:when test="${vo.name=='Dash'}">
                                 대시

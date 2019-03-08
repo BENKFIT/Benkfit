@@ -63,14 +63,13 @@
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom"
-								onclick="window.location='loanInfo?num=${list.loan_num}'">가입하기</button>
+								onclick="window.location='loanInfo?num=${list.loan_num}&${_csrf.parameterName}=${_csrf.token}'">가입하기</button>
 						</div>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
-	
 
 	<!-- FOOTER  -->
 	<%@ include file="../../../Template/footer.jsp"%>

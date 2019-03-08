@@ -4,13 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> 고객 > 마이페이지</title>
+<title>고객 > 마이페이지</title>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 function setting(){
 	var num = $('input[name=num]').val(); 
 	var number = "num=" + num;
+	
 	$.ajax({
 		type : "POST",
 		url : "${pageContext.request.contextPath}/budget",
@@ -52,7 +53,11 @@ function setting(){
 			  window.addEventListener('resize', function() { chart.draw(data, options); }, false);
 			  } 
 			 google.charts.setOnLoadCallback(drawChart);
-		},	
+			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 		error : function() {
 			alert('통신실패!!');
 		}
@@ -64,13 +69,14 @@ function setting(){
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
 		<div class="mypage"
-			style="height: 700px; width: 1120px; border: 1px solid #ccc; background-color:white;">
+			style="height: 700px; width: 1120px; border: 1px solid #ccc; background-color: white;">
 			<h4 style="padding-left: 22px; text-align: center;">My Page</h4>
 			<hr style="width: 1100px;">
-			<div style="width:530px; height:600px; display:inline-block; padding: 20px;">
+			<div
+				style="width: 530px; height: 600px; display: inline-block; padding: 20px;">
 				<div class="panel-body">
 					<div class="User_Profile">
-						<h5>${usVO.c_name}&nbsp;&nbsp;<span style="font-size:15px;">회원님</span>
+						<h5>${usVO.c_name}&nbsp;&nbsp;<span style="font-size: 15px;">회원님</span>
 						</h5>
 					</div>
 					<ul class="User_Profile details" style="padding: 0px;">
@@ -79,40 +85,40 @@ function setting(){
 							<p style="font-size: 12px;">
 								<span class="glyphicon glyphicon-phone one"
 									style="width: 350px; font-size: 20px;"> 연락처 :
-									${usVO.c_hp}
-									</span>
+									${usVO.c_hp} </span>
 							</p>
 						</li>
 						<li>
 							<p>
 								<span class="glyphicon glyphicon-envelope one"
-									style="width: 350px; font-size: 20px;"> 
-									이메일 :	${usVO.c_email}</span>
+									style="width: 350px; font-size: 20px;"> 이메일 :
+									${usVO.c_email}</span>
 							</p>
 						</li>
 						<li><p>
 								<span class="glyphicon glyphicon-ok-circle"
-									style="width: 350px; font-size: 20px;"> 
-									가입일 : ${usVO.c_regDate}</span>
+									style="width: 350px; font-size: 20px;"> 가입일 :
+									${usVO.c_regDate}</span>
 							</p></li>
-						<li style="font-size: 10px;" >
-							<hr> 
-							<br> 
+						<li style="font-size: 10px;">
+							<hr> <br>
 							<button class="btn btn-success eq-ui-waves-light"
-								onclick="window.location='qrcode'">qrcode</button>&nbsp;
+								onclick="window.location='qrcode?${_csrf.parameterName}=${_csrf.token}'">qrcode</button>&nbsp;
 							<button class="btn btn-success eq-ui-waves-light"
-								onclick="window.location='myinfoPw'">정보수정</button>&nbsp;
+								onclick="window.location='myinfoPw?${_csrf.parameterName}=${_csrf.token}'">정보수정</button>&nbsp;
 							<button class="btn btn-success eq-ui-waves-light"
-								onclick="window.location='document'">내서류목록</button> &nbsp;
+								onclick="window.location='document?${_csrf.parameterName}=${_csrf.token}'">내서류목록</button>
+							&nbsp;
 							<button class="btn btn-success eq-ui-waves-light"
-								onclick="window.location='limit_sel'">이체한도조회/수정</button>&nbsp;
+								onclick="window.location='limit_sel?${_csrf.parameterName}=${_csrf.token}'">이체한도조회/수정</button>&nbsp;
 						</li>
 					</ul>
 				</div>
 			</div>
-			<div style="width: 550px; padding: 10px; display: inline-block; position: absolute;">
+			<div
+				style="width: 550px; padding: 10px; display: inline-block; position: absolute;">
 				<div class="panel-body">
-					<span style="font-size:20px;">자산관리</span>
+					<span style="font-size: 20px;">자산관리</span>
 					<table>
 						<tr>
 							<td>
@@ -125,11 +131,8 @@ function setting(){
 									</div>
 								</div>
 							</td>
-							<td>
-								<a class="btn btn-primary eq-ui-waves-light"
-									onclick="setting();">
-									예산설정</a>
-							</td>
+							<td><a class="btn btn-primary eq-ui-waves-light"
+								onclick="setting();"> 예산설정</a></td>
 						</tr>
 					</table>
 				</div>
@@ -137,96 +140,100 @@ function setting(){
 			</div>
 		</div>
 		<div id="tab1" class="acc_content">
-				<!--Content-->
-				<br>
-				<span class="style"> 마이페이지 > 조회 > 예금관리</span>
-				<hr>
-				<table class="table table-hover">
-					<thead style="background-color: #2980b9; color: white;">
+			<!--Content-->
+			<br> <span class="style"> 마이페이지 > 조회 > 예금관리</span>
+			<hr>
+			<table class="table table-hover">
+				<thead style="background-color: #2980b9; color: white;">
+					<tr>
+						<th>계좌명</th>
+						<th>계좌번호</th>
+						<th>잔액</th>
+						<th style="text-align: right;">조회/이체</th>
+					</tr>
+				</thead>
+				<tbody style="background-color: white;">
+					<c:forEach var="cheq" items="${cheq}">
 						<tr>
-							<th>계좌명</th>
-							<th>계좌번호</th>
-							<th>잔액</th>
-							<th style="text-align:right;">조회/이체</th>
+							<td>${cheq.cheq_num}</td>
+							<td>${cheq.myCheq_account}</td>
+							<td>￦<fmt:formatNumber value="${cheq.myCheq_amount}"
+									pattern="#,###.##" /></td>
+							<td style="text-align: right;"><button
+									class="btn btn-success eq-ui-waves-light"
+									onclick="window.location='cheq_account?account=${cheq.myCheq_account}&${_csrf.parameterName}=${_csrf.token}'">조회</button>&nbsp;
+								<button class="btn btn-danger eq-ui-waves-light"
+									onclick="window.location='delcheq?account=${cheq.myCheq_account}&${_csrf.parameterName}=${_csrf.token}'">해지</button>
+							</td>
 						</tr>
-					</thead>
-					<tbody style="background-color:white;">
-						<c:forEach var="cheq" items="${cheq}">
-							<tr>
-								<td>${cheq.cheq_num}</td>
-								<td>${cheq.myCheq_account}</td>
-								<td>￦<fmt:formatNumber value="${cheq.myCheq_amount}"
-										pattern="#,###.##" /></td>
-								<td style="text-align:right;"><button class="btn btn-success eq-ui-waves-light"
-									onclick="window.location='cheq_account?account=${cheq.myCheq_account}'">조회</button>&nbsp;
-									<button class="btn btn-danger eq-ui-waves-light"
-									onclick="window.location='delcheq?account=${cheq.myCheq_account}'">해지</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<br>
-				<span class="style"> 마이페이지 > 조회 > 적금관리</span>
-				<hr>
-				<table class="table table-hover">
-					<thead style="background-color: #2980b9; color: white;">
+					</c:forEach>
+				</tbody>
+			</table>
+			<br> <span class="style"> 마이페이지 > 조회 > 적금관리</span>
+			<hr>
+			<table class="table table-hover">
+				<thead style="background-color: #2980b9; color: white;">
+					<tr>
+						<th>계좌명</th>
+						<th>계좌번호</th>
+						<th>잔액</th>
+						<th style="text-align: right;">조회/이체</th>
+					</tr>
+				</thead>
+				<tbody style="background-color: white;">
+					<c:forEach var="sav" items="${sav}">
 						<tr>
-							<th>계좌명</th>
-							<th>계좌번호</th>
-							<th>잔액</th>
-							<th style="text-align:right;">조회/이체</th>
+							<td>${sav.mySav_name}</td>
+							<td>${sav.mySav_account}</td>
+							<td>￦<fmt:formatNumber value="${sav.mySav_amount}"
+									pattern="#,###.##" /></td>
+							<td style="text-align: right;"><button
+									class="btn btn-success eq-ui-waves-light"
+									onclick="window.location='sav_account?account=${sav.mySav_account}&${_csrf.parameterName}=${_csrf.token}'">조회</button>
+								&nbsp;
+								<button class="btn btn-danger eq-ui-waves-light"
+									onclick="window.location='delsav?account=${sav.mySav_account}&${_csrf.parameterName}=${_csrf.token}'">해지</button>
+							</td>
 						</tr>
-					</thead>
-					<tbody style="background-color:white;">
-						<c:forEach var="sav" items="${sav}">
-							<tr>
-								<td>${sav.mySav_name}</td>
-								<td>${sav.mySav_account}</td>
-								<td>￦<fmt:formatNumber value="${sav.mySav_amount}"
-										pattern="#,###.##" /></td>
-								<td style="text-align:right;"><button class="btn btn-success eq-ui-waves-light"
-									onclick="window.location='sav_account?account=${sav.mySav_account}'">조회</button> &nbsp; <button
-									class="btn btn-danger eq-ui-waves-light" onclick="window.location='delsav?account=${sav.mySav_account}'">해지</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<br>
-				<span class="style"> 마이페이지 > 조회 > 대출관리</span>
-				<hr>
-				<table class="table table-hover">
-					<thead style="background-color:#2980b9;color:white;">
+					</c:forEach>
+				</tbody>
+			</table>
+			<br> <span class="style"> 마이페이지 > 조회 > 대출관리</span>
+			<hr>
+			<table class="table table-hover">
+				<thead style="background-color: #2980b9; color: white;">
+					<tr>
+						<th>대출상품번호</th>
+						<th>계좌번호</th>
+						<th>잔액</th>
+						<th>대출일</th>
+						<th>만기일</th>
+						<th style="text-align: right;">조회/상환</th>
+					</tr>
+				</thead>
+				<tbody style="background-color: white;">
+					<c:forEach var="loan" items="${loan}">
 						<tr>
-							<th>대출상품번호</th>
-							<th>계좌번호</th>
-							<th>잔액</th>
-							<th>대출일</th>
-							<th>만기일</th>
-							<th style="text-align:right;">조회/상환</th>
+							<td>${loan.loan_num}</td>
+							<td>${loan.myloan_account}</td>
+							<td>￦<fmt:formatNumber value="${loan.myloan_amount}"
+									pattern="#,###.##" /></td>
+							<td>${loan.myloan_date}</td>
+							<td>${loan.myloan_late}</td>
+							<td style="text-align: right;"><button
+									class="btn btn-success eq-ui-waves-light"
+									onclick="window.location='loan_account?account=${loan.myloan_account}&${_csrf.parameterName}=${_csrf.token}'">조회</button>
+								&nbsp;
+								<button class="btn btn-danger eq-ui-waves-light"
+									onclick="window.location='delsav?account=${loan.myloan_account}&${_csrf.parameterName}=${_csrf.token}'">상환</button>
+							</td>
 						</tr>
-					</thead>
-					<tbody style="background-color:white;">
-						<c:forEach var="loan" items="${loan}">
-							<tr>
-								<td>${loan.loan_num}</td>
-								<td>${loan.myloan_account}</td>
-								<td>￦<fmt:formatNumber value="${loan.myloan_amount}"
-										pattern="#,###.##" /></td>
-								<td>${loan.myloan_date}</td>
-								<td>${loan.myloan_late}</td>
-								<td style="text-align:right;"><button class="btn btn-success eq-ui-waves-light"
-									onclick="window.location='loan_account?account=${loan.myloan_account}'">조회</button> &nbsp; <button
-									class="btn btn-danger eq-ui-waves-light" onclick="window.location='delsav?account=${loan.myloan_account}'">상환</button>
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
+	</div>
 	<%@ include file="../../Template/footer.jsp"%>
-	
+
 </body>
 </html>

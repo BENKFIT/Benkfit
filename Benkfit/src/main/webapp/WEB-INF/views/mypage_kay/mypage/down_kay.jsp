@@ -6,6 +6,6 @@
 <meta charset="UTF-8">
 </head>
 <body>
-<a href="/mypage_kay/down">다운</a>
+<a href="/mypage_kay/down?${_csrf.parameterName}=${_csrf.token}">다운</a>
 </body>
 </html>

@@ -47,12 +47,14 @@
         	<img id="qrcode" src=" " width="300" >	
 			<input type="hidden" value="${qr.c_pwd}" id="m_pwd">
 			<input type="hidden" id="m_qr" name="m_qr"  value="${qr.c_qr}">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		</div>	
 		 <div class="col-md-8">
             <div class="row">
                 <div class="col-md-12">
                	<div style="text-align: center">
-               		<form action="qrPro" name="qrCreate" method="post" onsubmit="return create();">
+               		<form action="qrPro?${_csrf.parameterName}=${_csrf.token}" name="qrCreate" method="post" onsubmit="return create();">
+               			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     	<input type="button" id="createBtn" class="btn btn-success "value="생성">
 						<input type="button" id="saveBtn" class="btn btn-primary "value="저장"> 
 						<input type="hidden" name="hiddenId" value="0">

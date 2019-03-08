@@ -36,8 +36,9 @@
 					$("#doc_period_to").val(data.split("/")[10]);
 					swal("파일 업로드", "OK", "success");
 				},
-				 beforeSend:function(){
-		              $('.wrap-loading').removeClass('display-none');
+				 beforeSend:function(xhr){
+					 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		             $('.wrap-loading').removeClass('display-none');
 		          },
 		          complete:function(){
 		              $('.wrap-loading').addClass('display-none');
@@ -81,12 +82,13 @@
 		<br>
 		<label>서류양식<span class="text-danger">*</span></label> &nbsp; &nbsp;
 		<button class="btn btn-success eq-ui-waves-light"
-			onclick="window.location='down'">서류양식다운로드</button>
+			onclick="window.location='down?${_csrf.parameterName}=${_csrf.token}'">서류양식다운로드</button>
 		&nbsp;
 		<hr>
 		<div class="document">
-			<form action="upresult" method="post" name="fileup"
+			<form action="upresult?${_csrf.parameterName}=${_csrf.token}" method="post" name="fileup"
 				enctype="multipart/form-data">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<table class="table_kay">
 				<!-- <div class="form-group"> -->
 					<tr>

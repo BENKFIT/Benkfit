@@ -62,7 +62,7 @@
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom3"
-								onclick="window.location='cheqInfo?num=${list.cheq_num}'">가입하기</button>
+								onclick="window.location='cheqInfo?num=${list.cheq_num}&${_csrf.parameterName}=${_csrf.token}'">가입하기</button>
 						</div>
 					</div>
 				</c:forEach>
@@ -112,7 +112,7 @@
 								<li><b>예금자보호대상</b></li>
 							</ul>
 							<button type="button" class="btn btn-lg btn-block  btn-custom2"
-								onclick="window.location='savInfo?num=${list.sav_num}'">가입하기</button>
+								onclick="window.location='savInfo?num=${list.sav_num}&${_csrf.parameterName}=${_csrf.token}'">가입하기</button>
 						</div>
 					</div>
 				</c:forEach>

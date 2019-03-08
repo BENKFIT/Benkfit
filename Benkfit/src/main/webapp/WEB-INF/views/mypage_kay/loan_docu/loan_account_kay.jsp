@@ -276,6 +276,10 @@ $(".srch_area :button").click(function(){
 				alert(account);
 				$('#result').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert('통신실패!!');
 			}
@@ -296,6 +300,10 @@ $(".srch_area :button").click(function(){
 			success : function(data) {
 				$('#messages').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도해주세요")
 				$('#messages').html("비밀번호를 확인해주세요.");
@@ -322,6 +330,10 @@ $(".srch_area :button").click(function(){
 			success : function(data) {
 				$('#messages2').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("금액을 입력하세요.");
 				$('#messages2').html("다시 시도해주세요.");
@@ -345,6 +357,10 @@ $(".srch_area :button").click(function(){
 			success : function(data) {
 				$('#messages1').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("대출이 없습니다.");
 				$('#messages1').html("대출이 없습니다.");

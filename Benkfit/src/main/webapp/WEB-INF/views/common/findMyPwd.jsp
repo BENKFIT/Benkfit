@@ -82,12 +82,12 @@
           email.focus();
       } else if(id.value != null && email.value!= null) {
     	   alert("임시 비밀번호를 등록된 이메일로 발송하였습니다.");
-    	   window.location="pwdEmail?id="+id.value+"&email="+email.value;
+    	   window.location="pwdEmail?id="+id.value+"&email="+email.value&${_csrf.parameterName}=${_csrf.token};
        }
     }
     
     function gotologin() {
-        window.location="login";
+        window.location="login?${_csrf.parameterName}=${_csrf.token}";
       }
 </script>
 </head>
@@ -126,7 +126,7 @@
       
       <div id="find_result"></div>
       <div id="gotologin" style="visibility:hidden">
-        <a href="login">로그인하러 가기</a>
+        <a href="login?${_csrf.parameterName}=${_csrf.token}">로그인하러 가기</a>
       </div>
    </form>
   </div>

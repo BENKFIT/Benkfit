@@ -122,7 +122,8 @@
             $("#jumin2").val(data.split("/")[1].split("-")[1]);
             $("#jumin2").click();
           },
-          beforeSend:function(){
+          beforeSend:function(xhr){
+              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
               $('.wrap-loading').removeClass('display-none');
           },
           complete:function(){
@@ -174,6 +175,10 @@
                 }
               }
             },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
+            },
             error: function() {
               alert("오류");
             }
@@ -213,6 +218,10 @@
               //결과 출력
               $("#pwdVal").html(msg);
             },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
+            },
             error: function() {
               alert("오류");
             }
@@ -241,6 +250,10 @@
             success: function(data) { //콜백함수
               //결과 출력
               $("#pwdChk").html(msg);
+            },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
             },
             error: function() {
               alert("오류");
@@ -279,6 +292,10 @@
             success: function(data) { //콜백함수
               //결과 출력
               $("#nameVal").html(msg);
+            },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
             },
             error: function() {
               alert("오류");
@@ -323,6 +340,10 @@
               //결과 출력
               $("#hpVal").html(msg);
             },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
+            },
             error: function() {
               alert("오류");
             }
@@ -356,6 +377,10 @@
             success: function(data) { //콜백함수
               //결과 출력
               $("#emailVal").html(msg);
+            },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
             },
             error: function() {
               alert("오류");
@@ -496,8 +521,8 @@
     <div class="col-lg-4 col-md-4 mx-auto">
     <div class="card">
       <div class="card-body">
-      <form action="signInPro" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();">
-      
+      <form action="signInPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();">
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       <input type="hidden" name="hiddenJumin" value="0">
       <input type="hidden" name="hiddenAgree" value="0">
       <!-- <input type="hidden" name="shaPwd" value=""> -->

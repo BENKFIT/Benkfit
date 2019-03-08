@@ -33,7 +33,8 @@
 			<div class="form">
 				<h4>회원정보수정</h4>
 				<br>
-				<form action="myinfoForm" method="post" >
+				<form action="myinfoForm?${_csrf.parameterName}=${_csrf.token}" method="post" >
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<p class="message">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 확인합니다.</p>
 					<br>
 					<div class="row">
@@ -51,5 +52,4 @@
 	</div>
 <%@ include file="../../Template/footer.jsp"%>
 </body>
-
 </html>

@@ -34,6 +34,7 @@ p, a {
 	<!-- TOP&SIDE -->
 	<%@ include file="../../Template/top.jsp"%>
 
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 	<input type="hidden" name="eve_num" value="${dto.eve_num}">
 	<input type="hidden" name="pageNum" value="${pageNum}">
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
@@ -186,6 +187,10 @@ p, a {
 			success : function(data) {
 				$('#balance').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑 파일을 선택해주세요.")
 			}
@@ -220,6 +225,10 @@ p, a {
 					$('#messages').html("다음기회를 이용해주세요.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑 파일을 선택해주세요.")
 			}

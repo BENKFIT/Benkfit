@@ -11,12 +11,13 @@
 	<c:if test="${qrCnt == 0}">
 		<script>
 			alert("발급실패");
+			window.location="mypage?${_csrf.parameterName}=${_csrf.token}";
 		</script>
 	</c:if>
 	<c:if test="${qrCnt != 0}">
 		<script>
 			swal("발급완료"," mypage로돌아갑니다.","success");
-			window.location="mypage";
+			window.location="mypage?${_csrf.parameterName}=${_csrf.token}";
 		</script>
 	</c:if>
 </body>

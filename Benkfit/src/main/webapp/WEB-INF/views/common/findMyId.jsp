@@ -100,6 +100,10 @@
 		                   $("#gotologin").css("visibility", "visible");
 		              }
 	             },
+	             beforeSend:function(xhr){
+	                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	                 $('.wrap-loading').removeClass('display-none');
+	             },
 	             error: function() {
 	            	  alert("오류")
 	             }
@@ -109,7 +113,7 @@
     }
     
     function gotologin() {
-    	window.location="login";
+    	window.location="login?${_csrf.parameterName}=${_csrf.token}";
     }
 </script>
 </head>
@@ -148,7 +152,7 @@
 	    
 	    <div id="find_result"></div>
 	    <div id="gotologin" style="visibility:hidden">
-	      <a href="login">로그인하러 가기</a>
+	      <a href="login?${_csrf.parameterName}=${_csrf.token}">로그인하러 가기</a>
 	    </div>
    </form>
   </div>

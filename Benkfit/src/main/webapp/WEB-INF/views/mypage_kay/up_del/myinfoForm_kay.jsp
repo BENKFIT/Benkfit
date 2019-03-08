@@ -15,7 +15,8 @@
 		</script>
 	</c:if>
 	<div class="wrapper">
-		<form action="myinfoPro" method="post">
+		<form action="myinfoPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<span class="style">마이페이지>회원정보수정</span>
 			<br>
 			<hr>
@@ -188,5 +189,4 @@
 	</div>
 <%@ include file="../../Template/footer.jsp"%>
 </body>
-
 </html>

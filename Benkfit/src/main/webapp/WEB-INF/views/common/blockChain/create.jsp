@@ -87,6 +87,10 @@ p, a {
 					$('#state').html("다시 시도해주세요.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("계정이 생성되지 않았습니다.");
 				$('#state').html("다시 시도해주세요.");

@@ -11,12 +11,13 @@
 	<c:if test="${del == 1}">
 		<script>
 			alert("성공");
-			window.location="document";
+			window.location="document?${_csrf.parameterName}=${_csrf.token}";
 		</script>
 	</c:if>
 	<c:if test="${del != 1}">
 		<script>
 			alert("실패");
+			window.location="document?${_csrf.parameterName}=${_csrf.token}";
 		</script>
 	</c:if>
 </body>

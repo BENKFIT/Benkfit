@@ -101,8 +101,7 @@ p, a {
 			<div class="trBtn">
 				<p id="">거래시, 수수료(gas)가 발생합니다.</p>
 				<button type="button" class="btn btn-success" onclick="deposit();">입금</button>
-				<button type="button" class="btn btn-warning"
-					onclick="bankWithdraw();">출금</button>
+				<button type="button" class="btn btn-warning" onclick="bankWithdraw();">출금</button>
 				<button type="button" class="btn btn-info" onclick="bankBalance();">예금조회</button>
 			</div>
 		</div>
@@ -124,6 +123,10 @@ p, a {
 			success : function(data) {
 				$('#balance').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑파일과 비밀번호를 확인해주세요.");
 			}
@@ -154,6 +157,10 @@ p, a {
 					$('#success').html("해당 거래가 성사되지 않았습니다.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑파일과 비밀번호를 확인해주세요.");
 			}
@@ -176,6 +183,10 @@ p, a {
 			success : function(data) {
 				$('#state').html("통장의 잔액은 " + data + "ETH 입니다.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑파일과 비밀번호를 확인해주세요.");
 				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
@@ -207,6 +218,10 @@ p, a {
 					$('#state').html("해당 거래가 성사되지 않았습니다.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑파일과 비밀번호를 확인해주세요.");
 				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");

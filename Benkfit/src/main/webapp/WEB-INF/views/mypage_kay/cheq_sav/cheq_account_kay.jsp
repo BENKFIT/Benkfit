@@ -22,9 +22,10 @@ function ajaxTest(){
 			data : sel_cheq,
 			success : function(data) {
 				$('#result').html(data);
-			},	beforeSend:function(){
+			},	beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
 	              $('.wrap-loading').removeClass('display-none');
-	          },
+	        },
 	          complete:function(){
 	              $('.wrap-loading').addClass('display-none');
 	          },

@@ -12,6 +12,7 @@
 		<!-- 실패 -->
 		<script type="text/javascript">
 			alert("수정실패")
+			window.location = "mypage?${_csrf.parameterName}=${_csrf.token}";
 		</script>
 	</c:if>
 
@@ -19,7 +20,7 @@
 		<!-- 성공 -->
 		<script type="text/javascript">
 			alert("수정완료/ 마이페이지로 돌아갑니다.");
-			window.location = "mypage";
+			window.location = "mypage?${_csrf.parameterName}=${_csrf.token}";
 		</script>
 	</c:if>
 </body>

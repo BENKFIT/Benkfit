@@ -42,7 +42,7 @@ p, a {
 				<tr>
 					<td colspan="8"><p>Tx_hash로 당신의 거래를 검증하세요.</p></td>
 				</tr>
-								<tr>
+				<tr>
 					<td>
 						<div class="eq-ui-form-group eq-ui-input-field">
 							<input id="value" type="text" class="eq-ui-input validate"
@@ -161,6 +161,10 @@ p, a {
 					$('#success').html("정상거래가 아닙니다. 고객센터에 문의해주세요.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("컨트랙트 주소를 입력해주세요.");
 				$('#state').html("다시 시도해주세요.");

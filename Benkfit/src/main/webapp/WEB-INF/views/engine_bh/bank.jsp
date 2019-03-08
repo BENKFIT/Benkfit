@@ -100,6 +100,10 @@ p, a {
 			success : function(data){
 				$('#balance').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(){
 				alert("오류")
 			}
@@ -120,6 +124,10 @@ p, a {
 			success : function(data){
 				$('#state').html("입금완료되었습니다. 잔액을 확인해보세요.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(){
 				alert("오류")
 			}
@@ -139,6 +147,10 @@ p, a {
 			success : function(data){
 				$('#state').html("통장의 잔액은 "+data+"ETH 입니다.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(){
 				alert("오류")
 			}
@@ -159,6 +171,10 @@ p, a {
 			success : function(data){
 				$('#state').html("출금완료되었습니다. 잔액을 확인해보세요.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(){
 				alert("오류")
 			}

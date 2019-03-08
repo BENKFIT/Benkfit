@@ -37,7 +37,8 @@
 <%@ include file ="../Template/top.jsp" %>
 <div id="logindiv1">
   <div id="logindiv2">
-    <form id="login-form" action="loginPro" method="post" style="margin-top:250px;">
+    <form id="login-form?${_csrf.parameterName}=${_csrf.token}" action="loginPro" method="post" style="margin-top:250px;">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="row">
        <div class="row">
            <div class="col-md-12">
@@ -69,9 +70,9 @@
     </div>
     <input type="submit" class="btn btn-default" value="로그인" style="background-color:#2D5772; color:#fff; margin-top:5px;">
     <div id="links">
-	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyId">아이디</a> /
-	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyPwd">비밀번호 찾기</a>
-	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="signIn">회원가입</a>
+	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyId?${_csrf.parameterName}=${_csrf.token}">아이디</a> /
+	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyPwd?${_csrf.parameterName}=${_csrf.token}">비밀번호 찾기</a>
+	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="signIn?${_csrf.parameterName}=${_csrf.token}">회원가입</a>
     </div>
    </form>
   </div>

@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -462,6 +463,9 @@ public class Controller_sws {
 
 		String id = req.getParameter("id");
 		List<myCheqAccountVO> c = dao.myCheqAccounts(id);
+		
+/*		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String Data = transFormat.format(Date);*/
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myCheqAccount", c);

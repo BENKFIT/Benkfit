@@ -9,7 +9,7 @@
 </head>
 <body>
 <script type="text/javascript">
-    window.location="index";
+    window.location="index?${_csrf.parameterName}=${_csrf.token}";
 </script>
 </body>
 </html>

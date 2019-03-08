@@ -23,6 +23,10 @@ v<%@ page language="java" contentType="text/html; charset=UTF-8"
 			success : function(data) {
 				$('#result').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert('통신실패!!');
 			}
