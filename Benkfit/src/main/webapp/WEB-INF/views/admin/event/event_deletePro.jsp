@@ -20,7 +20,7 @@
 	<c:if test="${deleteCnt != 0}">
 		<script type="text/javascript">
 			alert("이벤트가 삭제되었습니다.");
-			window.location='event_list_sws?pageNum=${pageNum}';
+			window.location='event_list_sws?pageNum=${pageNum}&${_csrf.parameterName}=${_csrf.token}';
 		</script>
 	</c:if>
 </body>

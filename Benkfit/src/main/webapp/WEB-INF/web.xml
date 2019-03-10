@@ -75,7 +75,12 @@
   <!-- 에러 처리 페이지 -->
   <error-page>
   	<error-code>500</error-code>
-  	<location>/user/login</location>
+  	<location>/error_500</location>
+  </error-page>
+  
+   <error-page>
+  	<error-code>404</error-code>
+  	<location>/error_404</location>
   </error-page>
   
   <!-- 세션 타임아웃 설정(20분) -->

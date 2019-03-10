@@ -51,10 +51,8 @@ input, select {
 <body>
 	<!-- top&side -->
 	<%@ include file="../../../Template/top.jsp"%>
-
 	<!-- content -->
-	<div
-		style="text-align: center; width: 100%; margin: 200px 0px 150px 0px;">
+	<div style="text-align: center; width: 100%; margin: 200px 0px 150px 0px;">
 		<div style="display: inline-block;">
 			<!-- 등록 -->
 			<div class="listBox" style="position: relative;">
@@ -224,7 +222,8 @@ input, select {
 			<span class="close">&times;</span>
 			<div style="text-align: center;">
 				<div style="display: inline-block;">
-					<form action="cheq/savRegi" method="post">
+					<form action="cheq/savRegi?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<table style="margin: 100px 0px;">
 							<tr>
 								<td>상품종류</td>
@@ -336,7 +335,8 @@ input, select {
 					</button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					<form action="cheqRegiPro" method="post">
+					<form action="cheqRegiPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<table class="regTbl">
 							<tr>
 								<td>상품이름</td>
@@ -408,7 +408,8 @@ input, select {
 					</button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					<form action="savRegiPro" method="post">
+					<form action="savRegiPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<table class="regTbl">
 							<tr>
 								<td>상품이름</td>
@@ -493,6 +494,10 @@ input, select {
 				success : function(data) {
 					$("#editCheq").html(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("Ajax error");
 				}
@@ -508,6 +513,10 @@ input, select {
 				success : function(data){
 					$("#editSav").html(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function(){
 					alert("Ajax error");
 				}

@@ -275,7 +275,7 @@ public class Controller_syk {
 	public String deploy(HttpServletRequest req, Model model) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
-		service2.benkfitControl(req, model);
+		/*service2.benkfitControl(req, model);*/
 		return "admin/manage/manage";
 	}
 	
@@ -315,5 +315,10 @@ public class Controller_syk {
 		AccessDeniedException ade = (AccessDeniedException) req.getAttribute(WebAttributes.ACCESS_DENIED_403);
 		model.addAttribute("errMsg", ade);
 		return "common/denied";
+	}
+	
+	@RequestMapping("error_404")
+	public String error_404() {
+		return "Template/404";
 	}
 }

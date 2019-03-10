@@ -18,10 +18,10 @@ public class Setting {
 	final static String fn = "0x";
 	
 	// 유경
-//	final static String path = "C:\\ether\\geth\\private_net\\keystore\\";
-//	final static String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
-//	final static String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
-//	final static String owner_pwd = "password";
+	final static String path = "C:\\ether\\geth\\private_net\\keystore\\";
+	final static String owner = "0x565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final static String owner_file = "C:\\ether\\geth\\private_net\\keystore\\UTC--2019-01-25T06-33-33.541838900Z--565d241fd2f30474bae822254a6ccc03cc45df0e";
+	final static String owner_pwd = "password";
 	
 	final static BigInteger gasPrice = BigInteger.valueOf(3000000);
 	final static BigInteger gasLimit = BigInteger.valueOf(3000000);
@@ -31,10 +31,10 @@ public class Setting {
 	 * 훈 전역 설정
 	 */
 
-	final static String path = "/Users/banhun/2_net/keystore/";
-	final static String owner = "0xef4755f7ac11c82514e488dfc11f293084f8625e";
-	final static String owner_pwd = "password";
-	final static String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-03-05T11-34-26.497959000Z--ef4755f7ac11c82514e488dfc11f293084f8625e";
+	//final static String path = "/Users/banhun/2_net/keystore/";
+	//final static String owner = "0xef4755f7ac11c82514e488dfc11f293084f8625e";
+	//final static String owner_pwd = "password";
+	//final static String owner_file = "/Users/banhun/2_net/keystore/UTC--2019-03-05T11-34-26.497959000Z--ef4755f7ac11c82514e488dfc11f293084f8625e";
 
 	/*
 	 * 운선 전역 설정

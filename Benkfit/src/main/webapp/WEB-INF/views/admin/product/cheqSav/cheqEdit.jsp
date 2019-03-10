@@ -21,7 +21,9 @@
 			</div>
 			<div class="modal-body" style="text-align: center;">
 				<div style="display: inline-block;">
-					<form action="cheqEditPro" method="post">
+					<form action="cheqEditPro ?${_csrf.parameterName}=${_csrf.token}" method="post">
+					
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<table>
 							<tr>
 								<td>상품번호</td>
@@ -87,6 +89,10 @@
 				success : function(data){
 					window.location.href = '${pageContext.request.contextPath}/cheqSavRegi';
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function(){
 					alert("Ajax error");
 				}				

@@ -49,10 +49,12 @@ function readURL(input) {
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 
-	<form action="event_addPro_sws" method="post"
+	<form action="event_addPro_sws?${_csrf.parameterName}=${_csrf.token}" method="post"
 		enctype="multipart/form-data">
 
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
+		
 		<div style="margin-top: 200px; height: 62%; width: 100%; text-align: center;">
 			<div style="display: inline-block;">
 				<table class="board">

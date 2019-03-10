@@ -153,7 +153,8 @@
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<form action="deployPro" method="post">
+				<form action="deployPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalCenterTitle">배포할
 							contract를 입력하세요.</h5>
@@ -213,6 +214,10 @@
 				success : function(data) {
 					$(id).html(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("다시 시도해주세요.");
 				}
@@ -242,6 +247,10 @@
 						$('#state1').html("다시 시도하세요.");
 					}
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("다시 시도하세요.");
 					$('#state1').html("다시 시도하세요.");
@@ -264,6 +273,10 @@
 				success : function(data) {
 					$('#state').html("은행업무가 시작되었습니다.");
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("다시 시도하세요.");
 					$('#state').html("은행업무를 시작되지 않았습니다.");
@@ -286,6 +299,10 @@
 				success : function(data) {
 					$('#state').html("은행업무가 중지되었습니다..");
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("다시 시도하세요.");
 					$('#state').html("은행업무 중지를 실패했습니다.");
@@ -475,6 +492,10 @@
 					    });
 					    chartDrowFun1.chartDrow1(); //chartDrow() 실행
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(xhr, type) {
 				alert('server error occured');
 			}
@@ -650,6 +671,10 @@
 					    });
 					    chartDrowFun2.chartDrow2(); //chartDrow() 실행
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(xhr, type) {
 				alert('server error occured');
 			}
@@ -827,6 +852,10 @@
 						});
 						chartDrowFun3.chartDrow3(); //chartDrow() 실행
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(xhr, type) {
 				alert('server error occured');
 			}
@@ -1004,6 +1033,10 @@
 						});
 						chartDrowFun4.chartDrow4(); //chartDrow() 실행
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function(xhr, type) {
 				alert('server error occured');
 			}

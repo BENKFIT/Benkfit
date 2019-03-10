@@ -122,7 +122,6 @@
             $("#jumin2").click();
           },
           beforeSend:function(xhr){
-        	  //비밀번호 인증시, 아래 한 줄 누락시키면 deniedHandler로 이동
               xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
               $('.wrap-loading').removeClass('display-none');
           },

@@ -59,14 +59,14 @@
 										var="number" value="${number-1}" /></td>
 								<td
 									class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"><a
-									href="event_contentForm_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}">${dto.eve_title}</a></td>
+									href="event_contentForm_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}&${_csrf.parameterName}=${_csrf.token}">${dto.eve_title}</a></td>
 								<td
 									class="eq-ui-data-table-cell-non-numeric eq-ui-data-table-cell-truncate"><fmt:formatDate
 										type="both" pattern="yyyy-MM-dd" value="${dto.eve_regDate}" /></td>
 								<td>
 								<input class="btn btn-primary" type="button" value="수정"
 									data-toggle="modal" data-target="#exampleModalUpdate" onclick="eventUpdate('${dto.eve_num}');"> 
-								<input class="btn btn-danger" type="button" value="삭제" onclick="window.location='event_deletePro_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}'">
+								<input class="btn btn-danger" type="button" value="삭제" onclick="window.location='event_deletePro_sws?eve_num=${dto.eve_num}&pageNum=${pageNum}&${_csrf.parameterName}=${_csrf.token}'">
 								</td>
 							</tr>
 						</c:forEach>
@@ -88,8 +88,8 @@
 				<th style="text-align: center; width: 100%"><c:if
 						test="${cnt > 0}">
 						<c:if test="${startPage > pageBlock}">
-							<a href="event_list_sws">[◀◀ ]</a>
-							<a href="event_list_sws?pageNum=${startPage - pageBlock}">[◀
+							<a href="event_list_sws?${_csrf.parameterName}=${_csrf.token}">[◀◀ ]</a>
+							<a href="event_list_sws?pageNum=${startPage - pageBlock}&${_csrf.parameterName}=${_csrf.token}">[◀
 								]</a>
 						</c:if>
 
@@ -99,14 +99,14 @@
 							</c:if>
 
 							<c:if test="${i != currentPage}">
-								<a href="event_list_sws?pageNum=${i}">[${i}]</a>
+								<a href="event_list_sws?pageNum=${i}&${_csrf.parameterName}=${_csrf.token}">[${i}]</a>
 							</c:if>
 						</c:forEach>
 
 						<c:if test="${pageCount > endPage}">
-							<a href="event_list_sws?pageNum=${startPage + pageBlock}">[▶
+							<a href="event_list_sws?pageNum=${startPage + pageBlock}&${_csrf.parameterName}=${_csrf.token}">[▶
 								]</a>
-							<a href="event_list_sws?pageNum=${pageCount}">[▶▶ ]</a>
+							<a href="event_list_sws?pageNum=${pageCount}&${_csrf.parameterName}=${_csrf.token}">[▶▶ ]</a>
 						</c:if>
 					</c:if></th>
 
@@ -134,8 +134,9 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="event_addPro_sws" method="post"
+				<form action="event_addPro_sws?${_csrf.parameterName}=${_csrf.token}" method="post"
 					enctype="multipart/form-data">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="modal-body" style="text-align: center;">
 						<div style="display: inline-block;">
 							<input type="hidden" name="pageNum" value="${pageNum}">
@@ -233,9 +234,9 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="event_modifyPro_sws" method="post"
+				<form action="event_modifyPro_sws?${_csrf.parameterName}=${_csrf.token}" method="post"
 					enctype="multipart/form-data">
-					
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<input type="hidden" name="eve_num" value="${dto.eve_num}">
 					<input type="hidden" name="pageNum" value="${pageNum}"> 
 
@@ -266,6 +267,10 @@ function eventUpdate(eve_num) {
 				$("#res").html(data);
 				alert(num);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("Ajax error");
 			}

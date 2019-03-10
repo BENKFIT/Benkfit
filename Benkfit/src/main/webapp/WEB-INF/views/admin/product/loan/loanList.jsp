@@ -160,7 +160,8 @@ input, select {
 					</button>
 				</div>
 				<div class="modal-body" style="text-align: center;">
-					<form action="loanRegiPro" method="post">
+					<form action="loanRegiPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<table class="regTbl">
 							<tr>
 								<td>상품이름</td>
@@ -248,6 +249,10 @@ input, select {
 				success : function(data) {
 					$("#editloan").html(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("Ajax error");
 				}
