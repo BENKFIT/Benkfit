@@ -64,7 +64,8 @@
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<form action="autoAdd" method="post">
+				<form action="autoAdd?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalCenterTitle">자동이체에
 							등록할 정보를 입력하세요.</h5>
@@ -170,6 +171,10 @@
 				success : function(data) {
 					$(id).remove();
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("Ajax error");
 				}

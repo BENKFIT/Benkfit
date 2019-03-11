@@ -2,12 +2,15 @@ package spring.mvc.benkfit.controller;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
@@ -25,7 +28,6 @@ import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Transfer;
 import org.web3j.utils.Convert;
 
-import spring.mvc.benkfit.HomeController;
 import spring.mvc.benkfit.persistence.DAO_lia;
 import spring.mvc.benkfit.persistence.DAO_sws;
 import spring.mvc.benkfit.service.ServiceImpl_syk;
@@ -68,7 +70,7 @@ public class Controller_sws {
 	// 첫방문 고객 안내
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("firstVisit_sws")
-	public String firstVisit_sws() throws Exception {
+	public String string() throws Exception {
 		logger.info("firstVisit_sws");
 		return "common/info/firstVisit";
 	}
@@ -119,7 +121,7 @@ public class Controller_sws {
 		
 		service.eventContentForm_sws(req, model);
 
-		if (eve_num.equals("46")) {
+		if (eve_num.equals("1")) {
 			return "common/event/slot";
 		}
 		
@@ -146,7 +148,7 @@ public class Controller_sws {
 
 		service.eventContentForm_sws(req, model);
 		
-		if (eve_num.equals("46")) {
+		if (eve_num.equals("1")) {
 			return "common/event/slotAdmin";
 		}
 		return "admin/event/event_contentForm";
@@ -210,7 +212,6 @@ public class Controller_sws {
 	@RequestMapping("map_sws")
 	public String map_sws(HttpServletRequest req, Model model) throws Exception {
 		logger.info("map_sws");
-
 		return "common/map/map";
 	}
 	
@@ -263,7 +264,7 @@ public class Controller_sws {
 		return "admin/chart/chartDay";
 	}
 
-	// 앱 로그인
+	// 안드로이드 로그인
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidSignIn")
@@ -289,7 +290,7 @@ public class Controller_sws {
 		return out;
 	}
 
-	// 앱 메인페이지
+	// 안드로이드 메인페이지
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
 	@RequestMapping("androidMain")
@@ -462,6 +463,9 @@ public class Controller_sws {
 
 		String id = req.getParameter("id");
 		List<myCheqAccountVO> c = dao.myCheqAccounts(id);
+		
+/*		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String Data = transFormat.format(Date);*/
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myCheqAccount", c);
@@ -515,9 +519,7 @@ public class Controller_sws {
 	@RequestMapping("atm_sws")
 	public String atm(HttpServletRequest req, Model model) throws Exception {
 		logger.info("atm_sws");
-		
 		service.getMap(req, model);
-		
 		return "common/map/atm";
 	}
 }

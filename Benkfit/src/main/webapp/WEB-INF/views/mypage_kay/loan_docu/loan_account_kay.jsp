@@ -59,24 +59,6 @@
 				</td>
 			</tr>
 			<tr>
-				<th>계좌선택</th>
-				<td colspan="3">
-						<select id="loan_account" class="eq-ui-select">
-						<c:choose>
-							<c:when test="${account != null}">
-								<option value="${account}">${account}</option>
-							</c:when>
-							<c:otherwise>
-								<option value="계좌를 선택하세요." disabled selected>계좌를 선택하세요.</option>
-								<c:forEach var="lo" items="${loan}">
-									<option value="${lo.myloan_account}">${lo.myloan_account}</option>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-				</select>	
-				</td>
-			</tr>
-			<tr>
 				<th>비밀번호</th>
 				<td colspan="1"><input class="eq-ui-input" type="password"
 					id="password" placeholder="비밀번호를 입력하세요" required></td>
@@ -257,7 +239,7 @@ $(".srch_area :button").click(function(){
 		document.getElementById("file").click();
 	}
 	function ajaxTest() {
-		var account = $("#loan_account option:selected").val();
+		var account = $("#from").val();
 		var start_date = $('input[name="start_date"]').val();
 		var end_date = $('input[name="end_date"]').val();
 		var type = $('input[name="option"]:checked').val();
@@ -276,6 +258,10 @@ $(".srch_area :button").click(function(){
 				alert(account);
 				$('#result').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert('통신실패!!');
 			}
@@ -296,6 +282,10 @@ $(".srch_area :button").click(function(){
 			success : function(data) {
 				$('#messages').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도해주세요")
 				$('#messages').html("비밀번호를 확인해주세요.");
@@ -322,6 +312,10 @@ $(".srch_area :button").click(function(){
 			success : function(data) {
 				$('#messages2').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("금액을 입력하세요.");
 				$('#messages2').html("다시 시도해주세요.");
@@ -345,6 +339,10 @@ $(".srch_area :button").click(function(){
 			success : function(data) {
 				$('#messages1').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("대출이 없습니다.");
 				$('#messages1').html("대출이 없습니다.");

@@ -11,7 +11,7 @@
 <script type="text/javascript">
      setTimeout(function() {
        alert("아이디나 비밀번호가 잘못되었습니다.");
-       window.location="login";
+       window.location="login?${_csrf.parameterName}=${_csrf.token}";
      },500);
 </script>
 </body>

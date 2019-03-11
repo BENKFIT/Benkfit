@@ -4,11 +4,8 @@
 <html>
 <body>
 <head>
-<<<<<<< HEAD
-=======
 <title> 위치 > ATM </title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
->>>>>>> branch 'master' of https://github.com/BENKFIT/benkfit.git
 <script>
 	L_PREFER_CANVAS = false;
 	L_NO_TOUCH = false;

@@ -14,7 +14,8 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 	<div class="wrapper">
-		<form action="lim_pro" method="post">
+		<form action="lim_pro?${_csrf.parameterName}=${_csrf.token}" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<p style="float:right; font-size:15px;">마이페이지>설정>이체한도조회/수정</p>
 			<br>
 			<hr>
@@ -59,7 +60,7 @@
 							<div style="text-align: center">
 								<input type="submit" class="btn btn-primary " value="변경신청">
 								<input type="button" class="btn btn-success " value="마이페이지"
-									onclick="location='mypage'">
+									onclick="location='mypage?${_csrf.parameterName}=${_csrf.token}'">
 							</div>
 						</div>
 					</div>

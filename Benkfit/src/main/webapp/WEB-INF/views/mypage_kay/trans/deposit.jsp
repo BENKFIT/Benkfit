@@ -18,7 +18,8 @@
 		<div style="display: inline-block; width: 40%;">
 			<span class="style">마이페이지 > 입금</span>
 			<div class="col-md-12">
-				<form class="doc-form" action="depositPro" method="post">
+				<form class="doc-form" action="depositPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<table>
 						<tr>
 							<td colspan="3">
@@ -40,8 +41,7 @@
 										<input id="file" type="file" name="file" multiple>
 										</a>
 										<div class="eq-ui-input-file-path">
-											<input type="text" class="eq-ui-input"
-												placeholder="Upload private key file" readonly>
+											<input type="text" class="eq-ui-input" placeholder="Upload private key file" readonly>
 										</div>
 									</div>
 								</div>
@@ -69,8 +69,8 @@
 							<td colspan="4">
 								<div class="col-md-12">
 									<div class="eq-ui-form-group eq-ui-input-field">
-										<input id="amount" type="text" class="eq-ui-input" name="amount"> <label
-											for="amount">입금액</label>
+										<input id="amount" type="text" class="eq-ui-input" name="amount"> 
+										<label for="amount">입금액</label>
 									</div>
 								</div>
 							</td>
@@ -106,6 +106,10 @@
 				success : function(data) {
 					$("#getBalance").val(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("getBalance error");
 				}
@@ -120,6 +124,10 @@
 					$('#accounts').html(data);
 					$('#btn').html("<a class='btn btn-warning eq-ui-waves-light' onclick='changeText();'>입력하기</a>");
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function(){
 					alert("myAccounts error");
 				}

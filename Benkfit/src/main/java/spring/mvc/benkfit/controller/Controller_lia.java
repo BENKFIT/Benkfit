@@ -53,7 +53,6 @@ public class Controller_lia {
 	}
 	
 	/*// 로그인 처리
-	// 로그인 처리
 	@Transactional(rollbackFor=Exception.class)
 	@RequestMapping("loginPro")
 	public String loginPro(HttpServletRequest req, Model model) throws Exception {
@@ -235,14 +234,6 @@ public class Controller_lia {
 	public String chatbot() throws Exception {
 		logger.info("chatbot 호출중");
 		return "common/chatbot";
-	}
-	
-	// 자산관리 안내
-	@Transactional(rollbackFor=Exception.class)
-	@RequestMapping("financial_info")
-	public String financial_info() throws Exception {
-		logger.info("financial_info 호출중");
-		return "common/financial";
 	}
 	
 	// 코인 시세

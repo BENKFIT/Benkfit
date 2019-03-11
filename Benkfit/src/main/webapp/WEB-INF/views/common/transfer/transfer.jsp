@@ -130,6 +130,10 @@ p, a {
 			success : function(data) {
 				$('#balance').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑파일을 선택해주세요.")
 				$('#balance').html("지갑파일을 선택해주세요.");
@@ -163,6 +167,10 @@ p, a {
 					$('#state').html("해당 거래가 성사되지 않았습니다.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("지갑파일을 선택해주세요.")
 				$('#state').html("다시 시도해주세요.");

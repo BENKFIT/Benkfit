@@ -18,8 +18,8 @@
 		<div style="display: inline-block; width: 50%;">
 			<span class="style"> 마이페이지 > 계좌이체</span>
 			<div class="col-md-12">
-				<form class="doc-form" action="transPro" method="post">
-
+				<form class="doc-form" action="transPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<br>
 					<table>
 						<tr>
@@ -42,8 +42,10 @@
 									</div>
 								</div>
 							</td>
-							<td><input type="radio" name="type" value="1" checked/> 예금타입 <input
-								type="radio" name="type" value="2" /> 대출타입</td>
+							<td>
+								<input type="radio" name="type" value="1" checked/> 예금타입 
+								<input type="radio" name="type" value="2" /> 대출타입
+							</td>
 						</tr>
 						<tr>
 							<td colspan="4">
@@ -140,6 +142,10 @@
 					success : function(data) {
 						$("#getBalance").val(data);
 					},
+					beforeSend:function(xhr){
+			              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			              $('.wrap-loading').removeClass('display-none');
+			        },
 					error : function() {
 						alert("다시 시도해주세요")
 						$('#getBalance').html("비밀번호를 확인해주세요.");
@@ -160,6 +166,10 @@
 					success : function(data) {
 						$('#getBalance').val(data);
 					},
+					beforeSend:function(xhr){
+			              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+			              $('.wrap-loading').removeClass('display-none');
+			        },
 					error : function() {
 						alert("다시 시도해주세요")
 						$('#getBalance').html("비밀번호를 확인해주세요.");

@@ -1,5 +1,9 @@
 package spring.mvc.benkfit.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.*;
@@ -7,14 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.api.Http;
 
+import spring.mvc.benkfit.persistence.DAOImpl_syk;
 import spring.mvc.benkfit.service.ServiceImpl_syk;
 import spring.mvc.benkfit.service.Service_bh;
 
@@ -28,6 +35,12 @@ public class Controller_syk {
 	@Autowired
 	Service_bh service2;
 	
+	@Inject
+	private DAOImpl_syk userDao;
+	
+	@Inject
+	BCryptPasswordEncoder passwordEncoder; // 비밀번호 암호화 객체
+	
 	/*
 	 * common
 	 */
@@ -38,7 +51,6 @@ public class Controller_syk {
 	public String checkingList(HttpServletRequest req) {
 		logger.info("예금상품목록이동");
 		service.cheqSavList(req);
-		
 		return "common/product/cheqSav/productList";
 	}
 	
@@ -48,7 +60,6 @@ public class Controller_syk {
 	public String cheqInfo(HttpServletRequest req) {
 		logger.info("예금상품상세페이지");
 		service.cheqInfo(req);
-		
 		return "common/product/cheqSav/productInfo";
 	}
 	
@@ -199,7 +210,6 @@ public class Controller_syk {
 	@RequestMapping("deposit")
 	public String deposit(HttpServletRequest req) throws Exception{
 		logger.info("입금");
-		
 		return "mypage_kay/trans/deposit";
 	}
 	
@@ -275,7 +285,7 @@ public class Controller_syk {
 	public String deploy(HttpServletRequest req, Model model) throws Exception{
 		logger.info("배포페이지");
 		service.deploy(req);
-		/*service2.benkfitControl(req, model);*/
+		service2.benkfitControl(req, model);
 		return "admin/manage/manage";
 	}
 	
@@ -317,8 +327,43 @@ public class Controller_syk {
 		return "common/denied";
 	}
 	
+	//404
 	@RequestMapping("error_404")
 	public String error_404() {
 		return "Template/404";
+	}
+	
+	//admin 회원가입 이동
+	@Transactional(rollbackFor=Exception.class)
+	@RequestMapping("signInAdmin")
+	public String signinAdmin() {
+		logger.info("관리자 회원가입");
+		
+		return "common/join_admin";
+	}
+	
+	//관리자 회원가입 처리
+	@Transactional(rollbackFor=Exception.class)
+	@RequestMapping("insertAdmin")
+	public String insertAdmin(@RequestParam String userid, @RequestParam String passwd,
+			@RequestParam String name, @RequestParam String authority) {
+		
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("userid",  userid);
+		System.out.println("암호화 전의 비밀번호:" + passwd);
+		
+		// 비밀번호 암호화
+		String encryptPassword = passwordEncoder.encode(passwd);
+		System.out.println("암호화 후의 비밀번호:" + encryptPassword);
+		
+		map.put("passwd", encryptPassword);
+		map.put("name", name);
+		map.put("authority", authority);
+		
+		System.out.println("authority:==" + authority);
+		userDao.insertAdmin(map);
+		
+		 return "common/login";
 	}
 }

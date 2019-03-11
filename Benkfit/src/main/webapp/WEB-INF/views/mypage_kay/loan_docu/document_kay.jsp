@@ -34,7 +34,7 @@
 					<td>
 						<a onclick="openImg('${doc.doc_img}')">${doc.doc_img}</a>
 					</td>
-					<td  style="text-align:right;"> <button class="btn btn-primary eq-ui-waves-light" onclick="window.location='detaildoc?doc_num=${doc.doc_num}'">조회</button>
+					<td style="text-align:right;"> <button class="btn btn-primary eq-ui-waves-light" onclick="window.location='detaildoc?doc_num=${doc.doc_num}&${_csrf.parameterName}=${_csrf.token}'">조회</button>
 				</tr>
 			</c:forEach> 
 			</tbody>

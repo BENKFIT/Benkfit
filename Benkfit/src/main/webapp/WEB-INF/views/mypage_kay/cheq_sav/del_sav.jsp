@@ -18,19 +18,19 @@
 		<c:when test="${sav != 0}">
 			<script type="text/javascript">
 				alert("해지실패 : [적금잔액이 남아있습니다]");
-				window.location="mypage";
+				window.location="mypage?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 		<c:when test="${del_sav != 0}">
 			<script type="text/javascript">
 				alert("해지실패");
-				window.location="mypage";
+				window.location="mypage?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 		<c:when test="${del_sav == 0}">
 			<script type="text/javascript">
 				alert("해지성공");
-				window.location="mypage";
+				window.location="mypage?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 	</c:choose>

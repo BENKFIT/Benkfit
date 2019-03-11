@@ -312,7 +312,8 @@ p {
 				</div>
 				<div class="modal-body" style="text-align: center;">
 					<div style="display: inline-block;">
-						<form action="loanApply" method="post">
+						<form action="loanApply?${_csrf.parameterName}=${_csrf.token}" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 							<input type="hidden" value="${info.loan_num}" name="num">
 							<input type="hidden" value="${info.loan_rate}" name="rate">
 							<table>

@@ -512,7 +512,6 @@ public class ServiceImpl_bh implements Service_bh {
 		}
 
 	}
-
 	// 대출액가져오기(한도)
 	@Override
 	public void loanBalance(HttpServletRequest req, Model model) throws Exception {
@@ -536,7 +535,6 @@ public class ServiceImpl_bh implements Service_bh {
 			model.addAttribute("allowance", allowance);
 		}
 	}
-
 	// 대출잔액가져오기
 	@Override
 	public void loanleft(HttpServletRequest req, Model model) throws Exception {

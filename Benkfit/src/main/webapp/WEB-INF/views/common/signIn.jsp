@@ -174,6 +174,10 @@
                 }
               }
             },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
+            },
             error: function() {
               alert("오류");
             }
@@ -213,6 +217,10 @@
               //결과 출력
               $("#pwdVal").html(msg);
             },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
+            },
             error: function() {
               alert("오류");
             }
@@ -241,6 +249,10 @@
             success: function(data) { //콜백함수
               //결과 출력
               $("#pwdChk").html(msg);
+            },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
             },
             error: function() {
               alert("오류");
@@ -279,6 +291,10 @@
             success: function(data) { //콜백함수
               //결과 출력
               $("#nameVal").html(msg);
+            },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
             },
             error: function() {
               alert("오류");
@@ -323,6 +339,10 @@
               //결과 출력
               $("#hpVal").html(msg);
             },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
+            },
             error: function() {
               alert("오류");
             }
@@ -356,6 +376,10 @@
             success: function(data) { //콜백함수
               //결과 출력
               $("#emailVal").html(msg);
+            },
+            beforeSend:function(xhr){
+                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                $('.wrap-loading').removeClass('display-none');
             },
             error: function() {
               alert("오류");

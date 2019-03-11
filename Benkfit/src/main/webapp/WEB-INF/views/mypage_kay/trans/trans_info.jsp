@@ -72,7 +72,8 @@
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<form action="transPro" method="post">
+				<form action="transPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalCenterTitle">이체 정보를
 							확인하세요.</h5>
@@ -131,6 +132,10 @@
 				success : function(data) {
 					$("#getBalance").html(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("getBalance error");
 				}

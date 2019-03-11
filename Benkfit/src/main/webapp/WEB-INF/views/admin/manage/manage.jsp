@@ -109,7 +109,7 @@
 					<td id="loan_balance">${loan_balance}Won</td>
 				</tr>
 				<tr>
-					<td class="eq-ui-data-table-cell-non-numeric">State</td>
+					<td class="eq-ui-data-table-cell-non-numeric">상태</td>
 					<td id="state1"></td>
 				</tr>
 				<tr>

@@ -40,7 +40,8 @@ $(document).ready(function() {
 				<br>
 				<h6 >해지 할  [${account}] 계좌의 <br>비밀번호를 입력하세요.</h6>
 				<br>
-				<form action="account" method="post">
+				<form action="account?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<p class="message">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 확인합니다.</p>
 						<input type="hidden" name="account" value="${account}">
 					<div class="row">

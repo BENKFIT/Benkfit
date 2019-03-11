@@ -7,15 +7,15 @@
 	<c:choose>
 		<c:when test="${cnt == 1}">
 			<script type="text/javascript">
-				window.location="cheqSavList";
+				window.location="cheqSavList?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 		<c:when test="${Accountcnt == 1}">
-			<c:redirect url="cheqSavList"/>
+			<c:redirect url="cheqSavList?${_csrf.parameterName}=${_csrf.token}"/>
 		</c:when>
 		<c:when test="${Accountcnt <= 0 }">
 			<script type="text/javascript">
-				window.location="cheqSavList";
+				window.location="cheqSavList?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 	</c:choose>

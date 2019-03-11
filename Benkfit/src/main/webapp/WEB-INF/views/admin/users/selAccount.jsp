@@ -66,7 +66,7 @@
 <body>
 
 <div class="title">
-<h3>${id}님의 계좌</h3>
+<h4>${id}님의 계좌</h4>
 </div>
 
 <div class=wrapper4>
@@ -74,7 +74,7 @@
      
       <div class="wrapper6">
        <div class="btnarea2">
-        <h3>예금</h3>
+        <h5>예금</h5>
        </div>
        <table class="tb_header2">
          <tr class="rows header">
@@ -115,15 +115,6 @@
            </c:choose>
            <td class="cell">${vo.myCheq_regDate}</td>
          </tr>
-         <!-- Modal -->
-          <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
-                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
-            <div class="modal-dialog modal-lg" id="myModalT2">
-              <div class="modal-content" id="modal-contentT" style="height:80%">
-              
-              </div>
-            </div>
-          </div>
          </c:forEach>
          </c:if>
          </table>
@@ -131,7 +122,7 @@
          
          <div class="wrapper6">
          <div class="btnarea2">
-          <h3>적금</h3>
+          <h5>적금</h5>
          </div>
          <table class="tb_header2">
          <tr class="rows header green">
@@ -165,15 +156,6 @@
            <td class="cell">${svo.mySav_method}</td>
            <td class="cell">${svo.mySav_date}</td>
          </tr>
-         <!-- Modal -->
-          <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
-                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
-            <div class="modal-dialog modal-lg" id="myModalT2">
-              <div class="modal-content" id="modal-contentT" style="height:80%">
-              
-              </div>
-            </div>
-          </div>
          </c:forEach>
          </c:if>
          </table>
@@ -181,7 +163,7 @@
          
          <div class="wrapper6">
          <div class="btnarea2">
-          <h3>대출</h3>
+          <h5>대출</h5>
          </div>
          <table class="tb_header2">
          <tr class="rows header blue">
@@ -210,20 +192,20 @@
            <td class="cell">${lvo.myloan_over}</td>
            <td class="cell">${lvo.myloan_date}</td>
          </tr>
-         <!-- Modal -->
-          <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
-                 aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
-            <div class="modal-dialog modal-lg" id="myModalT2">
-              <div class="modal-content" id="modal-contentT" style="height:80%">
-              
-              </div>
-            </div>
-          </div>
          </c:forEach>
          </c:if>
        </table>
        </div>
        
+       <!-- Modal -->
+       <div class="modal fade bd-example-modal-lg" id="myModalT" tabindex="-1" role="dialog" 
+              aria-labelledby="myLargeModalLabel" aria-hidden="true" style="padding:0; width:200%; height:100%;">
+         <div class="modal-dialog modal-lg" id="myModalT2">
+           <div class="modal-content" id="modal-contentT">
+           </div>
+         </div>
+       </div>
+          
         <div class="wrapper6">
           <input type="button" id="closeModal" class="btn btn-primary" value="닫기" data-dismiss="modal">
         </div>

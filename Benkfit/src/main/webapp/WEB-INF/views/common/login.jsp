@@ -6,15 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> 고객 > 로그인</title>
-<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-</script>
+<title>로그인</title>
 <style>
   #logindiv1 {
     text-align:center;
@@ -71,9 +63,9 @@
     </div>
     <input type="submit" class="btn btn-default" value="로그인" style="background-color:#2D5772; color:#fff; margin-top:5px;">
     <div id="links">
-	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyId">아이디</a> /
-	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyPwd">비밀번호 찾기</a>
-	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="signIn">회원가입</a>
+	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyId?${_csrf.parameterName}=${_csrf.token}">아이디</a> /
+	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="findMyPwd?${_csrf.parameterName}=${_csrf.token}">비밀번호 찾기</a>
+	    <a class="btn btn-default eq-ui-btn-flat eq-ui-waves" href="signIn?${_csrf.parameterName}=${_csrf.token}">회원가입</a>
     </div>
    </form>
   </div>

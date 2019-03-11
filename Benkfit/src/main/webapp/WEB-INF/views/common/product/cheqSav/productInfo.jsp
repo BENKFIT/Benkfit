@@ -566,7 +566,8 @@ p {
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form action="createCheq" method="post">
+					<form action="createCheq?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<div class="modal-body" style="text-align: center;">
 							<div style="display: inline-block;">
 								<input type="hidden" value="${info.cheq_num}" name="num">
@@ -608,7 +609,8 @@ p {
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form action="createSav" method="post">
+					<form action="createSav?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<div class="modal-body" style="text-align: center;">
 							<div style="display: inline-block;">
 								<input type="hidden" value="${info.sav_num}" name="num">

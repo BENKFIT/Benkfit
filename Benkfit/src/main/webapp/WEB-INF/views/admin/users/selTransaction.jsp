@@ -51,7 +51,7 @@
 </head>
 <body>
 <div class="title">
-<h4>${account} 거래내역</h4>
+<h5>${account} 거래내역</h5>
 </div>
 
 <div class="wrapper7">

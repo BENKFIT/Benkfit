@@ -6,20 +6,7 @@
 <meta charset="UTF-8">
 <title>BenkFit</title>
 <script type="text/javascript">
-    
-    
-       /* $.ajax({
-             type: "POST",
-             url : "${pageContext.request.contextPath}/marketprice",
-             success: function(data) {
-               $("#priceTbl").html(data);
-             },
-             error: function() {
-               alert("error");
-             }
-           }); */
-      /* setInterval(function() { 
-          $.ajax({
+        $.ajax({
               type: "POST",
               url : "${pageContext.request.contextPath}/marketprice",
               success: function(data) {
@@ -29,7 +16,7 @@
                 alert("error");
               }
             });
-        }, 1000) */
+        }
 </script>
 </head>
 <body>
@@ -38,18 +25,15 @@
   
   <div style="margin: 100px 0px; text-align: center;">
   	<div style="display: inline-block; width: 100%;">
-  		<%@ include file="./NewFile.jsp"%>
+  	<%-- 	<%@ include file="./NewFile.jsp"%> --%>
   	</div>
   </div>
   
   <!-- CONTENT -->
   <div>
-  <div id="priceTbl" style="height:4000px;">
+  <div id="priceTbl" style="height: auto;">
   </div>
   </div>
   <%@ include file="./footer.jsp"%>
-
-  
-<%@ include file="./footer.jsp"%>
 </body>
 </html>

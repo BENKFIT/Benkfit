@@ -13,8 +13,9 @@
 	<br>
 		<hr>
 		<div class="document">
-			<form action="upresult" method="post" name="fileup"
+			<form action="upresult?${_csrf.parameterName}=${_csrf.token}" method="post" name="fileup"
 				enctype="multipart/form-data">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 				<table class="table_kay">
 					<tr>
 						<th>서류명</th>
@@ -161,9 +162,9 @@
 					</tr>
 					<tr>
 						<td colspan="3" style="text-align:center;">
-							<input type="button" class="btn btn-danger " value="삭제" onclick="location.href='deletedocu?doc_num=${vo.doc_num}';">
+							<input type="button" class="btn btn-danger " value="삭제" onclick="location.href='deletedocu?doc_num=${vo.doc_num}?${_csrf.parameterName}=${_csrf.token}';">
 							<input type="button" class="btn btn-primary " value="목록"
-								onclick="window.location='document'">
+								onclick="window.location='document?${_csrf.parameterName}=${_csrf.token}'">
 						</td>
 					</tr>
 				</table>

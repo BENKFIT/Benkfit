@@ -197,4 +197,9 @@ public class DAOImpl_syk implements DAO_syk{
 	public String getSlot() {
 		return sqlSession.selectOne("spring.mvc.benkfit.persistence.DAO_syk.getSlot");
 	}
+	
+	//회원가입
+	public int insertAdmin(Map<String, String> map) {
+		return sqlSession.insert("spring.mvc.benkfit.persistence.DAO_syk.insertAdmin", map);
+	}
 }

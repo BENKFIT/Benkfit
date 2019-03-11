@@ -62,7 +62,8 @@
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
-				<form action="withdrawPro" method="post">
+				<form action="withdrawPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalCenterTitle">출금 정보를 확인하세요.</h5>
 						<button type="button" class="close" data-dismiss="modal"
@@ -72,7 +73,6 @@
 					</div>
 					<div class="modal-body" style="text-align: center;">
 						<div style="display: inline-block;">
-
 							<input type="hidden" id="m_pwd" name="pwd">
 							<table>
 								<tr>
@@ -114,6 +114,10 @@
 				success : function(data) {
 					$("#getBalance").html(data);
 				},
+				beforeSend:function(xhr){
+		              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+		              $('.wrap-loading').removeClass('display-none');
+		        },
 				error : function() {
 					alert("getBalance error");
 				}

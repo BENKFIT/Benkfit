@@ -9,9 +9,10 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 
-	<form action="eventList_sws" method="post">
+	<form action="eventList_sws?${_csrf.parameterName}=${_csrf.token}" method="post">
 		<input type="hidden" name="eve_num" value="${dto.eve_num}"> 
 		<input type="hidden" name="pageNum" value="${pageNum}">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		
 		<div style="margin-top: -30px; width: 100%; text-align: center;">
 			<div style="margin-top: -30px; width: 100%; text-align: center;">

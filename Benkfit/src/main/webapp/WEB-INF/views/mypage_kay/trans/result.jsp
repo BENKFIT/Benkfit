@@ -8,12 +8,13 @@
 		<c:when test="${chkNum == 1}">
 			<script type="text/javascript">
 				alert('송금완료');
-				window.location="trans";
+				window.location="trans?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 		<c:when test="${chkNum != 1}">
 			<script type="text/javascript">
 				alert('송금실패');
+				window.location="trans?${_csrf.parameterName}=${_csrf.token}";
 			</script>
 		</c:when>
 	</c:choose>
