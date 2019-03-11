@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -34,9 +36,9 @@ public class Controller_kay {
 	@Transactional(rollbackFor=Exception.class)
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping("mypage")
-	public String mypage_kay(HttpServletRequest req, Model model) throws Exception{
+	public String mypage_kay(HttpServletRequest req, Model model, Authentication authentication) throws Exception{
 		logger.info("mypage_kay");
-		service.mypage_info(req, model);
+		service.mypage_info(req, model, authentication);
 		service.myCheq_list(req, model);
 		service.myloan_list(req, model);
 		service.mysav_list(req, model);

@@ -216,4 +216,20 @@
 		FROM contract_tbl
 		WHERE con_name = 'Slot'
 	</select>
+	
+	<!-- security -->
+	<!-- 로그인 -->
+	<!-- 스프링 시큐리티에서 체크하는 필드로 별칭을 줌, 암호화된 비밀번호와 사용자가 입력한 비밀번호를 가 내부로직으로 비교처리-->
+	<select id="selectUser" resultType="java.util.Map"> <!-- #{map의 key} -->
+		 SELECT userid as username, passwd as password, name, enabled, authority
+		 FROM users
+		 WHERE userid=#{userid}
+	</select>
+	
+	<!-- 관리자회원가입 -->
+	<insert id="insertAdmin" parameterType="java.util.Map">
+		INSERT INTO users(userid, passwd, name, enabled, authority) 
+		VALUES(#{userid},#{passwd},#{name},1,#{authority})
+	</insert>
+	
 </mapper>

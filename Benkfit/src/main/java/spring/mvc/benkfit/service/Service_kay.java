@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -13,7 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public interface Service_kay {
 	
 	//마이페이지  내정보
-	public void mypage_info(HttpServletRequest req, Model model)throws Exception;
+	/*public void mypage_info(HttpServletRequest req, Model model)throws Exception;*/
 	
 	//예금계좌 //이체한도 조회
 	public void myCheq_list(HttpServletRequest req, Model model)throws Exception;
@@ -83,4 +84,6 @@ public interface Service_kay {
 	
 	//자산관리 - 예산chart
 	public void budget(HttpServletRequest req, Model model)throws Exception;
+
+	void mypage_info(HttpServletRequest req, Model model, Authentication authentication);
 }

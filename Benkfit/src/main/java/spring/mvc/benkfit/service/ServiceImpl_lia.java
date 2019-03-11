@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.inject.Inject;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,12 +51,14 @@ public class ServiceImpl_lia implements Service_lia {
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	@Inject
+	BCryptPasswordEncoder passwordEncoder; // 비밀번호 암호화 객체
+	
 	// 파일 업로드 & 텍스트 인식
 	@Override
 	public void getText(String file, Model model) throws IOException {
-		 
+		//ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
 		ProcessBuilder pb = new ProcessBuilder("python", "C:/DEV43/python/source/test.py", file);
-		//ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/source/test.py", file);
 		Process p = pb.start();
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -177,9 +182,7 @@ public class ServiceImpl_lia implements Service_lia {
 		// 이미지 파일
 		MultipartFile file = req.getFile("idCard");
 		String saveDir = req.getRealPath("/resources/img/idcard/"); 
-		String realDir = "C:\\DEV43\\git\\benkfit\\src\\main\\webapp\\resources\\img\\idcard";
-		//String realDir = "/Users/banhun/git/benkfit/Benkfit/src/main/webapp/resources/img/idcard";
-        
+		String realDir = "C:\\Users\\322sy\\git\\benkfit\\Benkfit\\src\\main\\webapp\\resources\\img\\idcard\\";
         try {
             file.transferTo(new File(saveDir+file.getOriginalFilename()));
            
@@ -199,7 +202,10 @@ public class ServiceImpl_lia implements Service_lia {
 			
 			vo.setC_id(req.getParameter("id"));
 			//vo.setC_pwd(encryptSHA256(req.getParameter("pwd")));
-			vo.setC_pwd(req.getParameter("pwd"));
+			String passwd = req.getParameter("pwd");
+			String encryPassword = passwordEncoder.encode(passwd);
+			System.out.println("암호화 전 => " + passwd + "\t 암호화 후 => " + encryPassword);
+			vo.setC_pwd(encryPassword);
 			vo.setC_name(req.getParameter("name"));
 			vo.setC_jumin1(req.getParameter("jumin1"));
 			vo.setC_jumin2(encryptSHA256(req.getParameter("jumin2")));

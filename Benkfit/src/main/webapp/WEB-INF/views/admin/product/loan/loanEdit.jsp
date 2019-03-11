@@ -22,7 +22,8 @@
 			</div>
 			<div class="modal-body" style="text-align: center;">
 				<div style="display: inline-block;">
-					<form action="loanEditPro" method="post">
+					<form action="loanEditPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<input type="hidden" value="${vo.loan_num}" name="loan_num">
 						<table>
 							<tr>

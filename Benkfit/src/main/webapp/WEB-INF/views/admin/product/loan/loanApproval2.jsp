@@ -34,7 +34,8 @@ p, a {
 	<%@ include file="../../../Template/top.jsp"%>
 
 	<div style="margin-top: -30px; width: 100%; text-align: center;">
-		<form action="loanApprovalPro" method="post">
+		<form action="loanApprovalPro?${_csrf.parameterName}=${_csrf.token}" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div
 				style="display: inline-block; width: 60%; margin: 200px 0px 0px 0px;">
 				<h3 style="padding-left: 22px; text-align: center;">대출신청리스트</h3>
@@ -111,8 +112,12 @@ p, a {
 			type : "GET",
 			data : alldata,
 			success : function(data) {
-				location.href="loanApproval";
+				location.href="loanApproval?${_csrf.parameterName}=${_csrf.token}";
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 			}
 		});
@@ -123,13 +128,13 @@ p, a {
 			"value" : value
 		};
 		if(value == 0){
-			location.href="loanApproval";
+			location.href="loanApproval?${_csrf.parameterName}=${_csrf.token}";
 		}else if(value == 1){
-			location.href="loanApproval1";
+			location.href="loanApproval1?${_csrf.parameterName}=${_csrf.token}";
 		}else if(value == 2){
-			location.href="loanApproval2";
+			location.href="loanApproval2?${_csrf.parameterName}=${_csrf.token}";
 		}else{
-			location.href="loanApproval3";
+			location.href="loanApproval3?${_csrf.parameterName}=${_csrf.token}";
 		}
 	}
 </script>

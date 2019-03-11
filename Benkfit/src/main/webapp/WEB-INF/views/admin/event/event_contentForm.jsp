@@ -9,7 +9,8 @@
 <body>
 	<%@ include file="../../Template/top.jsp"%>
 
-	<form action="event_modifyForm_sws?pageNum=${pageNum}&eve_num=${dto.eve_num}" method="post">
+	<form action="event_modifyForm_sws?pageNum=${pageNum}&eve_num=${dto.eve_num}&${_csrf.parameterName}=${_csrf.token}" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<input type="hidden" name="eve_num" value="${dto.eve_num}"> 
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		

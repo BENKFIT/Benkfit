@@ -29,13 +29,14 @@
 <%@ include file ="../Template/top.jsp" %>
 <div id="logindiv1">
   <div id="logindiv2">
-    <form id="login-form?${_csrf.parameterName}=${_csrf.token}" action="loginPro" method="post" style="margin-top:250px;">
+    <form id="login-form" action="${pageContext.request.contextPath}/loginPro" method="post" style="margin-top:250px;">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <div class="row">
        <div class="row">
            <div class="col-md-12">
                <div class="eq-ui-form-group eq-ui-input-field">
                    <h3>로그인</h3>
+                   <span style="color:red;">${errMsg}</span>
                </div>
            </div>
        </div>
@@ -44,7 +45,7 @@
        <div class="row">
            <div class="col-md-12">
                <div class="eq-ui-form-group eq-ui-input-field">
-                   <input id="username" name="username" type="text" class="eq-ui-input">
+                   <input id="username" name="userid" type="text" class="eq-ui-input">
                    <label for="username" data-error="wrong" data-success="right">ID</label>
                </div>
            </div>
@@ -54,7 +55,7 @@
        <div class="row">
            <div class="col-md-12">
                <div class="eq-ui-form-group eq-ui-input-field">
-                   <input id="password" name="password" type="password" class="eq-ui-input">
+                   <input id="password" name="passwd" type="password" class="eq-ui-input">
                    <label for="password" data-error="wrong" data-success="right">PASSWORD</label>
                </div>
            </div>

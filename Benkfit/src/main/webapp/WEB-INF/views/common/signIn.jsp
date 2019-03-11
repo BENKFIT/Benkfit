@@ -105,11 +105,10 @@
       var path3 = path2.length;
       var path4 = path2[path3-1];
       $('#file_text').val(path4);
-      
       $.ajax({
-          type: "POST",
+          type: 'post',
           data: "file=" + path4,
-          url: "${pageContext.request.contextPath}/getText", //{컨트롤러}/이동페이지
+          url: "${pageContext.request.contextPath}/getText",
           success: function(data) {
             $("#name").val(data.split("/")[0]);
             $("#fileAjax").css("visibility", "visible");
@@ -521,7 +520,7 @@
     <div class="col-lg-4 col-md-4 mx-auto">
     <div class="card">
       <div class="card-body">
-      <form action="signInPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();">
+      <form action="./signInPro?${_csrf.parameterName}=${_csrf.token}" method="post" name="signIn" enctype="multipart/form-data" onsubmit="return signInCheck();" >
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
       <input type="hidden" name="hiddenJumin" value="0">
       <input type="hidden" name="hiddenAgree" value="0">

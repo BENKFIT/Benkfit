@@ -6,7 +6,7 @@
 <body>
 	<c:choose>
 		<c:when test="${cnt == 1}">
-			<c:redirect url="cheqSavRegi"/>
+			<c:redirect url="cheqSavRegi?${_csrf.parameterName}=${_csrf.token}"/>
 		</c:when>
 	</c:choose>
 </body>

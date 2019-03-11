@@ -82,7 +82,7 @@
 										<div class="col-md-12">
 											<div class="eq-ui-form-group eq-ui-input-field">
 												<input id="from" name="from" type="text" class="eq-ui-input">
-												<label for="from"> Withdrawal account</label>
+												<label for="from"> 출금 계좌</label>
 											</div>
 										</div>
 									</td>
@@ -96,7 +96,7 @@
 												</a>
 												<div class="eq-ui-input-file-path">
 													<input type="text" class="eq-ui-input"
-														placeholder="Upload one or more files" readonly>
+														placeholder="Upload private key file" readonly>
 												</div>
 											</div>
 										</div>
@@ -107,7 +107,7 @@
 										<div class="col-md-12">
 											<div class="eq-ui-form-group eq-ui-input-field">
 												<input id="to" type="text" class="eq-ui-input" name="to">
-												<label for="to"> Deposit account</label>
+												<label for="to"> 입금 계좌</label>
 											</div>
 										</div>
 									</td>
@@ -118,7 +118,7 @@
 											<div class="eq-ui-form-group eq-ui-input-field">
 												<input id="amount" type="number" name="value"
 													class="eq-ui-input"> <label for="amount">
-													amount </label>
+													금액 </label>
 											</div>
 										</div>
 									</td>
@@ -128,7 +128,7 @@
 										<div class="col-md-12">
 											<div class="eq-ui-form-group eq-ui-input-field">
 												<input id="password" type="password" name="password"
-													class="eq-ui-input"> <label for="password">password
+													class="eq-ui-input"> <label for="password">비밀번호
 												</label>
 											</div>
 										</div>
@@ -137,7 +137,7 @@
 										<div class="col-md-12">
 											<div class="eq-ui-form-group eq-ui-input-field">
 												<input id="date" type="number" name="date"
-													class="eq-ui-input"> <label for="number">date</label>
+													class="eq-ui-input"> <label for="number">날짜</label>
 											</div>
 										</div>
 									</td>

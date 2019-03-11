@@ -90,6 +90,10 @@
 					$('#state').html("다시 시도하세요.");
 				}
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도하세요.");
 				$('#state').html("다시 시도하세요.");
@@ -112,6 +116,10 @@
 			success : function(data) {
 				$('#state').html("은행업무가 시작되었습니다.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도하세요.");
 				$('#state').html("은행업무를 시작되지 않았습니다.");
@@ -134,6 +142,10 @@
 			success : function(data) {
 				$('#state').html("은행업무가 중지되었습니다..");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도하세요.");
 				$('#state').html("은행업무 중지를 실패했습니다.");

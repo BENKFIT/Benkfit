@@ -122,6 +122,10 @@ p, a {
 			success : function(data) {
 				$('#state').html("이더가 채워졌습니다. 확인해보세요.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도해주세요.");
 				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");
@@ -146,6 +150,10 @@ p, a {
 				$('#balance').html("슬롯의 이더가 관리자에게 돌아갔습니다.");
 				$('#state').html("슬롯이 중지되었습니다.");	
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도해주세요.");
 				$('#state').html("슬롯이 중지되지 않았습니다.");	
@@ -168,6 +176,10 @@ p, a {
 			success : function(data) {
 				$('#balance').html("슬롯의 잔액은 " + data + "ETH 입니다.");
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도해주세요.");
 				$('#state').html("지갑파일과 비밀번호를 확인해주세요.");	
@@ -189,6 +201,10 @@ p, a {
 			success : function(data) {
 				$('#balance').html(data);
 			},
+			beforeSend:function(xhr){
+	              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+	              $('.wrap-loading').removeClass('display-none');
+	        },
 			error : function() {
 				alert("다시 시도해주세요.");
 				$('#balance').html("지갑파일과 비밀번호를 확인해주세요.");	

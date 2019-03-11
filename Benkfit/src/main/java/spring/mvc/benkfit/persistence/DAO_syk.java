@@ -100,4 +100,7 @@ public interface DAO_syk {
 	
 	//contract - slot
 	public String getSlot();
+	
+	//회원가입 - 관리자
+	public int insertAdmin(Map<String, String> map);
 }

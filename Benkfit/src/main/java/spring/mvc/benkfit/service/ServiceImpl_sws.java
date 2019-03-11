@@ -299,8 +299,7 @@ public class ServiceImpl_sws implements Service_sws {
 	@Override
 	public void getMap(HttpServletRequest req, Model model) throws IOException {
 		
-//		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\output\\map.py");
-		ProcessBuilder pb = new ProcessBuilder("python", "/Users/banhun/tesseract/python/output/map.py");
+		ProcessBuilder pb = new ProcessBuilder("python", "C:\\DEV43\\python\\output\\map.py");
 		Process p  = pb.start();    // 프로세스 호출
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -322,8 +321,7 @@ public class ServiceImpl_sws implements Service_sws {
 		br.close();
 		
 		// 파일 읽기
-//		File file = new File("C:\\DEV43\\python\\output\\map.csv");
-		File file = new File("/Users/banhun/tesseract/python/output/map.csv");
+		File file = new File("C:\\DEV43\\python\\output\\map.csv");
 		
 		BufferedReader br2 = new BufferedReader(new InputStreamReader(new FileInputStream(file),"MS949"));
 
