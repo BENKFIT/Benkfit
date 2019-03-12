@@ -77,7 +77,7 @@
 	<select id="getMonthFirstChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(mc.mycheq_regdate, 'MM') value, COUNT(mc.myCheq_account) myCheq_account
 		FROM myCheqAccount_tbl mc
-		WHERE TO_CHAR(mc.mycheq_regdate, 'YYYY') IS NOT NULL
+		WHERE TO_CHAR(mc.mycheq_regdate, 'MM') IS NOT NULL
 		GROUP BY TO_CHAR(mc.mycheq_regdate, 'MM')
 		ORDER BY value
 	</select>
@@ -86,7 +86,7 @@
 	<select id="getMonthSecondChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(ms.mysav_date, 'MM') value, COUNT(ms.mySav_account) mySav_account
 		FROM mySavAccount_tbl ms
-		WHERE TO_CHAR(ms.mysav_date, 'YYYY') IS NOT NULL
+		WHERE TO_CHAR(ms.mysav_date, 'MM') IS NOT NULL
 		GROUP BY TO_CHAR(ms.mysav_date, 'MM')
 		ORDER BY value
 	</select>
@@ -95,7 +95,7 @@
 	<select id="getMonthThirdChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(ml.myloan_date, 'MM') value, COUNT(ml.myLoan_account) myLoan_account
 		FROM MyloanAccount_tbl ml
-		WHERE TO_CHAR(ml.myloan_date, 'YYYY') IS NOT NULL
+		WHERE TO_CHAR(ml.myloan_date, 'MM') IS NOT NULL
 		GROUP BY TO_CHAR(ml.myloan_date, 'MM')
 		ORDER BY value
 	</select>
@@ -104,7 +104,7 @@
 	<select id="getDayFirstChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(mc.mycheq_regdate, 'DD') value, COUNT(mc.myCheq_account) myCheq_account
 		FROM myCheqAccount_tbl mc
-		WHERE TO_CHAR(mc.mycheq_regdate, 'YYYY') IS NOT NULL
+		WHERE TO_CHAR(mc.mycheq_regdate, 'DD') IS NOT NULL
 		GROUP BY TO_CHAR(mc.mycheq_regdate, 'DD')
 		ORDER BY value
 	</select>
@@ -113,7 +113,7 @@
 	<select id="getDaySecondChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(ms.mysav_date, 'DD') value, COUNT(ms.mySav_account) mySav_account
 		FROM mySavAccount_tbl ms
-		WHERE TO_CHAR(ms.mysav_date, 'YYYY') IS NOT NULL
+		WHERE TO_CHAR(ms.mysav_date, 'DD') IS NOT NULL
 		GROUP BY TO_CHAR(ms.mysav_date, 'DD')
 		ORDER BY value
 	</select>
@@ -122,7 +122,7 @@
 	<select id="getDayThirdChat" resultType="spring.mvc.benkfit.vo.ChartVO">
 		SELECT DISTINCT TO_CHAR(ml.myloan_date, 'DD') value, COUNT(ml.myloan_account) myLoan_account
 		FROM MyloanAccount_tbl ml
-		WHERE TO_CHAR(ml.myloan_date, 'YYYY') IS NOT NULL
+		WHERE TO_CHAR(ml.myloan_date, 'DD') IS NOT NULL
 		GROUP BY TO_CHAR(ml.myloan_date, 'DD')
 		ORDER BY value
 	</select>
