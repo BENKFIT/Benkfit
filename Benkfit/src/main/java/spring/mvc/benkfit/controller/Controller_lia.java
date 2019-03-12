@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -248,7 +249,7 @@ public class Controller_lia {
 	// 안드로이드 검색
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidSearch")
+	@RequestMapping(value="/android/androidSearch", method=RequestMethod.POST)
 	public Map<String, Object> androidSearch(HttpServletRequest req){
 		logger.info("androidSearch 호출중");
 		

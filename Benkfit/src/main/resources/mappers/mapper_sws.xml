@@ -128,10 +128,10 @@
 	</select>
 	
 	<!-- 안드로이드 아이디 비밀번호 체크 -->
-	<select id="confirmIdPwd" resultType="int">
-		SELECT COUNT(*)
+	<select id="confirmIdPwd" resultType="String">
+		SELECT c_pwd
 		FROM users_tbl
-		WHERE c_id = #{c_id} AND c_pwd = #{c_pwd}
+		WHERE c_id = #{c_id}
 	</select>
 	
 	<!-- 안드로이드 로그인 -->

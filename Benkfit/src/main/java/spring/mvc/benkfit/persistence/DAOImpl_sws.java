@@ -228,10 +228,10 @@ public class DAOImpl_sws implements DAO_sws {
 	
 	// 안드로이드 아이디 비밀번호 체크
 	@Override
-	public int confirmIdPwd(Map<String, String> map) {
+	public String confirmIdPwd(Map<String, String> map) {
 		DAO_sws mapper = sqlSession.getMapper(DAO_sws.class);
-		int cnt = mapper.confirmIdPwd(map);
-		return cnt;
+		String password = mapper.confirmIdPwd(map);
+		return password;
 	}
 
 	// 안드로이드 로그인 정보 select

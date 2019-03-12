@@ -17,7 +17,6 @@ import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.api.Http;
@@ -345,7 +344,7 @@ public class Controller_syk {
 	
 	//관리자 회원가입 처리
 	@Transactional(rollbackFor=Exception.class)
-	@RequestMapping(value="/android/insertAdmin", method=RequestMethod.POST)
+	@RequestMapping("insertAdmin")
 	public String insertAdmin(@RequestParam String userid, @RequestParam String passwd,
 			@RequestParam String name, @RequestParam String authority) {
 		

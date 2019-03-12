@@ -176,8 +176,9 @@
             },
             beforeSend:function(xhr){
                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                $('.wrap-loading').removeClass('display-none');
-            },
+                $('.wrap-loading').hide();
+                
+            }, 
             error: function() {
               alert("오류");
             }
@@ -219,7 +220,7 @@
             },
             beforeSend:function(xhr){
                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                $('.wrap-loading').removeClass('display-none');
+            	$('.wrap-loading').hide();
             },
             error: function() {
               alert("오류");
@@ -252,7 +253,7 @@
             },
             beforeSend:function(xhr){
                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                $('.wrap-loading').removeClass('display-none');
+                $('.wrap-loading').hide();
             },
             error: function() {
               alert("오류");
@@ -293,8 +294,8 @@
               $("#nameVal").html(msg);
             },
             beforeSend:function(xhr){
-                xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                $('.wrap-loading').removeClass('display-none');
+                /* xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}"); */
+                $('.wrap-loading').hide();
             },
             error: function() {
               alert("오류");
@@ -341,7 +342,7 @@
             },
             beforeSend:function(xhr){
                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                $('.wrap-loading').removeClass('display-none');
+                $('.wrap-loading').hide();
             },
             error: function() {
               alert("오류");
@@ -379,7 +380,7 @@
             },
             beforeSend:function(xhr){
                 xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                $('.wrap-loading').removeClass('display-none');
+                $('.wrap-loading').hide();
             },
             error: function() {
               alert("오류");
@@ -538,13 +539,13 @@
       
         <div class="form-group">
         <label for="id">아이디<span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="id" name="id" maxlength=15 placeholder="아이디 입력" onblur="checkId();" required>
+        <input type="text" class="form-control" id="id" name="id" maxlength=15 placeholder="아이디 입력" required>
         <div id="idVal"></div>    
         </div>
         
         <div class="form-group">
         <label for="pwd">비밀번호<span class="text-danger">*</span></label>
-        <input type="password" class="form-control" id="pwd" name="pwd" maxlength=15 placeholder="비밀번호 입력" onkeyup="checkPwd();"required>
+        <input type="password" class="form-control" id="pwd" name="pwd" maxlength=15 placeholder="비밀번호 입력" required>
         <div id="pwdVal" style="color:#C64545;"></div>
         </div>
         

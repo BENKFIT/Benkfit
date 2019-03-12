@@ -2,16 +2,14 @@ package spring.mvc.benkfit.controller;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,6 +17,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.stereotype.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -289,15 +289,21 @@ public class Controller_sws {
 		String pwd = req.getParameter("pwd");
 		System.out.println("id:" + id + " pwd:" + pwd);
 
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+		
 		Map<String, String> in = new HashMap<String, String>();
+		Map<String, String> out = new HashMap<String, String>();
 		in.put("c_id", id);
 		in.put("c_pwd", pwd);
-		int cnt = dao.confirmIdPwd(in);
+		String c_pwd = dao.confirmIdPwd(in);
+		
+		if(c_pwd == null) {
+			out.put("c_id", null);
+		}
 
-		Map<String, String> out = new HashMap<String, String>();
-		if(cnt != 0) {
+		if(encoder.matches(pwd, c_pwd)) {
 			out.put("c_id", id);
-		} else {
+		}else {
 			out.put("c_id", null);
 		}
 		return out;
@@ -476,9 +482,6 @@ public class Controller_sws {
 
 		String id = req.getParameter("id");
 		List<myCheqAccountVO> c = dao.myCheqAccounts(id);
-		
-/*		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String Data = transFormat.format(Date);*/
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myCheqAccount", c);
@@ -511,7 +514,6 @@ public class Controller_sws {
 
 		String id = req.getParameter("id");
 		List<MyloanAccountVO> l = dao.myLoanAccounts(id);
-		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("myLoanAccount", l);
