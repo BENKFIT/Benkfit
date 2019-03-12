@@ -13,10 +13,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CsrfToken;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
@@ -263,13 +270,20 @@ public class Controller_sws {
 		
 		return "admin/chart/chartDay";
 	}
+	
+	@RequestMapping(value="/csrf-token", method=RequestMethod.GET)
+	public @ResponseBody String getCsrfToken(HttpServletRequest request) {
+	    CsrfToken token = (CsrfToken)request.getAttribute(CsrfToken.class.getName());
+	    return token.getToken();
+	}
 
 	// 안드로이드 로그인
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidSignIn")
+	@RequestMapping(value="/android/androidSignIn", method=RequestMethod.POST) 
 	public Map<String, String> androidSignIn(HttpServletRequest req) throws Exception{
 		logger.info("androidSignIn()");
+		System.out.println("androidSignIn();");
 
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
@@ -286,14 +300,13 @@ public class Controller_sws {
 		} else {
 			out.put("c_id", null);
 		}
-
 		return out;
 	}
-
+	
 	// 안드로이드 메인페이지
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidMain")
+	@RequestMapping(value="/android/androidMain", method=RequestMethod.POST)
 	public Map<String, Object> androidMain(HttpServletRequest req) throws Exception{
 		logger.info("androidMain()");
 
@@ -313,7 +326,7 @@ public class Controller_sws {
 	// 금융 상품 페이지
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidProduct")
+	@RequestMapping(value="/android/androidProduct", method=RequestMethod.POST)
 	public Map<String, Object> androidProduct(HttpServletRequest req) throws Exception{
 		logger.info("androidProduct()");
 
@@ -333,7 +346,7 @@ public class Controller_sws {
 	// 금융 상품 상세 페이지
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidProductContent")
+	@RequestMapping(value="/android/androidProductContent", method=RequestMethod.POST)
 	public Map<String, Object> androidProductContent(HttpServletRequest req) throws Exception{
 		logger.info("androidProductContent()");
 		
@@ -361,7 +374,7 @@ public class Controller_sws {
 	// QR코드 로그인
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidQrcodeLogin")
+	@RequestMapping(value="/android/androidQrcodeLogin", method=RequestMethod.POST)
 	public Map<String, String> androidQrcodeLogin(HttpServletRequest req) throws Exception{
 		logger.info("androidQrcodeLogin()");
 		
@@ -369,7 +382,7 @@ public class Controller_sws {
 		System.out.println("item == " + item);
 		String id = req.getParameter("item").split("/")[0].split(":")[1];
 		String pwd = req.getParameter("item").split("/")[1].split(":")[1];
-		System.out.println("id = " + id + "pwd = " + pwd);
+		System.out.println("id = " + id + "   pwd = " + pwd);
 		
 		Map<String, Object> in = new HashMap<String, Object>();
 		in.put("id", id);
@@ -392,7 +405,7 @@ public class Controller_sws {
 	// 앱 지갑 생성
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidCheq")
+	@RequestMapping(value="/android/androidCheq", method=RequestMethod.POST)
 	public Map<String, Object> androidCheq(HttpServletRequest req) throws Exception{
 		logger.info("androidCheq()");
 		
@@ -441,7 +454,7 @@ public class Controller_sws {
 	// 안드로이드 거래내역
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidTransDetail")
+	@RequestMapping(value="/android/androidTransDetail", method=RequestMethod.POST)
 	public Map<String, Object> androidTransDetail(HttpServletRequest req) throws Exception{
 		logger.info("androidTransDetail()");
 
@@ -457,7 +470,7 @@ public class Controller_sws {
 	// 안드로이드 예금계좌내역
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidMyCheqAccounts")
+	@RequestMapping(value="/android/androidMyCheqAccounts", method=RequestMethod.POST)
 	public Map<String, Object> androidMyCheqAccounts(HttpServletRequest req) throws Exception{
 		logger.info("androidMyCheqAccounts()");
 
@@ -476,7 +489,7 @@ public class Controller_sws {
 	// 안드로이드 적금계좌내역
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidMySavAccounts")
+	@RequestMapping(value="/android/androidMySavAccounts", method=RequestMethod.POST)
 	public Map<String, Object> androidMySavAccounts(HttpServletRequest req) throws Exception{
 		logger.info("androidMySavAccounts()");
 
@@ -492,7 +505,7 @@ public class Controller_sws {
 	// 안드로이드 대출계좌내역
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidMyLoanAccounts")
+	@RequestMapping(value="/android/androidMyLoanAccounts", method=RequestMethod.POST)
 	public Map<String, Object> androidMyLoanAccounts(HttpServletRequest req) throws Exception{
 		logger.info("androidMyLoanAccounts()");
 
@@ -504,14 +517,6 @@ public class Controller_sws {
 		map.put("myLoanAccount", l);
 		
 		return map;
-	}
-	
-	// 아코디언 테스트
-	@Transactional(rollbackFor=Exception.class)
-	@RequestMapping("faq_sws2")
-	public String faq_sws2() throws Exception {
-		logger.info("faq_sws2");
-		return "common/info/faq2";
 	}
 	
 	// ATM
