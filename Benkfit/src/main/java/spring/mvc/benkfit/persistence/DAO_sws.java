@@ -38,7 +38,7 @@ public interface DAO_sws {
 	
 	public int deleteEvent(String eve_num);
 	
-	public int confirmIdPwd(Map<String, String> map);
+	public String confirmIdPwd(Map<String, String> map);
 	
 	public List<CheqProductVO> cheqProduct();
 	

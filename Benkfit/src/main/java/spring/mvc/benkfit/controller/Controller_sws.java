@@ -2,21 +2,21 @@ package spring.mvc.benkfit.controller;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.reflection.SystemMetaObject;
-import org.slf4j.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
@@ -267,7 +267,7 @@ public class Controller_sws {
 	// 안드로이드 로그인
 	@Transactional(rollbackFor=Exception.class)
 	@ResponseBody
-	@RequestMapping("androidSignIn")
+	@RequestMapping(value="/android/androidSignIn", method=RequestMethod.POST)
 	public Map<String, String> androidSignIn(HttpServletRequest req) throws Exception{
 		logger.info("androidSignIn()");
 
@@ -275,15 +275,21 @@ public class Controller_sws {
 		String pwd = req.getParameter("pwd");
 		System.out.println("id:" + id + " pwd:" + pwd);
 
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();  
+		
 		Map<String, String> in = new HashMap<String, String>();
+		Map<String, String> out = new HashMap<String, String>();
 		in.put("c_id", id);
 		in.put("c_pwd", pwd);
-		int cnt = dao.confirmIdPwd(in);
+		String c_pwd = dao.confirmIdPwd(in);
+		
+		if(c_pwd == null) {
+			out.put("c_id", null);
+		}
 
-		Map<String, String> out = new HashMap<String, String>();
-		if(cnt != 0) {
+		if(encoder.matches(pwd, c_pwd)) {
 			out.put("c_id", id);
-		} else {
+		}else {
 			out.put("c_id", null);
 		}
 
